@@ -29,6 +29,9 @@ import { renderSupportPage } from './templates/support.mjs';
 import { renderTermsPage } from './templates/terms.mjs';
 import { renderPrayersPage } from './templates/prayers.mjs';
 import { renderAboutPage } from './templates/about.mjs';
+import { renderQuizPage } from './templates/quiz.mjs';
+import { renderTraditionsPage } from './templates/traditions.mjs';
+import { renderConceptsPage } from './templates/concepts.mjs';
 import { renderStepsIndexPage, renderStepPage, STEPS } from './templates/steps.mjs';
 import { wrapInLayout } from './templates/base.mjs';
 
@@ -69,6 +72,9 @@ const dirs = [
   join(outDir, 'terms'),
   join(outDir, 'prayers'),
   join(outDir, 'about'),
+  join(outDir, 'quiz'),
+  join(outDir, 'traditions'),
+  join(outDir, 'concepts'),
   join(outDir, 'steps'),
   ...Array.from({ length: 12 }, (_, i) => join(outDir, 'steps', `step-${i + 1}`)),
 ];
@@ -145,6 +151,9 @@ writePage(join(outDir, 'support', 'index.html'), renderSupportPage());
 writePage(join(outDir, 'terms', 'index.html'), renderTermsPage());
 writePage(join(outDir, 'prayers', 'index.html'), renderPrayersPage());
 writePage(join(outDir, 'about', 'index.html'), renderAboutPage());
+writePage(join(outDir, 'quiz', 'index.html'), renderQuizPage());
+writePage(join(outDir, 'traditions', 'index.html'), renderTraditionsPage());
+writePage(join(outDir, 'concepts', 'index.html'), renderConceptsPage());
 // Steps index + individual step pages
 console.log('Generating step pages (12 steps)...');
 writePage(join(outDir, 'steps', 'index.html'), renderStepsIndexPage());

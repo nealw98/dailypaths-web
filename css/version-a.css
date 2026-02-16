@@ -1001,14 +1001,60 @@ ul {
 }
 
 /* --- About Page --- */
-.about-page .quiz-list {
+.about-links {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  margin: 1.5rem 0;
+}
+
+@media (min-width: 640px) {
+  .about-links {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.about-link-card {
+  display: block;
+  padding: 1.25rem;
+  background: var(--cloud);
+  border-radius: var(--radius);
+  text-decoration: none;
+  color: inherit;
+  transition: background 0.15s, box-shadow 0.15s;
+}
+
+.about-link-card:hover {
+  background: var(--mist);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+}
+
+.about-link-card h3 {
+  font-family: var(--font-serif);
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--deep-teal);
+  margin: 0 0 0.35rem;
+}
+
+.about-link-card p {
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  color: var(--ink);
+  opacity: 0.7;
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* --- Quiz Page --- */
+.quiz-page .quiz-list {
   counter-reset: quiz;
   list-style: none;
   padding-left: 0;
   margin: 1.5rem 0;
 }
 
-.about-page .quiz-list li {
+.quiz-page .quiz-list li {
   counter-increment: quiz;
   font-family: var(--font-reading);
   font-size: 1rem;
@@ -1019,11 +1065,11 @@ ul {
   border-bottom: 1px solid var(--cloud);
 }
 
-.about-page .quiz-list li:last-child {
+.quiz-page .quiz-list li:last-child {
   border-bottom: none;
 }
 
-.about-page .quiz-list li::before {
+.quiz-page .quiz-list li::before {
   content: counter(quiz) ".";
   position: absolute;
   left: 0;
@@ -1033,17 +1079,21 @@ ul {
   font-size: 1rem;
 }
 
-.about-page .quiz-note {
-  font-family: var(--font-reading);
-  font-style: italic;
-  color: var(--deep-teal);
-  margin-top: 1.5rem;
-  padding: 1rem;
+.quiz-result {
+  margin-top: 2rem;
+  padding: 1.25rem;
   background: var(--cloud);
   border-radius: var(--radius);
 }
 
-.about-page .quiz-attribution {
+.quiz-note {
+  font-family: var(--font-reading);
+  font-style: italic;
+  color: var(--deep-teal);
+  margin: 0 0 0.75rem;
+}
+
+.quiz-attribution {
   font-family: var(--font-sans);
   font-size: 0.85rem;
   color: var(--ink);
@@ -1051,14 +1101,23 @@ ul {
   margin-top: 0.75rem;
 }
 
-.about-page .traditions-list,
-.about-page .concepts-list {
+.quiz-next-steps,
+.traditions-next-steps,
+.concepts-next-steps {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem 1.5rem;
+}
+
+/* --- Traditions Page --- */
+.traditions-page .traditions-list,
+.concepts-page .concepts-list {
   padding-left: 1.5rem;
   margin: 1rem 0;
 }
 
-.about-page .traditions-list li,
-.about-page .concepts-list li {
+.traditions-page .traditions-list li,
+.concepts-page .concepts-list li {
   font-family: var(--font-reading);
   font-size: 0.95rem;
   line-height: 1.65;
@@ -1067,11 +1126,20 @@ ul {
   padding-left: 0.25rem;
 }
 
-.about-page .traditions-list li::marker,
-.about-page .concepts-list li::marker {
+.traditions-page .traditions-list li::marker,
+.concepts-page .concepts-list li::marker {
   font-family: var(--font-serif);
   font-weight: 600;
   color: var(--ocean);
+}
+
+.traditions-attribution,
+.concepts-attribution {
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  color: var(--ink);
+  opacity: 0.5;
+  margin-top: 0.75rem;
 }
 
 /* --- Steps Index Page --- */

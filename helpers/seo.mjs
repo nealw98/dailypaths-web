@@ -40,6 +40,9 @@ export function generateSitemap(readings, themes) {
   // Static pages
   urls.push({ loc: SITE_URL + '/prayers/', priority: '0.6', changefreq: 'monthly' });
   urls.push({ loc: SITE_URL + '/about/', priority: '0.6', changefreq: 'monthly' });
+  urls.push({ loc: SITE_URL + '/quiz/', priority: '0.6', changefreq: 'monthly' });
+  urls.push({ loc: SITE_URL + '/traditions/', priority: '0.6', changefreq: 'monthly' });
+  urls.push({ loc: SITE_URL + '/concepts/', priority: '0.6', changefreq: 'monthly' });
   urls.push({ loc: SITE_URL + '/privacy/', priority: '0.3', changefreq: 'monthly' });
   urls.push({ loc: SITE_URL + '/support/', priority: '0.3', changefreq: 'monthly' });
   urls.push({ loc: SITE_URL + '/terms/', priority: '0.3', changefreq: 'monthly' });
