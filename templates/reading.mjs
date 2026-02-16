@@ -76,10 +76,10 @@ export function renderReadingPage(reading, prevReading, nextReading) {
         </nav>
 
         <aside class="app-cta">
-          <p class="app-cta-heading">Enjoy Daily Paths on the go</p>
+          <p class="app-cta-heading">Enjoy Al-Anon Daily Paths on the go</p>
           <p class="app-cta-text">
             Save your favorite readings, receive gentle daily reminders,
-            and read offline with the Daily Paths app.
+            and read offline with the Al-Anon Daily Paths app.
           </p>
           <ul class="app-features">
             <li>Bookmark readings that speak to you</li>
@@ -95,7 +95,7 @@ export function renderReadingPage(reading, prevReading, nextReading) {
     </article>`;
 
   return wrapInLayout({
-    title: `${reading.title} \u2014 Al-Anon Daily Reflection for ${reading.display_date} | Daily Paths`,
+    title: `${reading.title} \u2014 Al-Anon Daily Reflection for ${reading.display_date} | Al-Anon Daily Paths`,
     description: metaDescription,
     canonicalPath: `/${slug}/`,
     bodyContent,

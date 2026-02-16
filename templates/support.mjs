@@ -6,7 +6,7 @@ export function renderSupportPage() {
       <div class="content-container">
         <h1 class="page-title">Support</h1>
         <p class="page-description">
-          We're here to help you get the most out of Daily Paths. Find answers
+          We're here to help you get the most out of Al-Anon Daily Paths. Find answers
           to common questions below or reach out to us directly.
         </p>
 
@@ -23,9 +23,9 @@ export function renderSupportPage() {
           <h2>Frequently Asked Questions</h2>
 
           <details class="faq-item">
-            <summary>What is Daily Paths?</summary>
+            <summary>What is Al-Anon Daily Paths?</summary>
             <p>
-              Daily Paths is a companion app for Al-Anon members featuring 366 original
+              Al-Anon Daily Paths is a companion app for Al-Anon members featuring 366 original
               daily reflections. Each reading is organized by the 12 Steps (one step per month),
               written in the contemplative style of "Courage to Change," and based on the
               "Paths to Recovery" framework. Every reflection includes a practical application
@@ -34,9 +34,9 @@ export function renderSupportPage() {
           </details>
 
           <details class="faq-item">
-            <summary>Is Daily Paths affiliated with Al-Anon Family Groups?</summary>
+            <summary>Is Al-Anon Daily Paths affiliated with Al-Anon Family Groups?</summary>
             <p>
-              Daily Paths is an independent app created to support those in Al-Anon recovery.
+              Al-Anon Daily Paths is an independent app created to support those in Al-Anon recovery.
               It is not officially affiliated with, endorsed by, or produced by Al-Anon Family
               Group Headquarters, Inc. The content is original and inspired by Al-Anon principles.
             </p>
@@ -54,7 +54,7 @@ export function renderSupportPage() {
           <details class="faq-item">
             <summary>Can I save my favorite readings?</summary>
             <p>
-              Yes! In the Daily Paths app, tap the heart icon on any reading to save it
+              Yes! In the Al-Anon Daily Paths app, tap the heart icon on any reading to save it
               to your favorites. You can access all your saved readings from the Favorites
               section in the app.
             </p>
@@ -80,9 +80,9 @@ export function renderSupportPage() {
           </details>
 
           <details class="faq-item">
-            <summary>Is Daily Paths free to use?</summary>
+            <summary>Is Al-Anon Daily Paths free to use?</summary>
             <p>
-              The website is free. The Daily Paths app is available as a one-time purchase
+              The website is free. The Al-Anon Daily Paths app is available as a one-time purchase
               on the App Store. We believe recovery support should be accessible to everyone
               who needs it.
             </p>
@@ -105,8 +105,8 @@ export function renderSupportPage() {
     </div>`;
 
   return wrapInLayout({
-    title: 'Support & FAQ | Daily Paths',
-    description: 'Get help with Daily Paths. Find answers to common questions about the Al-Anon daily reflections app and website.',
+    title: 'Support & FAQ | Al-Anon Daily Paths',
+    description: 'Get help with Al-Anon Daily Paths. Find answers to common questions about the daily reflections app and website.',
     canonicalPath: '/support/',
     bodyContent,
     bodyClass: 'page-support',

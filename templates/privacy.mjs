@@ -10,7 +10,7 @@ export function renderPrivacyPage() {
         <section class="content-section">
           <h2>Overview</h2>
           <p>
-            Daily Paths ("we," "our," or "us") is committed to protecting your privacy.
+            Al-Anon Daily Paths ("we," "our," or "us") is committed to protecting your privacy.
             This Privacy Policy explains how we collect, use, and safeguard information
             when you use our mobile application and website.
           </p>
@@ -64,7 +64,7 @@ export function renderPrivacyPage() {
           <p>
             We do not sell, trade, or share your information with third parties.
             All data remains within our secure systems and is used solely for
-            improving the Daily Paths experience.
+            improving the Al-Anon Daily Paths experience.
           </p>
         </section>
 
@@ -89,7 +89,7 @@ export function renderPrivacyPage() {
         <section class="content-section">
           <h2>Your Choices</h2>
           <p>
-            You can use Daily Paths without providing any feedback or ratings.
+            You can use Al-Anon Daily Paths without providing any feedback or ratings.
             The core reading experience does not require any data collection beyond
             the anonymous device identifier used to remember your preferences.
           </p>
@@ -98,7 +98,7 @@ export function renderPrivacyPage() {
         <section class="content-section">
           <h2>Children's Privacy</h2>
           <p>
-            Daily Paths is intended for adults. We do not knowingly collect
+            Al-Anon Daily Paths is intended for adults. We do not knowingly collect
             information from children under 13 years of age.
           </p>
         </section>
@@ -123,8 +123,8 @@ export function renderPrivacyPage() {
     </div>`;
 
   return wrapInLayout({
-    title: 'Privacy Policy | Daily Paths',
-    description: 'Daily Paths privacy policy. Learn how we protect your privacy with anonymous-only data collection.',
+    title: 'Privacy Policy | Al-Anon Daily Paths',
+    description: 'Al-Anon Daily Paths privacy policy. Learn how we protect your privacy with anonymous-only data collection.',
     canonicalPath: '/privacy/',
     bodyContent,
     bodyClass: 'page-privacy',

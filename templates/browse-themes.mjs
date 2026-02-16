@@ -33,7 +33,7 @@ ${cards}
     </div>`;
 
   return wrapInLayout({
-    title: 'Browse Al-Anon Reflections by Recovery Theme | Daily Paths',
+    title: 'Browse Al-Anon Reflections by Recovery Theme | Al-Anon Daily Paths',
     description: 'Explore daily Al-Anon reflections organized by recovery themes including detachment, surrender, hope, acceptance, and more.',
     canonicalPath: '/themes/',
     bodyContent,
@@ -81,8 +81,8 @@ ${items}
     </div>`;
 
   return wrapInLayout({
-    title: `${theme} \u2014 Al-Anon Daily Reflections | Daily Paths`,
-    description: `Explore ${readings.length} daily Al-Anon reflections about ${theme.toLowerCase()}. Recovery readings from Daily Paths.`,
+    title: `${theme} \u2014 Al-Anon Daily Reflections | Al-Anon Daily Paths`,
+    description: `Explore ${readings.length} daily Al-Anon reflections about ${theme.toLowerCase()}. Recovery readings from Al-Anon Daily Paths.`,
     canonicalPath: `/themes/${slug}/`,
     bodyContent,
     bodyClass: 'page-theme-detail',

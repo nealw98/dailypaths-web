@@ -27,6 +27,7 @@ import { renderThemesIndexPage, renderThemePage } from './templates/browse-theme
 import { renderPrivacyPage } from './templates/privacy.mjs';
 import { renderSupportPage } from './templates/support.mjs';
 import { renderTermsPage } from './templates/terms.mjs';
+import { renderPrayersPage } from './templates/prayers.mjs';
 import { wrapInLayout } from './templates/base.mjs';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -35,7 +36,7 @@ const ROOT = __dirname;
 // Parse CLI args
 const args = process.argv.slice(2);
 const versionArg = args.find(a => a.startsWith('--version='));
-const cssVersion = versionArg ? versionArg.split('=')[1] : 'a';
+const cssVersion = versionArg ? versionArg.split('=')[1] : 'b';
 const outDir = join(ROOT, 'docs');
 
 console.log(`\nDaily Paths Static Site Generator`);
@@ -64,6 +65,7 @@ const dirs = [
   join(outDir, 'privacy'),
   join(outDir, 'support'),
   join(outDir, 'terms'),
+  join(outDir, 'prayers'),
 ];
 dirs.forEach(d => mkdirSync(d, { recursive: true }));
 
@@ -95,9 +97,19 @@ function writePage(filePath, html) {
   pageCount++;
 }
 
-// Homepage
+// Homepage — show today's reading
 console.log('Generating homepage...');
-writePage(join(outDir, 'index.html'), renderHomepage());
+const now = new Date();
+const todayMonth = now.getMonth(); // 0-indexed
+const todayDate = now.getDate();
+const daysInMonth = [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+let todayDayOfYear = todayDate;
+for (let m = 0; m < todayMonth; m++) todayDayOfYear += daysInMonth[m];
+const todayIdx = readings.findIndex(r => r.day_of_year === todayDayOfYear);
+const todayReading = readings[todayIdx >= 0 ? todayIdx : 0];
+const todayPrev = readings[(todayIdx - 1 + readings.length) % readings.length];
+const todayNext = readings[(todayIdx + 1) % readings.length];
+writePage(join(outDir, 'index.html'), renderHomepage(todayReading, todayPrev, todayNext));
 
 // Reading pages
 console.log('Generating 366 reading pages...');
@@ -126,10 +138,11 @@ console.log('Generating static pages...');
 writePage(join(outDir, 'privacy', 'index.html'), renderPrivacyPage());
 writePage(join(outDir, 'support', 'index.html'), renderSupportPage());
 writePage(join(outDir, 'terms', 'index.html'), renderTermsPage());
+writePage(join(outDir, 'prayers', 'index.html'), renderPrayersPage());
 
 // 404 page
 const notFoundHtml = wrapInLayout({
-  title: 'Page Not Found | Daily Paths',
+  title: 'Page Not Found | Al-Anon Daily Paths',
   description: 'The page you are looking for could not be found.',
   canonicalPath: '/404.html',
   bodyContent: `

@@ -38,7 +38,7 @@ export function wrapInLayout({
   <meta property="og:type" content="${ogType}">
   <meta property="og:url" content="${canonicalUrl}">
   <meta property="og:image" content="${siteUrl}/assets/og-image.png">
-  <meta property="og:site_name" content="Daily Paths">
+  <meta property="og:site_name" content="Al-Anon Daily Paths">
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary">
@@ -77,8 +77,8 @@ ${structuredData}
   <header class="site-header">
     <div class="header-inner">
       <a href="/" class="site-logo">
-        <img src="/assets/logo.png" alt="Daily Paths" width="32" height="32">
-        <span class="site-name">Daily Paths</span>
+        <img src="/assets/logo.png" alt="Al-Anon Daily Paths" width="32" height="32">
+        <span class="site-name">Al-Anon Daily Paths</span>
       </a>
       <button class="menu-toggle" data-menu-toggle aria-label="Toggle menu" aria-expanded="false">
         <span class="menu-bar"></span>
@@ -89,6 +89,7 @@ ${structuredData}
         <a href="/" class="nav-link">Home</a>
         <a href="/browse/" class="nav-link">Browse</a>
         <a href="/themes/" class="nav-link">Themes</a>
+        <a href="/prayers/" class="nav-link">Prayers</a>
         <a href="/support/" class="nav-link">Support</a>
       </nav>
     </div>
@@ -101,7 +102,7 @@ ${bodyContent}
   <footer class="site-footer">
     <div class="footer-inner">
       <div class="footer-brand">
-        <span class="footer-name">Daily Paths</span>
+        <span class="footer-name">Al-Anon Daily Paths</span>
         <p class="footer-tagline">Daily reflections for the Al-Anon journey</p>
       </div>
       <nav class="footer-nav">
@@ -109,7 +110,7 @@ ${bodyContent}
         <a href="/terms/">Terms</a>
         <a href="/support/">Support</a>
       </nav>
-      <p class="footer-copyright">&copy; ${year} Daily Paths. All rights reserved.</p>
+      <p class="footer-copyright">&copy; ${year} Al-Anon Daily Paths. All rights reserved.</p>
     </div>
   </footer>
 

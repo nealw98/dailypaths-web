@@ -32,6 +32,7 @@ export function generateSitemap(readings, themes) {
   }
 
   // Static pages
+  urls.push({ loc: SITE_URL + '/prayers/', priority: '0.6', changefreq: 'monthly' });
   urls.push({ loc: SITE_URL + '/privacy/', priority: '0.3', changefreq: 'monthly' });
   urls.push({ loc: SITE_URL + '/support/', priority: '0.3', changefreq: 'monthly' });
   urls.push({ loc: SITE_URL + '/terms/', priority: '0.3', changefreq: 'monthly' });
@@ -71,11 +72,11 @@ export function readingStructuredData(reading, slug) {
     'description': reading.opening?.replace(/\\n\\n/g, ' ').replace(/\\n/g, ' ').replace(/\*+/g, '').slice(0, 155),
     'author': {
       '@type': 'Organization',
-      'name': 'Daily Paths'
+      'name': 'Al-Anon Daily Paths'
     },
     'publisher': {
       '@type': 'Organization',
-      'name': 'Daily Paths',
+      'name': 'Al-Anon Daily Paths',
       'logo': {
         '@type': 'ImageObject',
         'url': `${SITE_URL}/assets/logo.png`
@@ -95,7 +96,7 @@ export function homepageStructuredData() {
   return JSON.stringify({
     '@context': 'https://schema.org',
     '@type': 'WebSite',
-    'name': 'Daily Paths',
+    'name': 'Al-Anon Daily Paths',
     'url': SITE_URL,
     'description': '366 original daily Al-Anon recovery reflections written in the contemplative tradition.'
   }, null, 2);

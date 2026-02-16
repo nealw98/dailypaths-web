@@ -1,25 +1,79 @@
 import { wrapInLayout } from './base.mjs';
 import { homepageStructuredData } from '../helpers/seo.mjs';
+import { textToHtmlParagraphs, renderQuote } from '../helpers/markdown.mjs';
+import { dayToSlug } from '../helpers/slug-utils.mjs';
 
 /**
- * Generate the homepage HTML.
+ * Generate the homepage HTML with today's reading.
+ *
+ * @param {Object} todayReading - Today's reading object
+ * @param {Object} prevReading - Previous day's reading (for nav)
+ * @param {Object} nextReading - Next day's reading (for nav)
  */
-export function renderHomepage() {
+export function renderHomepage(todayReading, prevReading, nextReading) {
   const structuredData = homepageStructuredData();
 
+  const slug = dayToSlug(todayReading.day_of_year);
+  const prevSlug = dayToSlug(prevReading.day_of_year);
+  const nextSlug = dayToSlug(nextReading.day_of_year);
+
+  const quoteHtml = renderQuote(todayReading.quote);
+  const openingHtml = textToHtmlParagraphs(todayReading.opening);
+  const bodyHtml = textToHtmlParagraphs(todayReading.body);
+  const applicationHtml = todayReading.application ? textToHtmlParagraphs(todayReading.application) : '';
+  const thoughtHtml = todayReading.thought_for_day
+    ? todayReading.thought_for_day.replace(/\\n/g, '\n').replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>').replace(/\*(.+?)\*/g, '<em>$1</em>')
+    : '';
+
+  const themeTag = todayReading.secondary_theme
+    ? `<a href="/themes/${todayReading.secondary_theme.toLowerCase().replace(/[^a-z0-9\s-]/g, '').replace(/\s+/g, '-')}/" class="reading-theme">${todayReading.secondary_theme}</a>`
+    : '';
+
   const bodyContent = `
-    <section class="hero">
-      <div class="hero-inner">
-        <h1 class="hero-title">Daily Paths</h1>
-        <p class="hero-subtitle">366 original daily reflections for the Al-Anon journey</p>
-        <p class="hero-description">
-          Written in the contemplative tradition of Al-Anon literature,
-          each reflection offers a moment of clarity, comfort, and connection
-          for those affected by someone else's drinking.
-        </p>
-        <a href="#" class="btn-primary" data-today-link>Read Today's Reflection</a>
+    <article class="reading-page">
+      <div class="reading-container">
+        <header class="reading-header">
+          <p class="reading-date">${todayReading.display_date} &mdash; Today's Reading</p>
+          <h1 class="reading-title">${todayReading.title}</h1>
+          ${themeTag}
+        </header>
+
+        <section class="reading-quote">
+          ${quoteHtml}
+        </section>
+
+        <section class="reading-body">
+          ${openingHtml}
+          ${bodyHtml}
+        </section>
+
+        ${applicationHtml ? `
+        <div class="reading-divider"></div>
+        <section class="reading-application">
+          ${applicationHtml}
+        </section>
+        ` : ''}
+
+        ${thoughtHtml ? `
+        <aside class="reading-thought">
+          <p class="thought-label">Thought for the Day</p>
+          <p class="thought-text">${thoughtHtml}</p>
+        </aside>
+        ` : ''}
+
+        <nav class="reading-nav">
+          <a href="/${prevSlug}/" class="nav-prev">
+            <span class="nav-arrow">&larr;</span>
+            <span class="nav-label">${prevReading.display_date}</span>
+          </a>
+          <a href="/browse/" class="nav-browse">All Readings</a>
+          <a href="/${nextSlug}/" class="nav-next">
+            <span class="nav-label">${nextReading.display_date}</span>
+            <span class="nav-arrow">&rarr;</span>
+          </a>
+        </nav>
       </div>
-    </section>
+    </article>
 
     <section class="home-explore">
       <div class="home-container">
@@ -39,9 +93,9 @@ export function renderHomepage() {
 
     <section class="home-about">
       <div class="home-container">
-        <h2 class="section-title">What is Daily Paths?</h2>
+        <h2 class="section-title">About Al-Anon Daily Paths</h2>
         <p>
-          Daily Paths offers 366 original daily reflections written for anyone
+          Al-Anon Daily Paths offers 366 original daily reflections written for anyone
           whose life has been affected by someone else's drinking. Grounded in
           the principles of the Al-Anon program, each reading draws on the
           Twelve Steps, Traditions, and Concepts of Service to offer practical
@@ -59,7 +113,7 @@ export function renderHomepage() {
       <div class="home-container">
         <h2 class="section-title">Take your reflections anywhere</h2>
         <p>
-          The Daily Paths app brings the full reading experience to your phone,
+          The Al-Anon Daily Paths app brings the full reading experience to your phone,
           with features designed for your daily practice.
         </p>
         <ul class="app-features">
@@ -75,7 +129,7 @@ export function renderHomepage() {
     </section>`;
 
   return wrapInLayout({
-    title: 'Daily Paths \u2014 Al-Anon Daily Reflections for Recovery',
+    title: 'Al-Anon Daily Paths \u2014 Daily Reflections for Recovery',
     description: 'Free daily Al-Anon reflections for your recovery journey. 366 original readings grounded in the Twelve Steps, written in the contemplative tradition of Al-Anon literature.',
     canonicalPath: '/',
     bodyContent,

@@ -10,8 +10,8 @@ export function renderTermsPage() {
     </div>`;
 
   return wrapInLayout({
-    title: 'Terms of Service | Daily Paths',
-    description: 'Terms of service for Daily Paths, an Al-Anon daily reflections app and website.',
+    title: 'Terms of Service | Al-Anon Daily Paths',
+    description: 'Terms of service for Al-Anon Daily Paths, a daily reflections app and website.',
     canonicalPath: '/terms/',
     bodyContent,
     bodyClass: 'page-terms',

@@ -61,8 +61,8 @@ ${monthSections}
     </div>`;
 
   return wrapInLayout({
-    title: 'Browse All 366 Al-Anon Daily Reflections by Date | Daily Paths',
-    description: 'Browse all 366 daily Al-Anon reflections organized by month. Find readings for any day of the year from Daily Paths.',
+    title: 'Browse All 366 Al-Anon Daily Reflections by Date | Al-Anon Daily Paths',
+    description: 'Browse all 366 daily Al-Anon reflections organized by month. Find readings for any day of the year from Al-Anon Daily Paths.',
     canonicalPath: '/browse/',
     bodyContent,
     bodyClass: 'page-browse',

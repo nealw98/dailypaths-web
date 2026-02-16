@@ -958,6 +958,91 @@ ul {
   margin-bottom: 2rem;
 }
 
+/* --- Prayers Page --- */
+.prayers-page .page-description {
+  max-width: 36rem;
+}
+
+.prayer-list {
+  margin-top: 2rem;
+}
+
+.prayer-item {
+  border-bottom: 1px solid var(--cloud);
+}
+
+.prayer-item:first-child {
+  border-top: 1px solid var(--cloud);
+}
+
+.prayer-item summary {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  font-size: 1.2rem;
+  color: var(--deep-teal);
+  padding: 1.1rem 0;
+  cursor: pointer;
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.prayer-item summary::-webkit-details-marker {
+  display: none;
+}
+
+.prayer-item summary::after {
+  content: '+';
+  font-size: 1.3rem;
+  font-weight: 300;
+  color: var(--ocean);
+  flex-shrink: 0;
+  margin-left: 1rem;
+  transition: transform 0.2s ease;
+}
+
+.prayer-item[open] summary::after {
+  content: '\2212';
+}
+
+.prayer-body {
+  padding-bottom: 1.5rem;
+}
+
+.prayer-text {
+  font-family: var(--font-reading);
+  font-size: 1rem;
+  line-height: 1.75;
+  color: var(--ink);
+  margin-bottom: 0.75rem;
+}
+
+.prayer-text:last-of-type {
+  margin-bottom: 0;
+}
+
+.prayer-verse {
+  margin-bottom: 1rem;
+}
+
+.prayer-verse .verse-line {
+  font-family: var(--font-reading);
+  font-size: 1rem;
+  line-height: 1.75;
+  color: var(--ink);
+  margin-bottom: 0;
+}
+
+.prayer-source {
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  color: var(--ocean);
+  font-style: italic;
+  margin-top: 1rem;
+  margin-bottom: 0;
+}
+
 /* --- Utility --- */
 .sr-only {
   position: absolute;
