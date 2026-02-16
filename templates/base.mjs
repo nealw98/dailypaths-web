@@ -89,8 +89,9 @@ ${structuredData}
         <a href="/" class="nav-link">Home</a>
         <a href="/browse/" class="nav-link">Browse</a>
         <a href="/themes/" class="nav-link">Themes</a>
+        <a href="/steps/" class="nav-link">Steps</a>
         <a href="/prayers/" class="nav-link">Prayers</a>
-        <a href="/support/" class="nav-link">Support</a>
+        <a href="/about/" class="nav-link">About</a>
       </nav>
     </div>
   </header>
@@ -106,9 +107,10 @@ ${bodyContent}
         <p class="footer-tagline">Daily reflections for the Al-Anon journey</p>
       </div>
       <nav class="footer-nav">
+        <a href="/about/">About</a>
+        <a href="/support/">Support</a>
         <a href="/privacy/">Privacy</a>
         <a href="/terms/">Terms</a>
-        <a href="/support/">Support</a>
       </nav>
       <p class="footer-copyright">&copy; ${year} Al-Anon Daily Paths. All rights reserved.</p>
     </div>

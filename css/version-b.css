@@ -1043,6 +1043,215 @@ ul {
   margin-bottom: 0;
 }
 
+/* --- About Page --- */
+.about-page .quiz-list {
+  counter-reset: quiz;
+  list-style: none;
+  padding-left: 0;
+  margin: 1.5rem 0;
+}
+
+.about-page .quiz-list li {
+  counter-increment: quiz;
+  font-family: var(--font-reading);
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--ink);
+  padding: 0.6rem 0 0.6rem 2.5rem;
+  position: relative;
+  border-bottom: 1px solid var(--cloud);
+}
+
+.about-page .quiz-list li:last-child {
+  border-bottom: none;
+}
+
+.about-page .quiz-list li::before {
+  content: counter(quiz) ".";
+  position: absolute;
+  left: 0;
+  font-family: var(--font-serif);
+  font-weight: 600;
+  color: var(--ocean);
+  font-size: 1rem;
+}
+
+.about-page .quiz-note {
+  font-family: var(--font-reading);
+  font-style: italic;
+  color: var(--deep-teal);
+  margin-top: 1.5rem;
+  padding: 1rem;
+  background: var(--cloud);
+  border-radius: var(--radius);
+}
+
+.about-page .quiz-attribution {
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  color: var(--ink);
+  opacity: 0.5;
+  margin-top: 0.75rem;
+}
+
+.about-page .traditions-list,
+.about-page .concepts-list {
+  padding-left: 1.5rem;
+  margin: 1rem 0;
+}
+
+.about-page .traditions-list li,
+.about-page .concepts-list li {
+  font-family: var(--font-reading);
+  font-size: 0.95rem;
+  line-height: 1.65;
+  color: var(--ink);
+  margin-bottom: 0.75rem;
+  padding-left: 0.25rem;
+}
+
+.about-page .traditions-list li::marker,
+.about-page .concepts-list li::marker {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  color: var(--ocean);
+}
+
+/* --- Steps Page --- */
+.steps-page .page-description {
+  max-width: 40rem;
+}
+
+.step-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 2rem 0;
+  justify-content: center;
+}
+
+.step-jump {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  background: var(--cloud);
+  color: var(--deep-teal);
+  font-family: var(--font-serif);
+  font-weight: 600;
+  font-size: 1rem;
+  text-decoration: none;
+  transition: background 0.2s, color 0.2s;
+}
+
+.step-jump:hover {
+  background: var(--deep-teal);
+  color: var(--white);
+}
+
+.step-section {
+  margin-bottom: 2.5rem;
+  padding-bottom: 2.5rem;
+  border-bottom: 1px solid var(--cloud);
+}
+
+.step-section:last-of-type {
+  border-bottom: none;
+}
+
+.step-header {
+  margin-bottom: 1.25rem;
+}
+
+.step-number {
+  display: inline-block;
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--ocean);
+  margin-bottom: 0.5rem;
+}
+
+.step-text {
+  font-family: var(--font-serif);
+  font-size: 1.3rem;
+  font-weight: 600;
+  line-height: 1.4;
+  color: var(--ink);
+}
+
+.step-text em {
+  font-style: italic;
+}
+
+.step-body {
+  padding-left: 0;
+}
+
+.step-questions-heading {
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--ocean);
+  margin-bottom: 0.75rem;
+}
+
+.step-questions {
+  list-style: none;
+  padding-left: 0;
+  margin: 0 0 1.25rem;
+}
+
+.step-questions li {
+  font-family: var(--font-reading);
+  font-size: 1rem;
+  line-height: 1.65;
+  color: var(--ink);
+  padding: 0.5rem 0 0.5rem 1.5rem;
+  position: relative;
+}
+
+.step-questions li::before {
+  content: '\2022';
+  position: absolute;
+  left: 0;
+  color: var(--seafoam);
+  font-size: 1.2rem;
+}
+
+.step-readings-link {
+  margin-top: 0.5rem;
+}
+
+.step-readings-link a {
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  color: var(--deep-teal);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.step-readings-link a:hover {
+  text-decoration: underline;
+}
+
+.step-attribution {
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  color: var(--ink);
+  opacity: 0.5;
+}
+
+.step-attribution a {
+  color: var(--deep-teal);
+}
+
 /* --- Utility --- */
 .sr-only {
   position: absolute;

@@ -28,6 +28,8 @@ import { renderPrivacyPage } from './templates/privacy.mjs';
 import { renderSupportPage } from './templates/support.mjs';
 import { renderTermsPage } from './templates/terms.mjs';
 import { renderPrayersPage } from './templates/prayers.mjs';
+import { renderAboutPage } from './templates/about.mjs';
+import { renderStepsPage } from './templates/steps.mjs';
 import { wrapInLayout } from './templates/base.mjs';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -66,6 +68,8 @@ const dirs = [
   join(outDir, 'support'),
   join(outDir, 'terms'),
   join(outDir, 'prayers'),
+  join(outDir, 'about'),
+  join(outDir, 'steps'),
 ];
 dirs.forEach(d => mkdirSync(d, { recursive: true }));
 
@@ -139,6 +143,8 @@ writePage(join(outDir, 'privacy', 'index.html'), renderPrivacyPage());
 writePage(join(outDir, 'support', 'index.html'), renderSupportPage());
 writePage(join(outDir, 'terms', 'index.html'), renderTermsPage());
 writePage(join(outDir, 'prayers', 'index.html'), renderPrayersPage());
+writePage(join(outDir, 'about', 'index.html'), renderAboutPage());
+writePage(join(outDir, 'steps', 'index.html'), renderStepsPage(readings));
 
 // 404 page
 const notFoundHtml = wrapInLayout({

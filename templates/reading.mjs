@@ -27,17 +27,12 @@ export function renderReadingPage(reading, prevReading, nextReading) {
     ? reading.thought_for_day.replace(/\\n/g, '\n').replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>').replace(/\*(.+?)\*/g, '<em>$1</em>')
     : '';
 
-  const themeTag = reading.secondary_theme
-    ? `<a href="/themes/${reading.secondary_theme.toLowerCase().replace(/[^a-z0-9\s-]/g, '').replace(/\s+/g, '-')}/" class="reading-theme">${reading.secondary_theme}</a>`
-    : '';
-
   const bodyContent = `
     <article class="reading-page">
       <div class="reading-container">
         <header class="reading-header">
           <p class="reading-date">${reading.display_date}</p>
           <h1 class="reading-title">${reading.title}</h1>
-          ${themeTag}
         </header>
 
         <section class="reading-quote">

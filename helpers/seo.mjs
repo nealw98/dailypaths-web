@@ -32,7 +32,9 @@ export function generateSitemap(readings, themes) {
   }
 
   // Static pages
+  urls.push({ loc: SITE_URL + '/steps/', priority: '0.7', changefreq: 'monthly' });
   urls.push({ loc: SITE_URL + '/prayers/', priority: '0.6', changefreq: 'monthly' });
+  urls.push({ loc: SITE_URL + '/about/', priority: '0.6', changefreq: 'monthly' });
   urls.push({ loc: SITE_URL + '/privacy/', priority: '0.3', changefreq: 'monthly' });
   urls.push({ loc: SITE_URL + '/support/', priority: '0.3', changefreq: 'monthly' });
   urls.push({ loc: SITE_URL + '/terms/', priority: '0.3', changefreq: 'monthly' });
