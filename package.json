@@ -1,0 +1,14 @@
+{
+  "name": "dailypaths-web",
+  "version": "1.0.0",
+  "description": "Daily Paths — Al-Anon daily reflections static site generator",
+  "type": "module",
+  "scripts": {
+    "build": "node build.mjs",
+    "build:a": "node build.mjs --version=a",
+    "build:b": "node build.mjs --version=b"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.7"
+  }
+}
