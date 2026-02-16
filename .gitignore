@@ -2,3 +2,5 @@
 node_modules/
 docs/
 .DS_Store
+sample-og.png
+test-og.mjs

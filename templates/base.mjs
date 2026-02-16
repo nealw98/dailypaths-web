@@ -17,10 +17,13 @@ export function wrapInLayout({
   bodyContent,
   structuredData,
   ogType = 'website',
+  ogImage,
   bodyClass = '',
 }) {
   const siteUrl = 'https://dailypaths.org';
   const canonicalUrl = siteUrl + canonicalPath;
+  const ogImageUrl = ogImage ? siteUrl + ogImage : `${siteUrl}/assets/og-image.png`;
+  const twitterCard = ogImage ? 'summary_large_image' : 'summary';
   const year = new Date().getFullYear();
 
   return `<!DOCTYPE html>
@@ -37,14 +40,16 @@ export function wrapInLayout({
   <meta property="og:description" content="${escapeAttr(description)}">
   <meta property="og:type" content="${ogType}">
   <meta property="og:url" content="${canonicalUrl}">
-  <meta property="og:image" content="${siteUrl}/assets/og-image.png">
+  <meta property="og:image" content="${ogImageUrl}">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
   <meta property="og:site_name" content="Al-Anon Daily Paths">
 
   <!-- Twitter -->
-  <meta name="twitter:card" content="summary">
+  <meta name="twitter:card" content="${twitterCard}">
   <meta name="twitter:title" content="${escapeAttr(title)}">
   <meta name="twitter:description" content="${escapeAttr(description)}">
-  <meta name="twitter:image" content="${siteUrl}/assets/og-image.png">
+  <meta name="twitter:image" content="${ogImageUrl}">
 
   <!-- Favicon -->
   <link rel="icon" type="image/png" href="/assets/favicon.png">

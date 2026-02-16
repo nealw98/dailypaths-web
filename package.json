@@ -9,6 +9,8 @@
     "build:b": "node build.mjs --version=b"
   },
   "dependencies": {
-    "dotenv": "^16.4.7"
+    "dotenv": "^16.4.7",
+    "satori": "^0.19.2",
+    "sharp": "^0.34.5"
   }
 }

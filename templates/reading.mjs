@@ -96,6 +96,7 @@ export function renderReadingPage(reading, prevReading, nextReading) {
     bodyContent,
     structuredData,
     ogType: 'article',
+    ogImage: `/${slug}/og.png`,
     bodyClass: 'page-reading',
   });
 }

@@ -19,6 +19,7 @@ import { fileURLToPath } from 'node:url';
 import { fetchAllReadings } from './helpers/fetch-readings.mjs';
 import { dayToSlug, themeToSlug } from './helpers/slug-utils.mjs';
 import { generateSitemap, generateRobotsTxt } from './helpers/seo.mjs';
+import { generateOgImage } from './helpers/og-image.mjs';
 
 import { renderHomepage } from './templates/homepage.mjs';
 import { renderReadingPage } from './templates/reading.mjs';
@@ -188,13 +189,28 @@ const notFoundHtml = wrapInLayout({
 });
 writePage(join(outDir, '404.html'), notFoundHtml);
 
-// --- Step 4: Generate SEO artifacts ---
+// --- Step 4: Generate OG images for reading pages ---
+console.log('Generating 366 OG images...');
+const ogStart = Date.now();
+const BATCH_SIZE = 50;
+for (let i = 0; i < readings.length; i += BATCH_SIZE) {
+  const batch = readings.slice(i, i + BATCH_SIZE);
+  await Promise.all(batch.map(async (reading) => {
+    const slug = dayToSlug(reading.day_of_year);
+    const png = await generateOgImage(reading);
+    writeFileSync(join(outDir, slug, 'og.png'), png);
+  }));
+}
+const ogElapsed = ((Date.now() - ogStart) / 1000).toFixed(1);
+console.log(`  OG images generated in ${ogElapsed}s`);
+
+// --- Step 5: Generate SEO artifacts ---
 console.log('Generating sitemap and robots.txt...');
 const themes = [...themeMap.keys()];
 writeFileSync(join(outDir, 'sitemap.xml'), generateSitemap(readings, themes), 'utf-8');
 writeFileSync(join(outDir, 'robots.txt'), generateRobotsTxt(), 'utf-8');
 
-// --- Step 5: Copy static assets ---
+// --- Step 6: Copy static assets ---
 console.log('Copying static assets...');
 
 // CSS
