@@ -1117,104 +1117,178 @@ ul {
   color: var(--ocean);
 }
 
-/* --- Steps Page --- */
-.steps-page .page-description {
+/* --- Steps Index Page --- */
+.steps-index-page .page-description {
   max-width: 40rem;
 }
 
-.step-nav {
+.step-card-list {
   display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
+  flex-direction: column;
+  gap: 0;
   margin: 2rem 0;
-  justify-content: center;
 }
 
-.step-jump {
+.step-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.25rem;
+  padding: 1.25rem 0;
+  border-bottom: 1px solid var(--cloud);
+  text-decoration: none;
+  color: inherit;
+  transition: background 0.15s;
+}
+
+.step-card:first-child {
+  border-top: 1px solid var(--cloud);
+}
+
+.step-card:hover {
+  background: var(--cloud);
+  margin-left: -1rem;
+  margin-right: -1rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  border-radius: var(--radius);
+}
+
+.step-card-number {
   display: flex;
   align-items: center;
   justify-content: center;
   width: 2.5rem;
   height: 2.5rem;
+  min-width: 2.5rem;
   border-radius: 50%;
   background: var(--cloud);
   color: var(--deep-teal);
   font-family: var(--font-serif);
-  font-weight: 600;
-  font-size: 1rem;
-  text-decoration: none;
-  transition: background 0.2s, color 0.2s;
+  font-weight: 700;
+  font-size: 1.1rem;
+  margin-top: 0.15rem;
 }
 
-.step-jump:hover {
+.step-card:hover .step-card-number {
   background: var(--deep-teal);
   color: var(--white);
 }
 
-.step-section {
-  margin-bottom: 2.5rem;
-  padding-bottom: 2.5rem;
-  border-bottom: 1px solid var(--cloud);
+.step-card-content {
+  flex: 1;
 }
 
-.step-section:last-of-type {
-  border-bottom: none;
-}
-
-.step-header {
-  margin-bottom: 1.25rem;
-}
-
-.step-number {
-  display: inline-block;
+.step-card-title {
   font-family: var(--font-sans);
   font-size: 0.75rem;
   font-weight: 500;
   text-transform: uppercase;
   letter-spacing: 0.1em;
   color: var(--ocean);
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.25rem;
 }
 
-.step-text {
+.step-card-text {
   font-family: var(--font-serif);
-  font-size: 1.3rem;
+  font-size: 1.1rem;
   font-weight: 600;
   line-height: 1.4;
   color: var(--ink);
+  margin-bottom: 0.35rem;
 }
 
-.step-text em {
+.step-card-meta {
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  color: var(--ocean);
+}
+
+.step-attribution {
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  color: var(--ink);
+  opacity: 0.5;
+}
+
+.step-attribution a {
+  color: var(--deep-teal);
+}
+
+/* --- Step Detail Page --- */
+.step-detail-header {
+  margin-bottom: 2.5rem;
+}
+
+.step-detail-number {
+  display: inline-block;
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--ocean);
+  margin-bottom: 0.75rem;
+}
+
+.step-detail-title {
+  font-family: var(--font-serif);
+  font-size: 1.6rem;
+  font-weight: 600;
+  line-height: 1.35;
+  color: var(--ink);
+  margin-bottom: 0.5rem;
+}
+
+.step-detail-title em {
   font-style: italic;
 }
 
-.step-body {
-  padding-left: 0;
+.step-detail-meta {
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  color: var(--ocean);
 }
 
-.step-questions-heading {
-  font-family: var(--font-sans);
-  font-size: 0.85rem;
-  font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: var(--ocean);
+.step-detail-questions {
+  margin-bottom: 2.5rem;
+}
+
+.step-detail-questions h2 {
+  font-family: var(--font-serif);
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--ink);
   margin-bottom: 0.75rem;
+}
+
+.step-detail-intro {
+  font-family: var(--font-reading);
+  font-size: 1rem;
+  line-height: 1.65;
+  color: var(--ink);
+  opacity: 0.7;
+  margin-bottom: 1.25rem;
+  font-style: italic;
 }
 
 .step-questions {
   list-style: none;
   padding-left: 0;
-  margin: 0 0 1.25rem;
+  margin: 0;
 }
 
 .step-questions li {
   font-family: var(--font-reading);
-  font-size: 1rem;
+  font-size: 1.05rem;
   line-height: 1.65;
   color: var(--ink);
-  padding: 0.5rem 0 0.5rem 1.5rem;
+  padding: 0.65rem 0 0.65rem 1.75rem;
   position: relative;
+  border-bottom: 1px solid var(--cloud);
+}
+
+.step-questions li:last-child {
+  border-bottom: none;
 }
 
 .step-questions li::before {
@@ -1222,7 +1296,62 @@ ul {
   position: absolute;
   left: 0;
   color: var(--seafoam);
-  font-size: 1.2rem;
+  font-size: 1.3rem;
+}
+
+.step-detail-readings {
+  margin-bottom: 2.5rem;
+}
+
+.step-detail-readings h2 {
+  font-family: var(--font-serif);
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--ink);
+  margin-bottom: 0.75rem;
+}
+
+.step-detail-readings p {
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--ink);
+  margin-bottom: 1rem;
+}
+
+.step-reading-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1rem;
+}
+
+.step-reading-list li a {
+  display: flex;
+  gap: 1rem;
+  padding: 0.5rem 0;
+  text-decoration: none;
+  border-bottom: 1px solid var(--cloud);
+}
+
+.step-reading-list li:last-child a {
+  border-bottom: none;
+}
+
+.reading-preview-date {
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  color: var(--ocean);
+  min-width: 5rem;
+}
+
+.reading-preview-title {
+  font-family: var(--font-reading);
+  font-size: 0.95rem;
+  color: var(--ink);
+}
+
+.step-reading-list li a:hover .reading-preview-title {
+  color: var(--deep-teal);
 }
 
 .step-readings-link {
@@ -1241,15 +1370,36 @@ ul {
   text-decoration: underline;
 }
 
-.step-attribution {
-  font-family: var(--font-sans);
-  font-size: 0.85rem;
-  color: var(--ink);
-  opacity: 0.5;
+.step-nav-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 0;
+  margin-top: 2rem;
+  border-top: 1px solid var(--cloud);
 }
 
-.step-attribution a {
+.step-nav-footer a {
+  text-decoration: none;
   color: var(--deep-teal);
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.step-nav-footer a:hover {
+  text-decoration: underline;
+}
+
+.step-nav-footer .nav-prev,
+.step-nav-footer .nav-next {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.step-nav-footer .nav-arrow {
+  font-size: 1rem;
 }
 
 /* --- Utility --- */

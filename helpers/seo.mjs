@@ -31,8 +31,13 @@ export function generateSitemap(readings, themes) {
     urls.push({ loc: `${SITE_URL}/themes/${slug}/`, priority: '0.6', changefreq: 'monthly' });
   }
 
-  // Static pages
+  // Steps
   urls.push({ loc: SITE_URL + '/steps/', priority: '0.7', changefreq: 'monthly' });
+  for (let i = 1; i <= 12; i++) {
+    urls.push({ loc: `${SITE_URL}/steps/step-${i}/`, priority: '0.7', changefreq: 'monthly' });
+  }
+
+  // Static pages
   urls.push({ loc: SITE_URL + '/prayers/', priority: '0.6', changefreq: 'monthly' });
   urls.push({ loc: SITE_URL + '/about/', priority: '0.6', changefreq: 'monthly' });
   urls.push({ loc: SITE_URL + '/privacy/', priority: '0.3', changefreq: 'monthly' });
