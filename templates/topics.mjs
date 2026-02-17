@@ -300,7 +300,7 @@ export function renderTopicPage(topic, featuredReadings) {
 
         ${featuredReadings.length > 0 ? `
         <section class="topic-detail-readings">
-          <h2>Readings on This Topic</h2>
+          <h2>Select Readings</h2>
           <ul class="topic-reading-list">
 ${readingItems}
           </ul>
