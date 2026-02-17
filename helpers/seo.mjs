@@ -1,11 +1,11 @@
-import { dayToSlug, themeToSlug } from './slug-utils.mjs';
+import { dayToSlug } from './slug-utils.mjs';
 
 const SITE_URL = 'https://dailypaths.org';
 
 /**
  * Generate sitemap.xml content for all pages
  */
-export function generateSitemap(readings, themes) {
+export function generateSitemap(readings, topics) {
   const today = new Date().toISOString().split('T')[0];
 
   let urls = [];
@@ -22,13 +22,12 @@ export function generateSitemap(readings, themes) {
   // Browse by date
   urls.push({ loc: SITE_URL + '/browse/', priority: '0.7', changefreq: 'weekly' });
 
-  // Theme index
+  // Themes index
   urls.push({ loc: SITE_URL + '/themes/', priority: '0.7', changefreq: 'weekly' });
 
-  // Individual theme pages
-  for (const theme of themes) {
-    const slug = themeToSlug(theme);
-    urls.push({ loc: `${SITE_URL}/themes/${slug}/`, priority: '0.6', changefreq: 'monthly' });
+  // Individual theme (topic) pages
+  for (const topic of topics) {
+    urls.push({ loc: `${SITE_URL}/themes/${topic.slug}/`, priority: '0.6', changefreq: 'monthly' });
   }
 
   // Steps

@@ -17,14 +17,14 @@ import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 import { fetchAllReadings } from './helpers/fetch-readings.mjs';
-import { dayToSlug, themeToSlug } from './helpers/slug-utils.mjs';
+import { dayToSlug } from './helpers/slug-utils.mjs';
 import { generateSitemap, generateRobotsTxt } from './helpers/seo.mjs';
 import { generateOgImage } from './helpers/og-image.mjs';
 
 import { renderHomepage } from './templates/homepage.mjs';
 import { renderReadingPage } from './templates/reading.mjs';
 import { renderBrowseDatePage } from './templates/browse-date.mjs';
-import { renderThemesIndexPage, renderThemePage } from './templates/browse-themes.mjs';
+import { renderTopicsIndexPage, renderTopicPage, TOPICS } from './templates/topics.mjs';
 import { renderPrivacyPage } from './templates/privacy.mjs';
 import { renderSupportPage } from './templates/support.mjs';
 import { renderTermsPage } from './templates/terms.mjs';
@@ -87,18 +87,9 @@ for (const reading of readings) {
   mkdirSync(join(outDir, slug), { recursive: true });
 }
 
-// Create theme page directories
-const themeMap = new Map();
-for (const reading of readings) {
-  if (reading.secondary_theme) {
-    const theme = reading.secondary_theme;
-    if (!themeMap.has(theme)) themeMap.set(theme, []);
-    themeMap.get(theme).push(reading);
-  }
-}
-for (const theme of themeMap.keys()) {
-  const slug = themeToSlug(theme);
-  mkdirSync(join(outDir, 'themes', slug), { recursive: true });
+// Create theme (topic) page directories
+for (const topic of TOPICS) {
+  mkdirSync(join(outDir, 'themes', topic.slug), { recursive: true });
 }
 
 // --- Step 3: Generate pages ---
@@ -138,11 +129,23 @@ console.log('Generating browse page...');
 writePage(join(outDir, 'browse', 'index.html'), renderBrowseDatePage(readings));
 
 // Themes index + individual theme pages
-console.log(`Generating theme pages (${themeMap.size} themes)...`);
-writePage(join(outDir, 'themes', 'index.html'), renderThemesIndexPage(themeMap));
-for (const [theme, themeReadings] of themeMap) {
-  const slug = themeToSlug(theme);
-  writePage(join(outDir, 'themes', slug, 'index.html'), renderThemePage(theme, themeReadings));
+console.log(`Generating theme pages (${TOPICS.length} themes)...`);
+writePage(join(outDir, 'themes', 'index.html'), renderTopicsIndexPage());
+
+// Build a readings lookup by day_of_year for featured reading resolution
+const readingsByDay = new Map();
+for (const reading of readings) {
+  readingsByDay.set(reading.day_of_year, reading);
+}
+
+for (const topic of TOPICS) {
+  const featuredReadings = topic.featuredDays
+    .map(day => readingsByDay.get(day))
+    .filter(Boolean);
+  writePage(
+    join(outDir, 'themes', topic.slug, 'index.html'),
+    renderTopicPage(topic, featuredReadings)
+  );
 }
 
 // Static content pages
@@ -206,8 +209,7 @@ console.log(`  OG images generated in ${ogElapsed}s`);
 
 // --- Step 5: Generate SEO artifacts ---
 console.log('Generating sitemap and robots.txt...');
-const themes = [...themeMap.keys()];
-writeFileSync(join(outDir, 'sitemap.xml'), generateSitemap(readings, themes), 'utf-8');
+writeFileSync(join(outDir, 'sitemap.xml'), generateSitemap(readings, TOPICS), 'utf-8');
 writeFileSync(join(outDir, 'robots.txt'), generateRobotsTxt(), 'utf-8');
 
 // --- Step 6: Copy static assets ---
