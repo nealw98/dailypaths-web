@@ -257,8 +257,9 @@ if (existsSync(join(localAssetsDir, 'og-image.png'))) {
   cpSync(join(localAssetsDir, 'og-image.png'), join(outDir, 'assets', 'og-image.png'));
 }
 
-// CNAME for GitHub Pages
-writeFileSync(join(outDir, 'CNAME'), 'dailypaths.org', 'utf-8');
+// CNAME for GitHub Pages custom domain
+// Uncomment when DNS for dailypaths.org is pointed to GitHub Pages
+// writeFileSync(join(outDir, 'CNAME'), 'dailypaths.org', 'utf-8');
 
 // --- Done ---
 const elapsed = ((Date.now() - start) / 1000).toFixed(2);
