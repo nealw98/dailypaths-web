@@ -250,8 +250,8 @@ export const TOPICS = [
     featuredDays: [360, 342, 321, 366, 355],
   },
   {
-    slug: 'focus-on-self',
-    name: 'Focus on Self',
+    slug: 'self-care',
+    name: 'Self-Care',
     shortDescription: 'Taking charge of the only life I can actually live.',
     body: `
       <p>
