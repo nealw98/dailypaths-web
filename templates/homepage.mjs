@@ -29,7 +29,7 @@ export function renderHomepage(todayReading, prevReading, nextReading) {
   const bodyContent = `
     <section class="hero-banner" style="background-image: url('${bp('/assets/hero-image.png')}');">
       <div class="hero-banner-content">
-        <p class="hero-banner-title">Al-Anon Daily Paths</p>
+        <h1 class="hero-banner-title">Al-Anon Daily Paths</h1>
         <p class="hero-banner-tagline">Daily reflections for the Al-Anon journey</p>
       </div>
     </section>
@@ -38,7 +38,7 @@ export function renderHomepage(todayReading, prevReading, nextReading) {
       <div class="reading-container">
         <header class="reading-header">
           <p class="reading-date">${todayReading.display_date} &mdash; Today's Reading</p>
-          <h1 class="reading-title">${todayReading.title}</h1>
+          <h2 class="reading-title">${todayReading.title}</h2>
         </header>
 
         <section class="reading-quote">
