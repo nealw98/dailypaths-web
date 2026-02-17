@@ -313,12 +313,14 @@ export const TOPICS = [
  * Render the Topics index page.
  */
 export function renderTopicsIndexPage() {
-  const topicCards = TOPICS.map(topic => {
+  const topicItems = TOPICS.map(topic => {
     return `
-        <a href="/themes/${topic.slug}/" class="topic-card">
-          <h3 class="topic-card-name">${topic.name}</h3>
-          <p class="topic-card-desc">${topic.shortDescription}</p>
-        </a>`;
+          <li>
+            <a href="/themes/${topic.slug}/" class="topic-list-item">
+              <span class="topic-list-name">${topic.name}</span>
+              <span class="topic-list-desc">${topic.shortDescription}</span>
+            </a>
+          </li>`;
   }).join('\n');
 
   const bodyContent = `
@@ -331,9 +333,9 @@ export function renderTopicsIndexPage() {
           includes reflections and curated readings to deepen your understanding.
         </p>
 
-        <div class="topic-card-grid">
-${topicCards}
-        </div>
+        <ul class="topic-list">
+${topicItems}
+        </ul>
       </div>
     </div>`;
 
