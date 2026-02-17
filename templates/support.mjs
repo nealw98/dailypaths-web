@@ -45,9 +45,10 @@ export function renderSupportPage() {
           <details class="faq-item">
             <summary>How do I navigate between readings?</summary>
             <p>
-              On the website, use the previous and next links at the bottom of each reading,
-              or browse all readings by date or by theme. In the app, use the Previous and Next
-              buttons, or tap the date to open a calendar picker.
+              On the website, use the previous and next links at the bottom of each reading.
+              You can also explore readings by month through the Steps pages, or by topic
+              through Themes. In the app, use the Previous and Next buttons, or tap
+              the date to open a calendar picker.
             </p>
           </details>
 

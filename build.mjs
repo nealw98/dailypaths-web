@@ -23,7 +23,6 @@ import { generateOgImage } from './helpers/og-image.mjs';
 
 import { renderHomepage } from './templates/homepage.mjs';
 import { renderReadingPage } from './templates/reading.mjs';
-import { renderBrowseDatePage } from './templates/browse-date.mjs';
 import { renderTopicsIndexPage, renderTopicPage, TOPICS } from './templates/topics.mjs';
 import { renderPrivacyPage } from './templates/privacy.mjs';
 import { renderSupportPage } from './templates/support.mjs';
@@ -66,7 +65,6 @@ const dirs = [
   join(outDir, 'css'),
   join(outDir, 'js'),
   join(outDir, 'assets'),
-  join(outDir, 'browse'),
   join(outDir, 'themes'),
   join(outDir, 'privacy'),
   join(outDir, 'support'),
@@ -123,10 +121,6 @@ for (let i = 0; i < readings.length; i++) {
   const slug = dayToSlug(reading.day_of_year);
   writePage(join(outDir, slug, 'index.html'), renderReadingPage(reading, prev, next));
 }
-
-// Browse by date
-console.log('Generating browse page...');
-writePage(join(outDir, 'browse', 'index.html'), renderBrowseDatePage(readings));
 
 // Themes index + individual theme pages
 console.log(`Generating theme pages (${TOPICS.length} themes)...`);

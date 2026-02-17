@@ -25,17 +25,12 @@ export function renderHomepage(todayReading, prevReading, nextReading) {
     ? todayReading.thought_for_day.replace(/\\n/g, '\n').replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>').replace(/\*(.+?)\*/g, '<em>$1</em>')
     : '';
 
-  const themeTag = todayReading.secondary_theme
-    ? `<a href="/themes/${todayReading.secondary_theme.toLowerCase().replace(/[^a-z0-9\s-]/g, '').replace(/\s+/g, '-')}/" class="reading-theme">${todayReading.secondary_theme}</a>`
-    : '';
-
   const bodyContent = `
     <article class="reading-page">
       <div class="reading-container">
         <header class="reading-header">
           <p class="reading-date">${todayReading.display_date} &mdash; Today's Reading</p>
           <h1 class="reading-title">${todayReading.title}</h1>
-          ${themeTag}
         </header>
 
         <section class="reading-quote">
@@ -66,7 +61,7 @@ export function renderHomepage(todayReading, prevReading, nextReading) {
             <span class="nav-arrow">&larr;</span>
             <span class="nav-label">${prevReading.display_date}</span>
           </a>
-          <a href="/browse/" class="nav-browse">All Readings</a>
+          <a href="/steps/" class="nav-browse">Steps</a>
           <a href="/${nextSlug}/" class="nav-next">
             <span class="nav-label">${nextReading.display_date}</span>
             <span class="nav-arrow">&rarr;</span>
@@ -77,15 +72,15 @@ export function renderHomepage(todayReading, prevReading, nextReading) {
 
     <section class="home-explore">
       <div class="home-container">
-        <h2 class="section-title">Explore the Readings</h2>
+        <h2 class="section-title">Explore</h2>
         <div class="explore-cards">
-          <a href="/browse/" class="explore-card">
-            <h3>Browse by Date</h3>
-            <p>366 daily reflections, one for every day of the year, organized by month.</p>
+          <a href="/steps/" class="explore-card">
+            <h3>The Twelve Steps</h3>
+            <p>Each month&rsquo;s readings explore a step. Reflection questions and curated readings for the journey.</p>
           </a>
           <a href="/themes/" class="explore-card">
-            <h3>Browse by Theme</h3>
-            <p>Find readings on the topics that matter to you &mdash; detachment, surrender, hope, and more.</p>
+            <h3>Themes</h3>
+            <p>The subjects we actually talk about after the meeting &mdash; detachment, trust, courage, and more.</p>
           </a>
         </div>
       </div>

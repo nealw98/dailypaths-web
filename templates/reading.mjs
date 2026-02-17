@@ -63,7 +63,7 @@ export function renderReadingPage(reading, prevReading, nextReading) {
             <span class="nav-arrow">&larr;</span>
             <span class="nav-label">${prevReading.display_date}</span>
           </a>
-          <a href="/browse/" class="nav-browse">All Readings</a>
+          <a href="/steps/" class="nav-browse">Steps</a>
           <a href="/${nextSlug}/" class="nav-next">
             <span class="nav-label">${nextReading.display_date}</span>
             <span class="nav-arrow">&rarr;</span>

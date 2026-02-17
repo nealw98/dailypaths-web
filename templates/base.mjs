@@ -92,9 +92,8 @@ ${structuredData}
       </button>
       <nav class="site-nav" data-mobile-menu>
         <a href="/" class="nav-link">Home</a>
-        <a href="/browse/" class="nav-link">Browse</a>
-        <a href="/themes/" class="nav-link">Themes</a>
         <a href="/steps/" class="nav-link">Steps</a>
+        <a href="/themes/" class="nav-link">Themes</a>
         <a href="/prayers/" class="nav-link">Prayers</a>
         <a href="/about/" class="nav-link">About</a>
       </nav>

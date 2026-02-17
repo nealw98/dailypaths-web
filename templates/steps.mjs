@@ -290,9 +290,6 @@ ${questionItems}
           <ul class="step-reading-list">
 ${readingPreviews}
           </ul>
-          <p class="step-readings-link">
-            <a href="/browse/#${step.monthSlug}">See all ${step.month} readings &rarr;</a>
-          </p>
         </section>
 
         <nav class="step-nav-footer">

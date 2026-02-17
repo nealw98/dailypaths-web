@@ -19,9 +19,6 @@ export function generateSitemap(readings, topics) {
     urls.push({ loc: `${SITE_URL}/${slug}/`, priority: '0.8', changefreq: 'weekly' });
   }
 
-  // Browse by date
-  urls.push({ loc: SITE_URL + '/browse/', priority: '0.7', changefreq: 'weekly' });
-
   // Themes index
   urls.push({ loc: SITE_URL + '/themes/', priority: '0.7', changefreq: 'weekly' });
 
