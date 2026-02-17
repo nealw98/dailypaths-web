@@ -1,5 +1,6 @@
 import { wrapInLayout } from './base.mjs';
 import { dayToSlug } from '../helpers/slug-utils.mjs';
+import { bp } from '../helpers/config.mjs';
 
 /**
  * Step data — shared between the index and individual step pages.
@@ -181,7 +182,7 @@ export const STEPS = [
 export function renderStepsIndexPage() {
   const stepCards = STEPS.map(step => {
     return `
-        <a href="/steps/step-${step.number}/" class="step-card">
+        <a href="${bp(`/steps/step-${step.number}/`)}" class="step-card">
           <span class="step-card-number">${step.number}</span>
           <div class="step-card-content">
             <h3 class="step-card-title">Step ${step.number}</h3>
@@ -247,7 +248,7 @@ export function renderStepPage(step, monthReadings) {
   const readingPreviews = monthReadings.slice(0, 5).map(r => {
     const slug = dayToSlug(r.day_of_year);
     return `            <li>
-              <a href="/${slug}/">
+              <a href="${bp(`/${slug}/`)}">
                 <span class="reading-preview-date">${r.display_date}</span>
                 <span class="reading-preview-title">${r.title}</span>
               </a>
@@ -258,7 +259,7 @@ export function renderStepPage(step, monthReadings) {
     <article class="content-page step-detail-page">
       <div class="content-container">
         <nav class="breadcrumb">
-          <a href="/steps/">The Twelve Steps</a>
+          <a href="${bp('/steps/')}">The Twelve Steps</a>
           <span class="breadcrumb-sep">/</span>
           <span>Step ${step.number}</span>
         </nav>
@@ -293,12 +294,12 @@ ${readingPreviews}
         </section>
 
         <nav class="step-nav-footer">
-          <a href="/steps/step-${prevStep.number}/" class="nav-prev">
+          <a href="${bp(`/steps/step-${prevStep.number}/`)}" class="nav-prev">
             <span class="nav-arrow">&larr;</span>
             <span class="nav-label">Step ${prevStep.number}</span>
           </a>
-          <a href="/steps/" class="nav-browse">All Steps</a>
-          <a href="/steps/step-${nextStep.number}/" class="nav-next">
+          <a href="${bp('/steps/')}" class="nav-browse">All Steps</a>
+          <a href="${bp(`/steps/step-${nextStep.number}/`)}" class="nav-next">
             <span class="nav-label">Step ${nextStep.number}</span>
             <span class="nav-arrow">&rarr;</span>
           </a>

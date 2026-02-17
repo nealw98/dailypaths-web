@@ -1,4 +1,5 @@
 import { wrapInLayout } from './base.mjs';
+import { bp } from '../helpers/config.mjs';
 
 export function renderSupportPage() {
   const bodyContent = `
@@ -67,7 +68,7 @@ export function renderSupportPage() {
               Absolutely. We take your privacy seriously. The app uses an anonymous
               identifier stored on your device &mdash; we never collect your name, email, or
               any personally identifiable information. See our
-              <a href="/privacy/">Privacy Policy</a> for complete details.
+              <a href="${bp('/privacy/')}">Privacy Policy</a> for complete details.
             </p>
           </details>
 

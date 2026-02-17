@@ -1,4 +1,5 @@
 import { wrapInLayout } from './base.mjs';
+import { bp } from '../helpers/config.mjs';
 
 export function renderPrivacyPage() {
   const bodyContent = `
@@ -116,7 +117,7 @@ export function renderPrivacyPage() {
           <h2>Contact Us</h2>
           <p>
             If you have questions about this Privacy Policy, please contact us
-            through our <a href="/support/">Support</a> page.
+            through our <a href="${bp('/support/')}">Support</a> page.
           </p>
         </section>
       </div>

@@ -1,4 +1,5 @@
 import { wrapInLayout } from './base.mjs';
+import { bp } from '../helpers/config.mjs';
 
 export function renderAboutPage() {
   const bodyContent = `
@@ -54,15 +55,15 @@ export function renderAboutPage() {
             recovery, group unity, and worldwide service.
           </p>
           <div class="about-links">
-            <a href="/steps/" class="about-link-card">
+            <a href="${bp('/steps/')}" class="about-link-card">
               <h3>The Twelve Steps</h3>
               <p>A personal program of recovery, one step at a time.</p>
             </a>
-            <a href="/traditions/" class="about-link-card">
+            <a href="${bp('/traditions/')}" class="about-link-card">
               <h3>The Twelve Traditions</h3>
               <p>Principles that keep Al-Anon groups unified and focused.</p>
             </a>
-            <a href="/concepts/" class="about-link-card">
+            <a href="${bp('/concepts/')}" class="about-link-card">
               <h3>The Twelve Concepts of Service</h3>
               <p>Guidelines for Al-Anon&rsquo;s service structure worldwide.</p>
             </a>
@@ -77,7 +78,7 @@ export function renderAboutPage() {
             affected your life.
           </p>
           <p>
-            <a href="/quiz/" class="external-link">Take the self-quiz &rarr;</a>
+            <a href="${bp('/quiz/')}" class="external-link">Take the self-quiz &rarr;</a>
           </p>
         </section>
 

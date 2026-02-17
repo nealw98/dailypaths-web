@@ -1,3 +1,5 @@
+import { bp } from '../helpers/config.mjs';
+
 /**
  * Base HTML layout — wraps all pages with head, nav, and footer.
  *
@@ -52,9 +54,9 @@ export function wrapInLayout({
   <meta name="twitter:image" content="${ogImageUrl}">
 
   <!-- Favicon -->
-  <link rel="icon" type="image/png" href="/assets/favicon.png">
-  <link rel="icon" type="image/x-icon" href="/assets/favicon.ico">
-  <link rel="apple-touch-icon" href="/assets/favicon.png">
+  <link rel="icon" type="image/png" href="${bp('/assets/favicon.png')}">
+  <link rel="icon" type="image/x-icon" href="${bp('/assets/favicon.ico')}">
+  <link rel="apple-touch-icon" href="${bp('/assets/favicon.png')}">
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -62,7 +64,7 @@ export function wrapInLayout({
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600;1,700&family=Inter:wght@300;400;500&family=Lora:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
 
   <!-- Styles -->
-  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="${bp('/css/style.css')}">
 
   ${structuredData ? `<!-- Structured Data -->
   <script type="application/ld+json">
@@ -81,8 +83,8 @@ ${structuredData}
 <body${bodyClass ? ` class="${bodyClass}"` : ''}>
   <header class="site-header">
     <div class="header-inner">
-      <a href="/" class="site-logo">
-        <img src="/assets/logo.png" alt="Al-Anon Daily Paths" width="32" height="32">
+      <a href="${bp('/')}" class="site-logo">
+        <img src="${bp('/assets/logo.png')}" alt="Al-Anon Daily Paths" width="32" height="32">
         <span class="site-name">Al-Anon Daily Paths</span>
       </a>
       <button class="menu-toggle" data-menu-toggle aria-label="Toggle menu" aria-expanded="false">
@@ -91,11 +93,11 @@ ${structuredData}
         <span class="menu-bar"></span>
       </button>
       <nav class="site-nav" data-mobile-menu>
-        <a href="/" class="nav-link">Home</a>
-        <a href="/steps/" class="nav-link">Steps</a>
-        <a href="/themes/" class="nav-link">Themes</a>
-        <a href="/prayers/" class="nav-link">Prayers</a>
-        <a href="/about/" class="nav-link">About</a>
+        <a href="${bp('/')}" class="nav-link">Home</a>
+        <a href="${bp('/steps/')}" class="nav-link">Steps</a>
+        <a href="${bp('/themes/')}" class="nav-link">Themes</a>
+        <a href="${bp('/prayers/')}" class="nav-link">Prayers</a>
+        <a href="${bp('/about/')}" class="nav-link">About</a>
       </nav>
     </div>
   </header>
@@ -111,16 +113,16 @@ ${bodyContent}
         <p class="footer-tagline">Daily reflections for the Al-Anon journey</p>
       </div>
       <nav class="footer-nav">
-        <a href="/about/">About</a>
-        <a href="/support/">Support</a>
-        <a href="/privacy/">Privacy</a>
-        <a href="/terms/">Terms</a>
+        <a href="${bp('/about/')}">About</a>
+        <a href="${bp('/support/')}">Support</a>
+        <a href="${bp('/privacy/')}">Privacy</a>
+        <a href="${bp('/terms/')}">Terms</a>
       </nav>
       <p class="footer-copyright">&copy; ${year} Al-Anon Daily Paths. All rights reserved.</p>
     </div>
   </footer>
 
-  <script src="/js/main.js" defer></script>
+  <script src="${bp('/js/main.js')}" defer></script>
 </body>
 </html>`;
 }

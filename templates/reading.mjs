@@ -2,6 +2,7 @@ import { wrapInLayout } from './base.mjs';
 import { textToHtmlParagraphs, renderQuote, stripForMeta } from '../helpers/markdown.mjs';
 import { dayToSlug } from '../helpers/slug-utils.mjs';
 import { readingStructuredData } from '../helpers/seo.mjs';
+import { bp } from '../helpers/config.mjs';
 
 /**
  * Generate the HTML for an individual reading page.
@@ -59,12 +60,12 @@ export function renderReadingPage(reading, prevReading, nextReading) {
         ` : ''}
 
         <nav class="reading-nav">
-          <a href="/${prevSlug}/" class="nav-prev">
+          <a href="${bp(`/${prevSlug}/`)}" class="nav-prev">
             <span class="nav-arrow">&larr;</span>
             <span class="nav-label">${prevReading.display_date}</span>
           </a>
-          <a href="/steps/" class="nav-browse">Steps</a>
-          <a href="/${nextSlug}/" class="nav-next">
+          <a href="${bp('/steps/')}" class="nav-browse">Steps</a>
+          <a href="${bp(`/${nextSlug}/`)}" class="nav-next">
             <span class="nav-label">${nextReading.display_date}</span>
             <span class="nav-arrow">&rarr;</span>
           </a>
@@ -83,7 +84,7 @@ export function renderReadingPage(reading, prevReading, nextReading) {
             <li>Read offline, anytime</li>
           </ul>
           <a href="https://apps.apple.com/app/id6755981862" class="app-store-link" target="_blank" rel="noopener noreferrer">
-            <img src="/assets/app-store-badge.svg" alt="Download on the App Store" class="app-store-badge">
+            <img src="${bp('/assets/app-store-badge.svg')}" alt="Download on the App Store" class="app-store-badge">
           </a>
         </aside>
       </div>

@@ -2,6 +2,7 @@ import { wrapInLayout } from './base.mjs';
 import { homepageStructuredData } from '../helpers/seo.mjs';
 import { textToHtmlParagraphs, renderQuote } from '../helpers/markdown.mjs';
 import { dayToSlug } from '../helpers/slug-utils.mjs';
+import { bp } from '../helpers/config.mjs';
 
 /**
  * Generate the homepage HTML with today's reading.
@@ -57,12 +58,12 @@ export function renderHomepage(todayReading, prevReading, nextReading) {
         ` : ''}
 
         <nav class="reading-nav">
-          <a href="/${prevSlug}/" class="nav-prev">
+          <a href="${bp(`/${prevSlug}/`)}" class="nav-prev">
             <span class="nav-arrow">&larr;</span>
             <span class="nav-label">${prevReading.display_date}</span>
           </a>
-          <a href="/steps/" class="nav-browse">Steps</a>
-          <a href="/${nextSlug}/" class="nav-next">
+          <a href="${bp('/steps/')}" class="nav-browse">Steps</a>
+          <a href="${bp(`/${nextSlug}/`)}" class="nav-next">
             <span class="nav-label">${nextReading.display_date}</span>
             <span class="nav-arrow">&rarr;</span>
           </a>
@@ -74,11 +75,11 @@ export function renderHomepage(todayReading, prevReading, nextReading) {
       <div class="home-container">
         <h2 class="section-title">Explore</h2>
         <div class="explore-cards">
-          <a href="/steps/" class="explore-card">
+          <a href="${bp('/steps/')}" class="explore-card">
             <h3>The Twelve Steps</h3>
             <p>Each month&rsquo;s readings explore a step. Reflection questions and curated readings for the journey.</p>
           </a>
-          <a href="/themes/" class="explore-card">
+          <a href="${bp('/themes/')}" class="explore-card">
             <h3>Themes</h3>
             <p>The subjects we actually talk about after the meeting &mdash; detachment, trust, courage, and more.</p>
           </a>
@@ -118,7 +119,7 @@ export function renderHomepage(todayReading, prevReading, nextReading) {
           <li>Read offline, anytime</li>
         </ul>
         <a href="https://apps.apple.com/app/id6755981862" class="app-store-link" target="_blank" rel="noopener noreferrer">
-          <img src="/assets/app-store-badge.svg" alt="Download on the App Store" class="app-store-badge">
+          <img src="${bp('/assets/app-store-badge.svg')}" alt="Download on the App Store" class="app-store-badge">
         </a>
       </div>
     </section>`;

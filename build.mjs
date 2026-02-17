@@ -34,6 +34,7 @@ import { renderTraditionsPage } from './templates/traditions.mjs';
 import { renderConceptsPage } from './templates/concepts.mjs';
 import { renderStepsIndexPage, renderStepPage, STEPS } from './templates/steps.mjs';
 import { wrapInLayout } from './templates/base.mjs';
+import { bp } from './helpers/config.mjs';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = __dirname;
@@ -180,7 +181,7 @@ const notFoundHtml = wrapInLayout({
     <div class="error-page">
       <h1>404</h1>
       <p>The page you're looking for isn't here.</p>
-      <a href="/" class="btn-primary">Go Home</a>
+      <a href="${bp('/')}" class="btn-primary">Go Home</a>
     </div>`,
   bodyClass: 'page-404',
 });

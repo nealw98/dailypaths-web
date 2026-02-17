@@ -1,4 +1,5 @@
 import { wrapInLayout } from './base.mjs';
+import { bp } from '../helpers/config.mjs';
 
 export function renderQuizPage() {
   const bodyContent = `
@@ -76,9 +77,9 @@ export function renderQuizPage() {
             support for your own recovery and peace of mind.
           </p>
           <div class="quiz-next-steps">
-            <a href="/about/" class="external-link">Learn more about Al-Anon &rarr;</a>
-            <a href="/steps/" class="external-link">Explore the Twelve Steps &rarr;</a>
-            <a href="/" class="external-link">Read today&rsquo;s reflection &rarr;</a>
+            <a href="${bp('/about/')}" class="external-link">Learn more about Al-Anon &rarr;</a>
+            <a href="${bp('/steps/')}" class="external-link">Explore the Twelve Steps &rarr;</a>
+            <a href="${bp('/')}" class="external-link">Read today&rsquo;s reflection &rarr;</a>
           </div>
         </section>
       </div>

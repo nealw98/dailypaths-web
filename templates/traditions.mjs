@@ -1,4 +1,5 @@
 import { wrapInLayout } from './base.mjs';
+import { bp } from '../helpers/config.mjs';
 
 export function renderTraditionsPage() {
   const bodyContent = `
@@ -73,9 +74,9 @@ export function renderTraditionsPage() {
 
         <section class="content-section">
           <div class="traditions-next-steps">
-            <a href="/steps/" class="external-link">Explore the Twelve Steps &rarr;</a>
-            <a href="/concepts/" class="external-link">Read the Twelve Concepts of Service &rarr;</a>
-            <a href="/about/" class="external-link">Learn more about Al-Anon &rarr;</a>
+            <a href="${bp('/steps/')}" class="external-link">Explore the Twelve Steps &rarr;</a>
+            <a href="${bp('/concepts/')}" class="external-link">Read the Twelve Concepts of Service &rarr;</a>
+            <a href="${bp('/about/')}" class="external-link">Learn more about Al-Anon &rarr;</a>
           </div>
         </section>
 

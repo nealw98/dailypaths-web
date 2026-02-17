@@ -1,5 +1,6 @@
 import { wrapInLayout } from './base.mjs';
 import { dayToSlug } from '../helpers/slug-utils.mjs';
+import { bp } from '../helpers/config.mjs';
 
 /**
  * The 15 recovery topics — each is its own content page.
@@ -316,7 +317,7 @@ export function renderTopicsIndexPage() {
   const topicItems = TOPICS.map(topic => {
     return `
           <li>
-            <a href="/themes/${topic.slug}/" class="topic-list-item">
+            <a href="${bp(`/themes/${topic.slug}/`)}" class="topic-list-item">
               <span class="topic-list-name">${topic.name}</span>
               <span class="topic-list-desc">${topic.shortDescription}</span>
             </a>
@@ -362,7 +363,7 @@ export function renderTopicPage(topic, featuredReadings) {
   const readingItems = featuredReadings.map(r => {
     const slug = dayToSlug(r.day_of_year);
     return `            <li>
-              <a href="/${slug}/">
+              <a href="${bp(`/${slug}/`)}">
                 <span class="reading-preview-date">${r.display_date}</span>
                 <span class="reading-preview-title">${r.title}</span>
               </a>
@@ -373,7 +374,7 @@ export function renderTopicPage(topic, featuredReadings) {
     <article class="content-page topic-detail-page">
       <div class="content-container">
         <nav class="breadcrumb">
-          <a href="/themes/">Themes</a>
+          <a href="${bp('/themes/')}">Themes</a>
           <span class="breadcrumb-sep">/</span>
           <span>${topic.name}</span>
         </nav>
@@ -396,12 +397,12 @@ ${readingItems}
         ` : ''}
 
         <nav class="topic-nav-footer">
-          <a href="/themes/${prevTopic.slug}/" class="nav-prev">
+          <a href="${bp(`/themes/${prevTopic.slug}/`)}" class="nav-prev">
             <span class="nav-arrow">&larr;</span>
             <span class="nav-label">${prevTopic.name}</span>
           </a>
-          <a href="/themes/" class="nav-browse">All Themes</a>
-          <a href="/themes/${nextTopic.slug}/" class="nav-next">
+          <a href="${bp('/themes/')}" class="nav-browse">All Themes</a>
+          <a href="${bp(`/themes/${nextTopic.slug}/`)}" class="nav-next">
             <span class="nav-label">${nextTopic.name}</span>
             <span class="nav-arrow">&rarr;</span>
           </a>
