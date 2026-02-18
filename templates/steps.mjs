@@ -72,6 +72,7 @@ export const STEPS = [
       'This Step challenges members to take an honest, balanced look at their personal traits, behaviors, and the assumptions that shape their lives. It means looking inward to carefully catalog both character defects&mdash;such as a need for control, people-pleasing, or fear&mdash;and positive assets.',
       'For the Al-Anon member, this Step is a vital journey of self-discovery. It means shifting the focus away from the alcoholic&rsquo;s behavior and recognizing how the family disease of alcoholism has affected their own actions and self-esteem. By breaking through denial and taking stock of their own reality, members learn they no longer have to play the role of the victim.',
       'The core spiritual principles of Step Four are courage, honesty, and self-love. It requires the courage to face hidden fears without self-condemnation and the honesty to stop justifying self-destructive behaviors. This Step is critically important because it clears away illusions and lays the groundwork for profound positive change. By knowing exactly who they are, members can begin to build a new life based on reality and self-respect.',
+      'Al-Anon&rsquo;s <a href="https://ecomm.al-anon.org/ItemDetail?iProductCode=P91&amp;WebsiteKey=db6e68f1-b2fe-4aaa-baea-928d4e696dcc" target="_blank" rel="noopener noreferrer"><em>Blueprint for Progress</em></a> is a workbook designed specifically to guide members through the Fourth Step inventory.',
     ],
     questions: [
       'What character traits have helped me survive difficult situations?',
