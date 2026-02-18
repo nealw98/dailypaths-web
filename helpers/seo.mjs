@@ -5,7 +5,7 @@ const SITE_URL = 'https://dailypaths.org';
 /**
  * Generate sitemap.xml content for all pages
  */
-export function generateSitemap(readings, topics) {
+export function generateSitemap(readings, topics, books = []) {
   const today = new Date().toISOString().split('T')[0];
 
   let urls = [];
@@ -31,6 +31,14 @@ export function generateSitemap(readings, topics) {
   urls.push({ loc: SITE_URL + '/steps/', priority: '0.7', changefreq: 'monthly' });
   for (let i = 1; i <= 12; i++) {
     urls.push({ loc: `${SITE_URL}/steps/step-${i}/`, priority: '0.7', changefreq: 'monthly' });
+  }
+
+  // Literature
+  if (books.length > 0) {
+    urls.push({ loc: SITE_URL + '/literature/', priority: '0.7', changefreq: 'monthly' });
+    for (const book of books) {
+      urls.push({ loc: `${SITE_URL}/literature/${book.slug}/`, priority: '0.6', changefreq: 'monthly' });
+    }
   }
 
   // Static pages
@@ -105,5 +113,24 @@ export function homepageStructuredData() {
     'name': 'Al-Anon Daily Paths',
     'url': SITE_URL,
     'description': '366 original daily Al-Anon recovery reflections written in the contemplative tradition.'
+  }, null, 2);
+}
+
+/**
+ * Generate Book structured data for a literature page
+ */
+export function bookStructuredData(book) {
+  return JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'Book',
+    'name': book.title,
+    'bookFormat': 'https://schema.org/Paperback',
+    'numberOfPages': book.pages,
+    'datePublished': String(book.year),
+    'publisher': {
+      '@type': 'Organization',
+      'name': 'Al-Anon Family Group Headquarters, Inc.'
+    },
+    'image': `${SITE_URL}/assets/${book.image}`
   }, null, 2);
 }

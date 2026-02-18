@@ -33,6 +33,7 @@ import { renderQuizPage } from './templates/quiz.mjs';
 import { renderTraditionsPage } from './templates/traditions.mjs';
 import { renderConceptsPage } from './templates/concepts.mjs';
 import { renderStepsIndexPage, renderStepPage, STEPS } from './templates/steps.mjs';
+import { renderLiteratureIndexPage, renderLiteraturePage, BOOKS } from './templates/literature.mjs';
 import { wrapInLayout } from './templates/base.mjs';
 import { bp } from './helpers/config.mjs';
 
@@ -77,6 +78,8 @@ const dirs = [
   join(outDir, 'concepts'),
   join(outDir, 'steps'),
   ...Array.from({ length: 12 }, (_, i) => join(outDir, 'steps', `step-${i + 1}`)),
+  join(outDir, 'literature'),
+  ...BOOKS.map(b => join(outDir, 'literature', b.slug)),
 ];
 dirs.forEach(d => mkdirSync(d, { recursive: true }));
 
@@ -164,6 +167,17 @@ for (const step of STEPS) {
   );
 }
 
+// Literature index + individual book pages
+console.log(`Generating literature pages (${BOOKS.length} books)...`);
+writePage(join(outDir, 'literature', 'index.html'), renderLiteratureIndexPage());
+
+for (const book of BOOKS) {
+  writePage(
+    join(outDir, 'literature', book.slug, 'index.html'),
+    renderLiteraturePage(book)
+  );
+}
+
 // 404 page
 const notFoundHtml = wrapInLayout({
   title: 'Page Not Found | Al-Anon Daily Paths',
@@ -196,7 +210,7 @@ console.log(`  OG images generated in ${ogElapsed}s`);
 
 // --- Step 5: Generate SEO artifacts ---
 console.log('Generating sitemap and robots.txt...');
-writeFileSync(join(outDir, 'sitemap.xml'), generateSitemap(readings, TOPICS), 'utf-8');
+writeFileSync(join(outDir, 'sitemap.xml'), generateSitemap(readings, TOPICS, BOOKS), 'utf-8');
 writeFileSync(join(outDir, 'robots.txt'), generateRobotsTxt(), 'utf-8');
 
 // --- Step 6: Copy static assets ---
@@ -254,6 +268,14 @@ if (existsSync(join(localAssetsDir, 'og-image.png'))) {
 const themesAssetsDir = join(localAssetsDir, 'themes');
 if (existsSync(themesAssetsDir)) {
   cpSync(themesAssetsDir, join(outDir, 'assets', 'themes'), { recursive: true });
+}
+
+// Book cover images
+for (const book of BOOKS) {
+  const src = join(localAssetsDir, book.image);
+  if (existsSync(src)) {
+    cpSync(src, join(outDir, 'assets', book.image));
+  }
 }
 
 // CNAME for GitHub Pages custom domain

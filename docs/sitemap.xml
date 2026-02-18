@@ -2359,6 +2359,36 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://dailypaths.org/literature/</loc>
+    <lastmod>2026-02-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://dailypaths.org/literature/courage-to-change/</loc>
+    <lastmod>2026-02-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://dailypaths.org/literature/paths-to-recovery/</loc>
+    <lastmod>2026-02-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://dailypaths.org/literature/one-day-at-a-time/</loc>
+    <lastmod>2026-02-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://dailypaths.org/literature/how-al-anon-works/</loc>
+    <lastmod>2026-02-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://dailypaths.org/prayers/</loc>
     <lastmod>2026-02-18</lastmod>
     <changefreq>monthly</changefreq>
