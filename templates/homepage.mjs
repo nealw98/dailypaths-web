@@ -58,9 +58,9 @@ export function renderHomepage(todayReading, prevReading, nextReading) {
         ` : ''}
 
         <nav class="reading-date-nav">
-          ${todayReading.day_of_year > 1 ? `<a href="${bp(`/${prevSlug}/`)}" class="date-nav-prev">&larr; ${prevReading.display_date}</a>` : '<span></span>'}
+          <a href="${bp(`/${prevSlug}/`)}" class="date-nav-prev">&larr; ${prevReading.display_date}</a>
           <span></span>
-          ${todayReading.day_of_year < 366 ? `<a href="${bp(`/${nextSlug}/`)}" class="date-nav-next">${nextReading.display_date} &rarr;</a>` : '<span></span>'}
+          <a href="${bp(`/${nextSlug}/`)}" class="date-nav-next">${nextReading.display_date} &rarr;</a>
         </nav>
 
       </div>
