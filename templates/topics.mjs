@@ -15,8 +15,9 @@ export const TOPICS = [
     slug: 'detachment',
     name: 'Detachment with Love',
     shortDescription: 'Separating yourself from the chaos without cutting off the caring.',
+    metaDescription: 'Learn to separate your peace from someone else\u2019s choices. Daily reflections on loving detachment in Al-Anon recovery.',
     image: 'detachment.png',
-    imageAlt: 'A woman sitting peacefully on a porch with a cup of coffee in golden hour light',
+    imageAlt: 'Woman finding peace on her porch \u2014 detachment with love in Al-Anon recovery',
     body: `
       <p>
         Detachment is the practice of separating our well-being from
@@ -330,8 +331,8 @@ ${readingItems}
     </article>`;
 
   return wrapInLayout({
-    title: `${topic.name} &mdash; Al-Anon Recovery Theme | Al-Anon Daily Paths`,
-    description: topic.shortDescription + ' Reflections and curated daily readings from Al-Anon Daily Paths.',
+    title: `${topic.name} &mdash; Al-Anon Recovery Reflections | Daily Paths`,
+    description: (topic.metaDescription || topic.shortDescription) + ' Reflections and curated daily readings from Al-Anon Daily Paths.',
     canonicalPath: `/themes/${topic.slug}/`,
     bodyContent,
     bodyClass: 'page-topic-detail',
