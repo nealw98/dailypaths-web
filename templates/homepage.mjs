@@ -71,21 +71,6 @@ export function renderHomepage(todayReading, prevReading, nextReading) {
       </div>
     </article>
 
-    <section class="home-explore">
-      <div class="home-container">
-        <h2 class="section-title">Explore</h2>
-        <div class="explore-cards">
-          <a href="${bp('/steps/')}" class="explore-card">
-            <h3>The Twelve Steps</h3>
-            <p>Each month&rsquo;s readings explore a step. Reflection questions and curated readings for the journey.</p>
-          </a>
-          <a href="${bp('/themes/')}" class="explore-card">
-            <h3>Themes</h3>
-            <p>The subjects we actually talk about after the meeting &mdash; detachment, trust, courage, and more.</p>
-          </a>
-        </div>
-      </div>
-    </section>
 
     <section class="home-about">
       <div class="home-container">

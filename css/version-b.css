@@ -317,10 +317,6 @@ ul {
   padding: 0 2rem;
 }
 
-.home-explore {
-  padding: 3rem 0;
-}
-
 .home-about {
   padding: 3rem 0;
   border-top: 1px solid var(--cloud);
@@ -348,45 +344,6 @@ ul {
   font-size: 1rem;
 }
 
-.explore-cards {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1.5rem;
-  margin-top: 1.5rem;
-}
-
-.explore-card {
-  border: 1px solid var(--cloud);
-  border-radius: var(--radius);
-  padding: 1.75rem;
-  text-decoration: none;
-  transition: border-color 0.2s;
-  background: transparent;
-}
-
-.explore-card:hover {
-  border-color: var(--mist);
-}
-
-.explore-card h3 {
-  font-family: var(--font-serif);
-  font-size: 1.2rem;
-  color: var(--deep-teal);
-  margin-bottom: 0.5rem;
-}
-
-.explore-card p {
-  font-size: 0.9rem;
-  color: var(--ink);
-  opacity: 0.6;
-  text-align: left;
-}
-
-@media (max-width: 640px) {
-  .explore-cards {
-    grid-template-columns: 1fr;
-  }
-}
 
 /* --- Reading Page --- */
 .reading-page {
@@ -480,16 +437,6 @@ ul {
   font-size: 1.05rem;
 }
 
-.reading-body p:first-child::first-letter {
-  font-family: var(--font-serif);
-  font-size: 4.4rem;
-  float: left;
-  line-height: 0.65;
-  padding-right: 0.6rem;
-  padding-top: 0.2rem;
-  color: var(--deep-teal);
-  font-weight: 700;
-}
 
 .reading-body p:last-child {
   margin-bottom: 0;
