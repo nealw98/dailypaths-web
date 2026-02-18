@@ -118,7 +118,7 @@ ${bodyContent}
         <a href="${bp('/privacy/')}">Privacy</a>
         <a href="${bp('/terms/')}">Terms</a>
       </nav>
-      <p class="footer-copyright">&copy; ${year} Al-Anon Daily Paths. All rights reserved.</p>
+      <p class="footer-copyright">&copy; ${year} Daily Growth, LLC. All rights reserved.</p>
     </div>
   </footer>
 

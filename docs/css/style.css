@@ -447,7 +447,7 @@ ul {
   width: 3rem;
   height: 1px;
   background: var(--mist);
-  margin: 0.6rem 0;
+  margin: 0.6rem auto;
 }
 
 /* Application */
