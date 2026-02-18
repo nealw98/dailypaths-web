@@ -57,17 +57,6 @@ export function renderHomepage(todayReading, prevReading, nextReading) {
         </aside>
         ` : ''}
 
-        <nav class="reading-nav">
-          <a href="${bp(`/${prevSlug}/`)}" class="nav-prev">
-            <span class="nav-arrow">&larr;</span>
-            <span class="nav-label">${prevReading.display_date}</span>
-          </a>
-          <a href="${bp('/steps/')}" class="nav-browse">Steps</a>
-          <a href="${bp(`/${nextSlug}/`)}" class="nav-next">
-            <span class="nav-label">${nextReading.display_date}</span>
-            <span class="nav-arrow">&rarr;</span>
-          </a>
-        </nav>
       </div>
     </article>
 
