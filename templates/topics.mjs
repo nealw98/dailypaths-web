@@ -52,6 +52,9 @@ export const TOPICS = [
     slug: 'focus-on-yourself',
     name: 'Focus on Yourself',
     shortDescription: 'Shifting attention from the alcoholic back to your own life.',
+    metaDescription: 'Turn the focus back to your own life after years of watching someone else\u2019s. Daily Al-Anon reflections on reclaiming your attention and energy.',
+    image: 'focus-on-yourself.jpg',
+    imageAlt: 'Woman focused on pottery at a wheel \u2014 turning attention back to yourself in Al-Anon recovery',
     body: `
       <p>
         For years, our attention was fixed on someone else: their drinking,
@@ -148,6 +151,9 @@ export const TOPICS = [
     slug: 'higher-power',
     name: 'Trusting a Higher Power',
     shortDescription: 'Finding a source of guidance beyond your own willpower.',
+    metaDescription: 'Find a source of strength beyond your own willpower. Daily Al-Anon reflections on trusting a Higher Power and letting go of self-reliance.',
+    image: 'higher-power.jpg',
+    imageAlt: 'Man holding his father\u2019s hand at a hospital bedside \u2014 trusting a Higher Power in Al-Anon recovery',
     body: `
       <p>
         Al-Anon is a spiritual program, not a religious one. The program
