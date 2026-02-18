@@ -16,7 +16,7 @@ export const TOPICS = [
     name: 'Detachment with Love',
     shortDescription: 'Separating yourself from the chaos without cutting off the caring.',
     metaDescription: 'Learn to separate your peace from someone else\u2019s choices. Daily reflections on loving detachment in Al-Anon recovery.',
-    image: 'detachment.png',
+    image: 'detachment.jpg',
     imageAlt: 'Woman finding peace on her porch \u2014 detachment with love in Al-Anon recovery',
     body: `
       <p>
@@ -70,6 +70,9 @@ export const TOPICS = [
     slug: 'one-day-at-a-time',
     name: 'One Day at a Time',
     shortDescription: 'Releasing anxiety about the future and regret about the past.',
+    metaDescription: 'Let go of tomorrow\u2019s worry and yesterday\u2019s regret. Daily Al-Anon reflections on staying present and living one day at a time.',
+    image: 'one-day-at-a-time.jpg',
+    imageAlt: 'Two friends laughing together in a park \u2014 embracing the present moment in Al-Anon recovery',
     body: `
       <p>
         Most of us lived in the future or the past &mdash; dreading what
@@ -105,6 +108,9 @@ export const TOPICS = [
     slug: 'letting-go-of-control',
     name: 'Letting Go of Control',
     shortDescription: 'Recognizing the many ways we try to manage, fix, or manipulate outcomes.',
+    metaDescription: 'Stop managing, fixing, and controlling what was never yours to carry. Daily Al-Anon reflections on releasing the need to control.',
+    image: 'letting-go-of-control.jpg',
+    imageAlt: 'Two women laughing together while cooking \u2014 letting go of control in Al-Anon recovery',
     body: `
       <p>
         We managed, we orchestrated, we worried ourselves sick trying to
@@ -122,6 +128,9 @@ export const TOPICS = [
     slug: 'self-worth',
     name: 'Self-Worth & Identity',
     shortDescription: 'Reclaiming the sense of self that years of crisis eroded.',
+    metaDescription: 'Rediscover who you are beyond someone else\u2019s crisis. Daily Al-Anon reflections on rebuilding self-worth and reclaiming your identity.',
+    image: 'self-worth.jpg',
+    imageAlt: 'Woman looking at her reflection in a mirror \u2014 reclaiming self-worth and identity in Al-Anon recovery',
     body: `
       <p>
         Many of us spent so long managing someone else&rsquo;s disease
@@ -157,6 +166,9 @@ export const TOPICS = [
     slug: 'honesty',
     name: 'Honesty & Self-Awareness',
     shortDescription: 'Getting truthful about your own patterns, motives, and feelings.',
+    metaDescription: 'Stop performing and start telling the truth \u2014 to yourself first. Daily Al-Anon reflections on honesty, self-awareness, and dropping the mask.',
+    image: 'honesty.jpg',
+    imageAlt: 'Two women in honest conversation over coffee \u2014 honesty and self-awareness in Al-Anon recovery',
     body: `
       <p>
         Living with alcoholism teaches us to perform. We smile when
@@ -174,6 +186,9 @@ export const TOPICS = [
     slug: 'gratitude-and-hope',
     name: 'Gratitude & Hope',
     shortDescription: 'Moving from despair toward appreciation for progress, even when circumstances haven&rsquo;t changed.',
+    metaDescription: 'Find gratitude even when nothing has changed but you. Daily Al-Anon reflections on hope, appreciation, and inner progress.',
+    image: 'gratitude-and-hope.jpg',
+    imageAlt: 'Woman breathing in peacefully by a lake at sunset \u2014 gratitude and hope in Al-Anon recovery',
     body: `
       <p>
         Hope is what gets us to the first meeting. Gratitude is what
@@ -191,6 +206,9 @@ export const TOPICS = [
     slug: 'the-disease',
     name: 'Understanding the Disease',
     shortDescription: 'Seeing alcoholism as an illness, not a moral failing.',
+    metaDescription: 'See alcoholism as an illness, not a personal failing. Daily Al-Anon reflections on understanding the disease and finding compassion.',
+    image: 'the-disease.jpg',
+    imageAlt: 'Couple sitting together on a park bench in autumn \u2014 understanding the disease of alcoholism in Al-Anon recovery',
     body: `
       <p>
         Understanding alcoholism as a disease &mdash; rather than a choice,
@@ -208,6 +226,9 @@ export const TOPICS = [
     slug: 'fellowship',
     name: 'Community & Fellowship',
     shortDescription: 'Breaking isolation and discovering you are not alone.',
+    metaDescription: 'Break the isolation of living with alcoholism. Daily Al-Anon reflections on fellowship, connection, and the healing power of community.',
+    image: 'fellowship.jpg',
+    imageAlt: 'Women connecting outside an Al-Anon meeting at sunset \u2014 community and fellowship in recovery',
     body: `
       <p>
         Alcoholism is an isolating disease &mdash; not just for the drinker,
