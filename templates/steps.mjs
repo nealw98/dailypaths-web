@@ -245,11 +245,18 @@ export function renderStepsIndexPage() {
           The Twelve Steps of Al-Anon offer a path to personal recovery for anyone
           affected by someone else&rsquo;s drinking. Each step builds on the one
           before it, guiding us from powerlessness toward a spiritual awakening.
+          Working these steps with a sponsor or someone who has walked the path
+          before you can make all the difference &mdash; their experience and
+          encouragement help bring the steps to life.
         </p>
         <p class="page-description">
-          In Al-Anon Daily Paths, each month&rsquo;s readings focus on one step &mdash;
-          Step 1 in January through Step 12 in December. Select a step below to
-          explore it with questions for reflection.
+          Al-Anon&rsquo;s
+          <a href="https://ecomm.al-anon.org/EN/ItemDetail?iProductCode=B24" target="_blank" rel="noopener noreferrer"><em>Paths to Recovery</em></a>
+          is the definitive guide to working the Steps, Traditions, and Concepts
+          of Service &mdash; and the inspiration behind the daily readings on this
+          site. Each month&rsquo;s reflections focus on one step, from Step 1 in
+          January through Step 12 in December. Select a step below to explore it
+          with questions for reflection.
         </p>
 
         <div class="step-card-list">
