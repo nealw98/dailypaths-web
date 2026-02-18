@@ -256,6 +256,9 @@ export function renderStepsIndexPage() {
     <div class="content-page steps-index-page">
       <div class="content-container">
         <h1 class="page-title">The Twelve Steps</h1>
+        <div class="topic-detail-image">
+          <img src="${bp('/assets/themes/steps.jpg')}" alt="The Twelve Steps" />
+        </div>
         <p class="page-description">
           The Twelve Steps of Al-Anon offer a path to personal recovery for anyone
           affected by someone else&rsquo;s drinking. Each step builds on the one
