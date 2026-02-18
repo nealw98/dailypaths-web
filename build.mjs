@@ -157,18 +157,10 @@ writePage(join(outDir, 'concepts', 'index.html'), renderConceptsPage());
 console.log('Generating step pages (12 steps)...');
 writePage(join(outDir, 'steps', 'index.html'), renderStepsIndexPage());
 
-// Group readings by month for step pages
-import { dayToMonthIndex } from './helpers/slug-utils.mjs';
-const readingsByMonth = Array.from({ length: 12 }, () => []);
-for (const reading of readings) {
-  const monthIdx = dayToMonthIndex(reading.day_of_year);
-  readingsByMonth[monthIdx].push(reading);
-}
 for (const step of STEPS) {
-  const monthReadings = readingsByMonth[step.number - 1]; // Step 1 = Jan (index 0)
   writePage(
     join(outDir, 'steps', `step-${step.number}`, 'index.html'),
-    renderStepPage(step, monthReadings)
+    renderStepPage(step)
   );
 }
 

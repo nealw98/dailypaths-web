@@ -1246,6 +1246,22 @@ ul {
   color: var(--ocean);
 }
 
+.step-detail-description {
+  margin-bottom: 2.5rem;
+}
+
+.step-detail-description p {
+  font-family: var(--font-reading);
+  font-size: 1rem;
+  line-height: 1.75;
+  color: var(--ink);
+  margin-bottom: 1rem;
+}
+
+.step-detail-description p:last-child {
+  margin-bottom: 0;
+}
+
 .step-detail-questions {
   margin-bottom: 2.5rem;
 }

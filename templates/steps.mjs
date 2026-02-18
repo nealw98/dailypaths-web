@@ -1,5 +1,4 @@
 import { wrapInLayout } from './base.mjs';
-import { dayToSlug } from '../helpers/slug-utils.mjs';
 import { bp } from '../helpers/config.mjs';
 
 /**
@@ -12,6 +11,11 @@ export const STEPS = [
     month: 'January',
     monthSlug: 'january',
     principle: 'Honesty',
+    description: [
+      'This Step challenges members to accept the reality of alcoholism as a disease, often summarized by the &ldquo;Three Cs&rdquo;: we didn&rsquo;t cause it, we can&rsquo;t control it, and we can&rsquo;t cure it. It means acknowledging that no amount of force, manipulation, or love can conquer another person&rsquo;s drinking.',
+      'For the Al-Anon member, taking this Step brings immense relief and hope. By surrendering the futile battle against the alcoholic&rsquo;s behavior, members are free to redirect their energy toward their own well-being and spiritual growth. It shifts the focus from trying to fix others to healing oneself.',
+      'The primary spiritual principle of Step One is honesty. It requires the honesty to admit that one&rsquo;s life has become chaotic and that self-will is insufficient to solve the problem. Acceptance and humility are also key, as members accept their limitations. This Step is critically important because it lays the foundation for recovery; only by admitting powerlessness can one open the door to the help and sanity offered by the subsequent Steps.',
+    ],
     questions: [
       'In what ways have I tried to control another person&rsquo;s drinking or behavior?',
       'What has happened in my life that feels unmanageable?',
@@ -26,6 +30,11 @@ export const STEPS = [
     month: 'February',
     monthSlug: 'february',
     principle: 'Hope',
+    description: [
+      'This Step challenges members to recognize that their past efforts to manage the disease of alcoholism&mdash;often characterized by the &ldquo;insanity&rdquo; of repeating the same failing actions while expecting different results&mdash;were futile. It means acknowledging that a source of help exists beyond one&rsquo;s own limited resources.',
+      'For the Al-Anon member, this Step provides a much-needed lifeline out of isolation and despair. After admitting complete powerlessness in Step One, members are invited to open their minds to the possibility that a loving, nurturing Higher Power can bring peace and serenity into their lives. It means they no longer have to struggle alone and can begin to replace a distorted, fear-based view of life with clarity, balance, and self-acceptance.',
+      'The primary spiritual principles of Step Two are hope and open-mindedness. It asks members to be willing to believe that help is possible, even if they do not yet fully understand it. Step Two is critically important because it offers the essential ingredient for recovery: hope. It bridges the gap between acknowledging defeat and taking constructive action, proving that sanity and serenity are attainable.',
+    ],
     questions: [
       'What does &ldquo;sanity&rdquo; look like in my daily life?',
       'Have I ever experienced a moment of clarity or peace that felt larger than myself?',
@@ -40,6 +49,11 @@ export const STEPS = [
     month: 'March',
     monthSlug: 'march',
     principle: 'Faith',
+    description: [
+      'This Step means making a conscious commitment to stop relying entirely on self-will and to stop trying to force solutions on people and situations that are uncontrollable. Instead, it asks members to place their concerns, fears, and daily lives into the care of a Higher Power.',
+      'For the Al-Anon member, taking this Step is the ultimate practice of the slogan &ldquo;Let Go and Let God&rdquo;. It brings enormous relief by lifting the heavy burden of responsibility for the alcoholic&mdash;and for the universe&mdash;off their shoulders. It means transitioning from an exhausting attitude of rigid control and self-sufficiency into a receptive, trusting partnership with a Higher Power.',
+      'The core spiritual principles of Step Three are faith, trust, and surrender. It requires the faith to trust that we will be cared for, even when we let go of the reins. This Step is vitally important because it allows the member to relinquish their anxiety and actively seek spiritual guidance, creating the foundation necessary for all the recovery and growth Steps that follow.',
+    ],
     questions: [
       'What does &ldquo;letting go&rdquo; mean to me in practical terms?',
       'In what areas of my life am I still trying to be in charge of outcomes?',
@@ -54,6 +68,11 @@ export const STEPS = [
     month: 'April',
     monthSlug: 'april',
     principle: 'Courage',
+    description: [
+      'This Step challenges members to take an honest, balanced look at their personal traits, behaviors, and the assumptions that shape their lives. It means looking inward to carefully catalog both character defects&mdash;such as a need for control, people-pleasing, or fear&mdash;and positive assets.',
+      'For the Al-Anon member, this Step is a vital journey of self-discovery. It means shifting the focus away from the alcoholic&rsquo;s behavior and recognizing how the family disease of alcoholism has affected their own actions and self-esteem. By breaking through denial and taking stock of their own reality, members learn they no longer have to play the role of the victim.',
+      'The core spiritual principles of Step Four are courage, honesty, and self-love. It requires the courage to face hidden fears without self-condemnation and the honesty to stop justifying self-destructive behaviors. This Step is critically important because it clears away illusions and lays the groundwork for profound positive change. By knowing exactly who they are, members can begin to build a new life based on reality and self-respect.',
+    ],
     questions: [
       'What character traits have helped me survive difficult situations?',
       'What patterns in my behavior have caused harm to myself or others?',
@@ -68,6 +87,11 @@ export const STEPS = [
     month: 'May',
     monthSlug: 'may',
     principle: 'Integrity',
+    description: [
+      'This Step invites members to break their isolation by sharing the insights gained in Step Four. It means bringing secrets and shame into the open, fully acknowledging them before a Higher Power, oneself, and a trusted confidant, such as an Al-Anon sponsor.',
+      'For the Al-Anon member, this Step is immensely liberating. Instead of hiding behind walls of fear and assuming they are uniquely flawed or &ldquo;the worst person in the world,&rdquo; members discover that they are unconditionally loved and accepted, even with their imperfections. It means they can finally stop rationalizing their past behavior and take responsibility for their own lives.',
+      'The primary spiritual principles of Step Five are trust, honesty, and courage. It requires immense trust to reveal one&rsquo;s darkest secrets to another person. This Step is vitally important because it relieves the heavy, suffocating burden of guilt and self-hatred. By sharing their humanity, members stop being victims of their past and take a huge stride toward personal freedom and a deeper spiritual connection.',
+    ],
     questions: [
       'What have I been afraid to say out loud?',
       'Is there someone I trust enough to share my inventory with honestly?',
@@ -234,26 +258,18 @@ ${stepCards}
  * Generate an individual step page.
  *
  * @param {Object} step - Step data from STEPS array
- * @param {Array} monthReadings - Readings for this step's month
  */
-export function renderStepPage(step, monthReadings) {
+export function renderStepPage(step) {
   const prevStep = STEPS[(step.number - 2 + 12) % 12];
   const nextStep = STEPS[step.number % 12];
+
+  const descriptionHtml = step.description
+    ? step.description.map(p => `          <p>${p}</p>`).join('\n')
+    : '';
 
   const questionItems = step.questions.map(q =>
     `            <li>${q}</li>`
   ).join('\n');
-
-  // Show a few readings from this step's month as a preview
-  const readingPreviews = monthReadings.slice(0, 5).map(r => {
-    const slug = dayToSlug(r.day_of_year);
-    return `            <li>
-              <a href="${bp(`/${slug}/`)}">
-                <span class="reading-preview-date">${r.display_date}</span>
-                <span class="reading-preview-title">${r.title}</span>
-              </a>
-            </li>`;
-  }).join('\n');
 
   const bodyContent = `
     <article class="content-page step-detail-page">
@@ -269,7 +285,11 @@ export function renderStepPage(step, monthReadings) {
           <h1 class="step-detail-title">${step.text}</h1>
           <p class="step-detail-meta">${step.month} &middot; ${step.principle}</p>
         </header>
-
+${descriptionHtml ? `
+        <section class="step-detail-description">
+${descriptionHtml}
+        </section>
+` : ''}
         <section class="step-detail-questions">
           <h2>Questions for Reflection</h2>
           <p class="step-detail-intro">
@@ -279,17 +299,6 @@ export function renderStepPage(step, monthReadings) {
           </p>
           <ul class="step-questions">
 ${questionItems}
-          </ul>
-        </section>
-
-        <section class="step-detail-readings">
-          <h2>${step.month}&rsquo;s Readings on Step ${step.number}</h2>
-          <p>
-            All ${monthReadings.length} daily reflections in ${step.month} explore
-            Step ${step.number} from different angles. Here are a few to get started:
-          </p>
-          <ul class="step-reading-list">
-${readingPreviews}
           </ul>
         </section>
 
