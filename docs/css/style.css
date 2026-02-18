@@ -1534,7 +1534,20 @@ ul {
 
 /* --- Theme (Topic) Detail Page --- */
 .topic-detail-header {
-  margin-bottom: 2.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.topic-detail-image {
+  margin-bottom: 2rem;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.topic-detail-image img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
 }
 
 .topic-detail-title {

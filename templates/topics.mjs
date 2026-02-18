@@ -15,6 +15,8 @@ export const TOPICS = [
     slug: 'detachment',
     name: 'Detachment with Love',
     shortDescription: 'Separating yourself from the chaos without cutting off the caring.',
+    image: 'detachment.png',
+    imageAlt: 'A woman sitting peacefully on a porch with a cup of coffee in golden hour light',
     body: `
       <p>
         Detachment is the practice of separating our well-being from
@@ -293,6 +295,12 @@ export function renderTopicPage(topic, featuredReadings) {
         <header class="topic-detail-header">
           <h1 class="topic-detail-title">${topic.name}</h1>
         </header>
+
+        ${topic.image ? `
+        <div class="topic-detail-image">
+          <img src="${bp(`/assets/themes/${topic.image}`)}" alt="${topic.imageAlt || topic.name}" />
+        </div>
+        ` : ''}
 
         <section class="topic-detail-body">
           ${topic.body}
