@@ -428,7 +428,7 @@ ul {
 
 /* Body — open flow */
 .reading-body {
-  margin-bottom: 1.5rem;
+  margin-bottom: 0;
 }
 
 .reading-body p {
@@ -447,12 +447,16 @@ ul {
   width: 3rem;
   height: 1px;
   background: var(--mist);
-  margin: 1.5rem 0;
+  margin: 0.6rem 0;
 }
 
 /* Application */
 .reading-application {
   margin-bottom: 1.5rem;
+}
+
+.reading-application p:last-child {
+  margin-bottom: 0;
 }
 
 .reading-application p {
@@ -463,7 +467,7 @@ ul {
 
 /* Thought for the Day */
 .reading-thought {
-  background: var(--warm-gray);
+  background: var(--cloud);
   margin: 0 1rem 2rem;
   padding: 1.25rem 1.5rem;
   border-radius: var(--radius);
