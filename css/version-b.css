@@ -1247,15 +1247,13 @@ ul {
 }
 
 .step-detail-description {
-  margin-bottom: 2.5rem;
+  margin-bottom: 3rem;
 }
 
 .step-detail-description p {
-  font-family: var(--font-reading);
-  font-size: 1rem;
-  line-height: 1.75;
-  color: var(--ink);
-  margin-bottom: 1rem;
+  margin-bottom: 1.25rem;
+  line-height: 1.85;
+  font-size: 1.05rem;
 }
 
 .step-detail-description p:last-child {
