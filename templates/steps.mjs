@@ -183,6 +183,11 @@ export const STEPS = [
     month: 'October',
     monthSlug: 'october',
     principle: 'Perseverance',
+    description: [
+      'This Step transitions the Al-Anon member from the deep clearing of past wreckage into the daily maintenance of continuous spiritual growth. It means consistently applying the self-awareness gained earlier to our everyday lives by taking regular &ldquo;spot checks&rdquo; or daily reviews of our thoughts and actions.',
+      'For the Al-Anon member, this practice is essential to avoid slipping back into old, self-destructive survival patterns like controlling, people-pleasing, or reacting to the alcoholic&rsquo;s unpredictable behavior. By promptly admitting our mistakes, we prevent a new buildup of crippling guilt and resentment. Crucially, this Step also requires us to acknowledge our positive choices and successes, teaching us to love our humanness rather than demand perfection.',
+      'The guiding spiritual principles are self-honesty, continuous responsibility, compassion, and forgiveness. Step Ten is vitally important because it keeps our emotional and spiritual slate completely clean. It allows us to continuously resolve inner conflicts in real-time, preventing the heavy accumulation of emotional baggage and ensuring we maintain the profound serenity and balanced relationships we have worked so hard to achieve.',
+    ],
     questions: [
       'Do I regularly check in with myself about my motives and behavior?',
       'How quickly am I able to admit when I&rsquo;m wrong?',
@@ -197,6 +202,11 @@ export const STEPS = [
     month: 'November',
     monthSlug: 'november',
     principle: 'Spiritual Awareness',
+    description: [
+      'This Step invites us to consciously maintain and actively deepen the intimate partnership with our Higher Power. It means establishing a disciplined spiritual practice where prayer is the act of talking to God, and meditation is the quiet discipline of listening for His guidance.',
+      'For the Al-Anon member, this represents a profound surrender of self-will. We completely stop using frantic prayers to bargain with God or beg Him to cure the alcoholic&rsquo;s disease. Instead, we relinquish our personal agendas and simply ask for the clarity to know our path and the strength to walk it.',
+      'The core spiritual principles are faith, profound surrender, trust, and spiritual awareness. Step Eleven is crucially important because it ensures we are never alone, isolated, or wandering aimlessly. By continually aligning our actions with a loving Higher Power, we tap into an unlimited source of daily strength and comfort, allowing us to navigate life&rsquo;s challenges with immense peace and live a deeply gratifying, unburdened life.',
+    ],
     questions: [
       'What does my spiritual practice look like today?',
       'How do I distinguish between my will and a Higher Power&rsquo;s will?',
@@ -211,6 +221,11 @@ export const STEPS = [
     month: 'December',
     monthSlug: 'december',
     principle: 'Service',
+    description: [
+      'This final Step asks us to recognize the profound, life-changing transformation in perception we have experienced and to freely share the Al-Anon message with those who are still suffering. It means stepping out of isolation to engage in service&mdash;whether by sponsoring a newcomer, answering phones, or simply listening&mdash;without trying to give advice or manage anyone else&rsquo;s recovery.',
+      'For the Al-Anon member, this Step is the beautiful culmination of the journey from crippling fear to connection and purpose. We learn the spiritual paradox that in order to keep the miraculous gift of our recovery, we must actively give it away to others.',
+      'The core spiritual principles of this Step are unconditional love, selfless service, and immense gratitude. Step Twelve is vitally important because it permanently solidifies our healing. By consciously practicing these universal principles in all our affairs&mdash;with our family, our coworkers, and our community&mdash;we prove that the Twelve Steps are not just a survival tool, but a remarkably rewarding, permanent new way of life.',
+    ],
     questions: [
       'How has my life changed since beginning this journey?',
       'In what ways can I share what I&rsquo;ve learned without giving advice?',
