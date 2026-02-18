@@ -461,12 +461,12 @@ ul {
   font-size: 1.05rem;
 }
 
-/* Thought for the Day — full-width band */
+/* Thought for the Day */
 .reading-thought {
-  background: var(--warm-gray);
-  margin: 0 -2rem;
-  padding: 2rem;
   margin-bottom: 2.5rem;
+  padding: 1.25rem 1.5rem;
+  border-left: 3px solid var(--cloud);
+  border-radius: 0 var(--radius) var(--radius) 0;
 }
 
 .thought-label {
@@ -488,64 +488,6 @@ ul {
   letter-spacing: -0.01em;
 }
 
-@media (max-width: 640px) {
-  .reading-thought {
-    margin: 0 -1.5rem;
-    padding: 1.5rem;
-  }
-}
-
-/* Reading Nav */
-.reading-nav {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-top: 1px solid var(--cloud);
-  padding-top: 1.5rem;
-  margin-bottom: 3rem;
-}
-
-.nav-prev,
-.nav-next {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  font-size: 0.85rem;
-  color: var(--ocean);
-  text-decoration: none;
-  transition: color 0.2s;
-}
-
-.nav-prev:hover,
-.nav-next:hover {
-  color: var(--deep-teal);
-}
-
-.nav-arrow {
-  font-size: 1rem;
-}
-
-.nav-label {
-  font-size: 0.8rem;
-}
-
-.nav-browse {
-  font-size: 0.8rem;
-  color: var(--ink);
-  opacity: 0.35;
-  letter-spacing: 0.02em;
-}
-
-.nav-browse:hover {
-  opacity: 1;
-  color: var(--deep-teal);
-}
-
-@media (max-width: 480px) {
-  .nav-label {
-    display: none;
-  }
-}
 
 /* --- App CTA --- */
 .app-cta {
