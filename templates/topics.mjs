@@ -35,6 +35,9 @@ export const TOPICS = [
     slug: 'powerlessness',
     name: 'Powerlessness & Surrender',
     shortDescription: 'Accepting what we cannot control and letting go of the rest.',
+    metaDescription: 'Accept what you cannot control and discover the freedom in letting go. Daily Al-Anon reflections on powerlessness and surrender.',
+    image: 'powerlessness.jpg',
+    imageAlt: 'Two women hiking together at sunset \u2014 finding freedom through surrender in Al-Anon recovery',
     body: `
       <p>
         Step One names it plainly: we are powerless over alcohol and
@@ -94,6 +97,9 @@ export const TOPICS = [
     slug: 'boundaries',
     name: 'Boundaries',
     shortDescription: 'Learning to say no as an act of self-respect, not selfishness.',
+    metaDescription: 'Learn to say no without guilt and set healthy limits. Daily Al-Anon reflections on boundaries as self-respect, not selfishness.',
+    image: 'boundaries.jpg',
+    imageAlt: 'Two women talking on a street corner with healthy space between them \u2014 setting boundaries in Al-Anon recovery',
     body: `
       <p>
         Living with alcoholism blurs every line. We absorb other people&rsquo;s
