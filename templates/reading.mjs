@@ -59,6 +59,11 @@ export function renderReadingPage(reading, prevReading, nextReading) {
         </aside>
         ` : ''}
 
+        <nav class="reading-date-nav">
+          ${reading.day_of_year > 1 ? `<a href="${bp(`/${prevSlug}/`)}" class="date-nav-prev">&larr; ${prevReading.display_date}</a>` : '<span></span>'}
+          <a href="${bp('/')}" class="date-nav-today" data-today-nav>Return to Today</a>
+          ${reading.day_of_year < 366 ? `<a href="${bp(`/${nextSlug}/`)}" class="date-nav-next">${nextReading.display_date} &rarr;</a>` : '<span></span>'}
+        </nav>
 
         <aside class="app-cta">
           <p class="app-cta-heading">Enjoy Al-Anon Daily Paths on the go</p>

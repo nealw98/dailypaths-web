@@ -13,7 +13,17 @@
     }
   }
 
-  // 2. Mobile Navigation Toggle
+  // 2. Hide "Return to Today" if already on today's reading
+  var todayNav = document.querySelector('[data-today-nav]');
+  if (todayNav) {
+    var todaySlug = getTodaySlug();
+    var path = window.location.pathname;
+    if (path.indexOf(todaySlug) !== -1 || path === '/' || path.match(/\/index\.html?\/?$/)) {
+      todayNav.style.display = 'none';
+    }
+  }
+
+  // 3. Mobile Navigation Toggle
   var menuToggle = document.querySelector('[data-menu-toggle]');
   var mobileMenu = document.querySelector('[data-mobile-menu]');
   if (menuToggle && mobileMenu) {
