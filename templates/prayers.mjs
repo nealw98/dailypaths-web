@@ -1,4 +1,5 @@
 import { wrapInLayout } from './base.mjs';
+import { bp } from '../helpers/config.mjs';
 
 export function renderPrayersPage() {
   const prayers = [
@@ -140,22 +141,60 @@ export function renderPrayersPage() {
           </details>`;
   }
 
-  const prayerCards = prayers.map(renderPrayer).join('\n');
+  // Serenity Prayer gets featured treatment
+  const serenity = prayers.find(p => p.id === 'serenity');
+  const otherPrayers = prayers.filter(p => p.id !== 'serenity');
+  const prayerCards = otherPrayers.map(renderPrayer).join('\n');
 
   const bodyContent = `
-    <div class="content-page prayers-page">
-      <div class="content-container">
-        <h1 class="page-title">Prayers</h1>
-        <p class="page-description">
-          Prayers and meditations commonly used in Al-Anon recovery.
-          Tap any prayer to read it.
-        </p>
+      <!-- Hero -->
+      <header class="pr-hero">
+        <div class="pr-hero-image">
+          <img src="${bp('/assets/themes/prayers.jpg')}" alt="Prayers and Meditations" />
+          <div class="pr-hero-overlay"></div>
+        </div>
+        <div class="pr-hero-content">
+          <span class="pr-hero-label">Recovery Resources</span>
+          <h1 class="pr-hero-title">Prayers &amp; Meditations</h1>
+          <p class="pr-hero-desc">Words that have carried countless members through their darkest hours and brightest mornings.</p>
+        </div>
+      </header>
 
+      <!-- Featured: Serenity Prayer -->
+      <div class="pr-featured-wrap">
+        <div class="pr-featured">
+          <span class="pr-featured-label">The Foundation</span>
+          <h2 class="pr-featured-title">${serenity.title}</h2>
+          <div class="pr-featured-verse">
+            ${serenity.lines.map(l => `<p>${l}</p>`).join('\n            ')}
+          </div>
+          <p class="pr-featured-source">&mdash; ${serenity.source}</p>
+        </div>
+      </div>
+
+      <!-- App Promo -->
+      <div class="pr-app-wrap">
+        <aside class="pr-app-callout">
+          <p class="pr-app-text">With the <strong>Al-Anon Daily Paths</strong> app, you can carry these prayers with you wherever you go. Use them when you need them most.</p>
+          <div class="pr-app-badges">
+            <a href="https://apps.apple.com/app/id6755981862" target="_blank" rel="noopener noreferrer">
+              <img src="https://developer.apple.com/app-store/marketing/guidelines/images/badge-download-on-the-app-store.svg" alt="Download on the App Store" class="pr-app-badge">
+            </a>
+            <a href="https://play.google.com/store/apps/details?id=com.dailypaths" target="_blank" rel="noopener noreferrer">
+              <img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" alt="Get it on Google Play" class="pr-app-badge pr-app-badge-play">
+            </a>
+          </div>
+        </aside>
+      </div>
+
+      <!-- Prayer Cards -->
+      <div class="pr-list-wrap">
+        <h2 class="pr-list-heading">More Prayers &amp; Reflections</h2>
+        <p class="pr-list-intro">Tap any prayer to read it.</p>
         <div class="prayer-list">
 ${prayerCards}
         </div>
-      </div>
-    </div>`;
+      </div>`;
 
   return wrapInLayout({
     title: 'Al-Anon Recovery Prayers & Meditations | Al-Anon Daily Paths',

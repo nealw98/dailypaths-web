@@ -114,7 +114,7 @@ const todayIdx = readings.findIndex(r => r.day_of_year === todayDayOfYear);
 const todayReading = readings[todayIdx >= 0 ? todayIdx : 0];
 const todayPrev = readings[(todayIdx - 1 + readings.length) % readings.length];
 const todayNext = readings[(todayIdx + 1) % readings.length];
-writePage(join(outDir, 'index.html'), renderHomepage(todayReading, todayPrev, todayNext));
+writePage(join(outDir, 'index.html'), renderHomepage(todayReading, todayPrev, todayNext, readings));
 
 // Reading pages
 console.log('Generating 366 reading pages...');
@@ -123,7 +123,7 @@ for (let i = 0; i < readings.length; i++) {
   const prev = readings[(i - 1 + readings.length) % readings.length];
   const next = readings[(i + 1) % readings.length];
   const slug = dayToSlug(reading.day_of_year);
-  writePage(join(outDir, slug, 'index.html'), renderReadingPage(reading, prev, next));
+  writePage(join(outDir, slug, 'index.html'), renderReadingPage(reading, prev, next, readings));
 }
 
 // Themes index + individual theme pages
@@ -142,7 +142,7 @@ for (const topic of TOPICS) {
     .filter(Boolean);
   writePage(
     join(outDir, 'themes', topic.slug, 'index.html'),
-    renderTopicPage(topic, featuredReadings)
+    renderTopicPage(topic, featuredReadings, readings)
   );
 }
 
@@ -163,7 +163,7 @@ writePage(join(outDir, 'steps', 'index.html'), renderStepsIndexPage());
 for (const step of STEPS) {
   writePage(
     join(outDir, 'steps', `step-${step.number}`, 'index.html'),
-    renderStepPage(step)
+    renderStepPage(step, readings)
   );
 }
 
@@ -262,6 +262,11 @@ if (existsSync(join(localAssetsDir, 'app-store-badge.svg'))) {
 // OG image
 if (existsSync(join(localAssetsDir, 'og-image.png'))) {
   cpSync(join(localAssetsDir, 'og-image.png'), join(outDir, 'assets', 'og-image.png'));
+}
+
+// Homepage banner
+if (existsSync(join(localAssetsDir, 'home-page.jpg'))) {
+  cpSync(join(localAssetsDir, 'home-page.jpg'), join(outDir, 'assets', 'home-page.jpg'));
 }
 
 // Theme images

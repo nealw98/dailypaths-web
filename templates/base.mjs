@@ -97,7 +97,6 @@ ${structuredData}
         <a href="${bp('/steps/')}" class="nav-link">Steps</a>
         <a href="${bp('/themes/')}" class="nav-link">Themes</a>
         <a href="${bp('/prayers/')}" class="nav-link">Prayers</a>
-        <a href="${bp('/literature/')}" class="nav-link">Literature</a>
         <a href="${bp('/about/')}" class="nav-link">About</a>
       </nav>
     </div>

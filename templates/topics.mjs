@@ -3,6 +3,58 @@ import { dayToSlug } from '../helpers/slug-utils.mjs';
 import { bp } from '../helpers/config.mjs';
 
 /**
+ * Map each topic slug to the secondary_theme values that belong to it.
+ * Readings whose secondary_theme matches any of these tags will appear
+ * on the topic page automatically, alongside the curated featuredDays.
+ */
+const TOPIC_THEME_TAGS = {
+  'detachment':            ['Detachment', 'Release', 'Relinquishment', 'Freedom'],
+  'powerlessness':         ['Powerlessness', 'Surrender', 'Acceptance', 'Relief'],
+  'focus-on-yourself':     ['Self-Care', 'Self-care', 'Self-focus', 'Self-love', 'Self-Acceptance', 'Self-acceptance', 'Redirection', 'Focus'],
+  'one-day-at-a-time':     ['Presence', 'Patience', 'Simplicity', 'Peace', 'Serenity'],
+  'boundaries':            ['Boundaries', 'Respect', 'Independence', 'Self-Discipline'],
+  'letting-go-of-control': ['Control', 'Flexibility', 'Willingness', 'Self-will'],
+  'self-worth':            ['Self-worth', 'Self-esteem', 'Self-compassion', 'Identity', 'Self-forgiveness'],
+  'higher-power':          ['Faith', 'Trust', 'Prayer', 'Spiritual Connection', 'Spiritual intimacy', 'Reliance', 'Spirit'],
+  'honesty':               ['Honesty', 'Truth', 'Self-awareness', 'Awareness', 'Integrity', 'Clarity'],
+  'gratitude-and-hope':    ['Gratitude', 'Hope', 'Miracles', 'Vision'],
+  'the-disease':           ['Understanding', 'Compassion', 'Reality', 'Sanity'],
+  'fellowship':            ['Fellowship', 'Connection', 'Community', 'Belonging', 'Unity', 'Sponsorship', 'Inclusion'],
+};
+
+/** Pull-quotes for each topic — one line that captures the spirit */
+const TOPIC_PULL_QUOTES = {
+  'detachment':            'Detachment is what makes it possible to stay in the room without being destroyed by what\u2019s happening in it.',
+  'powerlessness':         'Surrender isn\u2019t giving up \u2014 it\u2019s giving over.',
+  'focus-on-yourself':     'Focusing on ourselves is the most radical \u2014 and most difficult \u2014 shift in recovery.',
+  'one-day-at-a-time':     'Handle just today, and trust that tomorrow will take care of itself.',
+  'boundaries':            'Boundaries aren\u2019t walls. They\u2019re the foundation that makes real love possible.',
+  'letting-go-of-control': 'The need to control is the disease talking through us.',
+  'self-worth':            'Recovery is, in part, an excavation \u2014 digging out the person who was buried under years of coping.',
+  'higher-power':          'What matters is the willingness to stop relying solely on ourselves.',
+  'honesty':               'Honesty in Al-Anon starts with ourselves \u2014 admitting what we feel, owning what we\u2019ve done.',
+  'gratitude-and-hope':    'Hope is what gets us to the first meeting. Gratitude is what keeps us coming back.',
+  'the-disease':           'We didn\u2019t cause it, we can\u2019t control it, and we can\u2019t cure it.',
+  'fellowship':            'Connection is the antidote to isolation, and fellowship is where recovery becomes real.',
+};
+
+/** Recovery tools / practical actions for each topic */
+const TOPIC_TOOLS = {
+  'detachment':            ['Practice the slogan "How Important Is It?"', 'Step back before reacting', 'Write about what you can and cannot control', 'Attend a meeting on detachment'],
+  'powerlessness':         ['Review your Step 1 writing', 'List what you\u2019ve tried to control', 'Practice the Serenity Prayer', 'Share your experience with a sponsor'],
+  'focus-on-yourself':     ['Schedule something just for you', 'Ask "Is this mine to carry?"', 'Journal about your needs', 'Set one boundary this week'],
+  'one-day-at-a-time':     ['Start the day with a reading', 'Avoid "what if" thinking', 'Practice a 5-minute meditation', 'Write a gratitude list tonight'],
+  'boundaries':            ['Practice saying no without explaining', 'Identify one boundary to set', 'Talk to your sponsor about limits', 'Notice when you feel resentful'],
+  'letting-go-of-control': ['Pause before offering advice', 'Let someone make their own mistake', 'Write a "letting go" letter', 'Practice "Let Go and Let God"'],
+  'self-worth':            ['Write 3 things you like about yourself', 'Say no to one obligation', 'Notice self-critical thoughts', 'Do something that brings you joy'],
+  'higher-power':          ['Try a morning prayer or meditation', 'Write a letter to your Higher Power', 'Notice moments of grace', 'Read Step 3 literature'],
+  'honesty':               ['Tell someone how you really feel', 'Journal without editing yourself', 'Admit one mistake this week', 'Practice Step 10 spot-check'],
+  'gratitude-and-hope':    ['Write a gratitude list', 'Share a hope at a meeting', 'Notice one good thing today', 'Call a program friend'],
+  'the-disease':           ['Read about the family disease', 'Practice the Three Cs', 'Replace blame with compassion', 'Attend an open AA meeting'],
+  'fellowship':            ['Call a program friend', 'Volunteer for a service position', 'Attend a new meeting', 'Share your story with a newcomer'],
+};
+
+/**
  * The 12 recovery themes — each is its own content page.
  *
  * `featuredDays` are day_of_year values for curated readings.
@@ -297,70 +349,158 @@ ${topicItems}
 }
 
 /**
- * Render an individual topic page.
+ * Render an individual topic page — editorial layout.
  *
  * @param {Object} topic - Topic object from TOPICS array
  * @param {Array} featuredReadings - Reading objects matching featuredDays
+ * @param {Array} [allReadings] - All 366 readings (for theme-tag matching)
  */
-export function renderTopicPage(topic, featuredReadings) {
+export function renderTopicPage(topic, featuredReadings, allReadings = []) {
   const idx = TOPICS.indexOf(topic);
   const prevTopic = TOPICS[(idx - 1 + TOPICS.length) % TOPICS.length];
   const nextTopic = TOPICS[(idx + 1) % TOPICS.length];
 
-  const readingItems = featuredReadings.map(r => {
+  const tools = TOPIC_TOOLS[topic.slug] || [];
+  const pullQuote = TOPIC_PULL_QUOTES[topic.slug] || '';
+  const themeTags = TOPIC_THEME_TAGS[topic.slug] || [];
+
+  // Build theme-matched readings from secondary_theme
+  const featuredDaySet = new Set(topic.featuredDays || []);
+  let themeReadings = [];
+  if (allReadings.length > 0 && themeTags.length > 0) {
+    themeReadings = allReadings.filter(
+      r => r.secondary_theme && themeTags.includes(r.secondary_theme) && !featuredDaySet.has(r.day_of_year)
+    );
+  }
+
+  // Combine: featured first, then theme-matched (deduped)
+  const seenDays = new Set(featuredReadings.map(r => r.day_of_year));
+  const additionalReadings = themeReadings.filter(r => {
+    if (seenDays.has(r.day_of_year)) return false;
+    seenDays.add(r.day_of_year);
+    return true;
+  });
+
+  // Show up to 9 reading cards total
+  const allTopicReadings = [...featuredReadings, ...additionalReadings];
+  const displayReadings = allTopicReadings.slice(0, 9);
+  const totalCount = allTopicReadings.length;
+
+  // Build reading cards
+  const readingCards = displayReadings.map(r => {
     const slug = dayToSlug(r.day_of_year);
-    return `            <li>
-              <a href="${bp(`/${slug}/`)}">
-                <span class="reading-preview-date">${r.display_date}</span>
-                <span class="reading-preview-title">${r.title}</span>
-              </a>
-            </li>`;
+    return `
+            <a href="${bp(`/${slug}/`)}" class="topic-reading-card">
+              <span class="topic-reading-card-date">${r.display_date}</span>
+              <span class="topic-reading-card-title">${r.title}</span>
+              ${r.secondary_theme ? `<span class="topic-reading-card-tag">${r.secondary_theme}</span>` : ''}
+            </a>`;
   }).join('\n');
 
+  // Build theme tags pills
+  const tagPills = themeTags.slice(0, 6).map(tag => {
+    const count = allReadings.filter(r => r.secondary_theme === tag).length;
+    return count > 0 ? `<span class="topic-tag-pill">${tag} <span class="topic-tag-count">${count}</span></span>` : '';
+  }).filter(Boolean).join('\n              ');
+
+  // Build sidebar tools
+  const toolItems = tools.map(t => `              <li>${t}</li>`).join('\n');
+
   const bodyContent = `
-    <article class="content-page topic-detail-page">
-      <div class="content-container">
-        <nav class="breadcrumb">
-          <a href="${bp('/themes/')}">Themes</a>
-          <span class="breadcrumb-sep">/</span>
-          <span>${topic.name}</span>
-        </nav>
-
-        <header class="topic-detail-header">
-          <h1 class="topic-detail-title">${topic.name}</h1>
-        </header>
-
+    <article class="topic-editorial">
+      <!-- Hero Section -->
+      <header class="topic-hero">
         ${topic.image ? `
-        <div class="topic-detail-image">
+        <div class="topic-hero-image">
           <img src="${bp(`/assets/themes/${topic.image}`)}" alt="${topic.imageAlt || topic.name}" />
+          <div class="topic-hero-overlay"></div>
+        </div>` : ''}
+        <div class="topic-hero-content">
+          <nav class="breadcrumb topic-hero-breadcrumb">
+            <a href="${bp('/themes/')}">Themes</a>
+            <span class="breadcrumb-sep">/</span>
+            <span>${topic.name}</span>
+          </nav>
+          <span class="topic-hero-label">Recovery Theme</span>
+          <h1 class="topic-hero-title">${topic.name}</h1>
+          <p class="topic-hero-desc">${topic.shortDescription}</p>
         </div>
-        ` : ''}
+      </header>
 
-        <section class="topic-detail-body">
-          ${topic.body}
-        </section>
+      <!-- Two-Column Body -->
+      <div class="topic-body-wrap">
+        <div class="topic-body-inner">
+          <!-- Main Column (70%) -->
+          <div class="topic-main-col">
+            <section class="topic-essay">
+              ${topic.body}
+            </section>
 
-        ${featuredReadings.length > 0 ? `
-        <section class="topic-detail-readings">
-          <h2>Select Readings</h2>
-          <ul class="topic-reading-list">
-${readingItems}
-          </ul>
-        </section>
-        ` : ''}
+            <!-- Related Tags Callout -->
+            ${tagPills ? `
+            <aside class="topic-callout">
+              <h3 class="topic-callout-title">Related Tags in This Theme</h3>
+              <p class="topic-callout-intro">
+                Readings tagged with these topics appear on this page.
+              </p>
+              <div class="topic-tag-list">
+              ${tagPills}
+              </div>
+            </aside>` : ''}
+          </div>
 
-        <nav class="topic-nav-footer">
-          <a href="${bp(`/themes/${prevTopic.slug}/`)}" class="nav-prev">
-            <span class="nav-arrow">&larr;</span>
-            <span class="nav-label">${prevTopic.name}</span>
-          </a>
-          <a href="${bp('/themes/')}" class="nav-browse">All Themes</a>
-          <a href="${bp(`/themes/${nextTopic.slug}/`)}" class="nav-next">
-            <span class="nav-label">${nextTopic.name}</span>
-            <span class="nav-arrow">&rarr;</span>
-          </a>
-        </nav>
+          <!-- Sidebar Column (30%) -->
+          <aside class="topic-sidebar">
+            <div class="topic-sidebar-tools">
+              <h3 class="topic-sidebar-heading">Recovery Tools</h3>
+              <ul class="topic-sidebar-list">
+${toolItems}
+              </ul>
+            </div>
+
+            ${pullQuote ? `
+            <blockquote class="topic-sidebar-quote">
+              <p>&ldquo;${pullQuote}&rdquo;</p>
+            </blockquote>` : ''}
+
+            <div class="topic-sidebar-resource">
+              <h3 class="topic-sidebar-heading">Go Deeper</h3>
+              <p>Explore this theme through Al-Anon&rsquo;s
+                <a href="https://ecomm.al-anon.org/EN/ItemDetail?iProductCode=B24" target="_blank" rel="noopener noreferrer"><em>Paths to Recovery</em></a>.
+              </p>
+            </div>
+          </aside>
+        </div>
       </div>
+
+      <!-- Readings Grid -->
+      ${displayReadings.length > 0 ? `
+      <section class="topic-readings-section">
+        <h2 class="topic-readings-heading">Readings on ${topic.name}</h2>
+        <p class="topic-readings-intro">
+          ${totalCount} readings explore this theme. Here are some to start with.
+        </p>
+        <div class="topic-readings-grid">
+${readingCards}
+        </div>
+        ${totalCount > 9 ? `
+        <p class="topic-readings-more">
+          <a href="${bp('/browse/')}">Browse all readings &rarr;</a>
+        </p>` : ''}
+      </section>` : ''}
+
+      <!-- Topic Navigation -->
+      <nav class="topic-nav-footer topic-nav-editorial">
+        <a href="${bp(`/themes/${prevTopic.slug}/`)}" class="nav-prev">
+          <span class="nav-arrow">&larr;</span>
+          <span class="nav-label">${prevTopic.name}</span>
+        </a>
+        <a href="${bp('/themes/')}" class="nav-browse">All Themes</a>
+        <a href="${bp(`/themes/${nextTopic.slug}/`)}" class="nav-next">
+          <span class="nav-label">${nextTopic.name}</span>
+          <span class="nav-arrow">&rarr;</span>
+        </a>
+      </nav>
     </article>`;
 
   return wrapInLayout({

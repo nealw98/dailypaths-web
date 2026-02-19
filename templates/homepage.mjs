@@ -3,15 +3,41 @@ import { homepageStructuredData } from '../helpers/seo.mjs';
 import { textToHtmlParagraphs, renderQuote } from '../helpers/markdown.mjs';
 import { dayToSlug } from '../helpers/slug-utils.mjs';
 import { bp } from '../helpers/config.mjs';
+import { TOPICS } from './topics.mjs';
+
+// Build reverse map: secondary_theme value → topic slug & name
+const THEME_TO_TOPIC = {};
+const _TOPIC_THEME_TAGS = {
+  'detachment':            ['Detachment', 'Release', 'Relinquishment', 'Freedom'],
+  'powerlessness':         ['Powerlessness', 'Surrender', 'Acceptance', 'Relief'],
+  'focus-on-yourself':     ['Self-Care', 'Self-care', 'Self-focus', 'Self-love', 'Self-Acceptance', 'Self-acceptance', 'Redirection', 'Focus'],
+  'one-day-at-a-time':     ['Presence', 'Patience', 'Simplicity', 'Peace', 'Serenity'],
+  'boundaries':            ['Boundaries', 'Respect', 'Independence', 'Self-Discipline'],
+  'letting-go-of-control': ['Control', 'Flexibility', 'Willingness', 'Self-will'],
+  'self-worth':            ['Self-worth', 'Self-esteem', 'Self-compassion', 'Identity', 'Self-forgiveness'],
+  'higher-power':          ['Faith', 'Trust', 'Prayer', 'Spiritual Connection', 'Spiritual intimacy', 'Reliance', 'Spirit'],
+  'honesty':               ['Honesty', 'Truth', 'Self-awareness', 'Awareness', 'Integrity', 'Clarity'],
+  'gratitude-and-hope':    ['Gratitude', 'Hope', 'Miracles', 'Vision'],
+  'the-disease':           ['Understanding', 'Compassion', 'Reality', 'Sanity'],
+  'fellowship':            ['Fellowship', 'Connection', 'Community', 'Belonging', 'Unity', 'Sponsorship', 'Inclusion'],
+};
+for (const [topicSlug, tags] of Object.entries(_TOPIC_THEME_TAGS)) {
+  const topic = TOPICS.find(t => t.slug === topicSlug);
+  if (!topic) continue;
+  for (const tag of tags) {
+    THEME_TO_TOPIC[tag] = { slug: topicSlug, name: topic.name };
+  }
+}
 
 /**
- * Generate the homepage HTML with today's reading.
+ * Generate the homepage HTML with today's reading — editorial layout.
  *
  * @param {Object} todayReading - Today's reading object
  * @param {Object} prevReading - Previous day's reading (for nav)
  * @param {Object} nextReading - Next day's reading (for nav)
+ * @param {Array} [allReadings] - All 366 readings (for related readings sidebar)
  */
-export function renderHomepage(todayReading, prevReading, nextReading) {
+export function renderHomepage(todayReading, prevReading, nextReading, allReadings = []) {
   const structuredData = homepageStructuredData();
 
   const slug = dayToSlug(todayReading.day_of_year);
@@ -26,46 +52,151 @@ export function renderHomepage(todayReading, prevReading, nextReading) {
     ? todayReading.thought_for_day.replace(/\\n/g, '\n').replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>').replace(/\*(.+?)\*/g, '<em>$1</em>')
     : '';
 
+  // Build related readings sidebar from secondary_theme
+  let relatedHtml = '';
+  const theme = todayReading.secondary_theme;
+  if (theme && allReadings.length > 0) {
+    const related = allReadings.filter(
+      r => r.secondary_theme === theme && r.day_of_year !== todayReading.day_of_year
+    ).slice(0, 8);
+
+    if (related.length > 0) {
+      const relatedItems = related.map(r => {
+        const rSlug = dayToSlug(r.day_of_year);
+        return `
+              <li class="rd-related-item">
+                <a href="${bp(`/${rSlug}/`)}">
+                  <span class="rd-related-date">${r.display_date}</span>
+                  <span class="rd-related-title">${r.title}</span>
+                </a>
+              </li>`;
+      }).join('\n');
+
+      relatedHtml = `
+            <div class="rd-sidebar-related">
+              <h3 class="rd-sidebar-heading">More on ${theme}</h3>
+              <p class="rd-sidebar-intro">Additional readings exploring this theme</p>
+              <ul class="rd-related-list">
+${relatedItems}
+              </ul>
+            </div>`;
+    }
+  }
+
+  // Theme pill for header — links to topic page
+  let themePill = '';
+  if (todayReading.secondary_theme) {
+    const topicMatch = THEME_TO_TOPIC[todayReading.secondary_theme];
+    if (topicMatch) {
+      themePill = `<a href="${bp(`/themes/${topicMatch.slug}/`)}" class="rd-hero-theme">${todayReading.secondary_theme}</a>`;
+    } else {
+      themePill = `<span class="rd-hero-theme">${todayReading.secondary_theme}</span>`;
+    }
+  }
+
+  // Step theme link — links to step page
+  let stepLabel = '';
+  const stepTheme = todayReading.step_theme || '';
+  if (stepTheme) {
+    const stepMatch = stepTheme.match(/^Step (\d+)$/);
+    if (stepMatch) {
+      stepLabel = `<a href="${bp(`/steps/step-${stepMatch[1]}/`)}" class="rd-hero-step">${stepTheme}</a>`;
+    } else {
+      stepLabel = `<span class="rd-hero-step">${stepTheme}</span>`;
+    }
+  }
+
   const bodyContent = `
-    <article class="reading-page">
-      <div class="reading-container">
-        <header class="reading-header">
-          <p class="reading-date">${todayReading.display_date} &mdash; Today's Reading</p>
-          <h1 class="reading-title">${todayReading.title}</h1>
-        </header>
-
-        <section class="reading-quote">
-          ${quoteHtml}
-        </section>
-
-        <section class="reading-body">
-          ${openingHtml}
-          ${bodyHtml}
-        </section>
-
-        ${applicationHtml ? `
-        <div class="reading-divider"></div>
-        <section class="reading-application">
-          ${applicationHtml}
-        </section>
-        ` : ''}
-
-        ${thoughtHtml ? `
-        <aside class="reading-thought">
-          <p class="thought-label">Thought for the Day</p>
-          <p class="thought-text">${thoughtHtml}</p>
-        </aside>
-        ` : ''}
-
-        <nav class="reading-date-nav">
-          <a href="${bp(`/${prevSlug}/`)}" class="date-nav-prev">&larr; ${prevReading.display_date}</a>
-          <span></span>
-          <a href="${bp(`/${nextSlug}/`)}" class="date-nav-next">${nextReading.display_date} &rarr;</a>
-        </nav>
-
+    <!-- Site Hero Banner -->
+    <section class="home-hero">
+      <div class="home-hero-image">
+        <img src="${bp('/assets/home-page.jpg')}" alt="Al-Anon Daily Paths" />
+        <div class="home-hero-overlay"></div>
       </div>
-    </article>
+      <div class="home-hero-content">
+        <h1 class="home-hero-title">Al-Anon Daily Paths</h1>
+        <p class="home-hero-tagline">Daily reflections for the Al-Anon journey</p>
+      </div>
+    </section>
 
+    <article class="reading-page">
+
+      <!-- Today's Reading Header -->
+      <header class="rd-hero">
+        <p class="rd-hero-date">${todayReading.display_date} &mdash; Today&rsquo;s Reading</p>
+        <h2 class="rd-hero-title">${todayReading.title}</h2>
+        <div class="rd-hero-tags">
+          ${themePill}
+          ${stepLabel}
+        </div>
+      </header>
+
+      <!-- Two-Column Body -->
+      <div class="rd-body-wrap">
+        <div class="rd-body-inner">
+
+          <!-- Main Column -->
+          <div class="rd-main-col">
+            <section class="reading-quote">
+              ${quoteHtml}
+            </section>
+
+            <section class="reading-body">
+              ${openingHtml}
+              ${bodyHtml}
+            </section>
+
+            ${applicationHtml ? `
+            <div class="reading-divider"></div>
+            <section class="reading-application">
+              ${applicationHtml}
+            </section>
+            ` : ''}
+
+            ${thoughtHtml ? `
+            <aside class="reading-thought">
+              <p class="thought-label">Thought for the Day</p>
+              <p class="thought-text">${thoughtHtml}</p>
+            </aside>
+            ` : ''}
+          </div>
+
+          <!-- Sidebar -->
+          <aside class="rd-sidebar">
+${relatedHtml}
+
+            <div class="rd-sidebar-app">
+              <p class="rd-sidebar-heading">Take it with you</p>
+              <p class="rd-sidebar-app-text">Read daily reflections on the go with the Al-Anon Daily Paths app.</p>
+              <div class="rd-sidebar-badges">
+                <a href="https://apps.apple.com/app/id6755981862" target="_blank" rel="noopener noreferrer">
+                  <img src="https://developer.apple.com/app-store/marketing/guidelines/images/badge-download-on-the-app-store.svg" alt="Download on the App Store" class="rd-sidebar-badge">
+                </a>
+                <a href="https://play.google.com/store/apps/details?id=com.dailypaths" target="_blank" rel="noopener noreferrer">
+                  <img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" alt="Get it on Google Play" class="rd-sidebar-badge rd-sidebar-badge-play">
+                </a>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </div>
+
+      <!-- Prev / Next Nav -->
+      <nav class="rd-nav-footer">
+        <a href="${bp(`/${prevSlug}/`)}" class="rd-nav-link rd-nav-prev">
+          <span class="rd-nav-label">&larr; Previous</span>
+          <span class="rd-nav-date">${prevReading.display_date}</span>
+          <span class="rd-nav-title">${prevReading.title}</span>
+        </a>
+        <span></span>
+        <a href="${bp(`/${nextSlug}/`)}" class="rd-nav-link rd-nav-next">
+          <span class="rd-nav-label">Next &rarr;</span>
+          <span class="rd-nav-date">${nextReading.display_date}</span>
+          <span class="rd-nav-title">${nextReading.title}</span>
+        </a>
+      </nav>
+
+    </article>
 
     <section class="home-about">
       <div class="home-container">
@@ -82,25 +213,6 @@ export function renderHomepage(todayReading, prevReading, nextReading) {
           original writings inspired by the spirit of recovery found in
           Al-Anon's program of hope.
         </p>
-      </div>
-    </section>
-
-    <section class="home-app">
-      <div class="home-container">
-        <h2 class="section-title">Take your reflections anywhere</h2>
-        <p>
-          The Al-Anon Daily Paths app brings the full reading experience to your phone,
-          with features designed for your daily practice.
-        </p>
-        <ul class="app-features">
-          <li>Bookmark readings that speak to you</li>
-          <li>Gentle daily reminders at the time you choose</li>
-          <li>Dark mode for evening reading</li>
-          <li>Read offline, anytime</li>
-        </ul>
-        <a href="https://apps.apple.com/app/id6755981862" class="app-store-link" target="_blank" rel="noopener noreferrer">
-          <img src="${bp('/assets/app-store-badge.svg')}" alt="Download on the App Store" class="app-store-badge">
-        </a>
       </div>
     </section>`;
 

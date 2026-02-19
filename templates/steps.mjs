@@ -1,5 +1,6 @@
 import { wrapInLayout } from './base.mjs';
 import { bp } from '../helpers/config.mjs';
+import { dayToSlug, MONTHS, DAYS_IN_MONTH } from '../helpers/slug-utils.mjs';
 
 /**
  * Step data — shared between the index and individual step pages.
@@ -240,56 +241,91 @@ export const STEPS = [
  * Generate the Steps index page — overview of all 12 steps with links.
  */
 export function renderStepsIndexPage() {
-  const stepCards = STEPS.map(step => {
+  // Featured step — Step 1 gets the large hero-style card
+  const featured = STEPS[0];
+  const pullQuoteFeatured = PULL_QUOTES[featured.number] || '';
+
+  // Remaining steps in a grid
+  const gridCards = STEPS.slice(1).map(step => {
     return `
-        <a href="${bp(`/steps/step-${step.number}/`)}" class="step-card">
-          <span class="step-card-number">${step.number}</span>
-          <div class="step-card-content">
-            <h3 class="step-card-title">Step ${step.number}</h3>
-            <p class="step-card-text">${step.text}</p>
-            <span class="step-card-meta">${step.month} &middot; ${step.principle}</span>
-          </div>
-        </a>`;
+          <a href="${bp(`/steps/step-${step.number}/`)}" class="si-grid-card">
+            <div class="si-grid-card-top">
+              <span class="si-grid-card-number">${step.number}</span>
+              <span class="si-grid-card-principle">${step.principle}</span>
+            </div>
+            <h3 class="si-grid-card-title">${step.text}</h3>
+            <span class="si-grid-card-month">${step.month}</span>
+          </a>`;
   }).join('\n');
 
   const bodyContent = `
-    <div class="content-page steps-index-page">
-      <div class="content-container">
-        <h1 class="page-title">The Twelve Steps</h1>
-        <div class="topic-detail-image">
-          <img src="${bp('/assets/themes/steps.jpg')}" alt="The Twelve Steps" />
+      <!-- Hero -->
+      <header class="si-hero">
+        <div class="si-hero-image">
+          <img src="${bp('/assets/themes/working-the-steps.jpg')}" alt="The Twelve Steps of Al-Anon" />
+          <div class="si-hero-overlay"></div>
         </div>
-        <p class="page-description">
-          The Twelve Steps of Al-Anon offer a path to personal recovery for anyone
-          affected by someone else&rsquo;s drinking. Each step builds on the one
-          before it, guiding us from powerlessness toward a spiritual awakening.
-          Working these steps with a sponsor or someone who has walked the path
-          before you can make all the difference &mdash; their experience and
-          encouragement help bring the steps to life.
-        </p>
-        <p class="page-description">
-          Al-Anon&rsquo;s
-          <a href="https://ecomm.al-anon.org/EN/ItemDetail?iProductCode=B24" target="_blank" rel="noopener noreferrer"><em>Paths to Recovery</em></a>
-          is the definitive guide to working the Steps, Traditions, and Concepts
-          of Service &mdash; and the inspiration behind the daily readings on this
-          site. Each month&rsquo;s reflections focus on one step, from Step 1 in
-          January through Step 12 in December. Select a step below to explore it
-          with questions for reflection.
-        </p>
-
-        <div class="step-card-list">
-${stepCards}
+        <div class="si-hero-content">
+          <span class="si-hero-label">The Legacies</span>
+          <h1 class="si-hero-title">The Twelve Steps</h1>
+          <p class="si-hero-desc">A path to personal recovery for anyone affected by someone else&rsquo;s drinking &mdash; guiding us from powerlessness toward a spiritual awakening.</p>
         </div>
+      </header>
 
-        <section class="content-section resources-section">
-          <p class="step-attribution">
-            The Twelve Steps are adapted from Alcoholics Anonymous and used by
-            Al-Anon Family Groups. For the official Al-Anon perspective on the Steps,
-            visit <a href="https://al-anon.org/for-members/the-legacies/the-twelve-steps/" target="_blank" rel="noopener noreferrer">al-anon.org</a>.
-          </p>
-        </section>
+      <!-- Intro Section -->
+      <div class="si-intro-wrap">
+        <div class="si-intro-inner">
+          <div class="si-intro-text">
+            <p>
+              Each step builds on the one before it. Working these steps with a sponsor
+              or someone who has walked the path before you can make all the difference &mdash;
+              their experience and encouragement help bring the steps to life.
+            </p>
+            <p>
+              Al-Anon&rsquo;s
+              <a href="https://ecomm.al-anon.org/EN/ItemDetail?iProductCode=B24" target="_blank" rel="noopener noreferrer"><em>Paths to Recovery</em></a>
+              is the definitive guide to working the Steps, Traditions, and Concepts
+              of Service. Each month&rsquo;s reflections on this site focus on one step,
+              from Step 1 in January through Step 12 in December.
+            </p>
+          </div>
+        </div>
       </div>
-    </div>`;
+
+      <!-- Featured Step -->
+      <div class="si-featured-wrap">
+        <a href="${bp(`/steps/step-${featured.number}/`)}" class="si-featured-card">
+          <div class="si-featured-left">
+            <span class="si-featured-number">${featured.number}</span>
+          </div>
+          <div class="si-featured-body">
+            <div class="si-featured-meta">
+              <span class="si-featured-label">Featured Step</span>
+              <span class="si-featured-principle">${featured.principle}</span>
+            </div>
+            <h2 class="si-featured-title">${featured.text}</h2>
+            <p class="si-featured-quote">&ldquo;${pullQuoteFeatured}&rdquo;</p>
+            <span class="si-featured-month">${featured.month} &middot; Read &amp; Reflect &rarr;</span>
+          </div>
+        </a>
+      </div>
+
+      <!-- Steps Grid -->
+      <div class="si-grid-wrap">
+        <h2 class="si-grid-heading">All Twelve Steps</h2>
+        <div class="si-grid">
+${gridCards}
+        </div>
+      </div>
+
+      <!-- Attribution -->
+      <div class="si-attribution-wrap">
+        <p class="si-attribution">
+          The Twelve Steps are adapted from Alcoholics Anonymous and used by
+          Al-Anon Family Groups. For the official Al-Anon perspective on the Steps,
+          visit <a href="https://al-anon.org/for-members/the-legacies/the-twelve-steps/" target="_blank" rel="noopener noreferrer">al-anon.org</a>.
+        </p>
+      </div>`;
 
   return wrapInLayout({
     title: 'The 12 Steps of Al-Anon &mdash; Recovery Reflections & Questions | Al-Anon Daily Paths',
@@ -300,66 +336,193 @@ ${stepCards}
   });
 }
 
+/** Step tools — practical actions for working each step */
+const STEP_TOOLS = {
+  1: ['Write a "powerlessness list"', 'Identify your Three Cs', 'Share with your sponsor', 'Attend a Step 1 meeting'],
+  2: ['Define your Higher Power', 'List moments of clarity', 'Read the promises', 'Talk to a longtime member'],
+  3: ['Practice "Let Go and Let God"', 'Write a surrender prayer', 'Identify control patterns', 'Try a trust exercise'],
+  4: ['Use Blueprint for Progress', 'Write your inventory', 'List assets and liabilities', 'Set aside daily quiet time'],
+  5: ['Choose a trusted listener', 'Schedule your Fifth Step', 'Practice honesty daily', 'Journal your feelings'],
+  6: ['List character defects', 'Identify payoffs of defects', 'Practice willingness', 'Pray for readiness'],
+  7: ['Write a Seventh Step prayer', 'Practice humility daily', 'Accept imperfection', 'Ask for help openly'],
+  8: ['Write your amends list', 'Put yourself on the list', 'Separate harm from resentment', 'Discuss with your sponsor'],
+  9: ['Plan each amend carefully', 'Practice living amends', 'Make direct amends', 'Forgive without expecting'],
+  10: ['Do a nightly review', 'Practice spot-check inventory', 'Admit mistakes promptly', 'Celebrate your growth'],
+  11: ['Establish a prayer routine', 'Try meditation', 'Practice listening', 'Read spiritual literature'],
+  12: ['Sponsor a newcomer', 'Share your story', 'Do service work', 'Practice principles daily'],
+};
+
+/** Pull-quotes — one sentence pulled from each step's description for the sidebar */
+const PULL_QUOTES = {
+  1: 'Only by admitting powerlessness can one open the door to the help and sanity offered by the subsequent Steps.',
+  2: 'Step Two offers the essential ingredient for recovery: hope.',
+  3: 'It brings enormous relief by lifting the heavy burden of responsibility off their shoulders.',
+  4: 'By knowing exactly who they are, members can begin to build a new life based on reality and self-respect.',
+  5: 'Members discover that they are unconditionally loved and accepted, even with their imperfections.',
+  6: 'It bridges the crucial gap between mere self-awareness and actual transformation.',
+  7: 'True humility is never humiliation or weakness; it is a state of genuine strength.',
+  8: 'By simply becoming completely willing to make amends, we unlock the heavy door to our painful past.',
+  9: 'Sometimes the greatest amend we can make is a lasting change in our attitude and behavior.',
+  10: 'This Step also requires us to acknowledge our positive choices and successes.',
+  11: 'We relinquish our personal agendas and simply ask for the clarity to know our path.',
+  12: 'In order to keep the miraculous gift of our recovery, we must actively give it away to others.',
+};
+
+/**
+ * Get the range of day_of_year values for a given month index (0-based).
+ */
+function getMonthDayRange(monthIndex) {
+  let startDay = 1;
+  for (let m = 0; m < monthIndex; m++) {
+    startDay += DAYS_IN_MONTH[m];
+  }
+  return { start: startDay, end: startDay + DAYS_IN_MONTH[monthIndex] - 1 };
+}
+
 /**
  * Generate an individual step page.
  *
  * @param {Object} step - Step data from STEPS array
+ * @param {Array} [readings] - All 366 readings (optional, for daily reading cards)
  */
-export function renderStepPage(step) {
+export function renderStepPage(step, readings = []) {
   const prevStep = STEPS[(step.number - 2 + 12) % 12];
   const nextStep = STEPS[step.number % 12];
 
-  const descriptionHtml = step.description
-    ? step.description.map(p => `          <p>${p}</p>`).join('\n')
-    : '';
+  const monthIndex = step.number - 1; // Step 1 = January (0), Step 2 = February (1), etc.
+  const tools = STEP_TOOLS[step.number] || [];
+  const pullQuote = PULL_QUOTES[step.number] || '';
 
-  const questionItems = step.questions.map(q =>
-    `            <li>${q}</li>`
-  ).join('\n');
+  // Build description paragraphs — inject callout box after the first paragraph
+  const descParagraphs = step.description || [];
+  let mainContentHtml = '';
+  for (let i = 0; i < descParagraphs.length; i++) {
+    mainContentHtml += `            <p>${descParagraphs[i]}</p>\n`;
+    // Insert callout box after first paragraph
+    if (i === 0 && step.questions && step.questions.length > 0) {
+      const questionItems = step.questions.map(q =>
+        `                  <li>${q}</li>`
+      ).join('\n');
+      mainContentHtml += `
+            <aside class="step-callout">
+              <h3 class="step-callout-title">Questions for Reflection</h3>
+              <p class="step-callout-intro">
+                Take your time with these questions. There are no right answers &mdash;
+                only honest ones.
+              </p>
+              <ul class="step-callout-questions">
+${questionItems}
+              </ul>
+            </aside>
+`;
+    }
+  }
+
+  // Build sidebar tools
+  const toolItems = tools.map(t => `              <li>${t}</li>`).join('\n');
+
+  // Build daily reading cards
+  let readingCardsHtml = '';
+  if (readings.length > 0) {
+    const dayRange = getMonthDayRange(monthIndex);
+    const monthReadings = readings.filter(
+      r => r.day_of_year >= dayRange.start && r.day_of_year <= dayRange.end
+    );
+
+    // Show first 6 readings as cards, then a "see all" link
+    const previewReadings = monthReadings.slice(0, 6);
+    const cards = previewReadings.map(r => {
+      const slug = dayToSlug(r.day_of_year);
+      // Extract day number from the slug (e.g., "january-5" → "5")
+      const dayNum = slug.split('-').pop();
+      const monthName = MONTHS[monthIndex];
+      const displayDate = `${monthName.charAt(0).toUpperCase() + monthName.slice(1)} ${dayNum}`;
+
+      return `
+            <a href="${bp(`/${slug}/`)}" class="step-reading-card">
+              <span class="step-reading-card-date">${displayDate}</span>
+              <span class="step-reading-card-title">${r.title || 'Daily Reading'}</span>
+            </a>`;
+    }).join('\n');
+
+    readingCardsHtml = `
+        <section class="step-readings-section">
+          <h2 class="step-readings-heading">${step.month} Daily Readings</h2>
+          <p class="step-readings-intro">
+            Each day in ${step.month} focuses on Step ${step.number}. Explore this month&rsquo;s reflections.
+          </p>
+          <div class="step-readings-grid">
+${cards}
+          </div>
+          ${monthReadings.length > 6 ? `
+          <p class="step-readings-more">
+            <a href="${bp('/browse/')}">View all ${monthReadings.length} readings for ${step.month} &rarr;</a>
+          </p>` : ''}
+        </section>`;
+  }
 
   const bodyContent = `
-    <article class="content-page step-detail-page">
-      <div class="content-container">
-        <nav class="breadcrumb">
+    <article class="step-editorial">
+      <!-- Hero Section -->
+      <header class="step-hero">
+        <nav class="breadcrumb step-hero-breadcrumb">
           <a href="${bp('/steps/')}">The Twelve Steps</a>
           <span class="breadcrumb-sep">/</span>
           <span>Step ${step.number}</span>
         </nav>
+        <span class="step-hero-number">Step ${step.number}</span>
+        <span class="step-hero-principle">${step.principle}</span>
+        <h1 class="step-hero-title">${step.text}</h1>
+        <p class="step-hero-meta">${step.month} &middot; The Twelve Steps of Al-Anon</p>
+      </header>
 
-        <header class="step-detail-header">
-          <span class="step-detail-number">Step ${step.number}</span>
-          <h1 class="step-detail-title">${step.text}</h1>
-          <p class="step-detail-meta">${step.month} &middot; ${step.principle}</p>
-        </header>
-${descriptionHtml ? `
-        <section class="step-detail-description">
-${descriptionHtml}
-        </section>
-` : ''}
-        <section class="step-detail-questions">
-          <h2>Questions for Reflection</h2>
-          <p class="step-detail-intro">
-            Take your time with these questions. There are no right answers &mdash;
-            only honest ones. You may want to write your thoughts in a journal
-            or share them with your sponsor or a trusted friend.
-          </p>
-          <ul class="step-questions">
-${questionItems}
-          </ul>
-        </section>
+      <!-- Two-Column Body -->
+      <div class="step-body-wrap">
+        <div class="step-body-inner">
+          <!-- Main Column (70%) -->
+          <div class="step-main-col">
+${mainContentHtml}
+          </div>
 
-        <nav class="step-nav-footer">
-          <a href="${bp(`/steps/step-${prevStep.number}/`)}" class="nav-prev">
-            <span class="nav-arrow">&larr;</span>
-            <span class="nav-label">Step ${prevStep.number}</span>
-          </a>
-          <a href="${bp('/steps/')}" class="nav-browse">All Steps</a>
-          <a href="${bp(`/steps/step-${nextStep.number}/`)}" class="nav-next">
-            <span class="nav-label">Step ${nextStep.number}</span>
-            <span class="nav-arrow">&rarr;</span>
-          </a>
-        </nav>
+          <!-- Sidebar Column (30%) -->
+          <aside class="step-sidebar">
+            <div class="step-sidebar-tools">
+              <h3 class="step-sidebar-heading">Step Tools</h3>
+              <ul class="step-sidebar-list">
+${toolItems}
+              </ul>
+            </div>
+
+            ${pullQuote ? `
+            <blockquote class="step-sidebar-quote">
+              <p>&ldquo;${pullQuote}&rdquo;</p>
+            </blockquote>` : ''}
+
+            <div class="step-sidebar-resource">
+              <h3 class="step-sidebar-heading">Go Deeper</h3>
+              <p>Work this step with Al-Anon&rsquo;s
+                <a href="https://ecomm.al-anon.org/EN/ItemDetail?iProductCode=B24" target="_blank" rel="noopener noreferrer"><em>Paths to Recovery</em></a>.
+              </p>
+            </div>
+          </aside>
+        </div>
       </div>
+
+      <!-- Daily Readings Grid -->
+${readingCardsHtml}
+
+      <!-- Step Navigation -->
+      <nav class="step-nav-footer step-nav-editorial">
+        <a href="${bp(`/steps/step-${prevStep.number}/`)}" class="nav-prev">
+          <span class="nav-arrow">&larr;</span>
+          <span class="nav-label">Step ${prevStep.number}: ${prevStep.principle}</span>
+        </a>
+        <a href="${bp('/steps/')}" class="nav-browse">All Steps</a>
+        <a href="${bp(`/steps/step-${nextStep.number}/`)}" class="nav-next">
+          <span class="nav-label">Step ${nextStep.number}: ${nextStep.principle}</span>
+          <span class="nav-arrow">&rarr;</span>
+        </a>
+      </nav>
     </article>`;
 
   return wrapInLayout({
