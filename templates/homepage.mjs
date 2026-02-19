@@ -110,7 +110,7 @@ ${relatedItems}
     <!-- Site Hero Banner -->
     <section class="home-hero">
       <div class="home-hero-image">
-        <img src="${bp('/assets/home-page.jpg')}" alt="Al-Anon Daily Paths" />
+        <img src="${bp('/assets/hero-image.jpg')}" alt="Al-Anon Daily Paths" />
         <div class="home-hero-overlay"></div>
       </div>
       <div class="home-hero-content">

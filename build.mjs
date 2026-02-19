@@ -265,8 +265,8 @@ if (existsSync(join(localAssetsDir, 'og-image.png'))) {
 }
 
 // Homepage banner
-if (existsSync(join(localAssetsDir, 'home-page.jpg'))) {
-  cpSync(join(localAssetsDir, 'home-page.jpg'), join(outDir, 'assets', 'home-page.jpg'));
+if (existsSync(join(localAssetsDir, 'hero-image.jpg'))) {
+  cpSync(join(localAssetsDir, 'hero-image.jpg'), join(outDir, 'assets', 'hero-image.jpg'));
 }
 
 // Theme images
