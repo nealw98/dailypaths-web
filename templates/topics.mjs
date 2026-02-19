@@ -310,34 +310,103 @@ export const TOPICS = [
 ];
 
 /**
- * Render the Topics index page.
+ * Render the Topics index page — magazine editorial layout.
  */
 export function renderTopicsIndexPage() {
-  const topicItems = TOPICS.map(topic => {
+  // Featured theme — first topic gets the large hero-style card
+  const featured = TOPICS[0];
+  const featuredQuote = TOPIC_PULL_QUOTES[featured.slug] || '';
+
+  // Remaining themes in a grid
+  const gridCards = TOPICS.slice(1).map(topic => {
     return `
-          <li>
-            <a href="${bp(`/themes/${topic.slug}/`)}" class="topic-list-item">
-              <span class="topic-list-name">${topic.name}</span>
-              <span class="topic-list-desc">${topic.shortDescription}</span>
-            </a>
-          </li>`;
+          <a href="${bp(`/themes/${topic.slug}/`)}" class="ti-grid-card">
+            <div class="ti-grid-card-image">
+              <img src="${bp(`/assets/themes/${topic.image}`)}" alt="${topic.imageAlt || topic.name}" loading="lazy" />
+              <div class="ti-grid-card-overlay"></div>
+            </div>
+            <div class="ti-grid-card-body">
+              <h3 class="ti-grid-card-title">${topic.name}</h3>
+              <p class="ti-grid-card-desc">${topic.shortDescription}</p>
+            </div>
+          </a>`;
   }).join('\n');
 
   const bodyContent = `
-    <div class="content-page topics-index-page">
-      <div class="content-container">
-        <h1 class="page-title">Themes</h1>
-        <p class="page-description">
-          These are the themes that run through Al-Anon recovery &mdash; the
-          subjects we actually talk about after the meeting. Each theme
-          includes reflections and curated readings to deepen your understanding.
-        </p>
+      <!-- Hero -->
+      <header class="ti-hero">
+        <div class="ti-hero-image">
+          <img src="${bp(`/assets/themes/${featured.image}`)}" alt="Recovery Themes" />
+          <div class="ti-hero-overlay"></div>
+        </div>
+        <div class="ti-hero-content">
+          <span class="ti-hero-label">Recovery Themes</span>
+          <h1 class="ti-hero-title">Themes</h1>
+          <p class="ti-hero-desc">The subjects we actually talk about after the meeting &mdash; 12 themes that run through Al-Anon recovery, each with reflections and curated readings.</p>
+        </div>
+      </header>
 
-        <ul class="topic-list">
-${topicItems}
-        </ul>
+      <!-- Intro Section -->
+      <div class="ti-intro-wrap">
+        <div class="ti-intro-inner">
+          <div class="ti-intro-text">
+            <p>
+              Every reading in Al-Anon Daily Paths touches on one of these recovery themes.
+              They are the threads that connect the daily reflections &mdash; from detachment
+              and boundaries to gratitude and fellowship.
+            </p>
+            <p>
+              The readings are also organized by the
+              <a href="${bp('/steps/')}">Twelve Steps</a> &mdash;
+              each month focuses on one step, from Step&nbsp;1 in January through
+              Step&nbsp;12 in December. Themes and steps work together: the steps
+              give structure to recovery, and these themes give it texture.
+            </p>
+          </div>
+        </div>
       </div>
-    </div>`;
+
+      <!-- Featured Theme -->
+      <div class="ti-featured-wrap">
+        <a href="${bp(`/themes/${featured.slug}/`)}" class="ti-featured-card">
+          <div class="ti-featured-image">
+            <img src="${bp(`/assets/themes/${featured.image}`)}" alt="${featured.imageAlt || featured.name}" />
+            <div class="ti-featured-overlay"></div>
+          </div>
+          <div class="ti-featured-body">
+            <div class="ti-featured-meta">
+              <span class="ti-featured-label">Featured Theme</span>
+            </div>
+            <h2 class="ti-featured-title">${featured.name}</h2>
+            <p class="ti-featured-desc">${featured.shortDescription}</p>
+            ${featuredQuote ? `<p class="ti-featured-quote">&ldquo;${featuredQuote}&rdquo;</p>` : ''}
+            <span class="ti-featured-cta">Explore this theme &rarr;</span>
+          </div>
+        </a>
+      </div>
+
+      <!-- Themes Grid -->
+      <div class="ti-grid-wrap">
+        <h2 class="ti-grid-heading">All Recovery Themes</h2>
+        <div class="ti-grid">
+${gridCards}
+        </div>
+      </div>
+
+      <!-- Steps Cross-Reference -->
+      <div class="ti-steps-wrap">
+        <div class="ti-steps-inner">
+          <h2 class="ti-steps-heading">Organized by the Steps, too</h2>
+          <p class="ti-steps-text">
+            Each month&rsquo;s daily readings focus on one of the
+            <a href="${bp('/steps/')}">Twelve Steps</a> &mdash;
+            Step&nbsp;1 in January, Step&nbsp;2 in February, and so on through
+            Step&nbsp;12 in December. Where themes explore <em>what</em> recovery
+            looks like, the steps show <em>how</em> to get there.
+          </p>
+          <a href="${bp('/steps/')}" class="ti-steps-link">Explore the Twelve Steps &rarr;</a>
+        </div>
+      </div>`;
 
   return wrapInLayout({
     title: 'Themes &mdash; Al-Anon Recovery Themes & Reflections | Al-Anon Daily Paths',
