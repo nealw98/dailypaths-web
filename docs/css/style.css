@@ -2774,7 +2774,7 @@ a.rd-hero-step:hover {
 }
 
 /* =============================================
-   TERTIARY: Asymmetric Bento Grid
+   TERTIARY: Asymmetric Bento Grid (with areas)
    ============================================= */
 .ti-bento-wrap {
   max-width: 60rem;
@@ -2790,23 +2790,29 @@ a.rd-hero-step:hover {
   margin-bottom: 1.5rem;
 }
 
+/*
+ * Desktop grid — explicit areas, no empty slots
+ * a = One Day at a Time (wide)    b = Boundaries (tall)
+ * c = Letting Go (tall)           d = Self-Worth
+ * e = Higher Power                f = Honesty (wide)
+ * g = Gratitude (tall)            h = The Disease (wide)
+ * i = Fellowship                  bridge = Step Bridge card
+ */
 .ti-bento-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  grid-auto-rows: 180px;
+  grid-template-rows: repeat(6, 170px);
+  grid-template-areas:
+    "a      a      b"
+    "bridge b      c"
+    "bridge d      c"
+    "e      f      f"
+    "g      h      h"
+    "g      i      .";
   gap: 1.25rem;
 }
 
-/* Wide cards span 2 columns */
-.ti-bento-card.ti-bento--wide {
-  grid-column: span 2;
-}
-
-/* Tall cards span 2 rows */
-.ti-bento-card.ti-bento--tall {
-  grid-row: span 2;
-}
-
+/* Theme cards */
 .ti-bento-card {
   position: relative;
   display: block;
@@ -2896,118 +2902,137 @@ a.rd-hero-step:hover {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
 
-/* Steps Callout */
-.ti-steps-wrap {
-  max-width: 36rem;
-  margin: 0 auto;
-  padding: 4rem 2rem 0;
-}
-
-.ti-steps-callout {
-  background: var(--cloud);
-  border-left: 3px solid var(--deep-teal);
+/* =============================================
+   Step Bridge Wayfinding Card
+   ============================================= */
+.ti-bridge-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 1.75rem;
+  background: #2D3B3D;
   border-radius: var(--radius);
-  padding: 1.75rem 2rem;
+  color: var(--white);
 }
 
-.ti-steps-callout-label {
+.ti-bridge-label {
   display: inline-block;
   font-family: var(--font-sans);
-  font-size: 0.65rem;
+  font-size: 0.6rem;
   font-weight: 500;
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  color: var(--ocean);
-  margin-bottom: 0.5rem;
+  color: var(--sage-light);
+  margin-bottom: 0.6rem;
 }
 
-.ti-steps-callout-title {
+.ti-bridge-title {
   font-family: var(--font-serif);
-  font-size: 1.2rem;
-  font-weight: 600;
-  color: var(--deep-teal);
-  margin-bottom: 0.5rem;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--white);
+  line-height: 1.2;
+  margin-bottom: 0.6rem;
 }
 
-.ti-steps-callout-text {
+.ti-bridge-text {
   font-family: var(--font-reading);
-  font-size: 0.9rem;
-  line-height: 1.65;
-  color: var(--ink);
-  margin-bottom: 0.75rem;
+  font-size: 0.82rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.75);
+  margin-bottom: 1rem;
 }
 
-.ti-steps-callout-link {
+.ti-bridge-link {
+  display: inline-block;
   font-family: var(--font-sans);
-  font-size: 0.85rem;
+  font-size: 0.82rem;
   font-weight: 500;
-  color: var(--deep-teal);
+  color: var(--white);
   text-decoration: none;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: 999px;
+  padding: 0.45rem 1.2rem;
+  transition: background 0.2s, border-color 0.2s;
 }
 
-.ti-steps-callout-link:hover {
-  text-decoration: underline;
-  text-underline-offset: 2px;
+.ti-bridge-link:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.6);
 }
 
-/* App Download CTA */
-.ti-app-wrap {
-  max-width: 40rem;
+/* =============================================
+   Mid-Page Editorial Breakout CTA
+   ============================================= */
+.ti-breakout-wrap {
+  max-width: 60rem;
   margin: 0 auto;
   padding: 4rem 2rem 4.5rem;
 }
 
-.ti-app-callout {
-  background: #FDF6E3;
-  border: 1px solid #C9A227;
-  border-radius: var(--radius);
-  padding: 1.5rem 1.75rem;
-  text-align: center;
-}
-
-.ti-app-text {
-  font-family: var(--font-reading);
-  font-size: 0.95rem;
-  line-height: 1.65;
-  color: #3D3219;
-  margin-bottom: 1rem;
-}
-
-.ti-app-text strong {
-  font-weight: 600;
-}
-
-.ti-app-badges {
+.ti-breakout {
   display: flex;
-  justify-content: center;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  border-top: 1px solid var(--cloud);
+  border-bottom: 1px solid var(--cloud);
+  padding: 1.25rem 0;
+}
+
+.ti-breakout-text {
+  font-family: var(--font-reading);
+  font-size: 1rem;
+  font-style: italic;
+  color: var(--ink);
+  margin: 0;
+}
+
+.ti-breakout-actions {
+  display: flex;
   align-items: center;
   gap: 0.5rem;
+  flex-shrink: 0;
 }
 
-.ti-app-badge {
-  height: 40px;
+.ti-breakout-btn {
+  display: inline-block;
+  text-decoration: none;
   transition: opacity 0.2s;
 }
 
-.ti-app-badge-play {
-  height: 60px;
+.ti-breakout-btn:hover {
+  opacity: 0.8;
 }
 
-.ti-app-badge:hover {
-  opacity: 0.8;
+.ti-breakout-badge {
+  height: 36px;
+}
+
+.ti-breakout-badge-play {
+  height: 54px;
 }
 
 /* Responsive — Tablet */
 @media (max-width: 900px) {
   .ti-bento-grid {
     grid-template-columns: repeat(2, 1fr);
-    grid-auto-rows: 160px;
+    grid-template-rows: auto;
+    grid-template-areas:
+      "a      a"
+      "b      bridge"
+      "b      c"
+      "d      c"
+      "e      f"
+      "f      g"
+      "h      h"
+      "g      i";
+    grid-auto-rows: 170px;
   }
-  .ti-bento-card.ti-bento--wide {
-    grid-column: span 2;
-  }
-  .ti-bento-card.ti-bento--tall {
-    grid-row: span 2;
+  .ti-breakout {
+    flex-direction: column;
+    text-align: center;
+    gap: 1rem;
   }
 }
 
@@ -3057,17 +3082,34 @@ a.rd-hero-step:hover {
   .ti-duo-card-overlap {
     display: none;
   }
+  /* Mobile: single column, bridge card at position 3 (early) */
   .ti-bento-grid {
     grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    grid-template-areas:
+      "a"
+      "b"
+      "bridge"
+      "c"
+      "d"
+      "e"
+      "f"
+      "g"
+      "h"
+      "i";
     grid-auto-rows: 200px;
   }
-  .ti-bento-card.ti-bento--wide,
-  .ti-bento-card.ti-bento--tall {
-    grid-column: span 1;
-    grid-row: span 1;
+  .ti-bridge-card {
+    min-height: auto;
+    padding: 1.5rem;
   }
   .ti-bento-card-overlap {
     display: none;
+  }
+  .ti-breakout {
+    flex-direction: column;
+    text-align: center;
+    gap: 1rem;
   }
 }
 

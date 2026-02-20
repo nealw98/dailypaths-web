@@ -319,21 +319,14 @@ export function renderTopicsIndexPage() {
   const duo = [TOPICS[1], TOPICS[2]];
   const bento = TOPICS.slice(3);
 
-  // Bento layout classes: asymmetric sizes
-  // Row 1: wide, narrow-tall, narrow-tall  (One Day at a Time wide, Boundaries tall, Letting Go tall)
-  // Row 2: narrow, narrow, wide             (Self-Worth narrow, Higher Power narrow, Honesty wide)
-  // Row 3: narrow-tall, wide, narrow        (Gratitude tall, The Disease wide, Fellowship narrow)
-  const bentoClasses = [
-    'ti-bento--wide',  'ti-bento--tall',  'ti-bento--tall',
-    '',                 '',                 'ti-bento--wide',
-    'ti-bento--tall',  'ti-bento--wide',  '',
-  ];
-
+  // Build individual bento card HTML — we place them explicitly via grid-area names
+  // Grid area names: a through i (9 themes) + bridge
+  const areaNames = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i'];
   const bentoCards = bento.map((topic, i) => {
-    const cls = bentoClasses[i] || '';
+    const area = areaNames[i];
     const quote = TOPIC_PULL_QUOTES[topic.slug] || '';
     return `
-          <a href="${bp(`/themes/${topic.slug}/`)}" class="ti-bento-card ${cls}">
+          <a href="${bp(`/themes/${topic.slug}/`)}" class="ti-bento-card" style="grid-area: ${area}">
             <div class="ti-bento-card-img">
               <img src="${bp(`/assets/themes/${topic.image}`)}" alt="${topic.imageAlt || topic.name}" />
             </div>
@@ -420,41 +413,39 @@ ${duoCards}
         </div>
       </div>
 
-      <!-- Tertiary: Asymmetric Bento Grid -->
+      <!-- Tertiary: Asymmetric Bento Grid (top half) -->
       <div class="ti-bento-wrap">
         <h2 class="ti-bento-heading">Explore All Themes</h2>
         <div class="ti-bento-grid">
 ${bentoCards}
+
+          <!-- Step Bridge Card — fills the empty grid slot -->
+          <div class="ti-bridge-card" style="grid-area: bridge">
+            <span class="ti-bridge-label">From Themes to Steps</span>
+            <h3 class="ti-bridge-title">Looking for Structure?</h3>
+            <p class="ti-bridge-text">
+              While Themes help us understand our feelings, the 12 Steps provide the
+              roadmap for change. Explore our month-by-month guide through the
+              foundation of Al-Anon.
+            </p>
+            <a href="${bp('/steps/')}" class="ti-bridge-link">Explore the 12 Steps &rarr;</a>
+          </div>
         </div>
       </div>
 
-      <!-- Steps Callout -->
-      <div class="ti-steps-wrap">
-        <aside class="ti-steps-callout">
-          <span class="ti-steps-callout-label">The Twelve Steps</span>
-          <h3 class="ti-steps-callout-title">Ready to work the Steps?</h3>
-          <p class="ti-steps-callout-text">
-            The Steps are the foundation of Al-Anon recovery. Each month&rsquo;s
-            readings focus on one step, from Step 1 in January through Step 12
-            in December.
-          </p>
-          <a href="${bp('/steps/')}" class="ti-steps-callout-link">Explore the Twelve Steps &rarr;</a>
-        </aside>
-      </div>
-
-      <!-- App Download CTA -->
-      <div class="ti-app-wrap">
-        <aside class="ti-app-callout">
-          <p class="ti-app-text">Explore these themes with daily readings in the <strong>Al-Anon Daily Paths</strong> app &mdash; your recovery companion, always in your pocket.</p>
-          <div class="ti-app-badges">
-            <a href="https://apps.apple.com/app/id6755981862" target="_blank" rel="noopener noreferrer">
-              <img src="https://developer.apple.com/app-store/marketing/guidelines/images/badge-download-on-the-app-store.svg" alt="Download on the App Store" class="ti-app-badge">
+      <!-- Mid-Page Editorial Breakout CTA -->
+      <div class="ti-breakout-wrap">
+        <div class="ti-breakout">
+          <p class="ti-breakout-text">Carry these themes in your pocket.</p>
+          <div class="ti-breakout-actions">
+            <a href="https://apps.apple.com/app/id6755981862" target="_blank" rel="noopener noreferrer" class="ti-breakout-btn">
+              <img src="https://developer.apple.com/app-store/marketing/guidelines/images/badge-download-on-the-app-store.svg" alt="Download on the App Store" class="ti-breakout-badge">
             </a>
-            <a href="https://play.google.com/store/apps/details?id=com.dailypaths" target="_blank" rel="noopener noreferrer">
-              <img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" alt="Get it on Google Play" class="ti-app-badge ti-app-badge-play">
+            <a href="https://play.google.com/store/apps/details?id=com.dailypaths" target="_blank" rel="noopener noreferrer" class="ti-breakout-btn">
+              <img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" alt="Get it on Google Play" class="ti-breakout-badge ti-breakout-badge-play">
             </a>
           </div>
-        </aside>
+        </div>
       </div>`;
 
   return wrapInLayout({

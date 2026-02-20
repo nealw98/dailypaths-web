@@ -150,12 +150,12 @@
         </div>
       </div>
 
-      <!-- Tertiary: Asymmetric Bento Grid -->
+      <!-- Tertiary: Asymmetric Bento Grid (top half) -->
       <div class="ti-bento-wrap">
         <h2 class="ti-bento-heading">Explore All Themes</h2>
         <div class="ti-bento-grid">
 
-          <a href="/dailypaths-web/themes/one-day-at-a-time/" class="ti-bento-card ti-bento--wide">
+          <a href="/dailypaths-web/themes/one-day-at-a-time/" class="ti-bento-card" style="grid-area: a">
             <div class="ti-bento-card-img">
               <img src="/dailypaths-web/assets/themes/one-day-at-a-time.jpg" alt="Two friends laughing together in a park — embracing the present moment in Al-Anon recovery" />
             </div>
@@ -166,7 +166,7 @@
             <span class="ti-bento-card-overlap">&ldquo;Handle just today, and trust that tomorrow will&hellip;&rdquo;</span>
           </a>
 
-          <a href="/dailypaths-web/themes/boundaries/" class="ti-bento-card ti-bento--tall">
+          <a href="/dailypaths-web/themes/boundaries/" class="ti-bento-card" style="grid-area: b">
             <div class="ti-bento-card-img">
               <img src="/dailypaths-web/assets/themes/boundaries.jpg" alt="Two women talking on a street corner with healthy space between them — setting boundaries in Al-Anon recovery" />
             </div>
@@ -177,7 +177,7 @@
             <span class="ti-bento-card-overlap">&ldquo;Boundaries aren’t walls. They’re the foundation that makes&hellip;&rdquo;</span>
           </a>
 
-          <a href="/dailypaths-web/themes/letting-go-of-control/" class="ti-bento-card ti-bento--tall">
+          <a href="/dailypaths-web/themes/letting-go-of-control/" class="ti-bento-card" style="grid-area: c">
             <div class="ti-bento-card-img">
               <img src="/dailypaths-web/assets/themes/letting-go-of-control.jpg" alt="Two women laughing together while cooking — letting go of control in Al-Anon recovery" />
             </div>
@@ -188,7 +188,7 @@
             <span class="ti-bento-card-overlap">&ldquo;The need to control is the disease talking&hellip;&rdquo;</span>
           </a>
 
-          <a href="/dailypaths-web/themes/self-worth/" class="ti-bento-card ">
+          <a href="/dailypaths-web/themes/self-worth/" class="ti-bento-card" style="grid-area: d">
             <div class="ti-bento-card-img">
               <img src="/dailypaths-web/assets/themes/self-worth.jpg" alt="Woman looking at her reflection in a mirror — reclaiming self-worth and identity in Al-Anon recovery" />
             </div>
@@ -199,7 +199,7 @@
             <span class="ti-bento-card-overlap">&ldquo;Recovery is, in part, an excavation — digging&hellip;&rdquo;</span>
           </a>
 
-          <a href="/dailypaths-web/themes/higher-power/" class="ti-bento-card ">
+          <a href="/dailypaths-web/themes/higher-power/" class="ti-bento-card" style="grid-area: e">
             <div class="ti-bento-card-img">
               <img src="/dailypaths-web/assets/themes/higher-power.jpg" alt="Man holding his father’s hand at a hospital bedside — trusting a Higher Power in Al-Anon recovery" />
             </div>
@@ -210,7 +210,7 @@
             <span class="ti-bento-card-overlap">&ldquo;What matters is the willingness to stop relying&hellip;&rdquo;</span>
           </a>
 
-          <a href="/dailypaths-web/themes/honesty/" class="ti-bento-card ti-bento--wide">
+          <a href="/dailypaths-web/themes/honesty/" class="ti-bento-card" style="grid-area: f">
             <div class="ti-bento-card-img">
               <img src="/dailypaths-web/assets/themes/honesty.jpg" alt="Two women in honest conversation over coffee — honesty and self-awareness in Al-Anon recovery" />
             </div>
@@ -221,7 +221,7 @@
             <span class="ti-bento-card-overlap">&ldquo;Honesty in Al-Anon starts with ourselves — admitting&hellip;&rdquo;</span>
           </a>
 
-          <a href="/dailypaths-web/themes/gratitude-and-hope/" class="ti-bento-card ti-bento--tall">
+          <a href="/dailypaths-web/themes/gratitude-and-hope/" class="ti-bento-card" style="grid-area: g">
             <div class="ti-bento-card-img">
               <img src="/dailypaths-web/assets/themes/gratitude-and-hope.jpg" alt="Woman breathing in peacefully by a lake at sunset — gratitude and hope in Al-Anon recovery" />
             </div>
@@ -232,7 +232,7 @@
             <span class="ti-bento-card-overlap">&ldquo;Hope is what gets us to the first&hellip;&rdquo;</span>
           </a>
 
-          <a href="/dailypaths-web/themes/the-disease/" class="ti-bento-card ti-bento--wide">
+          <a href="/dailypaths-web/themes/the-disease/" class="ti-bento-card" style="grid-area: h">
             <div class="ti-bento-card-img">
               <img src="/dailypaths-web/assets/themes/the-disease.jpg" alt="Couple sitting together on a park bench in autumn — understanding the disease of alcoholism in Al-Anon recovery" />
             </div>
@@ -243,7 +243,7 @@
             <span class="ti-bento-card-overlap">&ldquo;We didn’t cause it, we can’t control it,&hellip;&rdquo;</span>
           </a>
 
-          <a href="/dailypaths-web/themes/fellowship/" class="ti-bento-card ">
+          <a href="/dailypaths-web/themes/fellowship/" class="ti-bento-card" style="grid-area: i">
             <div class="ti-bento-card-img">
               <img src="/dailypaths-web/assets/themes/fellowship.jpg" alt="Women connecting outside an Al-Anon meeting at sunset — community and fellowship in recovery" />
             </div>
@@ -253,36 +253,34 @@
             </div>
             <span class="ti-bento-card-overlap">&ldquo;Connection is the antidote to isolation, and fellowship&hellip;&rdquo;</span>
           </a>
+
+          <!-- Step Bridge Card — fills the empty grid slot -->
+          <div class="ti-bridge-card" style="grid-area: bridge">
+            <span class="ti-bridge-label">From Themes to Steps</span>
+            <h3 class="ti-bridge-title">Looking for Structure?</h3>
+            <p class="ti-bridge-text">
+              While Themes help us understand our feelings, the 12 Steps provide the
+              roadmap for change. Explore our month-by-month guide through the
+              foundation of Al-Anon.
+            </p>
+            <a href="/dailypaths-web/steps/" class="ti-bridge-link">Explore the 12 Steps &rarr;</a>
+          </div>
         </div>
       </div>
 
-      <!-- Steps Callout -->
-      <div class="ti-steps-wrap">
-        <aside class="ti-steps-callout">
-          <span class="ti-steps-callout-label">The Twelve Steps</span>
-          <h3 class="ti-steps-callout-title">Ready to work the Steps?</h3>
-          <p class="ti-steps-callout-text">
-            The Steps are the foundation of Al-Anon recovery. Each month&rsquo;s
-            readings focus on one step, from Step 1 in January through Step 12
-            in December.
-          </p>
-          <a href="/dailypaths-web/steps/" class="ti-steps-callout-link">Explore the Twelve Steps &rarr;</a>
-        </aside>
-      </div>
-
-      <!-- App Download CTA -->
-      <div class="ti-app-wrap">
-        <aside class="ti-app-callout">
-          <p class="ti-app-text">Explore these themes with daily readings in the <strong>Al-Anon Daily Paths</strong> app &mdash; your recovery companion, always in your pocket.</p>
-          <div class="ti-app-badges">
-            <a href="https://apps.apple.com/app/id6755981862" target="_blank" rel="noopener noreferrer">
-              <img src="https://developer.apple.com/app-store/marketing/guidelines/images/badge-download-on-the-app-store.svg" alt="Download on the App Store" class="ti-app-badge">
+      <!-- Mid-Page Editorial Breakout CTA -->
+      <div class="ti-breakout-wrap">
+        <div class="ti-breakout">
+          <p class="ti-breakout-text">Carry these themes in your pocket.</p>
+          <div class="ti-breakout-actions">
+            <a href="https://apps.apple.com/app/id6755981862" target="_blank" rel="noopener noreferrer" class="ti-breakout-btn">
+              <img src="https://developer.apple.com/app-store/marketing/guidelines/images/badge-download-on-the-app-store.svg" alt="Download on the App Store" class="ti-breakout-badge">
             </a>
-            <a href="https://play.google.com/store/apps/details?id=com.dailypaths" target="_blank" rel="noopener noreferrer">
-              <img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" alt="Get it on Google Play" class="ti-app-badge ti-app-badge-play">
+            <a href="https://play.google.com/store/apps/details?id=com.dailypaths" target="_blank" rel="noopener noreferrer" class="ti-breakout-btn">
+              <img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" alt="Get it on Google Play" class="ti-breakout-badge ti-breakout-badge-play">
             </a>
           </div>
-        </aside>
+        </div>
       </div>
   </main>
 
