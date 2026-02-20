@@ -336,7 +336,7 @@ export function renderTopicsIndexPage() {
       <!-- Hero -->
       <header class="ti-hero">
         <div class="ti-hero-image">
-          <img src="${bp(`/assets/themes/${featured.image}`)}" alt="Recovery Themes" />
+          <img src="${bp(`/assets/themes/themes.jpg`)}" alt="Recovery Themes" />
           <div class="ti-hero-overlay"></div>
         </div>
         <div class="ti-hero-content">
