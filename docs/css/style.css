@@ -2455,6 +2455,125 @@ a.rd-pill--step:hover {
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
 }
 
+/* ── Shared App Badges ────────────────────────────────────────── */
+
+.abt-badge-link {
+  display: inline-block;
+  transition: opacity 0.2s;
+}
+
+.abt-badge-link:hover {
+  opacity: 0.8;
+}
+
+.abt-badge--ios {
+  height: 28px;
+}
+
+.abt-badge--play {
+  height: 42px;
+}
+
+/* Hero badges */
+.abt-hero-badges {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 1.25rem;
+}
+
+/* ── Companion App Callout ───────────────────────────────────── */
+
+.abt-companion {
+  background: var(--sage-mist);
+  border: 1px solid var(--sage-light);
+  border-radius: var(--radius);
+  padding: 1.5rem 1.75rem;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.abt-companion-text {
+  font-family: var(--font-reading);
+  font-size: 0.92rem;
+  line-height: 1.65;
+  color: var(--ink);
+  margin: 0 0 1rem;
+}
+
+.abt-companion-badges {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+/* ── Mobile Sticky App Banner ────────────────────────────────── */
+
+.abt-sticky-banner {
+  display: none;
+}
+
+@media (max-width: 767px) {
+  .abt-sticky-banner {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 50;
+    background: var(--white);
+    border-top: 1px solid var(--cloud);
+    box-shadow: 0 -2px 12px rgba(0, 0, 0, 0.06);
+    padding: 0.6rem 1rem;
+  }
+}
+
+.abt-sticky-banner-text {
+  flex: 1;
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.abt-sticky-banner-btn {
+  flex-shrink: 0;
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--white);
+  background: var(--deep-teal);
+  text-decoration: none;
+  padding: 0.45rem 1rem;
+  border-radius: var(--radius);
+  transition: background 0.15s;
+}
+
+.abt-sticky-banner-btn:hover {
+  background: var(--ocean);
+  color: var(--white);
+}
+
+.abt-sticky-banner-close {
+  flex-shrink: 0;
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  color: var(--ink);
+  opacity: 0.4;
+  cursor: pointer;
+  padding: 0 0.25rem;
+  line-height: 1;
+}
+
+.abt-sticky-banner-close:hover {
+  opacity: 0.8;
+}
+
 /* ── About Page — Mobile Responsive ──────────────────────────── */
 
 @media (max-width: 767px) {
@@ -2468,6 +2587,11 @@ a.rd-pill--step:hover {
 
   .abt-section {
     margin-bottom: 2.5rem;
+  }
+
+  /* Extra bottom padding so sticky banner doesn't overlap content */
+  .page-about main {
+    padding-bottom: 3.5rem;
   }
 }
 
