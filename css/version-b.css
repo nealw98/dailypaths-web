@@ -2801,14 +2801,14 @@ a.rd-hero-step:hover {
 .ti-bento-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(6, 170px);
+  grid-template-rows: 170px 170px 170px 170px 170px 170px;
   grid-template-areas:
-    "a      a      b"
-    "bridge b      c"
-    "bridge d      c"
-    "e      f      f"
-    "g      h      h"
-    "g      i      .";
+    "a      a      b     "
+    "bridge b      c     "
+    "bridge d      c     "
+    "e      f      f     "
+    "g      h      h     "
+    "g      i      i     ";
   gap: 1.25rem;
 }
 
@@ -3017,17 +3017,16 @@ a.rd-hero-step:hover {
 @media (max-width: 900px) {
   .ti-bento-grid {
     grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: auto;
+    grid-template-rows: repeat(8, 160px);
     grid-template-areas:
-      "a      a"
-      "b      bridge"
-      "b      c"
-      "d      c"
-      "e      f"
-      "f      g"
-      "h      h"
-      "g      i";
-    grid-auto-rows: 170px;
+      "a      a     "
+      "bridge b     "
+      "bridge b     "
+      "c      d     "
+      "c      e     "
+      "f      f     "
+      "g      h     "
+      "g      i     ";
   }
   .ti-breakout {
     flex-direction: column;
