@@ -4455,21 +4455,29 @@ a.rd-pill--step:hover {
   margin-bottom: 1rem;
 }
 
-.topic-cta-link {
+.topic-cta-badges {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+}
+
+.topic-cta-badge-link {
   display: inline-block;
-  font-family: var(--font-sans);
-  font-size: 0.85rem;
-  font-weight: 500;
-  color: var(--white);
-  background: var(--deep-teal);
-  padding: 0.6rem 1.5rem;
-  border-radius: var(--radius);
   text-decoration: none;
   transition: opacity 0.15s;
 }
 
-.topic-cta-link:hover {
-  opacity: 0.85;
+.topic-cta-badge-link:hover {
+  opacity: 0.8;
+}
+
+.topic-cta-badge {
+  height: 34px;
+}
+
+.topic-cta-badge-play {
+  height: 50px;
 }
 
 /* Old two-column body — kept for any legacy reference, hidden */
