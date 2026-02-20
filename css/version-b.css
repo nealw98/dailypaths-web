@@ -4178,6 +4178,25 @@ a.rd-pill--step:hover {
 
 /* --- Theme (Topic) Detail Page — Editorial Layout --- */
 
+/* Back link */
+.topic-back-wrap {
+  max-width: 64rem;
+  margin: 0 auto;
+  padding: 1rem 2rem 0;
+}
+
+.topic-back-link {
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--deep-teal);
+  text-decoration: none;
+}
+
+.topic-back-link:hover {
+  text-decoration: underline;
+}
+
 /* Hero with background image */
 .topic-hero {
   position: relative;
@@ -4218,22 +4237,6 @@ a.rd-pill--step:hover {
   z-index: 1;
   padding: 3rem 2rem 3.5rem;
   max-width: 40rem;
-}
-
-.topic-hero-breadcrumb {
-  margin-bottom: 1.25rem;
-}
-
-.topic-hero-breadcrumb,
-.topic-hero-breadcrumb a,
-.topic-hero-breadcrumb .breadcrumb-sep,
-.topic-hero-breadcrumb span {
-  color: rgba(255, 255, 255, 0.7);
-  opacity: 1;
-}
-
-.topic-hero-breadcrumb a:hover {
-  color: var(--white);
 }
 
 .topic-hero-label {
@@ -4299,13 +4302,54 @@ a.rd-pill--step:hover {
   opacity: 0.7;
 }
 
-.topic-hero:not(:has(.topic-hero-image)) .topic-hero-breadcrumb,
-.topic-hero:not(:has(.topic-hero-image)) .topic-hero-breadcrumb a,
-.topic-hero:not(:has(.topic-hero-image)) .topic-hero-breadcrumb span {
-  color: var(--sage);
+/* --- Member's Experience Section --- */
+
+.topic-share {
+  background: var(--cloud);
+  padding: 3rem 2rem;
 }
 
-/* Two-Column Body */
+.topic-share-inner {
+  max-width: 42rem;
+  margin: 0 auto;
+}
+
+.topic-share-heading {
+  font-family: var(--font-serif);
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: var(--ink);
+  margin-bottom: 1.25rem;
+}
+
+.topic-share-body {
+  font-family: var(--font-reading);
+  font-size: 1.05rem;
+  line-height: 1.9;
+  color: var(--ink);
+  border: none;
+  margin: 0;
+  padding: 0;
+}
+
+.topic-share-body p {
+  margin-bottom: 1.25rem;
+}
+
+.topic-share-body p:last-child {
+  margin-bottom: 0;
+}
+
+.topic-share-attribution {
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--ocean);
+  margin-top: 1.25rem;
+  font-style: italic;
+}
+
+/* Old two-column body — kept for any legacy reference, hidden */
 .topic-body-wrap {
   max-width: 64rem;
   margin: 0 auto;
@@ -4473,15 +4517,17 @@ a.rd-pill--step:hover {
 }
 
 /* Readings Grid */
+/* --- Daily Reflections List --- */
+
 .topic-readings-section {
-  max-width: 64rem;
+  max-width: 42rem;
   margin: 0 auto;
-  padding: 0 2rem 3rem;
+  padding: 3rem 2rem;
 }
 
 .topic-readings-heading {
   font-family: var(--font-serif);
-  font-size: 1.5rem;
+  font-size: 1.4rem;
   font-weight: 600;
   color: var(--ink);
   margin-bottom: 0.5rem;
@@ -4496,86 +4542,61 @@ a.rd-pill--step:hover {
   line-height: 1.6;
 }
 
-.topic-readings-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 0.75rem;
+.topic-reading-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
-@media (min-width: 640px) {
-  .topic-readings-grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
+.topic-reading-item {
+  border-bottom: 1px solid var(--cloud);
 }
 
-.topic-reading-card {
+.topic-reading-item:first-child {
+  border-top: 1px solid var(--cloud);
+}
+
+.topic-reading-link {
   display: flex;
-  flex-direction: column;
-  padding: 1rem 1.25rem;
-  background: var(--white);
-  border: 1px solid var(--cloud);
-  border-radius: var(--radius);
+  align-items: baseline;
+  gap: 1.25rem;
+  padding: 0.85rem 0;
   text-decoration: none;
   color: inherit;
-  transition: border-color 0.2s, box-shadow 0.2s;
+  transition: background 0.15s;
 }
 
-.topic-reading-card:hover {
-  border-color: var(--sage);
-  box-shadow: 0 2px 8px rgba(139, 168, 136, 0.12);
+.topic-reading-link:hover {
+  background: var(--pearl);
+  margin-left: -0.75rem;
+  margin-right: -0.75rem;
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+  border-radius: var(--radius);
 }
 
-.topic-reading-card-date {
+.topic-reading-date {
   font-family: var(--font-sans);
-  font-size: 0.7rem;
+  font-size: 0.8rem;
   font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: var(--sage);
-  margin-bottom: 0.3rem;
+  color: var(--ocean);
+  white-space: nowrap;
+  min-width: 5.5rem;
 }
 
-.topic-reading-card-title {
+.topic-reading-title {
   font-family: var(--font-serif);
-  font-size: 1rem;
+  font-size: 1.05rem;
   font-weight: 600;
   color: var(--ink);
-  line-height: 1.3;
-  margin-bottom: 0.35rem;
+  line-height: 1.35;
 }
 
-.topic-reading-card:hover .topic-reading-card-title {
+.topic-reading-link:hover .topic-reading-title {
   color: var(--deep-teal);
 }
 
-.topic-reading-card-tag {
-  font-family: var(--font-sans);
-  font-size: 0.65rem;
-  font-weight: 400;
-  color: var(--slate-blue);
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  margin-top: auto;
-  padding-top: 0.25rem;
-}
-
-.topic-readings-more {
-  margin-top: 1rem;
-  text-align: center;
-}
-
-.topic-readings-more a {
-  font-family: var(--font-sans);
-  font-size: 0.85rem;
-  font-weight: 500;
-  color: var(--deep-teal);
-}
-
-.topic-readings-more a:hover {
-  text-decoration: underline;
-}
-
-/* Topic Navigation — Editorial variant */
+/* Topic Navigation */
 .topic-nav-footer {
   display: flex;
   justify-content: space-between;
@@ -4586,7 +4607,7 @@ a.rd-pill--step:hover {
 }
 
 .topic-nav-editorial {
-  max-width: 64rem;
+  max-width: 42rem;
   margin-left: auto;
   margin-right: auto;
   padding-left: 2rem;
@@ -4616,8 +4637,11 @@ a.rd-pill--step:hover {
   font-size: 1rem;
 }
 
-/* Mobile adjustments for editorial topic pages */
+/* Mobile adjustments for principle detail pages */
 @media (max-width: 640px) {
+  .topic-back-wrap {
+    padding: 0.75rem 1.5rem 0;
+  }
   .topic-hero {
     min-height: 220px;
   }
@@ -4627,22 +4651,22 @@ a.rd-pill--step:hover {
   .topic-hero-title {
     font-size: 1.75rem;
   }
-  .topic-body-wrap {
-    padding: 2rem 1.5rem 1.5rem;
+  .topic-share {
+    padding: 2rem 1.5rem;
   }
   .topic-readings-section {
-    padding: 0 1.5rem 2rem;
+    padding: 2rem 1.5rem;
   }
-  .topic-readings-grid {
-    grid-template-columns: 1fr;
+  .topic-reading-link {
+    flex-direction: column;
+    gap: 0.15rem;
+  }
+  .topic-reading-date {
+    min-width: auto;
   }
   .topic-nav-editorial {
     padding-left: 1.5rem;
     padding-right: 1.5rem;
-  }
-  .topic-callout {
-    padding: 1.25rem;
-    margin: 1.5rem -0.5rem 0;
   }
   .topic-nav-footer .nav-label {
     display: none;

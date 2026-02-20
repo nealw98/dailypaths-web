@@ -494,6 +494,16 @@ ${bentoCards.slice(6).join('\n')}
   });
 }
 
+/** Default member share — used for all principles until specific stories are provided */
+const DEFAULT_MEMBER_SHARE = `For years, I thought my &ldquo;care&rdquo; was measured by how much I worried. I spent my energy trying to get ahead of the next crisis, thinking that if I could just predict the drinker&rsquo;s behavior, I could prevent the fallout. I was exhausted and lost.
+
+When I learned about Detachment, I realized I wasn&rsquo;t helping; I was just drowning alongside them. It didn&rsquo;t mean I stopped loving them; it meant I stopped trying to manage their consequences. Today, I use this principle by taking a deep breath and &ldquo;letting go of the results.&rdquo; I focus on my own reactions, and for the first time in a long time, I can find peace even when the storm is still blowing.`;
+
+/** Per-principle member shares — override the default when provided */
+const MEMBER_SHARES = {
+  // 'detachment': `Custom share for detachment...`,
+};
+
 /**
  * Render an individual topic page — editorial layout.
  *
@@ -506,8 +516,6 @@ export function renderTopicPage(topic, featuredReadings, allReadings = []) {
   const prevTopic = TOPICS[(idx - 1 + TOPICS.length) % TOPICS.length];
   const nextTopic = TOPICS[(idx + 1) % TOPICS.length];
 
-  const tools = TOPIC_TOOLS[topic.slug] || [];
-  const pullQuote = TOPIC_PULL_QUOTES[topic.slug] || '';
   const themeTags = TOPIC_THEME_TAGS[topic.slug] || [];
 
   // Build theme-matched readings from secondary_theme
@@ -527,33 +535,32 @@ export function renderTopicPage(topic, featuredReadings, allReadings = []) {
     return true;
   });
 
-  // Show up to 9 reading cards total
   const allTopicReadings = [...featuredReadings, ...additionalReadings];
-  const displayReadings = allTopicReadings.slice(0, 9);
   const totalCount = allTopicReadings.length;
 
-  // Build reading cards
-  const readingCards = displayReadings.map(r => {
+  // Build reading list items — clean vertical list with date + title
+  const readingListItems = allTopicReadings.map(r => {
     const slug = dayToSlug(r.day_of_year);
     return `
-            <a href="${bp(`/${slug}/`)}" class="topic-reading-card">
-              <span class="topic-reading-card-date">${r.display_date}</span>
-              <span class="topic-reading-card-title">${r.title}</span>
-              ${r.secondary_theme ? `<span class="topic-reading-card-tag">${r.secondary_theme}</span>` : ''}
-            </a>`;
+              <li class="topic-reading-item">
+                <a href="${bp(`/${slug}/`)}" class="topic-reading-link">
+                  <span class="topic-reading-date">${r.display_date}</span>
+                  <span class="topic-reading-title">${r.title}</span>
+                </a>
+              </li>`;
   }).join('\n');
 
-  // Build theme tags pills
-  const tagPills = themeTags.slice(0, 6).map(tag => {
-    const count = allReadings.filter(r => r.secondary_theme === tag).length;
-    return count > 0 ? `<span class="topic-tag-pill">${tag} <span class="topic-tag-count">${count}</span></span>` : '';
-  }).filter(Boolean).join('\n              ');
-
-  // Build sidebar tools
-  const toolItems = tools.map(t => `              <li>${t}</li>`).join('\n');
+  // Member share — use specific share or default
+  const memberShare = MEMBER_SHARES[topic.slug] || DEFAULT_MEMBER_SHARE;
+  const shareParagraphs = memberShare.split('\n\n').map(p => `            <p>${p.trim()}</p>`).join('\n');
 
   const bodyContent = `
-    <article class="topic-editorial">
+    <article class="topic-editorial" itemscope itemtype="https://schema.org/Article">
+      <!-- Back Navigation -->
+      <div class="topic-back-wrap">
+        <a href="${bp('/principles/')}" class="topic-back-link">&larr; Back to Guiding Principles</a>
+      </div>
+
       <!-- Hero Section -->
       <header class="topic-hero">
         ${topic.image ? `
@@ -562,77 +569,33 @@ export function renderTopicPage(topic, featuredReadings, allReadings = []) {
           <div class="topic-hero-overlay"></div>
         </div>` : ''}
         <div class="topic-hero-content">
-          <nav class="breadcrumb topic-hero-breadcrumb">
-            <a href="${bp('/principles/')}">Principles</a>
-            <span class="breadcrumb-sep">/</span>
-            <span>${topic.name}</span>
-          </nav>
           <span class="topic-hero-label">Guiding Principle</span>
-          <h1 class="topic-hero-title">The Principle of ${topic.name}</h1>
-          <p class="topic-hero-desc">${topic.shortDescription}</p>
+          <h1 class="topic-hero-title" itemprop="headline">The Principle of ${topic.name}</h1>
+          <p class="topic-hero-desc" itemprop="description">${topic.shortDescription}</p>
         </div>
       </header>
 
-      <!-- Two-Column Body -->
-      <div class="topic-body-wrap">
-        <div class="topic-body-inner">
-          <!-- Main Column (70%) -->
-          <div class="topic-main-col">
-            <section class="topic-essay">
-              ${topic.body}
-            </section>
-
-            <!-- Related Themes Callout -->
-            ${tagPills ? `
-            <aside class="topic-callout">
-              <h3 class="topic-callout-title">Related Themes in This Principle</h3>
-              <p class="topic-callout-intro">
-                Readings tagged with these themes appear on this page.
-              </p>
-              <div class="topic-tag-list">
-              ${tagPills}
-              </div>
-            </aside>` : ''}
-          </div>
-
-          <!-- Sidebar Column (30%) -->
-          <aside class="topic-sidebar">
-            <div class="topic-sidebar-tools">
-              <h3 class="topic-sidebar-heading">Recovery Tools</h3>
-              <ul class="topic-sidebar-list">
-${toolItems}
-              </ul>
-            </div>
-
-            ${pullQuote ? `
-            <blockquote class="topic-sidebar-quote">
-              <p>&ldquo;${pullQuote}&rdquo;</p>
-            </blockquote>` : ''}
-
-            <div class="topic-sidebar-resource">
-              <h3 class="topic-sidebar-heading">Go Deeper</h3>
-              <p>Explore this principle through Al-Anon&rsquo;s
-                <a href="https://ecomm.al-anon.org/EN/ItemDetail?iProductCode=B24" target="_blank" rel="noopener noreferrer"><em>Paths to Recovery</em></a>.
-              </p>
-            </div>
-          </aside>
+      <!-- A Member's Experience -->
+      <section class="topic-share" aria-label="A member&rsquo;s experience with ${topic.name}">
+        <div class="topic-share-inner">
+          <h2 class="topic-share-heading">A Member&rsquo;s Experience</h2>
+          <blockquote class="topic-share-body" itemprop="articleBody">
+${shareParagraphs}
+          </blockquote>
+          <p class="topic-share-attribution">&mdash; An Al-Anon member</p>
         </div>
-      </div>
+      </section>
 
-      <!-- Readings Grid -->
-      ${displayReadings.length > 0 ? `
+      <!-- Daily Reflections on [Name] -->
+      ${totalCount > 0 ? `
       <section class="topic-readings-section">
-        <h2 class="topic-readings-heading">Readings on ${topic.name}</h2>
+        <h2 class="topic-readings-heading">Daily Reflections on ${topic.name}</h2>
         <p class="topic-readings-intro">
-          ${totalCount} readings explore this principle. Here are some to start with.
+          ${totalCount} reading${totalCount === 1 ? '' : 's'} explore this principle.
         </p>
-        <div class="topic-readings-grid">
-${readingCards}
-        </div>
-        ${totalCount > 9 ? `
-        <p class="topic-readings-more">
-          <a href="${bp('/browse/')}">Browse all readings &rarr;</a>
-        </p>` : ''}
+        <ol class="topic-reading-list">
+${readingListItems}
+        </ol>
       </section>` : ''}
 
       <!-- Topic Navigation -->
