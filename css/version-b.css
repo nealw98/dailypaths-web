@@ -87,6 +87,11 @@ ul {
   z-index: 10;
 }
 
+.page-home .site-logo {
+  opacity: 0;
+  pointer-events: none;
+}
+
 .page-home .site-name {
   color: var(--white);
 }
@@ -356,31 +361,11 @@ ul {
   padding: 0 2rem;
 }
 
-.home-about {
-  padding: 3rem 0;
-  border-top: 1px solid var(--cloud);
-}
-
-.home-app {
-  padding: 3rem 0;
-  border-top: 1px solid var(--cloud);
-  text-align: center;
-}
-
 .section-title {
   font-size: 1.5rem;
   margin-bottom: 1rem;
   text-align: center;
   letter-spacing: -0.01em;
-}
-
-.home-about p,
-.home-app p {
-  max-width: 34rem;
-  margin: 0 auto 1rem;
-  text-align: center;
-  opacity: 0.7;
-  font-size: 1rem;
 }
 
 
@@ -508,7 +493,7 @@ a.rd-pill--step:hover {
 .home-hero-content {
   position: relative;
   z-index: 1;
-  padding: 3rem 2rem 3.5rem;
+  padding: 5rem 2rem 3.5rem;
   max-width: 40rem;
 }
 
@@ -757,88 +742,153 @@ a.rd-pill--step:hover {
   margin: 0;
 }
 
-/* Community & Support — You Are Not Alone (homepage) */
-.home-community-wrap {
-  max-width: 42rem;
-  margin: 0 auto;
-  padding: 3.5rem 2rem 0;
-  text-align: center;
+/* What is Al-Anon? — Two-column section */
+.home-whatis-wrap {
+  background: var(--cloud);
+  padding: 3.5rem 2rem;
+  margin-top: 3rem;
 }
 
-.home-community-heading {
+.home-whatis-inner {
+  max-width: 56rem;
+  margin: 0 auto;
+  display: flex;
+  align-items: flex-start;
+  gap: 3rem;
+}
+
+.home-whatis-text {
+  flex: 1;
+}
+
+.home-whatis-heading {
   font-family: var(--font-serif);
-  font-size: clamp(1.3rem, 3vw, 1.6rem);
+  font-size: clamp(1.4rem, 3vw, 1.8rem);
   font-weight: 700;
   color: var(--deep-teal);
   line-height: 1.2;
+  margin-bottom: 1rem;
+}
+
+.home-whatis-text p {
+  font-family: var(--font-reading);
+  font-size: 0.95rem;
+  line-height: 1.75;
+  color: var(--ink);
   margin-bottom: 0.75rem;
 }
 
-.home-community-intro {
-  font-family: var(--font-reading);
-  font-size: 0.95rem;
-  line-height: 1.7;
-  color: var(--ink);
-  margin: 0 auto 2rem;
-  max-width: 36rem;
+.home-whatis-cta {
+  flex: 0 0 260px;
 }
 
-.home-community-card {
-  position: relative;
+.home-whatis-card {
+  display: block;
   background: var(--white);
-  border: 1px solid var(--cloud);
+  border: 1px solid rgba(0, 0, 0, 0.06);
   border-radius: var(--radius);
-  padding: 2.25rem 2rem 2rem;
-  text-align: left;
+  padding: 1.75rem 1.5rem;
+  text-decoration: none;
+  transition: transform 0.2s, box-shadow 0.2s;
 }
 
-.home-community-badge {
-  position: absolute;
-  top: -0.65rem;
-  right: 1.25rem;
+.home-whatis-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+}
+
+.home-whatis-card-label {
   display: inline-block;
   font-family: var(--font-sans);
   font-size: 0.65rem;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  color: var(--white);
-  background: var(--deep-teal);
-  padding: 0.25rem 0.7rem;
-  border-radius: 999px;
+  color: var(--ocean);
+  margin-bottom: 0.5rem;
 }
 
-.home-community-card-text {
+.home-whatis-card-title {
+  font-family: var(--font-serif);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--deep-teal);
+  line-height: 1.2;
+  margin-bottom: 0.5rem;
+}
+
+.home-whatis-card-desc {
   font-family: var(--font-reading);
-  font-size: 0.92rem;
-  line-height: 1.7;
+  font-size: 0.85rem;
+  line-height: 1.6;
   color: var(--ink);
-  margin: 0 0 1.5rem;
+  opacity: 0.8;
+  margin-bottom: 0.75rem;
 }
 
-.home-community-btn {
+.home-whatis-card-link {
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--deep-teal);
+}
+
+/* Additional Support — Bottom section */
+.home-support-wrap {
+  max-width: 42rem;
+  margin: 0 auto;
+  padding: 3rem 2rem 1rem;
+  text-align: center;
+}
+
+.home-support-heading {
+  font-family: var(--font-serif);
+  font-size: clamp(1.1rem, 2.5vw, 1.35rem);
+  font-weight: 700;
+  color: var(--deep-teal);
+  margin-bottom: 1rem;
+}
+
+.home-support-link {
   display: inline-block;
   font-family: var(--font-sans);
-  font-size: 0.92rem;
+  font-size: 0.95rem;
   font-weight: 600;
   color: var(--white);
   background: var(--deep-teal);
   text-decoration: none;
-  padding: 0.75rem 1.75rem;
+  padding: 0.7rem 1.75rem;
   border-radius: var(--radius);
   transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+  margin-bottom: 1rem;
 }
 
-.home-community-btn:hover {
-  background: var(--sage);
+.home-support-link:hover {
+  background: var(--ocean);
+  color: var(--white);
   transform: translateY(-2px);
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+}
+
+.home-support-note {
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
+  color: var(--ink);
+  opacity: 0.55;
+  line-height: 1.6;
+  max-width: 36rem;
+  margin: 0 auto;
+}
+
+.home-support-note a {
+  color: var(--ocean);
+  text-decoration: underline;
 }
 
 /* Homepage Responsive — Mobile */
 @media (max-width: 640px) {
   .home-hero-content {
-    padding: 2.5rem 1.5rem 3rem;
+    padding: 4rem 1.5rem 3rem;
   }
   .home-feature-card {
     padding: 1.5rem;
@@ -849,10 +899,15 @@ a.rd-pill--step:hover {
   .home-discover-card {
     min-height: 180px;
   }
-  .home-community-card {
-    padding: 2rem 1.5rem 1.75rem;
+  .home-whatis-inner {
+    flex-direction: column;
+    gap: 2rem;
   }
-  .home-community-btn {
+  .home-whatis-cta {
+    flex: none;
+    width: 100%;
+  }
+  .home-support-link {
     display: block;
     text-align: center;
   }
