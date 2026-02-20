@@ -84,7 +84,6 @@ ${structuredData}
   <header class="site-header">
     <div class="header-inner">
       <a href="${bp('/')}" class="site-logo">
-        <img src="${bp('/assets/logo.png')}" alt="Al-Anon Daily Paths" width="32" height="32">
         <span class="site-name">Al-Anon Daily Paths</span>
       </a>
       <button class="menu-toggle" data-menu-toggle aria-label="Toggle menu" aria-expanded="false">

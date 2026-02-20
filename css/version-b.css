@@ -87,11 +87,6 @@ ul {
   z-index: 10;
 }
 
-.page-home .site-logo {
-  opacity: 0;
-  pointer-events: none;
-}
-
 .page-home .site-name {
   color: var(--white);
 }
