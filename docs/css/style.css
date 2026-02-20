@@ -2415,14 +2415,14 @@ a.rd-hero-step:hover {
   }
 }
 
-/* --- Themes (Topic) Index Page — Editorial Layout --- */
+/* --- Themes (Topic) Index Page — Editorial Magazine Layout --- */
 
-/* Hero */
+/* Page Hero Banner */
 .ti-hero {
   position: relative;
   text-align: center;
   overflow: hidden;
-  min-height: 300px;
+  min-height: 320px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -2446,15 +2446,15 @@ a.rd-hero-step:hover {
   inset: 0;
   background: linear-gradient(
     180deg,
-    rgba(45, 59, 61, 0.3) 0%,
-    rgba(45, 59, 61, 0.7) 100%
+    rgba(45, 59, 61, 0.25) 0%,
+    rgba(45, 59, 61, 0.75) 100%
   );
 }
 
 .ti-hero-content {
   position: relative;
   z-index: 1;
-  padding: 3.5rem 2rem 4rem;
+  padding: 4rem 2rem 4.5rem;
   max-width: 40rem;
 }
 
@@ -2474,10 +2474,10 @@ a.rd-hero-step:hover {
 
 .ti-hero-title {
   font-family: var(--font-serif);
-  font-size: 2.8rem;
+  font-size: clamp(2rem, 5vw, 3.5rem);
   font-weight: 700;
   color: var(--white);
-  line-height: 1.15;
+  line-height: 1.1;
   margin-bottom: 1rem;
 }
 
@@ -2490,94 +2490,136 @@ a.rd-hero-step:hover {
   margin: 0 auto;
 }
 
-/* Featured Theme — Full-Width Hero Card */
-.ti-featured-wrap {
-  max-width: 56rem;
+/* Editorial Intro */
+.ti-editorial-intro {
+  max-width: 42rem;
   margin: 0 auto;
   padding: 3rem 2rem 0;
 }
 
-.ti-featured-card {
+.ti-editorial-intro p {
+  font-family: var(--font-reading);
+  font-size: 1.05rem;
+  line-height: 1.8;
+  color: var(--ink);
+  text-align: center;
+}
+
+/* =============================================
+   PRIMARY: Hero Feature Card (70/30 split)
+   ============================================= */
+.ti-hero-feature-wrap {
+  max-width: 60rem;
+  margin: 0 auto;
+  padding: 3.5rem 2rem 0;
+}
+
+.ti-hero-feature {
   display: flex;
   text-decoration: none;
   color: inherit;
-  border: 1px solid var(--cloud);
   border-radius: var(--radius);
   overflow: hidden;
-  transition: box-shadow 0.25s, transform 0.25s, border-color 0.25s;
+  position: relative;
+  min-height: 340px;
+  transition: box-shadow 0.3s, transform 0.3s;
 }
 
-.ti-featured-card:hover {
-  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.1);
+.ti-hero-feature:hover {
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
   transform: translateY(-3px);
-  border-color: var(--sage);
 }
 
-.ti-featured-image {
-  flex: 0 0 320px;
+.ti-hero-feature-img {
+  flex: 0 0 65%;
+  position: relative;
   overflow: hidden;
 }
 
-.ti-featured-image img {
+.ti-hero-feature-img img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.4s;
+  filter: grayscale(30%);
+  transition: transform 0.5s, filter 0.5s;
 }
 
-.ti-featured-card:hover .ti-featured-image img {
-  transform: scale(1.03);
+.ti-hero-feature:hover .ti-hero-feature-img img {
+  transform: scale(1.05);
+  filter: grayscale(0%);
 }
 
-.ti-featured-body {
-  flex: 1;
-  padding: 2.5rem 3rem;
+/* Overlapping quote label on image corner */
+.ti-hero-feature-overlap {
+  position: absolute;
+  bottom: -1px;
+  right: -1px;
+  max-width: 260px;
+  font-family: var(--font-reading);
+  font-size: 0.75rem;
+  font-style: italic;
+  line-height: 1.5;
+  color: var(--ink);
+  background: rgba(255, 255, 255, 0.75);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  padding: 0.75rem 1rem;
+  border-radius: var(--radius) 0 0 0;
+}
+
+.ti-hero-feature-body {
+  flex: 0 0 35%;
+  padding: 2.5rem 2rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  background: var(--white);
 }
 
-.ti-featured-meta {
-  margin-bottom: 0.75rem;
-}
-
-.ti-featured-label {
+.ti-hero-feature-label {
+  display: inline-block;
   font-family: var(--font-sans);
-  font-size: 0.65rem;
+  font-size: 0.6rem;
   font-weight: 500;
   text-transform: uppercase;
   letter-spacing: 0.1em;
   color: var(--ocean);
+  margin-bottom: 0.75rem;
 }
 
-.ti-featured-title {
+.ti-hero-feature-title {
   font-family: var(--font-serif);
-  font-size: 1.8rem;
-  font-weight: 600;
+  font-size: clamp(1.6rem, 4vw, 2.4rem);
+  font-weight: 700;
   color: var(--deep-teal);
-  margin-bottom: 0.6rem;
-  line-height: 1.25;
+  line-height: 1.1;
+  margin-bottom: 0.75rem;
+  transition: color 0.3s;
 }
 
-.ti-featured-desc {
+.ti-hero-feature:hover .ti-hero-feature-title {
+  color: var(--sage);
+}
+
+.ti-hero-feature-desc {
   font-family: var(--font-reading);
-  font-size: 1rem;
+  font-size: 0.95rem;
   line-height: 1.7;
   color: var(--ink);
   margin-bottom: 1rem;
 }
 
-.ti-featured-quote {
+.ti-hero-feature-quote {
   font-family: var(--font-reading);
-  font-size: 0.92rem;
+  font-size: 0.85rem;
   font-style: italic;
   color: var(--ink);
-  opacity: 0.6;
+  opacity: 0.55;
   line-height: 1.55;
   margin-bottom: 1rem;
 }
 
-.ti-featured-cta {
+.ti-hero-feature-cta {
   font-family: var(--font-sans);
   font-size: 0.8rem;
   font-weight: 500;
@@ -2588,7 +2630,7 @@ a.rd-hero-step:hover {
 .ti-quickpath-wrap {
   max-width: 56rem;
   margin: 0 auto;
-  padding: 3.5rem 2rem 0;
+  padding: 4rem 2rem 0;
   text-align: center;
 }
 
@@ -2627,14 +2669,120 @@ a.rd-hero-step:hover {
   transform: translateY(-1px);
 }
 
-/* Themes Grid — Staggered */
-.ti-grid-wrap {
-  max-width: 56rem;
+/* =============================================
+   SECONDARY: Featured Duo (50/50)
+   ============================================= */
+.ti-duo-wrap {
+  max-width: 60rem;
   margin: 0 auto;
-  padding: 3.5rem 2rem 0;
+  padding: 4rem 2rem 0;
 }
 
-.ti-grid-heading {
+.ti-duo-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+.ti-duo-card {
+  position: relative;
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  border-radius: var(--radius);
+  overflow: hidden;
+  min-height: 280px;
+  transition: box-shadow 0.3s, transform 0.3s;
+}
+
+.ti-duo-card:hover {
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.12);
+  transform: translateY(-3px);
+}
+
+.ti-duo-card-img {
+  position: absolute;
+  inset: 0;
+}
+
+.ti-duo-card-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: grayscale(30%);
+  transition: transform 0.5s, filter 0.5s;
+}
+
+.ti-duo-card:hover .ti-duo-card-img img {
+  transform: scale(1.05);
+  filter: grayscale(0%);
+}
+
+/* Glassmorphism text overlay */
+.ti-duo-card-glass {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 1.5rem;
+  background: rgba(255, 255, 255, 0.3);
+  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(16px);
+  border-top: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+.ti-duo-card-title {
+  font-family: var(--font-serif);
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--white);
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+  margin-bottom: 0.3rem;
+  transition: color 0.3s;
+}
+
+.ti-duo-card:hover .ti-duo-card-title {
+  color: var(--sage-light);
+}
+
+.ti-duo-card-desc {
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.9);
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* Overlapping quote chip */
+.ti-duo-card-overlap {
+  position: absolute;
+  top: 1rem;
+  right: -0.25rem;
+  max-width: 200px;
+  font-family: var(--font-reading);
+  font-size: 0.7rem;
+  font-style: italic;
+  line-height: 1.45;
+  color: var(--ink);
+  background: rgba(255, 255, 255, 0.8);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  padding: 0.5rem 0.75rem;
+  border-radius: var(--radius) 0 0 var(--radius);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+/* =============================================
+   TERTIARY: Asymmetric Bento Grid
+   ============================================= */
+.ti-bento-wrap {
+  max-width: 60rem;
+  margin: 0 auto;
+  padding: 4rem 2rem 0;
+}
+
+.ti-bento-heading {
   font-family: var(--font-serif);
   font-size: 1.6rem;
   font-weight: 600;
@@ -2642,76 +2790,117 @@ a.rd-hero-step:hover {
   margin-bottom: 1.5rem;
 }
 
-.ti-grid {
+.ti-bento-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 1.5rem;
+  grid-auto-rows: 180px;
+  gap: 1.25rem;
 }
 
-.ti-grid-card {
-  display: flex;
-  flex-direction: column;
+/* Wide cards span 2 columns */
+.ti-bento-card.ti-bento--wide {
+  grid-column: span 2;
+}
+
+/* Tall cards span 2 rows */
+.ti-bento-card.ti-bento--tall {
+  grid-row: span 2;
+}
+
+.ti-bento-card {
+  position: relative;
+  display: block;
   text-decoration: none;
   color: inherit;
-  border: 1px solid var(--cloud);
   border-radius: var(--radius);
   overflow: hidden;
-  transition: box-shadow 0.25s, transform 0.25s, border-color 0.25s;
+  transition: box-shadow 0.3s, transform 0.3s;
 }
 
-.ti-grid-card:hover {
-  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.1);
+.ti-bento-card:hover {
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.12);
   transform: translateY(-4px);
-  border-color: var(--sage);
 }
 
-.ti-grid-card-image {
-  height: 140px;
-  overflow: hidden;
+.ti-bento-card-img {
+  position: absolute;
+  inset: 0;
 }
 
-.ti-grid-card--tall .ti-grid-card-image {
-  height: 180px;
-}
-
-.ti-grid-card-image img {
+.ti-bento-card-img img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.4s;
+  filter: grayscale(30%);
+  transition: transform 0.5s, filter 0.5s;
 }
 
-.ti-grid-card:hover .ti-grid-card-image img {
-  transform: scale(1.04);
+.ti-bento-card:hover .ti-bento-card-img img {
+  transform: scale(1.05);
+  filter: grayscale(0%);
 }
 
-.ti-grid-card-body {
-  padding: 1.1rem 1.25rem 1.35rem;
+/* Glassmorphism overlay */
+.ti-bento-card-glass {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 1.1rem 1.25rem;
+  background: rgba(255, 255, 255, 0.25);
+  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
+  border-top: 1px solid rgba(255, 255, 255, 0.35);
 }
 
-.ti-grid-card-title {
+.ti-bento-card-title {
   font-family: var(--font-serif);
-  font-size: 1.05rem;
-  font-weight: 600;
-  color: var(--deep-teal);
-  margin-bottom: 0.35rem;
-  line-height: 1.3;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--white);
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+  margin-bottom: 0.2rem;
+  line-height: 1.25;
+  transition: color 0.3s;
 }
 
-.ti-grid-card-desc {
+.ti-bento-card:hover .ti-bento-card-title {
+  color: var(--sage-light);
+}
+
+.ti-bento-card-desc {
   font-family: var(--font-sans);
-  font-size: 0.8rem;
-  color: var(--ink);
-  opacity: 0.6;
-  line-height: 1.5;
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.85);
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  line-height: 1.45;
   margin: 0;
+}
+
+/* Overlapping quote snippet */
+.ti-bento-card-overlap {
+  position: absolute;
+  top: 0.75rem;
+  left: -0.25rem;
+  max-width: 180px;
+  font-family: var(--font-reading);
+  font-size: 0.65rem;
+  font-style: italic;
+  line-height: 1.4;
+  color: var(--ink);
+  background: rgba(255, 255, 255, 0.8);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  padding: 0.4rem 0.65rem;
+  border-radius: 0 var(--radius) var(--radius) 0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
 
 /* Steps Callout */
 .ti-steps-wrap {
   max-width: 36rem;
   margin: 0 auto;
-  padding: 3.5rem 2rem 0;
+  padding: 4rem 2rem 0;
 }
 
 .ti-steps-callout {
@@ -2765,7 +2954,7 @@ a.rd-hero-step:hover {
 .ti-app-wrap {
   max-width: 40rem;
   margin: 0 auto;
-  padding: 3.5rem 2rem 4rem;
+  padding: 4rem 2rem 4.5rem;
 }
 
 .ti-app-callout {
@@ -2808,32 +2997,49 @@ a.rd-hero-step:hover {
   opacity: 0.8;
 }
 
-/* Responsive */
+/* Responsive — Tablet */
 @media (max-width: 900px) {
-  .ti-grid {
+  .ti-bento-grid {
     grid-template-columns: repeat(2, 1fr);
+    grid-auto-rows: 160px;
   }
-  .ti-grid-card--tall .ti-grid-card-image {
-    height: 140px;
+  .ti-bento-card.ti-bento--wide {
+    grid-column: span 2;
+  }
+  .ti-bento-card.ti-bento--tall {
+    grid-row: span 2;
   }
 }
 
+/* Responsive — Mobile */
 @media (max-width: 640px) {
   .ti-hero-title {
-    font-size: 2rem;
+    font-size: 2.2rem;
   }
   .ti-hero-desc {
     font-size: 0.95rem;
   }
-  .ti-featured-card {
+  .ti-editorial-intro p {
+    font-size: 0.95rem;
+    text-align: left;
+  }
+  .ti-hero-feature {
     flex-direction: column;
+    min-height: auto;
   }
-  .ti-featured-image {
+  .ti-hero-feature-img {
     flex: auto;
-    height: 220px;
+    height: 240px;
   }
-  .ti-featured-body {
+  .ti-hero-feature-body {
+    flex: auto;
     padding: 1.5rem;
+  }
+  .ti-hero-feature-title {
+    font-size: 1.6rem;
+  }
+  .ti-hero-feature-overlap {
+    display: none;
   }
   .ti-quickpath-grid {
     flex-direction: column;
@@ -2842,11 +3048,26 @@ a.rd-hero-step:hover {
   .ti-quickpath-btn {
     text-align: center;
   }
-  .ti-grid {
+  .ti-duo-grid {
     grid-template-columns: 1fr;
   }
-  .ti-grid-card--tall .ti-grid-card-image {
-    height: 140px;
+  .ti-duo-card {
+    min-height: 220px;
+  }
+  .ti-duo-card-overlap {
+    display: none;
+  }
+  .ti-bento-grid {
+    grid-template-columns: 1fr;
+    grid-auto-rows: 200px;
+  }
+  .ti-bento-card.ti-bento--wide,
+  .ti-bento-card.ti-bento--tall {
+    grid-column: span 1;
+    grid-row: span 1;
+  }
+  .ti-bento-card-overlap {
+    display: none;
   }
 }
 

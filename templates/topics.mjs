@@ -313,27 +313,56 @@ export const TOPICS = [
  * Render the Topics index page.
  */
 export function renderTopicsIndexPage() {
-  // Featured theme — Detachment gets the full-width hero card
-  const featured = TOPICS[0];
-  const pullQuoteFeatured = TOPIC_PULL_QUOTES[featured.slug] || '';
+  // 1-2-3 Hierarchy: Primary (hero), Secondary (duo), Tertiary (bento)
+  const hero = TOPICS[0];
+  const heroQuote = TOPIC_PULL_QUOTES[hero.slug] || '';
+  const duo = [TOPICS[1], TOPICS[2]];
+  const bento = TOPICS.slice(3);
 
-  // Remaining themes in a staggered grid
-  const gridCards = TOPICS.slice(1).map((topic, i) => {
-    const tall = i % 3 === 0;
+  // Bento layout classes: asymmetric sizes
+  // Row 1: wide, narrow-tall, narrow-tall  (One Day at a Time wide, Boundaries tall, Letting Go tall)
+  // Row 2: narrow, narrow, wide             (Self-Worth narrow, Higher Power narrow, Honesty wide)
+  // Row 3: narrow-tall, wide, narrow        (Gratitude tall, The Disease wide, Fellowship narrow)
+  const bentoClasses = [
+    'ti-bento--wide',  'ti-bento--tall',  'ti-bento--tall',
+    '',                 '',                 'ti-bento--wide',
+    'ti-bento--tall',  'ti-bento--wide',  '',
+  ];
+
+  const bentoCards = bento.map((topic, i) => {
+    const cls = bentoClasses[i] || '';
+    const quote = TOPIC_PULL_QUOTES[topic.slug] || '';
     return `
-          <a href="${bp(`/themes/${topic.slug}/`)}" class="ti-grid-card${tall ? ' ti-grid-card--tall' : ''}">
-            <div class="ti-grid-card-image">
+          <a href="${bp(`/themes/${topic.slug}/`)}" class="ti-bento-card ${cls}">
+            <div class="ti-bento-card-img">
               <img src="${bp(`/assets/themes/${topic.image}`)}" alt="${topic.imageAlt || topic.name}" />
             </div>
-            <div class="ti-grid-card-body">
-              <h3 class="ti-grid-card-title">${topic.name}</h3>
-              <p class="ti-grid-card-desc">${topic.shortDescription}</p>
+            <div class="ti-bento-card-glass">
+              <h3 class="ti-bento-card-title">${topic.name}</h3>
+              <p class="ti-bento-card-desc">${topic.shortDescription}</p>
             </div>
+            ${quote ? `<span class="ti-bento-card-overlap">&ldquo;${quote.split(' ').slice(0, 8).join(' ')}&hellip;&rdquo;</span>` : ''}
+          </a>`;
+  }).join('\n');
+
+  // Duo cards
+  const duoCards = duo.map(topic => {
+    const quote = TOPIC_PULL_QUOTES[topic.slug] || '';
+    return `
+          <a href="${bp(`/themes/${topic.slug}/`)}" class="ti-duo-card">
+            <div class="ti-duo-card-img">
+              <img src="${bp(`/assets/themes/${topic.image}`)}" alt="${topic.imageAlt || topic.name}" />
+            </div>
+            <div class="ti-duo-card-glass">
+              <h3 class="ti-duo-card-title">${topic.name}</h3>
+              <p class="ti-duo-card-desc">${topic.shortDescription}</p>
+            </div>
+            ${quote ? `<span class="ti-duo-card-overlap">&ldquo;${quote.split(' ').slice(0, 6).join(' ')}&hellip;&rdquo;</span>` : ''}
           </a>`;
   }).join('\n');
 
   const bodyContent = `
-      <!-- Hero -->
+      <!-- Page Hero -->
       <header class="ti-hero">
         <div class="ti-hero-image">
           <img src="${bp('/assets/themes/themes.jpg')}" alt="Recovery Themes" />
@@ -346,20 +375,29 @@ export function renderTopicsIndexPage() {
         </div>
       </header>
 
-      <!-- Featured Theme — Hero Card -->
-      <div class="ti-featured-wrap">
-        <a href="${bp(`/themes/${featured.slug}/`)}" class="ti-featured-card">
-          <div class="ti-featured-image">
-            <img src="${bp(`/assets/themes/${featured.image}`)}" alt="${featured.imageAlt || featured.name}" />
+      <!-- Editorial Intro -->
+      <div class="ti-editorial-intro">
+        <p>
+          Recovery doesn&rsquo;t follow a straight line. Some days we need to practice letting go;
+          other days we need to hold a boundary. These twelve themes map the emotional terrain
+          of living with someone else&rsquo;s disease &mdash; and the quiet, daily work of
+          finding our way back to ourselves.
+        </p>
+      </div>
+
+      <!-- Primary: Hero Feature (70/30) -->
+      <div class="ti-hero-feature-wrap">
+        <a href="${bp(`/themes/${hero.slug}/`)}" class="ti-hero-feature">
+          <div class="ti-hero-feature-img">
+            <img src="${bp(`/assets/themes/${hero.image}`)}" alt="${hero.imageAlt || hero.name}" />
+            <span class="ti-hero-feature-overlap">&ldquo;${heroQuote}&rdquo;</span>
           </div>
-          <div class="ti-featured-body">
-            <div class="ti-featured-meta">
-              <span class="ti-featured-label">Featured Theme</span>
-            </div>
-            <h2 class="ti-featured-title">${featured.name}</h2>
-            <p class="ti-featured-desc">${featured.shortDescription}</p>
-            <p class="ti-featured-quote">&ldquo;${pullQuoteFeatured}&rdquo;</p>
-            <span class="ti-featured-cta">Read &amp; Reflect &rarr;</span>
+          <div class="ti-hero-feature-body">
+            <span class="ti-hero-feature-label">Featured Theme</span>
+            <h2 class="ti-hero-feature-title">${hero.name}</h2>
+            <p class="ti-hero-feature-desc">${hero.shortDescription}</p>
+            <p class="ti-hero-feature-quote">&ldquo;${heroQuote}&rdquo;</p>
+            <span class="ti-hero-feature-cta">Read &amp; Reflect &rarr;</span>
           </div>
         </a>
       </div>
@@ -375,11 +413,18 @@ export function renderTopicsIndexPage() {
         </div>
       </div>
 
-      <!-- Themes Grid -->
-      <div class="ti-grid-wrap">
-        <h2 class="ti-grid-heading">All Themes</h2>
-        <div class="ti-grid">
-${gridCards}
+      <!-- Secondary: Featured Duo (50/50) -->
+      <div class="ti-duo-wrap">
+        <div class="ti-duo-grid">
+${duoCards}
+        </div>
+      </div>
+
+      <!-- Tertiary: Asymmetric Bento Grid -->
+      <div class="ti-bento-wrap">
+        <h2 class="ti-bento-heading">Explore All Themes</h2>
+        <div class="ti-bento-grid">
+${bentoCards}
         </div>
       </div>
 
