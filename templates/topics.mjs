@@ -319,14 +319,21 @@ export function renderTopicsIndexPage() {
   const duo = [TOPICS[1], TOPICS[2]];
   const bento = TOPICS.slice(3);
 
-  // Build individual bento card HTML — we place them explicitly via grid-area names
-  // Grid area names: a through i (9 themes) + bridge
-  const areaNames = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i'];
+  // Bento layout classes: asymmetric sizes (same approach that worked before)
+  // Row 1: wide, narrow-tall, narrow-tall
+  // Row 2: narrow, narrow, wide
+  // Row 3: narrow-tall, wide, narrow
+  const bentoClasses = [
+    'ti-bento--wide',  'ti-bento--tall',  'ti-bento--tall',
+    '',                 '',                 'ti-bento--wide',
+    'ti-bento--tall',  'ti-bento--wide',  '',
+  ];
+
   const bentoCards = bento.map((topic, i) => {
-    const area = areaNames[i];
+    const cls = bentoClasses[i] || '';
     const quote = TOPIC_PULL_QUOTES[topic.slug] || '';
     return `
-          <a href="${bp(`/themes/${topic.slug}/`)}" class="ti-bento-card" style="grid-area: ${area}">
+          <a href="${bp(`/themes/${topic.slug}/`)}" class="ti-bento-card${cls ? ' ' + cls : ''}">
             <div class="ti-bento-card-img">
               <img src="${bp(`/assets/themes/${topic.image}`)}" alt="${topic.imageAlt || topic.name}" />
             </div>
@@ -336,7 +343,7 @@ export function renderTopicsIndexPage() {
             </div>
             ${quote ? `<span class="ti-bento-card-overlap">&ldquo;${quote.split(' ').slice(0, 8).join(' ')}&hellip;&rdquo;</span>` : ''}
           </a>`;
-  }).join('\n');
+  });
 
   // Duo cards
   const duoCards = duo.map(topic => {
@@ -413,14 +420,14 @@ ${duoCards}
         </div>
       </div>
 
-      <!-- Tertiary: Asymmetric Bento Grid (top half) -->
+      <!-- Tertiary: Asymmetric Bento Grid -->
       <div class="ti-bento-wrap">
         <h2 class="ti-bento-heading">Explore All Themes</h2>
         <div class="ti-bento-grid">
-${bentoCards}
+${bentoCards.slice(0, 3).join('\n')}
 
-          <!-- Step Bridge Card — fills the empty grid slot -->
-          <div class="ti-bridge-card" style="grid-area: bridge">
+          <!-- Step Bridge Card — appears early in the grid -->
+          <div class="ti-bridge-card">
             <span class="ti-bridge-label">From Themes to Steps</span>
             <h3 class="ti-bridge-title">Looking for Structure?</h3>
             <p class="ti-bridge-text">
@@ -430,6 +437,8 @@ ${bentoCards}
             </p>
             <a href="${bp('/steps/')}" class="ti-bridge-link">Explore the 12 Steps &rarr;</a>
           </div>
+
+${bentoCards.slice(3).join('\n')}
         </div>
       </div>
 

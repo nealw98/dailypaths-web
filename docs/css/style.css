@@ -2790,26 +2790,21 @@ a.rd-hero-step:hover {
   margin-bottom: 1.5rem;
 }
 
-/*
- * Desktop grid — explicit areas, no empty slots
- * a = One Day at a Time (wide)    b = Boundaries (tall)
- * c = Letting Go (tall)           d = Self-Worth
- * e = Higher Power                f = Honesty (wide)
- * g = Gratitude (tall)            h = The Disease (wide)
- * i = Fellowship                  bridge = Step Bridge card
- */
 .ti-bento-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: 170px 170px 170px 170px 170px 170px;
-  grid-template-areas:
-    "a      a      b     "
-    "bridge b      c     "
-    "bridge d      c     "
-    "e      f      f     "
-    "g      h      h     "
-    "g      i      i     ";
+  grid-auto-rows: 180px;
   gap: 1.25rem;
+}
+
+/* Wide cards span 2 columns */
+.ti-bento-card.ti-bento--wide {
+  grid-column: span 2;
+}
+
+/* Tall cards span 2 rows */
+.ti-bento-card.ti-bento--tall {
+  grid-row: span 2;
 }
 
 /* Theme cards */
@@ -3017,16 +3012,9 @@ a.rd-hero-step:hover {
 @media (max-width: 900px) {
   .ti-bento-grid {
     grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(8, 160px);
-    grid-template-areas:
-      "a      a     "
-      "bridge b     "
-      "bridge b     "
-      "c      d     "
-      "c      e     "
-      "f      f     "
-      "g      h     "
-      "g      i     ";
+  }
+  .ti-bento-card.ti-bento--tall {
+    grid-row: span 2;
   }
   .ti-breakout {
     flex-direction: column;
@@ -3081,22 +3069,14 @@ a.rd-hero-step:hover {
   .ti-duo-card-overlap {
     display: none;
   }
-  /* Mobile: single column, bridge card at position 3 (early) */
   .ti-bento-grid {
     grid-template-columns: 1fr;
-    grid-template-rows: auto;
-    grid-template-areas:
-      "a"
-      "b"
-      "bridge"
-      "c"
-      "d"
-      "e"
-      "f"
-      "g"
-      "h"
-      "i";
     grid-auto-rows: 200px;
+  }
+  .ti-bento-card.ti-bento--wide,
+  .ti-bento-card.ti-bento--tall {
+    grid-column: span 1;
+    grid-row: span 1;
   }
   .ti-bridge-card {
     min-height: auto;
