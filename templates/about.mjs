@@ -150,6 +150,11 @@ export function renderAboutPage() {
 ${quizHtml}
             </ul>
 
+            <p class="abt-quiz-attribution">
+              Adapted from the Al-Anon Family Groups self-quiz at
+              <a href="https://al-anon.org/newcomers/self-quiz/" target="_blank" rel="noopener noreferrer">al-anon.org</a>.
+            </p>
+
             <div class="abt-quiz-result" id="quizResult">
               <p class="abt-quiz-result-text">
                 If you answered &ldquo;yes&rdquo; to any of these questions, <strong>you are not alone.</strong>
@@ -164,11 +169,6 @@ ${quizHtml}
             <button type="button" class="abt-reveal-btn" id="revealBtn">
               Reveal My Next Step &darr;
             </button>
-
-            <p class="abt-quiz-attribution">
-              Adapted from the Al-Anon Family Groups self-quiz at
-              <a href="https://al-anon.org/newcomers/self-quiz/" target="_blank" rel="noopener noreferrer">al-anon.org</a>.
-            </p>
 
             <!-- Companion App Callout -->
             <div class="abt-companion">
