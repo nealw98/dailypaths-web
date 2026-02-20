@@ -539,16 +539,34 @@ export function renderTopicPage(topic, featuredReadings, allReadings = []) {
   const allTopicReadings = [...featuredReadings, ...additionalReadings];
   const totalCount = allTopicReadings.length;
 
-  // Build reading cards — grid with date, title, and secondary_theme tag
-  const readingCards = allTopicReadings.map(r => {
-    const slug = dayToSlug(r.day_of_year);
-    return `
-                <a href="${bp(`/${slug}/`)}" class="topic-reading-card">
-                  <span class="topic-reading-card-date">${r.display_date}</span>
-                  <span class="topic-reading-card-title">${r.title}</span>
-                  ${r.secondary_theme ? `<span class="topic-reading-card-tag">${r.secondary_theme}</span>` : ''}
-                </a>`;
-  }).join('\n');
+  // Group readings by secondary_theme
+  const groupedReadings = new Map();
+  for (const r of allTopicReadings) {
+    const theme = r.secondary_theme || 'Other';
+    if (!groupedReadings.has(theme)) groupedReadings.set(theme, []);
+    groupedReadings.get(theme).push(r);
+  }
+
+  const readingGroups = [...groupedReadings.entries()]
+    .sort((a, b) => a[0].localeCompare(b[0]))
+    .map(([theme, readings]) => {
+      const cards = readings.map(r => {
+        const slug = dayToSlug(r.day_of_year);
+        return `
+                  <a href="${bp(`/${slug}/`)}" class="topic-reading-card">
+                    <span class="topic-reading-card-date">${r.display_date}</span>
+                    <span class="topic-reading-card-title">${r.title}</span>
+                  </a>`;
+      }).join('\n');
+
+      return `
+              <div class="topic-reading-group">
+                <h3 class="topic-reading-group-label">${theme}</h3>
+                <div class="topic-readings-grid">
+${cards}
+                </div>
+              </div>`;
+    }).join('\n');
 
   // Member share — use specific share or default
   const memberShare = MEMBER_SHARES[topic.slug] || DEFAULT_MEMBER_SHARE;
@@ -629,9 +647,7 @@ ${coreTruthItems}
         <p class="topic-readings-intro">
           ${totalCount} reading${totalCount === 1 ? '' : 's'} explore this principle.
         </p>
-        <div class="topic-readings-grid">
-${readingCards}
-        </div>
+${readingGroups}
       </section>` : ''}
 
       <!-- Topic Navigation -->

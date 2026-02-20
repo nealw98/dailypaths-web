@@ -4719,14 +4719,24 @@ a.rd-pill--step:hover {
   color: var(--deep-teal);
 }
 
-.topic-reading-card-tag {
+.topic-reading-group {
+  margin-bottom: 2rem;
+}
+
+.topic-reading-group:last-child {
+  margin-bottom: 0;
+}
+
+.topic-reading-group-label {
   font-family: var(--font-sans);
-  font-size: 0.65rem;
-  font-weight: 500;
+  font-size: 0.75rem;
+  font-weight: 600;
   color: var(--ocean);
   text-transform: uppercase;
-  letter-spacing: 0.04em;
-  margin-top: auto;
+  letter-spacing: 0.06em;
+  margin-bottom: 0.75rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--cloud);
 }
 
 @media (min-width: 640px) {
