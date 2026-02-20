@@ -441,28 +441,20 @@ ${bentoCards.slice(0, 6).join('\n')}
         </div>
       </div>
 
-      <!-- Remaining Bento Cards -->
+      <!-- Remaining Bento Cards + Steps Card -->
       <div class="ti-bento-wrap ti-bento-wrap--continued">
         <div class="ti-bento-grid">
 ${bentoCards.slice(6).join('\n')}
-        </div>
-      </div>
 
-      <!-- Beyond Themes — Utility Grid -->
-      <div class="ti-beyond-wrap">
-        <h2 class="ti-beyond-heading">Beyond Themes</h2>
-        <div class="ti-beyond-grid">
-          <a href="${bp('/steps/')}" class="ti-beyond-card">
-            <div class="ti-beyond-icon">&xrarr;</div>
-            <h3 class="ti-beyond-card-title">Ready for the roadmap?</h3>
-            <p class="ti-beyond-card-desc">Explore the 12 Steps &mdash; the foundation of Al-Anon recovery, one month at a time.</p>
-            <span class="ti-beyond-card-link">Explore the Steps &rarr;</span>
-          </a>
-          <a href="https://al-anon.org/al-anon-meetings/find-an-al-anon-meeting/" target="_blank" rel="noopener noreferrer" class="ti-beyond-card">
-            <div class="ti-beyond-icon">&#9825;</div>
-            <h3 class="ti-beyond-card-title">Need a meeting?</h3>
-            <p class="ti-beyond-card-desc">Find Al-Anon support near you &mdash; in person or online. You don&rsquo;t have to do this alone.</p>
-            <span class="ti-beyond-card-link">Find a Meeting &rarr;</span>
+          <!-- 12 Steps Internal Link Card — fills the empty grid slot -->
+          <a href="${bp('/steps/')}" class="ti-steps-card">
+            <span class="ti-steps-icon">&#9678;</span>
+            <h3 class="ti-steps-title">The 12 Steps</h3>
+            <p class="ti-steps-desc">
+              Looking for the roadmap to recovery? Explore the foundational
+              principles of Al-Anon, month by month.
+            </p>
+            <span class="ti-steps-link">Explore the Path &rarr;</span>
           </a>
         </div>
       </div>

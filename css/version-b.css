@@ -2907,81 +2907,71 @@ a.rd-hero-step:hover {
 }
 
 /* =============================================
-   Beyond Themes — Two-Column Utility Grid
+   12 Steps Internal Link Card (bento grid)
    ============================================= */
-.ti-beyond-wrap {
-  max-width: 60rem;
-  margin: 0 auto;
-  padding: 4rem 2rem 4.5rem;
-}
-
-.ti-beyond-heading {
-  font-family: var(--font-serif);
-  font-size: 1.6rem;
-  font-weight: 600;
-  color: var(--deep-teal);
-  margin-bottom: 1.5rem;
-}
-
-.ti-beyond-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1.5rem;
-}
-
-.ti-beyond-card {
+.ti-steps-card {
   display: flex;
   flex-direction: column;
-  padding: 2rem;
-  background: var(--white);
-  border: 1px solid var(--cloud);
-  border-radius: var(--radius);
+  justify-content: center;
+  align-items: center;
+  text-align: center;
   text-decoration: none;
   color: inherit;
-  transition: box-shadow 0.3s, transform 0.3s, border-color 0.3s;
+  padding: 2rem 1.5rem;
+  background: #4A5568;
+  border-radius: var(--radius);
+  grid-row: span 1;
+  grid-column: span 1;
+  transition: background 0.3s, transform 0.3s, box-shadow 0.3s;
 }
 
-.ti-beyond-card:hover {
-  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.08);
-  transform: translateY(-3px);
-  border-color: var(--sage);
+.ti-steps-card:hover {
+  background: #3D4856;
+  transform: translateY(-4px);
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.15);
 }
 
-.ti-beyond-icon {
-  font-size: 1.6rem;
-  margin-bottom: 0.75rem;
-  color: var(--deep-teal);
+.ti-steps-icon {
+  display: block;
+  font-size: 1.8rem;
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 0.9rem;
   line-height: 1;
 }
 
-.ti-beyond-card-title {
+.ti-steps-title {
   font-family: var(--font-serif);
-  font-size: 1.25rem;
+  font-size: 1.3rem;
   font-weight: 700;
-  color: var(--deep-teal);
+  color: var(--white);
   line-height: 1.2;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.6rem;
 }
 
-.ti-beyond-card-desc {
+.ti-steps-desc {
   font-family: var(--font-reading);
-  font-size: 0.9rem;
-  line-height: 1.65;
-  color: var(--ink);
-  margin-bottom: 1rem;
-  flex-grow: 1;
+  font-size: 0.82rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.75);
+  margin: 0 0 1.25rem;
+  max-width: 22rem;
 }
 
-.ti-beyond-card-link {
+.ti-steps-link {
+  display: inline-block;
   font-family: var(--font-sans);
   font-size: 0.82rem;
-  font-weight: 500;
-  color: var(--deep-teal);
-  transition: color 0.2s;
+  font-weight: 600;
+  color: var(--white);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: 999px;
+  padding: 0.45rem 1.3rem;
+  transition: background 0.2s, border-color 0.2s;
 }
 
-.ti-beyond-card:hover .ti-beyond-card-link {
-  color: var(--sage);
+.ti-steps-card:hover .ti-steps-link {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.6);
 }
 
 /* Continued bento wrap (less top padding) */
@@ -3083,9 +3073,6 @@ a.rd-hero-step:hover {
     gap: 0.75rem;
     padding: 0.85rem 1.25rem;
   }
-  .ti-beyond-grid {
-    grid-template-columns: 1fr 1fr;
-  }
 }
 
 /* Responsive — Mobile */
@@ -3140,13 +3127,14 @@ a.rd-hero-step:hover {
     grid-column: span 1;
     grid-row: span 1;
   }
+  .ti-steps-card {
+    grid-row: span 1;
+    padding: 1.75rem 1.25rem;
+  }
   .ti-slim-cta {
     flex-direction: column;
     text-align: center;
     gap: 0.75rem;
-  }
-  .ti-beyond-grid {
-    grid-template-columns: 1fr;
   }
   .ti-community-card {
     padding: 2rem 1.5rem 1.75rem;
