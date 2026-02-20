@@ -4382,13 +4382,15 @@ a.rd-pill--step:hover {
 /* --- Core Truths (Understanding [Name]) --- */
 
 .topic-truths {
-  background: var(--cloud);
   padding: 2.5rem 2rem;
 }
 
 .topic-truths-inner {
   max-width: 42rem;
   margin: 0 auto;
+  background: var(--cloud);
+  border-radius: var(--radius);
+  padding: 2rem 2rem;
 }
 
 .topic-truths-heading {
@@ -4428,6 +4430,46 @@ a.rd-pill--step:hover {
   height: 8px;
   background: var(--sage);
   border-radius: 50%;
+}
+
+/* --- Principle CTA --- */
+
+.topic-cta {
+  padding: 0 2rem 2rem;
+}
+
+.topic-cta-inner {
+  max-width: 42rem;
+  margin: 0 auto;
+  text-align: center;
+  padding: 2rem;
+  border: 1px solid var(--cloud);
+  border-radius: var(--radius);
+}
+
+.topic-cta-text {
+  font-family: var(--font-reading);
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--ink);
+  margin-bottom: 1rem;
+}
+
+.topic-cta-link {
+  display: inline-block;
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--white);
+  background: var(--deep-teal);
+  padding: 0.6rem 1.5rem;
+  border-radius: var(--radius);
+  text-decoration: none;
+  transition: opacity 0.15s;
+}
+
+.topic-cta-link:hover {
+  opacity: 0.85;
 }
 
 /* Old two-column body — kept for any legacy reference, hidden */
@@ -4598,10 +4640,10 @@ a.rd-pill--step:hover {
 }
 
 /* Readings Grid */
-/* --- Daily Reflections List --- */
+/* --- Daily Reflections Cards --- */
 
 .topic-readings-section {
-  max-width: 42rem;
+  max-width: 54rem;
   margin: 0 auto;
   padding: 3rem 2rem;
 }
@@ -4623,58 +4665,66 @@ a.rd-pill--step:hover {
   line-height: 1.6;
 }
 
-.topic-reading-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
+.topic-readings-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.75rem;
 }
 
-.topic-reading-item {
-  border-bottom: 1px solid var(--cloud);
-}
-
-.topic-reading-item:first-child {
-  border-top: 1px solid var(--cloud);
-}
-
-.topic-reading-link {
+.topic-reading-card {
   display: flex;
-  align-items: baseline;
-  gap: 1.25rem;
-  padding: 0.85rem 0;
+  flex-direction: column;
+  padding: 1rem 1.25rem;
+  background: var(--white);
+  border: 1px solid var(--cloud);
+  border-radius: var(--radius);
   text-decoration: none;
   color: inherit;
-  transition: background 0.15s;
+  transition: border-color 0.15s, box-shadow 0.15s;
 }
 
-.topic-reading-link:hover {
-  background: var(--pearl);
-  margin-left: -0.75rem;
-  margin-right: -0.75rem;
-  padding-left: 0.75rem;
-  padding-right: 0.75rem;
-  border-radius: var(--radius);
+.topic-reading-card:hover {
+  border-color: var(--sage);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
 }
 
-.topic-reading-date {
+.topic-reading-card-date {
   font-family: var(--font-sans);
-  font-size: 0.8rem;
+  font-size: 0.7rem;
   font-weight: 500;
-  color: var(--ocean);
-  white-space: nowrap;
-  min-width: 5.5rem;
+  color: var(--sage);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  margin-bottom: 0.35rem;
 }
 
-.topic-reading-title {
+.topic-reading-card-title {
   font-family: var(--font-serif);
-  font-size: 1.05rem;
+  font-size: 1rem;
   font-weight: 600;
   color: var(--ink);
   line-height: 1.35;
+  margin-bottom: 0.5rem;
 }
 
-.topic-reading-link:hover .topic-reading-title {
+.topic-reading-card:hover .topic-reading-card-title {
   color: var(--deep-teal);
+}
+
+.topic-reading-card-tag {
+  font-family: var(--font-sans);
+  font-size: 0.65rem;
+  font-weight: 500;
+  color: var(--ocean);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-top: auto;
+}
+
+@media (min-width: 640px) {
+  .topic-readings-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
 
 /* Topic Navigation */
@@ -4750,12 +4800,8 @@ a.rd-pill--step:hover {
   .topic-readings-section {
     padding: 2rem 1.5rem;
   }
-  .topic-reading-link {
-    flex-direction: column;
-    gap: 0.15rem;
-  }
-  .topic-reading-date {
-    min-width: auto;
+  .topic-readings-grid {
+    grid-template-columns: 1fr;
   }
   .topic-nav-editorial {
     padding-left: 1.5rem;

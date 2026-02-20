@@ -539,16 +539,15 @@ export function renderTopicPage(topic, featuredReadings, allReadings = []) {
   const allTopicReadings = [...featuredReadings, ...additionalReadings];
   const totalCount = allTopicReadings.length;
 
-  // Build reading list items — clean vertical list with date + title
-  const readingListItems = allTopicReadings.map(r => {
+  // Build reading cards — grid with date, title, and secondary_theme tag
+  const readingCards = allTopicReadings.map(r => {
     const slug = dayToSlug(r.day_of_year);
     return `
-              <li class="topic-reading-item">
-                <a href="${bp(`/${slug}/`)}" class="topic-reading-link">
-                  <span class="topic-reading-date">${r.display_date}</span>
-                  <span class="topic-reading-title">${r.title}</span>
-                </a>
-              </li>`;
+                <a href="${bp(`/${slug}/`)}" class="topic-reading-card">
+                  <span class="topic-reading-card-date">${r.display_date}</span>
+                  <span class="topic-reading-card-title">${r.title}</span>
+                  ${r.secondary_theme ? `<span class="topic-reading-card-tag">${r.secondary_theme}</span>` : ''}
+                </a>`;
   }).join('\n');
 
   // Member share — use specific share or default
@@ -608,6 +607,14 @@ ${coreTruthItems}
         </div>
       </section>` : ''}
 
+      <!-- CTA -->
+      <section class="topic-cta">
+        <div class="topic-cta-inner">
+          <p class="topic-cta-text">Explore ${topic.name.toLowerCase()} and other principles of recovery with 366 original daily reflections from Al-Anon Daily Paths.</p>
+          <a href="${bp('/')}" class="topic-cta-link">Start reading today &rarr;</a>
+        </div>
+      </section>
+
       <!-- Daily Reflections on [Name] -->
       ${totalCount > 0 ? `
       <section class="topic-readings-section">
@@ -615,9 +622,9 @@ ${coreTruthItems}
         <p class="topic-readings-intro">
           ${totalCount} reading${totalCount === 1 ? '' : 's'} explore this principle.
         </p>
-        <ol class="topic-reading-list">
-${readingListItems}
-        </ol>
+        <div class="topic-readings-grid">
+${readingCards}
+        </div>
       </section>` : ''}
 
       <!-- Topic Navigation -->
