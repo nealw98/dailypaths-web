@@ -465,6 +465,30 @@ ${bentoCards.slice(6).join('\n')}
             <span class="ti-beyond-card-link">Find a Meeting &rarr;</span>
           </a>
         </div>
+      </div>
+
+      <!-- Community & Support — Resource Spotlight -->
+      <div class="ti-community-wrap">
+        <h3 class="ti-community-heading">You Don&rsquo;t Have to Do This Alone.</h3>
+        <p class="ti-community-intro">
+          Recovery is a shared journey. We encourage you to find a local or electronic
+          meeting to connect with others who truly understand.
+        </p>
+        <div class="ti-community-card">
+          <span class="ti-community-badge">Official Resource</span>
+          <p class="ti-community-card-text">
+            Al-Anon Family Groups maintains a worldwide directory of in-person and
+            electronic meetings &mdash; free, confidential, and open to anyone affected
+            by someone else&rsquo;s drinking.
+          </p>
+          <a href="https://al-anon.org/al-anon-meetings/find-an-al-anon-meeting/"
+             target="_blank"
+             rel="noopener noreferrer"
+             title="Search for Al-Anon meetings on the official Al-Anon Family Groups website"
+             class="ti-community-btn">
+            Search the Official Meeting Directory&nbsp;&#8599;
+          </a>
+        </div>
       </div>`;
 
   return wrapInLayout({

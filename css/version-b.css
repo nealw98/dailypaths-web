@@ -2989,6 +2989,86 @@ a.rd-hero-step:hover {
   padding-top: 0;
 }
 
+/* =============================================
+   Community & Support — Resource Spotlight
+   ============================================= */
+.ti-community-wrap {
+  max-width: 42rem;
+  margin: 0 auto;
+  padding: 1rem 2rem 4.5rem;
+  text-align: center;
+}
+
+.ti-community-heading {
+  font-family: var(--font-serif);
+  font-size: clamp(1.3rem, 3vw, 1.6rem);
+  font-weight: 700;
+  color: var(--deep-teal);
+  line-height: 1.2;
+  margin-bottom: 0.75rem;
+}
+
+.ti-community-intro {
+  font-family: var(--font-reading);
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: var(--ink);
+  margin: 0 auto 2rem;
+  max-width: 36rem;
+}
+
+.ti-community-card {
+  position: relative;
+  background: var(--white);
+  border: 1px solid var(--cloud);
+  border-radius: var(--radius);
+  padding: 2.25rem 2rem 2rem;
+  text-align: left;
+}
+
+.ti-community-badge {
+  position: absolute;
+  top: -0.65rem;
+  right: 1.25rem;
+  display: inline-block;
+  font-family: var(--font-sans);
+  font-size: 0.65rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--white);
+  background: var(--deep-teal);
+  padding: 0.25rem 0.7rem;
+  border-radius: 999px;
+}
+
+.ti-community-card-text {
+  font-family: var(--font-reading);
+  font-size: 0.92rem;
+  line-height: 1.7;
+  color: var(--ink);
+  margin: 0 0 1.5rem;
+}
+
+.ti-community-btn {
+  display: inline-block;
+  font-family: var(--font-sans);
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--white);
+  background: var(--deep-teal);
+  text-decoration: none;
+  padding: 0.75rem 1.75rem;
+  border-radius: var(--radius);
+  transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+}
+
+.ti-community-btn:hover {
+  background: var(--sage);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+}
+
 /* Responsive — Tablet */
 @media (max-width: 900px) {
   .ti-bento-grid {
@@ -3067,6 +3147,13 @@ a.rd-hero-step:hover {
   }
   .ti-beyond-grid {
     grid-template-columns: 1fr;
+  }
+  .ti-community-card {
+    padding: 2rem 1.5rem 1.75rem;
+  }
+  .ti-community-btn {
+    display: block;
+    text-align: center;
   }
 }
 
