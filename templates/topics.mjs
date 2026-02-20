@@ -313,31 +313,109 @@ export const TOPICS = [
  * Render the Topics index page.
  */
 export function renderTopicsIndexPage() {
-  const topicItems = TOPICS.map(topic => {
+  // Featured theme — Detachment gets the large hero-style card
+  const featured = TOPICS[0];
+  const pullQuoteFeatured = TOPIC_PULL_QUOTES[featured.slug] || '';
+
+  // Remaining themes in a grid
+  const gridCards = TOPICS.slice(1).map(topic => {
     return `
-          <li>
-            <a href="${bp(`/themes/${topic.slug}/`)}" class="topic-list-item">
-              <span class="topic-list-name">${topic.name}</span>
-              <span class="topic-list-desc">${topic.shortDescription}</span>
-            </a>
-          </li>`;
+          <a href="${bp(`/themes/${topic.slug}/`)}" class="ti-grid-card">
+            <div class="ti-grid-card-image">
+              <img src="${bp(`/assets/themes/${topic.image}`)}" alt="${topic.imageAlt || topic.name}" />
+            </div>
+            <div class="ti-grid-card-body">
+              <h3 class="ti-grid-card-title">${topic.name}</h3>
+              <p class="ti-grid-card-desc">${topic.shortDescription}</p>
+            </div>
+          </a>`;
   }).join('\n');
 
   const bodyContent = `
-    <div class="content-page topics-index-page">
-      <div class="content-container">
-        <h1 class="page-title">Themes</h1>
-        <p class="page-description">
-          These are the themes that run through Al-Anon recovery &mdash; the
-          subjects we actually talk about after the meeting. Each theme
-          includes reflections and curated readings to deepen your understanding.
-        </p>
+      <!-- Hero -->
+      <header class="ti-hero">
+        <div class="ti-hero-image">
+          <img src="${bp('/assets/themes/themes.jpg')}" alt="Recovery Themes" />
+          <div class="ti-hero-overlay"></div>
+        </div>
+        <div class="ti-hero-content">
+          <span class="ti-hero-label">Recovery Themes</span>
+          <h1 class="ti-hero-title">Themes</h1>
+          <p class="ti-hero-desc">The subjects we actually talk about after the meeting &mdash; the threads that run through every stage of Al-Anon recovery.</p>
+        </div>
+      </header>
 
-        <ul class="topic-list">
-${topicItems}
-        </ul>
+      <!-- Intro + Steps Sidebar -->
+      <div class="ti-intro-wrap">
+        <div class="ti-intro-inner">
+          <div class="ti-intro-text">
+            <p>
+              Each theme explores a different facet of recovery &mdash; from the
+              early work of accepting powerlessness to the ongoing practice of
+              gratitude and service. Every theme includes reflections and curated
+              daily readings to deepen your understanding.
+            </p>
+            <p>
+              These aren&rsquo;t abstract ideas. They&rsquo;re the lived
+              experience of people who found themselves in impossible situations
+              and discovered a way through.
+            </p>
+          </div>
+
+          <!-- Steps Callout Sidebar -->
+          <aside class="ti-steps-callout">
+            <span class="ti-steps-callout-label">The Twelve Steps</span>
+            <h3 class="ti-steps-callout-title">Ready to work the Steps?</h3>
+            <p class="ti-steps-callout-text">
+              The Steps are the foundation of Al-Anon recovery. Each month&rsquo;s
+              readings focus on one step, from Step 1 in January through Step 12
+              in December.
+            </p>
+            <a href="${bp('/steps/')}" class="ti-steps-callout-link">Explore the Twelve Steps &rarr;</a>
+          </aside>
+        </div>
       </div>
-    </div>`;
+
+      <!-- Featured Theme -->
+      <div class="ti-featured-wrap">
+        <a href="${bp(`/themes/${featured.slug}/`)}" class="ti-featured-card">
+          <div class="ti-featured-image">
+            <img src="${bp(`/assets/themes/${featured.image}`)}" alt="${featured.imageAlt || featured.name}" />
+          </div>
+          <div class="ti-featured-body">
+            <div class="ti-featured-meta">
+              <span class="ti-featured-label">Featured Theme</span>
+            </div>
+            <h2 class="ti-featured-title">${featured.name}</h2>
+            <p class="ti-featured-desc">${featured.shortDescription}</p>
+            <p class="ti-featured-quote">&ldquo;${pullQuoteFeatured}&rdquo;</p>
+            <span class="ti-featured-cta">Read &amp; Reflect &rarr;</span>
+          </div>
+        </a>
+      </div>
+
+      <!-- Themes Grid -->
+      <div class="ti-grid-wrap">
+        <h2 class="ti-grid-heading">All Themes</h2>
+        <div class="ti-grid">
+${gridCards}
+        </div>
+      </div>
+
+      <!-- App Download CTA -->
+      <div class="ti-app-wrap">
+        <aside class="ti-app-callout">
+          <p class="ti-app-text">Explore these themes with daily readings in the <strong>Al-Anon Daily Paths</strong> app &mdash; your recovery companion, always in your pocket.</p>
+          <div class="ti-app-badges">
+            <a href="https://apps.apple.com/app/id6755981862" target="_blank" rel="noopener noreferrer">
+              <img src="https://developer.apple.com/app-store/marketing/guidelines/images/badge-download-on-the-app-store.svg" alt="Download on the App Store" class="ti-app-badge">
+            </a>
+            <a href="https://play.google.com/store/apps/details?id=com.dailypaths" target="_blank" rel="noopener noreferrer">
+              <img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" alt="Get it on Google Play" class="ti-app-badge ti-app-badge-play">
+            </a>
+          </div>
+        </aside>
+      </div>`;
 
   return wrapInLayout({
     title: 'Themes &mdash; Al-Anon Recovery Themes & Reflections | Al-Anon Daily Paths',
