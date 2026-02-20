@@ -1,36 +1,10 @@
 import { wrapInLayout } from './base.mjs';
 import { homepageStructuredData } from '../helpers/seo.mjs';
-import { textToHtmlParagraphs, renderQuote } from '../helpers/markdown.mjs';
 import { dayToSlug } from '../helpers/slug-utils.mjs';
 import { bp } from '../helpers/config.mjs';
-import { TOPICS } from './topics.mjs';
-
-// Build reverse map: secondary_theme value → topic slug & name
-const THEME_TO_TOPIC = {};
-const _TOPIC_THEME_TAGS = {
-  'detachment':            ['Detachment', 'Release', 'Relinquishment', 'Freedom'],
-  'powerlessness':         ['Powerlessness', 'Surrender', 'Acceptance', 'Relief'],
-  'focus-on-yourself':     ['Self-Care', 'Self-care', 'Self-focus', 'Self-love', 'Self-Acceptance', 'Self-acceptance', 'Redirection', 'Focus'],
-  'one-day-at-a-time':     ['Presence', 'Patience', 'Simplicity', 'Peace', 'Serenity'],
-  'boundaries':            ['Boundaries', 'Respect', 'Independence', 'Self-Discipline'],
-  'letting-go-of-control': ['Control', 'Flexibility', 'Willingness', 'Self-will'],
-  'self-worth':            ['Self-worth', 'Self-esteem', 'Self-compassion', 'Identity', 'Self-forgiveness'],
-  'higher-power':          ['Faith', 'Trust', 'Prayer', 'Spiritual Connection', 'Spiritual intimacy', 'Reliance', 'Spirit'],
-  'honesty':               ['Honesty', 'Truth', 'Self-awareness', 'Awareness', 'Integrity', 'Clarity'],
-  'gratitude-and-hope':    ['Gratitude', 'Hope', 'Miracles', 'Vision'],
-  'the-disease':           ['Understanding', 'Compassion', 'Reality', 'Sanity'],
-  'fellowship':            ['Fellowship', 'Connection', 'Community', 'Belonging', 'Unity', 'Sponsorship', 'Inclusion'],
-};
-for (const [topicSlug, tags] of Object.entries(_TOPIC_THEME_TAGS)) {
-  const topic = TOPICS.find(t => t.slug === topicSlug);
-  if (!topic) continue;
-  for (const tag of tags) {
-    THEME_TO_TOPIC[tag] = { slug: topicSlug, name: topic.name };
-  }
-}
 
 /**
- * Generate the homepage HTML with today's reading — editorial layout.
+ * Generate the homepage HTML — Editorial Hub layout.
  *
  * @param {Object} todayReading - Today's reading object
  * @param {Object} prevReading - Previous day's reading (for nav)
@@ -39,179 +13,114 @@ for (const [topicSlug, tags] of Object.entries(_TOPIC_THEME_TAGS)) {
  */
 export function renderHomepage(todayReading, prevReading, nextReading, allReadings = []) {
   const structuredData = homepageStructuredData();
-
   const slug = dayToSlug(todayReading.day_of_year);
-  const prevSlug = dayToSlug(prevReading.day_of_year);
-  const nextSlug = dayToSlug(nextReading.day_of_year);
 
-  const quoteHtml = renderQuote(todayReading.quote);
-  const openingHtml = textToHtmlParagraphs(todayReading.opening);
-  const bodyHtml = textToHtmlParagraphs(todayReading.body);
-  const applicationHtml = todayReading.application ? textToHtmlParagraphs(todayReading.application) : '';
-  const thoughtHtml = todayReading.thought_for_day
-    ? todayReading.thought_for_day.replace(/\\n/g, '\n').replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>').replace(/\*(.+?)\*/g, '<em>$1</em>')
-    : '';
-
-  // Build related readings sidebar from secondary_theme
-  let relatedHtml = '';
-  const theme = todayReading.secondary_theme;
-  if (theme && allReadings.length > 0) {
-    const related = allReadings.filter(
-      r => r.secondary_theme === theme && r.day_of_year !== todayReading.day_of_year
-    ).slice(0, 8);
-
-    if (related.length > 0) {
-      const relatedItems = related.map(r => {
-        const rSlug = dayToSlug(r.day_of_year);
-        return `
-              <li class="rd-related-item">
-                <a href="${bp(`/${rSlug}/`)}">
-                  <span class="rd-related-date">${r.display_date}</span>
-                  <span class="rd-related-title">${r.title}</span>
-                </a>
-              </li>`;
-      }).join('\n');
-
-      relatedHtml = `
-            <div class="rd-sidebar-related">
-              <h3 class="rd-sidebar-heading">More on ${theme}</h3>
-              <p class="rd-sidebar-intro">Additional readings exploring this theme</p>
-              <ul class="rd-related-list">
-${relatedItems}
-              </ul>
-            </div>`;
-    }
-  }
-
-  // Theme pill for header — links to topic page
-  let themePill = '';
-  if (todayReading.secondary_theme) {
-    const topicMatch = THEME_TO_TOPIC[todayReading.secondary_theme];
-    if (topicMatch) {
-      themePill = `<a href="${bp(`/themes/${topicMatch.slug}/`)}" class="rd-hero-theme">${todayReading.secondary_theme}</a>`;
-    } else {
-      themePill = `<span class="rd-hero-theme">${todayReading.secondary_theme}</span>`;
-    }
-  }
-
-  // Step theme link — links to step page
-  let stepLabel = '';
-  const stepTheme = todayReading.step_theme || '';
-  if (stepTheme) {
-    const stepMatch = stepTheme.match(/^Step (\d+)$/);
-    if (stepMatch) {
-      stepLabel = `<a href="${bp(`/steps/step-${stepMatch[1]}/`)}" class="rd-hero-step">${stepTheme}</a>`;
-    } else {
-      stepLabel = `<span class="rd-hero-step">${stepTheme}</span>`;
-    }
-  }
+  // Build a plain-text preview (~300 chars) from the opening + body
+  const rawText = [todayReading.opening, todayReading.body]
+    .filter(Boolean)
+    .join(' ')
+    .replace(/\\n/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
+  const preview = rawText.length > 300
+    ? rawText.slice(0, 300).replace(/\s+\S*$/, '') + '…'
+    : rawText;
 
   const bodyContent = `
     <!-- Site Hero Banner -->
     <section class="home-hero">
       <div class="home-hero-image">
-        <img src="${bp('/assets/hero-image.jpg')}" alt="Al-Anon Daily Paths" />
+        <img src="${bp('/assets/hero-image.jpg')}" alt="Al-Anon Daily Paths — finding serenity in the chaos" />
         <div class="home-hero-overlay"></div>
       </div>
       <div class="home-hero-content">
         <h1 class="home-hero-title">Al-Anon Daily Paths</h1>
-        <p class="home-hero-tagline">Daily reflections for the Al-Anon journey</p>
+        <p class="home-hero-sub">Finding Serenity in the Chaos</p>
+        <p class="home-hero-tagline">366 original reflections for those affected by someone else&rsquo;s drinking.</p>
+        <div class="home-hero-badges">
+          <a href="https://apps.apple.com/app/id6755981862" target="_blank" rel="noopener noreferrer" class="home-hero-badge-link">
+            <img src="https://developer.apple.com/app-store/marketing/guidelines/images/badge-download-on-the-app-store.svg" alt="Download on the App Store" class="home-hero-badge">
+          </a>
+          <a href="https://play.google.com/store/apps/details?id=com.dailypaths" target="_blank" rel="noopener noreferrer" class="home-hero-badge-link">
+            <img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" alt="Get it on Google Play" class="home-hero-badge home-hero-badge-play">
+          </a>
+        </div>
       </div>
     </section>
 
-    <article class="reading-page">
-
-      <!-- Today's Reading Header -->
-      <header class="rd-hero">
-        <p class="rd-hero-date">${todayReading.display_date} &mdash; Today&rsquo;s Reading</p>
-        <h2 class="rd-hero-title">${todayReading.title}</h2>
-        <div class="rd-hero-tags">
-          ${themePill}
-          ${stepLabel}
+    <!-- Today's Reading — Feature Card -->
+    <div class="home-feature-wrap">
+      <a href="${bp(`/${slug}/`)}" class="home-feature-card">
+        <span class="home-feature-label">Today&rsquo;s Reading</span>
+        <p class="home-feature-date">${todayReading.display_date}</p>
+        <h2 class="home-feature-title">${todayReading.title}</h2>
+        <div class="home-feature-preview">
+          <p>${preview}</p>
+          <div class="home-feature-fade"></div>
         </div>
-      </header>
+        <span class="home-feature-btn">Read Today&rsquo;s Reflection &rarr;</span>
+      </a>
+    </div>
 
-      <!-- Two-Column Body -->
-      <div class="rd-body-wrap">
-        <div class="rd-body-inner">
-
-          <!-- Main Column -->
-          <div class="rd-main-col">
-            <section class="reading-quote">
-              ${quoteHtml}
-            </section>
-
-            <section class="reading-body">
-              ${openingHtml}
-              ${bodyHtml}
-            </section>
-
-            ${applicationHtml ? `
-            <div class="reading-divider"></div>
-            <section class="reading-application">
-              ${applicationHtml}
-            </section>
-            ` : ''}
-
-            ${thoughtHtml ? `
-            <aside class="reading-thought">
-              <p class="thought-label">Thought for the Day</p>
-              <p class="thought-text">${thoughtHtml}</p>
-            </aside>
-            ` : ''}
+    <!-- Discovery Row — Two Cards -->
+    <div class="home-discover-wrap">
+      <div class="home-discover-grid">
+        <a href="${bp('/themes/')}" class="home-discover-card">
+          <div class="home-discover-card-img">
+            <img src="${bp('/assets/themes/detachment.jpg')}" alt="Recovery themes" />
           </div>
-
-          <!-- Sidebar -->
-          <aside class="rd-sidebar">
-${relatedHtml}
-
-            <div class="rd-sidebar-app">
-              <p class="rd-sidebar-heading">Take it with you</p>
-              <p class="rd-sidebar-app-text">Read daily reflections on the go with the Al-Anon Daily Paths app.</p>
-              <div class="rd-sidebar-badges">
-                <a href="https://apps.apple.com/app/id6755981862" target="_blank" rel="noopener noreferrer">
-                  <img src="https://developer.apple.com/app-store/marketing/guidelines/images/badge-download-on-the-app-store.svg" alt="Download on the App Store" class="rd-sidebar-badge">
-                </a>
-                <a href="https://play.google.com/store/apps/details?id=com.dailypaths" target="_blank" rel="noopener noreferrer">
-                  <img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" alt="Get it on Google Play" class="rd-sidebar-badge rd-sidebar-badge-play">
-                </a>
-              </div>
-            </div>
-          </aside>
-        </div>
+          <div class="home-discover-card-gradient"></div>
+          <div class="home-discover-card-text">
+            <span class="home-discover-card-label">12 Recovery Themes</span>
+            <h3 class="home-discover-card-title">Browse by Theme</h3>
+            <p class="home-discover-card-desc">Explore detachment, boundaries, gratitude, and more &mdash; the emotional terrain of Al-Anon recovery.</p>
+          </div>
+        </a>
+        <a href="${bp('/steps/')}" class="home-discover-card">
+          <div class="home-discover-card-img">
+            <img src="${bp('/assets/themes/higher-power.jpg')}" alt="The 12 Steps" />
+          </div>
+          <div class="home-discover-card-gradient"></div>
+          <div class="home-discover-card-text">
+            <span class="home-discover-card-label">Month-by-Month Guide</span>
+            <h3 class="home-discover-card-title">Work the Steps</h3>
+            <p class="home-discover-card-desc">A structured path through the 12 Steps of Al-Anon &mdash; one month at a time.</p>
+          </div>
+        </a>
       </div>
+    </div>
 
-      <!-- Prev / Next Nav -->
-      <nav class="rd-nav-footer">
-        <a href="${bp(`/${prevSlug}/`)}" class="rd-nav-link rd-nav-prev">
-          <span class="rd-nav-label">&larr; Previous</span>
-          <span class="rd-nav-date">${prevReading.display_date}</span>
-          <span class="rd-nav-title">${prevReading.title}</span>
+    <!-- Community & Support — You Are Not Alone -->
+    <div class="home-community-wrap">
+      <h3 class="home-community-heading">You Don&rsquo;t Have to Do This Alone.</h3>
+      <p class="home-community-intro">
+        Recovery is a shared journey. We encourage you to find a local or electronic
+        meeting to connect with others who truly understand.
+      </p>
+      <div class="home-community-card">
+        <span class="home-community-badge">Official Resource</span>
+        <p class="home-community-card-text">
+          Al-Anon Family Groups maintains a worldwide directory of in-person and
+          electronic meetings &mdash; free, confidential, and open to anyone affected
+          by someone else&rsquo;s drinking.
+        </p>
+        <a href="https://al-anon.org/al-anon-meetings/find-an-al-anon-meeting/"
+           target="_blank"
+           rel="noopener noreferrer"
+           title="Search for Al-Anon meetings on the official Al-Anon Family Groups website"
+           class="home-community-btn">
+          Search the Official Meeting Directory&nbsp;&#8599;
         </a>
-        <span></span>
-        <a href="${bp(`/${nextSlug}/`)}" class="rd-nav-link rd-nav-next">
-          <span class="rd-nav-label">Next &rarr;</span>
-          <span class="rd-nav-date">${nextReading.display_date}</span>
-          <span class="rd-nav-title">${nextReading.title}</span>
-        </a>
-      </nav>
+      </div>
+    </div>
 
-    </article>
-
+    <!-- About -->
     <section class="home-about">
       <div class="home-container">
-        <h2 class="section-title">About Al-Anon Daily Paths</h2>
-        <p>
-          Al-Anon Daily Paths offers 366 original daily reflections written for anyone
-          whose life has been affected by someone else's drinking. Grounded in
-          the principles of the Al-Anon program, each reading draws on the
-          Twelve Steps, Traditions, and Concepts of Service to offer practical
-          wisdom and quiet encouragement.
-        </p>
         <p>
           These reflections are not official Al-Anon literature. They are
           original writings inspired by the spirit of recovery found in
-          Al-Anon's program of hope.
+          Al-Anon&rsquo;s program of hope.
         </p>
       </div>
     </section>`;
