@@ -72,7 +72,7 @@ const dirs = [
   join(outDir, 'support'),
   join(outDir, 'terms'),
   join(outDir, 'prayers'),
-  join(outDir, 'about'),
+  join(outDir, 'about-alanon'),
   join(outDir, 'quiz'),
   join(outDir, 'traditions'),
   join(outDir, 'concepts'),
@@ -152,7 +152,7 @@ writePage(join(outDir, 'privacy', 'index.html'), renderPrivacyPage());
 writePage(join(outDir, 'support', 'index.html'), renderSupportPage());
 writePage(join(outDir, 'terms', 'index.html'), renderTermsPage());
 writePage(join(outDir, 'prayers', 'index.html'), renderPrayersPage());
-writePage(join(outDir, 'about', 'index.html'), renderAboutPage());
+writePage(join(outDir, 'about-alanon', 'index.html'), renderAboutPage());
 writePage(join(outDir, 'quiz', 'index.html'), renderQuizPage());
 writePage(join(outDir, 'traditions', 'index.html'), renderTraditionsPage());
 writePage(join(outDir, 'concepts', 'index.html'), renderConceptsPage());

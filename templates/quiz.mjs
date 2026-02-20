@@ -77,7 +77,7 @@ export function renderQuizPage() {
             support for your own recovery and peace of mind.
           </p>
           <div class="quiz-next-steps">
-            <a href="${bp('/about/')}" class="external-link">Learn more about Al-Anon &rarr;</a>
+            <a href="${bp('/about-alanon/')}" class="external-link">Learn more about Al-Anon &rarr;</a>
             <a href="${bp('/steps/')}" class="external-link">Explore the Twelve Steps &rarr;</a>
             <a href="${bp('/')}" class="external-link">Read today&rsquo;s reflection &rarr;</a>
           </div>

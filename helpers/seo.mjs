@@ -43,7 +43,7 @@ export function generateSitemap(readings, topics, books = []) {
 
   // Static pages
   urls.push({ loc: SITE_URL + '/prayers/', priority: '0.6', changefreq: 'monthly' });
-  urls.push({ loc: SITE_URL + '/about/', priority: '0.6', changefreq: 'monthly' });
+  urls.push({ loc: SITE_URL + '/about-alanon/', priority: '0.6', changefreq: 'monthly' });
   urls.push({ loc: SITE_URL + '/quiz/', priority: '0.6', changefreq: 'monthly' });
   urls.push({ loc: SITE_URL + '/traditions/', priority: '0.6', changefreq: 'monthly' });
   urls.push({ loc: SITE_URL + '/concepts/', priority: '0.6', changefreq: 'monthly' });

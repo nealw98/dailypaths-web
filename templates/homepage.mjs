@@ -107,11 +107,11 @@ export function renderHomepage(todayReading, prevReading, nextReading, allReadin
           </p>
         </div>
         <div class="home-whatis-cta">
-          <a href="https://al-anon.org/newcomers/" target="_blank" rel="noopener noreferrer" class="home-whatis-card">
+          <a href="${bp('/about-alanon/')}" class="home-whatis-card">
             <span class="home-whatis-card-label">For Newcomers</span>
             <h3 class="home-whatis-card-title">New to the Program?</h3>
-            <p class="home-whatis-card-desc">Visit the official Al-Anon newcomers page to learn about meetings, the program, and how to get started.</p>
-            <span class="home-whatis-card-link">Learn More at Al-Anon.org &rarr;</span>
+            <p class="home-whatis-card-desc">Learn how Al-Anon works, what to expect at a meeting, and how these daily readings can support your journey.</p>
+            <span class="home-whatis-card-link">Start Here &rarr;</span>
           </a>
         </div>
       </div>

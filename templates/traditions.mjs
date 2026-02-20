@@ -76,7 +76,7 @@ export function renderTraditionsPage() {
           <div class="traditions-next-steps">
             <a href="${bp('/steps/')}" class="external-link">Explore the Twelve Steps &rarr;</a>
             <a href="${bp('/concepts/')}" class="external-link">Read the Twelve Concepts of Service &rarr;</a>
-            <a href="${bp('/about/')}" class="external-link">Learn more about Al-Anon &rarr;</a>
+            <a href="${bp('/about-alanon/')}" class="external-link">Learn more about Al-Anon &rarr;</a>
           </div>
         </section>
 

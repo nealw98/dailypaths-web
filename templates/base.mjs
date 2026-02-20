@@ -97,7 +97,7 @@ ${structuredData}
         <a href="${bp('/steps/')}" class="nav-link">Steps</a>
         <a href="${bp('/themes/')}" class="nav-link">Themes</a>
         <a href="${bp('/prayers/')}" class="nav-link">Prayers</a>
-        <a href="${bp('/about/')}" class="nav-link">About</a>
+        <a href="${bp('/about-alanon/')}" class="nav-link">Al-Anon</a>
       </nav>
     </div>
   </header>
@@ -113,7 +113,7 @@ ${bodyContent}
         <p class="footer-tagline">Daily reflections for the Al-Anon journey</p>
       </div>
       <nav class="footer-nav">
-        <a href="${bp('/about/')}">About</a>
+        <a href="${bp('/about-alanon/')}">Al-Anon</a>
         <a href="${bp('/support/')}">Support</a>
         <a href="${bp('/privacy/')}">Privacy</a>
         <a href="${bp('/terms/')}">Terms</a>

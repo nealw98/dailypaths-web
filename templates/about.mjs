@@ -101,7 +101,7 @@ export function renderAboutPage() {
   return wrapInLayout({
     title: 'About Al-Anon Family Groups | Al-Anon Daily Paths',
     description: 'Learn about Al-Anon Family Groups, a mutual support program for anyone affected by someone else\'s drinking. Find meetings, explore the Steps, Traditions, and Concepts.',
-    canonicalPath: '/about/',
+    canonicalPath: '/about-alanon/',
     bodyContent,
     bodyClass: 'page-about',
   });
