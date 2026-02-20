@@ -744,9 +744,9 @@ a.rd-pill--step:hover {
 
 /* What is Al-Anon? — Two-column section */
 .home-whatis-wrap {
-  max-width: 1100px;
+  max-width: 42rem;
   margin: 4rem auto;
-  padding: 3rem 2.5rem;
+  padding: 3rem 2rem;
   background: var(--cloud);
   border-radius: var(--radius);
 }
