@@ -1770,49 +1770,583 @@ a.rd-pill--step:hover {
 }
 
 /* --- About Page --- */
-.about-links {
+/* ==========================================================================
+   About Al-Anon Page — Comprehensive Guide Layout
+   ========================================================================== */
+
+/* Hero */
+.abt-hero {
+  background: linear-gradient(135deg, var(--sage-mist) 0%, var(--cloud) 100%);
+  text-align: center;
+  padding: 4rem 2rem 3.5rem;
+}
+
+.abt-hero-title {
+  font-family: var(--font-serif);
+  font-size: clamp(2rem, 5vw, 2.8rem);
+  font-weight: 700;
+  color: var(--deep-teal);
+  line-height: 1.15;
+  margin-bottom: 0.75rem;
+}
+
+.abt-hero-sub {
+  font-family: var(--font-reading);
+  font-size: clamp(1rem, 2vw, 1.15rem);
+  color: var(--ink);
+  line-height: 1.65;
+  max-width: 36rem;
+  margin: 0 auto;
+  opacity: 0.8;
+}
+
+/* Mobile Jump Menu */
+.abt-jump {
+  display: none;
+}
+
+@media (max-width: 767px) {
+  .abt-jump {
+    display: flex;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    background: var(--white);
+    border-bottom: 1px solid var(--cloud);
+    position: sticky;
+    top: 0;
+    z-index: 8;
+  }
+}
+
+.abt-jump-pill {
+  flex-shrink: 0;
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--deep-teal);
+  background: var(--cloud);
+  text-decoration: none;
+  padding: 0.4rem 0.85rem;
+  border-radius: 999px;
+  white-space: nowrap;
+  transition: background 0.15s;
+}
+
+.abt-jump-pill:hover {
+  background: var(--mist);
+}
+
+/* Body Wrapper — Two-column layout */
+.abt-body-wrap {
+  max-width: 64rem;
+  margin: 0 auto;
+  padding: 3rem 2rem 2rem;
+}
+
+.abt-body-inner {
+  display: flex;
+  gap: 3rem;
+}
+
+.abt-main {
+  flex: 7;
+  min-width: 0;
+}
+
+/* Sticky Sidebar (desktop only) */
+.abt-sidebar {
+  flex: 3;
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .abt-sidebar {
+    display: block;
+  }
+}
+
+.abt-toc {
+  position: sticky;
+  top: 5.5rem;
+}
+
+.abt-toc-heading {
+  font-family: var(--font-sans);
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--ink);
+  opacity: 0.5;
+  margin-bottom: 0.75rem;
+}
+
+.abt-toc-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.abt-toc-list li {
+  margin-bottom: 0.15rem;
+}
+
+.abt-toc-link {
+  display: block;
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--ink);
+  opacity: 0.6;
+  text-decoration: none;
+  padding: 0.4rem 0 0.4rem 1rem;
+  border-left: 2px solid transparent;
+  transition: color 0.15s, opacity 0.15s, border-color 0.15s;
+}
+
+.abt-toc-link:hover {
+  opacity: 1;
+  color: var(--deep-teal);
+}
+
+.abt-toc-link.is-active {
+  opacity: 1;
+  color: var(--deep-teal);
+  font-weight: 600;
+  border-left-color: var(--deep-teal);
+}
+
+/* Section Shared */
+.abt-section {
+  margin-bottom: 3.5rem;
+  scroll-margin-top: 4rem;
+}
+
+.abt-section-heading {
+  font-family: var(--font-serif);
+  font-size: clamp(1.4rem, 3vw, 1.7rem);
+  font-weight: 700;
+  color: var(--deep-teal);
+  line-height: 1.2;
+  margin-bottom: 0.75rem;
+}
+
+.abt-section-intro {
+  font-family: var(--font-reading);
+  font-size: 0.95rem;
+  line-height: 1.75;
+  color: var(--ink);
+  margin-bottom: 1.75rem;
+}
+
+/* Back to Top (mobile only) */
+.abt-back-top {
+  display: none;
+}
+
+.abt-back-top--mobile {
+  display: none;
+}
+
+@media (max-width: 767px) {
+  .abt-back-top--mobile {
+    display: inline-block;
+    font-family: var(--font-sans);
+    font-size: 0.78rem;
+    font-weight: 500;
+    color: var(--ocean);
+    text-decoration: none;
+    margin-top: 1.5rem;
+  }
+
+  .abt-back-top--mobile:hover {
+    color: var(--deep-teal);
+  }
+}
+
+/* ── Self-Reflection Quiz ────────────────────────────────────── */
+
+.abt-quiz-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1.5rem;
+}
+
+.abt-quiz-item {
+  border-bottom: 1px solid var(--cloud);
+}
+
+.abt-quiz-label {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  padding: 0.85rem 0;
+  cursor: pointer;
+  transition: background 0.1s;
+}
+
+.abt-quiz-label:hover {
+  background: rgba(0, 0, 0, 0.015);
+}
+
+/* Hide native checkbox */
+.abt-quiz-check {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* Custom checkbox box */
+.abt-quiz-box {
+  flex-shrink: 0;
+  width: 22px;
+  height: 22px;
+  margin-top: 1px;
+  border: 2px solid var(--mist);
+  border-radius: 4px;
+  background: var(--white);
+  position: relative;
+  transition: border-color 0.15s, background 0.15s;
+}
+
+/* Checkmark */
+.abt-quiz-box::after {
+  content: '';
+  position: absolute;
+  top: 3px;
+  left: 6px;
+  width: 6px;
+  height: 10px;
+  border: solid var(--white);
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+  opacity: 0;
+  transition: opacity 0.15s;
+}
+
+/* Checked state */
+.abt-quiz-check:checked + .abt-quiz-box {
+  background: var(--deep-teal);
+  border-color: var(--deep-teal);
+}
+
+.abt-quiz-check:checked + .abt-quiz-box::after {
+  opacity: 1;
+}
+
+/* Focus visible ring */
+.abt-quiz-check:focus-visible + .abt-quiz-box {
+  outline: 2px solid var(--ocean);
+  outline-offset: 2px;
+}
+
+.abt-quiz-text {
+  font-family: var(--font-reading);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--ink);
+}
+
+/* Quiz Result — hidden by default, revealed on button click */
+.abt-quiz-result {
+  background: var(--sage-mist);
+  border: 1px solid var(--sage-light);
+  border-left: 4px solid var(--sage);
+  border-radius: var(--radius);
+  padding: 1.5rem 1.75rem;
+  margin-bottom: 1.25rem;
+  opacity: 0;
+  max-height: 0;
+  overflow: hidden;
+  transition: opacity 0.4s, max-height 0.4s, padding 0.4s, margin 0.4s;
+  padding-top: 0;
+  padding-bottom: 0;
+  margin-bottom: 0;
+}
+
+.abt-quiz-result.is-visible {
+  opacity: 1;
+  max-height: 300px;
+  padding: 1.5rem 1.75rem;
+  margin-bottom: 1.25rem;
+}
+
+.abt-quiz-result-text {
+  font-family: var(--font-reading);
+  font-size: 1rem;
+  line-height: 1.65;
+  color: var(--ink);
+  margin-bottom: 1rem;
+}
+
+.abt-quiz-meeting-link {
+  display: inline-block;
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--white);
+  background: var(--deep-teal);
+  text-decoration: none;
+  padding: 0.6rem 1.25rem;
+  border-radius: var(--radius);
+  transition: background 0.2s, transform 0.2s;
+}
+
+.abt-quiz-meeting-link:hover {
+  background: var(--ocean);
+  color: var(--white);
+  transform: translateY(-1px);
+}
+
+/* Reveal Button */
+.abt-reveal-btn {
+  display: block;
+  width: 100%;
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--deep-teal);
+  background: var(--cloud);
+  border: 1px solid var(--mist);
+  padding: 0.85rem 1.5rem;
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s, transform 0.2s;
+  margin-bottom: 1.25rem;
+}
+
+.abt-reveal-btn:hover {
+  background: var(--mist);
+  border-color: var(--ocean);
+  transform: translateY(-1px);
+}
+
+.abt-quiz-attribution {
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  color: var(--ink);
+  opacity: 0.45;
+  margin-top: 0.5rem;
+}
+
+.abt-quiz-attribution a {
+  color: var(--ocean);
+  text-decoration: underline;
+}
+
+/* ── The 3 C's ───────────────────────────────────────────────── */
+
+.abt-threes-grid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 1rem;
-  margin: 1.5rem 0;
+  gap: 1.25rem;
 }
 
 @media (min-width: 640px) {
-  .about-links {
+  .abt-threes-grid {
     grid-template-columns: repeat(3, 1fr);
   }
 }
 
-.about-link-card {
-  display: block;
-  padding: 1.25rem;
+.abt-threes-card {
   background: var(--cloud);
+  border: 1px solid var(--mist);
   border-radius: var(--radius);
-  text-decoration: none;
-  color: inherit;
-  transition: background 0.15s, box-shadow 0.15s;
+  padding: 2rem 1.5rem;
+  text-align: center;
+  transition: transform 0.2s, box-shadow 0.2s;
 }
 
-.about-link-card:hover {
-  background: var(--mist);
-  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+.abt-threes-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
 }
 
-.about-link-card h3 {
+.abt-threes-icon {
+  color: var(--deep-teal);
+  margin-bottom: 1rem;
+  line-height: 0;
+}
+
+.abt-threes-icon svg {
+  width: 48px;
+  height: 48px;
+}
+
+.abt-threes-title {
   font-family: var(--font-serif);
-  font-size: 1.1rem;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--deep-teal);
+  margin-bottom: 0.5rem;
+}
+
+.abt-threes-desc {
+  font-family: var(--font-reading);
+  font-size: 0.88rem;
+  line-height: 1.6;
+  color: var(--ink);
+  opacity: 0.8;
+  margin: 0;
+}
+
+/* ── Literature Spotlight ────────────────────────────────────── */
+
+.abt-book-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+@media (min-width: 640px) {
+  .abt-book-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.abt-book-card {
+  background: var(--white);
+  border: 1px solid var(--cloud);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  text-align: center;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.abt-book-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
+}
+
+/* Book cover — 2:3 aspect ratio frame */
+.abt-book-cover {
+  position: relative;
+  width: 140px;
+  margin: 0 auto 1.25rem;
+  aspect-ratio: 2 / 3;
+  border-radius: 4px;
+  overflow: hidden;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+  background: var(--cloud);
+}
+
+.abt-book-cover img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.abt-book-title {
+  font-family: var(--font-serif);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--deep-teal);
+  margin-bottom: 0.35rem;
+}
+
+.abt-book-desc {
+  font-family: var(--font-reading);
+  font-size: 0.82rem;
+  line-height: 1.55;
+  color: var(--ink);
+  opacity: 0.75;
+  margin: 0 0 1rem;
+}
+
+.abt-book-btn {
+  display: inline-block;
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
   font-weight: 600;
   color: var(--deep-teal);
-  margin: 0 0 0.35rem;
+  text-decoration: none;
+  border: 1px solid var(--mist);
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius);
+  transition: background 0.15s, border-color 0.15s;
 }
 
-.about-link-card p {
-  font-family: var(--font-sans);
+.abt-book-btn:hover {
+  background: var(--cloud);
+  border-color: var(--ocean);
+  color: var(--deep-teal);
+}
+
+/* ── Sister Fellowships ──────────────────────────────────────── */
+
+.abt-fellow-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.25rem;
+}
+
+@media (min-width: 640px) {
+  .abt-fellow-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.abt-fellow-card {
+  display: block;
+  background: var(--white);
+  border: 1px solid var(--cloud);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+}
+
+.abt-fellow-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
+  border-color: var(--mist);
+}
+
+.abt-fellow-name {
+  font-family: var(--font-serif);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--deep-teal);
+  margin-bottom: 0.4rem;
+}
+
+.abt-fellow-desc {
+  font-family: var(--font-reading);
   font-size: 0.85rem;
+  line-height: 1.6;
   color: var(--ink);
-  opacity: 0.7;
-  margin: 0;
-  line-height: 1.5;
+  opacity: 0.75;
+  margin: 0 0 0.75rem;
+}
+
+.abt-fellow-link {
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--ocean);
+}
+
+/* ── About Page — Mobile Responsive ──────────────────────────── */
+
+@media (max-width: 767px) {
+  .abt-body-inner {
+    flex-direction: column;
+  }
+
+  .abt-body-wrap {
+    padding: 2rem 1.5rem 1.5rem;
+  }
+
+  .abt-section {
+    margin-bottom: 2.5rem;
+  }
 }
 
 /* --- Quiz Page --- */
