@@ -2858,8 +2858,9 @@ a.rd-hero-step:hover {
    Slim CTA Strip (mid-grid)
    ============================================= */
 .ti-slim-cta-wrap {
-  margin: 0;
-  padding: 1.5rem 0;
+  max-width: 60rem;
+  margin: 0 auto;
+  padding: 1.5rem 2rem;
 }
 
 .ti-slim-cta {
@@ -2868,8 +2869,9 @@ a.rd-hero-step:hover {
   align-items: center;
   text-align: center;
   gap: 0.75rem;
-  padding: 1.5rem 2rem;
+  padding: 1.25rem 1.5rem;
   background: var(--cloud);
+  border-radius: var(--radius);
 }
 
 .ti-slim-cta-text {
