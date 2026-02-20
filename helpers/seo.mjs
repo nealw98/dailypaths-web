@@ -19,12 +19,12 @@ export function generateSitemap(readings, topics, books = []) {
     urls.push({ loc: `${SITE_URL}/${slug}/`, priority: '0.8', changefreq: 'weekly' });
   }
 
-  // Themes index
-  urls.push({ loc: SITE_URL + '/themes/', priority: '0.7', changefreq: 'weekly' });
+  // Principles index
+  urls.push({ loc: SITE_URL + '/principles/', priority: '0.7', changefreq: 'weekly' });
 
-  // Individual theme (topic) pages
+  // Individual principle (topic) pages
   for (const topic of topics) {
-    urls.push({ loc: `${SITE_URL}/themes/${topic.slug}/`, priority: '0.6', changefreq: 'monthly' });
+    urls.push({ loc: `${SITE_URL}/principles/${topic.slug}/`, priority: '0.6', changefreq: 'monthly' });
   }
 
   // Steps

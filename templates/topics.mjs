@@ -55,7 +55,7 @@ const TOPIC_TOOLS = {
 };
 
 /**
- * The 12 recovery themes — each is its own content page.
+ * The 12 guiding principles — each is its own content page.
  *
  * `featuredDays` are day_of_year values for curated readings.
  * These will be looked up against the readings array at build time.
@@ -332,7 +332,7 @@ export function renderTopicsIndexPage() {
   const bentoCards = bento.map((topic, i) => {
     const cls = bentoClasses[i] || '';
     return `
-          <a href="${bp(`/themes/${topic.slug}/`)}" class="ti-bento-card${cls ? ' ' + cls : ''}">
+          <a href="${bp(`/principles/${topic.slug}/`)}" class="ti-bento-card${cls ? ' ' + cls : ''}">
             <div class="ti-bento-card-img">
               <img src="${bp(`/assets/themes/${topic.image}`)}" alt="${topic.imageAlt || topic.name}" />
             </div>
@@ -347,7 +347,7 @@ export function renderTopicsIndexPage() {
   // Duo cards
   const duoCards = duo.map(topic => {
     return `
-          <a href="${bp(`/themes/${topic.slug}/`)}" class="ti-duo-card">
+          <a href="${bp(`/principles/${topic.slug}/`)}" class="ti-duo-card">
             <div class="ti-duo-card-img">
               <img src="${bp(`/assets/themes/${topic.image}`)}" alt="${topic.imageAlt || topic.name}" />
             </div>
@@ -363,13 +363,13 @@ export function renderTopicsIndexPage() {
       <!-- Page Hero -->
       <header class="ti-hero">
         <div class="ti-hero-image">
-          <img src="${bp('/assets/themes/themes.jpg')}" alt="Recovery Themes" />
+          <img src="${bp('/assets/themes/themes.jpg')}" alt="Guiding Principles" />
           <div class="ti-hero-overlay"></div>
         </div>
         <div class="ti-hero-content">
-          <span class="ti-hero-label">Recovery Themes</span>
-          <h1 class="ti-hero-title">Themes</h1>
-          <p class="ti-hero-desc">The subjects we actually talk about after the meeting &mdash; the threads that run through every stage of Al-Anon recovery.</p>
+          <span class="ti-hero-label">Guiding Principles</span>
+          <h1 class="ti-hero-title">Guiding Principles</h1>
+          <p class="ti-hero-desc">The foundational concepts for the Al-Anon journey &mdash; the threads that run through every stage of recovery.</p>
         </div>
       </header>
 
@@ -377,21 +377,21 @@ export function renderTopicsIndexPage() {
       <div class="ti-editorial-intro">
         <p>
           Recovery doesn&rsquo;t follow a straight line. Some days we need to practice letting go;
-          other days we need to hold a boundary. These twelve themes map the emotional terrain
-          of living with someone else&rsquo;s disease &mdash; and the quiet, daily work of
+          other days we need to hold a boundary. These twelve principles map the foundational concepts
+          of the Al-Anon journey &mdash; and the quiet, daily work of
           finding our way back to ourselves.
         </p>
       </div>
 
       <!-- Primary: Hero Feature (70/30) -->
       <div class="ti-hero-feature-wrap">
-        <a href="${bp(`/themes/${hero.slug}/`)}" class="ti-hero-feature">
+        <a href="${bp(`/principles/${hero.slug}/`)}" class="ti-hero-feature">
           <div class="ti-hero-feature-img">
             <img src="${bp(`/assets/themes/${hero.image}`)}" alt="${hero.imageAlt || hero.name}" />
             <span class="ti-hero-feature-overlap">&ldquo;${heroQuote}&rdquo;</span>
           </div>
           <div class="ti-hero-feature-body">
-            <span class="ti-hero-feature-label">Featured Theme</span>
+            <span class="ti-hero-feature-label">Featured Principle</span>
             <h2 class="ti-hero-feature-title">${hero.name}</h2>
             <p class="ti-hero-feature-desc">${hero.shortDescription}</p>
             <p class="ti-hero-feature-quote">&ldquo;${heroQuote}&rdquo;</p>
@@ -404,10 +404,10 @@ export function renderTopicsIndexPage() {
       <div class="ti-quickpath-wrap">
         <h2 class="ti-quickpath-heading">Where are you today?</h2>
         <div class="ti-quickpath-grid">
-          <a href="${bp('/themes/powerlessness/')}" class="ti-quickpath-btn">Feeling Overwhelmed</a>
-          <a href="${bp('/themes/boundaries/')}" class="ti-quickpath-btn">Setting Boundaries</a>
-          <a href="${bp('/themes/gratitude-and-hope/')}" class="ti-quickpath-btn">Seeking Hope</a>
-          <a href="${bp('/themes/fellowship/')}" class="ti-quickpath-btn">New to Al-Anon</a>
+          <a href="${bp('/principles/powerlessness/')}" class="ti-quickpath-btn">Feeling Overwhelmed</a>
+          <a href="${bp('/principles/boundaries/')}" class="ti-quickpath-btn">Setting Boundaries</a>
+          <a href="${bp('/principles/gratitude-and-hope/')}" class="ti-quickpath-btn">Seeking Hope</a>
+          <a href="${bp('/principles/fellowship/')}" class="ti-quickpath-btn">New to Al-Anon</a>
         </div>
       </div>
 
@@ -420,7 +420,7 @@ ${duoCards}
 
       <!-- Tertiary: Asymmetric Bento Grid -->
       <div class="ti-bento-wrap">
-        <h2 class="ti-bento-heading">Explore All Themes</h2>
+        <h2 class="ti-bento-heading">Explore All Principles</h2>
         <div class="ti-bento-grid">
 ${bentoCards.slice(0, 5).join('\n')}
 
@@ -442,7 +442,7 @@ ${bentoCards.slice(5, 6).join('\n')}
       <!-- Mid-Grid Slim CTA Strip -->
       <div class="ti-slim-cta-wrap">
         <div class="ti-slim-cta">
-          <p class="ti-slim-cta-text">Carry these themes in your pocket.</p>
+          <p class="ti-slim-cta-text">Carry these principles in your pocket.</p>
           <div class="ti-slim-cta-actions">
             <a href="https://apps.apple.com/app/id6755981862" target="_blank" rel="noopener noreferrer" class="ti-slim-cta-btn">
               <img src="https://developer.apple.com/app-store/marketing/guidelines/images/badge-download-on-the-app-store.svg" alt="Download on the App Store" class="ti-slim-cta-badge">
@@ -486,9 +486,9 @@ ${bentoCards.slice(6).join('\n')}
       </div>`;
 
   return wrapInLayout({
-    title: 'Themes &mdash; Al-Anon Recovery Themes & Reflections | Al-Anon Daily Paths',
-    description: 'Explore 12 core Al-Anon recovery themes including detachment, powerlessness, boundaries, honesty, and more. Each theme includes reflections and curated daily readings.',
-    canonicalPath: '/themes/',
+    title: 'Guiding Principles &mdash; Foundational Concepts for the Al-Anon Journey | Al-Anon Daily Paths',
+    description: 'Explore 12 guiding principles for the Al-Anon journey including detachment, powerlessness, boundaries, honesty, and more. Each principle includes reflections and curated daily readings.',
+    canonicalPath: '/principles/',
     bodyContent,
     bodyClass: 'page-topics-index',
   });
@@ -563,12 +563,12 @@ export function renderTopicPage(topic, featuredReadings, allReadings = []) {
         </div>` : ''}
         <div class="topic-hero-content">
           <nav class="breadcrumb topic-hero-breadcrumb">
-            <a href="${bp('/themes/')}">Themes</a>
+            <a href="${bp('/principles/')}">Principles</a>
             <span class="breadcrumb-sep">/</span>
             <span>${topic.name}</span>
           </nav>
-          <span class="topic-hero-label">Recovery Theme</span>
-          <h1 class="topic-hero-title">${topic.name}</h1>
+          <span class="topic-hero-label">Guiding Principle</span>
+          <h1 class="topic-hero-title">The Principle of ${topic.name}</h1>
           <p class="topic-hero-desc">${topic.shortDescription}</p>
         </div>
       </header>
@@ -585,7 +585,7 @@ export function renderTopicPage(topic, featuredReadings, allReadings = []) {
             <!-- Related Tags Callout -->
             ${tagPills ? `
             <aside class="topic-callout">
-              <h3 class="topic-callout-title">Related Tags in This Theme</h3>
+              <h3 class="topic-callout-title">Related Tags in This Principle</h3>
               <p class="topic-callout-intro">
                 Readings tagged with these topics appear on this page.
               </p>
@@ -611,7 +611,7 @@ ${toolItems}
 
             <div class="topic-sidebar-resource">
               <h3 class="topic-sidebar-heading">Go Deeper</h3>
-              <p>Explore this theme through Al-Anon&rsquo;s
+              <p>Explore this principle through Al-Anon&rsquo;s
                 <a href="https://ecomm.al-anon.org/EN/ItemDetail?iProductCode=B24" target="_blank" rel="noopener noreferrer"><em>Paths to Recovery</em></a>.
               </p>
             </div>
@@ -624,7 +624,7 @@ ${toolItems}
       <section class="topic-readings-section">
         <h2 class="topic-readings-heading">Readings on ${topic.name}</h2>
         <p class="topic-readings-intro">
-          ${totalCount} readings explore this theme. Here are some to start with.
+          ${totalCount} readings explore this principle. Here are some to start with.
         </p>
         <div class="topic-readings-grid">
 ${readingCards}
@@ -637,12 +637,12 @@ ${readingCards}
 
       <!-- Topic Navigation -->
       <nav class="topic-nav-footer topic-nav-editorial">
-        <a href="${bp(`/themes/${prevTopic.slug}/`)}" class="nav-prev">
+        <a href="${bp(`/principles/${prevTopic.slug}/`)}" class="nav-prev">
           <span class="nav-arrow">&larr;</span>
           <span class="nav-label">${prevTopic.name}</span>
         </a>
-        <a href="${bp('/themes/')}" class="nav-browse">All Themes</a>
-        <a href="${bp(`/themes/${nextTopic.slug}/`)}" class="nav-next">
+        <a href="${bp('/principles/')}" class="nav-browse">All Principles</a>
+        <a href="${bp(`/principles/${nextTopic.slug}/`)}" class="nav-next">
           <span class="nav-label">${nextTopic.name}</span>
           <span class="nav-arrow">&rarr;</span>
         </a>
@@ -650,9 +650,9 @@ ${readingCards}
     </article>`;
 
   return wrapInLayout({
-    title: `${topic.name} &mdash; Al-Anon Recovery Reflections | Daily Paths`,
+    title: `The Principle of ${topic.name} &mdash; Al-Anon Recovery Reflections | Daily Paths`,
     description: (topic.metaDescription || topic.shortDescription) + ' Reflections and curated daily readings from Al-Anon Daily Paths.',
-    canonicalPath: `/themes/${topic.slug}/`,
+    canonicalPath: `/principles/${topic.slug}/`,
     bodyContent,
     bodyClass: 'page-topic-detail',
   });

@@ -67,7 +67,7 @@ const dirs = [
   join(outDir, 'css'),
   join(outDir, 'js'),
   join(outDir, 'assets'),
-  join(outDir, 'themes'),
+  join(outDir, 'principles'),
   join(outDir, 'privacy'),
   join(outDir, 'support'),
   join(outDir, 'terms'),
@@ -91,7 +91,7 @@ for (const reading of readings) {
 
 // Create theme (topic) page directories
 for (const topic of TOPICS) {
-  mkdirSync(join(outDir, 'themes', topic.slug), { recursive: true });
+  mkdirSync(join(outDir, 'principles', topic.slug), { recursive: true });
 }
 
 // --- Step 3: Generate pages ---
@@ -126,9 +126,9 @@ for (let i = 0; i < readings.length; i++) {
   writePage(join(outDir, slug, 'index.html'), renderReadingPage(reading, prev, next, readings));
 }
 
-// Themes index + individual theme pages
-console.log(`Generating theme pages (${TOPICS.length} themes)...`);
-writePage(join(outDir, 'themes', 'index.html'), renderTopicsIndexPage());
+// Principles index + individual principle pages
+console.log(`Generating principle pages (${TOPICS.length} principles)...`);
+writePage(join(outDir, 'principles', 'index.html'), renderTopicsIndexPage());
 
 // Build a readings lookup by day_of_year for featured reading resolution
 const readingsByDay = new Map();
@@ -141,7 +141,7 @@ for (const topic of TOPICS) {
     .map(day => readingsByDay.get(day))
     .filter(Boolean);
   writePage(
-    join(outDir, 'themes', topic.slug, 'index.html'),
+    join(outDir, 'principles', topic.slug, 'index.html'),
     renderTopicPage(topic, featuredReadings, readings)
   );
 }

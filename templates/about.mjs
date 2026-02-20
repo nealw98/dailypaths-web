@@ -131,7 +131,7 @@ export function renderAboutPage() {
               that there is another way.
             </p>
             <p class="abt-section-intro" style="margin-bottom: 0;">
-              <a href="${bp('/themes/the-disease/')}" class="abt-section-link">
+              <a href="${bp('/principles/the-disease/')}" class="abt-section-link">
                 Learn more about The Disease Concept &rarr;
               </a>
             </p>
@@ -298,7 +298,7 @@ ${fellowshipsHtml}
             </p>
             <div class="abt-cta-actions">
               <a href="${bp('/')}" class="abt-cta-btn abt-cta-btn--primary">Read Today&rsquo;s Reflection</a>
-              <a href="${bp('/themes/')}" class="abt-cta-btn abt-cta-btn--secondary">Explore Themes</a>
+              <a href="${bp('/principles/')}" class="abt-cta-btn abt-cta-btn--secondary">Explore Principles</a>
             </div>
           </section>
 

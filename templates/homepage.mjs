@@ -65,15 +65,15 @@ export function renderHomepage(todayReading, prevReading, nextReading, allReadin
     <!-- Discovery Row — Two Cards -->
     <div class="home-discover-wrap">
       <div class="home-discover-grid">
-        <a href="${bp('/themes/')}" class="home-discover-card">
+        <a href="${bp('/principles/')}" class="home-discover-card">
           <div class="home-discover-card-img">
-            <img src="${bp('/assets/themes/detachment.jpg')}" alt="Recovery themes" />
+            <img src="${bp('/assets/themes/detachment.jpg')}" alt="Guiding Principles" />
           </div>
           <div class="home-discover-card-gradient"></div>
           <div class="home-discover-card-text">
-            <span class="home-discover-card-label">12 Recovery Themes</span>
-            <h3 class="home-discover-card-title">Browse by Theme</h3>
-            <p class="home-discover-card-desc">Explore detachment, boundaries, gratitude, and more &mdash; the emotional terrain of Al-Anon recovery.</p>
+            <span class="home-discover-card-label">12 Guiding Principles</span>
+            <h3 class="home-discover-card-title">Browse by Principle</h3>
+            <p class="home-discover-card-desc">Explore detachment, boundaries, gratitude, and more &mdash; foundational concepts for the Al-Anon journey.</p>
           </div>
         </a>
         <a href="${bp('/steps/')}" class="home-discover-card">
