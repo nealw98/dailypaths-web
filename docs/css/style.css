@@ -2415,7 +2415,7 @@ a.rd-hero-step:hover {
   }
 }
 
-/* --- Themes (Topic) Index Page — Magazine Layout --- */
+/* --- Themes (Topic) Index Page — Editorial Layout --- */
 
 /* Hero */
 .ti-hero {
@@ -2490,85 +2490,11 @@ a.rd-hero-step:hover {
   margin: 0 auto;
 }
 
-/* Intro + Steps Sidebar */
-.ti-intro-wrap {
-  max-width: 56rem;
-  margin: 0 auto;
-  padding: 2.5rem 2rem 1rem;
-}
-
-.ti-intro-inner {
-  display: flex;
-  gap: 2.5rem;
-  align-items: flex-start;
-}
-
-.ti-intro-text {
-  flex: 1;
-}
-
-.ti-intro-text p {
-  font-family: var(--font-reading);
-  font-size: 1rem;
-  line-height: 1.75;
-  color: var(--ink);
-  margin-bottom: 1rem;
-}
-
-/* Steps Callout Sidebar */
-.ti-steps-callout {
-  flex: 0 0 240px;
-  background: var(--cloud);
-  border-left: 3px solid var(--deep-teal);
-  border-radius: var(--radius);
-  padding: 1.5rem;
-}
-
-.ti-steps-callout-label {
-  display: inline-block;
-  font-family: var(--font-sans);
-  font-size: 0.65rem;
-  font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: var(--ocean);
-  margin-bottom: 0.5rem;
-}
-
-.ti-steps-callout-title {
-  font-family: var(--font-serif);
-  font-size: 1.15rem;
-  font-weight: 600;
-  color: var(--deep-teal);
-  margin-bottom: 0.5rem;
-}
-
-.ti-steps-callout-text {
-  font-family: var(--font-reading);
-  font-size: 0.85rem;
-  line-height: 1.6;
-  color: var(--ink);
-  margin-bottom: 0.75rem;
-}
-
-.ti-steps-callout-link {
-  font-family: var(--font-sans);
-  font-size: 0.85rem;
-  font-weight: 500;
-  color: var(--deep-teal);
-  text-decoration: none;
-}
-
-.ti-steps-callout-link:hover {
-  text-decoration: underline;
-  text-underline-offset: 2px;
-}
-
-/* Featured Theme Card */
+/* Featured Theme — Full-Width Hero Card */
 .ti-featured-wrap {
   max-width: 56rem;
   margin: 0 auto;
-  padding: 0.5rem 2rem 2rem;
+  padding: 3rem 2rem 0;
 }
 
 .ti-featured-card {
@@ -2578,16 +2504,17 @@ a.rd-hero-step:hover {
   border: 1px solid var(--cloud);
   border-radius: var(--radius);
   overflow: hidden;
-  transition: box-shadow 0.2s, transform 0.2s;
+  transition: box-shadow 0.25s, transform 0.25s, border-color 0.25s;
 }
 
 .ti-featured-card:hover {
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-  transform: translateY(-2px);
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.1);
+  transform: translateY(-3px);
+  border-color: var(--sage);
 }
 
 .ti-featured-image {
-  flex: 0 0 280px;
+  flex: 0 0 320px;
   overflow: hidden;
 }
 
@@ -2595,17 +2522,22 @@ a.rd-hero-step:hover {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  transition: transform 0.4s;
+}
+
+.ti-featured-card:hover .ti-featured-image img {
+  transform: scale(1.03);
 }
 
 .ti-featured-body {
   flex: 1;
-  padding: 2rem 2.5rem;
+  padding: 2.5rem 3rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .ti-featured-meta {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
   margin-bottom: 0.75rem;
 }
 
@@ -2620,29 +2552,29 @@ a.rd-hero-step:hover {
 
 .ti-featured-title {
   font-family: var(--font-serif);
-  font-size: 1.6rem;
+  font-size: 1.8rem;
   font-weight: 600;
   color: var(--deep-teal);
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.6rem;
   line-height: 1.25;
 }
 
 .ti-featured-desc {
   font-family: var(--font-reading);
-  font-size: 0.95rem;
-  line-height: 1.65;
+  font-size: 1rem;
+  line-height: 1.7;
   color: var(--ink);
-  margin-bottom: 0.75rem;
+  margin-bottom: 1rem;
 }
 
 .ti-featured-quote {
   font-family: var(--font-reading);
-  font-size: 0.9rem;
+  font-size: 0.92rem;
   font-style: italic;
   color: var(--ink);
-  opacity: 0.65;
+  opacity: 0.6;
   line-height: 1.55;
-  margin-bottom: 0.75rem;
+  margin-bottom: 1rem;
 }
 
 .ti-featured-cta {
@@ -2652,11 +2584,54 @@ a.rd-hero-step:hover {
   color: var(--deep-teal);
 }
 
-/* Themes Grid */
+/* Quick Path */
+.ti-quickpath-wrap {
+  max-width: 56rem;
+  margin: 0 auto;
+  padding: 3.5rem 2rem 0;
+  text-align: center;
+}
+
+.ti-quickpath-heading {
+  font-family: var(--font-serif);
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: var(--deep-teal);
+  margin-bottom: 1.25rem;
+}
+
+.ti-quickpath-grid {
+  display: flex;
+  justify-content: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.ti-quickpath-btn {
+  display: inline-block;
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--deep-teal);
+  text-decoration: none;
+  border: 1px solid var(--sage);
+  border-radius: 999px;
+  padding: 0.6rem 1.4rem;
+  transition: background 0.2s, color 0.2s, border-color 0.2s, transform 0.2s;
+}
+
+.ti-quickpath-btn:hover {
+  background: var(--deep-teal);
+  color: var(--white);
+  border-color: var(--deep-teal);
+  transform: translateY(-1px);
+}
+
+/* Themes Grid — Staggered */
 .ti-grid-wrap {
   max-width: 56rem;
   margin: 0 auto;
-  padding: 1rem 2rem 2rem;
+  padding: 3.5rem 2rem 0;
 }
 
 .ti-grid-heading {
@@ -2670,7 +2645,7 @@ a.rd-hero-step:hover {
 .ti-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 1.25rem;
+  gap: 1.5rem;
 }
 
 .ti-grid-card {
@@ -2681,12 +2656,13 @@ a.rd-hero-step:hover {
   border: 1px solid var(--cloud);
   border-radius: var(--radius);
   overflow: hidden;
-  transition: box-shadow 0.2s, transform 0.2s;
+  transition: box-shadow 0.25s, transform 0.25s, border-color 0.25s;
 }
 
 .ti-grid-card:hover {
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
-  transform: translateY(-2px);
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.1);
+  transform: translateY(-4px);
+  border-color: var(--sage);
 }
 
 .ti-grid-card-image {
@@ -2694,11 +2670,15 @@ a.rd-hero-step:hover {
   overflow: hidden;
 }
 
+.ti-grid-card--tall .ti-grid-card-image {
+  height: 180px;
+}
+
 .ti-grid-card-image img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.3s;
+  transition: transform 0.4s;
 }
 
 .ti-grid-card:hover .ti-grid-card-image img {
@@ -2706,7 +2686,7 @@ a.rd-hero-step:hover {
 }
 
 .ti-grid-card-body {
-  padding: 1rem 1.25rem 1.25rem;
+  padding: 1.1rem 1.25rem 1.35rem;
 }
 
 .ti-grid-card-title {
@@ -2727,11 +2707,65 @@ a.rd-hero-step:hover {
   margin: 0;
 }
 
+/* Steps Callout */
+.ti-steps-wrap {
+  max-width: 36rem;
+  margin: 0 auto;
+  padding: 3.5rem 2rem 0;
+}
+
+.ti-steps-callout {
+  background: var(--cloud);
+  border-left: 3px solid var(--deep-teal);
+  border-radius: var(--radius);
+  padding: 1.75rem 2rem;
+}
+
+.ti-steps-callout-label {
+  display: inline-block;
+  font-family: var(--font-sans);
+  font-size: 0.65rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--ocean);
+  margin-bottom: 0.5rem;
+}
+
+.ti-steps-callout-title {
+  font-family: var(--font-serif);
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--deep-teal);
+  margin-bottom: 0.5rem;
+}
+
+.ti-steps-callout-text {
+  font-family: var(--font-reading);
+  font-size: 0.9rem;
+  line-height: 1.65;
+  color: var(--ink);
+  margin-bottom: 0.75rem;
+}
+
+.ti-steps-callout-link {
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--deep-teal);
+  text-decoration: none;
+}
+
+.ti-steps-callout-link:hover {
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
 /* App Download CTA */
 .ti-app-wrap {
   max-width: 40rem;
   margin: 0 auto;
-  padding: 1rem 2rem 3rem;
+  padding: 3.5rem 2rem 4rem;
 }
 
 .ti-app-callout {
@@ -2779,6 +2813,9 @@ a.rd-hero-step:hover {
   .ti-grid {
     grid-template-columns: repeat(2, 1fr);
   }
+  .ti-grid-card--tall .ti-grid-card-image {
+    height: 140px;
+  }
 }
 
 @media (max-width: 640px) {
@@ -2788,24 +2825,28 @@ a.rd-hero-step:hover {
   .ti-hero-desc {
     font-size: 0.95rem;
   }
-  .ti-intro-inner {
-    flex-direction: column;
-  }
-  .ti-steps-callout {
-    flex: auto;
-  }
   .ti-featured-card {
     flex-direction: column;
   }
   .ti-featured-image {
     flex: auto;
-    height: 200px;
+    height: 220px;
   }
   .ti-featured-body {
     padding: 1.5rem;
   }
+  .ti-quickpath-grid {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .ti-quickpath-btn {
+    text-align: center;
+  }
   .ti-grid {
     grid-template-columns: 1fr;
+  }
+  .ti-grid-card--tall .ti-grid-card-image {
+    height: 140px;
   }
 }
 

@@ -313,14 +313,15 @@ export const TOPICS = [
  * Render the Topics index page.
  */
 export function renderTopicsIndexPage() {
-  // Featured theme — Detachment gets the large hero-style card
+  // Featured theme — Detachment gets the full-width hero card
   const featured = TOPICS[0];
   const pullQuoteFeatured = TOPIC_PULL_QUOTES[featured.slug] || '';
 
-  // Remaining themes in a grid
-  const gridCards = TOPICS.slice(1).map(topic => {
+  // Remaining themes in a staggered grid
+  const gridCards = TOPICS.slice(1).map((topic, i) => {
+    const tall = i % 3 === 0;
     return `
-          <a href="${bp(`/themes/${topic.slug}/`)}" class="ti-grid-card">
+          <a href="${bp(`/themes/${topic.slug}/`)}" class="ti-grid-card${tall ? ' ti-grid-card--tall' : ''}">
             <div class="ti-grid-card-image">
               <img src="${bp(`/assets/themes/${topic.image}`)}" alt="${topic.imageAlt || topic.name}" />
             </div>
@@ -345,38 +346,7 @@ export function renderTopicsIndexPage() {
         </div>
       </header>
 
-      <!-- Intro + Steps Sidebar -->
-      <div class="ti-intro-wrap">
-        <div class="ti-intro-inner">
-          <div class="ti-intro-text">
-            <p>
-              Each theme explores a different facet of recovery &mdash; from the
-              early work of accepting powerlessness to the ongoing practice of
-              gratitude and service. Every theme includes reflections and curated
-              daily readings to deepen your understanding.
-            </p>
-            <p>
-              These aren&rsquo;t abstract ideas. They&rsquo;re the lived
-              experience of people who found themselves in impossible situations
-              and discovered a way through.
-            </p>
-          </div>
-
-          <!-- Steps Callout Sidebar -->
-          <aside class="ti-steps-callout">
-            <span class="ti-steps-callout-label">The Twelve Steps</span>
-            <h3 class="ti-steps-callout-title">Ready to work the Steps?</h3>
-            <p class="ti-steps-callout-text">
-              The Steps are the foundation of Al-Anon recovery. Each month&rsquo;s
-              readings focus on one step, from Step 1 in January through Step 12
-              in December.
-            </p>
-            <a href="${bp('/steps/')}" class="ti-steps-callout-link">Explore the Twelve Steps &rarr;</a>
-          </aside>
-        </div>
-      </div>
-
-      <!-- Featured Theme -->
+      <!-- Featured Theme — Hero Card -->
       <div class="ti-featured-wrap">
         <a href="${bp(`/themes/${featured.slug}/`)}" class="ti-featured-card">
           <div class="ti-featured-image">
@@ -394,12 +364,37 @@ export function renderTopicsIndexPage() {
         </a>
       </div>
 
+      <!-- Quick Path -->
+      <div class="ti-quickpath-wrap">
+        <h2 class="ti-quickpath-heading">Where are you today?</h2>
+        <div class="ti-quickpath-grid">
+          <a href="${bp('/themes/powerlessness/')}" class="ti-quickpath-btn">Feeling Overwhelmed</a>
+          <a href="${bp('/themes/boundaries/')}" class="ti-quickpath-btn">Setting Boundaries</a>
+          <a href="${bp('/themes/gratitude-and-hope/')}" class="ti-quickpath-btn">Seeking Hope</a>
+          <a href="${bp('/themes/fellowship/')}" class="ti-quickpath-btn">New to Al-Anon</a>
+        </div>
+      </div>
+
       <!-- Themes Grid -->
       <div class="ti-grid-wrap">
         <h2 class="ti-grid-heading">All Themes</h2>
         <div class="ti-grid">
 ${gridCards}
         </div>
+      </div>
+
+      <!-- Steps Callout -->
+      <div class="ti-steps-wrap">
+        <aside class="ti-steps-callout">
+          <span class="ti-steps-callout-label">The Twelve Steps</span>
+          <h3 class="ti-steps-callout-title">Ready to work the Steps?</h3>
+          <p class="ti-steps-callout-text">
+            The Steps are the foundation of Al-Anon recovery. Each month&rsquo;s
+            readings focus on one step, from Step 1 in January through Step 12
+            in December.
+          </p>
+          <a href="${bp('/steps/')}" class="ti-steps-callout-link">Explore the Twelve Steps &rarr;</a>
+        </aside>
       </div>
 
       <!-- App Download CTA -->
