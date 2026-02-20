@@ -2920,7 +2920,7 @@ a.rd-hero-step:hover {
   padding: 2rem 1.5rem;
   background: #4A5568;
   border-radius: var(--radius);
-  grid-row: span 1;
+  grid-row: span 2;
   grid-column: span 1;
   transition: background 0.3s, transform 0.3s, box-shadow 0.3s;
 }
