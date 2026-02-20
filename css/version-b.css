@@ -1856,6 +1856,7 @@ a.rd-pill--step:hover {
 .abt-sidebar {
   flex: 3;
   display: none;
+  align-self: flex-start;
 }
 
 @media (min-width: 768px) {
@@ -1866,7 +1867,7 @@ a.rd-pill--step:hover {
 
 .abt-toc {
   position: sticky;
-  top: 5.5rem;
+  top: 2rem;
 }
 
 .abt-toc-heading {
@@ -1919,6 +1920,16 @@ a.rd-pill--step:hover {
 .abt-section {
   margin-bottom: 3.5rem;
   scroll-margin-top: 4rem;
+}
+
+/* Alternating section tints */
+#threes,
+#fellowships {
+  background: var(--cloud);
+  margin-left: -2rem;
+  margin-right: -2rem;
+  padding: 2.5rem 2rem;
+  border-radius: var(--radius);
 }
 
 .abt-section-heading {
@@ -2149,7 +2160,7 @@ a.rd-pill--step:hover {
 }
 
 .abt-threes-card {
-  background: var(--cloud);
+  background: var(--white);
   border: 1px solid var(--mist);
   border-radius: var(--radius);
   padding: 2rem 1.5rem;
@@ -2374,6 +2385,74 @@ a.rd-pill--step:hover {
   font-size: 0.8rem;
   font-weight: 600;
   color: var(--ocean);
+}
+
+/* ── End-of-Page CTA ─────────────────────────────────────────── */
+
+.abt-cta {
+  text-align: center;
+  border: 1px solid var(--mist);
+  border-radius: var(--radius);
+  padding: 2.5rem 2rem;
+  margin-top: 1rem;
+}
+
+.abt-cta-heading {
+  font-family: var(--font-serif);
+  font-size: clamp(1.3rem, 3vw, 1.6rem);
+  font-weight: 700;
+  color: var(--deep-teal);
+  margin-bottom: 0.5rem;
+}
+
+.abt-cta-text {
+  font-family: var(--font-reading);
+  font-size: 0.95rem;
+  color: var(--ink);
+  opacity: 0.7;
+  margin-bottom: 1.5rem;
+}
+
+.abt-cta-actions {
+  display: flex;
+  justify-content: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.abt-cta-btn {
+  display: inline-block;
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-decoration: none;
+  padding: 0.7rem 1.5rem;
+  border-radius: var(--radius);
+  transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+}
+
+.abt-cta-btn--primary {
+  color: var(--white);
+  background: var(--deep-teal);
+}
+
+.abt-cta-btn--primary:hover {
+  background: var(--ocean);
+  color: var(--white);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+}
+
+.abt-cta-btn--secondary {
+  color: var(--deep-teal);
+  background: var(--cloud);
+  border: 1px solid var(--mist);
+}
+
+.abt-cta-btn--secondary:hover {
+  background: var(--mist);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
 }
 
 /* ── About Page — Mobile Responsive ──────────────────────────── */
