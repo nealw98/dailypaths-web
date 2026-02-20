@@ -4302,30 +4302,60 @@ a.rd-pill--step:hover {
   opacity: 0.7;
 }
 
-/* --- Member's Experience Section --- */
+/* --- The Definition --- */
+
+.topic-definition {
+  padding: 2.5rem 2rem 0;
+}
+
+.topic-definition-inner {
+  max-width: 42rem;
+  margin: 0 auto;
+}
+
+.topic-definition-inner p {
+  font-family: var(--font-serif);
+  font-size: 1.25rem;
+  font-weight: 600;
+  line-height: 1.7;
+  color: var(--ink);
+  margin-bottom: 0.75rem;
+}
+
+.topic-definition-inner p:last-child {
+  margin-bottom: 0;
+}
+
+/* --- Voice from the Path (Member Share) --- */
 
 .topic-share {
-  background: var(--cloud);
-  padding: 3rem 2rem;
+  padding: 2.5rem 2rem;
 }
 
 .topic-share-inner {
   max-width: 42rem;
   margin: 0 auto;
+  background: var(--pearl);
+  border-left: 3px solid var(--sage);
+  border-radius: 0 var(--radius) var(--radius) 0;
+  padding: 2rem 2rem 2rem 2.25rem;
 }
 
 .topic-share-heading {
   font-family: var(--font-serif);
-  font-size: 1.4rem;
+  font-size: 1.1rem;
   font-weight: 600;
-  color: var(--ink);
-  margin-bottom: 1.25rem;
+  color: var(--ocean);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 1rem;
 }
 
 .topic-share-body {
   font-family: var(--font-reading);
   font-size: 1.05rem;
-  line-height: 1.9;
+  font-style: italic;
+  line-height: 1.95;
   color: var(--ink);
   border: none;
   margin: 0;
@@ -4333,7 +4363,7 @@ a.rd-pill--step:hover {
 }
 
 .topic-share-body p {
-  margin-bottom: 1.25rem;
+  margin-bottom: 1rem;
 }
 
 .topic-share-body p:last-child {
@@ -4342,11 +4372,62 @@ a.rd-pill--step:hover {
 
 .topic-share-attribution {
   font-family: var(--font-sans);
-  font-size: 0.85rem;
+  font-size: 0.8rem;
   font-weight: 500;
   color: var(--ocean);
   margin-top: 1.25rem;
-  font-style: italic;
+  opacity: 0.7;
+}
+
+/* --- Core Truths (Understanding [Name]) --- */
+
+.topic-truths {
+  background: var(--cloud);
+  padding: 2.5rem 2rem;
+}
+
+.topic-truths-inner {
+  max-width: 42rem;
+  margin: 0 auto;
+}
+
+.topic-truths-heading {
+  font-family: var(--font-serif);
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--ink);
+  margin-bottom: 1.25rem;
+}
+
+.topic-truths-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.topic-truths-list li {
+  position: relative;
+  font-family: var(--font-reading);
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--ink);
+  padding: 0.65rem 0 0.65rem 1.75rem;
+  border-bottom: 1px solid rgba(175, 207, 205, 0.4);
+}
+
+.topic-truths-list li:last-child {
+  border-bottom: none;
+}
+
+.topic-truths-list li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 1.05rem;
+  width: 8px;
+  height: 8px;
+  background: var(--sage);
+  border-radius: 50%;
 }
 
 /* Old two-column body — kept for any legacy reference, hidden */
@@ -4651,7 +4732,19 @@ a.rd-pill--step:hover {
   .topic-hero-title {
     font-size: 1.75rem;
   }
+  .topic-definition {
+    padding: 2rem 1.5rem 0;
+  }
+  .topic-definition-inner p {
+    font-size: 1.1rem;
+  }
   .topic-share {
+    padding: 2rem 1.5rem;
+  }
+  .topic-share-inner {
+    padding: 1.5rem 1.5rem 1.5rem 1.75rem;
+  }
+  .topic-truths {
     padding: 2rem 1.5rem;
   }
   .topic-readings-section {

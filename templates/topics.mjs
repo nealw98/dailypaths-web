@@ -516,6 +516,7 @@ export function renderTopicPage(topic, featuredReadings, allReadings = []) {
   const prevTopic = TOPICS[(idx - 1 + TOPICS.length) % TOPICS.length];
   const nextTopic = TOPICS[(idx + 1) % TOPICS.length];
 
+  const tools = TOPIC_TOOLS[topic.slug] || [];
   const themeTags = TOPIC_THEME_TAGS[topic.slug] || [];
 
   // Build theme-matched readings from secondary_theme
@@ -552,7 +553,10 @@ export function renderTopicPage(topic, featuredReadings, allReadings = []) {
 
   // Member share — use specific share or default
   const memberShare = MEMBER_SHARES[topic.slug] || DEFAULT_MEMBER_SHARE;
-  const shareParagraphs = memberShare.split('\n\n').map(p => `            <p>${p.trim()}</p>`).join('\n');
+  const shareParagraphs = memberShare.split('\n\n').map(p => `              <p>${p.trim()}</p>`).join('\n');
+
+  // Core truths bullets
+  const coreTruthItems = tools.map(t => `              <li>${t}</li>`).join('\n');
 
   const bodyContent = `
     <article class="topic-editorial" itemscope itemtype="https://schema.org/Article">
@@ -575,16 +579,34 @@ export function renderTopicPage(topic, featuredReadings, allReadings = []) {
         </div>
       </header>
 
-      <!-- A Member's Experience -->
+      <!-- The Definition -->
+      <section class="topic-definition">
+        <div class="topic-definition-inner">
+          ${topic.body}
+        </div>
+      </section>
+
+      <!-- Voice from the Path -->
       <section class="topic-share" aria-label="A member&rsquo;s experience with ${topic.name}">
         <div class="topic-share-inner">
-          <h2 class="topic-share-heading">A Member&rsquo;s Experience</h2>
+          <h2 class="topic-share-heading">Voice from the Path</h2>
           <blockquote class="topic-share-body" itemprop="articleBody">
 ${shareParagraphs}
           </blockquote>
           <p class="topic-share-attribution">&mdash; An Al-Anon member</p>
         </div>
       </section>
+
+      <!-- Core Truths -->
+      ${tools.length > 0 ? `
+      <section class="topic-truths">
+        <div class="topic-truths-inner">
+          <h2 class="topic-truths-heading">Understanding ${topic.name}</h2>
+          <ul class="topic-truths-list">
+${coreTruthItems}
+          </ul>
+        </div>
+      </section>` : ''}
 
       <!-- Daily Reflections on [Name] -->
       ${totalCount > 0 ? `
