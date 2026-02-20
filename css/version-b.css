@@ -2549,22 +2549,9 @@ a.rd-hero-step:hover {
   filter: grayscale(0%);
 }
 
-/* Overlapping quote label on image corner */
+/* Overlapping quote label on image corner — hidden */
 .ti-hero-feature-overlap {
-  position: absolute;
-  bottom: -1px;
-  right: -1px;
-  max-width: 260px;
-  font-family: var(--font-reading);
-  font-size: 0.75rem;
-  font-style: italic;
-  line-height: 1.5;
-  color: var(--ink);
-  background: rgba(255, 255, 255, 0.75);
-  -webkit-backdrop-filter: blur(12px);
-  backdrop-filter: blur(12px);
-  padding: 0.75rem 1rem;
-  border-radius: var(--radius) 0 0 0;
+  display: none;
 }
 
 .ti-hero-feature-body {
@@ -2725,10 +2712,10 @@ a.rd-hero-step:hover {
   left: 0;
   right: 0;
   padding: 1.5rem;
-  background: rgba(255, 255, 255, 0.3);
+  background: rgba(30, 40, 42, 0.55);
   -webkit-backdrop-filter: blur(16px);
   backdrop-filter: blur(16px);
-  border-top: 1px solid rgba(255, 255, 255, 0.4);
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
 }
 
 .ti-duo-card-title {
@@ -2736,7 +2723,7 @@ a.rd-hero-step:hover {
   font-size: 1.35rem;
   font-weight: 700;
   color: var(--white);
-  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.5);
   margin-bottom: 0.3rem;
   transition: color 0.3s;
 }
@@ -2748,29 +2735,15 @@ a.rd-hero-step:hover {
 .ti-duo-card-desc {
   font-family: var(--font-sans);
   font-size: 0.8rem;
-  color: rgba(255, 255, 255, 0.9);
-  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
+  color: rgba(255, 255, 255, 0.95);
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
   line-height: 1.5;
   margin: 0;
 }
 
-/* Overlapping quote chip */
+/* Overlapping quote chip — hidden */
 .ti-duo-card-overlap {
-  position: absolute;
-  top: 1rem;
-  right: -0.25rem;
-  max-width: 200px;
-  font-family: var(--font-reading);
-  font-size: 0.7rem;
-  font-style: italic;
-  line-height: 1.45;
-  color: var(--ink);
-  background: rgba(255, 255, 255, 0.8);
-  -webkit-backdrop-filter: blur(10px);
-  backdrop-filter: blur(10px);
-  padding: 0.5rem 0.75rem;
-  border-radius: var(--radius) 0 0 var(--radius);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  display: none;
 }
 
 /* =============================================
@@ -2793,7 +2766,7 @@ a.rd-hero-step:hover {
 .ti-bento-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  grid-auto-rows: 180px;
+  grid-auto-rows: 230px;
   gap: 1.25rem;
 }
 
@@ -2848,10 +2821,10 @@ a.rd-hero-step:hover {
   left: 0;
   right: 0;
   padding: 1.1rem 1.25rem;
-  background: rgba(255, 255, 255, 0.25);
+  background: rgba(30, 40, 42, 0.55);
   -webkit-backdrop-filter: blur(14px);
   backdrop-filter: blur(14px);
-  border-top: 1px solid rgba(255, 255, 255, 0.35);
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
 }
 
 .ti-bento-card-title {
@@ -2859,7 +2832,7 @@ a.rd-hero-step:hover {
   font-size: 1.1rem;
   font-weight: 700;
   color: var(--white);
-  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.5);
   margin-bottom: 0.2rem;
   line-height: 1.25;
   transition: color 0.3s;
@@ -2872,29 +2845,15 @@ a.rd-hero-step:hover {
 .ti-bento-card-desc {
   font-family: var(--font-sans);
   font-size: 0.75rem;
-  color: rgba(255, 255, 255, 0.85);
-  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  color: rgba(255, 255, 255, 0.95);
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
   line-height: 1.45;
   margin: 0;
 }
 
-/* Overlapping quote snippet */
+/* Overlapping quote snippet — hidden */
 .ti-bento-card-overlap {
-  position: absolute;
-  top: 0.75rem;
-  left: -0.25rem;
-  max-width: 180px;
-  font-family: var(--font-reading);
-  font-size: 0.65rem;
-  font-style: italic;
-  line-height: 1.4;
-  color: var(--ink);
-  background: rgba(255, 255, 255, 0.8);
-  -webkit-backdrop-filter: blur(10px);
-  backdrop-filter: blur(10px);
-  padding: 0.4rem 0.65rem;
-  border-radius: 0 var(--radius) var(--radius) 0;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  display: none;
 }
 
 /* =============================================
@@ -3071,7 +3030,7 @@ a.rd-hero-step:hover {
   }
   .ti-bento-grid {
     grid-template-columns: 1fr;
-    grid-auto-rows: 200px;
+    grid-auto-rows: 240px;
   }
   .ti-bento-card.ti-bento--wide,
   .ti-bento-card.ti-bento--tall {
