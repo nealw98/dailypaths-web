@@ -423,6 +423,17 @@ ${duoCards}
         <h2 class="ti-bento-heading">Explore All Themes</h2>
         <div class="ti-bento-grid">
 ${bentoCards.slice(0, 6).join('\n')}
+
+          <!-- 12 Steps Internal Link Card — fills the empty grid slot -->
+          <a href="${bp('/steps/')}" class="ti-steps-card">
+            <span class="ti-steps-icon">&#x1F9ED;</span>
+            <h3 class="ti-steps-title">The 12 Steps</h3>
+            <p class="ti-steps-desc">
+              Looking for the roadmap to recovery? Explore the foundational
+              principles of Al-Anon, month by month.
+            </p>
+            <span class="ti-steps-link">Explore the Path &rarr;</span>
+          </a>
         </div>
       </div>
 
@@ -441,21 +452,10 @@ ${bentoCards.slice(0, 6).join('\n')}
         </div>
       </div>
 
-      <!-- Remaining Bento Cards + Steps Card -->
+      <!-- Remaining Bento Cards -->
       <div class="ti-bento-wrap ti-bento-wrap--continued">
         <div class="ti-bento-grid">
 ${bentoCards.slice(6).join('\n')}
-
-          <!-- 12 Steps Internal Link Card — fills the empty grid slot -->
-          <a href="${bp('/steps/')}" class="ti-steps-card">
-            <span class="ti-steps-icon">&#9678;</span>
-            <h3 class="ti-steps-title">The 12 Steps</h3>
-            <p class="ti-steps-desc">
-              Looking for the roadmap to recovery? Explore the foundational
-              principles of Al-Anon, month by month.
-            </p>
-            <span class="ti-steps-link">Explore the Path &rarr;</span>
-          </a>
         </div>
       </div>
 
