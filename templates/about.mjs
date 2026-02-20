@@ -165,6 +165,11 @@ ${quizHtml}
               Reveal My Next Step &darr;
             </button>
 
+            <p class="abt-quiz-attribution">
+              Adapted from the Al-Anon Family Groups self-quiz at
+              <a href="https://al-anon.org/newcomers/self-quiz/" target="_blank" rel="noopener noreferrer">al-anon.org</a>.
+            </p>
+
             <!-- Companion App Callout -->
             <div class="abt-companion">
               <p class="abt-companion-text">
@@ -180,11 +185,6 @@ ${quizHtml}
                 </a>
               </div>
             </div>
-
-            <p class="abt-quiz-attribution">
-              Adapted from the Al-Anon Family Groups self-quiz at
-              <a href="https://al-anon.org/newcomers/self-quiz/" target="_blank" rel="noopener noreferrer">al-anon.org</a>.
-            </p>
             <a href="#" class="abt-back-top abt-back-top--mobile" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;">Back to top &uarr;</a>
           </section>
 

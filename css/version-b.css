@@ -1835,33 +1835,30 @@ a.rd-pill--step:hover {
   background: var(--mist);
 }
 
-/* Body Wrapper — Two-column layout */
+/* Body Wrapper — Centered content, sidebar in right margin */
 .abt-body-wrap {
-  max-width: 64rem;
+  position: relative;
+  max-width: 42rem;
   margin: 0 auto;
   padding: 3rem 2rem 2rem;
 }
 
-.abt-body-inner {
-  display: flex;
-  gap: 3rem;
-}
-
 .abt-main {
-  flex: 7;
-  min-width: 0;
+  /* Centered by parent max-width; no flex needed */
 }
 
-/* Sticky Sidebar (desktop only) */
+/* Sticky Sidebar — positioned in right margin on wide screens */
 .abt-sidebar {
-  flex: 3;
   display: none;
-  align-self: flex-start;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 1100px) {
   .abt-sidebar {
     display: block;
+    position: absolute;
+    top: 3rem;
+    left: calc(100% + 2.5rem);
+    width: 160px;
   }
 }
 
@@ -2577,10 +2574,6 @@ a.rd-pill--step:hover {
 /* ── About Page — Mobile Responsive ──────────────────────────── */
 
 @media (max-width: 767px) {
-  .abt-body-inner {
-    flex-direction: column;
-  }
-
   .abt-body-wrap {
     padding: 2rem 1.5rem 1.5rem;
   }
