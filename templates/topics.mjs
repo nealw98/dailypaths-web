@@ -331,33 +331,31 @@ export function renderTopicsIndexPage() {
 
   const bentoCards = bento.map((topic, i) => {
     const cls = bentoClasses[i] || '';
-    const quote = TOPIC_PULL_QUOTES[topic.slug] || '';
     return `
           <a href="${bp(`/themes/${topic.slug}/`)}" class="ti-bento-card${cls ? ' ' + cls : ''}">
             <div class="ti-bento-card-img">
               <img src="${bp(`/assets/themes/${topic.image}`)}" alt="${topic.imageAlt || topic.name}" />
             </div>
-            <div class="ti-bento-card-glass">
+            <div class="ti-bento-card-gradient"></div>
+            <div class="ti-bento-card-text">
               <h3 class="ti-bento-card-title">${topic.name}</h3>
               <p class="ti-bento-card-desc">${topic.shortDescription}</p>
             </div>
-            ${quote ? `<span class="ti-bento-card-overlap">&ldquo;${quote.split(' ').slice(0, 8).join(' ')}&hellip;&rdquo;</span>` : ''}
           </a>`;
   });
 
   // Duo cards
   const duoCards = duo.map(topic => {
-    const quote = TOPIC_PULL_QUOTES[topic.slug] || '';
     return `
           <a href="${bp(`/themes/${topic.slug}/`)}" class="ti-duo-card">
             <div class="ti-duo-card-img">
               <img src="${bp(`/assets/themes/${topic.image}`)}" alt="${topic.imageAlt || topic.name}" />
             </div>
-            <div class="ti-duo-card-glass">
+            <div class="ti-duo-card-gradient"></div>
+            <div class="ti-duo-card-text">
               <h3 class="ti-duo-card-title">${topic.name}</h3>
               <p class="ti-duo-card-desc">${topic.shortDescription}</p>
             </div>
-            ${quote ? `<span class="ti-duo-card-overlap">&ldquo;${quote.split(' ').slice(0, 6).join(' ')}&hellip;&rdquo;</span>` : ''}
           </a>`;
   }).join('\n');
 
@@ -424,36 +422,48 @@ ${duoCards}
       <div class="ti-bento-wrap">
         <h2 class="ti-bento-heading">Explore All Themes</h2>
         <div class="ti-bento-grid">
-${bentoCards.slice(0, 3).join('\n')}
-
-          <!-- Step Bridge Card — appears early in the grid -->
-          <div class="ti-bridge-card">
-            <span class="ti-bridge-label">From Themes to Steps</span>
-            <h3 class="ti-bridge-title">Looking for Structure?</h3>
-            <p class="ti-bridge-text">
-              While Themes help us understand our feelings, the 12 Steps provide the
-              roadmap for change. Explore our month-by-month guide through the
-              foundation of Al-Anon.
-            </p>
-            <a href="${bp('/steps/')}" class="ti-bridge-link">Explore the 12 Steps &rarr;</a>
-          </div>
-
-${bentoCards.slice(3).join('\n')}
+${bentoCards.slice(0, 6).join('\n')}
         </div>
       </div>
 
-      <!-- Mid-Page Editorial Breakout CTA -->
-      <div class="ti-breakout-wrap">
-        <div class="ti-breakout">
-          <p class="ti-breakout-text">Carry these themes in your pocket.</p>
-          <div class="ti-breakout-actions">
-            <a href="https://apps.apple.com/app/id6755981862" target="_blank" rel="noopener noreferrer" class="ti-breakout-btn">
-              <img src="https://developer.apple.com/app-store/marketing/guidelines/images/badge-download-on-the-app-store.svg" alt="Download on the App Store" class="ti-breakout-badge">
+      <!-- Mid-Grid Slim CTA Strip -->
+      <div class="ti-slim-cta-wrap">
+        <div class="ti-slim-cta">
+          <p class="ti-slim-cta-text">Carry these themes in your pocket.</p>
+          <div class="ti-slim-cta-actions">
+            <a href="https://apps.apple.com/app/id6755981862" target="_blank" rel="noopener noreferrer" class="ti-slim-cta-btn">
+              <img src="https://developer.apple.com/app-store/marketing/guidelines/images/badge-download-on-the-app-store.svg" alt="Download on the App Store" class="ti-slim-cta-badge">
             </a>
-            <a href="https://play.google.com/store/apps/details?id=com.dailypaths" target="_blank" rel="noopener noreferrer" class="ti-breakout-btn">
-              <img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" alt="Get it on Google Play" class="ti-breakout-badge ti-breakout-badge-play">
+            <a href="https://play.google.com/store/apps/details?id=com.dailypaths" target="_blank" rel="noopener noreferrer" class="ti-slim-cta-btn">
+              <img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" alt="Get it on Google Play" class="ti-slim-cta-badge ti-slim-cta-badge-play">
             </a>
           </div>
+        </div>
+      </div>
+
+      <!-- Remaining Bento Cards -->
+      <div class="ti-bento-wrap ti-bento-wrap--continued">
+        <div class="ti-bento-grid">
+${bentoCards.slice(6).join('\n')}
+        </div>
+      </div>
+
+      <!-- Beyond Themes — Utility Grid -->
+      <div class="ti-beyond-wrap">
+        <h2 class="ti-beyond-heading">Beyond Themes</h2>
+        <div class="ti-beyond-grid">
+          <a href="${bp('/steps/')}" class="ti-beyond-card">
+            <div class="ti-beyond-icon">&xrarr;</div>
+            <h3 class="ti-beyond-card-title">Ready for the roadmap?</h3>
+            <p class="ti-beyond-card-desc">Explore the 12 Steps &mdash; the foundation of Al-Anon recovery, one month at a time.</p>
+            <span class="ti-beyond-card-link">Explore the Steps &rarr;</span>
+          </a>
+          <a href="https://al-anon.org/al-anon-meetings/find-an-al-anon-meeting/" target="_blank" rel="noopener noreferrer" class="ti-beyond-card">
+            <div class="ti-beyond-icon">&#9825;</div>
+            <h3 class="ti-beyond-card-title">Need a meeting?</h3>
+            <p class="ti-beyond-card-desc">Find Al-Anon support near you &mdash; in person or online. You don&rsquo;t have to do this alone.</p>
+            <span class="ti-beyond-card-link">Find a Meeting &rarr;</span>
+          </a>
         </div>
       </div>`;
 
