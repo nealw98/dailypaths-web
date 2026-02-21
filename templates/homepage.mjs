@@ -57,12 +57,12 @@ export function renderHomepage(todayReading, prevReading, nextReading, allReadin
       </div>
     </section>
 
-    <!-- Content Pillar: The Principles — terracotta band -->
+    <!-- Content Pillar: Al-Anon Themes — terracotta band -->
     <section class="hm-pillar bg-terracotta">
       <div class="hm-pillar-inner">
-        <h2 class="hm-pillar-heading">The Spiritual Principles</h2>
-        <p class="hm-pillar-text">Detachment, boundaries, gratitude, and hope &mdash; the guiding ideas that weave through every reading. Browse reflections by the principle that speaks to you today.</p>
-        <a href="${bp('/principles/')}" class="hm-pillar-btn">Browse by Principle &rarr;</a>
+        <h2 class="hm-pillar-heading">Al-Anon Themes</h2>
+        <p class="hm-pillar-text">Explore daily reflections through the universal themes that weave through our recovery &mdash; detachment, boundaries, gratitude, hope, and more.</p>
+        <a href="${bp('/principles/')}" class="hm-pillar-btn">Explore Themes &rarr;</a>
       </div>
     </section>
 

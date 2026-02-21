@@ -363,13 +363,13 @@ export function renderTopicsIndexPage() {
       <!-- Page Hero -->
       <header class="ti-hero">
         <div class="ti-hero-image">
-          <img src="${bp('/assets/themes/themes.jpg')}" alt="Guiding Principles" />
+          <img src="${bp('/assets/themes/themes.jpg')}" alt="Al-Anon Themes" />
           <div class="ti-hero-overlay"></div>
         </div>
         <div class="ti-hero-content">
-          <span class="ti-hero-label">Guiding Principles</span>
-          <h1 class="ti-hero-title">Guiding Principles</h1>
-          <p class="ti-hero-desc">The foundational concepts for the Al-Anon journey &mdash; the threads that run through every stage of recovery.</p>
+          <span class="ti-hero-label">Al-Anon Themes</span>
+          <h1 class="ti-hero-title">Al-Anon Themes</h1>
+          <p class="ti-hero-desc">A curated exploration of the ideas that shape recovery &mdash; the threads that run through every stage of the Al-Anon journey.</p>
         </div>
       </header>
 
@@ -377,8 +377,8 @@ export function renderTopicsIndexPage() {
       <div class="ti-editorial-intro">
         <p>
           Recovery doesn&rsquo;t follow a straight line. Some days we need to practice letting go;
-          other days we need to hold a boundary. These twelve principles map the foundational concepts
-          of the Al-Anon journey &mdash; and the quiet, daily work of
+          other days we need to hold a boundary. These twelve themes are an invitation to explore
+          the ideas that shape the Al-Anon journey &mdash; and the quiet, daily work of
           finding our way back to ourselves.
         </p>
       </div>
@@ -391,7 +391,7 @@ export function renderTopicsIndexPage() {
             <span class="ti-hero-feature-overlap">&ldquo;${heroQuote}&rdquo;</span>
           </div>
           <div class="ti-hero-feature-body">
-            <span class="ti-hero-feature-label">Featured Principle</span>
+            <span class="ti-hero-feature-label">Featured Theme</span>
             <h2 class="ti-hero-feature-title">${hero.name}</h2>
             <p class="ti-hero-feature-desc">${hero.shortDescription}</p>
             <p class="ti-hero-feature-quote">&ldquo;${heroQuote}&rdquo;</p>
@@ -420,7 +420,7 @@ ${duoCards}
 
       <!-- Tertiary: Asymmetric Bento Grid -->
       <div class="ti-bento-wrap">
-        <h2 class="ti-bento-heading">Explore All Principles</h2>
+        <h2 class="ti-bento-heading">Explore All Themes</h2>
         <div class="ti-bento-grid">
 ${bentoCards.slice(0, 5).join('\n')}
 
@@ -430,7 +430,7 @@ ${bentoCards.slice(0, 5).join('\n')}
             <h3 class="ti-steps-title">The 12 Steps</h3>
             <p class="ti-steps-desc">
               Looking for the roadmap to recovery? Explore the foundational
-              principles of Al-Anon, month by month.
+              themes of Al-Anon, month by month.
             </p>
             <span class="ti-steps-link">Explore the Path &rarr;</span>
           </a>
@@ -442,7 +442,7 @@ ${bentoCards.slice(5, 6).join('\n')}
       <!-- Mid-Grid Slim CTA Strip -->
       <div class="ti-slim-cta-wrap">
         <div class="ti-slim-cta">
-          <p class="ti-slim-cta-text">Carry these principles in your pocket.</p>
+          <p class="ti-slim-cta-text">Carry these themes in your pocket.</p>
           <div class="ti-slim-cta-actions">
             <a href="https://apps.apple.com/app/id6755981862" target="_blank" rel="noopener noreferrer" class="ti-slim-cta-btn">
               <img src="https://developer.apple.com/app-store/marketing/guidelines/images/badge-download-on-the-app-store.svg" alt="Download on the App Store" class="ti-slim-cta-badge">
@@ -486,8 +486,8 @@ ${bentoCards.slice(6).join('\n')}
       </div>`;
 
   return wrapInLayout({
-    title: 'Guiding Principles &mdash; Foundational Concepts for the Al-Anon Journey | Al-Anon Daily Paths',
-    description: 'Explore 12 guiding principles for the Al-Anon journey including detachment, powerlessness, boundaries, honesty, and more. Each principle includes reflections and curated daily readings.',
+    title: 'Al-Anon Themes &mdash; Ideas That Shape the Recovery Journey | Al-Anon Daily Paths',
+    description: 'Explore 12 Al-Anon themes including detachment, powerlessness, boundaries, honesty, and more. Each theme includes reflections and curated daily readings for recovery.',
     canonicalPath: '/principles/',
     bodyContent,
     bodyClass: 'page-topics-index',
@@ -577,13 +577,13 @@ ${cards}
 
   const bodyContent = `
     <article class="topic-editorial" itemscope itemtype="https://schema.org/Article">
-      <!-- Principle Navigation -->
+      <!-- Theme Navigation -->
       <nav class="topic-nav-header">
         <a href="${bp(`/principles/${prevTopic.slug}/`)}" class="nav-prev">
           <span class="nav-arrow">&larr;</span>
           <span class="nav-label">${prevTopic.name}</span>
         </a>
-        <a href="${bp('/principles/')}" class="nav-browse">All Principles</a>
+        <a href="${bp('/principles/')}" class="nav-browse">All Themes</a>
         <a href="${bp(`/principles/${nextTopic.slug}/`)}" class="nav-next">
           <span class="nav-label">${nextTopic.name}</span>
           <span class="nav-arrow">&rarr;</span>
@@ -598,8 +598,8 @@ ${cards}
           <div class="topic-hero-overlay"></div>
         </div>` : ''}
         <div class="topic-hero-content">
-          <span class="topic-hero-label">Guiding Principle</span>
-          <h1 class="topic-hero-title" itemprop="headline">The Principle of ${topic.name}</h1>
+          <span class="topic-hero-label">Al-Anon Theme</span>
+          <h1 class="topic-hero-title" itemprop="headline">${topic.name}</h1>
           <p class="topic-hero-desc" itemprop="description">${topic.shortDescription}</p>
         </div>
       </header>
@@ -636,7 +636,7 @@ ${coreTruthItems}
       <!-- CTA -->
       <section class="topic-cta">
         <div class="topic-cta-inner">
-          <p class="topic-cta-text">Explore ${topic.name.toLowerCase()} and other principles of recovery with 366 original daily reflections from Al-Anon Daily Paths.</p>
+          <p class="topic-cta-text">Explore ${topic.name.toLowerCase()} and other themes of recovery with 366 original daily reflections from Al-Anon Daily Paths.</p>
           <div class="topic-cta-badges">
             <a href="https://apps.apple.com/app/id6755981862" target="_blank" rel="noopener noreferrer" class="topic-cta-badge-link">
               <img src="https://developer.apple.com/app-store/marketing/guidelines/images/badge-download-on-the-app-store.svg" alt="Download on the App Store" class="topic-cta-badge">
@@ -653,7 +653,7 @@ ${coreTruthItems}
       <section class="topic-readings-section">
         <h2 class="topic-readings-heading">Daily Reflections on ${topic.name}</h2>
         <p class="topic-readings-intro">
-          ${totalCount} reading${totalCount === 1 ? '' : 's'} explore this principle.
+          ${totalCount} reading${totalCount === 1 ? '' : 's'} explore this theme.
         </p>
 ${readingGroups}
       </section>` : ''}
@@ -661,7 +661,7 @@ ${readingGroups}
     </article>`;
 
   return wrapInLayout({
-    title: `The Principle of ${topic.name} &mdash; Al-Anon Recovery Reflections | Daily Paths`,
+    title: `${topic.name} &mdash; Al-Anon Recovery Theme | Daily Paths`,
     description: (topic.metaDescription || topic.shortDescription) + ' Reflections and curated daily readings from Al-Anon Daily Paths.',
     canonicalPath: `/principles/${topic.slug}/`,
     bodyContent,
