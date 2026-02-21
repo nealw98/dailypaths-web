@@ -480,8 +480,7 @@ a.rd-pill--step:hover {
   min-height: 480px;
   display: flex;
   align-items: center;
-  justify-content: center;
-  text-align: center;
+  justify-content: flex-start;
 }
 
 .hm-hero-image {
@@ -501,9 +500,10 @@ a.rd-pill--step:hover {
   position: absolute;
   inset: 0;
   background: linear-gradient(
-    180deg,
-    rgba(27, 38, 59, 0.35) 0%,
-    rgba(27, 38, 59, 0.65) 100%
+    90deg,
+    rgba(27, 38, 59, 0.48) 0%,
+    rgba(27, 38, 59, 0.2) 50%,
+    transparent 75%
   );
 }
 
@@ -512,6 +512,8 @@ a.rd-pill--step:hover {
   z-index: 1;
   padding: 8rem 2rem 6rem;
   max-width: 44rem;
+  text-align: left;
+  margin-right: auto;
 }
 
 .hm-hero-title {
