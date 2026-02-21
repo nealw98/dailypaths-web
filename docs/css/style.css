@@ -1551,11 +1551,12 @@ html {
    ========================================================================== */
 
 /* Hero with Meadow/Nature path image */
+/* Hero */
 .ap-hero {
   position: relative;
   text-align: center;
   overflow: hidden;
-  min-height: 320px;
+  min-height: 340px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1576,6 +1577,12 @@ html {
   transform: scale(1.05);
 }
 
+/* Sharp hero — no blur, crisp meadow image */
+.ap-hero--sharp .ap-hero-image img {
+  filter: none;
+  transform: none;
+}
+
 .ap-hero-overlay {
   position: absolute;
   inset: 0;
@@ -1586,6 +1593,7 @@ html {
   position: relative;
   z-index: 1;
   padding: 4rem 2rem 4.5rem;
+  max-width: 38rem;
 }
 
 .ap-hero-title {
@@ -1594,12 +1602,20 @@ html {
   font-weight: 700;
   color: var(--white);
   line-height: 1.15;
+  margin: 0 0 0.75rem;
+}
+
+.ap-hero-desc {
+  font-family: var(--font-reading);
+  font-size: 1.1rem;
+  color: rgba(255, 255, 255, 0.88);
+  line-height: 1.6;
   margin: 0;
 }
 
 @media (min-width: 768px) {
   .ap-hero {
-    min-height: 380px;
+    min-height: 400px;
   }
   .ap-hero-content {
     padding: 5rem 2rem 5.5rem;
@@ -1607,11 +1623,14 @@ html {
   .ap-hero-title {
     font-size: 3.25rem;
   }
+  .ap-hero-desc {
+    font-size: 1.15rem;
+  }
 }
 
-/* Editorial Body */
+/* Editorial Body — narrow magazine column */
 .ap-body {
-  max-width: 800px;
+  max-width: 650px;
   margin: 0 auto;
   padding: 3rem 2rem 4rem;
 }
@@ -1659,56 +1678,120 @@ html {
   color: var(--deep-navy);
 }
 
-/* What We Offer — card grid */
-.ap-card-grid {
+/* ── The Path and the Practice — two-column comparison ────────── */
+
+.ap-compare {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 1.25rem;
+  gap: 1.5rem;
+  margin-top: 1.5rem;
 }
 
 @media (min-width: 640px) {
-  .ap-card-grid {
-    grid-template-columns: repeat(2, 1fr);
+  .ap-compare {
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
   }
 }
 
-.ap-card {
+.ap-compare-col {
   background: var(--white);
-  border: none;
-  border-top: 4px solid var(--sage);
   border-radius: var(--radius);
-  padding: 1.75rem 1.5rem;
+  padding: 2rem 1.5rem 1.75rem;
   box-shadow: var(--card-shadow);
-  transition: transform 0.2s, box-shadow 0.2s;
+  border-top: 4px solid var(--sage);
 }
 
-.ap-card:hover {
-  transform: translateY(-3px);
-  box-shadow: var(--card-shadow-hover);
+.ap-compare-col:last-child {
+  border-top-color: var(--deep-teal);
 }
 
-.ap-card-title {
+.ap-compare-heading {
   font-family: var(--font-serif);
-  font-size: 1.15rem;
+  font-size: 1.3rem;
   font-weight: 700;
   color: var(--deep-navy);
-  margin-bottom: 0.5rem;
+  margin: 0 0 0.15rem;
 }
 
-.ap-card-text {
-  font-family: var(--font-reading);
-  font-size: 0.92rem;
-  line-height: 1.7;
-  color: var(--ink);
+.ap-compare-subtitle {
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--sage);
+  margin: 0 0 1.25rem;
+}
+
+.ap-compare-col:last-child .ap-compare-subtitle {
+  color: var(--deep-teal);
+}
+
+.ap-compare-list {
+  list-style: none;
   margin: 0;
+  padding: 0;
+}
+
+.ap-compare-list li {
+  padding: 0.85rem 0;
+  border-top: 1px solid var(--cloud);
+}
+
+.ap-compare-list li:first-child {
+  border-top: none;
+  padding-top: 0;
+}
+
+.ap-compare-feature {
+  display: block;
+  font-family: var(--font-serif);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--deep-navy);
+  margin-bottom: 0.25rem;
+}
+
+.ap-compare-detail {
+  display: block;
+  font-family: var(--font-reading);
+  font-size: 0.88rem;
+  line-height: 1.65;
+  color: var(--ink);
+}
+
+/* ── Closing Note ─────────────────────────────────────────────── */
+
+.ap-closing {
+  text-align: center;
+  padding-top: 0.5rem;
+}
+
+.ap-closing-rule {
+  width: 3rem;
+  height: 2px;
+  background: var(--sage);
+  margin: 0 auto 2rem;
+  border-radius: 1px;
+}
+
+.ap-closing .ap-editorial p {
+  font-style: italic;
+  font-size: 1.15rem;
+  color: var(--deep-navy);
+  max-width: 32rem;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 /* App badges */
 .ap-app-badges {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 0.5rem;
-  margin-top: 1.5rem;
+  margin-top: 1.75rem;
 }
 
 .ap-badge-link {
@@ -1799,10 +1882,13 @@ html {
 /* Mobile */
 @media (max-width: 640px) {
   .ap-hero {
-    min-height: 260px;
+    min-height: 280px;
   }
   .ap-hero-title {
     font-size: 2.2rem;
+  }
+  .ap-hero-desc {
+    font-size: 1rem;
   }
   .ap-hero-content {
     padding: 3rem 1.5rem 3.5rem;
@@ -1819,8 +1905,8 @@ html {
   .ap-section:first-child .ap-editorial p:first-child::first-letter {
     font-size: 3rem;
   }
-  .ap-card {
-    padding: 1.5rem 1.25rem;
+  .ap-compare-col {
+    padding: 1.5rem 1.25rem 1.25rem;
   }
 }
 
