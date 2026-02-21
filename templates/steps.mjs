@@ -248,14 +248,12 @@ export function renderStepsIndexPage() {
   // Remaining steps in a grid
   const gridCards = STEPS.slice(1).map(step => {
     return `
-          <a href="${bp(`/steps/step-${step.number}/`)}" class="si-grid-card">
-            <div class="si-grid-card-top">
-              <span class="si-grid-card-number">${step.number}</span>
-              <span class="si-grid-card-principle">${step.principle}</span>
-            </div>
-            <h3 class="si-grid-card-title">${step.text}</h3>
-            <span class="si-grid-card-month">${step.month}</span>
-          </a>`;
+          <div class="si-grid-card">
+            <span class="si-grid-card-number">${step.number}</span>
+            <span class="si-grid-card-principle">${step.principle}</span>
+            <p class="si-grid-card-text">${step.text}</p>
+            <a href="${bp(`/steps/step-${step.number}/`)}" class="si-grid-card-link">Read Reflections &rarr;</a>
+          </div>`;
   }).join('\n');
 
   const bodyContent = `
@@ -296,6 +294,7 @@ export function renderStepsIndexPage() {
       <!-- App CTA -->
       <div class="si-cta-wrap">
         <div class="si-cta">
+          <h2 class="si-cta-heading">A Companion for the Journey</h2>
           <p class="si-cta-text">Carry the Steps with you. Our mobile app provides daily reflections for each step and quick access to the Al-Anon tools you need.</p>
           <div class="si-cta-badges">
             <a href="https://apps.apple.com/app/id6755981862" target="_blank" rel="noopener noreferrer" class="si-cta-badge-link">
@@ -310,17 +309,13 @@ export function renderStepsIndexPage() {
 
       <!-- Featured Step -->
       <div class="si-featured-wrap">
-        <a href="${bp(`/steps/step-${featured.number}/`)}" class="si-featured-card">
-          <div class="si-featured-left">
-            <span class="si-featured-number">${featured.number}</span>
-          </div>
-          <div class="si-featured-body">
-            <span class="si-featured-principle">${featured.principle}</span>
-            <h2 class="si-featured-title">${featured.text}</h2>
-            <p class="si-featured-quote">&ldquo;${pullQuoteFeatured}&rdquo;</p>
-            <span class="si-featured-month">${featured.month} &middot; Read &amp; Reflect &rarr;</span>
-          </div>
-        </a>
+        <div class="si-featured-card">
+          <span class="si-featured-number">${featured.number}</span>
+          <span class="si-featured-principle">${featured.principle}</span>
+          <h2 class="si-featured-title">${featured.text}</h2>
+          <p class="si-featured-quote">&ldquo;${pullQuoteFeatured}&rdquo;</p>
+          <a href="${bp(`/steps/step-${featured.number}/`)}" class="si-featured-link">Read Reflections &rarr;</a>
+        </div>
       </div>
 
       <!-- Steps Grid -->

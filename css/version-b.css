@@ -2684,7 +2684,7 @@ a.rd-pill--step:hover {
   margin-top: 0.75rem;
 }
 
-/* --- Steps Index Page — Editorial Magazine Layout --- */
+/* --- Steps Index Page — Typographic Magazine Layout --- */
 
 /* Hero */
 .si-hero {
@@ -2793,8 +2793,16 @@ a.rd-pill--step:hover {
 .si-cta {
   background: var(--sage-mist);
   border-radius: var(--radius);
-  padding: 2rem 2.25rem;
+  padding: 2.25rem 2.5rem;
   text-align: center;
+}
+
+.si-cta-heading {
+  font-family: var(--font-serif);
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--ink);
+  margin-bottom: 0.65rem;
 }
 
 .si-cta-text {
@@ -2802,6 +2810,7 @@ a.rd-pill--step:hover {
   font-size: 1rem;
   line-height: 1.7;
   color: var(--ink);
+  opacity: 0.8;
   margin-bottom: 1.25rem;
 }
 
@@ -2830,96 +2839,78 @@ a.rd-pill--step:hover {
   height: 50px;
 }
 
-/* Featured Step Card */
+/* Featured Step 1 */
 .si-featured-wrap {
-  max-width: 56rem;
+  max-width: 42rem;
   margin: 0 auto;
-  padding: 4rem 2rem 0;
+  padding: 5rem 2rem 0;
 }
 
 .si-featured-card {
-  display: flex;
-  align-items: stretch;
-  text-decoration: none;
-  color: inherit;
-  background: var(--white);
+  text-align: center;
+  padding: 3rem 2rem;
   border: 1px solid var(--cloud);
   border-radius: var(--radius);
-  overflow: hidden;
-  transition: box-shadow 0.2s, transform 0.2s;
-}
-
-.si-featured-card:hover {
-  box-shadow: 0 8px 30px rgba(45, 59, 61, 0.12);
-  transform: translateY(-2px);
-}
-
-.si-featured-left {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: var(--deep-teal);
-  padding: 2.5rem 3rem;
-  min-width: 120px;
+  background: var(--white);
 }
 
 .si-featured-number {
+  display: block;
   font-family: var(--font-serif);
-  font-size: 5rem;
+  font-size: 5.5rem;
   font-weight: 700;
-  color: var(--white);
+  color: var(--deep-teal);
   line-height: 1;
-}
-
-.si-featured-body {
-  flex: 1;
-  padding: 2rem 2.5rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+  margin-bottom: 0.75rem;
 }
 
 .si-featured-principle {
-  display: inline-block;
+  display: block;
   font-family: var(--font-sans);
-  font-size: 0.7rem;
+  font-size: 0.72rem;
   font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: var(--deep-teal);
-  margin-bottom: 0.65rem;
+  letter-spacing: 0.18em;
+  color: var(--sage);
+  margin-bottom: 1.25rem;
 }
 
 .si-featured-title {
   font-family: var(--font-serif);
-  font-size: 1.4rem;
+  font-size: 1.35rem;
   font-weight: 600;
-  line-height: 1.4;
+  line-height: 1.45;
   color: var(--ink);
-  margin-bottom: 0.85rem;
+  margin-bottom: 1rem;
 }
 
 .si-featured-quote {
   font-family: var(--font-reading);
-  font-size: 0.9rem;
+  font-size: 0.95rem;
   font-style: italic;
-  line-height: 1.6;
+  line-height: 1.65;
   color: var(--slate-blue);
-  margin-bottom: 0.85rem;
+  max-width: 32rem;
+  margin: 0 auto 1.25rem;
 }
 
-.si-featured-month {
+.si-featured-link {
   font-family: var(--font-sans);
-  font-size: 0.8rem;
+  font-size: 0.85rem;
   font-weight: 500;
   color: var(--deep-teal);
+  text-decoration: none;
+}
+
+.si-featured-link:hover {
+  text-decoration: underline;
 }
 
 /* Steps Grid */
 .si-grid-wrap {
   max-width: 64rem;
   margin: 0 auto;
-  padding: 4rem 2rem 0;
+  padding: 5rem 2rem 0;
 }
 
 .si-grid-heading {
@@ -2928,84 +2919,75 @@ a.rd-pill--step:hover {
   font-weight: 700;
   color: var(--ink);
   text-align: center;
-  margin-bottom: 2rem;
+  margin-bottom: 2.5rem;
 }
 
 .si-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 1.25rem;
+  gap: 1.5rem;
 }
 
 .si-grid-card {
   display: flex;
   flex-direction: column;
-  text-decoration: none;
-  color: inherit;
+  align-items: center;
+  text-align: center;
   background: var(--white);
   border: 1px solid var(--cloud);
   border-radius: var(--radius);
-  padding: 1.5rem;
+  padding: 2rem 1.5rem;
   transition: box-shadow 0.2s, transform 0.2s, border-color 0.2s;
 }
 
 .si-grid-card:hover {
   border-color: var(--sage);
-  box-shadow: 0 4px 16px rgba(45, 59, 61, 0.08);
+  box-shadow: 0 4px 20px rgba(45, 59, 61, 0.08);
   transform: translateY(-2px);
 }
 
-.si-grid-card-top {
-  display: flex;
-  align-items: center;
-  gap: 0.6rem;
-  margin-bottom: 0.75rem;
-}
-
 .si-grid-card-number {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 2.25rem;
-  height: 2.25rem;
-  min-width: 2.25rem;
-  border-radius: 50%;
-  background: var(--sage-mist);
-  color: var(--deep-teal);
+  display: block;
   font-family: var(--font-serif);
+  font-size: 3rem;
   font-weight: 700;
-  font-size: 1rem;
-}
-
-.si-grid-card:hover .si-grid-card-number {
-  background: var(--deep-teal);
-  color: var(--white);
+  color: var(--deep-teal);
+  line-height: 1;
+  margin-bottom: 0.5rem;
 }
 
 .si-grid-card-principle {
+  display: block;
   font-family: var(--font-sans);
-  font-size: 0.68rem;
+  font-size: 0.65rem;
   font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: var(--deep-teal);
+  letter-spacing: 0.18em;
+  color: var(--sage);
+  margin-bottom: 1rem;
 }
 
-.si-grid-card-title {
+.si-grid-card-text {
   font-family: var(--font-serif);
-  font-size: 1rem;
-  font-weight: 600;
-  line-height: 1.4;
+  font-size: 0.95rem;
+  font-weight: 500;
+  line-height: 1.45;
   color: var(--ink);
-  margin-bottom: 0.75rem;
+  margin-bottom: 1.25rem;
   flex: 1;
 }
 
-.si-grid-card-month {
+.si-grid-card-link {
   font-family: var(--font-sans);
-  font-size: 0.75rem;
-  color: var(--slate-blue);
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--deep-teal);
+  text-decoration: none;
   margin-top: auto;
+}
+
+.si-grid-card-link:hover {
+  text-decoration: underline;
 }
 
 /* Attribution */
@@ -3053,26 +3035,22 @@ a.rd-pill--step:hover {
     padding: 1.5rem;
   }
   .si-featured-wrap {
-    padding: 3rem 1.5rem 0;
+    padding: 3.5rem 1.5rem 0;
   }
   .si-featured-card {
-    flex-direction: column;
-  }
-  .si-featured-left {
-    padding: 1.5rem;
-    min-width: auto;
+    padding: 2rem 1.5rem;
   }
   .si-featured-number {
-    font-size: 3rem;
-  }
-  .si-featured-body {
-    padding: 1.5rem;
+    font-size: 4rem;
   }
   .si-grid-wrap {
-    padding: 3rem 1.5rem 0;
+    padding: 3.5rem 1.5rem 0;
   }
   .si-grid {
     grid-template-columns: 1fr;
+  }
+  .si-grid-card-number {
+    font-size: 2.5rem;
   }
   .si-attribution-wrap {
     padding: 4rem 1.5rem 2rem;
