@@ -577,10 +577,18 @@ ${cards}
 
   const bodyContent = `
     <article class="topic-editorial" itemscope itemtype="https://schema.org/Article">
-      <!-- Back Navigation -->
-      <div class="topic-back-wrap">
-        <a href="${bp('/principles/')}" class="topic-back-link">&larr; Back to Guiding Principles</a>
-      </div>
+      <!-- Principle Navigation -->
+      <nav class="topic-nav-header">
+        <a href="${bp(`/principles/${prevTopic.slug}/`)}" class="nav-prev">
+          <span class="nav-arrow">&larr;</span>
+          <span class="nav-label">${prevTopic.name}</span>
+        </a>
+        <a href="${bp('/principles/')}" class="nav-browse">All Principles</a>
+        <a href="${bp(`/principles/${nextTopic.slug}/`)}" class="nav-next">
+          <span class="nav-label">${nextTopic.name}</span>
+          <span class="nav-arrow">&rarr;</span>
+        </a>
+      </nav>
 
       <!-- Hero Section -->
       <header class="topic-hero">
@@ -650,18 +658,6 @@ ${coreTruthItems}
 ${readingGroups}
       </section>` : ''}
 
-      <!-- Topic Navigation -->
-      <nav class="topic-nav-footer topic-nav-editorial">
-        <a href="${bp(`/principles/${prevTopic.slug}/`)}" class="nav-prev">
-          <span class="nav-arrow">&larr;</span>
-          <span class="nav-label">${prevTopic.name}</span>
-        </a>
-        <a href="${bp('/principles/')}" class="nav-browse">All Principles</a>
-        <a href="${bp(`/principles/${nextTopic.slug}/`)}" class="nav-next">
-          <span class="nav-label">${nextTopic.name}</span>
-          <span class="nav-arrow">&rarr;</span>
-        </a>
-      </nav>
     </article>`;
 
   return wrapInLayout({

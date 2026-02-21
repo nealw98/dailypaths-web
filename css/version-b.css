@@ -4178,23 +4178,37 @@ a.rd-pill--step:hover {
 
 /* --- Theme (Topic) Detail Page — Editorial Layout --- */
 
-/* Back link */
-.topic-back-wrap {
+/* Principle navigation header */
+.topic-nav-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   max-width: 64rem;
   margin: 0 auto;
   padding: 1rem 2rem 0;
 }
 
-.topic-back-link {
+.topic-nav-header a {
+  text-decoration: none;
+  color: var(--deep-teal);
   font-family: var(--font-sans);
   font-size: 0.85rem;
   font-weight: 500;
-  color: var(--deep-teal);
-  text-decoration: none;
 }
 
-.topic-back-link:hover {
+.topic-nav-header a:hover {
   text-decoration: underline;
+}
+
+.topic-nav-header .nav-prev,
+.topic-nav-header .nav-next {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.topic-nav-header .nav-arrow {
+  font-size: 1rem;
 }
 
 /* Hero with background image */
@@ -4745,50 +4759,9 @@ a.rd-pill--step:hover {
   }
 }
 
-/* Topic Navigation */
-.topic-nav-footer {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1.5rem 0;
-  margin-top: 2rem;
-  border-top: 1px solid var(--cloud);
-}
-
-.topic-nav-editorial {
-  max-width: 42rem;
-  margin-left: auto;
-  margin-right: auto;
-  padding-left: 2rem;
-  padding-right: 2rem;
-}
-
-.topic-nav-footer a {
-  text-decoration: none;
-  color: var(--deep-teal);
-  font-family: var(--font-sans);
-  font-size: 0.85rem;
-  font-weight: 500;
-}
-
-.topic-nav-footer a:hover {
-  text-decoration: underline;
-}
-
-.topic-nav-footer .nav-prev,
-.topic-nav-footer .nav-next {
-  display: flex;
-  align-items: center;
-  gap: 0.4rem;
-}
-
-.topic-nav-footer .nav-arrow {
-  font-size: 1rem;
-}
-
 /* Mobile adjustments for principle detail pages */
 @media (max-width: 640px) {
-  .topic-back-wrap {
+  .topic-nav-header {
     padding: 0.75rem 1.5rem 0;
   }
   .topic-hero {
@@ -4821,17 +4794,13 @@ a.rd-pill--step:hover {
   .topic-readings-grid {
     grid-template-columns: 1fr;
   }
-  .topic-nav-editorial {
-    padding-left: 1.5rem;
-    padding-right: 1.5rem;
-  }
-  .topic-nav-footer .nav-label {
+  .topic-nav-header .nav-label {
     display: none;
   }
-  .topic-nav-footer .nav-prev::after {
+  .topic-nav-header .nav-prev::after {
     content: 'Previous';
   }
-  .topic-nav-footer .nav-next::before {
+  .topic-nav-header .nav-next::before {
     content: 'Next';
   }
 }
