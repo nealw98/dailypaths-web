@@ -170,7 +170,7 @@ ${relatedHtml}
     </section>`;
 
   return wrapInLayout({
-    title: `${reading.title} \u2014 Al-Anon Daily Reflection for ${reading.display_date} | Al-Anon Daily Paths`,
+    title: `${reading.display_date} - ${reading.title} | Al-Anon Daily Paths`,
     description: metaDescription,
     canonicalPath: `/${slug}/`,
     bodyContent,

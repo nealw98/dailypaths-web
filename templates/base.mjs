@@ -1,4 +1,4 @@
-import { bp } from '../helpers/config.mjs';
+import { bp, BASE_URL } from '../helpers/config.mjs';
 
 /**
  * Base HTML layout — wraps all pages with head, nav, and footer.
@@ -22,9 +22,8 @@ export function wrapInLayout({
   ogImage,
   bodyClass = '',
 }) {
-  const siteUrl = 'https://dailypaths.org';
-  const canonicalUrl = siteUrl + canonicalPath;
-  const ogImageUrl = ogImage ? siteUrl + ogImage : `${siteUrl}/assets/og-image.png`;
+  const canonicalUrl = BASE_URL + canonicalPath;
+  const ogImageUrl = ogImage ? BASE_URL + ogImage : `${BASE_URL}/assets/og-image.png`;
   const twitterCard = ogImage ? 'summary_large_image' : 'summary';
   const year = new Date().getFullYear();
 
