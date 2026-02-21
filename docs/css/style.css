@@ -1933,8 +1933,6 @@ html {
   height: 100%;
   object-fit: cover;
   object-position: center;
-  filter: blur(2px);
-  transform: scale(1.05);
 }
 
 .aa-hero-overlay {
