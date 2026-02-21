@@ -250,9 +250,9 @@ export function renderStepsIndexPage() {
     return `
           <div class="si-grid-card">
             <span class="si-grid-card-number">${step.number}</span>
-            <h3 class="si-grid-card-principle">${step.principle}</h3>
+            <span class="si-grid-card-principle">${step.principle}</span>
             <p class="si-grid-card-text">${step.text}</p>
-            <a href="${bp(`/steps/step-${step.number}/`)}" class="si-grid-card-link">View ${step.month} &rarr;</a>
+            <a href="${bp(`/steps/step-${step.number}/`)}" class="si-grid-card-link">Read Reflections &rarr;</a>
           </div>`;
   }).join('\n');
 
@@ -291,20 +291,11 @@ export function renderStepsIndexPage() {
         </div>
       </div>
 
-      <!-- Featured Step 1 -->
-      <div class="si-featured-wrap">
-        <div class="si-featured-card">
-          <span class="si-featured-number">${featured.number}</span>
-          <span class="si-featured-principle">${featured.principle}</span>
-          <h2 class="si-featured-title">${featured.text}</h2>
-          <a href="${bp(`/steps/step-${featured.number}/`)}" class="si-featured-link">Explore ${featured.month} Reflections &rarr;</a>
-        </div>
-      </div>
-
-      <!-- App CTA — The Bridge -->
+      <!-- App CTA -->
       <div class="si-cta-wrap">
         <div class="si-cta">
-          <p class="si-cta-text">Working the steps is a daily practice. Download the Daily Paths app to track your progress and read reflections on the go.</p>
+          <h2 class="si-cta-heading">A Companion for the Journey</h2>
+          <p class="si-cta-text">Carry the Steps with you. Our mobile app provides daily reflections for each step and quick access to the Al-Anon tools you need.</p>
           <div class="si-cta-badges">
             <a href="https://apps.apple.com/app/id6755981862" target="_blank" rel="noopener noreferrer" class="si-cta-badge-link">
               <img src="https://developer.apple.com/app-store/marketing/guidelines/images/badge-download-on-the-app-store.svg" alt="Download on the App Store" class="si-cta-badge">
@@ -316,7 +307,18 @@ export function renderStepsIndexPage() {
         </div>
       </div>
 
-      <!-- Steps 2–12 Grid -->
+      <!-- Featured Step -->
+      <div class="si-featured-wrap">
+        <div class="si-featured-card">
+          <span class="si-featured-number">${featured.number}</span>
+          <span class="si-featured-principle">${featured.principle}</span>
+          <h2 class="si-featured-title">${featured.text}</h2>
+          <p class="si-featured-quote">&ldquo;${pullQuoteFeatured}&rdquo;</p>
+          <a href="${bp(`/steps/step-${featured.number}/`)}" class="si-featured-link">Read Reflections &rarr;</a>
+        </div>
+      </div>
+
+      <!-- Steps Grid -->
       <div class="si-grid-wrap">
         <h2 class="si-grid-heading">Steps 2 &ndash; 12</h2>
         <div class="si-grid">
