@@ -103,6 +103,12 @@ ${json}
 ${bodyContent}
   </main>
 
+  ${bodyClass === 'page-reading' ? `<aside class="author-bio">
+    <div class="author-bio-inner">
+      <p class="author-bio-text">Curated by <strong>Neal W.</strong> for Daily Growth, LLC. Grounded in the Twelve Steps and the contemplative tradition of Al-Anon.</p>
+    </div>
+  </aside>` : ''}
+
   <footer class="site-footer">
     <div class="footer-inner">
       <div class="footer-brand">

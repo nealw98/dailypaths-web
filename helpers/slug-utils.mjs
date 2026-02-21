@@ -45,4 +45,22 @@ export function dayToMonthIndex(dayOfYear) {
   return 11;
 }
 
+/**
+ * Convert day_of_year (1-366) to an ISO date string like "2026-01-01".
+ * Uses the current year so <time datetime> stays accurate per build.
+ */
+export function dayToIsoDate(dayOfYear) {
+  const year = new Date().getFullYear();
+  let remaining = dayOfYear;
+  for (let m = 0; m < 12; m++) {
+    if (remaining <= DAYS_IN_MONTH[m]) {
+      const mm = String(m + 1).padStart(2, '0');
+      const dd = String(remaining).padStart(2, '0');
+      return `${year}-${mm}-${dd}`;
+    }
+    remaining -= DAYS_IN_MONTH[m];
+  }
+  return `${year}-12-31`;
+}
+
 export { MONTHS, DAYS_IN_MONTH };

@@ -1,6 +1,6 @@
 import { wrapInLayout } from './base.mjs';
 import { textToHtmlParagraphs, renderQuote, stripForMeta } from '../helpers/markdown.mjs';
-import { dayToSlug } from '../helpers/slug-utils.mjs';
+import { dayToSlug, dayToIsoDate } from '../helpers/slug-utils.mjs';
 import { readingStructuredData, breadcrumbStructuredData } from '../helpers/seo.mjs';
 import { bp } from '../helpers/config.mjs';
 import { THEME_TO_TOPIC } from '../helpers/theme-data.mjs';
@@ -15,6 +15,7 @@ import { THEME_TO_TOPIC } from '../helpers/theme-data.mjs';
  */
 export function renderReadingPage(reading, prevReading, nextReading, allReadings = []) {
   const slug = dayToSlug(reading.day_of_year);
+  const isoDate = dayToIsoDate(reading.day_of_year);
   const prevSlug = dayToSlug(prevReading.day_of_year);
   const nextSlug = dayToSlug(nextReading.day_of_year);
 
@@ -99,7 +100,7 @@ ${relatedItems}
           <span class="breadcrumb-sep">&rsaquo;</span>
           <span>${reading.title}</span>
         </nav>
-        <p class="rd-date">${reading.display_date}</p>
+        <time class="rd-date" datetime="${isoDate}">${reading.display_date}</time>
         <h1 class="rd-title">${reading.title}</h1>
         <div class="rd-pills">
           ${themePill}
@@ -125,6 +126,17 @@ ${relatedItems}
         </section>
         ` : ''}
       </div>
+
+      <!-- Focus Areas -->
+      ${(stepTheme || theme) ? `
+      <section class="rd-focus-areas">
+        <h2 class="rd-focus-areas-heading">Focus Areas</h2>
+        <div class="rd-focus-areas-links">
+          ${stepPill}
+          ${themePill}
+        </div>
+      </section>
+      ` : ''}
 
     </article>
 

@@ -413,7 +413,7 @@ export function renderStepPage(step, readings = []) {
   // Build tools list
   const toolItems = tools.map(t => `              <li>${t}</li>`).join('\n');
 
-  // Build daily reading list — first 5 readings only, with "View all" CTA
+  // Build daily reading list — first 5 readings from the step's month, with "View all" CTA
   let readingListHtml = '';
   if (readings.length > 0) {
     const dayRange = getMonthDayRange(monthIndex);
@@ -448,6 +448,32 @@ ${listItems}
         </ul>
         <div class="step-readings-cta">
           <a href="${bp(`/months/${step.monthSlug}/`)}" class="step-readings-btn">View all ${step.month} reflections &rarr;</a>
+        </div>
+      </section>`;
+  }
+
+  // Build associated readings — all readings tagged with this step_theme across the year
+  const stepTag = `Step ${step.number}`;
+  const associatedReadings = readings.filter(r => r.step_theme === stepTag);
+  let associatedHtml = '';
+  if (associatedReadings.length > 0) {
+    const assocItems = associatedReadings.map(r => {
+      const slug = dayToSlug(r.day_of_year);
+      return `
+              <a href="${bp(`/${slug}/`)}" class="step-assoc-card">
+                <span class="step-assoc-date">${r.display_date}</span>
+                <span class="step-assoc-title">${r.title}</span>
+              </a>`;
+    }).join('\n');
+
+    associatedHtml = `
+      <section class="step-assoc-section">
+        <h2 class="step-assoc-heading">All Readings on Step ${step.number}</h2>
+        <p class="step-assoc-intro">
+          ${associatedReadings.length} reading${associatedReadings.length === 1 ? '' : 's'} across the year explore the principle of ${step.principle}.
+        </p>
+        <div class="step-assoc-grid">
+${assocItems}
         </div>
       </section>`;
   }
@@ -528,6 +554,9 @@ ${toolItems}
 
     <!-- Daily Readings -->
 ${readingListHtml}
+
+    <!-- Associated Readings (Hub & Spoke) -->
+${associatedHtml}
 
     <!-- Engine CTA -->
     <section class="step-engine-cta bg-navy">

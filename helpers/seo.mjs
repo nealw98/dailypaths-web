@@ -78,7 +78,13 @@ Sitemap: ${BASE_URL}/sitemap.xml
  * Generate Article structured data for a reading page
  */
 export function readingStructuredData(reading, slug) {
-  return JSON.stringify({
+  const stepTheme = reading.step_theme || '';
+  const secondaryTheme = reading.secondary_theme || '';
+  const keywords = [stepTheme, secondaryTheme, 'Al-Anon', 'recovery', 'daily reflection']
+    .filter(Boolean)
+    .join(', ');
+
+  const data = {
     '@context': 'https://schema.org',
     '@type': 'Article',
     'headline': reading.title,
@@ -98,8 +104,15 @@ export function readingStructuredData(reading, slug) {
     'mainEntityOfPage': {
       '@type': 'WebPage',
       '@id': `${BASE_URL}/${slug}/`
-    }
-  }, null, 2);
+    },
+    'keywords': keywords,
+  };
+
+  if (stepTheme) {
+    data['articleSection'] = stepTheme;
+  }
+
+  return JSON.stringify(data, null, 2);
 }
 
 /**

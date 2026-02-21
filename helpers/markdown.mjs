@@ -28,21 +28,27 @@ export function textToHtmlParagraphs(text) {
 export function renderQuote(quoteText) {
   if (!quoteText) return '';
   const normalized = quoteText.replace(/\\n\\n/g, '\n\n').replace(/\\n/g, '\n');
-  return normalized
+  let citation = '';
+  const inner = normalized
     .split(/\n\n+/)
     .filter(p => p.trim())
     .map(para => {
       // Strip surrounding asterisks if present
       let cleaned = para.trim().replace(/^\*+|\*+$/g, '').trim();
       // Check for parenthetical attribution at the end
-      const attrMatch = cleaned.match(/^(.*?)(\s*\([^)]+\)\s*)$/s);
+      const attrMatch = cleaned.match(/^(.*?)(\s*\(([^)]+)\)\s*)$/s);
       if (attrMatch) {
-        const [, quote, ref] = attrMatch;
-        return `<p class="quote-text"><em>${markdownToHtml(quote.trim())}</em> <span class="quote-ref">${ref.trim()}</span></p>`;
+        const [, quote, , ref] = attrMatch;
+        citation = ref.trim();
+        return `<p class="quote-text"><em>${markdownToHtml(quote.trim())}</em></p>`;
       }
       return `<p class="quote-text"><em>${markdownToHtml(cleaned)}</em></p>`;
     })
     .join('\n');
+  const footerHtml = citation
+    ? `\n<footer class="source-citation-footer"><cite>${citation}</cite></footer>`
+    : '';
+  return `<blockquote class="source-citation">\n${inner}${footerHtml}\n</blockquote>`;
 }
 
 /**
