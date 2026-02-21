@@ -1689,30 +1689,37 @@ html {
   grid-template-columns: 1fr;
   gap: 1.5rem;
   margin-top: 1.5rem;
+  align-items: stretch;
+  /* Break out of 650px body to give cards breathing room */
+  margin-left: -2rem;
+  margin-right: -2rem;
+  padding: 0 0.5rem;
 }
 
 @media (min-width: 640px) {
   .ap-compare {
     grid-template-columns: 1fr 1fr;
-    gap: 2rem;
+    gap: 1.5rem;
+    margin-left: -3rem;
+    margin-right: -3rem;
+    padding: 0;
   }
 }
 
 .ap-compare-col {
-  background: var(--white);
+  background: #FCFBF7;
+  border: 1px solid rgba(0, 0, 0, 0.06);
   border-radius: var(--radius);
-  padding: 2rem 1.5rem 1.75rem;
-  box-shadow: var(--card-shadow);
-  border-top: 4px solid var(--sage);
-}
-
-.ap-compare-col:last-child {
-  border-top-color: var(--deep-teal);
+  padding: 2rem 1.75rem 1.75rem;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+  /* Stretch to match sibling height */
+  display: flex;
+  flex-direction: column;
 }
 
 .ap-compare-heading {
   font-family: var(--font-serif);
-  font-size: 1.3rem;
+  font-size: 1.4rem;
   font-weight: 700;
   color: var(--deep-navy);
   margin: 0 0 0.15rem;
@@ -1720,10 +1727,10 @@ html {
 
 .ap-compare-subtitle {
   font-family: var(--font-sans);
-  font-size: 0.78rem;
+  font-size: 0.75rem;
   font-weight: 500;
   text-transform: uppercase;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.1em;
   color: var(--sage);
   margin: 0 0 1.25rem;
 }
@@ -1736,11 +1743,12 @@ html {
   list-style: none;
   margin: 0;
   padding: 0;
+  flex: 1;
 }
 
 .ap-compare-list li {
-  padding: 0.85rem 0;
-  border-top: 1px solid var(--cloud);
+  padding: 0.9rem 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.06);
 }
 
 .ap-compare-list li:first-child {
@@ -1751,17 +1759,18 @@ html {
 .ap-compare-feature {
   display: block;
   font-family: var(--font-serif);
-  font-size: 1.05rem;
+  font-size: 1.1rem;
   font-weight: 700;
   color: var(--deep-navy);
-  margin-bottom: 0.25rem;
+  margin-bottom: 0.3rem;
 }
 
 .ap-compare-detail {
   display: block;
-  font-family: var(--font-reading);
+  font-family: var(--font-sans);
   font-size: 0.88rem;
-  line-height: 1.65;
+  font-weight: 300;
+  line-height: 1.6;
   color: var(--ink);
 }
 
@@ -1920,6 +1929,11 @@ html {
   }
   .ap-section:first-child .ap-editorial p:first-child::first-letter {
     font-size: 3rem;
+  }
+  .ap-compare {
+    margin-left: -0.5rem;
+    margin-right: -0.5rem;
+    padding: 0;
   }
   .ap-compare-col {
     padding: 1.5rem 1.25rem 1.25rem;
