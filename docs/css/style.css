@@ -4537,17 +4537,15 @@ a.rd-pill--step:hover {
   text-align: center;
   padding: 2rem;
   border: none;
-  border-top: 4px solid var(--warm-gold);
   border-radius: var(--radius);
-  background: var(--white);
-  box-shadow: var(--card-shadow);
+  background: var(--cta-dark);
 }
 
 .topic-cta-text {
   font-family: var(--font-reading);
   font-size: 1rem;
   line-height: 1.7;
-  color: var(--ink);
+  color: rgba(255, 255, 255, 0.9);
   margin-bottom: 1rem;
 }
 
