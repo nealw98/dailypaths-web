@@ -3,7 +3,7 @@ import { bp } from '../helpers/config.mjs';
 
 /**
  * The Al-Anon Program — Structured resource-block style.
- * Hero: al-anon-hero.jpg with Navy overlay.
+ * Hero: alanon-hero.jpg with Navy overlay.
  * Comprehensive view of the full program: Steps, Fellowship, Literature, Service.
  */
 
@@ -13,7 +13,7 @@ export function renderAboutAlanonPage() {
       <!-- Hero -->
       <header class="aa-hero">
         <div class="aa-hero-image">
-          <img src="${bp('/assets/themes/al-anon-hero.jpg')}" alt="Ocean path at sunrise \u2014 The Al-Anon Program" />
+          <img src="${bp('/assets/themes/alanon-hero.jpg')}" alt="Ocean path at sunrise \u2014 The Al-Anon Program" />
           <div class="aa-hero-overlay"></div>
         </div>
         <div class="aa-hero-content">
