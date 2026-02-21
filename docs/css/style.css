@@ -1555,12 +1555,15 @@ html {
 .ap-hero {
   position: relative;
   text-align: center;
-  padding: 0;
   overflow: hidden;
   min-height: 280px;
+  max-height: 400px;
+  aspect-ratio: 3 / 1;
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
 }
 
 .ap-hero-image {
@@ -1574,14 +1577,14 @@ html {
   height: 100%;
   object-fit: cover;
   object-position: center;
-  filter: blur(10px);
-  transform: scale(1.05);
 }
 
 .ap-hero-overlay {
   position: absolute;
   inset: 0;
-  background: rgba(74, 93, 78, 0.40);
+  background: radial-gradient(circle, rgba(74, 93, 78, 0.1) 0%, rgba(74, 93, 78, 0.4) 100%);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
 }
 
 .ap-hero-content {
@@ -1609,9 +1612,6 @@ html {
 }
 
 @media (min-width: 768px) {
-  .ap-hero {
-    min-height: 400px;
-  }
   .ap-hero-content {
     padding: 5rem 2rem 5.5rem;
   }
@@ -1872,9 +1872,6 @@ html {
 
 /* Mobile */
 @media (max-width: 640px) {
-  .ap-hero {
-    min-height: 280px;
-  }
   .ap-hero-title {
     font-size: 2.2rem;
   }
@@ -1914,12 +1911,15 @@ html {
 .aa-hero {
   position: relative;
   text-align: center;
-  padding: 0;
   overflow: hidden;
   min-height: 280px;
+  max-height: 400px;
+  aspect-ratio: 3 / 1;
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
 }
 
 .aa-hero-image {
@@ -1933,14 +1933,14 @@ html {
   height: 100%;
   object-fit: cover;
   object-position: center;
-  filter: blur(10px);
-  transform: scale(1.05);
 }
 
 .aa-hero-overlay {
   position: absolute;
   inset: 0;
-  background: rgba(27, 38, 59, 0.40);
+  background: radial-gradient(circle, rgba(74, 93, 78, 0.1) 0%, rgba(74, 93, 78, 0.4) 100%);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
 }
 
 .aa-hero-content {
@@ -2349,9 +2349,6 @@ html {
 /* ── About Al-Anon — Mobile ─────────────────────────────────── */
 
 @media (max-width: 640px) {
-  .aa-hero {
-    min-height: 260px;
-  }
   .aa-hero-title {
     font-size: 2.2rem;
   }
