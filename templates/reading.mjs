@@ -1,7 +1,7 @@
 import { wrapInLayout } from './base.mjs';
 import { textToHtmlParagraphs, renderQuote, stripForMeta } from '../helpers/markdown.mjs';
 import { dayToSlug } from '../helpers/slug-utils.mjs';
-import { readingStructuredData } from '../helpers/seo.mjs';
+import { readingStructuredData, breadcrumbStructuredData } from '../helpers/seo.mjs';
 import { bp } from '../helpers/config.mjs';
 import { THEME_TO_TOPIC } from '../helpers/theme-data.mjs';
 
@@ -19,7 +19,10 @@ export function renderReadingPage(reading, prevReading, nextReading, allReadings
   const nextSlug = dayToSlug(nextReading.day_of_year);
 
   const metaDescription = stripForMeta(reading.opening || reading.body);
-  const structuredData = readingStructuredData(reading, slug);
+  const structuredData = [
+    readingStructuredData(reading, slug),
+    breadcrumbStructuredData(reading, slug),
+  ];
 
   // Build the body content
   const quoteHtml = renderQuote(reading.quote);
@@ -89,10 +92,12 @@ ${relatedItems}
 
       <!-- Header -->
       <header class="rd-header">
-        <nav class="breadcrumb rd-breadcrumb">
+        <nav class="breadcrumb rd-breadcrumb" aria-label="Breadcrumb">
           <a href="${bp('/')}">Home</a>
-          <span class="breadcrumb-sep">/</span>
-          <span>${reading.display_date}</span>
+          <span class="breadcrumb-sep">&rsaquo;</span>
+          <span>Readings</span>
+          <span class="breadcrumb-sep">&rsaquo;</span>
+          <span>${reading.title}</span>
         </nav>
         <p class="rd-date">${reading.display_date}</p>
         <h1 class="rd-title">${reading.title}</h1>

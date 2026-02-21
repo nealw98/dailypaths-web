@@ -25,7 +25,6 @@ export function wrapInLayout({
   const canonicalUrl = BASE_URL + canonicalPath;
   const ogImageUrl = ogImage ? BASE_URL + ogImage : `${BASE_URL}/assets/og-image.png`;
   const twitterCard = ogImage ? 'summary_large_image' : 'summary';
-  const year = new Date().getFullYear();
 
   return `<!DOCTYPE html>
 <html lang="en">
@@ -65,10 +64,10 @@ export function wrapInLayout({
   <!-- Styles -->
   <link rel="stylesheet" href="${bp('/css/style.css')}">
 
-  ${structuredData ? `<!-- Structured Data -->
+  ${structuredData ? (Array.isArray(structuredData) ? structuredData : [structuredData]).map(json => `<!-- Structured Data -->
   <script type="application/ld+json">
-${structuredData}
-  </script>` : ''}
+${json}
+  </script>`).join('\n  ') : ''}
 
   <!-- Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-HSDBJDBVCS"></script>
@@ -117,7 +116,7 @@ ${bodyContent}
         <a href="${bp('/privacy/')}">Privacy</a>
         <a href="${bp('/terms/')}">Terms</a>
       </nav>
-      <p class="footer-copyright">&copy; ${year} Daily Growth, LLC. All rights reserved.</p>
+      <p class="footer-copyright">&copy; 2026 Daily Growth, LLC. All rights reserved.</p>
     </div>
   </footer>
 

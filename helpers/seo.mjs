@@ -84,15 +84,15 @@ export function readingStructuredData(reading, slug) {
     'headline': reading.title,
     'description': reading.opening?.replace(/\\n\\n/g, ' ').replace(/\\n/g, ' ').replace(/\*+/g, '').slice(0, 155),
     'author': {
-      '@type': 'Organization',
-      'name': 'Al-Anon Daily Paths'
+      '@type': 'Person',
+      'name': 'Neal W.'
     },
     'publisher': {
       '@type': 'Organization',
-      'name': 'Al-Anon Daily Paths',
+      'name': 'Daily Growth, LLC',
       'logo': {
         '@type': 'ImageObject',
-        'url': `${BASE_URL}/assets/logo.png`
+        'url': `${BASE_URL}/assets/favicon.png`
       }
     },
     'mainEntityOfPage': {
@@ -103,16 +103,66 @@ export function readingStructuredData(reading, slug) {
 }
 
 /**
- * Generate WebSite structured data for the homepage
+ * Generate BreadcrumbList structured data for a reading page
+ */
+export function breadcrumbStructuredData(reading, slug) {
+  return JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    'itemListElement': [
+      {
+        '@type': 'ListItem',
+        'position': 1,
+        'name': 'Home',
+        'item': BASE_URL + '/'
+      },
+      {
+        '@type': 'ListItem',
+        'position': 2,
+        'name': 'Readings',
+        'item': BASE_URL + '/'
+      },
+      {
+        '@type': 'ListItem',
+        'position': 3,
+        'name': reading.title,
+        'item': `${BASE_URL}/${slug}/`
+      }
+    ]
+  }, null, 2);
+}
+
+/**
+ * Generate structured data for the homepage — WebSite + SoftwareApplication
  */
 export function homepageStructuredData() {
-  return JSON.stringify({
+  const webSite = {
     '@context': 'https://schema.org',
     '@type': 'WebSite',
     'name': 'Al-Anon Daily Paths',
     'url': BASE_URL,
     'description': '366 original daily Al-Anon recovery reflections written in the contemplative tradition.'
-  }, null, 2);
+  };
+
+  const app = {
+    '@context': 'https://schema.org',
+    '@type': 'SoftwareApplication',
+    'name': 'Al-Anon Daily Paths',
+    'operatingSystem': 'iOS, Android',
+    'applicationCategory': 'LifestyleApplication',
+    'description': '366 original daily Al-Anon recovery reflections and personal journaling tools.',
+    'offers': {
+      '@type': 'Offer',
+      'price': '0',
+      'priceCurrency': 'USD'
+    },
+    'publisher': {
+      '@type': 'Organization',
+      'name': 'Daily Growth, LLC'
+    }
+  };
+
+  return [JSON.stringify(webSite, null, 2), JSON.stringify(app, null, 2)];
 }
 
 /**

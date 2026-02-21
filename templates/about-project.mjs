@@ -37,7 +37,7 @@ export function renderAboutProjectPage() {
           <section class="ap-section">
             <h2 class="ap-section-heading">Our Approach</h2>
             <div class="ap-editorial">
-              <p>We are not affiliated with Al-Anon Family Groups, Inc. Daily Paths is an independent project created by people in recovery who wanted to bring the spirit of the program to a wider audience through thoughtful, original writing.</p>
+              <p>We are not affiliated with Al-Anon Family Groups, Inc. Daily Paths is an independent project curated by Daily Growth, LLC and created by people in recovery who wanted to bring the spirit of the program to a wider audience through thoughtful, original writing. Our content is carefully developed to help those in recovery find daily encouragement and practical wisdom for the journey ahead.</p>
               <p>We don&rsquo;t replace meetings, sponsorship, or Al-Anon literature. We complement them. Think of Daily Paths as a quiet companion&mdash;something to carry with you between meetings, a voice that says: <em>&ldquo;One day at a time.&rdquo;</em></p>
             </div>
           </section>
