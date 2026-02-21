@@ -1933,13 +1933,14 @@ html {
   height: 100%;
   object-fit: cover;
   object-position: center;
+  filter: blur(10px);
+  transform: scale(1.05);
 }
 
 .aa-hero-overlay {
   position: absolute;
   inset: 0;
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  background: rgba(27, 38, 59, 0.40);
 }
 
 .aa-hero-content {
