@@ -369,25 +369,41 @@ ul {
 }
 
 
-/* --- Reading Page — Editorial Meditation Layout --- */
+/* --- Reading Page — Premium Magazine Layout --- */
 .reading-editorial {
   padding: 0;
 }
 
-/* Header — centered, clean */
+/* Header — centered, generous whitespace */
 .rd-header {
   text-align: center;
-  padding: 2.5rem 2rem 2rem;
+  padding: 3rem 2rem 2.5rem;
   max-width: 700px;
   margin: 0 auto;
 }
 
+/* Breadcrumbs — whisper-quiet navigation */
 .rd-breadcrumb {
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.75rem;
+  font-size: 0.72rem;
+  color: var(--mist);
+  letter-spacing: 0.04em;
 }
 
 .rd-breadcrumb a {
   color: var(--ocean);
+  opacity: 0.6;
+  text-decoration: none;
+  transition: opacity 0.15s;
+}
+
+.rd-breadcrumb a:hover {
+  opacity: 1;
+}
+
+.rd-breadcrumb .breadcrumb-sep {
+  opacity: 0.4;
+  margin: 0 0.35rem;
 }
 
 .rd-date {
@@ -397,17 +413,18 @@ ul {
   text-transform: uppercase;
   letter-spacing: 0.12em;
   color: var(--ocean);
-  margin-bottom: 0.6rem;
+  margin-bottom: 0.75rem;
 }
 
+/* Oversized serif H1 */
 .rd-title {
   font-family: var(--font-serif);
-  font-size: clamp(1.8rem, 4.5vw, 2.6rem);
+  font-size: clamp(2.2rem, 5.5vw, 3.2rem);
   font-weight: 700;
-  line-height: 1.15;
-  color: var(--ink);
-  letter-spacing: -0.02em;
-  margin-bottom: 1rem;
+  line-height: 1.1;
+  color: var(--deep-navy);
+  letter-spacing: -0.025em;
+  margin-bottom: 1.25rem;
 }
 
 .rd-pills {
@@ -920,23 +937,25 @@ a.rd-pill--step:hover {
 .rd-content {
   max-width: 700px;
   margin: 0 auto;
-  padding: 0 2rem 2rem;
+  padding: 0 2rem 3rem;
 }
 
-/* Quote Block — left border, larger italic */
+/* High-End Pull Quote */
 .rd-quote {
-  border-left: 3px solid var(--deep-teal);
-  padding: 0.75rem 0 0.75rem 1.75rem;
-  margin: 0 0 2rem 0;
+  border: none;
+  border-top: 2px solid var(--deep-teal);
+  padding: 2rem 0 2.5rem 0;
+  margin: 0 0 2.5rem 0;
+  text-align: center;
 }
 
 .quote-text {
-  font-family: var(--font-reading);
+  font-family: var(--font-serif);
   font-style: italic;
-  font-size: 1.15rem;
-  line-height: 1.75;
-  color: var(--ink);
-  margin-bottom: 0.5rem;
+  font-size: clamp(1.25rem, 2.5vw, 1.6rem);
+  line-height: 1.6;
+  color: var(--deep-navy);
+  margin-bottom: 0.6rem;
 }
 
 .quote-text:last-child {
@@ -944,19 +963,22 @@ a.rd-pill--step:hover {
 }
 
 .quote-ref {
+  font-family: var(--font-sans);
   font-style: normal;
-  font-size: 0.8rem;
+  font-size: 0.78rem;
   color: var(--ocean);
   opacity: 0.7;
+  display: block;
+  margin-top: 0.5rem;
 }
 
 /* Reading Body */
 .rd-body p {
   font-family: var(--font-reading);
-  font-size: 1.05rem;
-  line-height: 1.85;
+  font-size: 1.08rem;
+  line-height: 1.9;
   color: var(--ink);
-  margin-bottom: 1.25rem;
+  margin-bottom: 1.35rem;
 }
 
 .rd-body p:last-child {
@@ -968,57 +990,62 @@ a.rd-pill--step:hover {
   width: 3rem;
   height: 1px;
   background: var(--mist);
-  margin: 1.5rem 0;
+  margin: 2rem 0;
 }
 
-/* Thought for the Day */
-.rd-thought {
-  background: var(--white);
-  border: none;
-  border-top: 4px solid var(--warm-gold);
-  border-radius: var(--radius);
-  padding: 1.5rem 1.75rem;
-  margin-top: 2rem;
-  box-shadow: var(--card-shadow);
+/* Today's Reminder — full-bleed terracotta */
+.rd-reminder {
+  text-align: center;
 }
 
-.rd-thought-label {
+.rd-reminder-inner {
+  max-width: 38rem;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.rd-reminder-heading {
   font-family: var(--font-sans);
-  font-size: 0.68rem;
+  font-size: 0.72rem;
   font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: var(--ocean);
-  margin-bottom: 0.6rem;
+  letter-spacing: 0.15em;
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 1.25rem;
 }
 
-.rd-thought-text {
+.rd-reminder-text {
   font-family: var(--font-serif);
   font-style: italic;
-  font-size: 1.3rem;
-  line-height: 1.45;
-  color: var(--deep-teal);
+  font-size: clamp(1.3rem, 2.5vw, 1.7rem);
+  line-height: 1.5;
+  color: var(--white);
   letter-spacing: -0.01em;
 }
 
-/* Prev / Next Navigation */
+.rd-reminder-text strong {
+  font-weight: 700;
+  font-style: normal;
+}
+
+/* Prev / Next Navigation — elegant text links */
 .rd-nav {
   max-width: 700px;
   margin: 0 auto;
-  padding: 0 2rem 2.5rem;
+  padding: 2.5rem 2rem 3rem;
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
+  align-items: center;
   border-top: 1px solid var(--cloud);
-  padding-top: 1.5rem;
 }
 
 .rd-nav-link {
   display: flex;
-  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
   text-decoration: none;
-  max-width: 40%;
-  padding: 0.5rem 0.75rem;
+  max-width: 45%;
+  padding: 0.75rem 1rem;
   border-radius: var(--radius);
   transition: background 0.15s;
 }
@@ -1029,64 +1056,56 @@ a.rd-pill--step:hover {
 
 .rd-nav-next {
   text-align: right;
+  flex-direction: row;
+}
+
+.rd-nav-next .rd-nav-meta {
   align-items: flex-end;
+}
+
+.rd-nav-arrow {
+  font-size: 1.2rem;
+  color: var(--ocean);
+  flex-shrink: 0;
+  line-height: 1;
+}
+
+.rd-nav-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
 }
 
 .rd-nav-dir {
   font-family: var(--font-sans);
-  font-size: 0.7rem;
+  font-size: 0.68rem;
   font-weight: 500;
   text-transform: uppercase;
   letter-spacing: 0.1em;
   color: var(--ocean);
-  margin-bottom: 0.25rem;
-}
-
-.rd-nav-link-date {
-  font-family: var(--font-sans);
-  font-size: 0.72rem;
-  color: var(--ocean);
-  opacity: 0.7;
-  margin-bottom: 0.15rem;
 }
 
 .rd-nav-link-title {
   font-family: var(--font-serif);
-  font-size: 1.05rem;
+  font-size: 1rem;
   font-weight: 600;
   color: var(--deep-teal);
   line-height: 1.3;
-}
-
-.rd-nav-today {
-  font-family: var(--font-sans);
-  font-size: 0.7rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: var(--deep-teal);
-  text-decoration: none;
-  padding-top: 0.75rem;
-  flex-shrink: 0;
-}
-
-.rd-nav-today:hover {
-  color: var(--ocean);
 }
 
 /* Related Readings Section */
 .rd-related-section {
   max-width: 700px;
   margin: 0 auto;
-  padding: 0 2rem 3rem;
+  padding: 0 2rem 3.5rem;
 }
 
 .rd-related-heading {
   font-family: var(--font-serif);
-  font-size: 1.3rem;
-  font-weight: 600;
-  color: var(--deep-teal);
-  margin-bottom: 1rem;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--deep-navy);
+  margin-bottom: 1.25rem;
   padding-bottom: 0.75rem;
   border-bottom: 1px solid var(--cloud);
 }
@@ -1094,17 +1113,17 @@ a.rd-pill--step:hover {
 .rd-related-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 0.75rem;
+  gap: 1rem;
 }
 
 .rd-related-card {
   display: flex;
   flex-direction: column;
   text-decoration: none;
-  padding: 1rem 1.25rem;
+  padding: 1.25rem 1.5rem;
   background: var(--white);
   border: none;
-  border-top: 4px solid var(--sage);
+  border-top: 3px solid var(--deep-teal);
   border-radius: var(--radius);
   box-shadow: var(--card-shadow);
   transition: box-shadow 0.2s, transform 0.2s;
@@ -1122,15 +1141,67 @@ a.rd-pill--step:hover {
   text-transform: uppercase;
   letter-spacing: 0.08em;
   color: var(--ocean);
-  margin-bottom: 0.2rem;
+  margin-bottom: 0.3rem;
 }
 
 .rd-related-title {
   font-family: var(--font-serif);
-  font-size: 0.95rem;
+  font-size: 1rem;
   font-weight: 600;
   color: var(--deep-teal);
   line-height: 1.3;
+}
+
+/* Engine CTA — reading page */
+.rd-engine-cta {
+  text-align: center;
+}
+
+.rd-engine-cta-inner {
+  max-width: 42rem;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.rd-engine-cta-heading {
+  font-family: var(--font-serif);
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 0.75rem;
+}
+
+.rd-engine-cta-text {
+  font-family: var(--font-reading);
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.85);
+  margin-bottom: 1.5rem;
+}
+
+.rd-engine-cta-badges {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+}
+
+.rd-engine-cta-badge-link {
+  display: inline-block;
+  text-decoration: none;
+  transition: opacity 0.15s;
+}
+
+.rd-engine-cta-badge-link:hover {
+  opacity: 0.8;
+}
+
+.rd-engine-cta-badge {
+  height: 38px;
+}
+
+.rd-engine-cta-badge-play {
+  height: 54px;
 }
 
 /* Reading Page Responsive — Mobile */
@@ -1138,19 +1209,28 @@ a.rd-pill--step:hover {
   .rd-header {
     padding: 2rem 1.5rem 1.5rem;
   }
+  .rd-title {
+    font-size: 2rem;
+  }
   .rd-content {
     padding: 0 1.5rem 2rem;
   }
+  .rd-quote {
+    padding: 1.5rem 0 1.75rem;
+  }
+  .rd-reminder-inner {
+    padding: 0 1.5rem;
+  }
   .rd-nav {
-    padding: 0 1.5rem 2rem;
-    padding-top: 1.25rem;
+    padding: 2rem 1.5rem 2.5rem;
   }
   .rd-nav-link {
-    max-width: 38%;
-    padding: 0.4rem 0.5rem;
+    max-width: 48%;
+    padding: 0.5rem 0.6rem;
+    gap: 0.5rem;
   }
   .rd-nav-link-title {
-    font-size: 0.9rem;
+    font-size: 0.88rem;
   }
   .rd-related-section {
     padding: 0 1.5rem 2.5rem;
@@ -1158,8 +1238,8 @@ a.rd-pill--step:hover {
   .rd-related-grid {
     grid-template-columns: 1fr;
   }
-  .rd-thought {
-    padding: 1.25rem 1.5rem;
+  .rd-engine-cta-inner {
+    padding: 0 1.5rem;
   }
 }
 
