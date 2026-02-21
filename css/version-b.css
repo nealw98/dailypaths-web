@@ -1485,484 +1485,156 @@ a.rd-pill--step:hover {
   }
 }
 
-/* --- About Page --- */
 /* ==========================================================================
-   About Al-Anon Page — Comprehensive Guide Layout
+   About Daily Paths — Editorial Drop-Cap Layout (about-project)
    ========================================================================== */
 
-/* Hero */
-.abt-hero {
-  background: var(--cta-dark);
+/* Hero with Meadow/Nature path image */
+.ap-hero {
+  position: relative;
   text-align: center;
-  padding: 4rem 2rem 3.5rem;
+  overflow: hidden;
+  min-height: 320px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.abt-hero-title {
+.ap-hero-image {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.ap-hero-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  filter: blur(10px);
+  transform: scale(1.05);
+}
+
+.ap-hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(74, 93, 78, 0.40);
+}
+
+.ap-hero-content {
+  position: relative;
+  z-index: 1;
+  padding: 4rem 2rem 4.5rem;
+}
+
+.ap-hero-title {
   font-family: var(--font-serif);
-  font-size: clamp(2rem, 5vw, 2.8rem);
+  font-size: 2.75rem;
   font-weight: 700;
   color: var(--white);
   line-height: 1.15;
-  margin-bottom: 0.75rem;
-}
-
-.abt-hero-sub {
-  font-family: var(--font-reading);
-  font-size: clamp(1rem, 2vw, 1.15rem);
-  color: rgba(255, 255, 255, 0.85);
-  line-height: 1.65;
-  max-width: 36rem;
-  margin: 0 auto;
-  opacity: 1;
-}
-
-/* Mobile Jump Menu */
-.abt-jump {
-  display: none;
-}
-
-@media (max-width: 767px) {
-  .abt-jump {
-    display: flex;
-    gap: 0.5rem;
-    padding: 0.75rem 1.5rem;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    background: var(--white);
-    border-bottom: 1px solid var(--cloud);
-    position: sticky;
-    top: 0;
-    z-index: 8;
-  }
-}
-
-.abt-jump-pill {
-  flex-shrink: 0;
-  font-family: var(--font-sans);
-  font-size: 0.75rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  color: var(--deep-teal);
-  background: var(--cloud);
-  text-decoration: none;
-  padding: 0.4rem 0.85rem;
-  border-radius: 999px;
-  white-space: nowrap;
-  transition: background 0.15s;
-}
-
-.abt-jump-pill:hover {
-  background: var(--mist);
-}
-
-/* Body Wrapper — Centered content, sidebar in right margin */
-.abt-body-wrap {
-  position: relative;
-  max-width: 42rem;
-  margin: 0 auto;
-  padding: 3rem 2rem 2rem;
-}
-
-.abt-main {
-  /* Centered by parent max-width; no flex needed */
-}
-
-/* Sticky Sidebar — positioned in right margin on wide screens */
-.abt-sidebar {
-  display: none;
-}
-
-@media (min-width: 1100px) {
-  .abt-sidebar {
-    display: block;
-    position: absolute;
-    top: 3rem;
-    left: calc(100% + 2.5rem);
-    width: 160px;
-  }
-}
-
-.abt-toc {
-  position: sticky;
-  top: 2rem;
-}
-
-.abt-toc-heading {
-  font-family: var(--font-sans);
-  font-size: 0.65rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: var(--ink);
-  opacity: 0.5;
-  margin-bottom: 0.75rem;
-}
-
-.abt-toc-list {
-  list-style: none;
-  padding: 0;
   margin: 0;
 }
 
-.abt-toc-list li {
-  margin-bottom: 0.15rem;
+@media (min-width: 768px) {
+  .ap-hero {
+    min-height: 380px;
+  }
+  .ap-hero-content {
+    padding: 5rem 2rem 5.5rem;
+  }
+  .ap-hero-title {
+    font-size: 3.25rem;
+  }
 }
 
-.abt-toc-link {
-  display: block;
-  font-family: var(--font-sans);
-  font-size: 0.85rem;
-  font-weight: 500;
-  color: var(--ink);
-  opacity: 0.6;
-  text-decoration: none;
-  padding: 0.4rem 0 0.4rem 1rem;
-  border-left: 2px solid transparent;
-  transition: color 0.15s, opacity 0.15s, border-color 0.15s;
+/* Editorial Body */
+.ap-body {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 3rem 2rem 4rem;
 }
 
-.abt-toc-link:hover {
-  opacity: 1;
-  color: var(--deep-teal);
+.ap-body-inner {
+  /* container for sections */
 }
 
-.abt-toc-link.is-active {
-  opacity: 1;
-  color: var(--deep-teal);
-  font-weight: 600;
-  border-left-color: var(--deep-teal);
+/* Section */
+.ap-section {
+  margin-bottom: 3rem;
 }
 
-/* Section Shared */
-.abt-section {
-  margin-bottom: 3.5rem;
-  scroll-margin-top: 4rem;
-}
-
-/* Alternating section tints */
-#threes,
-#fellowships {
-  background: var(--pearl);
-  margin-left: -2rem;
-  margin-right: -2rem;
-  padding: 2.5rem 2rem;
-  border-radius: var(--radius);
-}
-
-.abt-section-heading {
+.ap-section-heading {
   font-family: var(--font-serif);
-  font-size: clamp(1.4rem, 3vw, 1.7rem);
+  font-size: 1.65rem;
   font-weight: 700;
   color: var(--deep-navy);
   line-height: 1.2;
-  margin-bottom: 0.75rem;
-}
-
-.abt-section-intro {
-  font-family: var(--font-reading);
-  font-size: 0.95rem;
-  line-height: 1.75;
-  color: var(--ink);
-  margin-bottom: 1.75rem;
-}
-
-/* Back to Top (mobile only) */
-.abt-back-top {
-  display: none;
-}
-
-.abt-back-top--mobile {
-  display: none;
-}
-
-@media (max-width: 767px) {
-  .abt-back-top--mobile {
-    display: inline-block;
-    font-family: var(--font-sans);
-    font-size: 0.78rem;
-    font-weight: 500;
-    color: var(--ocean);
-    text-decoration: none;
-    margin-top: 1.5rem;
-  }
-
-  .abt-back-top--mobile:hover {
-    color: var(--deep-teal);
-  }
-}
-
-/* ── Self-Reflection Quiz ────────────────────────────────────── */
-
-.abt-quiz-list {
-  list-style: none;
-  padding: 0;
-  margin: 0 0 1.5rem;
-}
-
-.abt-quiz-item {
-  border-bottom: 1px solid var(--cloud);
-}
-
-.abt-quiz-label {
-  display: flex;
-  align-items: flex-start;
-  gap: 0.75rem;
-  padding: 0.85rem 0;
-  cursor: pointer;
-  transition: background 0.1s;
-}
-
-.abt-quiz-label:hover {
-  background: rgba(0, 0, 0, 0.015);
-}
-
-/* Hide native checkbox */
-.abt-quiz-check {
-  position: absolute;
-  opacity: 0;
-  width: 0;
-  height: 0;
-}
-
-/* Custom checkbox box */
-.abt-quiz-box {
-  flex-shrink: 0;
-  width: 22px;
-  height: 22px;
-  margin-top: 1px;
-  border: 2px solid var(--mist);
-  border-radius: 4px;
-  background: var(--white);
-  position: relative;
-  transition: border-color 0.15s, background 0.15s;
-}
-
-/* Checkmark */
-.abt-quiz-box::after {
-  content: '';
-  position: absolute;
-  top: 3px;
-  left: 6px;
-  width: 6px;
-  height: 10px;
-  border: solid var(--white);
-  border-width: 0 2px 2px 0;
-  transform: rotate(45deg);
-  opacity: 0;
-  transition: opacity 0.15s;
-}
-
-/* Checked state */
-.abt-quiz-check:checked + .abt-quiz-box {
-  background: var(--deep-teal);
-  border-color: var(--deep-teal);
-}
-
-.abt-quiz-check:checked + .abt-quiz-box::after {
-  opacity: 1;
-}
-
-/* Focus visible ring */
-.abt-quiz-check:focus-visible + .abt-quiz-box {
-  outline: 2px solid var(--ocean);
-  outline-offset: 2px;
-}
-
-.abt-quiz-text {
-  font-family: var(--font-reading);
-  font-size: 0.95rem;
-  line-height: 1.6;
-  color: var(--ink);
-}
-
-/* Quiz Result — hidden by default, revealed on button click */
-.abt-quiz-result {
-  background: var(--white);
-  border: none;
-  border-top: 4px solid var(--sage);
-  border-radius: var(--radius);
-  padding: 1.5rem 1.75rem;
-  margin-bottom: 1.25rem;
-  box-shadow: var(--card-shadow);
-  opacity: 0;
-  max-height: 0;
-  overflow: hidden;
-  transition: opacity 0.4s, max-height 0.4s, padding 0.4s, margin 0.4s;
-  padding-top: 0;
-  padding-bottom: 0;
-  margin-bottom: 0;
-}
-
-.abt-quiz-result.is-visible {
-  opacity: 1;
-  max-height: 300px;
-  padding: 1.5rem 1.75rem;
   margin-bottom: 1.25rem;
 }
 
-.abt-quiz-result-text {
+/* Editorial prose with drop cap */
+.ap-editorial p {
   font-family: var(--font-reading);
-  font-size: 1rem;
-  line-height: 1.65;
+  font-size: 1.1rem;
+  line-height: 1.85;
   color: var(--ink);
   margin-bottom: 1rem;
 }
 
-.abt-quiz-meeting-link {
-  display: inline-block;
-  font-family: var(--font-sans);
-  font-size: 0.9rem;
-  font-weight: 600;
-  color: var(--white);
-  background: var(--deep-teal);
-  text-decoration: none;
-  padding: 0.6rem 1.25rem;
-  border-radius: var(--radius);
-  transition: background 0.2s, transform 0.2s;
+.ap-editorial p:last-child {
+  margin-bottom: 0;
 }
 
-.abt-quiz-meeting-link:hover {
-  background: var(--ocean);
-  color: var(--white);
-  transform: translateY(-1px);
+/* Drop cap on first paragraph of first editorial section */
+.ap-section:first-child .ap-editorial p:first-child::first-letter {
+  font-family: var(--font-serif);
+  font-size: 3.75rem;
+  font-weight: 700;
+  float: left;
+  line-height: 0.8;
+  margin-right: 0.12em;
+  margin-top: 0.07em;
+  color: var(--deep-navy);
 }
 
-/* Reveal Button */
-.abt-reveal-btn {
-  display: block;
-  width: 100%;
-  font-family: var(--font-sans);
-  font-size: 0.95rem;
-  font-weight: 600;
-  color: var(--deep-teal);
-  background: var(--cloud);
-  border: 1px solid var(--mist);
-  padding: 0.85rem 1.5rem;
-  border-radius: var(--radius);
-  cursor: pointer;
-  transition: background 0.2s, border-color 0.2s, transform 0.2s;
-  margin-bottom: 1.25rem;
-}
-
-.abt-reveal-btn:hover {
-  background: var(--mist);
-  border-color: var(--ocean);
-  transform: translateY(-1px);
-}
-
-.abt-quiz-attribution {
-  font-family: var(--font-sans);
-  font-size: 0.75rem;
-  color: var(--ink);
-  opacity: 0.45;
-  margin-top: 0.5rem;
-}
-
-.abt-quiz-attribution a {
-  color: var(--ocean);
-  text-decoration: underline;
-}
-
-/* ── The 3 C's ───────────────────────────────────────────────── */
-
-.abt-threes-grid {
+/* What We Offer — card grid */
+.ap-card-grid {
   display: grid;
   grid-template-columns: 1fr;
   gap: 1.25rem;
 }
 
 @media (min-width: 640px) {
-  .abt-threes-grid {
-    grid-template-columns: repeat(3, 1fr);
+  .ap-card-grid {
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
-.abt-threes-card {
+.ap-card {
   background: var(--white);
   border: none;
-  border-top: 4px solid var(--deep-teal);
+  border-top: 4px solid var(--sage);
   border-radius: var(--radius);
-  padding: 2rem 1.5rem;
-  text-align: center;
+  padding: 1.75rem 1.5rem;
   box-shadow: var(--card-shadow);
   transition: transform 0.2s, box-shadow 0.2s;
 }
 
-.abt-threes-card:hover {
+.ap-card:hover {
   transform: translateY(-3px);
   box-shadow: var(--card-shadow-hover);
 }
 
-.abt-threes-icon {
-  color: var(--deep-teal);
-  margin-bottom: 1rem;
-  line-height: 0;
-}
-
-.abt-threes-icon svg {
-  width: 48px;
-  height: 48px;
-}
-
-.abt-threes-title {
+.ap-card-title {
   font-family: var(--font-serif);
   font-size: 1.15rem;
   font-weight: 700;
-  color: var(--deep-teal);
+  color: var(--deep-navy);
   margin-bottom: 0.5rem;
 }
 
-.abt-threes-desc {
-  font-family: var(--font-reading);
-  font-size: 0.88rem;
-  line-height: 1.6;
-  color: var(--ink);
-  opacity: 0.8;
-  margin: 0;
-}
-
-/* Section link (used in Family Disease, etc.) */
-.abt-section-link {
-  font-family: var(--font-sans);
-  font-size: 0.9rem;
-  font-weight: 600;
-  color: var(--deep-teal);
-  text-decoration: none;
-  transition: color 0.15s;
-}
-
-.abt-section-link:hover {
-  color: var(--ocean);
-}
-
-/* ── Essential Questions (FAQ) ───────────────────────────────── */
-
-.abt-faq-list {
-  display: flex;
-  flex-direction: column;
-  gap: 0;
-}
-
-.abt-faq-item {
-  padding: 1.25rem 0;
-  border-bottom: 1px solid var(--cloud);
-}
-
-.abt-faq-item:first-child {
-  padding-top: 0;
-}
-
-.abt-faq-question {
-  font-family: var(--font-serif);
-  font-size: 1.1rem;
-  font-weight: 700;
-  color: var(--deep-teal);
-  line-height: 1.3;
-  margin-bottom: 0.5rem;
-}
-
-.abt-faq-answer {
+.ap-card-text {
   font-family: var(--font-reading);
   font-size: 0.92rem;
   line-height: 1.7;
@@ -1970,159 +1642,41 @@ a.rd-pill--step:hover {
   margin: 0;
 }
 
-/* ── Literature Spotlight ────────────────────────────────────── */
-
-.abt-book-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 1.5rem;
+/* App badges */
+.ap-app-badges {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 1.5rem;
 }
 
-@media (min-width: 640px) {
-  .abt-book-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-.abt-book-card {
-  background: var(--white);
-  border: none;
-  border-top: 4px solid var(--warm-gold);
-  border-radius: var(--radius);
-  padding: 1.5rem;
-  text-align: center;
-  box-shadow: var(--card-shadow);
-  transition: transform 0.2s, box-shadow 0.2s;
-}
-
-.abt-book-card:hover {
-  transform: translateY(-3px);
-  box-shadow: var(--card-shadow-hover);
-}
-
-/* Book cover — 2:3 aspect ratio frame */
-.abt-book-cover {
-  position: relative;
-  width: 140px;
-  margin: 0 auto 1.25rem;
-  aspect-ratio: 2 / 3;
-  border-radius: 4px;
-  overflow: hidden;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
-  background: var(--cloud);
-}
-
-.abt-book-cover img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
-
-.abt-book-title {
-  font-family: var(--font-serif);
-  font-size: 1.05rem;
-  font-weight: 700;
-  color: var(--deep-teal);
-  margin-bottom: 0.35rem;
-}
-
-.abt-book-desc {
-  font-family: var(--font-reading);
-  font-size: 0.82rem;
-  line-height: 1.55;
-  color: var(--ink);
-  opacity: 0.75;
-  margin: 0 0 1rem;
-}
-
-.abt-book-btn {
+.ap-badge-link {
   display: inline-block;
-  font-family: var(--font-sans);
-  font-size: 0.8rem;
-  font-weight: 600;
-  color: var(--deep-teal);
-  text-decoration: none;
-  border: 1px solid var(--mist);
-  padding: 0.5rem 1rem;
-  border-radius: var(--radius);
-  transition: background 0.15s, border-color 0.15s;
+  transition: opacity 0.2s;
 }
 
-.abt-book-btn:hover {
-  background: var(--cloud);
-  border-color: var(--ocean);
-  color: var(--deep-teal);
+.ap-badge-link:hover {
+  opacity: 0.8;
 }
 
-/* ── Sister Fellowships ──────────────────────────────────────── */
-
-.abt-fellow-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 1.25rem;
+.ap-badge--ios {
+  height: 34px;
 }
 
-@media (min-width: 640px) {
-  .abt-fellow-grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
+.ap-badge--play {
+  height: 50px;
 }
 
-.abt-fellow-card {
-  display: block;
-  background: var(--white);
-  border: none;
-  border-top: 4px solid var(--sage);
-  border-radius: var(--radius);
-  padding: 1.5rem;
-  text-decoration: none;
-  color: inherit;
-  box-shadow: var(--card-shadow);
-  transition: transform 0.2s, box-shadow 0.2s;
-}
-
-.abt-fellow-card:hover {
-  transform: translateY(-3px);
-  box-shadow: var(--card-shadow-hover);
-}
-
-.abt-fellow-name {
-  font-family: var(--font-serif);
-  font-size: 1.05rem;
-  font-weight: 700;
-  color: var(--deep-teal);
-  margin-bottom: 0.4rem;
-}
-
-.abt-fellow-desc {
-  font-family: var(--font-reading);
-  font-size: 0.85rem;
-  line-height: 1.6;
-  color: var(--ink);
-  opacity: 0.75;
-  margin: 0 0 0.75rem;
-}
-
-.abt-fellow-link {
-  font-family: var(--font-sans);
-  font-size: 0.8rem;
-  font-weight: 600;
-  color: var(--ocean);
-}
-
-/* ── End-of-Page CTA ─────────────────────────────────────────── */
-
-.abt-cta {
+/* CTA */
+.ap-cta {
   text-align: center;
-  border: none;
   border-radius: var(--radius);
   padding: 2.5rem 2rem;
   margin-top: 1rem;
   background: var(--cta-dark);
 }
 
-.abt-cta-heading {
+.ap-cta-heading {
   font-family: var(--font-serif);
   font-size: clamp(1.3rem, 3vw, 1.6rem);
   font-weight: 700;
@@ -2130,22 +1684,21 @@ a.rd-pill--step:hover {
   margin-bottom: 0.5rem;
 }
 
-.abt-cta-text {
+.ap-cta-text {
   font-family: var(--font-reading);
   font-size: 0.95rem;
   color: rgba(255, 255, 255, 0.85);
-  opacity: 1;
   margin-bottom: 1.5rem;
 }
 
-.abt-cta-actions {
+.ap-cta-actions {
   display: flex;
   justify-content: center;
   gap: 0.75rem;
   flex-wrap: wrap;
 }
 
-.abt-cta-btn {
+.ap-cta-btn {
   display: inline-block;
   font-family: var(--font-sans);
   font-size: 0.9rem;
@@ -2156,25 +1709,25 @@ a.rd-pill--step:hover {
   transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
 }
 
-.abt-cta-btn--primary {
+.ap-cta-btn--primary {
   color: var(--cta-dark);
   background: var(--white);
 }
 
-.abt-cta-btn--primary:hover {
+.ap-cta-btn--primary:hover {
   background: var(--cloud);
   color: var(--cta-dark);
   transform: translateY(-2px);
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
 }
 
-.abt-cta-btn--secondary {
+.ap-cta-btn--secondary {
   color: var(--white);
   background: transparent;
   border: 1px solid rgba(255, 255, 255, 0.4);
 }
 
-.abt-cta-btn--secondary:hover {
+.ap-cta-btn--secondary:hover {
   background: rgba(255, 255, 255, 0.1);
   border-color: rgba(255, 255, 255, 0.7);
   color: var(--white);
@@ -2182,139 +1735,468 @@ a.rd-pill--step:hover {
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
 }
 
-/* ── Shared App Badges ────────────────────────────────────────── */
-
-.abt-badge-link {
-  display: inline-block;
-  transition: opacity 0.2s;
-}
-
-.abt-badge-link:hover {
-  opacity: 0.8;
-}
-
-.abt-badge--ios {
-  height: 28px;
-}
-
-.abt-badge--play {
-  height: 42px;
-}
-
-/* Hero badges */
-.abt-hero-badges {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  margin-top: 1.25rem;
-}
-
-/* ── Companion App Callout ───────────────────────────────────── */
-
-.abt-companion {
-  background: var(--cta-dark);
-  border: none;
-  border-radius: var(--radius);
-  padding: 1.5rem 1.75rem;
-  margin-bottom: 1.5rem;
-  text-align: center;
-}
-
-.abt-companion-text {
-  font-family: var(--font-reading);
-  font-size: 0.92rem;
-  line-height: 1.65;
-  color: rgba(255, 255, 255, 0.9);
-  margin: 0 0 1rem;
-}
-
-.abt-companion-badges {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-}
-
-/* ── Mobile Sticky App Banner ────────────────────────────────── */
-
-.abt-sticky-banner {
-  display: none;
-}
-
-@media (max-width: 767px) {
-  .abt-sticky-banner {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    z-index: 50;
-    background: var(--white);
-    border-top: 1px solid var(--cloud);
-    box-shadow: 0 -2px 12px rgba(0, 0, 0, 0.06);
-    padding: 0.6rem 1rem;
+/* Mobile */
+@media (max-width: 640px) {
+  .ap-hero {
+    min-height: 260px;
+  }
+  .ap-hero-title {
+    font-size: 2.2rem;
+  }
+  .ap-hero-content {
+    padding: 3rem 1.5rem 3.5rem;
+  }
+  .ap-body {
+    padding: 2rem 1.5rem 3rem;
+  }
+  .ap-section-heading {
+    font-size: 1.4rem;
+  }
+  .ap-editorial p {
+    font-size: 1.05rem;
+  }
+  .ap-section:first-child .ap-editorial p:first-child::first-letter {
+    font-size: 3rem;
+  }
+  .ap-card {
+    padding: 1.5rem 1.25rem;
   }
 }
 
-.abt-sticky-banner-text {
-  flex: 1;
-  font-family: var(--font-sans);
-  font-size: 0.8rem;
-  font-weight: 600;
-  color: var(--ink);
+/* ==========================================================================
+   About Al-Anon — Structured Resource-Block Layout (about-alanon)
+   ========================================================================== */
+
+/* Hero with Ocean path image */
+.aa-hero {
+  position: relative;
+  text-align: center;
+  overflow: hidden;
+  min-height: 320px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.abt-sticky-banner-btn {
-  flex-shrink: 0;
+.aa-hero-image {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.aa-hero-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  filter: blur(10px);
+  transform: scale(1.05);
+}
+
+.aa-hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(27, 38, 59, 0.40);
+}
+
+.aa-hero-content {
+  position: relative;
+  z-index: 1;
+  padding: 4rem 2rem 4.5rem;
+  max-width: 36rem;
+}
+
+.aa-hero-title {
+  font-family: var(--font-serif);
+  font-size: 2.75rem;
+  font-weight: 700;
+  color: var(--white);
+  line-height: 1.15;
+  margin: 0 0 0.75rem;
+}
+
+.aa-hero-desc {
+  font-family: var(--font-reading);
+  font-size: 1.1rem;
+  color: rgba(255, 255, 255, 0.85);
+  line-height: 1.65;
+  margin: 0;
+}
+
+@media (min-width: 768px) {
+  .aa-hero {
+    min-height: 380px;
+  }
+  .aa-hero-content {
+    padding: 5rem 2rem 5.5rem;
+  }
+  .aa-hero-title {
+    font-size: 3.25rem;
+  }
+}
+
+/* Body */
+.aa-body {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 3rem 2rem 4rem;
+}
+
+.aa-body-inner {
+  /* container */
+}
+
+/* ── Resource Blocks ─────────────────────────────────────────── */
+
+.aa-block {
+  margin-bottom: 2.5rem;
+  padding-bottom: 2.5rem;
+  border-bottom: 1px solid var(--cloud);
+}
+
+.aa-block:last-of-type {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.aa-block-heading {
+  font-family: var(--font-serif);
+  font-size: 1.65rem;
+  font-weight: 700;
+  color: var(--deep-navy);
+  line-height: 1.2;
+  margin-bottom: 1rem;
+}
+
+.aa-block-body p {
+  font-family: var(--font-reading);
+  font-size: 1.05rem;
+  line-height: 1.8;
+  color: var(--ink);
+  margin-bottom: 0.75rem;
+}
+
+.aa-block-body p:last-child {
+  margin-bottom: 0;
+}
+
+.aa-block-link {
+  display: inline-block;
   font-family: var(--font-sans);
-  font-size: 0.78rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--deep-teal);
+  text-decoration: none;
+  margin-top: 1.25rem;
+  transition: color 0.15s;
+}
+
+.aa-block-link:hover {
+  color: var(--ocean);
+}
+
+/* ── Highlight block (Find a Meeting) ────────────────────────── */
+
+.aa-block--highlight {
+  background: var(--pearl);
+  margin-left: -2rem;
+  margin-right: -2rem;
+  padding: 2.5rem 2rem;
+  border-radius: var(--radius);
+  border-bottom: none;
+}
+
+.aa-meeting-btn {
+  display: inline-block;
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
   font-weight: 600;
   color: var(--white);
   background: var(--deep-teal);
   text-decoration: none;
-  padding: 0.45rem 1rem;
+  padding: 0.75rem 1.5rem;
   border-radius: var(--radius);
-  transition: background 0.15s;
+  margin-top: 1.25rem;
+  transition: background 0.2s, transform 0.2s;
 }
 
-.abt-sticky-banner-btn:hover {
+.aa-meeting-btn:hover {
   background: var(--ocean);
   color: var(--white);
+  transform: translateY(-1px);
 }
 
-.abt-sticky-banner-close {
-  flex-shrink: 0;
-  background: none;
-  border: none;
-  font-size: 1.2rem;
+/* ── Self-Reflection Questions ───────────────────────────────── */
+
+.aa-questions {
+  margin: 1.25rem 0;
+}
+
+.aa-question {
+  font-family: var(--font-reading);
+  font-size: 0.95rem;
+  line-height: 1.6;
   color: var(--ink);
-  opacity: 0.4;
-  cursor: pointer;
-  padding: 0 0.25rem;
-  line-height: 1;
+  padding: 0.7rem 0 0.7rem 1.5rem;
+  border-bottom: 1px solid var(--cloud);
+  position: relative;
 }
 
-.abt-sticky-banner-close:hover {
-  opacity: 0.8;
+.aa-question::before {
+  content: '\2022';
+  position: absolute;
+  left: 0;
+  color: var(--deep-teal);
+  font-size: 1.1rem;
 }
 
-/* ── About Page — Mobile Responsive ──────────────────────────── */
+.aa-question:last-child {
+  border-bottom: none;
+}
 
-@media (max-width: 767px) {
-  .abt-body-wrap {
-    padding: 2rem 1.5rem 1.5rem;
+.aa-questions-note {
+  font-family: var(--font-reading);
+  font-size: 0.95rem;
+  font-style: italic;
+  color: var(--deep-teal);
+  margin-top: 0.75rem;
+  margin-bottom: 0;
+}
+
+/* ── The 3 C's ───────────────────────────────────────────────── */
+
+.aa-threes {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.aa-three-item {
+  background: var(--white);
+  border-left: 4px solid var(--deep-teal);
+  border-radius: 0 var(--radius) var(--radius) 0;
+  padding: 1.25rem 1.5rem;
+  box-shadow: var(--card-shadow);
+}
+
+.aa-three-label {
+  display: block;
+  font-family: var(--font-serif);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--deep-navy);
+  margin-bottom: 0.3rem;
+}
+
+.aa-three-desc {
+  display: block;
+  font-family: var(--font-reading);
+  font-size: 0.92rem;
+  line-height: 1.65;
+  color: var(--ink);
+}
+
+/* ── How It Works — Tool Cards ───────────────────────────────── */
+
+.aa-tools {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.25rem;
+  margin-top: 1.25rem;
+}
+
+@media (min-width: 640px) {
+  .aa-tools {
+    grid-template-columns: repeat(3, 1fr);
   }
+}
 
-  .abt-section {
-    margin-bottom: 2.5rem;
+.aa-tool {
+  background: var(--white);
+  border-top: 4px solid var(--sage);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  box-shadow: var(--card-shadow);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.aa-tool:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--card-shadow-hover);
+}
+
+.aa-tool-title {
+  font-family: var(--font-serif);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--deep-navy);
+  margin-bottom: 0.4rem;
+}
+
+.aa-tool-text {
+  font-family: var(--font-reading);
+  font-size: 0.88rem;
+  line-height: 1.65;
+  color: var(--ink);
+  margin: 0 0 0.75rem;
+}
+
+.aa-tool-link {
+  font-family: var(--font-sans);
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--deep-teal);
+  text-decoration: none;
+  transition: color 0.15s;
+}
+
+.aa-tool-link:hover {
+  color: var(--ocean);
+}
+
+/* ── FAQ ─────────────────────────────────────────────────────── */
+
+.aa-faq {
+  margin-bottom: 1rem;
+}
+
+.aa-faq-item {
+  padding: 1.25rem 0;
+  border-bottom: 1px solid var(--cloud);
+}
+
+.aa-faq-item:first-child {
+  padding-top: 0;
+}
+
+.aa-faq-item:last-child {
+  border-bottom: none;
+}
+
+.aa-faq-q {
+  font-family: var(--font-serif);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--deep-teal);
+  line-height: 1.3;
+  margin-bottom: 0.4rem;
+}
+
+.aa-faq-a {
+  font-family: var(--font-reading);
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: var(--ink);
+  margin: 0;
+}
+
+/* ── Related Fellowships ─────────────────────────────────────── */
+
+.aa-fellows {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  margin-top: 1.25rem;
+}
+
+@media (min-width: 640px) {
+  .aa-fellows {
+    grid-template-columns: repeat(3, 1fr);
   }
+}
 
-  /* Extra bottom padding so sticky banner doesn't overlap content */
-  .page-about main {
-    padding-bottom: 3.5rem;
+.aa-fellow {
+  display: block;
+  background: var(--white);
+  border-top: 4px solid var(--warm-gold);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  text-decoration: none;
+  color: inherit;
+  box-shadow: var(--card-shadow);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.aa-fellow:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--card-shadow-hover);
+}
+
+.aa-fellow-name {
+  display: block;
+  font-family: var(--font-serif);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--deep-navy);
+  margin-bottom: 0.35rem;
+}
+
+.aa-fellow-desc {
+  display: block;
+  font-family: var(--font-reading);
+  font-size: 0.85rem;
+  line-height: 1.6;
+  color: var(--ink);
+  opacity: 0.75;
+}
+
+/* ── Disclaimer ──────────────────────────────────────────────── */
+
+.aa-disclaimer {
+  margin-top: 2rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--cloud);
+}
+
+.aa-disclaimer p {
+  font-family: var(--font-sans);
+  font-size: 0.82rem;
+  line-height: 1.6;
+  color: var(--ink);
+  opacity: 0.55;
+  margin: 0;
+}
+
+.aa-disclaimer a {
+  color: var(--ocean);
+  text-decoration: underline;
+}
+
+/* ── About Al-Anon — Mobile ─────────────────────────────────── */
+
+@media (max-width: 640px) {
+  .aa-hero {
+    min-height: 260px;
+  }
+  .aa-hero-title {
+    font-size: 2.2rem;
+  }
+  .aa-hero-desc {
+    font-size: 1rem;
+  }
+  .aa-hero-content {
+    padding: 3rem 1.5rem 3.5rem;
+  }
+  .aa-body {
+    padding: 2rem 1.5rem 3rem;
+  }
+  .aa-block-heading {
+    font-size: 1.4rem;
+  }
+  .aa-block-body p {
+    font-size: 1rem;
+  }
+  .aa-block--highlight {
+    margin-left: -1.5rem;
+    margin-right: -1.5rem;
+    padding: 2rem 1.5rem;
+  }
+  .aa-tool {
+    padding: 1.25rem;
+  }
+  .aa-fellow {
+    padding: 1.25rem;
   }
 }
 

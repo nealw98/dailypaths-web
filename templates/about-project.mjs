@@ -1,0 +1,102 @@
+import { wrapInLayout } from './base.mjs';
+import { bp } from '../helpers/config.mjs';
+
+/**
+ * About the Daily Paths Project — Editorial Drop-Cap style.
+ * Hero: Meadow/nature path image with Sage overlay.
+ */
+export function renderAboutProjectPage() {
+
+  const bodyContent = `
+      <!-- Hero -->
+      <header class="ap-hero">
+        <div class="ap-hero-image">
+          <img src="${bp('/assets/hero-image.jpg')}" alt="A path through nature" />
+          <div class="ap-hero-overlay"></div>
+        </div>
+        <div class="ap-hero-content">
+          <h1 class="ap-hero-title">About Daily Paths</h1>
+        </div>
+      </header>
+
+      <!-- Editorial Body -->
+      <div class="ap-body">
+        <div class="ap-body-inner">
+
+          <!-- The Mission — Drop Cap -->
+          <section class="ap-section">
+            <div class="ap-editorial">
+              <p>Daily Paths was born from a simple idea: that recovery is a daily practice, not a destination. Each morning, thousands of people affected by someone else&rsquo;s drinking reach for a reading&mdash;a few quiet words that reframe the day ahead. We built this project to make that moment easier to find and harder to forget.</p>
+              <p>The 366 original reflections in Daily Paths draw on the wisdom of the Al-Anon program&mdash;its Steps, Traditions, and the lived experience of families who have walked this road before. Every entry is written to meet you where you are: not with advice, but with the gentle reminder that you are not alone and that today is enough.</p>
+            </div>
+          </section>
+
+          <!-- What We Offer -->
+          <section class="ap-section">
+            <h2 class="ap-section-heading">What We Offer</h2>
+            <div class="ap-card-grid">
+              <div class="ap-card">
+                <h3 class="ap-card-title">366 Daily Reflections</h3>
+                <p class="ap-card-text">An original reading for every day of the year, including leap day. Each reflection explores a theme central to Al-Anon recovery&mdash;from detachment and boundaries to gratitude and hope.</p>
+              </div>
+              <div class="ap-card">
+                <h3 class="ap-card-title">12 Recovery Themes</h3>
+                <p class="ap-card-text">Curated explorations of the ideas that shape recovery. Each theme page includes editorial insights, featured reflections, and tools for putting principles into practice.</p>
+              </div>
+              <div class="ap-card">
+                <h3 class="ap-card-title">The Twelve Steps</h3>
+                <p class="ap-card-text">In-depth guides to each of the Twelve Steps of Al-Anon, with practical context for families and friends of alcoholics.</p>
+              </div>
+              <div class="ap-card">
+                <h3 class="ap-card-title">Prayers &amp; Meditations</h3>
+                <p class="ap-card-text">A quiet collection of the prayers most commonly used in Al-Anon meetings&mdash;from the Serenity Prayer to Just for Today.</p>
+              </div>
+            </div>
+          </section>
+
+          <!-- Our Approach -->
+          <section class="ap-section">
+            <h2 class="ap-section-heading">Our Approach</h2>
+            <div class="ap-editorial">
+              <p>We are not affiliated with Al-Anon Family Groups, Inc. Daily Paths is an independent project created by people in recovery who wanted to bring the spirit of the program to a wider audience through thoughtful, original writing.</p>
+              <p>We don&rsquo;t replace meetings, sponsorship, or Al-Anon literature. We complement them. Think of Daily Paths as a quiet companion&mdash;something to carry with you between meetings, a voice that says: <em>&ldquo;One day at a time.&rdquo;</em></p>
+            </div>
+          </section>
+
+          <!-- The App -->
+          <section class="ap-section">
+            <h2 class="ap-section-heading">The App</h2>
+            <div class="ap-editorial">
+              <p>All 366 reflections, twelve recovery themes, and personal journaling tools are also available in the <strong>Al-Anon Daily Paths</strong> app&mdash;free to download on iOS and Android.</p>
+            </div>
+            <div class="ap-app-badges">
+              <a href="https://apps.apple.com/app/id6755981862" target="_blank" rel="noopener noreferrer" class="ap-badge-link">
+                <img src="https://developer.apple.com/app-store/marketing/guidelines/images/badge-download-on-the-app-store.svg" alt="Download on the App Store" class="ap-badge ap-badge--ios">
+              </a>
+              <a href="https://play.google.com/store/apps/details?id=com.dailypaths" target="_blank" rel="noopener noreferrer" class="ap-badge-link">
+                <img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" alt="Get it on Google Play" class="ap-badge ap-badge--play">
+              </a>
+            </div>
+          </section>
+
+          <!-- CTA -->
+          <section class="ap-cta">
+            <h2 class="ap-cta-heading">Begin the Journey</h2>
+            <p class="ap-cta-text">Recovery starts with a single day. Read today&rsquo;s reflection and take the first step.</p>
+            <div class="ap-cta-actions">
+              <a href="${bp('/')}" class="ap-cta-btn ap-cta-btn--primary">Today&rsquo;s Reflection</a>
+              <a href="${bp('/principles/')}" class="ap-cta-btn ap-cta-btn--secondary">Explore Themes</a>
+            </div>
+          </section>
+
+        </div>
+      </div>`;
+
+  return wrapInLayout({
+    title: 'About Daily Paths \u2014 Our Mission | Al-Anon Daily Paths',
+    description: 'Daily Paths offers 366 original daily reflections for Al-Anon recovery, twelve curated themes, step guides, and prayers. Learn about our mission and approach.',
+    canonicalPath: '/about-project/',
+    bodyContent,
+    bodyClass: 'page-about-project',
+  });
+}

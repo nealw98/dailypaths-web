@@ -112,6 +112,7 @@ ${bodyContent}
         <p class="footer-tagline">Daily reflections for the Al-Anon journey</p>
       </div>
       <nav class="footer-nav">
+        <a href="${bp('/about-project/')}">About</a>
         <a href="${bp('/about-alanon/')}">Al-Anon</a>
         <a href="${bp('/support/')}">Support</a>
         <a href="${bp('/privacy/')}">Privacy</a>

@@ -28,7 +28,8 @@ import { renderPrivacyPage } from './templates/privacy.mjs';
 import { renderSupportPage } from './templates/support.mjs';
 import { renderTermsPage } from './templates/terms.mjs';
 import { renderPrayersPage } from './templates/prayers.mjs';
-import { renderAboutPage } from './templates/about.mjs';
+import { renderAboutProjectPage } from './templates/about-project.mjs';
+import { renderAboutAlanonPage } from './templates/about-alanon.mjs';
 import { renderQuizPage } from './templates/quiz.mjs';
 import { renderTraditionsPage } from './templates/traditions.mjs';
 import { renderConceptsPage } from './templates/concepts.mjs';
@@ -73,6 +74,7 @@ const dirs = [
   join(outDir, 'support'),
   join(outDir, 'terms'),
   join(outDir, 'prayers'),
+  join(outDir, 'about-project'),
   join(outDir, 'about-alanon'),
   join(outDir, 'quiz'),
   join(outDir, 'traditions'),
@@ -158,7 +160,8 @@ writePage(join(outDir, 'privacy', 'index.html'), renderPrivacyPage());
 writePage(join(outDir, 'support', 'index.html'), renderSupportPage());
 writePage(join(outDir, 'terms', 'index.html'), renderTermsPage());
 writePage(join(outDir, 'prayers', 'index.html'), renderPrayersPage());
-writePage(join(outDir, 'about-alanon', 'index.html'), renderAboutPage());
+writePage(join(outDir, 'about-project', 'index.html'), renderAboutProjectPage());
+writePage(join(outDir, 'about-alanon', 'index.html'), renderAboutAlanonPage());
 writePage(join(outDir, 'quiz', 'index.html'), renderQuizPage());
 writePage(join(outDir, 'traditions', 'index.html'), renderTraditionsPage());
 writePage(join(outDir, 'concepts', 'index.html'), renderConceptsPage());
