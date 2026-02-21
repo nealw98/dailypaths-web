@@ -268,26 +268,42 @@ export function renderStepsIndexPage() {
         <div class="si-hero-content">
           <span class="si-hero-label">The Legacies</span>
           <h1 class="si-hero-title">The Twelve Steps</h1>
-          <p class="si-hero-desc">A path to personal recovery for anyone affected by someone else&rsquo;s drinking &mdash; guiding us from powerlessness toward a spiritual awakening.</p>
         </div>
       </header>
 
-      <!-- Intro Section -->
-      <div class="si-intro-wrap">
-        <div class="si-intro-inner">
-          <div class="si-intro-text">
-            <p>
-              Each step builds on the one before it. Working these steps with a sponsor
-              or someone who has walked the path before you can make all the difference &mdash;
-              their experience and encouragement help bring the steps to life.
-            </p>
-            <p>
-              Al-Anon&rsquo;s
-              <a href="https://ecomm.al-anon.org/EN/ItemDetail?iProductCode=B24" target="_blank" rel="noopener noreferrer"><em>Paths to Recovery</em></a>
-              is the definitive guide to working the Steps, Traditions, and Concepts
-              of Service. Each month&rsquo;s reflections on this site focus on one step,
-              from Step 1 in January through Step 12 in December.
-            </p>
+      <!-- Editorial Lead -->
+      <div class="si-lead-wrap">
+        <div class="si-lead-inner">
+          <p class="si-lead-text">
+            A path to personal recovery for anyone affected by someone else&rsquo;s drinking &mdash;
+            guiding us from powerlessness toward a spiritual awakening.
+          </p>
+          <p class="si-lead-body">
+            Each step builds on the one before it. Working these steps with a sponsor
+            or someone who has walked the path before you can make all the difference &mdash;
+            their experience and encouragement help bring the steps to life.
+          </p>
+          <p class="si-lead-body">
+            Al-Anon&rsquo;s
+            <a href="https://ecomm.al-anon.org/EN/ItemDetail?iProductCode=B24" target="_blank" rel="noopener noreferrer"><em>Paths to Recovery</em></a>
+            is the definitive guide to working the Steps, Traditions, and Concepts
+            of Service. Each month&rsquo;s reflections on this site focus on one step,
+            from Step 1 in January through Step 12 in December.
+          </p>
+        </div>
+      </div>
+
+      <!-- App CTA -->
+      <div class="si-cta-wrap">
+        <div class="si-cta">
+          <p class="si-cta-text">Carry the Steps with you. Our mobile app provides daily reflections for each step and quick access to the Al-Anon tools you need.</p>
+          <div class="si-cta-badges">
+            <a href="https://apps.apple.com/app/id6755981862" target="_blank" rel="noopener noreferrer" class="si-cta-badge-link">
+              <img src="https://developer.apple.com/app-store/marketing/guidelines/images/badge-download-on-the-app-store.svg" alt="Download on the App Store" class="si-cta-badge">
+            </a>
+            <a href="https://play.google.com/store/apps/details?id=com.dailypaths" target="_blank" rel="noopener noreferrer" class="si-cta-badge-link">
+              <img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" alt="Get it on Google Play" class="si-cta-badge si-cta-badge-play">
+            </a>
           </div>
         </div>
       </div>
@@ -299,10 +315,7 @@ export function renderStepsIndexPage() {
             <span class="si-featured-number">${featured.number}</span>
           </div>
           <div class="si-featured-body">
-            <div class="si-featured-meta">
-              <span class="si-featured-label">Featured Step</span>
-              <span class="si-featured-principle">${featured.principle}</span>
-            </div>
+            <span class="si-featured-principle">${featured.principle}</span>
             <h2 class="si-featured-title">${featured.text}</h2>
             <p class="si-featured-quote">&ldquo;${pullQuoteFeatured}&rdquo;</p>
             <span class="si-featured-month">${featured.month} &middot; Read &amp; Reflect &rarr;</span>
@@ -312,7 +325,7 @@ export function renderStepsIndexPage() {
 
       <!-- Steps Grid -->
       <div class="si-grid-wrap">
-        <h2 class="si-grid-heading">All Twelve Steps</h2>
+        <h2 class="si-grid-heading">Steps 2 &ndash; 12</h2>
         <div class="si-grid">
 ${gridCards}
         </div>

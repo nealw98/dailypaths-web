@@ -2691,7 +2691,7 @@ a.rd-pill--step:hover {
   position: relative;
   text-align: center;
   overflow: hidden;
-  min-height: 300px;
+  min-height: 320px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -2723,7 +2723,7 @@ a.rd-pill--step:hover {
 .si-hero-content {
   position: relative;
   z-index: 1;
-  padding: 3.5rem 2rem 4rem;
+  padding: 4rem 2rem 4.5rem;
   max-width: 40rem;
 }
 
@@ -2738,53 +2738,103 @@ a.rd-pill--step:hover {
   background: rgba(255, 255, 255, 0.15);
   padding: 0.3rem 0.9rem;
   border-radius: 999px;
-  margin-bottom: 1rem;
+  margin-bottom: 1.25rem;
 }
 
 .si-hero-title {
   font-family: var(--font-serif);
-  font-size: 2.8rem;
+  font-size: 3rem;
   font-weight: 700;
   color: var(--white);
-  line-height: 1.15;
-  margin-bottom: 1rem;
+  line-height: 1.1;
 }
 
-.si-hero-desc {
-  font-family: var(--font-reading);
-  font-size: 1.05rem;
-  line-height: 1.65;
-  color: rgba(255, 255, 255, 0.85);
-  max-width: 34rem;
-  margin: 0 auto;
-}
-
-/* Intro */
-.si-intro-wrap {
+/* Editorial Lead */
+.si-lead-wrap {
   max-width: 42rem;
   margin: 0 auto;
-  padding: 2.5rem 2rem 1rem;
+  padding: 3.5rem 2rem 0;
 }
 
-.si-intro-text p {
+.si-lead-text {
+  font-family: var(--font-serif);
+  font-size: 1.4rem;
+  font-weight: 400;
+  line-height: 1.65;
+  color: var(--ink);
+  margin-bottom: 1.5rem;
+}
+
+.si-lead-body {
   font-family: var(--font-reading);
-  font-size: 1rem;
-  line-height: 1.75;
+  font-size: 1.05rem;
+  line-height: 1.8;
   color: var(--ink);
   margin-bottom: 1rem;
 }
 
-.si-intro-text a {
+.si-lead-body:last-child {
+  margin-bottom: 0;
+}
+
+.si-lead-body a {
   color: var(--deep-teal);
   text-decoration: underline;
   text-underline-offset: 2px;
+}
+
+/* App CTA */
+.si-cta-wrap {
+  max-width: 42rem;
+  margin: 0 auto;
+  padding: 2.5rem 2rem 0;
+}
+
+.si-cta {
+  background: var(--sage-mist);
+  border-radius: var(--radius);
+  padding: 2rem 2.25rem;
+  text-align: center;
+}
+
+.si-cta-text {
+  font-family: var(--font-reading);
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--ink);
+  margin-bottom: 1.25rem;
+}
+
+.si-cta-badges {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+}
+
+.si-cta-badge-link {
+  display: inline-block;
+  text-decoration: none;
+  transition: opacity 0.15s;
+}
+
+.si-cta-badge-link:hover {
+  opacity: 0.8;
+}
+
+.si-cta-badge {
+  height: 34px;
+}
+
+.si-cta-badge-play {
+  height: 50px;
 }
 
 /* Featured Step Card */
 .si-featured-wrap {
   max-width: 56rem;
   margin: 0 auto;
-  padding: 0.5rem 2rem 2rem;
+  padding: 4rem 2rem 0;
 }
 
 .si-featured-card {
@@ -2792,7 +2842,8 @@ a.rd-pill--step:hover {
   align-items: stretch;
   text-decoration: none;
   color: inherit;
-  background: var(--sage-mist);
+  background: var(--white);
+  border: 1px solid var(--cloud);
   border-radius: var(--radius);
   overflow: hidden;
   transition: box-shadow 0.2s, transform 0.2s;
@@ -2808,13 +2859,13 @@ a.rd-pill--step:hover {
   align-items: center;
   justify-content: center;
   background: var(--deep-teal);
-  padding: 2rem 2.5rem;
-  min-width: 100px;
+  padding: 2.5rem 3rem;
+  min-width: 120px;
 }
 
 .si-featured-number {
   font-family: var(--font-serif);
-  font-size: 4rem;
+  font-size: 5rem;
   font-weight: 700;
   color: var(--white);
   line-height: 1;
@@ -2822,44 +2873,30 @@ a.rd-pill--step:hover {
 
 .si-featured-body {
   flex: 1;
-  padding: 2rem 2.25rem;
-}
-
-.si-featured-meta {
+  padding: 2rem 2.5rem;
   display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  margin-bottom: 0.75rem;
+  flex-direction: column;
+  justify-content: center;
 }
 
-.si-featured-label {
+.si-featured-principle {
+  display: inline-block;
   font-family: var(--font-sans);
   font-size: 0.7rem;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.1em;
   color: var(--deep-teal);
-}
-
-.si-featured-principle {
-  font-family: var(--font-sans);
-  font-size: 0.7rem;
-  font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: var(--sage);
-  background: var(--white);
-  padding: 0.2rem 0.7rem;
-  border-radius: 999px;
+  margin-bottom: 0.65rem;
 }
 
 .si-featured-title {
   font-family: var(--font-serif);
-  font-size: 1.35rem;
+  font-size: 1.4rem;
   font-weight: 600;
-  line-height: 1.35;
+  line-height: 1.4;
   color: var(--ink);
-  margin-bottom: 0.75rem;
+  margin-bottom: 0.85rem;
 }
 
 .si-featured-quote {
@@ -2868,7 +2905,7 @@ a.rd-pill--step:hover {
   font-style: italic;
   line-height: 1.6;
   color: var(--slate-blue);
-  margin-bottom: 0.75rem;
+  margin-bottom: 0.85rem;
 }
 
 .si-featured-month {
@@ -2882,7 +2919,7 @@ a.rd-pill--step:hover {
 .si-grid-wrap {
   max-width: 64rem;
   margin: 0 auto;
-  padding: 1.5rem 2rem 3rem;
+  padding: 4rem 2rem 0;
 }
 
 .si-grid-heading {
@@ -2948,13 +2985,10 @@ a.rd-pill--step:hover {
 .si-grid-card-principle {
   font-family: var(--font-sans);
   font-size: 0.68rem;
-  font-weight: 500;
+  font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  color: var(--sage);
-  background: var(--sage-mist);
-  padding: 0.2rem 0.65rem;
-  border-radius: 999px;
+  color: var(--deep-teal);
 }
 
 .si-grid-card-title {
@@ -2978,15 +3012,15 @@ a.rd-pill--step:hover {
 .si-attribution-wrap {
   max-width: 42rem;
   margin: 0 auto;
-  padding: 0 2rem 3rem;
+  padding: 5rem 2rem 3rem;
   text-align: center;
 }
 
 .si-attribution {
   font-family: var(--font-sans);
-  font-size: 0.82rem;
+  font-size: 0.75rem;
   color: var(--ink);
-  opacity: 0.45;
+  opacity: 0.4;
   line-height: 1.6;
 }
 
@@ -3004,26 +3038,44 @@ a.rd-pill--step:hover {
 /* Responsive — Mobile */
 @media (max-width: 640px) {
   .si-hero-title {
-    font-size: 2rem;
+    font-size: 2.2rem;
   }
-  .si-hero-desc {
-    font-size: 0.95rem;
+  .si-lead-wrap {
+    padding: 2.5rem 1.5rem 0;
+  }
+  .si-lead-text {
+    font-size: 1.2rem;
+  }
+  .si-cta-wrap {
+    padding: 2rem 1.5rem 0;
+  }
+  .si-cta {
+    padding: 1.5rem;
+  }
+  .si-featured-wrap {
+    padding: 3rem 1.5rem 0;
   }
   .si-featured-card {
     flex-direction: column;
   }
   .si-featured-left {
-    padding: 1.25rem;
+    padding: 1.5rem;
     min-width: auto;
   }
   .si-featured-number {
-    font-size: 2.5rem;
+    font-size: 3rem;
   }
   .si-featured-body {
     padding: 1.5rem;
   }
+  .si-grid-wrap {
+    padding: 3rem 1.5rem 0;
+  }
   .si-grid {
     grid-template-columns: 1fr;
+  }
+  .si-attribution-wrap {
+    padding: 4rem 1.5rem 2rem;
   }
 }
 
