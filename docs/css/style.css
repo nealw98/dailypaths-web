@@ -1824,12 +1824,12 @@ html {
   height: 52px;
 }
 
-/* ── Site Navigation CTA — Sage outlined buttons ─────────────── */
+/* ── Full-Bleed Site Navigation CTA — Sage ───────────────────── */
 
 .ap-nav-cta {
   text-align: center;
-  padding: 4rem 2rem 5rem;
-  border-top: 1px solid var(--cloud);
+  background: #4A5D4E;
+  padding: 5rem 2rem;
 }
 
 .ap-nav-cta-inner {
@@ -1839,9 +1839,9 @@ html {
 
 .ap-nav-cta-heading {
   font-family: var(--font-serif);
-  font-size: clamp(1.4rem, 3vw, 1.75rem);
+  font-size: clamp(1.5rem, 3.5vw, 2rem);
   font-weight: 700;
-  color: var(--deep-navy);
+  color: var(--white);
   margin-bottom: 1.75rem;
 }
 
@@ -1858,24 +1858,24 @@ html {
   font-size: 0.92rem;
   font-weight: 600;
   text-decoration: none;
-  color: #4A5D4E;
+  color: var(--white);
   background: transparent;
-  border: 1.5px solid #4A5D4E;
+  border: 1.5px solid rgba(255, 255, 255, 0.5);
   padding: 0.8rem 2rem;
   border-radius: var(--radius);
   transition: background 0.2s, color 0.2s, transform 0.2s, box-shadow 0.2s;
 }
 
 .ap-nav-cta-btn:hover {
-  background: #4A5D4E;
-  color: var(--white);
+  background: var(--white);
+  color: #4A5D4E;
   transform: translateY(-2px);
-  box-shadow: 0 4px 16px rgba(74, 93, 78, 0.2);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
 }
 
 @media (min-width: 768px) {
   .ap-nav-cta {
-    padding: 5rem 2rem 6rem;
+    padding: 6rem 2rem;
   }
 }
 
