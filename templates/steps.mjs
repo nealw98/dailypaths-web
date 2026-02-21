@@ -440,8 +440,6 @@ export function renderStepPage(step, readings = []) {
               </li>`;
     }).join('\n');
 
-    const firstReadingSlug = dayToSlug(monthReadings[0].day_of_year);
-
     readingListHtml = `
       <section class="step-readings-section">
         <h2 class="step-readings-heading">${step.month} Daily Readings</h2>
@@ -452,7 +450,7 @@ export function renderStepPage(step, readings = []) {
 ${listItems}
         </ul>
         <div class="step-readings-cta">
-          <a href="${bp(`/${firstReadingSlug}/`)}" class="step-readings-btn">View all ${step.month} reflections &rarr;</a>
+          <a href="${bp(`/months/${step.monthSlug}/`)}" class="step-readings-btn">View all ${step.month} reflections &rarr;</a>
         </div>
       </section>`;
   }

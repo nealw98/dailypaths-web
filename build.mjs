@@ -34,6 +34,7 @@ import { renderTraditionsPage } from './templates/traditions.mjs';
 import { renderConceptsPage } from './templates/concepts.mjs';
 import { renderStepsIndexPage, renderStepPage, STEPS } from './templates/steps.mjs';
 import { renderLiteratureIndexPage, renderLiteraturePage, BOOKS } from './templates/literature.mjs';
+import { renderMonthArchivePage } from './templates/month-archive.mjs';
 import { wrapInLayout } from './templates/base.mjs';
 import { bp } from './helpers/config.mjs';
 
@@ -80,6 +81,11 @@ const dirs = [
   ...Array.from({ length: 12 }, (_, i) => join(outDir, 'steps', `step-${i + 1}`)),
   join(outDir, 'literature'),
   ...BOOKS.map(b => join(outDir, 'literature', b.slug)),
+  join(outDir, 'months'),
+  ...Array.from({ length: 12 }, (_, i) => {
+    const months = ['january','february','march','april','may','june','july','august','september','october','november','december'];
+    return join(outDir, 'months', months[i]);
+  }),
 ];
 dirs.forEach(d => mkdirSync(d, { recursive: true }));
 
@@ -164,6 +170,16 @@ for (const step of STEPS) {
   writePage(
     join(outDir, 'steps', `step-${step.number}`, 'index.html'),
     renderStepPage(step, readings)
+  );
+}
+
+// Month archive pages (one per month)
+console.log('Generating month archive pages (12 months)...');
+const monthNames = ['january','february','march','april','may','june','july','august','september','october','november','december'];
+for (let m = 0; m < 12; m++) {
+  writePage(
+    join(outDir, 'months', monthNames[m], 'index.html'),
+    renderMonthArchivePage(m, readings)
   );
 }
 

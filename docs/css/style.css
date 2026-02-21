@@ -5093,6 +5093,199 @@ a.rd-pill--step:hover {
   }
 }
 
+/* --- Month Archive Page --- */
+
+.ma-back-nav {
+  max-width: 42rem;
+  margin: 0 auto;
+  padding: 1rem 2rem 0;
+}
+
+.ma-back-link {
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--deep-teal);
+  text-decoration: none;
+}
+
+.ma-back-link:hover {
+  text-decoration: underline;
+}
+
+.ma-header {
+  max-width: 42rem;
+  margin: 0 auto;
+  padding: 3.5rem 2rem 0;
+  text-align: center;
+}
+
+.ma-title {
+  font-family: var(--font-serif);
+  font-size: clamp(2.2rem, 5vw, 3rem);
+  font-weight: 700;
+  color: var(--ink);
+  line-height: 1.1;
+  margin-bottom: 0.5rem;
+}
+
+.ma-subtitle {
+  font-family: var(--font-reading);
+  font-size: 1rem;
+  color: var(--slate-blue);
+  line-height: 1.6;
+}
+
+/* Weekly Chapters */
+.ma-chapters {
+  max-width: 42rem;
+  margin: 0 auto;
+  padding: 3rem 2rem 0;
+}
+
+.ma-week {
+  margin-bottom: 3rem;
+}
+
+.ma-week:last-child {
+  margin-bottom: 0;
+}
+
+.ma-week-heading {
+  font-family: var(--font-serif);
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--deep-navy);
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--cloud);
+}
+
+.ma-week-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.ma-reading-item {
+  border-bottom: 1px solid var(--cloud);
+}
+
+.ma-reading-item:last-child {
+  border-bottom: none;
+}
+
+.ma-reading-link {
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+  padding: 0.75rem 0.5rem;
+  text-decoration: none;
+  color: inherit;
+  border-radius: var(--radius);
+  transition: background 0.15s;
+}
+
+.ma-reading-link:hover {
+  background: var(--pearl);
+}
+
+.ma-reading-day {
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--sage);
+  white-space: nowrap;
+  min-width: 5.5rem;
+}
+
+.ma-reading-title {
+  font-family: var(--font-serif);
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--ink);
+  line-height: 1.35;
+}
+
+.ma-reading-link:hover .ma-reading-title {
+  color: var(--deep-teal);
+}
+
+/* Engine CTA */
+.ma-engine-cta {
+  text-align: center;
+  margin-top: 4rem;
+}
+
+.ma-engine-cta-inner {
+  max-width: 42rem;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.ma-engine-cta-heading {
+  font-family: var(--font-serif);
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 0.75rem;
+}
+
+.ma-engine-cta-text {
+  font-family: var(--font-reading);
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.85);
+  margin-bottom: 1.5rem;
+}
+
+.ma-engine-cta-badges {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+}
+
+.ma-engine-cta-badge-link {
+  display: inline-block;
+  text-decoration: none;
+  transition: opacity 0.15s;
+}
+
+.ma-engine-cta-badge-link:hover {
+  opacity: 0.8;
+}
+
+.ma-engine-cta-badge {
+  height: 38px;
+}
+
+.ma-engine-cta-badge-play {
+  height: 54px;
+}
+
+/* Mobile adjustments for month archive */
+@media (max-width: 640px) {
+  .ma-back-nav {
+    padding: 0.75rem 1.5rem 0;
+  }
+  .ma-header {
+    padding: 2.5rem 1.5rem 0;
+  }
+  .ma-title {
+    font-size: 2rem;
+  }
+  .ma-chapters {
+    padding: 2.5rem 1.5rem 0;
+  }
+  .ma-reading-link {
+    padding: 0.65rem 0.25rem;
+  }
+  .ma-engine-cta-inner {
+    padding: 0 1.5rem;
+  }
+}
+
 /* --- Global Color Signal Blocks --- */
 .bg-white {
   background-color: #FFFFFF;
