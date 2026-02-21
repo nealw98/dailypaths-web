@@ -1936,7 +1936,10 @@ html {
 }
 
 .aa-hero-overlay {
-  display: none;
+  position: absolute;
+  inset: 0;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
 }
 
 .aa-hero-content {
