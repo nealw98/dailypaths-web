@@ -69,8 +69,8 @@ export function renderHomepage(todayReading, prevReading, nextReading, allReadin
     <!-- Engine CTA — navy band -->
     <section class="hm-engine bg-navy">
       <div class="hm-engine-inner">
-        <h2 class="hm-engine-heading">Carry the Path with You</h2>
-        <p class="hm-engine-text">All 366 daily reflections and personal journaling tools in the Al-Anon Daily Paths App.</p>
+        <h2 class="hm-engine-heading">Serenity is a daily practice. Let us walk the path with you.</h2>
+        <p class="hm-engine-text">Download Al-Anon Daily Paths to receive daily notifications, track your recovery milestones, and journal your reflections in a private, secure space.</p>
         <div class="hm-engine-badges">
           <a href="https://apps.apple.com/app/id6755981862" target="_blank" rel="noopener noreferrer" class="hm-engine-badge-link">
             <img src="https://developer.apple.com/app-store/marketing/guidelines/images/badge-download-on-the-app-store.svg" alt="Download on the App Store" class="hm-engine-badge">

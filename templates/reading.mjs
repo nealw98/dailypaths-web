@@ -143,8 +143,8 @@ ${relatedItems}
     <!-- App CTA -->
     <section class="rd-engine-cta bg-navy">
       <div class="rd-engine-cta-inner">
-        <h2 class="rd-engine-cta-heading">Recovery is a daily path. Let us walk it with you.</h2>
-        <p class="rd-engine-cta-text">Get daily notifications, track your milestones, and journal your reflections privately. Download the Al-Anon Daily Paths app.</p>
+        <h2 class="rd-engine-cta-heading">Carry this peace in your pocket.</h2>
+        <p class="rd-engine-cta-text">Never miss a day of recovery. Get this reflection and 365 others delivered to your phone daily. Start your journaling practice today with the Al-Anon Daily Paths app.</p>
         <div class="rd-engine-cta-badges">
           <a href="https://apps.apple.com/app/id6755981862" target="_blank" rel="noopener noreferrer" class="rd-engine-cta-badge-link">
             <img src="https://developer.apple.com/app-store/marketing/guidelines/images/badge-download-on-the-app-store.svg" alt="Download on the App Store" class="rd-engine-cta-badge">

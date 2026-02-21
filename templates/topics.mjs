@@ -48,8 +48,8 @@ ${galleryCards}
       <!-- Engine CTA -->
       <section class="ti-engine-cta bg-navy">
         <div class="ti-engine-cta-inner">
-          <h2 class="ti-engine-cta-heading">Carry the Path with You</h2>
-          <p class="ti-engine-cta-text">All 366 daily reflections, twelve themes of recovery, and personal journaling tools in the Al-Anon Daily Paths App.</p>
+          <h2 class="ti-engine-cta-heading">Take your Step work further.</h2>
+          <p class="ti-engine-cta-text">The Al-Anon Daily Paths app isn&rsquo;t just for reading&mdash;it&rsquo;s for growing. Use our built-in journaling tools to record your progress through the Steps and Traditions, all in one private place.</p>
           <div class="ti-engine-cta-badges">
             <a href="https://apps.apple.com/app/id6755981862" target="_blank" rel="noopener noreferrer" class="ti-engine-cta-badge-link">
               <img src="https://developer.apple.com/app-store/marketing/guidelines/images/badge-download-on-the-app-store.svg" alt="Download on the App Store" class="ti-engine-cta-badge">
@@ -283,7 +283,8 @@ ${readingGroups}
       <!-- CTA -->
       <section class="topic-cta">
         <div class="topic-cta-inner">
-          <p class="topic-cta-text">Explore ${topic.name.toLowerCase()} and other themes of recovery with 366 original daily reflections from Al-Anon Daily Paths.</p>
+          <h2 class="topic-cta-heading">Take your Step work further.</h2>
+          <p class="topic-cta-text">The Al-Anon Daily Paths app isn&rsquo;t just for reading&mdash;it&rsquo;s for growing. Use our built-in journaling tools to record your progress through the Steps and Traditions, all in one private place.</p>
           <div class="topic-cta-badges">
             <a href="https://apps.apple.com/app/id6755981862" target="_blank" rel="noopener noreferrer" class="topic-cta-badge-link">
               <img src="https://developer.apple.com/app-store/marketing/guidelines/images/badge-download-on-the-app-store.svg" alt="Download on the App Store" class="topic-cta-badge">

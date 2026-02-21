@@ -274,8 +274,8 @@ ${gridCards}
       <!-- Engine CTA -->
       <section class="si-engine-cta bg-navy">
         <div class="si-engine-cta-inner">
-          <h2 class="si-engine-cta-heading">Carry the Path with You.</h2>
-          <p class="si-engine-cta-text">Get the full library of Step readings and personal journaling tools in the Al-Anon Daily Paths App.</p>
+          <h2 class="si-engine-cta-heading">Take your Step work further.</h2>
+          <p class="si-engine-cta-text">The Al-Anon Daily Paths app isn&rsquo;t just for reading&mdash;it&rsquo;s for growing. Use our built-in journaling tools to record your progress through the Steps and Traditions, all in one private place.</p>
           <div class="si-engine-cta-badges">
             <a href="https://apps.apple.com/app/id6755981862" target="_blank" rel="noopener noreferrer" class="si-engine-cta-badge-link">
               <img src="https://developer.apple.com/app-store/marketing/guidelines/images/badge-download-on-the-app-store.svg" alt="Download on the App Store" class="si-engine-cta-badge">
@@ -561,8 +561,8 @@ ${associatedHtml}
     <!-- Engine CTA -->
     <section class="step-engine-cta bg-navy">
       <div class="step-engine-cta-inner">
-        <h2 class="step-engine-cta-heading">Take Step ${wordNumber(step.number)} with You</h2>
-        <p class="step-engine-cta-text">Daily reflections for Step ${step.number} and all twelve steps, right in your pocket.</p>
+        <h2 class="step-engine-cta-heading">Take your Step ${wordNumber(step.number)} work further.</h2>
+        <p class="step-engine-cta-text">The Al-Anon Daily Paths app isn&rsquo;t just for reading&mdash;it&rsquo;s for growing. Use our built-in journaling tools to record your progress through Step ${step.number} and all twelve Steps, all in one private place.</p>
         <div class="step-engine-cta-badges">
           <a href="https://apps.apple.com/app/id6755981862" target="_blank" rel="noopener noreferrer" class="step-engine-cta-badge-link">
             <img src="https://developer.apple.com/app-store/marketing/guidelines/images/badge-download-on-the-app-store.svg" alt="Download on the App Store" class="step-engine-cta-badge">
