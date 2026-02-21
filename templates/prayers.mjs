@@ -103,26 +103,23 @@ export function renderPrayersPage() {
     },
   ];
 
-  function renderPrayer(prayer) {
+  function renderPrayerCard(prayer) {
     let bodyHtml = '';
 
     if (prayer.lines) {
-      // Single stanza poem-style (Serenity Prayer)
-      bodyHtml = `<div class="prayer-text prayer-verse">
-              ${prayer.lines.map(l => `<p class="verse-line">${l}</p>`).join('\n              ')}
+      bodyHtml = `<div class="prayer-verse">
+              ${prayer.lines.map(l => `<p class="prayer-line">${l}</p>`).join('\n              ')}
             </div>`;
     } else if (prayer.sections) {
-      // Multi-section with lines and paragraphs (St. Francis)
       bodyHtml = prayer.sections.map(section => {
         if (section.lines) {
-          return `<div class="prayer-text prayer-verse">
-              ${section.lines.map(l => `<p class="verse-line">${l}</p>`).join('\n              ')}
+          return `<div class="prayer-verse">
+              ${section.lines.map(l => `<p class="prayer-line">${l}</p>`).join('\n              ')}
             </div>`;
         }
         return `<p class="prayer-text">${section.text}</p>`;
       }).join('\n            ');
     } else if (prayer.paragraphs) {
-      // Paragraph-style
       bodyHtml = prayer.paragraphs.map(p =>
         `<p class="prayer-text">${p}</p>`
       ).join('\n            ');
@@ -133,18 +130,15 @@ export function renderPrayersPage() {
       : '';
 
     return `
-          <details class="prayer-item" id="${prayer.id}">
-            <summary class="prayer-title">${prayer.title}</summary>
-            <div class="prayer-body">
+          <div class="prayer-card" id="${prayer.id}">
+            <h2 class="prayer-card-title">${prayer.title}</h2>
+            <div class="prayer-card-body">
             ${bodyHtml}${sourceHtml}
             </div>
-          </details>`;
+          </div>`;
   }
 
-  // Serenity Prayer gets featured treatment
-  const serenity = prayers.find(p => p.id === 'serenity');
-  const otherPrayers = prayers.filter(p => p.id !== 'serenity');
-  const prayerCards = otherPrayers.map(renderPrayer).join('\n');
+  const prayerCards = prayers.map(renderPrayerCard).join('\n');
 
   const bodyContent = `
       <!-- Hero -->
@@ -154,46 +148,13 @@ export function renderPrayersPage() {
           <div class="pr-hero-overlay"></div>
         </div>
         <div class="pr-hero-content">
-          <span class="pr-hero-label">Recovery Resources</span>
           <h1 class="pr-hero-title">Prayers &amp; Meditations</h1>
-          <p class="pr-hero-desc">Words that have carried countless members through their darkest hours and brightest mornings.</p>
         </div>
       </header>
 
-      <!-- Featured: Serenity Prayer -->
-      <div class="pr-featured-wrap">
-        <div class="pr-featured">
-          <span class="pr-featured-label">The Foundation</span>
-          <h2 class="pr-featured-title">${serenity.title}</h2>
-          <div class="pr-featured-verse">
-            ${serenity.lines.map(l => `<p>${l}</p>`).join('\n            ')}
-          </div>
-          <p class="pr-featured-source">&mdash; ${serenity.source}</p>
-        </div>
-      </div>
-
-      <!-- App Promo -->
-      <div class="pr-app-wrap">
-        <aside class="pr-app-callout">
-          <p class="pr-app-text">With the <strong>Al-Anon Daily Paths</strong> app, you can carry these prayers with you wherever you go. Use them when you need them most.</p>
-          <div class="pr-app-badges">
-            <a href="https://apps.apple.com/app/id6755981862" target="_blank" rel="noopener noreferrer">
-              <img src="https://developer.apple.com/app-store/marketing/guidelines/images/badge-download-on-the-app-store.svg" alt="Download on the App Store" class="pr-app-badge">
-            </a>
-            <a href="https://play.google.com/store/apps/details?id=com.dailypaths" target="_blank" rel="noopener noreferrer">
-              <img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" alt="Get it on Google Play" class="pr-app-badge pr-app-badge-play">
-            </a>
-          </div>
-        </aside>
-      </div>
-
-      <!-- Prayer Cards -->
-      <div class="pr-list-wrap">
-        <h2 class="pr-list-heading">More Prayers &amp; Reflections</h2>
-        <p class="pr-list-intro">Tap any prayer to read it.</p>
-        <div class="prayer-list">
+      <!-- Prayer Stack -->
+      <div class="pr-stack">
 ${prayerCards}
-        </div>
       </div>`;
 
   return wrapInLayout({

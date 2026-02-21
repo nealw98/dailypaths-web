@@ -1323,12 +1323,14 @@ a.rd-pill--step:hover {
 
 /* --- Prayers Page — Editorial Layout --- */
 
-/* Hero with background image */
+/* ===== Prayers & Meditations — Premium Minimalist Layout ===== */
+
+/* Hero with Cairn image */
 .pr-hero {
   position: relative;
   text-align: center;
   overflow: hidden;
-  min-height: 280px;
+  min-height: 320px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1350,299 +1352,136 @@ a.rd-pill--step:hover {
 .pr-hero-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    180deg,
-    rgba(45, 59, 61, 0.3) 0%,
-    rgba(45, 59, 61, 0.7) 100%
-  );
+  background: rgba(0, 0, 0, 0.30);
 }
 
 .pr-hero-content {
   position: relative;
   z-index: 1;
-  padding: 3.5rem 2rem 4rem;
-  max-width: 40rem;
-}
-
-.pr-hero-label {
-  display: inline-block;
-  font-family: var(--font-sans);
-  font-size: 0.7rem;
-  font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  color: var(--sage-light);
-  background: rgba(255, 255, 255, 0.15);
-  padding: 0.3rem 0.9rem;
-  border-radius: 999px;
-  margin-bottom: 1rem;
+  padding: 4rem 2rem 4.5rem;
 }
 
 .pr-hero-title {
   font-family: var(--font-serif);
-  font-size: 2.5rem;
+  font-size: 2.75rem;
   font-weight: 700;
   color: var(--white);
   line-height: 1.15;
-  margin-bottom: 1rem;
-}
-
-.pr-hero-desc {
-  font-family: var(--font-reading);
-  font-size: 1.05rem;
-  line-height: 1.65;
-  color: rgba(255, 255, 255, 0.85);
-  max-width: 32rem;
-  margin: 0 auto;
+  margin: 0;
 }
 
 @media (min-width: 768px) {
+  .pr-hero {
+    min-height: 380px;
+  }
   .pr-hero-content {
-    padding: 4.5rem 2rem 5rem;
+    padding: 5rem 2rem 5.5rem;
   }
   .pr-hero-title {
-    font-size: 3rem;
+    font-size: 3.25rem;
   }
 }
 
-/* Featured Serenity Prayer */
-.pr-featured-wrap {
-  max-width: 40rem;
+/* Prayer Stack — single-column vertical layout */
+.pr-stack {
+  max-width: 800px;
   margin: 0 auto;
-  padding: 2.5rem 2rem 1rem;
+  padding: 3rem 2rem 4rem;
 }
 
-.pr-featured {
-  background: #4A6163;
+/* Prayer Cards — minimalist white cards */
+.prayer-card {
+  background: var(--white);
   border-radius: var(--radius);
-  padding: 2.5rem 2.75rem;
-  text-align: center;
-  box-shadow: 0 4px 20px rgba(45, 59, 61, 0.15);
+  padding: 2.5rem 2.5rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
 }
 
-.pr-featured-label {
-  display: inline-block;
-  font-family: var(--font-sans);
-  font-size: 0.65rem;
-  font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  color: var(--sage);
-  background: rgba(255, 255, 255, 0.1);
-  padding: 0.25rem 0.8rem;
-  border-radius: 999px;
-  margin-bottom: 1rem;
+.prayer-card:last-child {
+  margin-bottom: 0;
 }
 
-.pr-featured-title {
-  font-family: var(--font-serif);
-  font-size: 1.6rem;
-  font-weight: 700;
-  color: var(--white);
-  margin-bottom: 1.5rem;
-}
-
-.pr-featured-verse {
-  margin-bottom: 1.25rem;
-}
-
-.pr-featured-verse p {
-  font-family: var(--font-reading);
-  font-size: 1.15rem;
-  font-style: italic;
-  line-height: 1.8;
-  color: rgba(255, 255, 255, 0.9);
-  margin: 0;
-}
-
-.pr-featured-source {
-  font-family: var(--font-sans);
-  font-size: 0.8rem;
-  color: rgba(255, 255, 255, 0.45);
-  margin: 0;
-}
-
-/* App Promo Callout */
-.pr-app-wrap {
-  max-width: 40rem;
-  margin: 0 auto;
-  padding: 0.5rem 2rem 0;
-}
-
-.pr-app-callout {
-  background: var(--cta-dark);
-  border: none;
-  border-radius: var(--radius);
-  padding: 1.5rem 1.75rem;
-  text-align: center;
-}
-
-.pr-app-text {
-  font-family: var(--font-reading);
-  font-size: 0.95rem;
-  line-height: 1.65;
-  color: rgba(255, 255, 255, 0.9);
-  margin-bottom: 1rem;
-}
-
-.pr-app-text strong {
-  font-weight: 600;
-}
-
-.pr-app-badges {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-.pr-app-badge {
-  height: 40px;
-  transition: opacity 0.2s;
-}
-
-.pr-app-badge-play {
-  height: 60px;
-}
-
-.pr-app-badge:hover {
-  opacity: 0.8;
-}
-
-/* Prayer List Section */
-.pr-list-wrap {
-  max-width: 42rem;
-  margin: 0 auto;
-  padding: 2rem 2rem 3rem;
-}
-
-.pr-list-heading {
+.prayer-card-title {
   font-family: var(--font-serif);
   font-size: 1.5rem;
   font-weight: 700;
-  color: var(--ink);
-  text-align: center;
-  margin-bottom: 0.35rem;
+  color: var(--deep-navy);
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
 }
 
-.pr-list-intro {
-  font-family: var(--font-sans);
-  font-size: 0.85rem;
-  color: var(--slate-blue);
-  text-align: center;
-  margin-bottom: 2rem;
+.prayer-card-body {
+  /* Container for prayer content */
 }
 
-/* Prayer Accordion Cards */
-.prayer-list {
-  margin: 0;
-}
-
-.prayer-item {
-  background: var(--white);
-  border: none;
-  border-top: 4px solid var(--deep-teal);
-  border-radius: var(--radius);
-  margin-bottom: 0.75rem;
-  box-shadow: var(--card-shadow);
-  transition: box-shadow 0.2s;
-}
-
-.prayer-item:first-child {
-  border-top: 4px solid var(--deep-teal);
-}
-
-.prayer-item[open] {
-  box-shadow: var(--card-shadow-hover);
-}
-
-.prayer-item summary {
-  font-family: var(--font-serif);
-  font-weight: 600;
-  font-size: 1.15rem;
-  color: var(--deep-teal);
-  padding: 1.1rem 1.5rem;
-  cursor: pointer;
-  list-style: none;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.prayer-item summary::-webkit-details-marker {
-  display: none;
-}
-
-.prayer-item summary::after {
-  content: '+';
-  font-size: 1.3rem;
-  font-weight: 300;
-  color: var(--sage);
-  flex-shrink: 0;
-  margin-left: 1rem;
-  transition: transform 0.2s ease;
-}
-
-.prayer-item[open] summary::after {
-  content: '\2212';
-  color: var(--deep-teal);
-}
-
-.prayer-body {
-  padding: 0 1.5rem 1.5rem;
-  border-top: 1px solid var(--cloud);
-  margin-top: -0.25rem;
-  padding-top: 1.25rem;
-}
-
+/* Prayer text — Lora for meditative feel */
 .prayer-text {
   font-family: var(--font-reading);
-  font-size: 1rem;
-  line-height: 1.75;
+  font-size: 1.05rem;
+  line-height: 1.85;
   color: var(--ink);
-  margin-bottom: 0.75rem;
+  margin-bottom: 1rem;
 }
 
 .prayer-text:last-of-type {
   margin-bottom: 0;
 }
 
+/* Verse-style prayers (Serenity Prayer, St. Francis) */
 .prayer-verse {
-  margin-bottom: 1rem;
+  margin-bottom: 1.25rem;
 }
 
-.prayer-verse .verse-line {
+.prayer-verse:last-of-type {
+  margin-bottom: 0;
+}
+
+.prayer-line {
   font-family: var(--font-reading);
-  font-size: 1rem;
-  line-height: 1.75;
+  font-size: 1.05rem;
+  font-style: italic;
+  line-height: 1.85;
   color: var(--ink);
   margin-bottom: 0;
 }
 
+/* Source attribution */
 .prayer-source {
   font-family: var(--font-sans);
   font-size: 0.82rem;
   color: var(--slate-blue);
   font-style: italic;
-  margin-top: 1rem;
+  margin-top: 1.25rem;
   margin-bottom: 0;
+  opacity: 0.7;
 }
 
+/* Mobile */
 @media (max-width: 640px) {
+  .pr-hero {
+    min-height: 260px;
+  }
   .pr-hero-title {
-    font-size: 2rem;
+    font-size: 2.2rem;
   }
-  .pr-featured {
-    padding: 2rem 1.5rem;
+  .pr-hero-content {
+    padding: 3rem 1.5rem 3.5rem;
   }
-  .pr-featured-verse p {
-    font-size: 1.05rem;
+  .pr-stack {
+    padding: 2rem 1.5rem 3rem;
   }
-  .prayer-item summary {
-    padding: 1rem 1.25rem;
+  .prayer-card {
+    padding: 2rem 1.75rem;
+    margin-bottom: 1.5rem;
   }
-  .prayer-body {
-    padding: 0 1.25rem 1.25rem;
+  .prayer-card-title {
+    font-size: 1.3rem;
+  }
+  .prayer-text,
+  .prayer-line {
+    font-size: 1rem;
   }
 }
 
