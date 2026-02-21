@@ -1936,11 +1936,7 @@ html {
 }
 
 .aa-hero-overlay {
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(circle, rgba(74, 93, 78, 0.1) 0%, rgba(74, 93, 78, 0.4) 100%);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  display: none;
 }
 
 .aa-hero-content {
