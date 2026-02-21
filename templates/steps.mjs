@@ -369,10 +369,7 @@ const STEP_TAGLINES = {
   12: 'Service & the Gift of Giving Back',
 };
 
-/** Step hero images — per-step hero banner images (add new entries as images are created) */
-const STEP_HERO_IMAGES = {
-  1: 'step-1-hero.jpg',
-};
+/* All steps share the steps-hero.jpg image with a blurred/navy treatment */
 
 /** Convert step number to word for hero display */
 const NUMBER_WORDS = ['One','Two','Three','Four','Five','Six','Seven','Eight','Nine','Ten','Eleven','Twelve'];
@@ -402,7 +399,7 @@ export function renderStepPage(step, readings = []) {
   const monthIndex = step.number - 1;
   const tools = STEP_TOOLS[step.number] || [];
   const tagline = STEP_TAGLINES[step.number] || `The Principle of ${step.principle}`;
-  const heroImage = STEP_HERO_IMAGES[step.number] || null;
+  // All steps use the shared steps-hero.jpg with blur + navy overlay
 
   // Build description paragraphs
   const descParagraphs = step.description || [];
@@ -455,22 +452,17 @@ ${listItems}
       </section>`;
   }
 
-  // Hero section — image hero for steps with images, text-only fallback otherwise
-  const heroHtml = heroImage ? `
+  // Hero section — all steps use shared blurred hero
+  const heroHtml = `
       <header class="step-hero step-hero--image">
         <div class="step-hero-image">
-          <img src="${bp(`/assets/themes/${heroImage}`)}" alt="Step ${step.number}: ${step.principle}" />
+          <img src="${bp('/assets/themes/steps-hero.jpg')}" alt="Step ${step.number}: ${step.principle}" />
           <div class="step-hero-overlay"></div>
         </div>
         <div class="step-hero-content">
           <h1 class="step-hero-title">Step ${wordNumber(step.number)}</h1>
           <p class="step-hero-tagline">${tagline.toUpperCase()}</p>
         </div>
-      </header>` : `
-      <header class="step-hero step-hero--text">
-        <h1 class="step-hero-title-text">Step ${wordNumber(step.number)}</h1>
-        <p class="step-hero-tagline-text">${tagline.toUpperCase()}</p>
-        <p class="step-hero-meta">${step.month} &middot; The Twelve Steps of Al-Anon</p>
       </header>`;
 
   const bodyContent = `

@@ -197,11 +197,10 @@ ${cards}
 
       <!-- Hero Section -->
       <header class="topic-hero">
-        ${topic.image ? `
         <div class="topic-hero-image">
-          <img src="${bp(`/assets/themes/${topic.image}`)}" alt="${topic.imageAlt || topic.name}" />
+          <img src="${bp('/assets/themes/themes-hero.jpg')}" alt="${topic.name}" />
           <div class="topic-hero-overlay"></div>
-        </div>` : ''}
+        </div>
         <div class="topic-hero-content">
           <span class="topic-hero-label">Al-Anon Theme</span>
           <h1 class="topic-hero-title" itemprop="headline">${topic.name}</h1>

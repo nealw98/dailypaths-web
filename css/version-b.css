@@ -2883,16 +2883,14 @@ a.rd-pill--step:hover {
   height: 100%;
   object-fit: cover;
   object-position: center;
+  filter: blur(10px);
+  transform: scale(1.05);
 }
 
 .step-hero-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    180deg,
-    rgba(27, 38, 59, 0.55) 0%,
-    rgba(27, 38, 59, 0.7) 100%
-  );
+  background: rgba(27, 38, 59, 0.40);
 }
 
 .step-hero-content {
@@ -2918,40 +2916,6 @@ a.rd-pill--step:hover {
   text-transform: uppercase;
   letter-spacing: 0.2em;
   color: rgba(255, 255, 255, 0.85);
-}
-
-/* Text-Only Hero Fallback (steps without hero images) */
-.step-hero--text {
-  text-align: center;
-  max-width: 42rem;
-  margin: 0 auto;
-  padding: 4rem 2rem 0;
-}
-
-.step-hero-title-text {
-  font-family: var(--font-serif);
-  font-size: clamp(2.5rem, 6vw, 4rem);
-  font-weight: 700;
-  color: var(--deep-navy);
-  line-height: 1.05;
-  margin-bottom: 0.75rem;
-}
-
-.step-hero-tagline-text {
-  font-family: var(--font-sans);
-  font-size: 0.72rem;
-  font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 0.2em;
-  color: var(--sage);
-  margin-bottom: 1rem;
-}
-
-.step-hero-meta {
-  font-family: var(--font-sans);
-  font-size: 0.8rem;
-  color: var(--slate-blue);
-  opacity: 0.6;
 }
 
 /* Step Definition — Editorial Pull Quote */
@@ -3298,12 +3262,6 @@ a.rd-pill--step:hover {
   }
   .step-hero-content {
     padding: 2rem 1.5rem;
-  }
-  .step-hero--text {
-    padding: 3rem 1.5rem 0;
-  }
-  .step-hero-title-text {
-    font-size: 2.2rem;
   }
   .step-definition {
     padding: 3rem 1.5rem 0;
@@ -3724,16 +3682,14 @@ a.rd-pill--step:hover {
   height: 100%;
   object-fit: cover;
   object-position: center;
+  filter: blur(10px);
+  transform: scale(1.05);
 }
 
 .topic-hero-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    180deg,
-    rgba(45, 59, 61, 0.35) 0%,
-    rgba(45, 59, 61, 0.7) 100%
-  );
+  background: rgba(74, 93, 78, 0.40);
 }
 
 .topic-hero-content {
@@ -3785,25 +3741,6 @@ a.rd-pill--step:hover {
   .topic-hero-title {
     font-size: 2.75rem;
   }
-}
-
-/* No-image fallback */
-.topic-hero:not(:has(.topic-hero-image)) {
-  background: var(--cta-dark);
-}
-
-.topic-hero:not(:has(.topic-hero-image)) .topic-hero-label {
-  color: rgba(255, 255, 255, 0.8);
-  background: rgba(255, 255, 255, 0.15);
-}
-
-.topic-hero:not(:has(.topic-hero-image)) .topic-hero-title {
-  color: var(--white);
-}
-
-.topic-hero:not(:has(.topic-hero-image)) .topic-hero-desc {
-  color: rgba(255, 255, 255, 0.85);
-  opacity: 1;
 }
 
 /* --- The Definition --- */
