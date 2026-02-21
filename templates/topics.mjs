@@ -10,64 +10,24 @@ import {
 export { TOPICS };
 
 /**
- * Render the Topics index page.
+ * Render the Topics index page — Premium Magazine Gallery.
  */
 export function renderTopicsIndexPage() {
-  // 1-2-3 Hierarchy: Primary (hero), Secondary (duo), Tertiary (bento)
-  const hero = TOPICS[0];
-  const heroQuote = TOPIC_PULL_QUOTES[hero.slug] || '';
-  const duo = [TOPICS[1], TOPICS[2]];
-  const bento = TOPICS.slice(3);
-
-  // Bento layout classes: asymmetric sizes (same approach that worked before)
-  // Row 1: wide, narrow-tall, narrow-tall
-  // Row 2: narrow, narrow, wide
-  // Row 3: narrow-tall, wide, narrow
-  const bentoClasses = [
-    'ti-bento--wide',  'ti-bento--tall',  'ti-bento--tall',
-    '',                 '',                 'ti-bento--wide',
-    'ti-bento--tall',  'ti-bento--wide',  '',
-  ];
-
-  const bentoCards = bento.map((topic, i) => {
-    const cls = bentoClasses[i] || '';
-    return `
-          <a href="${bp(`/principles/${topic.slug}/`)}" class="ti-bento-card${cls ? ' ' + cls : ''}">
-            <div class="ti-bento-card-img">
-              <img src="${bp(`/assets/themes/${topic.image}`)}" alt="${topic.imageAlt || topic.name}" />
-            </div>
-            <div class="ti-bento-card-gradient"></div>
-            <div class="ti-bento-card-text">
-              <h3 class="ti-bento-card-title">${topic.name}</h3>
-              <p class="ti-bento-card-desc">${topic.shortDescription}</p>
-            </div>
-          </a>`;
-  });
-
-  // Duo cards
-  const duoCards = duo.map(topic => {
-    return `
-          <a href="${bp(`/principles/${topic.slug}/`)}" class="ti-duo-card">
-            <div class="ti-duo-card-img">
-              <img src="${bp(`/assets/themes/${topic.image}`)}" alt="${topic.imageAlt || topic.name}" />
-            </div>
-            <div class="ti-duo-card-gradient"></div>
-            <div class="ti-duo-card-text">
-              <h3 class="ti-duo-card-title">${topic.name}</h3>
-              <p class="ti-duo-card-desc">${topic.shortDescription}</p>
-            </div>
-          </a>`;
-  }).join('\n');
+  const galleryCards = TOPICS.map(topic => `
+          <a href="${bp(`/principles/${topic.slug}/`)}" class="ti-gallery-card">
+            <h3 class="ti-gallery-card-title">${topic.name}</h3>
+            <p class="ti-gallery-card-hook">${topic.shortDescription}</p>
+            <span class="ti-gallery-card-cta">Explore &rarr;</span>
+          </a>`).join('\n');
 
   const bodyContent = `
       <!-- Page Hero -->
       <header class="ti-hero">
         <div class="ti-hero-image">
-          <img src="${bp('/assets/themes/themes.jpg')}" alt="Al-Anon Themes" />
+          <img src="${bp('/assets/themes/themes-hero.jpg')}" alt="Al-Anon Themes" />
           <div class="ti-hero-overlay"></div>
         </div>
         <div class="ti-hero-content">
-          <span class="ti-hero-label">Al-Anon Themes</span>
           <h1 class="ti-hero-title">Al-Anon Themes</h1>
           <p class="ti-hero-desc">A curated exploration of the ideas that shape recovery &mdash; the threads that run through every stage of the Al-Anon journey.</p>
         </div>
@@ -75,93 +35,33 @@ export function renderTopicsIndexPage() {
 
       <!-- Editorial Intro -->
       <div class="ti-editorial-intro">
-        <p>
-          Recovery doesn&rsquo;t follow a straight line. Some days we need to practice letting go;
-          other days we need to hold a boundary. These twelve themes are an invitation to explore
-          the ideas that shape the Al-Anon journey &mdash; and the quiet, daily work of
-          finding our way back to ourselves.
-        </p>
+        <p>Universal ideas that weave through the journey of recovery.</p>
       </div>
 
-      <!-- Primary: Hero Feature (70/30) -->
-      <div class="ti-hero-feature-wrap">
-        <a href="${bp(`/principles/${hero.slug}/`)}" class="ti-hero-feature">
-          <div class="ti-hero-feature-img">
-            <img src="${bp(`/assets/themes/${hero.image}`)}" alt="${hero.imageAlt || hero.name}" />
-            <span class="ti-hero-feature-overlap">&ldquo;${heroQuote}&rdquo;</span>
-          </div>
-          <div class="ti-hero-feature-body">
-            <span class="ti-hero-feature-label">Featured Theme</span>
-            <h2 class="ti-hero-feature-title">${hero.name}</h2>
-            <p class="ti-hero-feature-desc">${hero.shortDescription}</p>
-            <p class="ti-hero-feature-quote">&ldquo;${heroQuote}&rdquo;</p>
-            <span class="ti-hero-feature-cta">Read &amp; Reflect &rarr;</span>
-          </div>
-        </a>
-      </div>
-
-      <!-- Quick Path -->
-      <div class="ti-quickpath-wrap">
-        <h2 class="ti-quickpath-heading">Where are you today?</h2>
-        <div class="ti-quickpath-grid">
-          <a href="${bp('/principles/powerlessness/')}" class="ti-quickpath-btn">Feeling Overwhelmed</a>
-          <a href="${bp('/principles/boundaries/')}" class="ti-quickpath-btn">Setting Boundaries</a>
-          <a href="${bp('/principles/gratitude-and-hope/')}" class="ti-quickpath-btn">Seeking Hope</a>
-          <a href="${bp('/principles/fellowship/')}" class="ti-quickpath-btn">New to Al-Anon</a>
+      <!-- Theme Gallery -->
+      <div class="ti-gallery-wrap">
+        <div class="ti-gallery-grid">
+${galleryCards}
         </div>
       </div>
 
-      <!-- Secondary: Featured Duo (50/50) -->
-      <div class="ti-duo-wrap">
-        <div class="ti-duo-grid">
-${duoCards}
-        </div>
-      </div>
-
-      <!-- Tertiary: Asymmetric Bento Grid -->
-      <div class="ti-bento-wrap">
-        <h2 class="ti-bento-heading">Explore All Themes</h2>
-        <div class="ti-bento-grid">
-${bentoCards.slice(0, 5).join('\n')}
-
-          <!-- 12 Steps Internal Link Card — fills the empty tall slot -->
-          <a href="${bp('/steps/')}" class="ti-steps-card">
-            <span class="ti-steps-icon">&#x1F9ED;</span>
-            <h3 class="ti-steps-title">The 12 Steps</h3>
-            <p class="ti-steps-desc">
-              Looking for the roadmap to recovery? Explore the foundational
-              themes of Al-Anon, month by month.
-            </p>
-            <span class="ti-steps-link">Explore the Path &rarr;</span>
-          </a>
-
-${bentoCards.slice(5, 6).join('\n')}
-        </div>
-      </div>
-
-      <!-- Mid-Grid Slim CTA Strip -->
-      <div class="ti-slim-cta-wrap">
-        <div class="ti-slim-cta">
-          <p class="ti-slim-cta-text">Carry these themes in your pocket.</p>
-          <div class="ti-slim-cta-actions">
-            <a href="https://apps.apple.com/app/id6755981862" target="_blank" rel="noopener noreferrer" class="ti-slim-cta-btn">
-              <img src="https://developer.apple.com/app-store/marketing/guidelines/images/badge-download-on-the-app-store.svg" alt="Download on the App Store" class="ti-slim-cta-badge">
+      <!-- Engine CTA -->
+      <section class="ti-engine-cta bg-navy">
+        <div class="ti-engine-cta-inner">
+          <h2 class="ti-engine-cta-heading">Carry the Path with You</h2>
+          <p class="ti-engine-cta-text">All 366 daily reflections, twelve themes of recovery, and personal journaling tools in the Al-Anon Daily Paths App.</p>
+          <div class="ti-engine-cta-badges">
+            <a href="https://apps.apple.com/app/id6755981862" target="_blank" rel="noopener noreferrer" class="ti-engine-cta-badge-link">
+              <img src="https://developer.apple.com/app-store/marketing/guidelines/images/badge-download-on-the-app-store.svg" alt="Download on the App Store" class="ti-engine-cta-badge">
             </a>
-            <a href="https://play.google.com/store/apps/details?id=com.dailypaths" target="_blank" rel="noopener noreferrer" class="ti-slim-cta-btn">
-              <img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" alt="Get it on Google Play" class="ti-slim-cta-badge ti-slim-cta-badge-play">
+            <a href="https://play.google.com/store/apps/details?id=com.dailypaths" target="_blank" rel="noopener noreferrer" class="ti-engine-cta-badge-link">
+              <img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" alt="Get it on Google Play" class="ti-engine-cta-badge ti-engine-cta-badge-play">
             </a>
           </div>
         </div>
-      </div>
+      </section>
 
-      <!-- Remaining Bento Cards -->
-      <div class="ti-bento-wrap ti-bento-wrap--continued">
-        <div class="ti-bento-grid">
-${bentoCards.slice(6).join('\n')}
-        </div>
-      </div>
-
-      <!-- Community & Support — Resource Spotlight -->
+      <!-- Community & Support -->
       <div class="ti-community-wrap">
         <h3 class="ti-community-heading">You Don&rsquo;t Have to Do This Alone.</h3>
         <p class="ti-community-intro">
