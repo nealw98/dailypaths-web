@@ -3077,6 +3077,8 @@ a.rd-pill--step:hover {
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
 }
 
 .step-hero-image {
