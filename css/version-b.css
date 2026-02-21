@@ -1573,16 +1573,14 @@ html {
   height: 100%;
   object-fit: cover;
   object-position: center;
-  filter: blur(8px);
+  filter: blur(10px);
   transform: scale(1.05);
 }
 
 .ap-hero-overlay {
   position: absolute;
   inset: 0;
-  background:
-    linear-gradient(to bottom, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.5)),
-    rgba(27, 38, 59, 0.4);
+  background: rgba(74, 93, 78, 0.40);
 }
 
 .ap-hero-content {
@@ -1933,16 +1931,14 @@ html {
   height: 100%;
   object-fit: cover;
   object-position: center;
-  filter: blur(8px);
+  filter: blur(10px);
   transform: scale(1.05);
 }
 
 .aa-hero-overlay {
   position: absolute;
   inset: 0;
-  background:
-    linear-gradient(to bottom, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.5)),
-    rgba(74, 93, 78, 0.4);
+  background: rgba(27, 38, 59, 0.40);
 }
 
 .aa-hero-content {
