@@ -10,7 +10,7 @@ export function renderAboutProjectPage() {
 
   const bodyContent = `
       <!-- Hero -->
-      <header class="ap-hero ap-hero--sharp">
+      <header class="ap-hero">
         <div class="ap-hero-image">
           <img src="${bp('/assets/hero-image.jpg')}" alt="Sunlit meadow path \u2014 The Daily Path Project" />
           <div class="ap-hero-overlay"></div>
