@@ -95,7 +95,10 @@ ${galleryCards}
 }
 
 /**
- * Render an individual topic page — editorial layout.
+ * Render an individual topic page — premium editorial experience.
+ *
+ * Sections: Nav → Hero → Pull Quote → Editorial Intro (drop cap) →
+ * Member Insight → Al-Anon Toolbox → Featured Reflections → Daily Reflections → CTA
  *
  * @param {Object} topic - Topic object from TOPICS array
  * @param {Array} featuredReadings - Reading objects matching featuredDays
@@ -107,9 +110,10 @@ export function renderTopicPage(topic, featuredReadings, allReadings = []) {
   const nextTopic = TOPICS[(idx + 1) % TOPICS.length];
 
   const tools = TOPIC_TOOLS[topic.slug] || [];
+  const pullQuote = TOPIC_PULL_QUOTES[topic.slug] || '';
   const themeTags = TOPIC_THEME_TAGS[topic.slug] || [];
 
-  // Build theme-matched readings from secondary_theme
+  // Build theme-matched readings (excluding featured days)
   const featuredDaySet = new Set(topic.featuredDays || []);
   let themeReadings = [];
   if (allReadings.length > 0 && themeTags.length > 0) {
@@ -118,7 +122,7 @@ export function renderTopicPage(topic, featuredReadings, allReadings = []) {
     );
   }
 
-  // Combine: featured first, then theme-matched (deduped)
+  // Dedupe additional readings against featured
   const seenDays = new Set(featuredReadings.map(r => r.day_of_year));
   const additionalReadings = themeReadings.filter(r => {
     if (seenDays.has(r.day_of_year)) return false;
@@ -126,12 +130,11 @@ export function renderTopicPage(topic, featuredReadings, allReadings = []) {
     return true;
   });
 
-  const allTopicReadings = [...featuredReadings, ...additionalReadings];
-  const totalCount = allTopicReadings.length;
+  const totalAdditionalCount = additionalReadings.length;
 
-  // Group readings by secondary_theme
+  // Group additional readings by secondary_theme
   const groupedReadings = new Map();
-  for (const r of allTopicReadings) {
+  for (const r of additionalReadings) {
     const theme = r.secondary_theme || 'Other';
     if (!groupedReadings.has(theme)) groupedReadings.set(theme, []);
     groupedReadings.get(theme).push(r);
@@ -162,8 +165,20 @@ ${cards}
   const memberShare = MEMBER_SHARES[topic.slug] || DEFAULT_MEMBER_SHARE;
   const shareParagraphs = memberShare.split('\n\n').map(p => `              <p>${p.trim()}</p>`).join('\n');
 
-  // Core truths bullets
-  const coreTruthItems = tools.map(t => `              <li>${t}</li>`).join('\n');
+  // Toolbox items with compass SVG icon
+  const compassSvg = '<svg class="topic-toolbox-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88"/></svg>';
+  const toolboxItems = tools.map(t => `              <li>${compassSvg}<span>${t}</span></li>`).join('\n');
+
+  // Featured reflection cards
+  const featuredCards = featuredReadings.map(r => {
+    const slug = dayToSlug(r.day_of_year);
+    return `
+          <a href="${bp(`/${slug}/`)}" class="topic-featured-card">
+            <span class="topic-featured-badge">Recommended</span>
+            <span class="topic-featured-card-date">${r.display_date}</span>
+            <span class="topic-featured-card-title">${r.title}</span>
+          </a>`;
+  }).join('\n');
 
   const bodyContent = `
     <article class="topic-editorial" itemscope itemtype="https://schema.org/Article">
@@ -194,33 +209,61 @@ ${cards}
         </div>
       </header>
 
-      <!-- The Definition -->
-      <section class="topic-definition">
-        <div class="topic-definition-inner">
+      <!-- Pull Quote Bridge -->
+      ${pullQuote ? `
+      <div class="topic-pull-quote">
+        <blockquote class="topic-pull-quote-text">
+          &ldquo;${pullQuote}&rdquo;
+        </blockquote>
+      </div>` : ''}
+
+      <!-- Editorial Intro with Drop Cap -->
+      <section class="topic-editorial-intro">
+        <div class="topic-editorial-intro-inner">
           ${topic.body}
         </div>
       </section>
 
-      <!-- Voice from the Path -->
-      <section class="topic-share" aria-label="A member&rsquo;s experience with ${topic.name}">
-        <div class="topic-share-inner">
-          <h2 class="topic-share-heading">Voice from the Path</h2>
-          <blockquote class="topic-share-body" itemprop="articleBody">
+      <!-- Member Insight -->
+      <section class="topic-member-insight" aria-label="A member&rsquo;s perspective on ${topic.name}">
+        <div class="topic-member-insight-inner">
+          <h2 class="topic-member-insight-heading">Member Insight</h2>
+          <blockquote class="topic-member-insight-body">
 ${shareParagraphs}
           </blockquote>
-          <p class="topic-share-attribution">&mdash; An Al-Anon member</p>
+          <p class="topic-member-insight-attribution">&mdash; An Al-Anon member</p>
         </div>
       </section>
 
-      <!-- Core Truths -->
+      <!-- Al-Anon Toolbox -->
       ${tools.length > 0 ? `
-      <section class="topic-truths">
-        <div class="topic-truths-inner">
-          <h2 class="topic-truths-heading">Understanding ${topic.name}</h2>
-          <ul class="topic-truths-list">
-${coreTruthItems}
+      <section class="topic-toolbox">
+        <div class="topic-toolbox-inner">
+          <h2 class="topic-toolbox-heading">Tools &amp; Slogans</h2>
+          <ul class="topic-toolbox-list">
+${toolboxItems}
           </ul>
         </div>
+      </section>` : ''}
+
+      <!-- Featured Reflections -->
+      ${featuredReadings.length > 0 ? `
+      <section class="topic-featured-section">
+        <h2 class="topic-featured-heading">Featured Reflections</h2>
+        <p class="topic-featured-intro">${featuredReadings.length} hand-picked readings on ${topic.name.toLowerCase()}.</p>
+        <div class="topic-featured-grid">
+${featuredCards}
+        </div>
+      </section>` : ''}
+
+      <!-- Daily Reflections on [Name] -->
+      ${totalAdditionalCount > 0 ? `
+      <section class="topic-readings-section">
+        <h2 class="topic-readings-heading">Daily Reflections on ${topic.name}</h2>
+        <p class="topic-readings-intro">
+          ${totalAdditionalCount} additional reading${totalAdditionalCount === 1 ? '' : 's'} explore this theme.
+        </p>
+${readingGroups}
       </section>` : ''}
 
       <!-- CTA -->
@@ -237,16 +280,6 @@ ${coreTruthItems}
           </div>
         </div>
       </section>
-
-      <!-- Daily Reflections on [Name] -->
-      ${totalCount > 0 ? `
-      <section class="topic-readings-section">
-        <h2 class="topic-readings-heading">Daily Reflections on ${topic.name}</h2>
-        <p class="topic-readings-intro">
-          ${totalCount} reading${totalCount === 1 ? '' : 's'} explore this theme.
-        </p>
-${readingGroups}
-      </section>` : ''}
 
     </article>`;
 

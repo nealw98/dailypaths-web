@@ -42,20 +42,20 @@ export const TOPIC_PULL_QUOTES = {
   'fellowship':            'Connection is the antidote to isolation, and fellowship is where recovery becomes real.',
 };
 
-/** Recovery tools / practical actions for each topic */
+/** Recovery tools / practical actions for each topic — Slogans, Concepts, Actions */
 export const TOPIC_TOOLS = {
-  'detachment':            ['Practice the slogan "How Important Is It?"', 'Step back before reacting', 'Write about what you can and cannot control', 'Attend a meeting on detachment'],
-  'powerlessness':         ['Review your Step 1 writing', 'List what you\u2019ve tried to control', 'Practice the Serenity Prayer', 'Share your experience with a sponsor'],
-  'focus-on-yourself':     ['Schedule something just for you', 'Ask "Is this mine to carry?"', 'Journal about your needs', 'Set one boundary this week'],
-  'one-day-at-a-time':     ['Start the day with a reading', 'Avoid "what if" thinking', 'Practice a 5-minute meditation', 'Write a gratitude list tonight'],
-  'boundaries':            ['Practice saying no without explaining', 'Identify one boundary to set', 'Talk to your sponsor about limits', 'Notice when you feel resentful'],
-  'letting-go-of-control': ['Pause before offering advice', 'Let someone make their own mistake', 'Write a "letting go" letter', 'Practice "Let Go and Let God"'],
-  'self-worth':            ['Write 3 things you like about yourself', 'Say no to one obligation', 'Notice self-critical thoughts', 'Do something that brings you joy'],
-  'higher-power':          ['Try a morning prayer or meditation', 'Write a letter to your Higher Power', 'Notice moments of grace', 'Read Step 3 literature'],
-  'honesty':               ['Tell someone how you really feel', 'Journal without editing yourself', 'Admit one mistake this week', 'Practice Step 10 spot-check'],
-  'gratitude-and-hope':    ['Write a gratitude list', 'Share a hope at a meeting', 'Notice one good thing today', 'Call a program friend'],
-  'the-disease':           ['Read about the family disease', 'Practice the Three Cs', 'Replace blame with compassion', 'Attend an open AA meeting'],
-  'fellowship':            ['Call a program friend', 'Volunteer for a service position', 'Attend a new meeting', 'Share your story with a newcomer'],
+  'detachment':            ['Slogan: Let Go and Let God', 'Slogan: Not My Circus, Not My Monkeys', 'Concept: Loving Separation'],
+  'powerlessness':         ['Slogan: First Things First', 'Slogan: Easy Does It', 'Concept: The Three C\u2019s (I didn\u2019t Cause it, can\u2019t Control it, won\u2019t Cure it)'],
+  'focus-on-yourself':     ['Slogan: Progress Not Perfection', 'Concept: Amends (The 8th &amp; 9th Step process)', 'Action: Releasing a resentment'],
+  'one-day-at-a-time':     ['Slogan: Keep It Simple', 'Slogan: How Important Is It?', 'Concept: The Hula Hoop (Staying inside your own circle)', 'Action: A \u201CGod Box\u201D (putting worries inside)'],
+  'boundaries':            ['Slogan: Say what you mean, mean what you say, but don\u2019t say it mean', 'Concept: JADE (Justify, Argue, Defend, Explain)'],
+  'letting-go-of-control': ['Slogan: Easy Does It', 'Concept: The Leap of Faith', 'Action: Saying \u201CYes\u201D to a sponsor or a service position'],
+  'self-worth':            ['Slogan: Live and Let Live', 'Concept: The 4th Step Moral Inventory', 'Action: Admitting a mistake without an excuse'],
+  'higher-power':          ['Slogan: Just for Today', 'Concept: A Power Greater Than Ourselves', 'Action: Attending one more meeting'],
+  'honesty':               ['Slogan: Keep an Open Mind', 'Concept: Rigorous Honesty', 'Action: Mirror Work (Looking at our own part)'],
+  'gratitude-and-hope':    ['Slogan: Count Your Blessings', 'Concept: The Gratitude List', 'Action: Sharing one thing you\u2019re thankful for at the end of a meeting'],
+  'the-disease':           ['Read about the family disease', 'Practice the Three C\u2019s', 'Replace blame with compassion', 'Attend an open AA meeting'],
+  'fellowship':            ['Slogan: When Anyone, Anywhere Reaches Out', 'Concept: The Twelfth Step', 'Action: Setting up chairs or being a Greeter'],
 };
 
 /**
@@ -94,14 +94,9 @@ export const TOPICS = [
     imageAlt: 'Two women hiking together at sunset \u2014 finding freedom through surrender in Al-Anon recovery',
     body: `
       <p>
-        Step One names it plainly: we are powerless over alcohol and
-        over other people. Most of us spent years proving otherwise,
-        and it nearly destroyed us.
-      </p>
-      <p>
-        Surrender isn&rsquo;t giving up &mdash; it&rsquo;s giving over.
-        It&rsquo;s the moment we stop white-knuckling the steering wheel
-        and discover that the car was never ours to drive.
+        Acceptance is not approval; it is the quiet recognition of things
+        as they are right now. It is the bridge between the pain of the
+        past and the possibilities of the future.
       </p>`,
     featuredDays: [11, 15, 16, 153, 357],
   },
@@ -114,15 +109,9 @@ export const TOPICS = [
     imageAlt: 'Woman focused on pottery at a wheel \u2014 turning attention back to yourself in Al-Anon recovery',
     body: `
       <p>
-        For years, our attention was fixed on someone else: their drinking,
-        their mood, their next crisis. Turning that focus inward feels
-        selfish at first, even dangerous.
-      </p>
-      <p>
-        What happens is that we discover a life we&rsquo;d forgotten was
-        ours. We find choices where we saw only obligations. Focusing on
-        ourselves is the most radical &mdash; and most difficult &mdash;
-        shift in recovery.
+        Forgiveness is the act of setting a prisoner free and discovering
+        that the prisoner was you. It is a gift we give ourselves to stop
+        the past from dictating our present peace.
       </p>`,
     featuredDays: [6, 17, 21, 22, 237],
   },
@@ -135,15 +124,9 @@ export const TOPICS = [
     imageAlt: 'Two friends laughing together in a park \u2014 embracing the present moment in Al-Anon recovery',
     body: `
       <p>
-        Most of us lived in the future or the past &mdash; dreading what
-        might happen, replaying what already did. &ldquo;One day at a
-        time&rdquo; sounds simple, but it&rsquo;s one of the most
-        difficult things the program asks of us.
-      </p>
-      <p>
-        These readings explore what it means to be here, now &mdash;
-        to handle just today, and to trust that tomorrow will take
-        care of itself.
+        Serenity is the &ldquo;calm in the storm.&rdquo; It is the
+        discovery that our internal peace does not have to be dependent
+        on the external chaos of our environment.
       </p>`,
     featuredDays: [60, 64, 248, 199, 275],
   },
@@ -176,14 +159,9 @@ export const TOPICS = [
     imageAlt: 'Two women laughing together while cooking \u2014 letting go of control in Al-Anon recovery',
     body: `
       <p>
-        We managed, we orchestrated, we worried ourselves sick trying to
-        control outcomes that were never ours to control. The need to
-        control is the disease talking through us.
-      </p>
-      <p>
-        These readings explore the subtle and not-so-subtle ways we try
-        to run other people&rsquo;s lives &mdash; and what happens when
-        we finally put that burden down.
+        Willingness is the &ldquo;key in the lock.&rdquo; It doesn&rsquo;t
+        require us to have the solution; it only requires the desire to be
+        taught a new way to live and a readiness to let go of old defenses.
       </p>`,
     featuredDays: [3, 72, 168, 266, 320],
   },
@@ -196,14 +174,10 @@ export const TOPICS = [
     imageAlt: 'Woman looking at her reflection in a mirror \u2014 reclaiming self-worth and identity in Al-Anon recovery',
     body: `
       <p>
-        Many of us spent so long managing someone else&rsquo;s disease
-        that we lost any sense of who we were apart from the crisis.
-        Our identity became &ldquo;the one who holds it together.&rdquo;
-      </p>
-      <p>
-        Recovery is, in part, an excavation &mdash; digging out the person
-        who was buried under years of coping, and discovering that person
-        has value apart from what they do for others.
+        Humility is the clear-eyed view of our true selves&mdash;neither
+        better than nor worse than anyone else. It is the freedom from the
+        burden of having to be &ldquo;right&rdquo; or &ldquo;in charge&rdquo;
+        all the time.
       </p>`,
     featuredDays: [103, 158, 170, 186, 290],
   },
@@ -216,15 +190,9 @@ export const TOPICS = [
     imageAlt: 'Man holding his father\u2019s hand at a hospital bedside \u2014 trusting a Higher Power in Al-Anon recovery',
     body: `
       <p>
-        Al-Anon is a spiritual program, not a religious one. The program
-        invites us to find a Higher Power of our own understanding &mdash;
-        whatever that looks like.
-      </p>
-      <p>
-        For some it&rsquo;s God. For others it&rsquo;s the group, or simply
-        the recognition that something larger than our own willpower is at
-        work. What matters is the willingness to stop relying solely on
-        ourselves.
+        Hope is the quiet confidence that the future can be different.
+        It is fueled by hearing the stories of those who have walked
+        the path before us and found a way out of the dark.
       </p>`,
     featuredDays: [35, 36, 43, 84, 162],
   },
@@ -237,14 +205,9 @@ export const TOPICS = [
     imageAlt: 'Two women in honest conversation over coffee \u2014 honesty and self-awareness in Al-Anon recovery',
     body: `
       <p>
-        Living with alcoholism teaches us to perform. We smile when
-        we&rsquo;re breaking. We say &ldquo;fine&rdquo; when nothing is fine.
-      </p>
-      <p>
-        Honesty in Al-Anon starts with ourselves &mdash; admitting what we
-        feel, owning what we&rsquo;ve done, and stopping the exhausting
-        work of keeping up appearances. The practice is daily: telling the
-        truth, even when it&rsquo;s uncomfortable.
+        In recovery, honesty is more than just telling the truth; it is
+        the removal of the masks we wore to survive. It begins with the
+        courage to be honest with ourselves about our own feelings and needs.
       </p>`,
     featuredDays: [50, 92, 115, 126, 278],
   },
@@ -257,14 +220,9 @@ export const TOPICS = [
     imageAlt: 'Woman breathing in peacefully by a lake at sunset \u2014 gratitude and hope in Al-Anon recovery',
     body: `
       <p>
-        Hope is what gets us to the first meeting. Gratitude is what
-        keeps us coming back. Neither requires that circumstances change
-        &mdash; only that we do.
-      </p>
-      <p>
-        These readings explore what it means to find genuine appreciation
-        for small progress, to hold hope even in uncertainty, and to
-        recognize that the shift is always internal first.
+        Gratitude is a muscle we build by looking for the light in the
+        midst of the struggle. It shifts our focus from what is missing
+        to the abundance that is already here.
       </p>`,
     featuredDays: [34, 41, 116, 339, 360],
   },
@@ -297,15 +255,9 @@ export const TOPICS = [
     imageAlt: 'Women connecting outside an Al-Anon meeting at sunset \u2014 community and fellowship in recovery',
     body: `
       <p>
-        Alcoholism is an isolating disease &mdash; not just for the drinker,
-        but for everyone around them. We hide what&rsquo;s happening at home.
-        We pull away from friends. We convince ourselves that no one could
-        understand.
-      </p>
-      <p>
-        Walking into a meeting and hearing someone describe our exact
-        experience breaks the spell. Connection is the antidote to
-        isolation, and fellowship is where recovery becomes real.
+        We keep what we have by giving it away. Service is the ultimate
+        act of detachment and love, reminding us that we are part of a
+        larger whole.
       </p>`,
     featuredDays: [1, 127, 139, 338, 342],
   },
