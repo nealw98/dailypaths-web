@@ -1948,7 +1948,7 @@ html {
 .aa-hero-overlay {
   position: absolute;
   inset: 0;
-  background: rgba(27, 38, 59, 0.40);
+  background: rgba(255, 255, 255, 0.15);
 }
 
 .aa-hero-content {
