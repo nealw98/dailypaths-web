@@ -140,6 +140,22 @@ ${relatedItems}
 
     </article>
 
+    <!-- App CTA -->
+    <section class="rd-engine-cta bg-navy">
+      <div class="rd-engine-cta-inner">
+        <h2 class="rd-engine-cta-heading">Recovery is a daily path. Let us walk it with you.</h2>
+        <p class="rd-engine-cta-text">Get daily notifications, track your milestones, and journal your reflections privately. Download the Al-Anon Daily Paths app.</p>
+        <div class="rd-engine-cta-badges">
+          <a href="https://apps.apple.com/app/id6755981862" target="_blank" rel="noopener noreferrer" class="rd-engine-cta-badge-link">
+            <img src="https://developer.apple.com/app-store/marketing/guidelines/images/badge-download-on-the-app-store.svg" alt="Download on the App Store" class="rd-engine-cta-badge">
+          </a>
+          <a href="https://play.google.com/store/apps/details?id=com.dailypaths" target="_blank" rel="noopener noreferrer" class="rd-engine-cta-badge-link">
+            <img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" alt="Get it on Google Play" class="rd-engine-cta-badge rd-engine-cta-badge-play">
+          </a>
+        </div>
+      </div>
+    </section>
+
     ${thoughtHtml ? `
     <!-- Today's Reminder — full-bleed terracotta -->
     <section class="rd-reminder bg-terracotta">
@@ -168,23 +184,7 @@ ${relatedItems}
       </a>
     </nav>
 
-${relatedHtml}
-
-    <!-- Engine CTA -->
-    <section class="rd-engine-cta bg-navy">
-      <div class="rd-engine-cta-inner">
-        <h2 class="rd-engine-cta-heading">Continue Your Daily Practice</h2>
-        <p class="rd-engine-cta-text">All 366 daily reflections and personal journaling tools in the Al-Anon Daily Paths App.</p>
-        <div class="rd-engine-cta-badges">
-          <a href="https://apps.apple.com/app/id6755981862" target="_blank" rel="noopener noreferrer" class="rd-engine-cta-badge-link">
-            <img src="https://developer.apple.com/app-store/marketing/guidelines/images/badge-download-on-the-app-store.svg" alt="Download on the App Store" class="rd-engine-cta-badge">
-          </a>
-          <a href="https://play.google.com/store/apps/details?id=com.dailypaths" target="_blank" rel="noopener noreferrer" class="rd-engine-cta-badge-link">
-            <img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" alt="Get it on Google Play" class="rd-engine-cta-badge rd-engine-cta-badge-play">
-          </a>
-        </div>
-      </div>
-    </section>`;
+${relatedHtml}`;
 
   return wrapInLayout({
     title: `${reading.display_date} - ${reading.title} | Al-Anon Daily Paths`,
