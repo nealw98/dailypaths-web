@@ -1577,7 +1577,7 @@ html {
   transform: scale(1.05);
 }
 
-/* Sharp hero — no blur, crisp meadow image */
+/* Sharp hero — no blur, crisp meadow image, subtle light overlay */
 .ap-hero--sharp .ap-hero-image img {
   filter: none;
   transform: none;
@@ -1587,6 +1587,10 @@ html {
   position: absolute;
   inset: 0;
   background: rgba(74, 93, 78, 0.40);
+}
+
+.ap-hero--sharp .ap-hero-overlay {
+  background: rgba(255, 255, 255, 0.15);
 }
 
 .ap-hero-content {
@@ -1812,27 +1816,33 @@ html {
 }
 
 /* CTA */
+/* ── Full-Bleed CTA — Navy "Chapter End" ──────────────────────── */
+
 .ap-cta {
   text-align: center;
-  border-radius: var(--radius);
-  padding: 2.5rem 2rem;
-  margin-top: 1rem;
-  background: var(--cta-dark);
+  background: #1B263B;
+  padding: 5rem 2rem;
+}
+
+.ap-cta-inner {
+  max-width: 650px;
+  margin: 0 auto;
 }
 
 .ap-cta-heading {
   font-family: var(--font-serif);
-  font-size: clamp(1.3rem, 3vw, 1.6rem);
+  font-size: clamp(1.5rem, 3.5vw, 2rem);
   font-weight: 700;
   color: var(--white);
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.75rem;
 }
 
 .ap-cta-text {
   font-family: var(--font-reading);
-  font-size: 0.95rem;
-  color: rgba(255, 255, 255, 0.85);
-  margin-bottom: 1.5rem;
+  font-size: 1.05rem;
+  line-height: 1.75;
+  color: rgba(255, 255, 255, 0.8);
+  margin-bottom: 2rem;
 }
 
 .ap-cta-actions {
@@ -1848,35 +1858,41 @@ html {
   font-size: 0.9rem;
   font-weight: 600;
   text-decoration: none;
-  padding: 0.7rem 1.5rem;
+  padding: 0.75rem 1.75rem;
   border-radius: var(--radius);
   transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
 }
 
 .ap-cta-btn--primary {
-  color: var(--cta-dark);
+  color: #1B263B;
   background: var(--white);
 }
 
 .ap-cta-btn--primary:hover {
   background: var(--cloud);
-  color: var(--cta-dark);
+  color: #1B263B;
   transform: translateY(-2px);
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
 }
 
 .ap-cta-btn--secondary {
   color: var(--white);
   background: transparent;
-  border: 1px solid rgba(255, 255, 255, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.35);
 }
 
 .ap-cta-btn--secondary:hover {
-  background: rgba(255, 255, 255, 0.1);
-  border-color: rgba(255, 255, 255, 0.7);
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.6);
   color: var(--white);
   transform: translateY(-2px);
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+@media (min-width: 768px) {
+  .ap-cta {
+    padding: 6rem 2rem;
+  }
 }
 
 /* Mobile */

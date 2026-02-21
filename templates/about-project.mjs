@@ -104,18 +104,20 @@ export function renderAboutProjectPage() {
             </div>
           </section>
 
-          <!-- CTA -->
-          <section class="ap-cta">
-            <h2 class="ap-cta-heading">Begin the Journey</h2>
-            <p class="ap-cta-text">Recovery starts with a single day. Read today&rsquo;s reflection and take the first step.</p>
-            <div class="ap-cta-actions">
-              <a href="${bp('/')}" class="ap-cta-btn ap-cta-btn--primary">Today&rsquo;s Reflection</a>
-              <a href="${bp('/principles/')}" class="ap-cta-btn ap-cta-btn--secondary">Explore Themes</a>
-            </div>
-          </section>
-
         </div>
-      </div>`;
+      </div>
+
+      <!-- Full-Bleed App CTA -->
+      <section class="ap-cta">
+        <div class="ap-cta-inner">
+          <h2 class="ap-cta-heading">Begin the Journey</h2>
+          <p class="ap-cta-text">Recovery starts with a single day. Read today&rsquo;s reflection and take the first step.</p>
+          <div class="ap-cta-actions">
+            <a href="${bp('/')}" class="ap-cta-btn ap-cta-btn--primary">Today&rsquo;s Reflection</a>
+            <a href="${bp('/principles/')}" class="ap-cta-btn ap-cta-btn--secondary">Explore Themes</a>
+          </div>
+        </div>
+      </section>`;
 
   return wrapInLayout({
     title: 'The Daily Path Project \u2014 Our Mission | Al-Anon Daily Paths',
