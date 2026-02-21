@@ -12,11 +12,11 @@ export function renderAboutProjectPage() {
       <!-- Hero -->
       <header class="ap-hero">
         <div class="ap-hero-image">
-          <img src="${bp('/assets/hero-image.jpg')}" alt="Sunlit meadow path \u2014 The Daily Path Project" />
+          <img src="${bp('/assets/hero-image.jpg')}" alt="Sunlit meadow path \u2014 The Daily Paths Project" />
           <div class="ap-hero-overlay"></div>
         </div>
         <div class="ap-hero-content">
-          <h1 class="ap-hero-title">The Daily Path Project</h1>
+          <h1 class="ap-hero-title">The Daily Paths Project</h1>
           <p class="ap-hero-desc">Building a digital sanctuary for the Al-Anon journey.</p>
         </div>
       </header>
@@ -127,7 +127,7 @@ export function renderAboutProjectPage() {
       </section>`;
 
   return wrapInLayout({
-    title: 'The Daily Path Project \u2014 Our Mission | Al-Anon Daily Paths',
+    title: 'The Daily Paths Project \u2014 Our Mission | Al-Anon Daily Paths',
     description: 'Daily Paths is a digital sanctuary for Al-Anon recovery \u2014 366 original daily reflections, twelve curated themes, step guides, prayers, and an integrated journal app.',
     canonicalPath: '/about-project/',
     bodyContent,
