@@ -1,0 +1,337 @@
+/**
+ * Theme Data — Single Source of Truth
+ *
+ * Centralizes all theme/topic definitions, tag groupings, pull quotes,
+ * tools, and member shares. Consumed by templates/topics.mjs,
+ * templates/reading.mjs, and indirectly by build.mjs.
+ */
+
+/**
+ * Map each topic slug to the secondary_theme values that belong to it.
+ * Readings whose secondary_theme matches any of these tags will appear
+ * on the topic page automatically, alongside the curated featuredDays.
+ */
+export const TOPIC_THEME_TAGS = {
+  'detachment':            ['Detachment', 'Release', 'Relinquishment', 'Freedom'],
+  'powerlessness':         ['Powerlessness', 'Surrender', 'Acceptance', 'Relief'],
+  'focus-on-yourself':     ['Self-Care', 'Self-care', 'Self-focus', 'Self-love', 'Self-Acceptance', 'Self-acceptance', 'Redirection', 'Focus'],
+  'one-day-at-a-time':     ['Presence', 'Patience', 'Simplicity', 'Peace', 'Serenity'],
+  'boundaries':            ['Boundaries', 'Respect', 'Independence', 'Self-Discipline'],
+  'letting-go-of-control': ['Control', 'Flexibility', 'Willingness', 'Self-will'],
+  'self-worth':            ['Self-worth', 'Self-esteem', 'Self-compassion', 'Identity', 'Self-forgiveness'],
+  'higher-power':          ['Faith', 'Trust', 'Prayer', 'Spiritual Connection', 'Spiritual intimacy', 'Reliance', 'Spirit'],
+  'honesty':               ['Honesty', 'Truth', 'Self-awareness', 'Awareness', 'Integrity', 'Clarity'],
+  'gratitude-and-hope':    ['Gratitude', 'Hope', 'Miracles', 'Vision'],
+  'the-disease':           ['Understanding', 'Compassion', 'Reality', 'Sanity'],
+  'fellowship':            ['Fellowship', 'Connection', 'Community', 'Belonging', 'Unity', 'Sponsorship', 'Inclusion'],
+};
+
+/** Pull-quotes for each topic — one line that captures the spirit */
+export const TOPIC_PULL_QUOTES = {
+  'detachment':            'Detachment is what makes it possible to stay in the room without being destroyed by what\u2019s happening in it.',
+  'powerlessness':         'Surrender isn\u2019t giving up \u2014 it\u2019s giving over.',
+  'focus-on-yourself':     'Focusing on ourselves is the most radical \u2014 and most difficult \u2014 shift in recovery.',
+  'one-day-at-a-time':     'Handle just today, and trust that tomorrow will take care of itself.',
+  'boundaries':            'Boundaries aren\u2019t walls. They\u2019re the foundation that makes real love possible.',
+  'letting-go-of-control': 'The need to control is the disease talking through us.',
+  'self-worth':            'Recovery is, in part, an excavation \u2014 digging out the person who was buried under years of coping.',
+  'higher-power':          'What matters is the willingness to stop relying solely on ourselves.',
+  'honesty':               'Honesty in Al-Anon starts with ourselves \u2014 admitting what we feel, owning what we\u2019ve done.',
+  'gratitude-and-hope':    'Hope is what gets us to the first meeting. Gratitude is what keeps us coming back.',
+  'the-disease':           'We didn\u2019t cause it, we can\u2019t control it, and we can\u2019t cure it.',
+  'fellowship':            'Connection is the antidote to isolation, and fellowship is where recovery becomes real.',
+};
+
+/** Recovery tools / practical actions for each topic */
+export const TOPIC_TOOLS = {
+  'detachment':            ['Practice the slogan "How Important Is It?"', 'Step back before reacting', 'Write about what you can and cannot control', 'Attend a meeting on detachment'],
+  'powerlessness':         ['Review your Step 1 writing', 'List what you\u2019ve tried to control', 'Practice the Serenity Prayer', 'Share your experience with a sponsor'],
+  'focus-on-yourself':     ['Schedule something just for you', 'Ask "Is this mine to carry?"', 'Journal about your needs', 'Set one boundary this week'],
+  'one-day-at-a-time':     ['Start the day with a reading', 'Avoid "what if" thinking', 'Practice a 5-minute meditation', 'Write a gratitude list tonight'],
+  'boundaries':            ['Practice saying no without explaining', 'Identify one boundary to set', 'Talk to your sponsor about limits', 'Notice when you feel resentful'],
+  'letting-go-of-control': ['Pause before offering advice', 'Let someone make their own mistake', 'Write a "letting go" letter', 'Practice "Let Go and Let God"'],
+  'self-worth':            ['Write 3 things you like about yourself', 'Say no to one obligation', 'Notice self-critical thoughts', 'Do something that brings you joy'],
+  'higher-power':          ['Try a morning prayer or meditation', 'Write a letter to your Higher Power', 'Notice moments of grace', 'Read Step 3 literature'],
+  'honesty':               ['Tell someone how you really feel', 'Journal without editing yourself', 'Admit one mistake this week', 'Practice Step 10 spot-check'],
+  'gratitude-and-hope':    ['Write a gratitude list', 'Share a hope at a meeting', 'Notice one good thing today', 'Call a program friend'],
+  'the-disease':           ['Read about the family disease', 'Practice the Three Cs', 'Replace blame with compassion', 'Attend an open AA meeting'],
+  'fellowship':            ['Call a program friend', 'Volunteer for a service position', 'Attend a new meeting', 'Share your story with a newcomer'],
+};
+
+/**
+ * The 12 Al-Anon themes — each is its own content page.
+ *
+ * `featuredDays` are day_of_year values for curated readings.
+ * These will be looked up against the readings array at build time.
+ */
+export const TOPICS = [
+  {
+    slug: 'detachment',
+    name: 'Detachment with Love',
+    shortDescription: 'Separating yourself from the chaos without cutting off the caring.',
+    metaDescription: 'Learn to separate your peace from someone else\u2019s choices. Daily reflections on loving detachment in Al-Anon recovery.',
+    image: 'detachment.jpg',
+    imageAlt: 'Woman finding peace on her porch \u2014 detachment with love in Al-Anon recovery',
+    body: `
+      <p>
+        Detachment is the practice of separating our well-being from
+        someone else&rsquo;s choices. It doesn&rsquo;t mean we stop
+        caring &mdash; it means we stop drowning.
+      </p>
+      <p>
+        We learn to love without losing ourselves, to be present without
+        being consumed. Detachment is what makes it possible to stay in
+        the room without being destroyed by what&rsquo;s happening in it.
+      </p>`,
+    featuredDays: [102, 211, 289, 252, 346],
+  },
+  {
+    slug: 'powerlessness',
+    name: 'Powerlessness & Surrender',
+    shortDescription: 'Accepting what we cannot control and letting go of the rest.',
+    metaDescription: 'Accept what you cannot control and discover the freedom in letting go. Daily Al-Anon reflections on powerlessness and surrender.',
+    image: 'powerlessness.jpg',
+    imageAlt: 'Two women hiking together at sunset \u2014 finding freedom through surrender in Al-Anon recovery',
+    body: `
+      <p>
+        Step One names it plainly: we are powerless over alcohol and
+        over other people. Most of us spent years proving otherwise,
+        and it nearly destroyed us.
+      </p>
+      <p>
+        Surrender isn&rsquo;t giving up &mdash; it&rsquo;s giving over.
+        It&rsquo;s the moment we stop white-knuckling the steering wheel
+        and discover that the car was never ours to drive.
+      </p>`,
+    featuredDays: [11, 15, 16, 153, 357],
+  },
+  {
+    slug: 'focus-on-yourself',
+    name: 'Focus on Yourself',
+    shortDescription: 'Shifting attention from the alcoholic back to your own life.',
+    metaDescription: 'Turn the focus back to your own life after years of watching someone else\u2019s. Daily Al-Anon reflections on reclaiming your attention and energy.',
+    image: 'focus-on-yourself.jpg',
+    imageAlt: 'Woman focused on pottery at a wheel \u2014 turning attention back to yourself in Al-Anon recovery',
+    body: `
+      <p>
+        For years, our attention was fixed on someone else: their drinking,
+        their mood, their next crisis. Turning that focus inward feels
+        selfish at first, even dangerous.
+      </p>
+      <p>
+        What happens is that we discover a life we&rsquo;d forgotten was
+        ours. We find choices where we saw only obligations. Focusing on
+        ourselves is the most radical &mdash; and most difficult &mdash;
+        shift in recovery.
+      </p>`,
+    featuredDays: [6, 17, 21, 22, 237],
+  },
+  {
+    slug: 'one-day-at-a-time',
+    name: 'One Day at a Time',
+    shortDescription: 'Releasing anxiety about the future and regret about the past.',
+    metaDescription: 'Let go of tomorrow\u2019s worry and yesterday\u2019s regret. Daily Al-Anon reflections on staying present and living one day at a time.',
+    image: 'one-day-at-a-time.jpg',
+    imageAlt: 'Two friends laughing together in a park \u2014 embracing the present moment in Al-Anon recovery',
+    body: `
+      <p>
+        Most of us lived in the future or the past &mdash; dreading what
+        might happen, replaying what already did. &ldquo;One day at a
+        time&rdquo; sounds simple, but it&rsquo;s one of the most
+        difficult things the program asks of us.
+      </p>
+      <p>
+        These readings explore what it means to be here, now &mdash;
+        to handle just today, and to trust that tomorrow will take
+        care of itself.
+      </p>`,
+    featuredDays: [60, 64, 248, 199, 275],
+  },
+  {
+    slug: 'boundaries',
+    name: 'Boundaries',
+    shortDescription: 'Learning to say no as an act of self-respect, not selfishness.',
+    metaDescription: 'Learn to say no without guilt and set healthy limits. Daily Al-Anon reflections on boundaries as self-respect, not selfishness.',
+    image: 'boundaries.jpg',
+    imageAlt: 'Two women talking on a street corner with healthy space between them \u2014 setting boundaries in Al-Anon recovery',
+    body: `
+      <p>
+        Living with alcoholism blurs every line. We absorb other people&rsquo;s
+        moods, carry their responsibilities, and lose track of where their
+        crisis ends and our life begins.
+      </p>
+      <p>
+        Boundaries aren&rsquo;t walls. They&rsquo;re the foundation that
+        makes real love possible &mdash; the recognition of where I end
+        and you begin.
+      </p>`,
+    featuredDays: [8, 9, 23, 99, 114],
+  },
+  {
+    slug: 'letting-go-of-control',
+    name: 'Letting Go of Control',
+    shortDescription: 'Recognizing the many ways we try to manage, fix, or manipulate outcomes.',
+    metaDescription: 'Stop managing, fixing, and controlling what was never yours to carry. Daily Al-Anon reflections on releasing the need to control.',
+    image: 'letting-go-of-control.jpg',
+    imageAlt: 'Two women laughing together while cooking \u2014 letting go of control in Al-Anon recovery',
+    body: `
+      <p>
+        We managed, we orchestrated, we worried ourselves sick trying to
+        control outcomes that were never ours to control. The need to
+        control is the disease talking through us.
+      </p>
+      <p>
+        These readings explore the subtle and not-so-subtle ways we try
+        to run other people&rsquo;s lives &mdash; and what happens when
+        we finally put that burden down.
+      </p>`,
+    featuredDays: [3, 72, 168, 266, 320],
+  },
+  {
+    slug: 'self-worth',
+    name: 'Self-Worth & Identity',
+    shortDescription: 'Reclaiming the sense of self that years of crisis eroded.',
+    metaDescription: 'Rediscover who you are beyond someone else\u2019s crisis. Daily Al-Anon reflections on rebuilding self-worth and reclaiming your identity.',
+    image: 'self-worth.jpg',
+    imageAlt: 'Woman looking at her reflection in a mirror \u2014 reclaiming self-worth and identity in Al-Anon recovery',
+    body: `
+      <p>
+        Many of us spent so long managing someone else&rsquo;s disease
+        that we lost any sense of who we were apart from the crisis.
+        Our identity became &ldquo;the one who holds it together.&rdquo;
+      </p>
+      <p>
+        Recovery is, in part, an excavation &mdash; digging out the person
+        who was buried under years of coping, and discovering that person
+        has value apart from what they do for others.
+      </p>`,
+    featuredDays: [103, 158, 170, 186, 290],
+  },
+  {
+    slug: 'higher-power',
+    name: 'Trusting a Higher Power',
+    shortDescription: 'Finding a source of guidance beyond your own willpower.',
+    metaDescription: 'Find a source of strength beyond your own willpower. Daily Al-Anon reflections on trusting a Higher Power and letting go of self-reliance.',
+    image: 'higher-power.jpg',
+    imageAlt: 'Man holding his father\u2019s hand at a hospital bedside \u2014 trusting a Higher Power in Al-Anon recovery',
+    body: `
+      <p>
+        Al-Anon is a spiritual program, not a religious one. The program
+        invites us to find a Higher Power of our own understanding &mdash;
+        whatever that looks like.
+      </p>
+      <p>
+        For some it&rsquo;s God. For others it&rsquo;s the group, or simply
+        the recognition that something larger than our own willpower is at
+        work. What matters is the willingness to stop relying solely on
+        ourselves.
+      </p>`,
+    featuredDays: [35, 36, 43, 84, 162],
+  },
+  {
+    slug: 'honesty',
+    name: 'Honesty & Self-Awareness',
+    shortDescription: 'Getting truthful about your own patterns, motives, and feelings.',
+    metaDescription: 'Stop performing and start telling the truth \u2014 to yourself first. Daily Al-Anon reflections on honesty, self-awareness, and dropping the mask.',
+    image: 'honesty.jpg',
+    imageAlt: 'Two women in honest conversation over coffee \u2014 honesty and self-awareness in Al-Anon recovery',
+    body: `
+      <p>
+        Living with alcoholism teaches us to perform. We smile when
+        we&rsquo;re breaking. We say &ldquo;fine&rdquo; when nothing is fine.
+      </p>
+      <p>
+        Honesty in Al-Anon starts with ourselves &mdash; admitting what we
+        feel, owning what we&rsquo;ve done, and stopping the exhausting
+        work of keeping up appearances. The practice is daily: telling the
+        truth, even when it&rsquo;s uncomfortable.
+      </p>`,
+    featuredDays: [50, 92, 115, 126, 278],
+  },
+  {
+    slug: 'gratitude-and-hope',
+    name: 'Gratitude & Hope',
+    shortDescription: 'Moving from despair toward appreciation for progress, even when circumstances haven&rsquo;t changed.',
+    metaDescription: 'Find gratitude even when nothing has changed but you. Daily Al-Anon reflections on hope, appreciation, and inner progress.',
+    image: 'gratitude-and-hope.jpg',
+    imageAlt: 'Woman breathing in peacefully by a lake at sunset \u2014 gratitude and hope in Al-Anon recovery',
+    body: `
+      <p>
+        Hope is what gets us to the first meeting. Gratitude is what
+        keeps us coming back. Neither requires that circumstances change
+        &mdash; only that we do.
+      </p>
+      <p>
+        These readings explore what it means to find genuine appreciation
+        for small progress, to hold hope even in uncertainty, and to
+        recognize that the shift is always internal first.
+      </p>`,
+    featuredDays: [34, 41, 116, 339, 360],
+  },
+  {
+    slug: 'the-disease',
+    name: 'Understanding the Disease',
+    shortDescription: 'Seeing alcoholism as an illness, not a moral failing.',
+    metaDescription: 'See alcoholism as an illness, not a personal failing. Daily Al-Anon reflections on understanding the disease and finding compassion.',
+    image: 'the-disease.jpg',
+    imageAlt: 'Couple sitting together on a park bench in autumn \u2014 understanding the disease of alcoholism in Al-Anon recovery',
+    body: `
+      <p>
+        Understanding alcoholism as a disease &mdash; rather than a choice,
+        a weakness, or a personal insult &mdash; changes everything. It
+        opens the door to compassion for both the alcoholic and ourselves.
+      </p>
+      <p>
+        We didn&rsquo;t cause it, we can&rsquo;t control it, and we
+        can&rsquo;t cure it. These readings explore what it means to
+        truly accept that, and what becomes possible when we do.
+      </p>`,
+    featuredDays: [5, 7, 8, 11, 94],
+  },
+  {
+    slug: 'fellowship',
+    name: 'Community & Fellowship',
+    shortDescription: 'Breaking isolation and discovering you are not alone.',
+    metaDescription: 'Break the isolation of living with alcoholism. Daily Al-Anon reflections on fellowship, connection, and the healing power of community.',
+    image: 'fellowship.jpg',
+    imageAlt: 'Women connecting outside an Al-Anon meeting at sunset \u2014 community and fellowship in recovery',
+    body: `
+      <p>
+        Alcoholism is an isolating disease &mdash; not just for the drinker,
+        but for everyone around them. We hide what&rsquo;s happening at home.
+        We pull away from friends. We convince ourselves that no one could
+        understand.
+      </p>
+      <p>
+        Walking into a meeting and hearing someone describe our exact
+        experience breaks the spell. Connection is the antidote to
+        isolation, and fellowship is where recovery becomes real.
+      </p>`,
+    featuredDays: [1, 127, 139, 338, 342],
+  },
+];
+
+/** Default member share — used for all themes until specific stories are provided */
+export const DEFAULT_MEMBER_SHARE = `For years, I thought my &ldquo;care&rdquo; was measured by how much I worried. I spent my energy trying to get ahead of the next crisis, thinking that if I could just predict the drinker&rsquo;s behavior, I could prevent the fallout. I was exhausted and lost.
+
+When I learned about Detachment, I realized I wasn&rsquo;t helping; I was just drowning alongside them. It didn&rsquo;t mean I stopped loving them; it meant I stopped trying to manage their consequences. Today, I use this principle by taking a deep breath and &ldquo;letting go of the results.&rdquo; I focus on my own reactions, and for the first time in a long time, I can find peace even when the storm is still blowing.`;
+
+/** Per-theme member shares — override the default when provided */
+export const MEMBER_SHARES = {
+  // 'detachment': `Custom share for detachment...`,
+};
+
+/**
+ * Reverse map: secondary_theme tag value → { slug, name }
+ * Built once at module load so all consumers get a pre-built lookup.
+ *
+ * Example: THEME_TO_TOPIC['Detachment'] → { slug: 'detachment', name: 'Detachment with Love' }
+ */
+export const THEME_TO_TOPIC = {};
+for (const [topicSlug, tags] of Object.entries(TOPIC_THEME_TAGS)) {
+  const topic = TOPICS.find(t => t.slug === topicSlug);
+  if (!topic) continue;
+  for (const tag of tags) {
+    THEME_TO_TOPIC[tag] = { slug: topicSlug, name: topic.name };
+  }
+}

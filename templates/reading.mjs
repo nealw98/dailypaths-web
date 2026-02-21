@@ -3,31 +3,7 @@ import { textToHtmlParagraphs, renderQuote, stripForMeta } from '../helpers/mark
 import { dayToSlug } from '../helpers/slug-utils.mjs';
 import { readingStructuredData } from '../helpers/seo.mjs';
 import { bp } from '../helpers/config.mjs';
-import { TOPICS } from './topics.mjs';
-
-// Build reverse map: secondary_theme value → topic slug & name
-const THEME_TO_TOPIC = {};
-const _TOPIC_THEME_TAGS = {
-  'detachment':            ['Detachment', 'Release', 'Relinquishment', 'Freedom'],
-  'powerlessness':         ['Powerlessness', 'Surrender', 'Acceptance', 'Relief'],
-  'focus-on-yourself':     ['Self-Care', 'Self-care', 'Self-focus', 'Self-love', 'Self-Acceptance', 'Self-acceptance', 'Redirection', 'Focus'],
-  'one-day-at-a-time':     ['Presence', 'Patience', 'Simplicity', 'Peace', 'Serenity'],
-  'boundaries':            ['Boundaries', 'Respect', 'Independence', 'Self-Discipline'],
-  'letting-go-of-control': ['Control', 'Flexibility', 'Willingness', 'Self-will'],
-  'self-worth':            ['Self-worth', 'Self-esteem', 'Self-compassion', 'Identity', 'Self-forgiveness'],
-  'higher-power':          ['Faith', 'Trust', 'Prayer', 'Spiritual Connection', 'Spiritual intimacy', 'Reliance', 'Spirit'],
-  'honesty':               ['Honesty', 'Truth', 'Self-awareness', 'Awareness', 'Integrity', 'Clarity'],
-  'gratitude-and-hope':    ['Gratitude', 'Hope', 'Miracles', 'Vision'],
-  'the-disease':           ['Understanding', 'Compassion', 'Reality', 'Sanity'],
-  'fellowship':            ['Fellowship', 'Connection', 'Community', 'Belonging', 'Unity', 'Sponsorship', 'Inclusion'],
-};
-for (const [topicSlug, tags] of Object.entries(_TOPIC_THEME_TAGS)) {
-  const topic = TOPICS.find(t => t.slug === topicSlug);
-  if (!topic) continue;
-  for (const tag of tags) {
-    THEME_TO_TOPIC[tag] = { slug: topicSlug, name: topic.name };
-  }
-}
+import { THEME_TO_TOPIC } from '../helpers/theme-data.mjs';
 
 /**
  * Generate the HTML for an individual reading page — Editorial Meditation layout.
