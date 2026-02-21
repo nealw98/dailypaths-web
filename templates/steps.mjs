@@ -401,126 +401,57 @@ export function renderStepPage(step, readings = []) {
   const tools = STEP_TOOLS[step.number] || [];
   const pullQuote = PULL_QUOTES[step.number] || '';
 
-  // Build description paragraphs — inject callout box after the first paragraph
+  // Build description paragraphs
   const descParagraphs = step.description || [];
-  let mainContentHtml = '';
-  for (let i = 0; i < descParagraphs.length; i++) {
-    mainContentHtml += `            <p>${descParagraphs[i]}</p>\n`;
-    // Insert callout box after first paragraph
-    if (i === 0 && step.questions && step.questions.length > 0) {
-      const questionItems = step.questions.map(q =>
-        `                  <li>${q}</li>`
-      ).join('\n');
-      mainContentHtml += `
-            <aside class="step-callout">
-              <h3 class="step-callout-title">Questions for Reflection</h3>
-              <p class="step-callout-intro">
-                Take your time with these questions. There are no right answers &mdash;
-                only honest ones.
-              </p>
-              <ul class="step-callout-questions">
-${questionItems}
-              </ul>
-            </aside>
-`;
-    }
-  }
+  const bodyParagraphs = descParagraphs.map(p => `          <p>${p}</p>`).join('\n');
+
+  // Build reflection questions
+  const questionItems = (step.questions || []).map(q =>
+    `              <li>${q}</li>`
+  ).join('\n');
 
   // Build sidebar tools
   const toolItems = tools.map(t => `              <li>${t}</li>`).join('\n');
 
-  // Build daily reading cards
-  let readingCardsHtml = '';
+  // Build daily reading list — all readings for this month, two-column
+  let readingListHtml = '';
   if (readings.length > 0) {
     const dayRange = getMonthDayRange(monthIndex);
     const monthReadings = readings.filter(
       r => r.day_of_year >= dayRange.start && r.day_of_year <= dayRange.end
     );
 
-    // Show first 6 readings as cards, then a "see all" link
-    const previewReadings = monthReadings.slice(0, 6);
-    const cards = previewReadings.map(r => {
+    const listItems = monthReadings.map(r => {
       const slug = dayToSlug(r.day_of_year);
-      // Extract day number from the slug (e.g., "january-5" → "5")
       const dayNum = slug.split('-').pop();
       const monthName = MONTHS[monthIndex];
       const displayDate = `${monthName.charAt(0).toUpperCase() + monthName.slice(1)} ${dayNum}`;
 
       return `
-            <a href="${bp(`/${slug}/`)}" class="step-reading-card">
-              <span class="step-reading-card-date">${displayDate}</span>
-              <span class="step-reading-card-title">${r.title || 'Daily Reading'}</span>
-            </a>`;
+              <li class="step-reading-item">
+                <a href="${bp(`/${slug}/`)}" class="step-reading-link">
+                  <span class="step-reading-date">${displayDate}</span>
+                  <span class="step-reading-title">${r.title || 'Daily Reading'}</span>
+                </a>
+              </li>`;
     }).join('\n');
 
-    readingCardsHtml = `
+    readingListHtml = `
         <section class="step-readings-section">
           <h2 class="step-readings-heading">${step.month} Daily Readings</h2>
           <p class="step-readings-intro">
             Each day in ${step.month} focuses on Step ${step.number}. Explore this month&rsquo;s reflections.
           </p>
-          <div class="step-readings-grid">
-${cards}
-          </div>
-          ${monthReadings.length > 6 ? `
-          <p class="step-readings-more">
-            <a href="${bp('/browse/')}">View all ${monthReadings.length} readings for ${step.month} &rarr;</a>
-          </p>` : ''}
+          <ul class="step-readings-list">
+${listItems}
+          </ul>
         </section>`;
   }
 
   const bodyContent = `
     <article class="step-editorial">
-      <!-- Hero Section -->
-      <header class="step-hero">
-        <nav class="breadcrumb step-hero-breadcrumb">
-          <a href="${bp('/steps/')}">The Twelve Steps</a>
-          <span class="breadcrumb-sep">/</span>
-          <span>Step ${step.number}</span>
-        </nav>
-        <span class="step-hero-number">Step ${step.number}</span>
-        <span class="step-hero-principle">${step.principle}</span>
-        <h1 class="step-hero-title">${step.text}</h1>
-        <p class="step-hero-meta">${step.month} &middot; The Twelve Steps of Al-Anon</p>
-      </header>
-
-      <!-- Two-Column Body -->
-      <div class="step-body-wrap">
-        <div class="step-body-inner">
-          <!-- Main Column (70%) -->
-          <div class="step-main-col">
-${mainContentHtml}
-          </div>
-
-          <!-- Sidebar Column (30%) -->
-          <aside class="step-sidebar">
-            <div class="step-sidebar-tools">
-              <h3 class="step-sidebar-heading">Step Tools</h3>
-              <ul class="step-sidebar-list">
-${toolItems}
-              </ul>
-            </div>
-
-            ${pullQuote ? `
-            <blockquote class="step-sidebar-quote">
-              <p>&ldquo;${pullQuote}&rdquo;</p>
-            </blockquote>` : ''}
-
-            <div class="step-sidebar-resource">
-              <h3 class="step-sidebar-heading">Go Deeper</h3>
-              <p>Work this step with Al-Anon&rsquo;s
-                <a href="https://ecomm.al-anon.org/EN/ItemDetail?iProductCode=B24" target="_blank" rel="noopener noreferrer"><em>Paths to Recovery</em></a>.
-              </p>
-            </div>
-          </aside>
-        </div>
-      </div>
-
-      <!-- Daily Readings Grid -->
-${readingCardsHtml}
-
-      <!-- Step Navigation -->
-      <nav class="step-nav-footer step-nav-editorial">
+      <!-- Navigation -->
+      <nav class="step-nav-header">
         <a href="${bp(`/steps/step-${prevStep.number}/`)}" class="nav-prev">
           <span class="nav-arrow">&larr;</span>
           <span class="nav-label">Step ${prevStep.number}: ${prevStep.principle}</span>
@@ -531,6 +462,70 @@ ${readingCardsHtml}
           <span class="nav-arrow">&rarr;</span>
         </a>
       </nav>
+
+      <!-- Hero Section -->
+      <header class="step-hero">
+        <span class="step-hero-number">${step.number}</span>
+        <span class="step-hero-principle">${step.principle}</span>
+        <p class="step-hero-meta">${step.month} &middot; The Twelve Steps of Al-Anon</p>
+      </header>
+
+      <!-- Step Definition — Editorial Pull Quote -->
+      <section class="step-definition">
+        <blockquote class="step-definition-quote">
+          <p>${step.text}</p>
+        </blockquote>
+      </section>
+
+      <!-- Body Content -->
+      <section class="step-body">
+${bodyParagraphs}
+      </section>
+
+      <!-- Questions for Reflection -->
+      ${step.questions && step.questions.length > 0 ? `
+      <section class="step-questions">
+        <h2 class="step-questions-heading">Questions for Reflection</h2>
+        <p class="step-questions-intro">
+          Take your time with these questions. There are no right answers &mdash;
+          only honest ones.
+        </p>
+        <ul class="step-questions-list">
+${questionItems}
+        </ul>
+      </section>` : ''}
+
+      <!-- Step Tools -->
+      ${tools.length > 0 ? `
+      <section class="step-tools">
+        <h2 class="step-tools-heading">Working Step ${step.number}</h2>
+        <ul class="step-tools-list">
+${toolItems}
+        </ul>
+        <p class="step-tools-resource">
+          Go deeper with Al-Anon&rsquo;s
+          <a href="https://ecomm.al-anon.org/EN/ItemDetail?iProductCode=B24" target="_blank" rel="noopener noreferrer"><em>Paths to Recovery</em></a>.
+        </p>
+      </section>` : ''}
+
+      <!-- Daily Readings -->
+${readingListHtml}
+
+      <!-- Footer CTA -->
+      <section class="step-footer-cta">
+        <div class="step-footer-cta-inner">
+          <h2 class="step-footer-cta-heading">Work This Step on the Go</h2>
+          <p class="step-footer-cta-text">Daily reflections for Step ${step.number} and all twelve steps, right in your pocket.</p>
+          <div class="step-footer-cta-badges">
+            <a href="https://apps.apple.com/app/id6755981862" target="_blank" rel="noopener noreferrer" class="step-footer-cta-badge-link">
+              <img src="https://developer.apple.com/app-store/marketing/guidelines/images/badge-download-on-the-app-store.svg" alt="Download on the App Store" class="step-footer-cta-badge">
+            </a>
+            <a href="https://play.google.com/store/apps/details?id=com.dailypaths" target="_blank" rel="noopener noreferrer" class="step-footer-cta-badge-link">
+              <img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" alt="Get it on Google Play" class="step-footer-cta-badge step-footer-cta-badge-play">
+            </a>
+          </div>
+        </div>
+      </section>
     </article>`;
 
   return wrapInLayout({
