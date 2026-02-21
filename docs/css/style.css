@@ -2783,35 +2783,90 @@ a.rd-pill--step:hover {
   text-underline-offset: 2px;
 }
 
-/* App CTA */
-.si-cta-wrap {
+/* Featured Step 1 */
+.si-featured-wrap {
   max-width: 42rem;
   margin: 0 auto;
-  padding: 2.5rem 2rem 0;
+  padding: 4rem 2rem 0;
+}
+
+.si-featured-card {
+  text-align: center;
+  padding: 3.5rem 2.5rem;
+  border: 1px solid var(--cloud);
+  border-radius: var(--radius);
+  background: var(--white);
+}
+
+.si-featured-number {
+  display: block;
+  font-family: var(--font-serif);
+  font-size: 6rem;
+  font-weight: 700;
+  color: var(--deep-teal);
+  line-height: 1;
+  margin-bottom: 0.5rem;
+}
+
+.si-featured-principle {
+  display: block;
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--sage);
+  margin-bottom: 1.5rem;
+}
+
+.si-featured-title {
+  font-family: var(--font-serif);
+  font-size: 1.3rem;
+  font-weight: 600;
+  line-height: 1.5;
+  color: var(--ink);
+  max-width: 32rem;
+  margin: 0 auto 1.75rem;
+}
+
+.si-featured-link {
+  display: inline-block;
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--white);
+  background: var(--deep-teal);
+  padding: 0.65rem 1.75rem;
+  border-radius: var(--radius);
+  text-decoration: none;
+  transition: opacity 0.15s;
+}
+
+.si-featured-link:hover {
+  opacity: 0.85;
+}
+
+/* App CTA — The Bridge */
+.si-cta-wrap {
+  max-width: 64rem;
+  margin: 0 auto;
+  padding: 5rem 2rem 0;
 }
 
 .si-cta {
   background: var(--sage-mist);
   border-radius: var(--radius);
-  padding: 2.25rem 2.5rem;
+  padding: 2.5rem 3rem;
   text-align: center;
-}
-
-.si-cta-heading {
-  font-family: var(--font-serif);
-  font-size: 1.3rem;
-  font-weight: 600;
-  color: var(--ink);
-  margin-bottom: 0.65rem;
 }
 
 .si-cta-text {
   font-family: var(--font-reading);
-  font-size: 1rem;
+  font-size: 1.05rem;
   line-height: 1.7;
   color: var(--ink);
-  opacity: 0.8;
-  margin-bottom: 1.25rem;
+  max-width: 36rem;
+  margin: 0 auto 1.5rem;
 }
 
 .si-cta-badges {
@@ -2832,78 +2887,11 @@ a.rd-pill--step:hover {
 }
 
 .si-cta-badge {
-  height: 34px;
+  height: 36px;
 }
 
 .si-cta-badge-play {
-  height: 50px;
-}
-
-/* Featured Step 1 */
-.si-featured-wrap {
-  max-width: 42rem;
-  margin: 0 auto;
-  padding: 5rem 2rem 0;
-}
-
-.si-featured-card {
-  text-align: center;
-  padding: 3rem 2rem;
-  border: 1px solid var(--cloud);
-  border-radius: var(--radius);
-  background: var(--white);
-}
-
-.si-featured-number {
-  display: block;
-  font-family: var(--font-serif);
-  font-size: 5.5rem;
-  font-weight: 700;
-  color: var(--deep-teal);
-  line-height: 1;
-  margin-bottom: 0.75rem;
-}
-
-.si-featured-principle {
-  display: block;
-  font-family: var(--font-sans);
-  font-size: 0.72rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.18em;
-  color: var(--sage);
-  margin-bottom: 1.25rem;
-}
-
-.si-featured-title {
-  font-family: var(--font-serif);
-  font-size: 1.35rem;
-  font-weight: 600;
-  line-height: 1.45;
-  color: var(--ink);
-  margin-bottom: 1rem;
-}
-
-.si-featured-quote {
-  font-family: var(--font-reading);
-  font-size: 0.95rem;
-  font-style: italic;
-  line-height: 1.65;
-  color: var(--slate-blue);
-  max-width: 32rem;
-  margin: 0 auto 1.25rem;
-}
-
-.si-featured-link {
-  font-family: var(--font-sans);
-  font-size: 0.85rem;
-  font-weight: 500;
-  color: var(--deep-teal);
-  text-decoration: none;
-}
-
-.si-featured-link:hover {
-  text-decoration: underline;
+  height: 52px;
 }
 
 /* Steps Grid */
@@ -2949,30 +2937,29 @@ a.rd-pill--step:hover {
 .si-grid-card-number {
   display: block;
   font-family: var(--font-serif);
-  font-size: 3rem;
+  font-size: 2rem;
   font-weight: 700;
-  color: var(--deep-teal);
+  color: var(--sage);
   line-height: 1;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.35rem;
 }
 
 .si-grid-card-principle {
-  display: block;
-  font-family: var(--font-sans);
-  font-size: 0.65rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.18em;
-  color: var(--sage);
-  margin-bottom: 1rem;
+  font-family: var(--font-serif);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--deep-teal);
+  line-height: 1.2;
+  margin: 0 0 1rem;
 }
 
 .si-grid-card-text {
-  font-family: var(--font-serif);
-  font-size: 0.95rem;
-  font-weight: 500;
-  line-height: 1.45;
+  font-family: var(--font-reading);
+  font-size: 0.88rem;
+  font-weight: 400;
+  line-height: 1.55;
   color: var(--ink);
+  opacity: 0.75;
   margin-bottom: 1.25rem;
   flex: 1;
 }
@@ -2983,6 +2970,7 @@ a.rd-pill--step:hover {
   font-weight: 500;
   color: var(--deep-teal);
   text-decoration: none;
+  letter-spacing: 0.01em;
   margin-top: auto;
 }
 
@@ -3028,20 +3016,20 @@ a.rd-pill--step:hover {
   .si-lead-text {
     font-size: 1.2rem;
   }
-  .si-cta-wrap {
-    padding: 2rem 1.5rem 0;
-  }
-  .si-cta {
-    padding: 1.5rem;
-  }
   .si-featured-wrap {
-    padding: 3.5rem 1.5rem 0;
+    padding: 3rem 1.5rem 0;
   }
   .si-featured-card {
-    padding: 2rem 1.5rem;
+    padding: 2.5rem 1.5rem;
   }
   .si-featured-number {
-    font-size: 4rem;
+    font-size: 4.5rem;
+  }
+  .si-cta-wrap {
+    padding: 3.5rem 1.5rem 0;
+  }
+  .si-cta {
+    padding: 2rem 1.5rem;
   }
   .si-grid-wrap {
     padding: 3.5rem 1.5rem 0;
@@ -3049,8 +3037,8 @@ a.rd-pill--step:hover {
   .si-grid {
     grid-template-columns: 1fr;
   }
-  .si-grid-card-number {
-    font-size: 2.5rem;
+  .si-grid-card-principle {
+    font-size: 1.3rem;
   }
   .si-attribution-wrap {
     padding: 4rem 1.5rem 2rem;
