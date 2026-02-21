@@ -2856,8 +2856,8 @@ a.rd-pill--step:hover {
 
 .si-featured-number {
   display: block;
-  font-family: var(--font-serif);
-  font-size: 5.5rem;
+  font-family: var(--font-sans);
+  font-size: 3.5rem;
   font-weight: 700;
   color: var(--deep-teal);
   line-height: 1;
@@ -2948,8 +2948,8 @@ a.rd-pill--step:hover {
 
 .si-grid-card-number {
   display: block;
-  font-family: var(--font-serif);
-  font-size: 3rem;
+  font-family: var(--font-sans);
+  font-size: 2.25rem;
   font-weight: 700;
   color: var(--deep-teal);
   line-height: 1;
@@ -3041,7 +3041,7 @@ a.rd-pill--step:hover {
     padding: 2rem 1.5rem;
   }
   .si-featured-number {
-    font-size: 4rem;
+    font-size: 2.75rem;
   }
   .si-grid-wrap {
     padding: 3.5rem 1.5rem 0;
@@ -3050,7 +3050,7 @@ a.rd-pill--step:hover {
     grid-template-columns: 1fr;
   }
   .si-grid-card-number {
-    font-size: 2.5rem;
+    font-size: 2rem;
   }
   .si-attribution-wrap {
     padding: 4rem 1.5rem 2rem;
