@@ -148,27 +148,29 @@ export function renderAboutAlanonPage() {
             </div>
           </section>
 
-          <!-- App CTA — The Daily Practice Bridge -->
-          <section class="aa-app-cta">
-            <h2 class="aa-app-cta-heading">Your Daily Companion</h2>
-            <p class="aa-app-cta-text">Al-Anon provides the framework for a new way of life. Daily Paths is designed to be your daily touchstone&mdash;helping you apply the Twelve Steps and recovery themes to the moments when you need them most.</p>
-            <div class="aa-app-cta-badges">
-              <a href="https://apps.apple.com/app/id6755981862" target="_blank" rel="noopener noreferrer" class="aa-app-cta-badge-link">
-                <img src="https://developer.apple.com/app-store/marketing/guidelines/images/badge-download-on-the-app-store.svg" alt="Download Al-Anon Daily Paths on the App Store" class="aa-app-cta-badge aa-app-cta-badge--ios">
-              </a>
-              <a href="https://play.google.com/store/apps/details?id=com.dailypaths" target="_blank" rel="noopener noreferrer" class="aa-app-cta-badge-link">
-                <img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" alt="Get Al-Anon Daily Paths on Google Play" class="aa-app-cta-badge aa-app-cta-badge--play">
-              </a>
-            </div>
-          </section>
-
           <!-- Official Disclaimer -->
           <section class="aa-disclaimer">
             <p>Daily Paths is an independent project and is not affiliated with, endorsed by, or approved by Al-Anon Family Group Headquarters, Inc. For official Al-Anon information, please visit <a href="https://al-anon.org" target="_blank" rel="noopener noreferrer">al-anon.org</a>.</p>
           </section>
 
         </div>
-      </div>`;
+      </div>
+
+      <!-- Full-Bleed App CTA -->
+      <section class="aa-app-cta">
+        <div class="aa-app-cta-inner">
+          <h2 class="aa-app-cta-heading">Your Daily Companion</h2>
+          <p class="aa-app-cta-text">Al-Anon provides the framework for a new way of life. Daily Paths is designed to be your daily touchstone&mdash;helping you apply the Twelve Steps and recovery themes to the moments when you need them most.</p>
+          <div class="aa-app-cta-badges">
+            <a href="https://apps.apple.com/app/id6755981862" target="_blank" rel="noopener noreferrer" class="aa-app-cta-badge-link">
+              <img src="https://developer.apple.com/app-store/marketing/guidelines/images/badge-download-on-the-app-store.svg" alt="Download Al-Anon Daily Paths on the App Store" class="aa-app-cta-badge aa-app-cta-badge--ios">
+            </a>
+            <a href="https://play.google.com/store/apps/details?id=com.dailypaths" target="_blank" rel="noopener noreferrer" class="aa-app-cta-badge-link">
+              <img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" alt="Get Al-Anon Daily Paths on Google Play" class="aa-app-cta-badge aa-app-cta-badge--play">
+            </a>
+          </div>
+        </div>
+      </section>`;
 
   return wrapInLayout({
     title: 'The Al-Anon Program \u2014 Steps, Fellowship, Literature & Service | Al-Anon Daily Paths',

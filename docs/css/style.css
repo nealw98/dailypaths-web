@@ -2285,20 +2285,22 @@ html {
   opacity: 0.75;
 }
 
-/* ── App CTA — The Daily Practice Bridge ─────────────────────── */
+/* ── Full-Bleed App CTA — Navy edge-to-edge ──────────────────── */
 
 .aa-app-cta {
   text-align: center;
-  background: var(--deep-navy);
-  border-radius: var(--radius);
-  padding: 2.75rem 2.5rem;
-  margin-top: 0.5rem;
-  margin-bottom: 2rem;
+  background: #1B263B;
+  padding: 5rem 2rem;
+}
+
+.aa-app-cta-inner {
+  max-width: 650px;
+  margin: 0 auto;
 }
 
 .aa-app-cta-heading {
   font-family: var(--font-serif);
-  font-size: clamp(1.35rem, 3vw, 1.65rem);
+  font-size: clamp(1.5rem, 3.5vw, 2rem);
   font-weight: 700;
   color: var(--white);
   margin-bottom: 0.75rem;
@@ -2306,11 +2308,10 @@ html {
 
 .aa-app-cta-text {
   font-family: var(--font-reading);
-  font-size: 0.95rem;
+  font-size: 1.05rem;
   line-height: 1.75;
-  color: rgba(255, 255, 255, 0.85);
-  max-width: 36rem;
-  margin: 0 auto 1.75rem;
+  color: rgba(255, 255, 255, 0.8);
+  margin: 0 auto 2rem;
 }
 
 .aa-app-cta-badges {
@@ -2330,11 +2331,17 @@ html {
 }
 
 .aa-app-cta-badge--ios {
-  height: 34px;
+  height: 36px;
 }
 
 .aa-app-cta-badge--play {
-  height: 50px;
+  height: 52px;
+}
+
+@media (min-width: 768px) {
+  .aa-app-cta {
+    padding: 6rem 2rem;
+  }
 }
 
 /* ── Disclaimer ──────────────────────────────────────────────── */
@@ -2393,12 +2400,6 @@ html {
   }
   .aa-fellow {
     padding: 1.25rem;
-  }
-  .aa-app-cta {
-    padding: 2rem 1.5rem;
-    margin-left: -1.5rem;
-    margin-right: -1.5rem;
-    border-radius: 0;
   }
 }
 
