@@ -165,7 +165,7 @@ export function renderAboutAlanonPage() {
 
           <!-- App CTA — The Daily Practice Bridge -->
           <section class="aa-app-cta">
-            <h2 class="aa-app-cta-heading">The Program in Your Pocket</h2>
+            <h2 class="aa-app-cta-heading">Your Daily Companion</h2>
             <p class="aa-app-cta-text">Al-Anon provides the framework for a new way of life. Daily Paths is designed to be your daily touchstone&mdash;helping you apply the Twelve Steps and recovery themes to the moments when you need them most.</p>
             <div class="aa-app-cta-badges">
               <a href="https://apps.apple.com/app/id6755981862" target="_blank" rel="noopener noreferrer" class="aa-app-cta-badge-link">
