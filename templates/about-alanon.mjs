@@ -7,16 +7,6 @@ import { bp } from '../helpers/config.mjs';
  * Comprehensive view of the full program: Steps, Fellowship, Literature, Service.
  */
 
-/* Inline SVG cairn icon used as a section separator */
-const cairnSvg = `<svg class="aa-cairn-icon" viewBox="0 0 48 64" width="32" height="42" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <ellipse cx="24" cy="56" rx="18" ry="6" fill="currentColor" opacity="0.18"/>
-  <ellipse cx="24" cy="48" rx="14" ry="5.5" stroke="currentColor" stroke-width="1.5" fill="none"/>
-  <ellipse cx="24" cy="36" rx="11" ry="5" stroke="currentColor" stroke-width="1.5" fill="none"/>
-  <ellipse cx="24" cy="25" rx="9" ry="4.5" stroke="currentColor" stroke-width="1.5" fill="none"/>
-  <ellipse cx="24" cy="15" rx="7" ry="4" stroke="currentColor" stroke-width="1.5" fill="none"/>
-  <ellipse cx="24" cy="7" rx="4.5" ry="3" stroke="currentColor" stroke-width="1.5" fill="none"/>
-</svg>`;
-
 export function renderAboutAlanonPage() {
 
   const bodyContent = `
@@ -67,11 +57,6 @@ export function renderAboutAlanonPage() {
               Take the full self-quiz at al-anon.org&nbsp;&#8599;
             </a>
           </section>
-
-          <!-- Cairn Separator -->
-          <div class="aa-cairn-separator" aria-hidden="true">
-            ${cairnSvg}
-          </div>
 
           <!-- Find a Meeting -->
           <section class="aa-block aa-block--highlight">
