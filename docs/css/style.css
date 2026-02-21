@@ -1555,8 +1555,9 @@ html {
 .ap-hero {
   position: relative;
   text-align: center;
+  padding: 0;
   overflow: hidden;
-  min-height: 340px;
+  min-height: 280px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1913,8 +1914,9 @@ html {
 .aa-hero {
   position: relative;
   text-align: center;
+  padding: 0;
   overflow: hidden;
-  min-height: 320px;
+  min-height: 280px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1963,18 +1965,6 @@ html {
   color: rgba(255, 255, 255, 0.85);
   line-height: 1.65;
   margin: 0;
-}
-
-@media (min-width: 768px) {
-  .aa-hero {
-    min-height: 380px;
-  }
-  .aa-hero-content {
-    padding: 5rem 2rem 5.5rem;
-  }
-  .aa-hero-title {
-    font-size: 3.25rem;
-  }
 }
 
 /* Body */
