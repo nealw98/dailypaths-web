@@ -2938,7 +2938,7 @@ a.rd-pill--step:hover {
   }
 }
 
-/* --- Step Detail Page — Magazine Layout --- */
+/* --- Step Detail Page — Premium Magazine Layout --- */
 
 /* Sage/slate palette extensions */
 :root {
@@ -2985,31 +2985,90 @@ a.rd-pill--step:hover {
   font-size: 1rem;
 }
 
-/* Hero Section */
-.step-hero {
+/* Image Hero — 3:1 Aspect Ratio Banner */
+.step-hero--image {
+  position: relative;
+  text-align: center;
+  overflow: hidden;
+  min-height: 280px;
+  max-height: 400px;
+  aspect-ratio: 3 / 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.step-hero-image {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.step-hero-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.step-hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(27, 38, 59, 0.55) 0%,
+    rgba(27, 38, 59, 0.7) 100%
+  );
+}
+
+.step-hero-content {
+  position: relative;
+  z-index: 1;
+  padding: 3rem 2rem;
+  max-width: 40rem;
+}
+
+.step-hero-title {
+  font-family: var(--font-serif);
+  font-size: clamp(2.5rem, 6vw, 4rem);
+  font-weight: 700;
+  color: var(--white);
+  line-height: 1.05;
+  margin-bottom: 0.75rem;
+}
+
+.step-hero-tagline {
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+/* Text-Only Hero Fallback (steps without hero images) */
+.step-hero--text {
   text-align: center;
   max-width: 42rem;
   margin: 0 auto;
   padding: 4rem 2rem 0;
 }
 
-.step-hero-number {
-  display: block;
-  font-family: var(--font-reading);
-  font-size: 5.5rem;
+.step-hero-title-text {
+  font-family: var(--font-serif);
+  font-size: clamp(2.5rem, 6vw, 4rem);
   font-weight: 700;
   color: var(--deep-navy);
-  line-height: 1;
-  margin-bottom: 0.5rem;
+  line-height: 1.05;
+  margin-bottom: 0.75rem;
 }
 
-.step-hero-principle {
-  display: block;
+.step-hero-tagline-text {
   font-family: var(--font-sans);
   font-size: 0.72rem;
-  font-weight: 600;
+  font-weight: 500;
   text-transform: uppercase;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.2em;
   color: var(--sage);
   margin-bottom: 1rem;
 }
@@ -3030,19 +3089,20 @@ a.rd-pill--step:hover {
 
 .step-definition-quote {
   margin: 0;
-  padding: 2rem 2rem;
-  border-top: 4px solid var(--deep-teal);
+  padding: 2.5rem 0;
+  border-top: 2px solid var(--deep-teal);
   border-bottom: none;
-  background: var(--white);
-  border-radius: var(--radius);
-  box-shadow: var(--card-shadow);
+  background: transparent;
+  border-radius: 0;
+  box-shadow: none;
 }
 
 .step-definition-quote p {
   font-family: var(--font-serif);
-  font-size: 1.5rem;
-  font-weight: 500;
-  line-height: 1.55;
+  font-size: 1.6rem;
+  font-weight: 600;
+  font-style: italic;
+  line-height: 1.5;
   color: var(--ink);
   text-align: center;
 }
@@ -3076,137 +3136,135 @@ a.rd-pill--step:hover {
   text-underline-offset: 2px;
 }
 
-/* Questions for Reflection */
-.step-questions {
+/* Questions for Reflection — inside .bg-terracotta wrapper */
+.bg-terracotta .step-questions {
   max-width: 42rem;
   margin: 0 auto;
-  padding: 4rem 2rem 0;
+  padding: 0 2rem;
 }
 
-.step-questions-heading {
+.bg-terracotta .step-questions-heading {
   font-family: var(--font-serif);
-  font-size: 1.3rem;
+  font-size: 1.5rem;
   font-weight: 700;
-  color: var(--deep-navy);
+  color: var(--white);
   margin-bottom: 0.5rem;
 }
 
-.step-questions-intro {
+.bg-terracotta .step-questions-intro {
   font-family: var(--font-reading);
   font-size: 0.9rem;
   font-style: italic;
-  color: var(--ink);
-  opacity: 0.6;
+  color: rgba(255, 255, 255, 0.8);
+  opacity: 1;
   margin-bottom: 1.5rem;
   line-height: 1.6;
 }
 
-.step-questions-list {
+.bg-terracotta .step-questions-list {
   list-style: none;
-  padding: 0;
-  margin: 0;
-  background: var(--white);
-  border-top: 4px solid var(--warm-gold);
-  border-radius: var(--radius);
   padding: 1.5rem 2rem;
-  box-shadow: var(--card-shadow);
+  margin: 0;
+  background: rgba(255, 255, 255, 0.1);
+  border-top: 3px solid rgba(255, 255, 255, 0.3);
+  border-radius: var(--radius);
+  box-shadow: none;
 }
 
-.step-questions-list li {
+.bg-terracotta .step-questions-list li {
   font-family: var(--font-reading);
   font-size: 0.95rem;
   font-weight: 500;
   line-height: 1.6;
-  color: var(--ink);
+  color: var(--white);
   padding: 0.65rem 0 0.65rem 1.5rem;
   position: relative;
-  border-bottom: 1px solid rgba(163, 149, 106, 0.15);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
 }
 
-.step-questions-list li:last-child {
+.bg-terracotta .step-questions-list li:last-child {
   border-bottom: none;
 }
 
-.step-questions-list li::before {
+.bg-terracotta .step-questions-list li::before {
   content: '';
   position: absolute;
   left: 0;
   top: 1.05rem;
   width: 8px;
   height: 8px;
-  background: var(--warm-gold);
+  background: rgba(255, 255, 255, 0.6);
   border-radius: 50%;
 }
 
-/* Step Tools */
-.step-tools {
+/* Step Tools — inside .bg-sage wrapper */
+.bg-sage .step-tools {
   max-width: 42rem;
   margin: 0 auto;
-  padding: 4rem 2rem 0;
+  padding: 0 2rem;
 }
 
-.step-tools-heading {
+.bg-sage .step-tools-heading {
   font-family: var(--font-serif);
-  font-size: 1.3rem;
+  font-size: 1.5rem;
   font-weight: 700;
-  color: var(--deep-navy);
+  color: var(--white);
   margin-bottom: 1.25rem;
 }
 
-.step-tools-list {
+.bg-sage .step-tools-list {
   list-style: none;
-  padding: 0;
-  margin: 0;
-  background: var(--white);
-  border-top: 4px solid var(--sage);
-  border-radius: var(--radius);
   padding: 1.5rem 2rem;
-  box-shadow: var(--card-shadow);
+  margin: 0;
+  background: rgba(255, 255, 255, 0.1);
+  border-top: 3px solid rgba(255, 255, 255, 0.3);
+  border-radius: var(--radius);
+  box-shadow: none;
 }
 
-.step-tools-list li {
+.bg-sage .step-tools-list li {
   font-family: var(--font-sans);
   font-size: 0.9rem;
-  color: var(--ink);
+  color: var(--white);
   padding: 0.5rem 0 0.5rem 1.5rem;
   position: relative;
   line-height: 1.5;
-  border-bottom: 1px solid rgba(175, 207, 205, 0.3);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
 }
 
-.step-tools-list li:last-child {
+.bg-sage .step-tools-list li:last-child {
   border-bottom: none;
 }
 
-.step-tools-list li::before {
+.bg-sage .step-tools-list li::before {
   content: '\2713';
   position: absolute;
   left: 0;
-  color: var(--sage);
+  color: rgba(255, 255, 255, 0.7);
   font-size: 0.85rem;
   font-weight: 600;
 }
 
-.step-tools-resource {
+.bg-sage .step-tools-resource {
   font-family: var(--font-sans);
   font-size: 0.85rem;
-  color: var(--ink);
-  opacity: 0.7;
+  color: rgba(255, 255, 255, 0.75);
+  opacity: 1;
   margin-top: 1.25rem;
   line-height: 1.6;
 }
 
-.step-tools-resource a {
-  color: var(--deep-teal);
+.bg-sage .step-tools-resource a {
+  color: var(--white);
   text-decoration: underline;
   text-underline-offset: 2px;
 }
 
-/* Daily Readings — Two-column list */
+/* Daily Readings — Single-column with View All CTA */
 .step-readings-section {
   max-width: 42rem;
   margin: 0 auto;
-  padding: 4rem 2rem 0;
+  padding: 4rem 2rem;
 }
 
 .step-readings-heading {
@@ -3230,8 +3288,7 @@ a.rd-pill--step:hover {
   list-style: none;
   padding: 0;
   margin: 0;
-  columns: 2;
-  column-gap: 2rem;
+  columns: 1;
 }
 
 .step-reading-item {
@@ -3279,60 +3336,78 @@ a.rd-pill--step:hover {
   color: var(--deep-teal);
 }
 
-/* Footer CTA */
-.step-footer-cta {
-  max-width: 42rem;
-  margin: 0 auto;
-  padding: 4rem 2rem 3rem;
-}
-
-.step-footer-cta-inner {
-  background: var(--cta-dark);
-  border-radius: var(--radius);
-  padding: 2.5rem 2.5rem;
+.step-readings-cta {
+  margin-top: 1.5rem;
   text-align: center;
 }
 
-.step-footer-cta-heading {
+.step-readings-btn {
+  display: inline-block;
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--white);
+  background: #1B263B;
+  padding: 0.75rem 2rem;
+  border-radius: var(--radius);
+  text-decoration: none;
+  transition: opacity 0.15s;
+}
+
+.step-readings-btn:hover {
+  opacity: 0.85;
+}
+
+/* Engine CTA — Full-Width App CTA Block */
+.step-engine-cta {
+  text-align: center;
+}
+
+.step-engine-cta-inner {
+  max-width: 42rem;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.step-engine-cta-heading {
   font-family: var(--font-serif);
-  font-size: 1.3rem;
+  font-size: 1.75rem;
   font-weight: 700;
   color: var(--white);
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.75rem;
 }
 
-.step-footer-cta-text {
+.step-engine-cta-text {
   font-family: var(--font-reading);
-  font-size: 1rem;
+  font-size: 1.05rem;
   line-height: 1.7;
   color: rgba(255, 255, 255, 0.85);
-  opacity: 1;
-  margin-bottom: 1.25rem;
+  margin-bottom: 1.5rem;
 }
 
-.step-footer-cta-badges {
+.step-engine-cta-badges {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 0.75rem;
 }
 
-.step-footer-cta-badge-link {
+.step-engine-cta-badge-link {
   display: inline-block;
   text-decoration: none;
   transition: opacity 0.15s;
 }
 
-.step-footer-cta-badge-link:hover {
+.step-engine-cta-badge-link:hover {
   opacity: 0.8;
 }
 
-.step-footer-cta-badge {
-  height: 34px;
+.step-engine-cta-badge {
+  height: 38px;
 }
 
-.step-footer-cta-badge-play {
-  height: 50px;
+.step-engine-cta-badge-play {
+  height: 54px;
 }
 
 /* Mobile adjustments for step detail pages */
@@ -3340,11 +3415,21 @@ a.rd-pill--step:hover {
   .step-nav-header {
     padding: 0.75rem 1.5rem 0;
   }
-  .step-hero {
+  .step-hero--image {
+    min-height: 200px;
+    aspect-ratio: 2.5 / 1;
+  }
+  .step-hero-title {
+    font-size: 2.2rem;
+  }
+  .step-hero-content {
+    padding: 2rem 1.5rem;
+  }
+  .step-hero--text {
     padding: 3rem 1.5rem 0;
   }
-  .step-hero-number {
-    font-size: 4.5rem;
+  .step-hero-title-text {
+    font-size: 2.2rem;
   }
   .step-definition {
     padding: 3rem 1.5rem 0;
@@ -3355,29 +3440,23 @@ a.rd-pill--step:hover {
   .step-body {
     padding: 3rem 1.5rem 0;
   }
-  .step-questions {
-    padding: 3rem 1.5rem 0;
+  .bg-terracotta .step-questions {
+    padding: 0 1.5rem;
   }
-  .step-questions-list {
+  .bg-terracotta .step-questions-list {
     padding: 1.25rem 1.25rem;
   }
-  .step-tools {
-    padding: 3rem 1.5rem 0;
+  .bg-sage .step-tools {
+    padding: 0 1.5rem;
   }
-  .step-tools-list {
+  .bg-sage .step-tools-list {
     padding: 1.25rem 1.25rem;
   }
   .step-readings-section {
-    padding: 3rem 1.5rem 0;
+    padding: 3rem 1.5rem;
   }
-  .step-readings-list {
-    columns: 1;
-  }
-  .step-footer-cta {
-    padding: 3rem 1.5rem 2rem;
-  }
-  .step-footer-cta-inner {
-    padding: 2rem 1.5rem;
+  .step-engine-cta-inner {
+    padding: 0 1.5rem;
   }
   .step-nav-header .nav-label {
     display: none;
