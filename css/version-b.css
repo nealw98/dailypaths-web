@@ -2584,7 +2584,7 @@ a.rd-pill--step:hover {
   overflow: hidden;
   min-height: 420px;
   display: flex;
-  align-items: flex-end;
+  align-items: center;
   justify-content: flex-start;
 }
 
@@ -2605,16 +2605,17 @@ a.rd-pill--step:hover {
   position: absolute;
   inset: 0;
   background: linear-gradient(
-    180deg,
-    rgba(27, 38, 59, 0.6) 0%,
-    transparent 100%
+    90deg,
+    rgba(27, 38, 59, 0.50) 0%,
+    rgba(27, 38, 59, 0.15) 45%,
+    transparent 70%
   );
 }
 
 .si-hero-content {
   position: relative;
   z-index: 1;
-  padding: 4rem 2rem 3.5rem;
+  padding: 6rem 3rem 5rem;
   max-width: 40rem;
 }
 

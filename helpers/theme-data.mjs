@@ -68,7 +68,7 @@ export const TOPICS = [
   {
     slug: 'detachment',
     name: 'Detachment with Love',
-    shortDescription: 'The quiet strength found in letting go of others\u2019 choices.',
+    shortDescription: 'Separating yourself from the chaos without cutting off the caring.',
     metaDescription: 'Learn to separate your peace from someone else\u2019s choices. Daily reflections on loving detachment in Al-Anon recovery.',
     image: 'detachment.jpg',
     imageAlt: 'Woman finding peace on her porch \u2014 detachment with love in Al-Anon recovery',
@@ -88,7 +88,7 @@ export const TOPICS = [
   {
     slug: 'powerlessness',
     name: 'Powerlessness & Surrender',
-    shortDescription: 'Finding freedom by stopping the fight against the unchangeable.',
+    shortDescription: 'Accepting what we cannot control and letting go of the rest.',
     metaDescription: 'Accept what you cannot control and discover the freedom in letting go. Daily Al-Anon reflections on powerlessness and surrender.',
     image: 'powerlessness.jpg',
     imageAlt: 'Two women hiking together at sunset \u2014 finding freedom through surrender in Al-Anon recovery',
@@ -108,7 +108,7 @@ export const TOPICS = [
   {
     slug: 'focus-on-yourself',
     name: 'Focus on Yourself',
-    shortDescription: 'Turning the lens inward to rediscover the life that was always yours.',
+    shortDescription: 'Shifting attention from the alcoholic back to your own life.',
     metaDescription: 'Turn the focus back to your own life after years of watching someone else\u2019s. Daily Al-Anon reflections on reclaiming your attention and energy.',
     image: 'focus-on-yourself.jpg',
     imageAlt: 'Woman focused on pottery at a wheel \u2014 turning attention back to yourself in Al-Anon recovery',
@@ -129,7 +129,7 @@ export const TOPICS = [
   {
     slug: 'one-day-at-a-time',
     name: 'One Day at a Time',
-    shortDescription: 'The peaceful practice of handling just today and trusting what comes next.',
+    shortDescription: 'Releasing anxiety about the future and regret about the past.',
     metaDescription: 'Let go of tomorrow\u2019s worry and yesterday\u2019s regret. Daily Al-Anon reflections on staying present and living one day at a time.',
     image: 'one-day-at-a-time.jpg',
     imageAlt: 'Two friends laughing together in a park \u2014 embracing the present moment in Al-Anon recovery',
@@ -150,7 +150,7 @@ export const TOPICS = [
   {
     slug: 'boundaries',
     name: 'Boundaries',
-    shortDescription: 'Defining where you end and others begin to protect your peace.',
+    shortDescription: 'Learning to say no as an act of self-respect, not selfishness.',
     metaDescription: 'Learn to say no without guilt and set healthy limits. Daily Al-Anon reflections on boundaries as self-respect, not selfishness.',
     image: 'boundaries.jpg',
     imageAlt: 'Two women talking on a street corner with healthy space between them \u2014 setting boundaries in Al-Anon recovery',
@@ -170,7 +170,7 @@ export const TOPICS = [
   {
     slug: 'letting-go-of-control',
     name: 'Letting Go of Control',
-    shortDescription: 'Releasing the exhausting need to manage what was never ours to carry.',
+    shortDescription: 'Recognizing the many ways we try to manage, fix, or manipulate outcomes.',
     metaDescription: 'Stop managing, fixing, and controlling what was never yours to carry. Daily Al-Anon reflections on releasing the need to control.',
     image: 'letting-go-of-control.jpg',
     imageAlt: 'Two women laughing together while cooking \u2014 letting go of control in Al-Anon recovery',
@@ -190,7 +190,7 @@ export const TOPICS = [
   {
     slug: 'self-worth',
     name: 'Self-Worth & Identity',
-    shortDescription: 'Excavating the person buried under years of coping and crisis.',
+    shortDescription: 'Reclaiming the sense of self that years of crisis eroded.',
     metaDescription: 'Rediscover who you are beyond someone else\u2019s crisis. Daily Al-Anon reflections on rebuilding self-worth and reclaiming your identity.',
     image: 'self-worth.jpg',
     imageAlt: 'Woman looking at her reflection in a mirror \u2014 reclaiming self-worth and identity in Al-Anon recovery',
@@ -210,7 +210,7 @@ export const TOPICS = [
   {
     slug: 'higher-power',
     name: 'Trusting a Higher Power',
-    shortDescription: 'Leaning into a source of strength greater than your own.',
+    shortDescription: 'Finding a source of guidance beyond your own willpower.',
     metaDescription: 'Find a source of strength beyond your own willpower. Daily Al-Anon reflections on trusting a Higher Power and letting go of self-reliance.',
     image: 'higher-power.jpg',
     imageAlt: 'Man holding his father\u2019s hand at a hospital bedside \u2014 trusting a Higher Power in Al-Anon recovery',
@@ -231,7 +231,7 @@ export const TOPICS = [
   {
     slug: 'honesty',
     name: 'Honesty & Self-Awareness',
-    shortDescription: 'The brave act of seeing life as it truly is, without the fog of denial.',
+    shortDescription: 'Getting truthful about your own patterns, motives, and feelings.',
     metaDescription: 'Stop performing and start telling the truth \u2014 to yourself first. Daily Al-Anon reflections on honesty, self-awareness, and dropping the mask.',
     image: 'honesty.jpg',
     imageAlt: 'Two women in honest conversation over coffee \u2014 honesty and self-awareness in Al-Anon recovery',
@@ -251,7 +251,7 @@ export const TOPICS = [
   {
     slug: 'gratitude-and-hope',
     name: 'Gratitude & Hope',
-    shortDescription: 'Shifting the lens to notice the light already present in our lives.',
+    shortDescription: 'Moving from despair toward appreciation for progress, even when circumstances haven&rsquo;t changed.',
     metaDescription: 'Find gratitude even when nothing has changed but you. Daily Al-Anon reflections on hope, appreciation, and inner progress.',
     image: 'gratitude-and-hope.jpg',
     imageAlt: 'Woman breathing in peacefully by a lake at sunset \u2014 gratitude and hope in Al-Anon recovery',
@@ -271,7 +271,7 @@ export const TOPICS = [
   {
     slug: 'the-disease',
     name: 'Understanding the Disease',
-    shortDescription: 'The compassion that opens when we see illness instead of insult.',
+    shortDescription: 'Seeing alcoholism as an illness, not a moral failing.',
     metaDescription: 'See alcoholism as an illness, not a personal failing. Daily Al-Anon reflections on understanding the disease and finding compassion.',
     image: 'the-disease.jpg',
     imageAlt: 'Couple sitting together on a park bench in autumn \u2014 understanding the disease of alcoholism in Al-Anon recovery',
@@ -291,7 +291,7 @@ export const TOPICS = [
   {
     slug: 'fellowship',
     name: 'Community & Fellowship',
-    shortDescription: 'Strengthening our own recovery by sharing the light with others.',
+    shortDescription: 'Breaking isolation and discovering you are not alone.',
     metaDescription: 'Break the isolation of living with alcoholism. Daily Al-Anon reflections on fellowship, connection, and the healing power of community.',
     image: 'fellowship.jpg',
     imageAlt: 'Women connecting outside an Al-Anon meeting at sunset \u2014 community and fellowship in recovery',
