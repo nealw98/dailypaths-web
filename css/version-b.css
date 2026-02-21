@@ -14,6 +14,10 @@
   --ink: #2D3B3D;
   --white: #FFFFFF;
   --warm-gray: #F0EDE8;
+  --deep-navy: #1B2A4A;
+  --cta-dark: #2C3E50;
+  --card-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+  --card-shadow-hover: 0 6px 24px rgba(0, 0, 0, 0.12);
   --radius: 8px;
   --max-width: 42rem;
   --max-width-wide: 56rem;
@@ -57,8 +61,8 @@ a:hover {
 
 h1, h2, h3, h4 {
   font-family: var(--font-serif);
-  font-weight: 600;
-  color: var(--deep-teal);
+  font-weight: 700;
+  color: var(--deep-navy);
   line-height: 1.2;
 }
 
@@ -556,16 +560,17 @@ a.rd-pill--step:hover {
   text-decoration: none;
   color: inherit;
   background: var(--white);
-  border: 1px solid var(--cloud);
+  border: none;
+  border-top: 4px solid var(--deep-teal);
   border-radius: var(--radius);
   padding: 2rem 2.25rem;
-  transition: box-shadow 0.3s, transform 0.3s, border-color 0.3s;
+  box-shadow: var(--card-shadow);
+  transition: box-shadow 0.3s, transform 0.3s;
 }
 
 .home-feature-card:hover {
-  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.08);
+  box-shadow: var(--card-shadow-hover);
   transform: translateY(-3px);
-  border-color: var(--sage);
 }
 
 .home-feature-label {
@@ -742,8 +747,10 @@ a.rd-pill--step:hover {
   max-width: 42rem;
   margin: 4rem auto;
   padding: 3rem 2rem;
-  background: var(--cloud);
+  background: var(--white);
+  border-top: 4px solid var(--deep-teal);
   border-radius: var(--radius);
+  box-shadow: var(--card-shadow);
 }
 
 .home-whatis-inner {
@@ -965,11 +972,13 @@ a.rd-pill--step:hover {
 
 /* Thought for the Day */
 .rd-thought {
-  background: var(--sage-mist);
-  border: 1px solid var(--sage-light);
+  background: var(--white);
+  border: none;
+  border-top: 4px solid var(--warm-gold);
   border-radius: var(--radius);
   padding: 1.5rem 1.75rem;
   margin-top: 2rem;
+  box-shadow: var(--card-shadow);
 }
 
 .rd-thought-label {
@@ -1093,14 +1102,15 @@ a.rd-pill--step:hover {
   text-decoration: none;
   padding: 1rem 1.25rem;
   background: var(--white);
-  border: 1px solid var(--cloud);
+  border: none;
+  border-top: 4px solid var(--sage);
   border-radius: var(--radius);
-  transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+  box-shadow: var(--card-shadow);
+  transition: box-shadow 0.2s, transform 0.2s;
 }
 
 .rd-related-card:hover {
-  border-color: var(--sage);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+  box-shadow: var(--card-shadow-hover);
   transform: translateY(-2px);
 }
 
@@ -1589,8 +1599,8 @@ a.rd-pill--step:hover {
 }
 
 .pr-app-callout {
-  background: #FDF6E3;
-  border: 1px solid #C9A227;
+  background: var(--cta-dark);
+  border: none;
   border-radius: var(--radius);
   padding: 1.5rem 1.75rem;
   text-align: center;
@@ -1600,7 +1610,7 @@ a.rd-pill--step:hover {
   font-family: var(--font-reading);
   font-size: 0.95rem;
   line-height: 1.65;
-  color: #3D3219;
+  color: rgba(255, 255, 255, 0.9);
   margin-bottom: 1rem;
 }
 
@@ -1659,19 +1669,20 @@ a.rd-pill--step:hover {
 
 .prayer-item {
   background: var(--white);
-  border: 1px solid var(--cloud);
+  border: none;
+  border-top: 4px solid var(--deep-teal);
   border-radius: var(--radius);
   margin-bottom: 0.75rem;
-  transition: box-shadow 0.2s, border-color 0.2s;
+  box-shadow: var(--card-shadow);
+  transition: box-shadow 0.2s;
 }
 
 .prayer-item:first-child {
-  border-top: 1px solid var(--cloud);
+  border-top: 4px solid var(--deep-teal);
 }
 
 .prayer-item[open] {
-  border-color: var(--sage);
-  box-shadow: 0 2px 12px rgba(45, 59, 61, 0.08);
+  box-shadow: var(--card-shadow-hover);
 }
 
 .prayer-item summary {
@@ -1771,7 +1782,7 @@ a.rd-pill--step:hover {
 
 /* Hero */
 .abt-hero {
-  background: linear-gradient(135deg, var(--sage-mist) 0%, var(--cloud) 100%);
+  background: var(--cta-dark);
   text-align: center;
   padding: 4rem 2rem 3.5rem;
 }
@@ -1780,7 +1791,7 @@ a.rd-pill--step:hover {
   font-family: var(--font-serif);
   font-size: clamp(2rem, 5vw, 2.8rem);
   font-weight: 700;
-  color: var(--deep-teal);
+  color: var(--white);
   line-height: 1.15;
   margin-bottom: 0.75rem;
 }
@@ -1788,11 +1799,11 @@ a.rd-pill--step:hover {
 .abt-hero-sub {
   font-family: var(--font-reading);
   font-size: clamp(1rem, 2vw, 1.15rem);
-  color: var(--ink);
+  color: rgba(255, 255, 255, 0.85);
   line-height: 1.65;
   max-width: 36rem;
   margin: 0 auto;
-  opacity: 0.8;
+  opacity: 1;
 }
 
 /* Mobile Jump Menu */
@@ -1922,7 +1933,7 @@ a.rd-pill--step:hover {
 /* Alternating section tints */
 #threes,
 #fellowships {
-  background: var(--cloud);
+  background: var(--pearl);
   margin-left: -2rem;
   margin-right: -2rem;
   padding: 2.5rem 2rem;
@@ -1933,7 +1944,7 @@ a.rd-pill--step:hover {
   font-family: var(--font-serif);
   font-size: clamp(1.4rem, 3vw, 1.7rem);
   font-weight: 700;
-  color: var(--deep-teal);
+  color: var(--deep-navy);
   line-height: 1.2;
   margin-bottom: 0.75rem;
 }
@@ -2057,12 +2068,13 @@ a.rd-pill--step:hover {
 
 /* Quiz Result — hidden by default, revealed on button click */
 .abt-quiz-result {
-  background: var(--sage-mist);
-  border: 1px solid var(--sage-light);
-  border-left: 4px solid var(--sage);
+  background: var(--white);
+  border: none;
+  border-top: 4px solid var(--sage);
   border-radius: var(--radius);
   padding: 1.5rem 1.75rem;
   margin-bottom: 1.25rem;
+  box-shadow: var(--card-shadow);
   opacity: 0;
   max-height: 0;
   overflow: hidden;
@@ -2158,16 +2170,18 @@ a.rd-pill--step:hover {
 
 .abt-threes-card {
   background: var(--white);
-  border: 1px solid var(--mist);
+  border: none;
+  border-top: 4px solid var(--deep-teal);
   border-radius: var(--radius);
   padding: 2rem 1.5rem;
   text-align: center;
+  box-shadow: var(--card-shadow);
   transition: transform 0.2s, box-shadow 0.2s;
 }
 
 .abt-threes-card:hover {
   transform: translateY(-3px);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
+  box-shadow: var(--card-shadow-hover);
 }
 
 .abt-threes-icon {
@@ -2262,16 +2276,18 @@ a.rd-pill--step:hover {
 
 .abt-book-card {
   background: var(--white);
-  border: 1px solid var(--cloud);
+  border: none;
+  border-top: 4px solid var(--warm-gold);
   border-radius: var(--radius);
   padding: 1.5rem;
   text-align: center;
+  box-shadow: var(--card-shadow);
   transition: transform 0.2s, box-shadow 0.2s;
 }
 
 .abt-book-card:hover {
   transform: translateY(-3px);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
+  box-shadow: var(--card-shadow-hover);
 }
 
 /* Book cover — 2:3 aspect ratio frame */
@@ -2346,18 +2362,19 @@ a.rd-pill--step:hover {
 .abt-fellow-card {
   display: block;
   background: var(--white);
-  border: 1px solid var(--cloud);
+  border: none;
+  border-top: 4px solid var(--sage);
   border-radius: var(--radius);
   padding: 1.5rem;
   text-decoration: none;
   color: inherit;
-  transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+  box-shadow: var(--card-shadow);
+  transition: transform 0.2s, box-shadow 0.2s;
 }
 
 .abt-fellow-card:hover {
   transform: translateY(-3px);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
-  border-color: var(--mist);
+  box-shadow: var(--card-shadow-hover);
 }
 
 .abt-fellow-name {
@@ -2388,25 +2405,26 @@ a.rd-pill--step:hover {
 
 .abt-cta {
   text-align: center;
-  border: 1px solid var(--mist);
+  border: none;
   border-radius: var(--radius);
   padding: 2.5rem 2rem;
   margin-top: 1rem;
+  background: var(--cta-dark);
 }
 
 .abt-cta-heading {
   font-family: var(--font-serif);
   font-size: clamp(1.3rem, 3vw, 1.6rem);
   font-weight: 700;
-  color: var(--deep-teal);
+  color: var(--white);
   margin-bottom: 0.5rem;
 }
 
 .abt-cta-text {
   font-family: var(--font-reading);
   font-size: 0.95rem;
-  color: var(--ink);
-  opacity: 0.7;
+  color: rgba(255, 255, 255, 0.85);
+  opacity: 1;
   margin-bottom: 1.5rem;
 }
 
@@ -2429,25 +2447,27 @@ a.rd-pill--step:hover {
 }
 
 .abt-cta-btn--primary {
-  color: var(--white);
-  background: var(--deep-teal);
+  color: var(--cta-dark);
+  background: var(--white);
 }
 
 .abt-cta-btn--primary:hover {
-  background: var(--ocean);
-  color: var(--white);
+  background: var(--cloud);
+  color: var(--cta-dark);
   transform: translateY(-2px);
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
 }
 
 .abt-cta-btn--secondary {
-  color: var(--deep-teal);
-  background: var(--cloud);
-  border: 1px solid var(--mist);
+  color: var(--white);
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.4);
 }
 
 .abt-cta-btn--secondary:hover {
-  background: var(--mist);
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.7);
+  color: var(--white);
   transform: translateY(-2px);
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
 }
@@ -2483,8 +2503,8 @@ a.rd-pill--step:hover {
 /* ── Companion App Callout ───────────────────────────────────── */
 
 .abt-companion {
-  background: var(--sage-mist);
-  border: 1px solid var(--sage-light);
+  background: var(--cta-dark);
+  border: none;
   border-radius: var(--radius);
   padding: 1.5rem 1.75rem;
   margin-bottom: 1.5rem;
@@ -2495,7 +2515,7 @@ a.rd-pill--step:hover {
   font-family: var(--font-reading);
   font-size: 0.92rem;
   line-height: 1.65;
-  color: var(--ink);
+  color: rgba(255, 255, 255, 0.9);
   margin: 0 0 1rem;
 }
 
@@ -2791,7 +2811,7 @@ a.rd-pill--step:hover {
 }
 
 .si-cta {
-  background: var(--sage-mist);
+  background: var(--cta-dark);
   border-radius: var(--radius);
   padding: 2.25rem 2.5rem;
   text-align: center;
@@ -2799,9 +2819,9 @@ a.rd-pill--step:hover {
 
 .si-cta-heading {
   font-family: var(--font-serif);
-  font-size: 1.3rem;
-  font-weight: 600;
-  color: var(--ink);
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--white);
   margin-bottom: 0.65rem;
 }
 
@@ -2809,8 +2829,8 @@ a.rd-pill--step:hover {
   font-family: var(--font-reading);
   font-size: 1rem;
   line-height: 1.7;
-  color: var(--ink);
-  opacity: 0.8;
+  color: rgba(255, 255, 255, 0.85);
+  opacity: 1;
   margin-bottom: 1.25rem;
 }
 
@@ -2849,17 +2869,19 @@ a.rd-pill--step:hover {
 .si-featured-card {
   text-align: center;
   padding: 3rem 2rem;
-  border: 1px solid var(--cloud);
+  border: none;
+  border-top: 4px solid var(--warm-gold);
   border-radius: var(--radius);
   background: var(--white);
+  box-shadow: var(--card-shadow);
 }
 
 .si-featured-number {
   display: block;
   font-family: var(--font-reading);
-  font-size: 4.5rem;
+  font-size: 5.5rem;
   font-weight: 700;
-  color: var(--deep-teal);
+  color: var(--deep-navy);
   line-height: 1;
   margin-bottom: 0.75rem;
 }
@@ -2917,7 +2939,7 @@ a.rd-pill--step:hover {
   font-family: var(--font-serif);
   font-size: 1.5rem;
   font-weight: 700;
-  color: var(--ink);
+  color: var(--deep-navy);
   text-align: center;
   margin-bottom: 2.5rem;
 }
@@ -2934,24 +2956,25 @@ a.rd-pill--step:hover {
   align-items: center;
   text-align: center;
   background: var(--white);
-  border: 1px solid var(--cloud);
+  border: none;
+  border-top: 4px solid var(--sage);
   border-radius: var(--radius);
   padding: 2rem 1.5rem;
-  transition: box-shadow 0.2s, transform 0.2s, border-color 0.2s;
+  box-shadow: var(--card-shadow);
+  transition: box-shadow 0.2s, transform 0.2s;
 }
 
 .si-grid-card:hover {
-  border-color: var(--sage);
-  box-shadow: 0 4px 20px rgba(45, 59, 61, 0.08);
-  transform: translateY(-2px);
+  box-shadow: var(--card-shadow-hover);
+  transform: translateY(-3px);
 }
 
 .si-grid-card-number {
   display: block;
   font-family: var(--font-reading);
-  font-size: 2.5rem;
+  font-size: 3.5rem;
   font-weight: 700;
-  color: var(--deep-teal);
+  color: var(--deep-navy);
   line-height: 1;
   margin-bottom: 0.5rem;
 }
@@ -3041,7 +3064,7 @@ a.rd-pill--step:hover {
     padding: 2rem 1.5rem;
   }
   .si-featured-number {
-    font-size: 3.5rem;
+    font-size: 4.5rem;
   }
   .si-grid-wrap {
     padding: 3.5rem 1.5rem 0;
@@ -3050,7 +3073,7 @@ a.rd-pill--step:hover {
     grid-template-columns: 1fr;
   }
   .si-grid-card-number {
-    font-size: 2.25rem;
+    font-size: 3rem;
   }
   .si-attribution-wrap {
     padding: 4rem 1.5rem 2rem;
@@ -3115,9 +3138,9 @@ a.rd-pill--step:hover {
 .step-hero-number {
   display: block;
   font-family: var(--font-reading);
-  font-size: 4.5rem;
+  font-size: 5.5rem;
   font-weight: 700;
-  color: var(--deep-teal);
+  color: var(--deep-navy);
   line-height: 1;
   margin-bottom: 0.5rem;
 }
@@ -3149,9 +3172,12 @@ a.rd-pill--step:hover {
 
 .step-definition-quote {
   margin: 0;
-  padding: 2rem 0;
-  border-top: 2px solid var(--sage);
-  border-bottom: 2px solid var(--sage);
+  padding: 2rem 2rem;
+  border-top: 4px solid var(--deep-teal);
+  border-bottom: none;
+  background: var(--white);
+  border-radius: var(--radius);
+  box-shadow: var(--card-shadow);
 }
 
 .step-definition-quote p {
@@ -3202,8 +3228,8 @@ a.rd-pill--step:hover {
 .step-questions-heading {
   font-family: var(--font-serif);
   font-size: 1.3rem;
-  font-weight: 600;
-  color: var(--ink);
+  font-weight: 700;
+  color: var(--deep-navy);
   margin-bottom: 0.5rem;
 }
 
@@ -3221,9 +3247,11 @@ a.rd-pill--step:hover {
   list-style: none;
   padding: 0;
   margin: 0;
-  background: var(--warm-gold-light);
+  background: var(--white);
+  border-top: 4px solid var(--warm-gold);
   border-radius: var(--radius);
   padding: 1.5rem 2rem;
+  box-shadow: var(--card-shadow);
 }
 
 .step-questions-list li {
@@ -3262,8 +3290,8 @@ a.rd-pill--step:hover {
 .step-tools-heading {
   font-family: var(--font-serif);
   font-size: 1.3rem;
-  font-weight: 600;
-  color: var(--ink);
+  font-weight: 700;
+  color: var(--deep-navy);
   margin-bottom: 1.25rem;
 }
 
@@ -3271,9 +3299,11 @@ a.rd-pill--step:hover {
   list-style: none;
   padding: 0;
   margin: 0;
-  background: var(--cloud);
+  background: var(--white);
+  border-top: 4px solid var(--sage);
   border-radius: var(--radius);
   padding: 1.5rem 2rem;
+  box-shadow: var(--card-shadow);
 }
 
 .step-tools-list li {
@@ -3324,8 +3354,8 @@ a.rd-pill--step:hover {
 .step-readings-heading {
   font-family: var(--font-serif);
   font-size: 1.3rem;
-  font-weight: 600;
-  color: var(--ink);
+  font-weight: 700;
+  color: var(--deep-navy);
   margin-bottom: 0.5rem;
 }
 
@@ -3399,7 +3429,7 @@ a.rd-pill--step:hover {
 }
 
 .step-footer-cta-inner {
-  background: var(--sage-mist);
+  background: var(--cta-dark);
   border-radius: var(--radius);
   padding: 2.5rem 2.5rem;
   text-align: center;
@@ -3408,8 +3438,8 @@ a.rd-pill--step:hover {
 .step-footer-cta-heading {
   font-family: var(--font-serif);
   font-size: 1.3rem;
-  font-weight: 600;
-  color: var(--ink);
+  font-weight: 700;
+  color: var(--white);
   margin-bottom: 0.5rem;
 }
 
@@ -3417,8 +3447,8 @@ a.rd-pill--step:hover {
   font-family: var(--font-reading);
   font-size: 1rem;
   line-height: 1.7;
-  color: var(--ink);
-  opacity: 0.8;
+  color: rgba(255, 255, 255, 0.85);
+  opacity: 1;
   margin-bottom: 1.25rem;
 }
 
@@ -3456,7 +3486,7 @@ a.rd-pill--step:hover {
     padding: 3rem 1.5rem 0;
   }
   .step-hero-number {
-    font-size: 3.5rem;
+    font-size: 4.5rem;
   }
   .step-definition {
     padding: 3rem 1.5rem 0;
@@ -3957,7 +3987,7 @@ a.rd-pill--step:hover {
   text-align: center;
   gap: 0.75rem;
   padding: 1.25rem 1.5rem;
-  background: var(--cloud);
+  background: var(--cta-dark);
   border-radius: var(--radius);
 }
 
@@ -3965,7 +3995,7 @@ a.rd-pill--step:hover {
   font-family: var(--font-reading);
   font-size: 0.95rem;
   font-style: italic;
-  color: var(--ink);
+  color: rgba(255, 255, 255, 0.9);
   margin: 0;
 }
 
@@ -4344,21 +4374,21 @@ a.rd-pill--step:hover {
 
 /* No-image fallback */
 .topic-hero:not(:has(.topic-hero-image)) {
-  background: linear-gradient(135deg, var(--sage-mist) 0%, var(--cloud) 100%);
+  background: var(--cta-dark);
 }
 
 .topic-hero:not(:has(.topic-hero-image)) .topic-hero-label {
-  color: var(--sage);
-  background: var(--white);
+  color: rgba(255, 255, 255, 0.8);
+  background: rgba(255, 255, 255, 0.15);
 }
 
 .topic-hero:not(:has(.topic-hero-image)) .topic-hero-title {
-  color: var(--ink);
+  color: var(--white);
 }
 
 .topic-hero:not(:has(.topic-hero-image)) .topic-hero-desc {
-  color: var(--ink);
-  opacity: 0.7;
+  color: rgba(255, 255, 255, 0.85);
+  opacity: 1;
 }
 
 /* --- The Definition --- */
@@ -4394,10 +4424,12 @@ a.rd-pill--step:hover {
 .topic-share-inner {
   max-width: 42rem;
   margin: 0 auto;
-  background: var(--pearl);
-  border-left: 3px solid var(--sage);
-  border-radius: 0 var(--radius) var(--radius) 0;
+  background: var(--white);
+  border: none;
+  border-top: 4px solid var(--ocean);
+  border-radius: var(--radius);
   padding: 2rem 2rem 2rem 2.25rem;
+  box-shadow: var(--card-shadow);
 }
 
 .topic-share-heading {
@@ -4447,16 +4479,18 @@ a.rd-pill--step:hover {
 .topic-truths-inner {
   max-width: 42rem;
   margin: 0 auto;
-  background: var(--cloud);
+  background: var(--white);
+  border-top: 4px solid var(--sage);
   border-radius: var(--radius);
   padding: 2rem 2rem;
+  box-shadow: var(--card-shadow);
 }
 
 .topic-truths-heading {
   font-family: var(--font-serif);
   font-size: 1.3rem;
-  font-weight: 600;
-  color: var(--ink);
+  font-weight: 700;
+  color: var(--deep-navy);
   margin-bottom: 1.25rem;
 }
 
@@ -4502,8 +4536,11 @@ a.rd-pill--step:hover {
   margin: 0 auto;
   text-align: center;
   padding: 2rem;
-  border: 1px solid var(--cloud);
+  border: none;
+  border-top: 4px solid var(--warm-gold);
   border-radius: var(--radius);
+  background: var(--white);
+  box-shadow: var(--card-shadow);
 }
 
 .topic-cta-text {
@@ -4577,11 +4614,13 @@ a.rd-pill--step:hover {
 
 /* Tags Callout */
 .topic-callout {
-  background: var(--sage-mist);
-  border: 1px solid var(--sage);
+  background: var(--white);
+  border: none;
+  border-top: 4px solid var(--sage);
   border-radius: var(--radius);
   padding: 1.5rem 1.75rem;
   margin: 2rem 0 0;
+  box-shadow: var(--card-shadow);
 }
 
 .topic-callout-title {
@@ -4718,8 +4757,8 @@ a.rd-pill--step:hover {
 .topic-readings-heading {
   font-family: var(--font-serif);
   font-size: 1.4rem;
-  font-weight: 600;
-  color: var(--ink);
+  font-weight: 700;
+  color: var(--deep-navy);
   margin-bottom: 0.5rem;
 }
 
@@ -4743,16 +4782,18 @@ a.rd-pill--step:hover {
   flex-direction: column;
   padding: 1rem 1.25rem;
   background: var(--white);
-  border: 1px solid var(--cloud);
+  border: none;
+  border-top: 4px solid var(--deep-teal);
   border-radius: var(--radius);
   text-decoration: none;
   color: inherit;
-  transition: border-color 0.15s, box-shadow 0.15s;
+  box-shadow: var(--card-shadow);
+  transition: box-shadow 0.2s, transform 0.2s;
 }
 
 .topic-reading-card:hover {
-  border-color: var(--sage);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  box-shadow: var(--card-shadow-hover);
+  transform: translateY(-2px);
 }
 
 .topic-reading-card-date {
