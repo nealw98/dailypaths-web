@@ -11,7 +11,7 @@ export function renderAboutProjectPage() {
       <!-- Hero -->
       <header class="ap-hero">
         <div class="ap-hero-image">
-          <img src="${bp('/assets/hero-image.jpg')}" alt="A path through nature" />
+          <img src="${bp('/assets/hero-image.jpg')}" alt="Sunlit meadow path \u2014 About the Al-Anon Daily Paths project" />
           <div class="ap-hero-overlay"></div>
         </div>
         <div class="ap-hero-content">

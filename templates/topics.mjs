@@ -24,7 +24,7 @@ export function renderTopicsIndexPage() {
       <!-- Page Hero -->
       <header class="ti-hero">
         <div class="ti-hero-image">
-          <img src="${bp('/assets/themes/themes-hero.jpg')}" alt="Al-Anon Themes" />
+          <img src="${bp('/assets/themes/themes-hero.jpg')}" alt="Forest path through morning light \u2014 Al-Anon recovery themes" />
           <div class="ti-hero-overlay"></div>
         </div>
         <div class="ti-hero-content">
@@ -198,7 +198,7 @@ ${cards}
       <!-- Hero Section -->
       <header class="topic-hero">
         <div class="topic-hero-image">
-          <img src="${bp('/assets/themes/themes-hero.jpg')}" alt="${topic.name}" />
+          <img src="${bp('/assets/themes/themes-hero.jpg')}" alt="Forest path \u2014 ${topic.name} in Al-Anon recovery" />
           <div class="topic-hero-overlay"></div>
         </div>
         <div class="topic-hero-content">

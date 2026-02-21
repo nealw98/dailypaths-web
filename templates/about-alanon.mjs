@@ -12,7 +12,7 @@ export function renderAboutAlanonPage() {
       <!-- Hero -->
       <header class="aa-hero">
         <div class="aa-hero-image">
-          <img src="${bp('/assets/themes/steps-hero.jpg')}" alt="A path to recovery" />
+          <img src="${bp('/assets/themes/steps-hero.jpg')}" alt="Ocean path at sunrise \u2014 About Al-Anon Family Groups" />
           <div class="aa-hero-overlay"></div>
         </div>
         <div class="aa-hero-content">

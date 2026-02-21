@@ -28,7 +28,7 @@ export function renderHomepage(todayReading, prevReading, nextReading, allReadin
     <!-- Magazine Cover Hero -->
     <section class="hm-hero">
       <div class="hm-hero-image">
-        <img src="${bp('/assets/hero-image.jpg')}" alt="A Path of One\u2019s Own \u2014 Al-Anon Daily Paths" />
+        <img src="${bp('/assets/hero-image.jpg')}" alt="Sunlit meadow path representing the Al-Anon recovery journey \u2014 Al-Anon Daily Paths" />
         <div class="hm-hero-overlay"></div>
       </div>
       <div class="hm-hero-content">

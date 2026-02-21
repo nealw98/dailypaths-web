@@ -100,7 +100,7 @@ export function renderLiteratureIndexPage() {
   const cards = BOOKS.map(book => `
         <a href="${bp(`/literature/${book.slug}/`)}" class="book-card">
           <div class="book-card-cover">
-            <img src="${bp(`/assets/${book.image}`)}" alt="${book.title}" width="180" height="auto">
+            <img src="${bp(`/assets/${book.image}`)}" alt="Cover of ${book.title} \u2014 Al-Anon ${book.category}" width="180" height="auto">
           </div>
           <span class="book-card-category">${book.category}</span>
           <span class="book-card-title">${book.title}</span>
@@ -158,7 +158,7 @@ export function renderLiteraturePage(book) {
         <p class="book-meta">${book.catalogNumber} &middot; ${book.pages} pages &middot; ${book.year} &middot; ${book.price}</p>
 
         <div class="book-cover">
-          <img src="${bp(`/assets/${book.image}`)}" alt="${book.title}" width="260" height="auto">
+          <img src="${bp(`/assets/${book.image}`)}" alt="Cover of ${book.title} \u2014 Al-Anon ${book.category}" width="260" height="auto">
         </div>
 
         <p class="book-description">${book.description}</p>

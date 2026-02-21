@@ -255,7 +255,7 @@ export function renderStepsIndexPage() {
       <!-- Hero -->
       <header class="si-hero">
         <div class="si-hero-image">
-          <img src="${bp('/assets/themes/steps-hero.jpg')}" alt="The Twelve Steps of Al-Anon" />
+          <img src="${bp('/assets/themes/steps-hero.jpg')}" alt="Ocean path at sunrise \u2014 The Twelve Steps of Al-Anon recovery" />
           <div class="si-hero-overlay"></div>
         </div>
         <div class="si-hero-content">
@@ -456,7 +456,7 @@ ${listItems}
   const heroHtml = `
       <header class="step-hero step-hero--image">
         <div class="step-hero-image">
-          <img src="${bp('/assets/themes/steps-hero.jpg')}" alt="Step ${step.number}: ${step.principle}" />
+          <img src="${bp('/assets/themes/steps-hero.jpg')}" alt="Ocean path \u2014 Step ${step.number} of Al-Anon: ${step.principle}" />
           <div class="step-hero-overlay"></div>
         </div>
         <div class="step-hero-content">

@@ -135,6 +135,7 @@ export function renderPrayersPage() {
             <div class="prayer-card-body">
             ${bodyHtml}${sourceHtml}
             </div>
+            <a href="#pr-anchor-nav" class="prayer-back-top">&uarr; Top</a>
           </div>`;
   }
 
@@ -144,13 +145,18 @@ export function renderPrayersPage() {
       <!-- Hero -->
       <header class="pr-hero">
         <div class="pr-hero-image">
-          <img src="${bp('/assets/themes/prayers.jpg')}" alt="Prayers and Meditations" />
+          <img src="${bp('/assets/themes/prayers.jpg')}" alt="Stone cairn on a quiet shore \u2014 Al-Anon prayers and meditations" />
           <div class="pr-hero-overlay"></div>
         </div>
         <div class="pr-hero-content">
           <h1 class="pr-hero-title">Prayers &amp; Meditations</h1>
         </div>
       </header>
+
+      <!-- Anchor Menu -->
+      <nav class="pr-anchor-nav" id="pr-anchor-nav" aria-label="Prayer navigation">
+        ${prayers.map(p => `<a href="#${p.id}" class="pr-anchor-link">${p.title}</a>`).join('\n        ')}
+      </nav>
 
       <!-- Prayer Stack -->
       <div class="pr-stack">
