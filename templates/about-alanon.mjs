@@ -2,22 +2,33 @@ import { wrapInLayout } from './base.mjs';
 import { bp } from '../helpers/config.mjs';
 
 /**
- * About Al-Anon Family Groups — Structured resource-block style.
- * Hero: Ocean path image (steps-hero.jpg) with Navy overlay.
- * Authoritative information + external links to WSO site.
+ * The Al-Anon Program — Structured resource-block style.
+ * Hero: al-anon-hero.jpg with Navy overlay.
+ * Comprehensive view of the full program: Steps, Fellowship, Literature, Service.
  */
+
+/* Inline SVG cairn icon used as a section separator */
+const cairnSvg = `<svg class="aa-cairn-icon" viewBox="0 0 48 64" width="32" height="42" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <ellipse cx="24" cy="56" rx="18" ry="6" fill="currentColor" opacity="0.18"/>
+  <ellipse cx="24" cy="48" rx="14" ry="5.5" stroke="currentColor" stroke-width="1.5" fill="none"/>
+  <ellipse cx="24" cy="36" rx="11" ry="5" stroke="currentColor" stroke-width="1.5" fill="none"/>
+  <ellipse cx="24" cy="25" rx="9" ry="4.5" stroke="currentColor" stroke-width="1.5" fill="none"/>
+  <ellipse cx="24" cy="15" rx="7" ry="4" stroke="currentColor" stroke-width="1.5" fill="none"/>
+  <ellipse cx="24" cy="7" rx="4.5" ry="3" stroke="currentColor" stroke-width="1.5" fill="none"/>
+</svg>`;
+
 export function renderAboutAlanonPage() {
 
   const bodyContent = `
       <!-- Hero -->
       <header class="aa-hero">
         <div class="aa-hero-image">
-          <img src="${bp('/assets/themes/al-anon-hero.jpg')}" alt="Ocean path at sunrise \u2014 About Al-Anon Family Groups" />
+          <img src="${bp('/assets/themes/al-anon-hero.jpg')}" alt="Ocean path at sunrise \u2014 The Al-Anon Program" />
           <div class="aa-hero-overlay"></div>
         </div>
         <div class="aa-hero-content">
-          <h1 class="aa-hero-title">About Al-Anon</h1>
-          <p class="aa-hero-desc">A guide to Al-Anon Family Groups &mdash; who they are, what they do, and how to get started.</p>
+          <h1 class="aa-hero-title">The Al-Anon Program</h1>
+          <p class="aa-hero-desc">A spiritual path for those affected by someone else&rsquo;s drinking.</p>
         </div>
       </header>
 
@@ -79,7 +90,12 @@ export function renderAboutAlanonPage() {
             </div>
           </section>
 
-          <!-- Meetings -->
+          <!-- Cairn Separator -->
+          <div class="aa-cairn-separator" aria-hidden="true">
+            ${cairnSvg}
+          </div>
+
+          <!-- Find a Meeting -->
           <section class="aa-block aa-block--highlight">
             <h2 class="aa-block-heading">Find a Meeting</h2>
             <div class="aa-block-body">
@@ -91,27 +107,36 @@ export function renderAboutAlanonPage() {
             </a>
           </section>
 
-          <!-- How It Works -->
+          <!-- How It Works — Four Pillars -->
           <section class="aa-block">
-            <h2 class="aa-block-heading">How It Works</h2>
+            <h2 class="aa-block-heading">How the Program Works</h2>
             <div class="aa-block-body">
-              <p>Al-Anon has no therapists and no mandatory program of treatment. Instead, members share their own experience and listen to others in a safe, non-judgmental setting. The program offers three core tools:</p>
+              <p>Al-Anon has no therapists and no mandatory course of treatment. Instead, the program rests on four interconnected pillars&mdash;each one essential, none sufficient on its own.</p>
             </div>
-            <div class="aa-tools">
-              <div class="aa-tool">
-                <h3 class="aa-tool-title">The Twelve Steps</h3>
-                <p class="aa-tool-text">A spiritual framework for personal growth that helps members examine their own attitudes and behaviors.</p>
-                <a href="${bp('/steps/')}" class="aa-tool-link">Explore the Steps &rarr;</a>
+            <div class="aa-pillars">
+              <div class="aa-pillar">
+                <span class="aa-pillar-label">The Architecture</span>
+                <h3 class="aa-pillar-title">The Twelve Steps</h3>
+                <p class="aa-pillar-text">A spiritual framework for personal growth. The Steps help members honestly examine their own attitudes and behaviors&mdash;not to fix the alcoholic, but to find freedom for themselves.</p>
+                <a href="${bp('/steps/')}" class="aa-pillar-link">Explore the Steps &rarr;</a>
               </div>
-              <div class="aa-tool">
-                <h3 class="aa-tool-title">Meetings &amp; Fellowship</h3>
-                <p class="aa-tool-text">Regular gatherings&mdash;in person and online&mdash;where members share experience, strength, and hope.</p>
-                <a href="https://al-anon.org/al-anon-meetings/" target="_blank" rel="noopener noreferrer" class="aa-tool-link">Find meetings &rarr;</a>
+              <div class="aa-pillar">
+                <span class="aa-pillar-label">The Community</span>
+                <h3 class="aa-pillar-title">The Fellowship</h3>
+                <p class="aa-pillar-text">Regular gatherings&mdash;in person and online&mdash;where members share experience, strength, and hope. The fellowship is where isolation ends and recovery becomes real.</p>
+                <a href="https://al-anon.org/al-anon-meetings/" target="_blank" rel="noopener noreferrer" class="aa-pillar-link">Find meetings &rarr;</a>
               </div>
-              <div class="aa-tool">
-                <h3 class="aa-tool-title">Conference-Approved Literature</h3>
-                <p class="aa-tool-text">Books, pamphlets, and daily readers developed by Al-Anon members for Al-Anon members.</p>
-                <a href="${bp('/literature/')}" class="aa-tool-link">Browse literature &rarr;</a>
+              <div class="aa-pillar">
+                <span class="aa-pillar-label">The Wisdom</span>
+                <h3 class="aa-pillar-title">The Literature</h3>
+                <p class="aa-pillar-text">Conference-Approved books, pamphlets, and daily readers developed by Al-Anon members for Al-Anon members. The written wisdom of millions of families who walked this path before you.</p>
+                <a href="${bp('/literature/')}" class="aa-pillar-link">Browse literature &rarr;</a>
+              </div>
+              <div class="aa-pillar">
+                <span class="aa-pillar-label">The Practice</span>
+                <h3 class="aa-pillar-title">Service</h3>
+                <p class="aa-pillar-text">Giving back to the fellowship that gave so much to you. Service&mdash;from making coffee to sponsoring newcomers&mdash;is how members keep what they have by giving it away.</p>
+                <a href="https://al-anon.org/for-members/world-service-office-wso/" target="_blank" rel="noopener noreferrer" class="aa-pillar-link">Learn about service &rarr;</a>
               </div>
             </div>
           </section>
@@ -160,6 +185,20 @@ export function renderAboutAlanonPage() {
             </div>
           </section>
 
+          <!-- App CTA — The Daily Practice Bridge -->
+          <section class="aa-app-cta">
+            <h2 class="aa-app-cta-heading">The Program in Your Pocket</h2>
+            <p class="aa-app-cta-text">Al-Anon provides the framework for a new way of life. Daily Paths is designed to be your daily touchstone&mdash;helping you apply the Twelve Steps and recovery themes to the moments when you need them most.</p>
+            <div class="aa-app-cta-badges">
+              <a href="https://apps.apple.com/app/id6755981862" target="_blank" rel="noopener noreferrer" class="aa-app-cta-badge-link">
+                <img src="https://developer.apple.com/app-store/marketing/guidelines/images/badge-download-on-the-app-store.svg" alt="Download Al-Anon Daily Paths on the App Store" class="aa-app-cta-badge aa-app-cta-badge--ios">
+              </a>
+              <a href="https://play.google.com/store/apps/details?id=com.dailypaths" target="_blank" rel="noopener noreferrer" class="aa-app-cta-badge-link">
+                <img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" alt="Get Al-Anon Daily Paths on Google Play" class="aa-app-cta-badge aa-app-cta-badge--play">
+              </a>
+            </div>
+          </section>
+
           <!-- Official Disclaimer -->
           <section class="aa-disclaimer">
             <p>Daily Paths is an independent project and is not affiliated with, endorsed by, or approved by Al-Anon Family Group Headquarters, Inc. For official Al-Anon information, please visit <a href="https://al-anon.org" target="_blank" rel="noopener noreferrer">al-anon.org</a>.</p>
@@ -169,8 +208,8 @@ export function renderAboutAlanonPage() {
       </div>`;
 
   return wrapInLayout({
-    title: 'About Al-Anon Family Groups | Al-Anon Daily Paths',
-    description: 'Learn about Al-Anon Family Groups \u2014 a mutual support program for anyone affected by someone else\u2019s drinking. Find meetings, understand the 3 C\u2019s, and explore recovery resources.',
+    title: 'The Al-Anon Program \u2014 Steps, Fellowship, Literature & Service | Al-Anon Daily Paths',
+    description: 'Explore the Al-Anon program \u2014 the Twelve Steps, fellowship meetings, Conference-Approved literature, and service. A spiritual path for families and friends affected by someone else\u2019s drinking.',
     canonicalPath: '/about-alanon/',
     bodyContent,
     bodyClass: 'page-about-alanon',

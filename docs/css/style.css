@@ -2058,9 +2058,22 @@ html {
   color: var(--ink);
 }
 
-/* ── How It Works — Tool Cards ───────────────────────────────── */
+/* ── Cairn Separator ─────────────────────────────────────────── */
 
-.aa-tools {
+.aa-cairn-separator {
+  text-align: center;
+  padding: 1.5rem 0 2rem;
+  color: var(--sage);
+  line-height: 0;
+}
+
+.aa-cairn-icon {
+  opacity: 0.6;
+}
+
+/* ── How the Program Works — Four Pillars (2×2) ─────────────── */
+
+.aa-pillars {
   display: grid;
   grid-template-columns: 1fr;
   gap: 1.25rem;
@@ -2068,42 +2081,53 @@ html {
 }
 
 @media (min-width: 640px) {
-  .aa-tools {
-    grid-template-columns: repeat(3, 1fr);
+  .aa-pillars {
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
-.aa-tool {
+.aa-pillar {
   background: var(--white);
   border-top: 4px solid var(--sage);
   border-radius: var(--radius);
-  padding: 1.5rem;
+  padding: 1.75rem 1.5rem;
   box-shadow: var(--card-shadow);
   transition: transform 0.2s, box-shadow 0.2s;
 }
 
-.aa-tool:hover {
+.aa-pillar:hover {
   transform: translateY(-3px);
   box-shadow: var(--card-shadow-hover);
 }
 
-.aa-tool-title {
-  font-family: var(--font-serif);
-  font-size: 1.1rem;
+.aa-pillar-label {
+  display: block;
+  font-family: var(--font-sans);
+  font-size: 0.65rem;
   font-weight: 700;
-  color: var(--deep-navy);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--sage);
   margin-bottom: 0.4rem;
 }
 
-.aa-tool-text {
+.aa-pillar-title {
+  font-family: var(--font-serif);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--deep-navy);
+  margin-bottom: 0.5rem;
+}
+
+.aa-pillar-text {
   font-family: var(--font-reading);
   font-size: 0.88rem;
-  line-height: 1.65;
+  line-height: 1.7;
   color: var(--ink);
   margin: 0 0 0.75rem;
 }
 
-.aa-tool-link {
+.aa-pillar-link {
   font-family: var(--font-sans);
   font-size: 0.82rem;
   font-weight: 600;
@@ -2112,7 +2136,7 @@ html {
   transition: color 0.15s;
 }
 
-.aa-tool-link:hover {
+.aa-pillar-link:hover {
   color: var(--ocean);
 }
 
@@ -2202,6 +2226,58 @@ html {
   opacity: 0.75;
 }
 
+/* ── App CTA — The Daily Practice Bridge ─────────────────────── */
+
+.aa-app-cta {
+  text-align: center;
+  background: var(--deep-navy);
+  border-radius: var(--radius);
+  padding: 2.75rem 2.5rem;
+  margin-top: 0.5rem;
+  margin-bottom: 2rem;
+}
+
+.aa-app-cta-heading {
+  font-family: var(--font-serif);
+  font-size: clamp(1.35rem, 3vw, 1.65rem);
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 0.75rem;
+}
+
+.aa-app-cta-text {
+  font-family: var(--font-reading);
+  font-size: 0.95rem;
+  line-height: 1.75;
+  color: rgba(255, 255, 255, 0.85);
+  max-width: 36rem;
+  margin: 0 auto 1.75rem;
+}
+
+.aa-app-cta-badges {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.aa-app-cta-badge-link {
+  display: inline-block;
+  transition: opacity 0.2s;
+}
+
+.aa-app-cta-badge-link:hover {
+  opacity: 0.8;
+}
+
+.aa-app-cta-badge--ios {
+  height: 34px;
+}
+
+.aa-app-cta-badge--play {
+  height: 50px;
+}
+
 /* ── Disclaimer ──────────────────────────────────────────────── */
 
 .aa-disclaimer {
@@ -2253,11 +2329,17 @@ html {
     margin-right: -1.5rem;
     padding: 2rem 1.5rem;
   }
-  .aa-tool {
-    padding: 1.25rem;
+  .aa-pillar {
+    padding: 1.5rem 1.25rem;
   }
   .aa-fellow {
     padding: 1.25rem;
+  }
+  .aa-app-cta {
+    padding: 2rem 1.5rem;
+    margin-left: -1.5rem;
+    margin-right: -1.5rem;
+    border-radius: 0;
   }
 }
 
