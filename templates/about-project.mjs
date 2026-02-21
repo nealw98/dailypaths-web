@@ -115,14 +115,13 @@ export function renderAboutProjectPage() {
         </div>
       </div>
 
-      <!-- Full-Bleed App CTA -->
-      <section class="ap-cta">
-        <div class="ap-cta-inner">
-          <h2 class="ap-cta-heading">Begin the Journey</h2>
-          <p class="ap-cta-text">Recovery starts with a single day. Read today&rsquo;s reflection and take the first step.</p>
-          <div class="ap-cta-actions">
-            <a href="${bp('/')}" class="ap-cta-btn ap-cta-btn--primary">Today&rsquo;s Reflection</a>
-            <a href="${bp('/principles/')}" class="ap-cta-btn ap-cta-btn--secondary">Explore Themes</a>
+      <!-- Site Navigation CTA -->
+      <section class="ap-nav-cta">
+        <div class="ap-nav-cta-inner">
+          <h2 class="ap-nav-cta-heading">Continue the Journey</h2>
+          <div class="ap-nav-cta-actions">
+            <a href="${bp('/principles/')}" class="ap-nav-cta-btn">Explore the 12 Themes</a>
+            <a href="${bp('/steps/')}" class="ap-nav-cta-btn">Begin the 12 Steps</a>
           </div>
         </div>
       </section>`;

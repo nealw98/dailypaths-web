@@ -1798,13 +1798,13 @@ html {
   margin-right: auto;
 }
 
-/* App badges */
+/* App badges — centered below comparison grid */
 .ap-app-badges {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  margin-top: 1.75rem;
+  padding: 2.5rem 0 1rem;
 }
 
 .ap-badge-link {
@@ -1817,90 +1817,65 @@ html {
 }
 
 .ap-badge--ios {
-  height: 34px;
+  height: 36px;
 }
 
 .ap-badge--play {
-  height: 50px;
+  height: 52px;
 }
 
-/* CTA */
-/* ── Full-Bleed CTA — Navy "Chapter End" ──────────────────────── */
+/* ── Site Navigation CTA — Sage outlined buttons ─────────────── */
 
-.ap-cta {
+.ap-nav-cta {
   text-align: center;
-  background: #1B263B;
-  padding: 5rem 2rem;
+  padding: 4rem 2rem 5rem;
+  border-top: 1px solid var(--cloud);
 }
 
-.ap-cta-inner {
+.ap-nav-cta-inner {
   max-width: 650px;
   margin: 0 auto;
 }
 
-.ap-cta-heading {
+.ap-nav-cta-heading {
   font-family: var(--font-serif);
-  font-size: clamp(1.5rem, 3.5vw, 2rem);
+  font-size: clamp(1.4rem, 3vw, 1.75rem);
   font-weight: 700;
-  color: var(--white);
-  margin-bottom: 0.75rem;
+  color: var(--deep-navy);
+  margin-bottom: 1.75rem;
 }
 
-.ap-cta-text {
-  font-family: var(--font-reading);
-  font-size: 1.05rem;
-  line-height: 1.75;
-  color: rgba(255, 255, 255, 0.8);
-  margin-bottom: 2rem;
-}
-
-.ap-cta-actions {
+.ap-nav-cta-actions {
   display: flex;
   justify-content: center;
-  gap: 0.75rem;
+  gap: 1rem;
   flex-wrap: wrap;
 }
 
-.ap-cta-btn {
+.ap-nav-cta-btn {
   display: inline-block;
   font-family: var(--font-sans);
-  font-size: 0.9rem;
+  font-size: 0.92rem;
   font-weight: 600;
   text-decoration: none;
-  padding: 0.75rem 1.75rem;
-  border-radius: var(--radius);
-  transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
-}
-
-.ap-cta-btn--primary {
-  color: #1B263B;
-  background: var(--white);
-}
-
-.ap-cta-btn--primary:hover {
-  background: var(--cloud);
-  color: #1B263B;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
-}
-
-.ap-cta-btn--secondary {
-  color: var(--white);
+  color: #4A5D4E;
   background: transparent;
-  border: 1px solid rgba(255, 255, 255, 0.35);
+  border: 1.5px solid #4A5D4E;
+  padding: 0.8rem 2rem;
+  border-radius: var(--radius);
+  transition: background 0.2s, color 0.2s, transform 0.2s, box-shadow 0.2s;
 }
 
-.ap-cta-btn--secondary:hover {
-  background: rgba(255, 255, 255, 0.08);
-  border-color: rgba(255, 255, 255, 0.6);
+.ap-nav-cta-btn:hover {
+  background: #4A5D4E;
   color: var(--white);
   transform: translateY(-2px);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 4px 16px rgba(74, 93, 78, 0.2);
 }
 
 @media (min-width: 768px) {
-  .ap-cta {
-    padding: 6rem 2rem;
+  .ap-nav-cta {
+    padding: 5rem 2rem 6rem;
   }
 }
 
