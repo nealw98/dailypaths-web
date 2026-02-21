@@ -68,28 +68,6 @@ export function renderAboutAlanonPage() {
             </a>
           </section>
 
-          <!-- The 3 C's -->
-          <section class="aa-block">
-            <h2 class="aa-block-heading">The 3 C&rsquo;s</h2>
-            <div class="aa-block-body">
-              <p>One of the first things you&rsquo;ll hear in Al-Anon is a simple truth that can change everything:</p>
-            </div>
-            <div class="aa-threes">
-              <div class="aa-three-item">
-                <span class="aa-three-label">You didn&rsquo;t <strong>Cause</strong> it.</span>
-                <span class="aa-three-desc">Alcoholism is a disease. Nothing you said or did made someone else drink.</span>
-              </div>
-              <div class="aa-three-item">
-                <span class="aa-three-label">You can&rsquo;t <strong>Control</strong> it.</span>
-                <span class="aa-three-desc">No amount of managing or pleading can make another person stop drinking.</span>
-              </div>
-              <div class="aa-three-item">
-                <span class="aa-three-label">You can&rsquo;t <strong>Cure</strong> it.</span>
-                <span class="aa-three-desc">Recovery from alcoholism is the drinker&rsquo;s responsibility. Your recovery is yours.</span>
-              </div>
-            </div>
-          </section>
-
           <!-- Cairn Separator -->
           <div class="aa-cairn-separator" aria-hidden="true">
             ${cairnSvg}
