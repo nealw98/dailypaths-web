@@ -73,6 +73,7 @@ export const TOPICS = [
     image: 'detachment.jpg',
     imageAlt: 'Woman finding peace on her porch \u2014 detachment with love in Al-Anon recovery',
     body: `
+      <p><strong>What is Detachment?</strong></p>
       <p>
         In the world of recovery, <strong>detachment</strong> is perhaps the most misunderstood principle&mdash;and the most life-saving. To the newcomer, detachment can sound like coldness, indifference, or a way of &ldquo;giving up&rdquo; on the person they love. But in practice, detachment is an act of profound compassion for both the alcoholic and ourselves.
       </p>
