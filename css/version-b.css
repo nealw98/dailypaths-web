@@ -1793,6 +1793,25 @@ html {
   margin-right: auto;
 }
 
+/* Disclaimer — italicized, visually separated */
+.ap-disclaimer {
+  border-top: 1px solid var(--cloud);
+  padding-top: 2rem;
+  margin-top: 1rem;
+}
+
+.ap-disclaimer p {
+  font-family: var(--font-sans);
+  font-style: italic;
+  font-size: 0.8rem;
+  line-height: 1.7;
+  color: var(--ink);
+  opacity: 0.55;
+  max-width: 36rem;
+  margin: 0 auto;
+  text-align: center;
+}
+
 /* App badges — centered below comparison grid */
 .ap-app-badges {
   display: flex;

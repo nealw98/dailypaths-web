@@ -5,10 +5,16 @@ import { bp } from '../helpers/config.mjs';
  * About the Daily Paths Project — Editorial Drop-Cap style.
  * Hero: hero-image.jpg (meadow path), sharp and clear with Sage overlay.
  * Magazine-feature layout with narrow editorial column.
+ *
+ * Sections: Hero → Our Mission → Our Approach → The Heart Behind the Project →
+ * Which Is Right for You? (Site vs App) → Closing → Disclaimer → Nav CTA
  */
 export function renderAboutProjectPage() {
 
   const bodyContent = `
+      <!-- Schema.org author link -->
+      <span itemprop="author" itemscope itemtype="https://schema.org/Person"><meta itemprop="name" content="Neal W."></span>
+
       <!-- Hero -->
       <header class="ap-hero">
         <div class="ap-hero-image">
@@ -25,11 +31,11 @@ export function renderAboutProjectPage() {
       <div class="ap-body">
         <div class="ap-body-inner">
 
-          <!-- The Mission — Drop Cap -->
+          <!-- Our Mission — Drop Cap -->
           <section class="ap-section">
+            <h2 class="ap-section-heading">Our Mission</h2>
             <div class="ap-editorial">
-              <p>Daily Paths was born from a simple idea: that recovery is a daily practice, not a destination. Each morning, thousands of people affected by someone else&rsquo;s drinking reach for a reading&mdash;a few quiet words that reframe the day ahead. We built this project to make that moment easier to find and harder to forget.</p>
-              <p>The 366 original reflections in Daily Paths draw on the wisdom of the Al-Anon program&mdash;its Steps, Traditions, and the lived experience of families who have walked this road before. Every entry is written to meet you where you are: not with advice, but with the gentle reminder that you are not alone and that today is enough.</p>
+              <p>Daily Paths exists to make daily recovery accessible, private, and consistent. Each of our 366 original reflections draws on the wisdom of the Al-Anon program&mdash;its Steps, Traditions, and the lived experience of families who have walked this road before. Every entry is written to meet you where you are: not with advice, but with the gentle reminder that you are not alone and that today is enough.</p>
             </div>
           </section>
 
@@ -42,9 +48,18 @@ export function renderAboutProjectPage() {
             </div>
           </section>
 
-          <!-- The Path and the Practice -->
+          <!-- The Heart Behind the Project -->
+          <section class="ap-section ap-curator">
+            <h2 class="ap-section-heading">The Heart Behind the Project</h2>
+            <div class="ap-editorial">
+              <p>Daily Paths is curated by <strong>Neal W.</strong> and published by <strong>Daily Growth, LLC</strong>. As someone whose life has been shaped by the Al-Anon program, Neal created Daily Paths to bring modern, thoughtful tools to the recovery community&mdash;tools that honor the program&rsquo;s traditions while meeting people where they already are: on their phones, in quiet moments, one day at a time.</p>
+              <p>Every reflection, every theme page, and every feature in the app is built with a single question in mind: <em>will this help someone find a little more serenity today?</em></p>
+            </div>
+          </section>
+
+          <!-- Which Is Right for You? -->
           <section class="ap-section">
-            <h2 class="ap-section-heading">The Path and the Practice</h2>
+            <h2 class="ap-section-heading">Which Is Right for You?</h2>
             <div class="ap-editorial">
               <p>Daily Paths lives in two places&mdash;a website built for exploration and an app built for daily practice. Each serves a different part of your journey.</p>
             </div>
@@ -112,6 +127,11 @@ export function renderAboutProjectPage() {
             </div>
           </section>
 
+          <!-- Non-Affiliation Disclaimer -->
+          <section class="ap-section ap-disclaimer">
+            <p>Daily Paths is an independent project published by Daily Growth, LLC. It is not affiliated with, endorsed by, or approved by Al-Anon Family Groups, Inc. or any other organization. The Twelve Steps and Twelve Traditions are used with the understanding that they are the shared heritage of the recovery community.</p>
+          </section>
+
         </div>
       </div>
 
@@ -127,8 +147,8 @@ export function renderAboutProjectPage() {
       </section>`;
 
   return wrapInLayout({
-    title: 'The Daily Paths Project \u2014 Our Mission | Al-Anon Daily Paths',
-    description: 'Daily Paths is a digital sanctuary for Al-Anon recovery \u2014 366 original daily reflections, twelve curated themes, step guides, prayers, and an integrated journal app.',
+    title: 'About Daily Paths \u2014 Our Mission & Approach | Al-Anon Daily Paths',
+    description: 'Daily Paths is an independent digital sanctuary for Al-Anon recovery, curated by Neal W. and published by Daily Growth, LLC. 366 original daily reflections, step guides, and a private journaling app.',
     canonicalPath: '/about-project/',
     bodyContent,
     bodyClass: 'page-about-project',
