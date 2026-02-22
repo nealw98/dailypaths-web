@@ -36,6 +36,7 @@ import { renderConceptsPage } from './templates/concepts.mjs';
 import { renderStepsIndexPage, renderStepPage, STEPS } from './templates/steps.mjs';
 import { renderLiteratureIndexPage, renderLiteraturePage, BOOKS } from './templates/literature.mjs';
 import { renderMonthArchivePage } from './templates/month-archive.mjs';
+import { renderAdminPage } from './templates/admin.mjs';
 import { wrapInLayout } from './templates/base.mjs';
 import { bp } from './helpers/config.mjs';
 
@@ -83,6 +84,7 @@ const dirs = [
   ...Array.from({ length: 12 }, (_, i) => join(outDir, 'steps', `step-${i + 1}`)),
   join(outDir, 'literature'),
   ...BOOKS.map(b => join(outDir, 'literature', b.slug)),
+  join(outDir, 'admin'),
   join(outDir, 'months'),
   ...Array.from({ length: 12 }, (_, i) => {
     const months = ['january','february','march','april','may','june','july','august','september','october','november','december'];
@@ -165,6 +167,10 @@ writePage(join(outDir, 'about-alanon', 'index.html'), renderAboutAlanonPage());
 writePage(join(outDir, 'quiz', 'index.html'), renderQuizPage());
 writePage(join(outDir, 'traditions', 'index.html'), renderTraditionsPage());
 writePage(join(outDir, 'concepts', 'index.html'), renderConceptsPage());
+// Admin page
+console.log('Generating admin page...');
+writePage(join(outDir, 'admin', 'index.html'), renderAdminPage());
+
 // Steps index + individual step pages
 console.log('Generating step pages (12 steps)...');
 writePage(join(outDir, 'steps', 'index.html'), renderStepsIndexPage());
@@ -245,6 +251,10 @@ cpSync(cssSource, join(outDir, 'css', 'style.css'));
 
 // JS
 cpSync(join(__dirname, 'js', 'main.js'), join(outDir, 'js', 'main.js'));
+cpSync(join(__dirname, 'js', 'admin.js'), join(outDir, 'js', 'admin.js'));
+
+// Admin CSS
+cpSync(join(__dirname, 'css', 'admin.css'), join(outDir, 'css', 'admin.css'));
 
 // Assets — copy from existing repo if available, otherwise from local assets
 const existingAssetsDir = join(ROOT, 'src', 'assets');
