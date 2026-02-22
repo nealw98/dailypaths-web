@@ -3105,6 +3105,77 @@ html {
   opacity: 0.85;
 }
 
+/* Associated Readings — Hub & Spoke Grid */
+.step-assoc-section {
+  max-width: 54rem;
+  margin: 0 auto;
+  padding: 3rem 2rem;
+}
+
+.step-assoc-heading {
+  font-family: var(--font-serif);
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--deep-navy);
+  margin-bottom: 0.5rem;
+}
+
+.step-assoc-intro {
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  color: var(--ink);
+  opacity: 0.6;
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
+}
+
+.step-assoc-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.75rem;
+}
+
+.step-assoc-card {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem 1.25rem;
+  background: var(--white);
+  border: none;
+  border-top: 4px solid var(--deep-teal);
+  border-radius: var(--radius);
+  text-decoration: none;
+  color: inherit;
+  box-shadow: var(--card-shadow);
+  transition: box-shadow 0.2s, transform 0.2s;
+}
+
+.step-assoc-card:hover {
+  box-shadow: var(--card-shadow-hover);
+  transform: translateY(-2px);
+}
+
+.step-assoc-date {
+  font-family: var(--font-sans);
+  font-size: 0.7rem;
+  font-weight: 500;
+  color: var(--sage);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  margin-bottom: 0.35rem;
+}
+
+.step-assoc-title {
+  font-family: var(--font-serif);
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--ink);
+  line-height: 1.35;
+}
+
+.step-assoc-card:hover .step-assoc-title {
+  color: var(--deep-teal);
+}
+
 /* Engine CTA — Full-Width App CTA Block */
 .step-engine-cta {
   text-align: center;
@@ -3195,6 +3266,12 @@ html {
   }
   .step-readings-section {
     padding: 3rem 1.5rem;
+  }
+  .step-assoc-section {
+    padding: 3rem 1.5rem;
+  }
+  .step-assoc-grid {
+    grid-template-columns: 1fr;
   }
   .step-engine-cta-inner {
     padding: 0 1.5rem;
@@ -4356,6 +4433,9 @@ html {
   }
   .topic-pull-quote-text {
     font-size: 1.75rem;
+  }
+  .step-assoc-grid {
+    grid-template-columns: repeat(3, 1fr);
   }
 }
 
