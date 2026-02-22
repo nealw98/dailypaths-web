@@ -567,50 +567,98 @@
     return html;
   }
 
+  // --- localStorage seen-count helpers ---
+
+  function getSeenCount(readingId, key) {
+    try {
+      var v = localStorage.getItem('seen_' + key + '_' + readingId);
+      return v ? parseInt(v, 10) : 0;
+    } catch (e) { return 0; }
+  }
+
+  function setSeenCount(readingId, key, count) {
+    try { localStorage.setItem('seen_' + key + '_' + readingId, String(count)); } catch (e) {}
+  }
+
   function renderReadingCard(r) {
-    var negPctClass = r.negative_pct > 30 ? 'admin-stat--danger' : r.negative_pct > 20 ? 'admin-stat--warn' : '';
-    var hasUnaddressed = (r.unaddressed_negative_count || 0) > 0;
-    var isReviewed = r.last_reviewed_at && (!r.admin_flagged_at || r.last_reviewed_at > r.admin_flagged_at);
     var isToday = r.day_of_year === getTodayDayOfYear();
+    var unaddressedCount = r.unaddressed_negative_count || 0;
+    var needsReview = unaddressedCount > 0;
+
+    // "New" badge logic — compare current counts to what we last dismissed
+    var seenPositive = getSeenCount(r.id, 'positive');
+    var seenFavorites = getSeenCount(r.id, 'favorites');
+    var newPositiveCount = r.positive_count - seenPositive;
+    var hasNewPositive = newPositiveCount > 0;
+    var newFavoriteCount = (r.favorites_count || 0) - seenFavorites;
+    var hasNewFavorite = newFavoriteCount > 0;
+
+    // Review status
+    var hasBeenReviewed = !!r.last_reviewed_at;
+    var isFullyReviewed = hasBeenReviewed && !needsReview && !hasNewPositive && !hasNewFavorite;
+    var isNotReviewed = !hasBeenReviewed && r.total_ratings === 0 && (r.favorites_count || 0) === 0;
+
+    // Priority flag color
+    var priorityFlag = '';
+    if (r.negative_pct > 30) {
+      priorityFlag = '<span class="admin-priority-flag admin-priority-flag--red">&#9873;</span>';
+    } else if (r.negative_pct > 20) {
+      priorityFlag = '<span class="admin-priority-flag admin-priority-flag--yellow">&#9873;</span>';
+    }
 
     var html = '<div class="admin-reading-card' + (isToday ? ' admin-reading-card--today' : '') + '"' +
       (isToday ? ' id="today-reading"' : '') +
       ' data-reading-id="' + r.id + '">';
-    html += '<div class="admin-reading-card-main">';
-    html += '<div class="admin-reading-card-title">' +
-      '<span class="admin-reading-day">' + r.display_date + '</span> ' +
-      escHtml(r.title || 'Untitled') +
-    '</div>';
 
-    // Badges
-    html += '<div class="admin-reading-badges">';
-    if (isToday) {
-      html += '<span class="admin-tag admin-tag--today">Today</span>';
+    html += '<div class="admin-reading-card-main">';
+
+    // Title row with priority flag
+    html += '<div class="admin-reading-card-title">';
+    html += priorityFlag;
+    html += '<span class="admin-reading-title-text">' + escHtml(r.title || 'Untitled') + '</span>';
+
+    // Badges inline with title
+    if (needsReview) {
+      html += '<span class="admin-tag admin-tag--amber">Needs Review (' + unaddressedCount + ')</span>';
     }
-    if (hasUnaddressed) {
-      html += '<span class="admin-tag admin-tag--red">Needs Review</span>';
+    if (hasNewPositive) {
+      html += '<span class="admin-tag admin-tag--new-pos" data-dismiss-positive="' + r.id + '" data-count="' + r.positive_count + '">New Positive (' + newPositiveCount + ')</span>';
     }
-    if (isReviewed) {
-      html += '<span class="admin-tag admin-tag--green">Reviewed</span>';
+    if (hasNewFavorite) {
+      html += '<span class="admin-tag admin-tag--new-fav" data-dismiss-favorite="' + r.id + '" data-count="' + (r.favorites_count || 0) + '">New Favorite (' + newFavoriteCount + ')</span>';
+    }
+    if (isFullyReviewed) {
+      html += '<span class="admin-tag admin-tag--reviewed">Reviewed</span>';
+    }
+    if (isNotReviewed && !needsReview && !hasNewPositive && !hasNewFavorite) {
+      html += '<span class="admin-tag admin-tag--muted">Not Reviewed</span>';
     }
     if (r.admin_notes) {
-      html += '<span class="admin-tag admin-tag--blue">Notes</span>';
+      html += '<span class="admin-tag admin-tag--blue" title="Has admin notes">Notes</span>';
     }
-    html += '</div>';
 
     html += '</div>';
 
-    // Stats
+    // Subtitle: Day N · Date
+    html += '<p class="admin-reading-sub">Day ' + r.day_of_year + ' &middot; ' + escHtml(r.display_date) + '</p>';
+
+    html += '</div>';
+
+    // Stats: thumbs up / thumbs down / favs
     html += '<div class="admin-reading-stats">';
-    if (r.total_ratings > 0) {
-      html += '<span class="admin-stat admin-stat--pos">' + r.positive_count + ' +</span>';
-      html += '<span class="admin-stat ' + negPctClass + '">' + r.negative_count + ' &minus; (' + Math.round(r.negative_pct) + '%)</span>';
-      html += '<span class="admin-stat">' + r.total_ratings + ' total</span>';
-    } else {
-      html += '<span class="admin-stat admin-stat--muted">No feedback</span>';
-    }
+    html += '<span class="admin-stat admin-stat--pos" title="Positive">' +
+      '<svg class="admin-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3H14z"/><path d="M7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"/></svg>' +
+      r.positive_count + '</span>';
+    html += '<span class="admin-stat admin-stat--neg" title="Negative">' +
+      '<svg class="admin-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 15v4a3 3 0 0 0 3 3l4-9V2H5.72a2 2 0 0 0-2 1.7l-1.38 9a2 2 0 0 0 2 2.3H10z"/><path d="M17 2h3a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2h-3"/></svg>' +
+      r.negative_count + '</span>';
     if (r.favorites_count > 0) {
-      html += '<span class="admin-stat admin-stat--fav">' + r.favorites_count + ' fav</span>';
+      html += '<span class="admin-stat admin-stat--fav" title="Favorites">' +
+        '<svg class="admin-icon" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 0 0 0-7.78z"/></svg>' +
+        r.favorites_count + '</span>';
+    }
+    if (r.total_ratings === 0 && !r.favorites_count) {
+      html += '<span class="admin-stat admin-stat--none">No feedback yet</span>';
     }
     html += '</div>';
 
@@ -626,6 +674,30 @@
         var id = this.getAttribute('data-reading-id');
         var reading = state.readings.find(function (r) { return r.id === id; });
         if (reading) openReading(reading);
+      });
+    }
+
+    // Dismiss "New Positive" badges
+    var posBadges = document.querySelectorAll('[data-dismiss-positive]');
+    for (var p = 0; p < posBadges.length; p++) {
+      posBadges[p].addEventListener('click', function (e) {
+        e.stopPropagation();
+        var rid = this.getAttribute('data-dismiss-positive');
+        var count = parseInt(this.getAttribute('data-count'), 10);
+        setSeenCount(rid, 'positive', count);
+        this.remove();
+      });
+    }
+
+    // Dismiss "New Favorite" badges
+    var favBadges = document.querySelectorAll('[data-dismiss-favorite]');
+    for (var f = 0; f < favBadges.length; f++) {
+      favBadges[f].addEventListener('click', function (e) {
+        e.stopPropagation();
+        var rid = this.getAttribute('data-dismiss-favorite');
+        var count = parseInt(this.getAttribute('data-count'), 10);
+        setSeenCount(rid, 'favorites', count);
+        this.remove();
       });
     }
 
