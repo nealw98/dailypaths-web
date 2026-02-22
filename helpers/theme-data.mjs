@@ -96,10 +96,15 @@ export const TOPICS = [
     image: 'powerlessness.jpg',
     imageAlt: 'Two women hiking together at sunset \u2014 finding freedom through surrender in Al-Anon recovery',
     body: `
+      <p><strong>Surrendering the Illusion of Control</strong></p>
       <p>
-        Acceptance is not approval; it is the quiet recognition of things
-        as they are right now. It is the bridge between the pain of the
-        past and the possibilities of the future.
+        Step 1 is often the hardest pill to swallow because it requires us to admit that our best thinking hasn&rsquo;t worked. <em>We admitted we were powerless over alcohol&mdash;and that our lives had become unmanageable.</em> To the newcomer, &ldquo;powerless&rdquo; sounds like weakness. But in 30 years of recovery, I&rsquo;ve seen that Step 1 is actually the ultimate act of courage.
+      </p>
+      <p>
+        Admitting unmanageability means we stop trying to do the impossible. We stop trying to &ldquo;manage&rdquo; the unmanageable disease in another person. The &ldquo;powerlessness&rdquo; isn&rsquo;t about the alcoholic; it&rsquo;s about our own futile attempts to control them. When we stop fighting the reality of the situation, we stop losing the battle.
+      </p>
+      <p>
+        The magic of Step 1, however, is found in the very first word: <strong>&ldquo;We.&rdquo;</strong> Recovery doesn&rsquo;t happen in isolation. It happens when we peer through the window and realize that there are others who have felt exactly what we feel. By admitting we can&rsquo;t do it alone, we open the door to a community that can walk the path with us. Powerlessness over the disease is where our power over our own lives finally begins.
       </p>`,
     featuredDays: [11, 15, 16, 153, 357],
   },
