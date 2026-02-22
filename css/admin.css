@@ -338,6 +338,17 @@ body.page-admin main {
   box-shadow: 0 2px 8px rgba(0,0,0,0.06);
 }
 
+.admin-reading-card--today {
+  border-color: var(--admin-primary);
+  border-width: 2px;
+  background: linear-gradient(135deg, #f0faf9 0%, #fff 100%);
+  box-shadow: 0 2px 12px rgba(44, 95, 93, 0.12);
+}
+
+.admin-reading-card--today:hover {
+  box-shadow: 0 4px 16px rgba(44, 95, 93, 0.18);
+}
+
 .admin-reading-card-main {
   flex: 1;
   min-width: 0;
@@ -425,6 +436,11 @@ body.page-admin main {
 .admin-tag--blue {
   background: #ebf8ff;
   color: var(--admin-blue);
+}
+
+.admin-tag--today {
+  background: var(--admin-primary);
+  color: #fff;
 }
 
 /* --- Editor --- */

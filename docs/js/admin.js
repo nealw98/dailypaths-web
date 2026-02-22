@@ -189,7 +189,18 @@
       state.readings = result.readings || [];
       applyFiltersAndSort();
       render();
+      scrollToToday();
     });
+  }
+
+  function scrollToToday() {
+    // Small delay to ensure DOM is painted
+    setTimeout(function () {
+      var el = document.getElementById('today-reading');
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+    }, 50);
   }
 
   function loadFeedbackDetails(readingId) {
@@ -560,8 +571,11 @@
     var negPctClass = r.negative_pct > 30 ? 'admin-stat--danger' : r.negative_pct > 20 ? 'admin-stat--warn' : '';
     var hasUnaddressed = (r.unaddressed_negative_count || 0) > 0;
     var isReviewed = r.last_reviewed_at && (!r.admin_flagged_at || r.last_reviewed_at > r.admin_flagged_at);
+    var isToday = r.day_of_year === getTodayDayOfYear();
 
-    var html = '<div class="admin-reading-card" data-reading-id="' + r.id + '">';
+    var html = '<div class="admin-reading-card' + (isToday ? ' admin-reading-card--today' : '') + '"' +
+      (isToday ? ' id="today-reading"' : '') +
+      ' data-reading-id="' + r.id + '">';
     html += '<div class="admin-reading-card-main">';
     html += '<div class="admin-reading-card-title">' +
       '<span class="admin-reading-day">' + r.display_date + '</span> ' +
@@ -570,6 +584,9 @@
 
     // Badges
     html += '<div class="admin-reading-badges">';
+    if (isToday) {
+      html += '<span class="admin-tag admin-tag--today">Today</span>';
+    }
     if (hasUnaddressed) {
       html += '<span class="admin-tag admin-tag--red">Needs Review</span>';
     }
@@ -1075,6 +1092,16 @@
   }
 
   // --- Utility Functions ---
+
+  function getTodayDayOfYear() {
+    var now = new Date();
+    var month = now.getMonth(); // 0-indexed
+    var day = now.getDate();
+    var daysInMonth = [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+    var doy = day;
+    for (var m = 0; m < month; m++) doy += daysInMonth[m];
+    return doy;
+  }
 
   function escHtml(s) {
     if (!s) return '';
