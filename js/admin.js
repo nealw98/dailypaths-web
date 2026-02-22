@@ -1683,6 +1683,7 @@
     state.selectedTheme = theme;
     state.themeEditFields = {
       body: theme.body || '',
+      bodyPlain: htmlToPlainText(theme.body || ''),
       short_description: theme.short_description || '',
       meta_description: theme.meta_description || '',
       pull_quote: theme.pull_quote || '',
@@ -1734,12 +1735,16 @@
     // Main
     html += '<div class="admin-editor-main">';
 
-    // Body (HTML content)
+    // Body (plain text editor with preview)
     var bodyWc = wordCount(stripHtml(state.themeEditFields.body));
     html += '<div class="admin-field-group">';
-    html += '<label class="admin-field-label">Body (HTML) <span class="admin-wc ' +
+    html += '<label class="admin-field-label">Body <span class="admin-wc ' +
       (bodyWc >= 50 ? 'admin-wc--ok' : 'admin-wc--warn') + '">' + bodyWc + ' words</span></label>';
-    html += '<textarea class="admin-input admin-textarea" data-theme-field="body" rows="12">' + escHtml(state.themeEditFields.body) + '</textarea>';
+    html += '<p class="admin-field-hint">Separate paragraphs with a blank line. Use **bold**, *italic*, and [link text](url) for formatting.</p>';
+    html += '<textarea class="admin-input admin-textarea" data-theme-field="bodyPlain" rows="12">' + escHtml(state.themeEditFields.bodyPlain) + '</textarea>';
+    html += '<details class="admin-preview-toggle"><summary>Preview</summary>';
+    html += '<div class="admin-preview">' + (state.themeEditFields.body || '<em>No content</em>') + '</div>';
+    html += '</details>';
     html += '</div>';
 
     // Short description
@@ -1815,7 +1820,22 @@
     for (var i = 0; i < inputs.length; i++) {
       inputs[i].addEventListener('input', function () {
         var field = this.getAttribute('data-theme-field');
-        state.themeEditFields[field] = this.value;
+        if (field === 'bodyPlain') {
+          state.themeEditFields.bodyPlain = this.value;
+          state.themeEditFields.body = plainTextToHtml(this.value);
+          // Update preview if open
+          var preview = document.querySelector('.admin-preview');
+          if (preview) preview.innerHTML = state.themeEditFields.body || '<em>No content</em>';
+          // Update word count
+          var wcSpan = this.closest('.admin-field-group').querySelector('.admin-wc');
+          if (wcSpan) {
+            var wc = wordCount(stripHtml(state.themeEditFields.body));
+            wcSpan.textContent = wc + ' words';
+            wcSpan.className = 'admin-wc ' + (wc >= 50 ? 'admin-wc--ok' : 'admin-wc--warn');
+          }
+        } else {
+          state.themeEditFields[field] = this.value;
+        }
         updateThemeSaveBar();
       });
     }
@@ -1834,7 +1854,10 @@
     var btnSave = document.getElementById('btn-save-theme');
     if (btnSave) btnSave.addEventListener('click', function () {
       if (!hasThemeChanges()) return;
-      saveTheme(t.slug, state.themeEditFields, function (err) {
+      // Strip bodyPlain before saving — only send real DB fields
+      var saveData = JSON.parse(JSON.stringify(state.themeEditFields));
+      delete saveData.bodyPlain;
+      saveTheme(t.slug, saveData, function (err) {
         if (!err) {
           state.themeOriginalFields = JSON.parse(JSON.stringify(state.themeEditFields));
           render();
@@ -1964,6 +1987,55 @@
   function stripHtml(html) {
     if (!html) return '';
     return html.replace(/<[^>]*>/g, '').replace(/&[a-zA-Z]+;/g, ' ');
+  }
+
+  // --- Rich Text Helpers ---
+  // Convert HTML body to plain text for editing (paragraphs separated by blank lines)
+  function htmlToPlainText(html) {
+    if (!html) return '';
+    // Replace </p> followed by whitespace and <p> with double newline
+    var text = html
+      .replace(/<\/p>\s*<p[^>]*>/gi, '\n\n')
+      .replace(/<br\s*\/?>/gi, '\n')
+      .replace(/<\/?(p|div)[^>]*>/gi, '\n')
+      .replace(/<strong>(.*?)<\/strong>/gi, '**$1**')
+      .replace(/<em>(.*?)<\/em>/gi, '*$1*')
+      .replace(/<a\s+href="([^"]*)"[^>]*>(.*?)<\/a>/gi, '[$2]($1)')
+      .replace(/&mdash;/g, '\u2014')
+      .replace(/&ndash;/g, '\u2013')
+      .replace(/&ldquo;/g, '\u201C')
+      .replace(/&rdquo;/g, '\u201D')
+      .replace(/&lsquo;/g, '\u2018')
+      .replace(/&rsquo;/g, '\u2019')
+      .replace(/&amp;/g, '&')
+      .replace(/&nbsp;/g, ' ')
+      .replace(/&hellip;/g, '\u2026')
+      .replace(/<[^>]*>/g, ''); // strip any remaining tags
+    // Clean up extra whitespace
+    return text.replace(/\n{3,}/g, '\n\n').trim();
+  }
+
+  // Convert plain text back to HTML for saving
+  function plainTextToHtml(text) {
+    if (!text) return '';
+    var paragraphs = text.split(/\n\s*\n/).filter(function (p) { return p.trim().length > 0; });
+    return paragraphs.map(function (p) {
+      var line = p.trim()
+        .replace(/\n/g, ' ') // collapse single newlines within a paragraph
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;');
+      // Convert markdown-style formatting
+      line = line.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+      line = line.replace(/\*(.+?)\*/g, '<em>$1</em>');
+      line = line.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2">$1</a>');
+      // Smart quotes
+      line = line.replace(/\u201C/g, '&ldquo;').replace(/\u201D/g, '&rdquo;');
+      line = line.replace(/\u2018/g, '&lsquo;').replace(/\u2019/g, '&rsquo;');
+      line = line.replace(/\u2014/g, '&mdash;').replace(/\u2013/g, '&ndash;');
+      line = line.replace(/\u2026/g, '&hellip;');
+      return '<p>' + line + '</p>';
+    }).join('\n');
   }
 
   function getTodayDayOfYear() {
