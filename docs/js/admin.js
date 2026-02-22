@@ -1404,8 +1404,6 @@
       description: (step.description || []).slice(),
       questions: (step.questions || []).slice(),
       tools: (step.tools || []).slice(),
-      hook: step.hook || '',
-      tagline: step.tagline || '',
       pull_quote: step.pull_quote || '',
     };
     state.stepOriginalFields = JSON.parse(JSON.stringify(state.stepEditFields));
@@ -1465,18 +1463,6 @@
 
     // Questions list editor
     html += renderListEditor('step-questions', 'Questions for Reflection', state.stepEditFields.questions);
-
-    // Hook
-    html += '<div class="admin-field-group">';
-    html += '<label class="admin-field-label">Hook <span class="admin-field-hint">(one-sentence teaser)</span></label>';
-    html += '<input class="admin-input" type="text" data-step-field="hook" value="' + escAttr(state.stepEditFields.hook) + '">';
-    html += '</div>';
-
-    // Tagline
-    html += '<div class="admin-field-group">';
-    html += '<label class="admin-field-label">Tagline <span class="admin-field-hint">(hero banner)</span></label>';
-    html += '<input class="admin-input" type="text" data-step-field="tagline" value="' + escAttr(state.stepEditFields.tagline) + '">';
-    html += '</div>';
 
     // Pull quote
     html += '<div class="admin-field-group">';
@@ -1765,9 +1751,6 @@
     html += '<textarea class="admin-input admin-textarea" data-theme-field="pull_quote" rows="2">' + escHtml(state.themeEditFields.pull_quote) + '</textarea>';
     html += '</div>';
 
-    // Tags list editor
-    html += renderListEditor('theme-tags', 'Theme Tags', state.themeEditFields.theme_tags);
-
     // Tools list editor
     html += renderListEditor('theme-tools', 'Recovery Tools', state.themeEditFields.tools);
 
@@ -1841,10 +1824,6 @@
     }
 
     // List editors
-    bindListEditor('theme-tags', state.themeEditFields.theme_tags, function (newList) {
-      state.themeEditFields.theme_tags = newList;
-      render();
-    });
     bindListEditor('theme-tools', state.themeEditFields.tools, function (newList) {
       state.themeEditFields.tools = newList;
       render();

@@ -174,7 +174,7 @@ ${cards}
     const slug = dayToSlug(r.day_of_year);
     return `
           <a href="${bp(`/${slug}/`)}" class="topic-featured-card">
-            <span class="topic-featured-badge">Recommended</span>
+            <span class="topic-featured-badge">Top Rated</span>
             <span class="topic-featured-card-date">${r.display_date}</span>
             <span class="topic-featured-card-title">${r.title}</span>
           </a>`;

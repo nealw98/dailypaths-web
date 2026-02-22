@@ -19,6 +19,7 @@ import { fileURLToPath } from 'node:url';
 import { fetchAllReadings } from './helpers/fetch-readings.mjs';
 import { fetchAllSteps } from './helpers/fetch-steps.mjs';
 import { fetchAllThemes } from './helpers/fetch-themes.mjs';
+import { fetchReadingRatings } from './helpers/fetch-ratings.mjs';
 import { dayToSlug } from './helpers/slug-utils.mjs';
 import { generateSitemap, generateRobotsTxt } from './helpers/seo.mjs';
 import { generateOgImage } from './helpers/og-image.mjs';
@@ -113,6 +114,13 @@ if (supabaseThemes) {
   console.log(`  Merged ${supabaseThemes.length} themes from Supabase`);
 }
 
+// Fetch reading ratings for auto-featured readings on principle pages
+console.log('Fetching reading ratings from Supabase...');
+const ratingsMap = await fetchReadingRatings().catch(err => {
+  console.warn('  Ratings fetch failed, featured readings will fall back to manual:', err.message);
+  return new Map();
+});
+
 // --- Step 2: Clean and create output directory ---
 console.log('Preparing output directory...');
 if (existsSync(outDir)) {
@@ -201,9 +209,31 @@ for (const reading of readings) {
 }
 
 for (const topic of TOPICS) {
-  const featuredReadings = topic.featuredDays
-    .map(day => readingsByDay.get(day))
-    .filter(Boolean);
+  // Auto-select top-rated readings as featured for this principle
+  const themeTags = TOPIC_THEME_TAGS[topic.slug] || [];
+  const matchedReadings = readings.filter(
+    r => r.secondary_theme && themeTags.includes(r.secondary_theme)
+  );
+
+  let featuredReadings;
+  if (ratingsMap.size > 0 && matchedReadings.length > 0) {
+    // Sort by positive rating count (highest first), then by total ratings
+    featuredReadings = matchedReadings
+      .slice()
+      .sort((a, b) => {
+        const ra = ratingsMap.get(a.day_of_year) || { positive: 0, total: 0 };
+        const rb = ratingsMap.get(b.day_of_year) || { positive: 0, total: 0 };
+        if (rb.positive !== ra.positive) return rb.positive - ra.positive;
+        return rb.total - ra.total;
+      })
+      .slice(0, 5);
+  } else {
+    // Fallback to manual featured_days if no ratings data
+    featuredReadings = (topic.featuredDays || [])
+      .map(day => readingsByDay.get(day))
+      .filter(Boolean);
+  }
+
   writePage(
     join(outDir, 'principles', topic.slug, 'index.html'),
     renderTopicPage(topic, featuredReadings, readings)
