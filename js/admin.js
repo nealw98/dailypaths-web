@@ -9,6 +9,10 @@
   var MAIN_SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhubWVzbXNlZ21nYWJsY2F3b2dzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjQzNzIxOTAsImV4cCI6MjA3OTk0ODE5MH0.oEbM_Ah8J5ogRW-aIZPJQPEMoI4ZGB2ncbFPiF1G_mU';
   var EDGE_FN_URL = MAIN_SUPABASE_URL + '/functions/v1/external-readings';
 
+  // External Supabase — direct access for steps & themes (no edge function needed)
+  var EXT_SUPABASE_URL = 'https://ofmqgqaoubsiwujgvcil.supabase.co';
+  var EXT_SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9mbXFncWFvdWJzaXd1amd2Y2lsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjM5MDI1NzEsImV4cCI6MjA3OTQ3ODU3MX0.85ile88Honj3SdXzxGEPFA04LG0B4OjRsbChZ8oUnmE';
+
   // --- State ---
   var state = {
     session: null,
@@ -253,14 +257,21 @@
   function loadSteps() {
     state.loading = true;
     render();
-    callEdgeFn('fetch-steps', {}, { auth: false }, function (err, result) {
+    fetch(EXT_SUPABASE_URL + '/rest/v1/steps?order=number', {
+      headers: {
+        'apikey': EXT_SUPABASE_ANON_KEY,
+        'Authorization': 'Bearer ' + EXT_SUPABASE_ANON_KEY,
+      },
+    })
+    .then(function (res) { return res.json(); })
+    .then(function (steps) {
       state.loading = false;
-      if (err) {
-        showToast('Failed to load steps: ' + err, 'error');
-        render();
-        return;
-      }
-      state.steps = result.steps || [];
+      state.steps = Array.isArray(steps) ? steps : [];
+      render();
+    })
+    .catch(function (err) {
+      state.loading = false;
+      showToast('Failed to load steps: ' + (err.message || err), 'error');
       render();
     });
   }
@@ -268,14 +279,21 @@
   function loadThemes() {
     state.loading = true;
     render();
-    callEdgeFn('fetch-themes', {}, { auth: false }, function (err, result) {
+    fetch(EXT_SUPABASE_URL + '/rest/v1/themes?order=id', {
+      headers: {
+        'apikey': EXT_SUPABASE_ANON_KEY,
+        'Authorization': 'Bearer ' + EXT_SUPABASE_ANON_KEY,
+      },
+    })
+    .then(function (res) { return res.json(); })
+    .then(function (themes) {
       state.loading = false;
-      if (err) {
-        showToast('Failed to load themes: ' + err, 'error');
-        render();
-        return;
-      }
-      state.themes = result.themes || [];
+      state.themes = Array.isArray(themes) ? themes : [];
+      render();
+    })
+    .catch(function (err) {
+      state.loading = false;
+      showToast('Failed to load themes: ' + (err.message || err), 'error');
       render();
     });
   }
@@ -283,46 +301,76 @@
   function saveStep(stepNumber, updates, cb) {
     state.saving = true;
     render();
-    callEdgeFn('update-step', { stepNumber: stepNumber, updateData: updates }, function (err) {
+    updates.updated_at = new Date().toISOString();
+    fetch(EXT_SUPABASE_URL + '/rest/v1/steps?number=eq.' + stepNumber, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json',
+        'apikey': EXT_SUPABASE_ANON_KEY,
+        'Authorization': 'Bearer ' + EXT_SUPABASE_ANON_KEY,
+        'Prefer': 'return=minimal',
+      },
+      body: JSON.stringify(updates),
+    })
+    .then(function (res) {
       state.saving = false;
-      if (err) {
-        showToast('Save failed: ' + err, 'error');
-        render();
-        if (cb) cb(err);
-        return;
+      if (!res.ok) {
+        return res.json().then(function (err) {
+          throw new Error(err.message || 'Save failed');
+        });
       }
       // Update local data
       var step = state.steps.find(function (s) { return s.number === stepNumber; });
       if (step) {
         Object.keys(updates).forEach(function (k) { step[k] = updates[k]; });
-        step.updated_at = new Date().toISOString();
       }
       showToast('Step saved successfully');
       render();
       if (cb) cb(null);
+    })
+    .catch(function (err) {
+      state.saving = false;
+      showToast('Save failed: ' + (err.message || err), 'error');
+      render();
+      if (cb) cb(err);
     });
   }
 
   function saveTheme(themeSlug, updates, cb) {
     state.saving = true;
     render();
-    callEdgeFn('update-theme', { themeSlug: themeSlug, updateData: updates }, function (err) {
+    updates.updated_at = new Date().toISOString();
+    fetch(EXT_SUPABASE_URL + '/rest/v1/themes?slug=eq.' + themeSlug, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json',
+        'apikey': EXT_SUPABASE_ANON_KEY,
+        'Authorization': 'Bearer ' + EXT_SUPABASE_ANON_KEY,
+        'Prefer': 'return=minimal',
+      },
+      body: JSON.stringify(updates),
+    })
+    .then(function (res) {
       state.saving = false;
-      if (err) {
-        showToast('Save failed: ' + err, 'error');
-        render();
-        if (cb) cb(err);
-        return;
+      if (!res.ok) {
+        return res.json().then(function (err) {
+          throw new Error(err.message || 'Save failed');
+        });
       }
       // Update local data
       var theme = state.themes.find(function (t) { return t.slug === themeSlug; });
       if (theme) {
         Object.keys(updates).forEach(function (k) { theme[k] = updates[k]; });
-        theme.updated_at = new Date().toISOString();
       }
       showToast('Theme saved successfully');
       render();
       if (cb) cb(null);
+    })
+    .catch(function (err) {
+      state.saving = false;
+      showToast('Save failed: ' + (err.message || err), 'error');
+      render();
+      if (cb) cb(err);
     });
   }
 

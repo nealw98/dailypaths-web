@@ -3,3 +3,7 @@ node_modules/
 .DS_Store
 sample-og.png
 test-og.mjs
+
+# Supabase CLI local state
+.supabase/
+supabase/.temp/

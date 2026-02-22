@@ -1,0 +1,10 @@
+project_id = "hnmesmsegmgablcawogs"
+
+[functions.rewrite-reading]
+verify_jwt = true
+
+[functions.external-readings]
+verify_jwt = false
+
+[functions.share-reading]
+verify_jwt = false
