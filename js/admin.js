@@ -960,12 +960,12 @@
     // Rating summary
     html += '<div class="admin-sidebar-section">';
     html += '<h4>Ratings</h4>';
-    if (r.total_ratings > 0) {
+    if (r.total_ratings > 0 || r.favorites_count > 0) {
       html += '<div class="admin-rating-grid">' +
-        '<div class="admin-rating-item admin-rating-item--pos"><span class="admin-rating-num">' + r.positive_count + '</span><span class="admin-rating-label">Positive</span></div>' +
-        '<div class="admin-rating-item admin-rating-item--neg"><span class="admin-rating-num">' + r.negative_count + '</span><span class="admin-rating-label">Negative</span></div>' +
-        '<div class="admin-rating-item"><span class="admin-rating-num">' + r.total_ratings + '</span><span class="admin-rating-label">Total</span></div>' +
-        '<div class="admin-rating-item"><span class="admin-rating-num">' + Math.round(r.negative_pct) + '%</span><span class="admin-rating-label">Neg %</span></div>' +
+        '<div class="admin-rating-item admin-rating-item--pos"><span class="admin-rating-num">' + (r.positive_count || 0) + '</span><span class="admin-rating-label">Positive</span></div>' +
+        '<div class="admin-rating-item admin-rating-item--neg"><span class="admin-rating-num">' + (r.negative_count || 0) + '</span><span class="admin-rating-label">Negative</span></div>' +
+        '<div class="admin-rating-item"><span class="admin-rating-num">' + (r.total_ratings || 0) + '</span><span class="admin-rating-label">Total</span></div>' +
+        '<div class="admin-rating-item admin-rating-item--fav"><span class="admin-rating-num">' + (r.favorites_count || 0) + '</span><span class="admin-rating-label">\u2764 Favorites</span></div>' +
       '</div>';
     } else {
       html += '<p class="admin-muted">No ratings yet</p>';

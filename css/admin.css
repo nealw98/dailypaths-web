@@ -610,6 +610,7 @@ body.page-admin main {
 
 .admin-rating-item--pos .admin-rating-num { color: var(--admin-green); }
 .admin-rating-item--neg .admin-rating-num { color: var(--admin-red); }
+.admin-rating-item--fav .admin-rating-num { color: #e8a020; }
 
 /* --- Reasons & Comments --- */
 .admin-reasons {
