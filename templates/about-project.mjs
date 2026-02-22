@@ -124,6 +124,33 @@ export function renderAboutProjectPage() {
             <p>Daily Paths is an independent project published by Daily Growth, LLC. It is not affiliated with, endorsed by, or approved by Al-Anon Family Groups, Inc. or any other organization. The Twelve Steps and Twelve Traditions are used with the understanding that they are the shared heritage of the recovery community.</p>
           </section>
 
+          <!-- Project Support -->
+          <section class="ap-section ap-support">
+            <h2 class="ap-section-heading">Project Support</h2>
+            <div class="ap-editorial">
+              <p>For questions regarding the Daily Paths website or the mobile app, please contact us at <a href="mailto:support@dailypaths.org">support@dailypaths.org</a>. As a small, personal project by Daily Growth, LLC, we aim to respond to all inquiries within 48 hours.</p>
+            </div>
+          </section>
+
+          <!-- Additional Community Resources -->
+          <section class="ap-section ap-support">
+            <h2 class="ap-section-heading">Additional Community Resources</h2>
+            <div class="ap-editorial">
+              <p>Daily Paths is a tool for daily reflection and is not a substitute for professional healthcare or crisis intervention. If you or someone you know is in need of extra support, these confidential national resources are available 24/7:</p>
+            </div>
+            <ul class="ap-resource-list">
+              <li>
+                <strong>988 Suicide &amp; Crisis Lifeline:</strong> Call or text <strong>988</strong> (USA) or visit <a href="https://988lifeline.org" target="_blank" rel="noopener noreferrer">988lifeline.org</a>.
+              </li>
+              <li>
+                <strong>National Domestic Violence Hotline:</strong> Call <strong>1-800-799-SAFE</strong> (7233) or text &ldquo;START&rdquo; to <strong>88788</strong>.
+              </li>
+              <li>
+                <strong>Find an Al-Anon Meeting:</strong> Visit the <a href="https://al-anon.org/al-anon-meetings/find-an-al-anon-meeting/" target="_blank" rel="noopener noreferrer">Official Al-Anon Meeting Finder</a>.
+              </li>
+            </ul>
+          </section>
+
         </div>
       </div>
 

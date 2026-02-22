@@ -277,6 +277,14 @@ ul {
   margin-top: 0.5rem;
 }
 
+.footer-crisis {
+  width: 100%;
+  font-size: 0.7rem;
+  color: var(--ink);
+  opacity: 0.4;
+  margin-top: 0.35rem;
+}
+
 @media (max-width: 640px) {
   .footer-inner {
     flex-direction: column;
@@ -1810,6 +1818,42 @@ html {
   max-width: 36rem;
   margin: 0 auto;
   text-align: center;
+}
+
+/* Support & Resources */
+.ap-support {
+  border-top: 1px solid var(--cloud);
+  padding-top: 2rem;
+  margin-top: 1rem;
+}
+
+.ap-resource-list {
+  list-style: none;
+  padding: 0;
+  margin: 1.25rem 0 0;
+  max-width: 36rem;
+}
+
+.ap-resource-list li {
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  line-height: 1.7;
+  color: var(--ink);
+  padding: 0.6rem 0;
+  border-bottom: 1px solid var(--cloud);
+}
+
+.ap-resource-list li:last-child {
+  border-bottom: none;
+}
+
+.ap-resource-list a {
+  color: var(--deep-teal);
+  text-decoration: none;
+}
+
+.ap-resource-list a:hover {
+  text-decoration: underline;
 }
 
 /* App badges — centered below comparison grid */

@@ -123,6 +123,7 @@ ${bodyContent}
         <a href="${bp('/terms/')}">Terms</a>
       </nav>
       <p class="footer-copyright">&copy; 2026 Daily Growth, LLC. All rights reserved.</p>
+      <p class="footer-crisis">In crisis? Help is available 24/7. Call or text <strong>988</strong> (USA).</p>
     </div>
   </footer>
 
