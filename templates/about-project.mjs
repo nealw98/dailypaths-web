@@ -35,16 +35,8 @@ export function renderAboutProjectPage() {
           <section class="ap-section">
             <h2 class="ap-section-heading">Our Mission</h2>
             <div class="ap-editorial">
-              <p>Daily Paths exists to make daily recovery accessible, private, and consistent. Each of our 366 original reflections draws on the wisdom of the Al-Anon program&mdash;its Steps, Traditions, and the lived experience of families who have walked this road before. Every entry is written to meet you where you are: not with advice, but with the gentle reminder that you are not alone and that today is enough.</p>
-            </div>
-          </section>
-
-          <!-- Our Approach -->
-          <section class="ap-section">
-            <h2 class="ap-section-heading">Our Approach</h2>
-            <div class="ap-editorial">
-              <p>Daily Paths was born out of a simple observation: recovery happens in the small moments between meetings. While traditional literature is the bedrock of our program, the &ldquo;One Day at a Time&rdquo; philosophy often requires a companion that is as mobile as we are.</p>
-              <p>Our approach is grounded in the contemplative tradition of Al-Anon. We don&rsquo;t just provide quotes; we provide original reflections designed to help you pause, breathe, and apply a principle to your immediate situation.</p>
+              <p>Daily Paths exists to provide modern, digital tools for a timeless program. Traditional Al-Anon literature is the bedrock of recovery, but the &ldquo;One Day at a Time&rdquo; philosophy often requires a companion that is as mobile as we are&mdash;something you can reach for in the quiet moments between meetings, on a break at work, or before the day begins.</p>
+              <p>Each of our 366 original reflections is grounded in the contemplative tradition of Al-Anon. We don&rsquo;t just provide quotes; we provide reflections designed to help you pause, breathe, and apply a principle to your immediate situation. Every entry meets you where you are: not with advice, but with the gentle reminder that you are not alone and that today is enough.</p>
             </div>
           </section>
 
@@ -52,8 +44,8 @@ export function renderAboutProjectPage() {
           <section class="ap-section ap-curator">
             <h2 class="ap-section-heading">The Heart Behind the Project</h2>
             <div class="ap-editorial">
-              <p>Daily Paths is curated by <strong>Neal W.</strong> and published by <strong>Daily Growth, LLC</strong>. As someone whose life has been shaped by the Al-Anon program, Neal created Daily Paths to bring modern, thoughtful tools to the recovery community&mdash;tools that honor the program&rsquo;s traditions while meeting people where they already are: on their phones, in quiet moments, one day at a time.</p>
-              <p>Every reflection, every theme page, and every feature in the app is built with a single question in mind: <em>will this help someone find a little more serenity today?</em></p>
+              <p>Daily Paths is curated by <strong>Neal W.</strong>, who brings over 30 years of personal recovery experience to this project. While Neal&rsquo;s journey began in other Twelve Step rooms, his life has been deeply intertwined with Al-Anon through his marriage and his role as a sponsor to many navigating the complexities of family recovery. This unique perspective allows Daily Paths to offer reflections that are grounded in time-tested principles while remaining accessible to those just beginning to discover the Al-Anon path.</p>
+              <p>Published by <strong>Daily Growth, LLC</strong>, Daily Paths is committed to supporting the global recovery community. Every reflection, every theme page, and every feature in the app is built with a single question in mind: <em>will this help someone find a little more serenity today?</em></p>
             </div>
           </section>
 
