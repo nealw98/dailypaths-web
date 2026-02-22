@@ -73,15 +73,18 @@ export const TOPICS = [
     image: 'detachment.jpg',
     imageAlt: 'Woman finding peace on her porch \u2014 detachment with love in Al-Anon recovery',
     body: `
+      <h2>What is Detachment?</h2>
       <p>
-        Detachment is the practice of separating our well-being from
-        someone else&rsquo;s choices. It doesn&rsquo;t mean we stop
-        caring &mdash; it means we stop drowning.
+        In the world of recovery, detachment is perhaps the most misunderstood principle&mdash;and the most life-saving. To the newcomer, detachment can sound like coldness, indifference, or a way of &ldquo;giving up&rdquo; on the person they love. But in practice, detachment is an act of profound compassion for both the alcoholic and ourselves.
       </p>
       <p>
-        We learn to love without losing ourselves, to be present without
-        being consumed. Detachment is what makes it possible to stay in
-        the room without being destroyed by what&rsquo;s happening in it.
+        Detachment is the realization that we cannot &ldquo;care&rdquo; someone into sobriety. We didn&rsquo;t cause the disease, we can&rsquo;t control it, and we cannot cure it. When we obsessively monitor, manage, or shield the alcoholic from the consequences of their drinking, we aren&rsquo;t helping them recover; we are simply joining them in the chaos. We become a &ldquo;buffer&rdquo; between the drinker and the very consequences that might eventually lead them to seek help.
+      </p>
+      <p>
+        Detaching means letting go of the results. It is the process of untangling our emotional well-being from the behavior of another person. We learn to separate the person we love from the disease they suffer from. We stop being the &ldquo;manager&rdquo; of their life so we can finally become the &ldquo;owner&rdquo; of our own.
+      </p>
+      <p>
+        Practicing detachment with love allows us to stop reacting and start living. It gives us the space to breathe, even when the storm is still blowing. By stepping back, we stop the futile cycle of &ldquo;fixing&rdquo; and begin the necessary work of healing. We learn that we can love someone deeply without allowing their choices to destroy our serenity. Detachment isn&rsquo;t about leaving the person; it&rsquo;s about finding ourselves again.
       </p>`,
     featuredDays: [102, 211, 289, 252, 346],
   },
