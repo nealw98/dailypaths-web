@@ -1402,6 +1402,7 @@
     state.selectedStep = step;
     state.stepEditFields = {
       description: (step.description || []).slice(),
+      descriptionPlain: (step.description || []).join('\n\n'),
       questions: (step.questions || []).slice(),
       tools: (step.tools || []).slice(),
       pull_quote: step.pull_quote || '',
@@ -1451,14 +1452,13 @@
     // Main content
     html += '<div class="admin-editor-main">';
 
-    // Description paragraphs
+    // Description
     html += '<div class="admin-field-group">';
     html += '<label class="admin-field-label">Description <span class="admin-wc ' +
       (totalWordCount(state.stepEditFields.description) >= 100 ? 'admin-wc--ok' : 'admin-wc--warn') + '">' +
       totalWordCount(state.stepEditFields.description) + ' words</span></label>';
-    for (var d = 0; d < state.stepEditFields.description.length; d++) {
-      html += '<textarea class="admin-input admin-textarea admin-mb-8" data-step-desc-idx="' + d + '" rows="4">' + escHtml(state.stepEditFields.description[d]) + '</textarea>';
-    }
+    html += '<p class="admin-field-hint">Separate paragraphs with a blank line.</p>';
+    html += '<textarea class="admin-input admin-textarea" data-step-field="descriptionPlain" rows="12">' + escHtml(state.stepEditFields.descriptionPlain) + '</textarea>';
     html += '</div>';
 
     // Questions list editor
@@ -1517,22 +1517,22 @@
       navigateStep(1);
     });
 
-    // Description textareas
-    var descInputs = document.querySelectorAll('[data-step-desc-idx]');
-    for (var i = 0; i < descInputs.length; i++) {
-      descInputs[i].addEventListener('input', function () {
-        var idx = parseInt(this.getAttribute('data-step-desc-idx'), 10);
-        state.stepEditFields.description[idx] = this.value;
-        updateStepSaveBar();
-      });
-    }
-
-    // Simple fields (hook, tagline, pull_quote)
+    // Simple fields (pull_quote, descriptionPlain)
     var simpleInputs = document.querySelectorAll('[data-step-field]');
     for (var j = 0; j < simpleInputs.length; j++) {
       simpleInputs[j].addEventListener('input', function () {
         var field = this.getAttribute('data-step-field');
         state.stepEditFields[field] = this.value;
+        if (field === 'descriptionPlain') {
+          state.stepEditFields.description = this.value.split(/\n\s*\n/).filter(function (p) { return p.trim().length > 0; }).map(function (p) { return p.trim(); });
+          // Update word count
+          var wcSpan = this.closest('.admin-field-group').querySelector('.admin-wc');
+          if (wcSpan) {
+            var wc = totalWordCount(state.stepEditFields.description);
+            wcSpan.textContent = wc + ' words';
+            wcSpan.className = 'admin-wc ' + (wc >= 100 ? 'admin-wc--ok' : 'admin-wc--warn');
+          }
+        }
         updateStepSaveBar();
       });
     }
@@ -1551,7 +1551,10 @@
     var btnSave = document.getElementById('btn-save-step');
     if (btnSave) btnSave.addEventListener('click', function () {
       if (!hasStepChanges()) return;
-      saveStep(s.number, state.stepEditFields, function (err) {
+      // Strip descriptionPlain before saving — only send real DB fields
+      var saveData = JSON.parse(JSON.stringify(state.stepEditFields));
+      delete saveData.descriptionPlain;
+      saveStep(s.number, saveData, function (err) {
         if (!err) {
           state.stepOriginalFields = JSON.parse(JSON.stringify(state.stepEditFields));
           render();
