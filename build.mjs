@@ -20,6 +20,7 @@ import { fetchAllReadings } from './helpers/fetch-readings.mjs';
 import { fetchAllSteps } from './helpers/fetch-steps.mjs';
 import { fetchAllThemes } from './helpers/fetch-themes.mjs';
 import { fetchReadingRatings } from './helpers/fetch-ratings.mjs';
+import { fetchApprovedShares } from './helpers/fetch-shares.mjs';
 import { dayToSlug } from './helpers/slug-utils.mjs';
 import { generateSitemap, generateRobotsTxt } from './helpers/seo.mjs';
 import { generateOgImage } from './helpers/og-image.mjs';
@@ -118,6 +119,13 @@ if (supabaseThemes) {
 console.log('Fetching reading ratings from Supabase...');
 const ratingsMap = await fetchReadingRatings().catch(err => {
   console.warn('  Ratings fetch failed, featured readings will fall back to manual:', err.message);
+  return new Map();
+});
+
+// Fetch approved member shares for principle pages
+console.log('Fetching member shares from Supabase...');
+const sharesMap = await fetchApprovedShares().catch(err => {
+  console.warn('  Shares fetch failed, using hardcoded defaults:', err.message);
   return new Map();
 });
 
@@ -234,9 +242,12 @@ for (const topic of TOPICS) {
       .filter(Boolean);
   }
 
+  // Get approved shares for this theme (most recent first)
+  const topicShares = sharesMap.get(topic.slug) || [];
+
   writePage(
     join(outDir, 'principles', topic.slug, 'index.html'),
-    renderTopicPage(topic, featuredReadings, readings)
+    renderTopicPage(topic, featuredReadings, readings, topicShares)
   );
 }
 

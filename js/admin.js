@@ -25,7 +25,7 @@
     sort: 'day_of_year',
     filter: 'all',
     source: 'all',
-    view: 'login', // login | dashboard | reading | app-feedback | steps-list | step-detail | themes-list | theme-detail
+    view: 'login', // login | dashboard | reading | app-feedback | steps-list | step-detail | themes-list | theme-detail | shares-list | share-detail
     loading: false,
     saving: false,
     editFields: {},
@@ -39,6 +39,12 @@
     stepOriginalFields: {},
     themeEditFields: {},
     themeOriginalFields: {},
+    // Shares
+    shares: [],
+    sharesFilter: 'pending',
+    selectedShare: null,
+    shareEditFields: {},
+    shareOriginalFields: {},
   };
 
   // --- Supabase Auth Helpers ---
@@ -374,6 +380,86 @@
     });
   }
 
+  // --- Shares Data ---
+
+  function loadShares() {
+    state.loading = true;
+    render();
+    fetch(EXT_SUPABASE_URL + '/rest/v1/member_shares?order=created_at.desc', {
+      headers: {
+        'apikey': EXT_SUPABASE_ANON_KEY,
+        'Authorization': 'Bearer ' + EXT_SUPABASE_ANON_KEY,
+      },
+    })
+    .then(function (res) { return res.json(); })
+    .then(function (shares) {
+      state.loading = false;
+      state.shares = Array.isArray(shares) ? shares : [];
+      render();
+    })
+    .catch(function (err) {
+      state.loading = false;
+      showToast('Failed to load shares: ' + (err.message || err), 'error');
+      render();
+    });
+  }
+
+  function saveShare(shareId, updates, cb) {
+    state.saving = true;
+    render();
+    fetch(EXT_SUPABASE_URL + '/rest/v1/member_shares?id=eq.' + shareId, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json',
+        'apikey': EXT_SUPABASE_ANON_KEY,
+        'Authorization': 'Bearer ' + EXT_SUPABASE_ANON_KEY,
+        'Prefer': 'return=minimal',
+      },
+      body: JSON.stringify(updates),
+    })
+    .then(function (res) {
+      state.saving = false;
+      if (!res.ok) {
+        return res.json().then(function (err) {
+          throw new Error(err.message || 'Save failed');
+        });
+      }
+      var share = state.shares.find(function (s) { return s.id === shareId; });
+      if (share) {
+        Object.keys(updates).forEach(function (k) { share[k] = updates[k]; });
+      }
+      showToast('Share saved');
+      render();
+      if (cb) cb(null);
+    })
+    .catch(function (err) {
+      state.saving = false;
+      showToast('Save failed: ' + (err.message || err), 'error');
+      render();
+      if (cb) cb(err);
+    });
+  }
+
+  function deleteShare(shareId, cb) {
+    fetch(EXT_SUPABASE_URL + '/rest/v1/member_shares?id=eq.' + shareId, {
+      method: 'DELETE',
+      headers: {
+        'apikey': EXT_SUPABASE_ANON_KEY,
+        'Authorization': 'Bearer ' + EXT_SUPABASE_ANON_KEY,
+      },
+    })
+    .then(function (res) {
+      if (!res.ok) throw new Error('Delete failed');
+      state.shares = state.shares.filter(function (s) { return s.id !== shareId; });
+      showToast('Share deleted');
+      if (cb) cb(null);
+    })
+    .catch(function (err) {
+      showToast('Delete failed: ' + (err.message || err), 'error');
+      if (cb) cb(err);
+    });
+  }
+
   // --- Sorting & Filtering ---
 
   function applyFiltersAndSort() {
@@ -588,6 +674,14 @@
         app.innerHTML = renderThemeDetail();
         bindThemeDetail();
         break;
+      case 'shares-list':
+        app.innerHTML = renderSharesList();
+        bindSharesList();
+        break;
+      case 'share-detail':
+        app.innerHTML = renderShareDetail();
+        bindShareDetail();
+        break;
     }
   }
 
@@ -656,6 +750,9 @@
       '<div class="admin-header-right">' +
         '<button class="admin-btn admin-btn--ghost" id="btn-steps">Steps</button>' +
         '<button class="admin-btn admin-btn--ghost" id="btn-themes">Themes</button>' +
+        '<button class="admin-btn admin-btn--ghost" id="btn-shares">Shares' +
+          (state.shares.filter(function (s) { return !s.is_approved; }).length > 0 ? ' <span class="admin-badge">' + state.shares.filter(function (s) { return !s.is_approved; }).length + '</span>' : '') +
+        '</button>' +
         '<button class="admin-btn admin-btn--ghost" id="btn-app-feedback">App Feedback' +
           (state.appFeedbackCount > 0 ? ' <span class="admin-badge">' + state.appFeedbackCount + '</span>' : '') +
         '</button>' +
@@ -902,6 +999,12 @@
       state.view = 'themes-list';
       if (state.themes.length === 0) loadThemes();
       else render();
+    });
+
+    var btnShares = document.getElementById('btn-shares');
+    if (btnShares) btnShares.addEventListener('click', function () {
+      state.view = 'shares-list';
+      loadShares();
     });
   }
 
@@ -1870,6 +1973,267 @@
   function updateThemeSaveBar() {
     var btnSave = document.getElementById('btn-save-theme');
     if (btnSave) btnSave.disabled = !hasThemeChanges() || state.saving;
+  }
+
+  // --- Shares List View ---
+
+  // Theme slug → display name map
+  var THEME_NAMES = {
+    'detachment': 'Detachment with Love',
+    'powerlessness': 'Powerlessness & Surrender',
+    'focus-on-yourself': 'Focus on Yourself',
+    'one-day-at-a-time': 'One Day at a Time',
+    'boundaries': 'Boundaries',
+    'letting-go-of-control': 'Letting Go of Control',
+    'self-worth': 'Self-Worth & Identity',
+    'higher-power': 'Trusting a Higher Power',
+    'honesty': 'Honesty & Self-Awareness',
+    'gratitude-and-hope': 'Gratitude & Hope',
+    'the-disease': 'Understanding the Disease',
+    'fellowship': 'Community & Fellowship',
+  };
+
+  function renderSharesList() {
+    var filtered = state.shares.filter(function (s) {
+      if (state.sharesFilter === 'pending') return !s.is_approved;
+      if (state.sharesFilter === 'approved') return s.is_approved;
+      return true;
+    });
+
+    var pendingCount = state.shares.filter(function (s) { return !s.is_approved; }).length;
+    var approvedCount = state.shares.filter(function (s) { return s.is_approved; }).length;
+
+    var html = '<div class="admin-editor">';
+    html += '<div class="admin-editor-header">';
+    html += '<button class="admin-btn admin-btn--ghost" id="btn-back-shares">&larr; Back to Dashboard</button>';
+    html += '<h2>Member Shares</h2>';
+    html += '<button class="admin-btn admin-btn--ghost" id="btn-refresh-shares">Refresh</button>';
+    html += '</div>';
+
+    // Filter tabs
+    html += '<div class="admin-controls" style="padding:8px 24px;">';
+    html += '<button class="admin-btn ' + (state.sharesFilter === 'pending' ? 'admin-btn--primary' : 'admin-btn--ghost') + '" data-shares-filter="pending">Pending (' + pendingCount + ')</button> ';
+    html += '<button class="admin-btn ' + (state.sharesFilter === 'approved' ? 'admin-btn--primary' : 'admin-btn--ghost') + '" data-shares-filter="approved">Approved (' + approvedCount + ')</button> ';
+    html += '<button class="admin-btn ' + (state.sharesFilter === 'all' ? 'admin-btn--primary' : 'admin-btn--ghost') + '" data-shares-filter="all">All (' + state.shares.length + ')</button>';
+    html += '</div>';
+
+    if (state.loading) {
+      html += '<p style="padding:24px;">Loading...</p>';
+    } else if (filtered.length === 0) {
+      html += '<p style="padding:24px;" class="admin-muted">No shares found.</p>';
+    } else {
+      html += '<div class="admin-list-items" style="padding:12px 24px;">';
+      for (var i = 0; i < filtered.length; i++) {
+        var s = filtered[i];
+        var themeName = THEME_NAMES[s.topic_slug] || s.topic_slug;
+        var preview = (s.content || '').substring(0, 120) + (s.content && s.content.length > 120 ? '...' : '');
+        var statusClass = s.is_approved ? 'admin-share-status--approved' : 'admin-share-status--pending';
+        var statusLabel = s.is_approved ? 'Approved' : 'Pending';
+        var date = s.created_at ? new Date(s.created_at).toLocaleDateString() : '';
+
+        html += '<div class="admin-share-card" data-share-id="' + s.id + '">';
+        html += '<div class="admin-share-card-header">';
+        html += '<span class="admin-share-card-name">' + escHtml(s.display_name) + '</span>';
+        html += '<span class="admin-share-status ' + statusClass + '">' + statusLabel + '</span>';
+        html += '</div>';
+        html += '<div class="admin-share-card-theme">' + escHtml(themeName) + '</div>';
+        html += '<div class="admin-share-card-preview">' + escHtml(preview) + '</div>';
+        html += '<div class="admin-share-card-date">' + date + '</div>';
+        html += '</div>';
+      }
+      html += '</div>';
+    }
+
+    html += '</div>';
+    return html;
+  }
+
+  function bindSharesList() {
+    var btnBack = document.getElementById('btn-back-shares');
+    if (btnBack) btnBack.addEventListener('click', function () {
+      state.view = 'dashboard';
+      render();
+    });
+
+    var btnRefresh = document.getElementById('btn-refresh-shares');
+    if (btnRefresh) btnRefresh.addEventListener('click', function () { loadShares(); });
+
+    // Filter buttons
+    var filterBtns = document.querySelectorAll('[data-shares-filter]');
+    for (var i = 0; i < filterBtns.length; i++) {
+      filterBtns[i].addEventListener('click', function () {
+        state.sharesFilter = this.getAttribute('data-shares-filter');
+        render();
+      });
+    }
+
+    // Click to open
+    var cards = document.querySelectorAll('.admin-share-card');
+    for (var j = 0; j < cards.length; j++) {
+      cards[j].addEventListener('click', function () {
+        var id = this.getAttribute('data-share-id');
+        var share = state.shares.find(function (s) { return s.id === id; });
+        if (share) openShare(share);
+      });
+    }
+  }
+
+  function openShare(share) {
+    state.selectedShare = share;
+    state.shareEditFields = {
+      display_name: share.display_name || '',
+      content: share.content || '',
+    };
+    state.shareOriginalFields = JSON.parse(JSON.stringify(state.shareEditFields));
+    state.view = 'share-detail';
+    render();
+  }
+
+  // --- Share Detail View ---
+
+  function renderShareDetail() {
+    var s = state.selectedShare;
+    if (!s) return '<p>No share selected</p>';
+
+    var themeName = THEME_NAMES[s.topic_slug] || s.topic_slug;
+    var hasChanges = JSON.stringify(state.shareEditFields) !== JSON.stringify(state.shareOriginalFields);
+    var date = s.created_at ? new Date(s.created_at).toLocaleString() : 'Unknown';
+    var statusLabel = s.is_approved ? 'Approved' : 'Pending';
+    var statusClass = s.is_approved ? 'admin-share-status--approved' : 'admin-share-status--pending';
+
+    var html = '<div class="admin-editor">';
+    html += '<div class="admin-editor-header">';
+    html += '<button class="admin-btn admin-btn--ghost" id="btn-back-share">&larr; Back to Shares</button>';
+    html += '<h2>Share from ' + escHtml(s.display_name) + '</h2>';
+    html += '</div>';
+
+    html += '<div class="admin-step-editor-layout">';
+
+    // Sidebar
+    html += '<aside class="admin-editor-sidebar" style="min-width:200px;max-width:240px;">';
+    html += '<h4>Details</h4>';
+    html += '<p class="admin-muted" style="font-size:12px;">Theme: <strong>' + escHtml(themeName) + '</strong></p>';
+    html += '<p class="admin-muted" style="font-size:12px;">Submitted: ' + date + '</p>';
+    html += '<p class="admin-muted" style="font-size:12px;">Status: <span class="admin-share-status ' + statusClass + '">' + statusLabel + '</span></p>';
+    html += '<div style="margin-top:16px;">';
+    if (!s.is_approved) {
+      html += '<button class="admin-btn admin-btn--primary" id="btn-approve-share" style="width:100%;margin-bottom:8px;">Approve</button>';
+    }
+    html += '<button class="admin-btn admin-btn--ghost admin-btn--danger" id="btn-delete-share" style="width:100%;">Delete</button>';
+    html += '</div>';
+    html += '</aside>';
+
+    // Main
+    html += '<div class="admin-editor-main">';
+
+    // Display name
+    html += '<div class="admin-field-group">';
+    html += '<label class="admin-field-label">Display Name</label>';
+    html += '<input class="admin-input" type="text" data-share-field="display_name" value="' + escAttr(state.shareEditFields.display_name) + '">';
+    html += '</div>';
+
+    // Content
+    var contentWc = wordCount(state.shareEditFields.content);
+    html += '<div class="admin-field-group">';
+    html += '<label class="admin-field-label">Content <span class="admin-wc ' +
+      (contentWc >= 20 ? 'admin-wc--ok' : 'admin-wc--warn') + '">' + contentWc + ' words</span></label>';
+    html += '<p class="admin-field-hint">Separate paragraphs with a blank line.</p>';
+    html += '<textarea class="admin-input admin-textarea" data-share-field="content" rows="12">' + escHtml(state.shareEditFields.content) + '</textarea>';
+    html += '</div>';
+
+    // Save bar
+    html += '<div class="admin-save-bar">';
+    if (hasChanges) {
+      html += '<span class="admin-unsaved">Unsaved changes</span>';
+      html += '<button class="admin-btn admin-btn--ghost" id="btn-discard-share">Discard</button>';
+    }
+    html += '<button class="admin-btn admin-btn--primary" id="btn-save-share"' +
+      (state.saving ? ' disabled' : '') + (!hasChanges ? ' disabled' : '') + '>' +
+      (state.saving ? 'Saving...' : 'Save') +
+    '</button>';
+    html += '</div>';
+
+    html += '</div>'; // editor-main
+    html += '</div>'; // layout
+    html += '</div>'; // editor
+
+    return html;
+  }
+
+  function bindShareDetail() {
+    var s = state.selectedShare;
+    if (!s) return;
+
+    // Back
+    var btnBack = document.getElementById('btn-back-share');
+    if (btnBack) btnBack.addEventListener('click', function () {
+      if (hasShareChanges() && !confirm('Discard unsaved changes?')) return;
+      state.view = 'shares-list';
+      state.selectedShare = null;
+      render();
+    });
+
+    // Simple fields
+    var inputs = document.querySelectorAll('[data-share-field]');
+    for (var i = 0; i < inputs.length; i++) {
+      inputs[i].addEventListener('input', function () {
+        var field = this.getAttribute('data-share-field');
+        state.shareEditFields[field] = this.value;
+        updateShareSaveBar();
+      });
+    }
+
+    // Approve
+    var btnApprove = document.getElementById('btn-approve-share');
+    if (btnApprove) btnApprove.addEventListener('click', function () {
+      saveShare(s.id, { is_approved: true }, function (err) {
+        if (!err) {
+          s.is_approved = true;
+          render();
+        }
+      });
+    });
+
+    // Delete
+    var btnDelete = document.getElementById('btn-delete-share');
+    if (btnDelete) btnDelete.addEventListener('click', function () {
+      if (!confirm('Delete this share permanently?')) return;
+      deleteShare(s.id, function (err) {
+        if (!err) {
+          state.view = 'shares-list';
+          state.selectedShare = null;
+          render();
+        }
+      });
+    });
+
+    // Save
+    var btnSave = document.getElementById('btn-save-share');
+    if (btnSave) btnSave.addEventListener('click', function () {
+      if (!hasShareChanges()) return;
+      saveShare(s.id, state.shareEditFields, function (err) {
+        if (!err) {
+          state.shareOriginalFields = JSON.parse(JSON.stringify(state.shareEditFields));
+          render();
+        }
+      });
+    });
+
+    // Discard
+    var btnDiscard = document.getElementById('btn-discard-share');
+    if (btnDiscard) btnDiscard.addEventListener('click', function () {
+      state.shareEditFields = JSON.parse(JSON.stringify(state.shareOriginalFields));
+      render();
+    });
+  }
+
+  function hasShareChanges() {
+    return JSON.stringify(state.shareEditFields) !== JSON.stringify(state.shareOriginalFields);
+  }
+
+  function updateShareSaveBar() {
+    var btnSave = document.getElementById('btn-save-share');
+    if (btnSave) btnSave.disabled = !hasShareChanges() || state.saving;
   }
 
   // --- Reusable List Editor ---

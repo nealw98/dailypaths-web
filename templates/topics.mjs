@@ -104,7 +104,7 @@ ${galleryCards}
  * @param {Array} featuredReadings - Reading objects matching featuredDays
  * @param {Array} [allReadings] - All 366 readings (for theme-tag matching)
  */
-export function renderTopicPage(topic, featuredReadings, allReadings = []) {
+export function renderTopicPage(topic, featuredReadings, allReadings = [], topicShares = []) {
   const idx = TOPICS.indexOf(topic);
   const prevTopic = TOPICS[(idx - 1 + TOPICS.length) % TOPICS.length];
   const nextTopic = TOPICS[(idx + 1) % TOPICS.length];
@@ -161,9 +161,19 @@ ${cards}
               </div>`;
     }).join('\n');
 
-  // Member share — use specific share or default
-  const memberShare = MEMBER_SHARES[topic.slug] || DEFAULT_MEMBER_SHARE;
-  const shareParagraphs = memberShare.split('\n\n').map(p => `              <p>${p.trim()}</p>`).join('\n');
+  // Member share — use DB share if available, else hardcoded default
+  let memberShareContent;
+  let memberShareAttribution;
+  if (topicShares.length > 0) {
+    // Use the most recent approved share from the database
+    const dbShare = topicShares[0];
+    memberShareContent = dbShare.content;
+    memberShareAttribution = dbShare.display_name || 'An Al-Anon member';
+  } else {
+    memberShareContent = MEMBER_SHARES[topic.slug] || DEFAULT_MEMBER_SHARE;
+    memberShareAttribution = 'An Al-Anon member';
+  }
+  const shareParagraphs = memberShareContent.split('\n\n').map(p => `              <p>${p.trim()}</p>`).join('\n');
 
   // Toolbox items with compass SVG icon
   const compassSvg = '<svg class="topic-toolbox-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88"/></svg>';
@@ -230,7 +240,7 @@ ${cards}
           <blockquote class="topic-member-insight-body">
 ${shareParagraphs}
           </blockquote>
-          <p class="topic-member-insight-attribution">&mdash; An Al-Anon member</p>
+          <p class="topic-member-insight-attribution">&mdash; ${memberShareAttribution}</p>
           <div class="topic-share-trigger">
             <a href="#share-form-${topic.slug}" class="topic-share-link" data-share-toggle>Share your experience with this theme.</a>
           </div>
