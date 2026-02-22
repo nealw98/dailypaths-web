@@ -249,17 +249,6 @@ ${shareParagraphs}
         </div>
       </section>
 
-      <!-- Al-Anon Toolbox -->
-      ${tools.length > 0 ? `
-      <section class="topic-toolbox">
-        <div class="topic-toolbox-inner">
-          <h2 class="topic-toolbox-heading">Tools &amp; Slogans</h2>
-          <ul class="topic-toolbox-list">
-${toolboxItems}
-          </ul>
-        </div>
-      </section>` : ''}
-
       <!-- App CTA — full-bleed navy transition -->
       <section class="topic-cta bg-navy">
         <div class="topic-cta-inner">
