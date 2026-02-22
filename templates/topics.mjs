@@ -48,8 +48,8 @@ ${galleryCards}
       <!-- Engine CTA -->
       <section class="ti-engine-cta bg-navy">
         <div class="ti-engine-cta-inner">
-          <h2 class="ti-engine-cta-heading">Take your Step work further.</h2>
-          <p class="ti-engine-cta-text">The Al-Anon Daily Paths app isn&rsquo;t just for reading&mdash;it&rsquo;s for growing. Use our built-in journaling tools to record your progress through the Steps and Traditions, all in one private place.</p>
+          <h2 class="ti-engine-cta-heading">Take your study of these principles further.</h2>
+          <p class="ti-engine-cta-text">The Al-Anon Daily Paths app isn&rsquo;t just for reading&mdash;it&rsquo;s for growing. Use our private journaling tools to record your reflections on these themes and track your growth.</p>
           <div class="ti-engine-cta-badges">
             <a href="https://apps.apple.com/app/id6755981862" target="_blank" rel="noopener noreferrer" class="ti-engine-cta-badge-link">
               <img src="https://developer.apple.com/app-store/marketing/guidelines/images/badge-download-on-the-app-store.svg" alt="Download on the App Store" class="ti-engine-cta-badge">
@@ -98,7 +98,7 @@ ${galleryCards}
  * Render an individual topic page — premium editorial experience.
  *
  * Sections: Nav → Hero → Pull Quote → Editorial Intro (drop cap) →
- * Member Insight → Al-Anon Toolbox → Featured Reflections → Daily Reflections → CTA
+ * Member Insight → Al-Anon Toolbox → App CTA → Featured Reflections → Daily Reflections
  *
  * @param {Object} topic - Topic object from TOPICS array
  * @param {Array} featuredReadings - Reading objects matching featuredDays
@@ -260,6 +260,22 @@ ${toolboxItems}
         </div>
       </section>` : ''}
 
+      <!-- App CTA — full-bleed navy transition -->
+      <section class="topic-cta bg-navy">
+        <div class="topic-cta-inner">
+          <h2 class="topic-cta-heading">Apply ${topic.name} to your life, daily.</h2>
+          <p class="topic-cta-text">Our journaling tools are designed to help you process ${topic.name} in real-time. Use the Al-Anon Daily Paths app to track your insights and receive daily reminders for your recovery journey.</p>
+          <div class="topic-cta-badges">
+            <a href="https://apps.apple.com/app/id6755981862" target="_blank" rel="noopener noreferrer" class="topic-cta-badge-link">
+              <img src="https://developer.apple.com/app-store/marketing/guidelines/images/badge-download-on-the-app-store.svg" alt="Download on the App Store" class="topic-cta-badge">
+            </a>
+            <a href="https://play.google.com/store/apps/details?id=com.dailypaths" target="_blank" rel="noopener noreferrer" class="topic-cta-badge-link">
+              <img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" alt="Get it on Google Play" class="topic-cta-badge topic-cta-badge-play">
+            </a>
+          </div>
+        </div>
+      </section>
+
       <!-- Featured Reflections -->
       ${featuredReadings.length > 0 ? `
       <section class="topic-featured-section">
@@ -279,22 +295,6 @@ ${featuredCards}
         </p>
 ${readingGroups}
       </section>` : ''}
-
-      <!-- CTA -->
-      <section class="topic-cta">
-        <div class="topic-cta-inner">
-          <h2 class="topic-cta-heading">Take your Step work further.</h2>
-          <p class="topic-cta-text">The Al-Anon Daily Paths app isn&rsquo;t just for reading&mdash;it&rsquo;s for growing. Use our built-in journaling tools to record your progress through the Steps and Traditions, all in one private place.</p>
-          <div class="topic-cta-badges">
-            <a href="https://apps.apple.com/app/id6755981862" target="_blank" rel="noopener noreferrer" class="topic-cta-badge-link">
-              <img src="https://developer.apple.com/app-store/marketing/guidelines/images/badge-download-on-the-app-store.svg" alt="Download on the App Store" class="topic-cta-badge">
-            </a>
-            <a href="https://play.google.com/store/apps/details?id=com.dailypaths" target="_blank" rel="noopener noreferrer" class="topic-cta-badge-link">
-              <img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" alt="Get it on Google Play" class="topic-cta-badge topic-cta-badge-play">
-            </a>
-          </div>
-        </div>
-      </section>
 
     </article>`;
 

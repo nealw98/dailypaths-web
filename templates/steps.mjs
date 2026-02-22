@@ -552,17 +552,11 @@ ${toolItems}
       </div>
     </div>` : ''}
 
-    <!-- Daily Readings -->
-${readingListHtml}
-
-    <!-- Associated Readings (Hub & Spoke) -->
-${associatedHtml}
-
-    <!-- Engine CTA -->
+    <!-- App CTA — full-bleed navy transition -->
     <section class="step-engine-cta bg-navy">
       <div class="step-engine-cta-inner">
-        <h2 class="step-engine-cta-heading">Take your Step ${wordNumber(step.number)} work further.</h2>
-        <p class="step-engine-cta-text">The Al-Anon Daily Paths app isn&rsquo;t just for reading&mdash;it&rsquo;s for growing. Use our built-in journaling tools to record your progress through Step ${step.number} and all twelve Steps, all in one private place.</p>
+        <h2 class="step-engine-cta-heading">Deepen your work on Step ${step.number}.</h2>
+        <p class="step-engine-cta-text">Our journaling tools are designed to help you process Step ${step.number} in real-time. Use the Al-Anon Daily Paths app to track your insights and receive daily reminders for your recovery journey.</p>
         <div class="step-engine-cta-badges">
           <a href="https://apps.apple.com/app/id6755981862" target="_blank" rel="noopener noreferrer" class="step-engine-cta-badge-link">
             <img src="https://developer.apple.com/app-store/marketing/guidelines/images/badge-download-on-the-app-store.svg" alt="Download on the App Store" class="step-engine-cta-badge">
@@ -572,7 +566,13 @@ ${associatedHtml}
           </a>
         </div>
       </div>
-    </section>`;
+    </section>
+
+    <!-- Daily Readings -->
+${readingListHtml}
+
+    <!-- Associated Readings (Hub & Spoke) -->
+${associatedHtml}`;
 
   return wrapInLayout({
     title: `Step ${step.number}: ${step.principle} &mdash; Al-Anon 12 Steps | Al-Anon Daily Paths`,
