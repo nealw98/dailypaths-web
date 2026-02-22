@@ -4115,17 +4115,21 @@ html {
 /* --- Principle CTA --- */
 
 .topic-cta {
-  padding: 0 2rem 2rem;
+  text-align: center;
 }
 
 .topic-cta-inner {
   max-width: 42rem;
   margin: 0 auto;
-  text-align: center;
-  padding: 2rem;
-  border: none;
-  border-radius: var(--radius);
-  background: var(--cta-dark);
+  padding: 0 2rem;
+}
+
+.topic-cta-heading {
+  font-family: var(--font-serif);
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 0.75rem;
 }
 
 .topic-cta-text {
