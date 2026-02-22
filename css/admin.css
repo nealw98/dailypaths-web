@@ -802,9 +802,126 @@ body.page-admin main {
   color: var(--admin-blue);
 }
 
+/* --- Steps & Themes List --- */
+.admin-list-items {
+  padding: 16px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.admin-list-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 12px 16px;
+  background: var(--admin-surface);
+  border: 1px solid var(--admin-border);
+  border-radius: var(--admin-radius);
+  margin-bottom: 6px;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.admin-list-card:hover {
+  border-color: var(--admin-primary);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+}
+
+.admin-list-card-main {
+  flex: 1;
+  min-width: 0;
+}
+
+.admin-list-card-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.admin-list-card-num {
+  color: var(--admin-primary);
+  font-weight: 700;
+  font-size: 13px;
+  flex-shrink: 0;
+}
+
+.admin-list-card-name {
+  color: var(--admin-text);
+}
+
+.admin-list-card-meta {
+  flex-shrink: 0;
+}
+
+.admin-meta-date {
+  font-size: 12px;
+  color: var(--admin-muted);
+}
+
+/* --- Step/Theme Editor Layout --- */
+.admin-step-editor-layout {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+}
+
+/* --- List Editor --- */
+.admin-list-editor {
+  margin-bottom: 20px;
+}
+
+.admin-list-items-editor {
+  margin-bottom: 8px;
+}
+
+.admin-list-item-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 4px;
+}
+
+.admin-list-item-handle {
+  color: var(--admin-muted);
+  font-size: 14px;
+  cursor: grab;
+  flex-shrink: 0;
+  width: 20px;
+  text-align: center;
+  user-select: none;
+}
+
+.admin-list-item-input {
+  flex: 1;
+  min-width: 0;
+}
+
+.admin-list-item-up,
+.admin-list-item-down {
+  padding: 2px 6px;
+  font-size: 12px;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.admin-list-item-remove {
+  padding: 2px 8px;
+  font-size: 14px;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.admin-mb-8 {
+  margin-bottom: 8px;
+}
+
 /* --- Responsive --- */
 @media (max-width: 768px) {
-  .admin-editor-layout {
+  .admin-editor-layout,
+  .admin-step-editor-layout {
     flex-direction: column;
   }
 

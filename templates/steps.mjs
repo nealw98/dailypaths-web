@@ -306,7 +306,7 @@ ${gridCards}
 }
 
 /** Step tools — practical actions for working each step */
-const STEP_TOOLS = {
+export const STEP_TOOLS = {
   1: ['Write a "powerlessness list"', 'Identify your Three Cs', 'Share with your sponsor', 'Attend a Step 1 meeting'],
   2: ['Define your Higher Power', 'List moments of clarity', 'Read the promises', 'Talk to a longtime member'],
   3: ['Practice "Let Go and Let God"', 'Write a surrender prayer', 'Identify control patterns', 'Try a trust exercise'],
@@ -322,7 +322,7 @@ const STEP_TOOLS = {
 };
 
 /** Pull-quotes — one sentence pulled from each step's description for the sidebar */
-const PULL_QUOTES = {
+export const PULL_QUOTES = {
   1: 'Only by admitting powerlessness can one open the door to the help and sanity offered by the subsequent Steps.',
   2: 'Step Two offers the essential ingredient for recovery: hope.',
   3: 'It brings enormous relief by lifting the heavy burden of responsibility off their shoulders.',
@@ -338,7 +338,7 @@ const PULL_QUOTES = {
 };
 
 /** Step hooks — one-sentence teasers for the Steps index grid cards */
-const STEP_HOOKS = {
+export const STEP_HOOKS = {
   1: 'Admitting powerlessness to reclaim your life.',
   2: 'Finding a path toward a restored perspective.',
   3: 'The decision to release the burden of control.',
@@ -354,7 +354,7 @@ const STEP_HOOKS = {
 };
 
 /** Step taglines — hero banner taglines for each step detail page */
-const STEP_TAGLINES = {
+export const STEP_TAGLINES = {
   1: 'Honesty & the Power of Surrender',
   2: 'Hope & the Willingness to Believe',
   3: 'Faith & the Freedom of Letting Go',

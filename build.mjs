@@ -17,6 +17,8 @@ import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 import { fetchAllReadings } from './helpers/fetch-readings.mjs';
+import { fetchAllSteps } from './helpers/fetch-steps.mjs';
+import { fetchAllThemes } from './helpers/fetch-themes.mjs';
 import { dayToSlug } from './helpers/slug-utils.mjs';
 import { generateSitemap, generateRobotsTxt } from './helpers/seo.mjs';
 import { generateOgImage } from './helpers/og-image.mjs';
@@ -24,6 +26,7 @@ import { generateOgImage } from './helpers/og-image.mjs';
 import { renderHomepage } from './templates/homepage.mjs';
 import { renderReadingPage } from './templates/reading.mjs';
 import { renderTopicsIndexPage, renderTopicPage, TOPICS } from './templates/topics.mjs';
+import { TOPIC_PULL_QUOTES, TOPIC_TOOLS, TOPIC_THEME_TAGS } from './helpers/theme-data.mjs';
 import { renderPrivacyPage } from './templates/privacy.mjs';
 import { renderSupportPage } from './templates/support.mjs';
 import { renderTermsPage } from './templates/terms.mjs';
@@ -33,7 +36,7 @@ import { renderAboutAlanonPage } from './templates/about-alanon.mjs';
 import { renderQuizPage } from './templates/quiz.mjs';
 import { renderTraditionsPage } from './templates/traditions.mjs';
 import { renderConceptsPage } from './templates/concepts.mjs';
-import { renderStepsIndexPage, renderStepPage, STEPS } from './templates/steps.mjs';
+import { renderStepsIndexPage, renderStepPage, STEPS, STEP_TOOLS, STEP_HOOKS, STEP_TAGLINES, PULL_QUOTES } from './templates/steps.mjs';
 import { renderLiteratureIndexPage, renderLiteraturePage, BOOKS } from './templates/literature.mjs';
 import { renderMonthArchivePage } from './templates/month-archive.mjs';
 import { renderAdminPage } from './templates/admin.mjs';
@@ -55,9 +58,60 @@ console.log(`  Output: ${outDir}\n`);
 
 const start = Date.now();
 
-// --- Step 1: Fetch readings ---
+// --- Step 1: Fetch readings, steps, themes ---
 console.log('Fetching readings from Supabase...');
 const readings = await fetchAllReadings();
+
+// Fetch steps from Supabase (optional — falls back to hardcoded STEPS)
+console.log('Fetching steps from Supabase...');
+const supabaseSteps = await fetchAllSteps().catch(err => {
+  console.warn('  Steps fetch failed, using hardcoded data:', err.message);
+  return null;
+});
+
+// Merge Supabase steps into STEPS array and lookup objects if available
+if (supabaseSteps) {
+  for (const dbStep of supabaseSteps) {
+    const n = dbStep.number;
+    const existing = STEPS.find(s => s.number === n);
+    if (existing) {
+      if (dbStep.description && dbStep.description.length > 0) existing.description = dbStep.description;
+      if (dbStep.questions && dbStep.questions.length > 0) existing.questions = dbStep.questions;
+    }
+    // Update global lookup objects
+    if (dbStep.hook) STEP_HOOKS[n] = dbStep.hook;
+    if (dbStep.tagline) STEP_TAGLINES[n] = dbStep.tagline;
+    if (dbStep.pull_quote) PULL_QUOTES[n] = dbStep.pull_quote;
+    if (dbStep.tools && dbStep.tools.length > 0) STEP_TOOLS[n] = dbStep.tools;
+  }
+  console.log(`  Merged ${supabaseSteps.length} steps from Supabase`);
+}
+
+// Fetch themes from Supabase (optional — falls back to hardcoded TOPICS)
+console.log('Fetching themes from Supabase...');
+const supabaseThemes = await fetchAllThemes().catch(err => {
+  console.warn('  Themes fetch failed, using hardcoded data:', err.message);
+  return null;
+});
+
+// Merge Supabase themes into TOPICS array and lookup objects if available
+if (supabaseThemes) {
+  for (const dbTheme of supabaseThemes) {
+    const slug = dbTheme.slug;
+    const existing = TOPICS.find(t => t.slug === slug);
+    if (existing) {
+      if (dbTheme.body) existing.body = dbTheme.body;
+      if (dbTheme.short_description) existing.shortDescription = dbTheme.short_description;
+      if (dbTheme.meta_description) existing.metaDescription = dbTheme.meta_description;
+      if (dbTheme.featured_days && dbTheme.featured_days.length > 0) existing.featuredDays = dbTheme.featured_days;
+    }
+    // Update global lookup objects
+    if (dbTheme.pull_quote) TOPIC_PULL_QUOTES[slug] = dbTheme.pull_quote;
+    if (dbTheme.tools && dbTheme.tools.length > 0) TOPIC_TOOLS[slug] = dbTheme.tools;
+    if (dbTheme.theme_tags && dbTheme.theme_tags.length > 0) TOPIC_THEME_TAGS[slug] = dbTheme.theme_tags;
+  }
+  console.log(`  Merged ${supabaseThemes.length} themes from Supabase`);
+}
 
 // --- Step 2: Clean and create output directory ---
 console.log('Preparing output directory...');

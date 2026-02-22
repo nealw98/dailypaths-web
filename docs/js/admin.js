@@ -21,11 +21,20 @@
     sort: 'day_of_year',
     filter: 'all',
     source: 'all',
-    view: 'login', // login | dashboard | reading | app-feedback
+    view: 'login', // login | dashboard | reading | app-feedback | steps-list | step-detail | themes-list | theme-detail
     loading: false,
     saving: false,
     editFields: {},
     originalFields: {},
+    // Steps & Themes
+    steps: [],
+    themes: [],
+    selectedStep: null,
+    selectedTheme: null,
+    stepEditFields: {},
+    stepOriginalFields: {},
+    themeEditFields: {},
+    themeOriginalFields: {},
   };
 
   // --- Supabase Auth Helpers ---
@@ -239,6 +248,84 @@
     });
   }
 
+  // --- Steps & Themes Data Loading ---
+
+  function loadSteps() {
+    state.loading = true;
+    render();
+    callEdgeFn('fetch-steps', {}, { auth: false }, function (err, result) {
+      state.loading = false;
+      if (err) {
+        showToast('Failed to load steps: ' + err, 'error');
+        render();
+        return;
+      }
+      state.steps = result.steps || [];
+      render();
+    });
+  }
+
+  function loadThemes() {
+    state.loading = true;
+    render();
+    callEdgeFn('fetch-themes', {}, { auth: false }, function (err, result) {
+      state.loading = false;
+      if (err) {
+        showToast('Failed to load themes: ' + err, 'error');
+        render();
+        return;
+      }
+      state.themes = result.themes || [];
+      render();
+    });
+  }
+
+  function saveStep(stepNumber, updates, cb) {
+    state.saving = true;
+    render();
+    callEdgeFn('update-step', { stepNumber: stepNumber, updateData: updates }, function (err) {
+      state.saving = false;
+      if (err) {
+        showToast('Save failed: ' + err, 'error');
+        render();
+        if (cb) cb(err);
+        return;
+      }
+      // Update local data
+      var step = state.steps.find(function (s) { return s.number === stepNumber; });
+      if (step) {
+        Object.keys(updates).forEach(function (k) { step[k] = updates[k]; });
+        step.updated_at = new Date().toISOString();
+      }
+      showToast('Step saved successfully');
+      render();
+      if (cb) cb(null);
+    });
+  }
+
+  function saveTheme(themeSlug, updates, cb) {
+    state.saving = true;
+    render();
+    callEdgeFn('update-theme', { themeSlug: themeSlug, updateData: updates }, function (err) {
+      state.saving = false;
+      if (err) {
+        showToast('Save failed: ' + err, 'error');
+        render();
+        if (cb) cb(err);
+        return;
+      }
+      // Update local data
+      var theme = state.themes.find(function (t) { return t.slug === themeSlug; });
+      if (theme) {
+        Object.keys(updates).forEach(function (k) { theme[k] = updates[k]; });
+        theme.updated_at = new Date().toISOString();
+      }
+      showToast('Theme saved successfully');
+      render();
+      if (cb) cb(null);
+    });
+  }
+
   // --- Sorting & Filtering ---
 
   function applyFiltersAndSort() {
@@ -437,6 +524,22 @@
         app.innerHTML = renderAppFeedback();
         bindAppFeedback();
         break;
+      case 'steps-list':
+        app.innerHTML = renderStepsList();
+        bindStepsList();
+        break;
+      case 'step-detail':
+        app.innerHTML = renderStepDetail();
+        bindStepDetail();
+        break;
+      case 'themes-list':
+        app.innerHTML = renderThemesList();
+        bindThemesList();
+        break;
+      case 'theme-detail':
+        app.innerHTML = renderThemeDetail();
+        bindThemeDetail();
+        break;
     }
   }
 
@@ -503,6 +606,8 @@
         '<h1 class="admin-title">Reading Feedback</h1>' +
       '</div>' +
       '<div class="admin-header-right">' +
+        '<button class="admin-btn admin-btn--ghost" id="btn-steps">Steps</button>' +
+        '<button class="admin-btn admin-btn--ghost" id="btn-themes">Themes</button>' +
         '<button class="admin-btn admin-btn--ghost" id="btn-app-feedback">App Feedback' +
           (state.appFeedbackCount > 0 ? ' <span class="admin-badge">' + state.appFeedbackCount + '</span>' : '') +
         '</button>' +
@@ -735,6 +840,20 @@
     if (btnAppFb) btnAppFb.addEventListener('click', function () {
       state.view = 'app-feedback';
       loadAppFeedback();
+    });
+
+    var btnSteps = document.getElementById('btn-steps');
+    if (btnSteps) btnSteps.addEventListener('click', function () {
+      state.view = 'steps-list';
+      if (state.steps.length === 0) loadSteps();
+      else render();
+    });
+
+    var btnThemes = document.getElementById('btn-themes');
+    if (btnThemes) btnThemes.addEventListener('click', function () {
+      state.view = 'themes-list';
+      if (state.themes.length === 0) loadThemes();
+      else render();
     });
   }
 
@@ -1163,7 +1282,641 @@
     }
   }
 
+  // --- Steps List View ---
+
+  function renderStepsList() {
+    var html = '<div class="admin-steps-list">';
+
+    html += '<header class="admin-header">' +
+      '<div class="admin-header-left">' +
+        '<button class="admin-btn admin-btn--ghost" id="btn-back-steps">&larr; Back to Readings</button>' +
+        '<h1 class="admin-title">Steps <span class="admin-badge">' + state.steps.length + '</span></h1>' +
+      '</div>' +
+      '<div class="admin-header-right">' +
+        '<button class="admin-btn admin-btn--ghost" id="btn-refresh-steps">Refresh</button>' +
+        '<button class="admin-btn admin-btn--ghost" id="btn-signout-steps">Sign Out</button>' +
+      '</div>' +
+    '</header>';
+
+    if (state.loading) {
+      html += '<div class="admin-loading">Loading steps...</div>';
+    }
+
+    html += '<div class="admin-list-items">';
+    for (var i = 0; i < state.steps.length; i++) {
+      var s = state.steps[i];
+      html += '<div class="admin-list-card" data-step-number="' + s.number + '">' +
+        '<div class="admin-list-card-main">' +
+          '<div class="admin-list-card-title">' +
+            '<span class="admin-list-card-num">Step ' + s.number + '</span>' +
+            '<span class="admin-list-card-name">' + escHtml(s.principle) + '</span>' +
+          '</div>' +
+          '<p class="admin-reading-sub">' + escHtml(s.month) + ' &middot; ' + escHtml(s.tagline || '') + '</p>' +
+        '</div>' +
+        '<div class="admin-list-card-meta">' +
+          (s.updated_at ? '<span class="admin-meta-date">' + formatDate(s.updated_at) + '</span>' : '') +
+        '</div>' +
+      '</div>';
+    }
+    if (!state.loading && state.steps.length === 0) {
+      html += '<p class="admin-empty">No steps found. Run the seed script first.</p>';
+    }
+    html += '</div>';
+
+    html += '</div>';
+    return html;
+  }
+
+  function bindStepsList() {
+    var btnBack = document.getElementById('btn-back-steps');
+    if (btnBack) btnBack.addEventListener('click', function () {
+      state.view = 'dashboard';
+      render();
+    });
+
+    var btnRefresh = document.getElementById('btn-refresh-steps');
+    if (btnRefresh) btnRefresh.addEventListener('click', function () { loadSteps(); });
+
+    var btnSignout = document.getElementById('btn-signout-steps');
+    if (btnSignout) btnSignout.addEventListener('click', signOut);
+
+    var cards = document.querySelectorAll('.admin-list-card[data-step-number]');
+    for (var i = 0; i < cards.length; i++) {
+      cards[i].addEventListener('click', function () {
+        var num = parseInt(this.getAttribute('data-step-number'), 10);
+        var step = state.steps.find(function (s) { return s.number === num; });
+        if (step) openStep(step);
+      });
+    }
+  }
+
+  function openStep(step) {
+    state.selectedStep = step;
+    state.stepEditFields = {
+      description: (step.description || []).slice(),
+      questions: (step.questions || []).slice(),
+      tools: (step.tools || []).slice(),
+      hook: step.hook || '',
+      tagline: step.tagline || '',
+      pull_quote: step.pull_quote || '',
+    };
+    state.stepOriginalFields = JSON.parse(JSON.stringify(state.stepEditFields));
+    state.view = 'step-detail';
+    render();
+  }
+
+  // --- Step Detail View ---
+
+  function renderStepDetail() {
+    var s = state.selectedStep;
+    if (!s) return '';
+
+    var hasChanges = JSON.stringify(state.stepEditFields) !== JSON.stringify(state.stepOriginalFields);
+
+    // Nav
+    var idx = state.steps.indexOf(s);
+    var hasPrev = idx > 0;
+    var hasNext = idx < state.steps.length - 1;
+
+    var html = '<div class="admin-editor">';
+
+    html += '<header class="admin-editor-header">' +
+      '<button class="admin-btn admin-btn--ghost" id="btn-back-step">&larr; Back to Steps</button>' +
+      '<div class="admin-editor-nav">' +
+        '<button class="admin-btn admin-btn--ghost" id="btn-prev-step"' + (hasPrev ? '' : ' disabled') + '>&larr; Prev</button>' +
+        '<span class="admin-nav-pos">' + (idx + 1) + ' / ' + state.steps.length + '</span>' +
+        '<button class="admin-btn admin-btn--ghost" id="btn-next-step"' + (hasNext ? '' : ' disabled') + '>Next &rarr;</button>' +
+      '</div>' +
+    '</header>';
+
+    html += '<div class="admin-step-editor-layout">';
+
+    // Sidebar
+    html += '<aside class="admin-editor-sidebar">';
+    html += '<h2>Step ' + s.number + '</h2>';
+    html += '<h3>' + escHtml(s.principle) + '</h3>';
+    html += '<p class="admin-muted">' + escHtml(s.month) + '</p>';
+    html += '<p class="admin-muted" style="font-size:12px;margin-top:4px;">' + escHtml(s.text || '') + '</p>';
+    if (s.updated_at) {
+      html += '<p class="admin-muted" style="margin-top:12px;font-size:11px;">Updated: ' + formatDate(s.updated_at) + '</p>';
+    }
+    html += '</aside>';
+
+    // Main content
+    html += '<div class="admin-editor-main">';
+
+    // Description paragraphs
+    html += '<div class="admin-field-group">';
+    html += '<label class="admin-field-label">Description <span class="admin-wc ' +
+      (totalWordCount(state.stepEditFields.description) >= 100 ? 'admin-wc--ok' : 'admin-wc--warn') + '">' +
+      totalWordCount(state.stepEditFields.description) + ' words</span></label>';
+    for (var d = 0; d < state.stepEditFields.description.length; d++) {
+      html += '<textarea class="admin-input admin-textarea admin-mb-8" data-step-desc-idx="' + d + '" rows="4">' + escHtml(state.stepEditFields.description[d]) + '</textarea>';
+    }
+    html += '</div>';
+
+    // Questions list editor
+    html += renderListEditor('step-questions', 'Questions for Reflection', state.stepEditFields.questions);
+
+    // Hook
+    html += '<div class="admin-field-group">';
+    html += '<label class="admin-field-label">Hook <span class="admin-field-hint">(one-sentence teaser)</span></label>';
+    html += '<input class="admin-input" type="text" data-step-field="hook" value="' + escAttr(state.stepEditFields.hook) + '">';
+    html += '</div>';
+
+    // Tagline
+    html += '<div class="admin-field-group">';
+    html += '<label class="admin-field-label">Tagline <span class="admin-field-hint">(hero banner)</span></label>';
+    html += '<input class="admin-input" type="text" data-step-field="tagline" value="' + escAttr(state.stepEditFields.tagline) + '">';
+    html += '</div>';
+
+    // Pull quote
+    html += '<div class="admin-field-group">';
+    html += '<label class="admin-field-label">Pull Quote</label>';
+    html += '<textarea class="admin-input admin-textarea" data-step-field="pull_quote" rows="2">' + escHtml(state.stepEditFields.pull_quote) + '</textarea>';
+    html += '</div>';
+
+    // Deep Dive (tools) list editor
+    html += renderListEditor('step-tools', 'Deep Dive Items', state.stepEditFields.tools);
+
+    // Save bar
+    html += '<div class="admin-save-bar">';
+    if (hasChanges) {
+      html += '<span class="admin-unsaved">Unsaved changes</span>';
+      html += '<button class="admin-btn admin-btn--ghost" id="btn-discard-step">Discard</button>';
+    }
+    html += '<button class="admin-btn admin-btn--primary" id="btn-save-step"' +
+      (state.saving ? ' disabled' : '') + (!hasChanges ? ' disabled' : '') + '>' +
+      (state.saving ? 'Saving...' : 'Save') +
+    '</button>';
+    html += '</div>';
+
+    html += '</div>'; // editor-main
+    html += '</div>'; // layout
+    html += '</div>'; // editor
+
+    return html;
+  }
+
+  function bindStepDetail() {
+    var s = state.selectedStep;
+    if (!s) return;
+
+    // Back
+    var btnBack = document.getElementById('btn-back-step');
+    if (btnBack) btnBack.addEventListener('click', function () {
+      if (hasStepChanges() && !confirm('Discard unsaved changes?')) return;
+      state.view = 'steps-list';
+      state.selectedStep = null;
+      render();
+    });
+
+    // Prev / Next
+    var btnPrev = document.getElementById('btn-prev-step');
+    var btnNext = document.getElementById('btn-next-step');
+    if (btnPrev) btnPrev.addEventListener('click', function () {
+      if (hasStepChanges() && !confirm('Discard unsaved changes?')) return;
+      navigateStep(-1);
+    });
+    if (btnNext) btnNext.addEventListener('click', function () {
+      if (hasStepChanges() && !confirm('Discard unsaved changes?')) return;
+      navigateStep(1);
+    });
+
+    // Description textareas
+    var descInputs = document.querySelectorAll('[data-step-desc-idx]');
+    for (var i = 0; i < descInputs.length; i++) {
+      descInputs[i].addEventListener('input', function () {
+        var idx = parseInt(this.getAttribute('data-step-desc-idx'), 10);
+        state.stepEditFields.description[idx] = this.value;
+        updateStepSaveBar();
+      });
+    }
+
+    // Simple fields (hook, tagline, pull_quote)
+    var simpleInputs = document.querySelectorAll('[data-step-field]');
+    for (var j = 0; j < simpleInputs.length; j++) {
+      simpleInputs[j].addEventListener('input', function () {
+        var field = this.getAttribute('data-step-field');
+        state.stepEditFields[field] = this.value;
+        updateStepSaveBar();
+      });
+    }
+
+    // List editors
+    bindListEditor('step-questions', state.stepEditFields.questions, function (newList) {
+      state.stepEditFields.questions = newList;
+      render();
+    });
+    bindListEditor('step-tools', state.stepEditFields.tools, function (newList) {
+      state.stepEditFields.tools = newList;
+      render();
+    });
+
+    // Save
+    var btnSave = document.getElementById('btn-save-step');
+    if (btnSave) btnSave.addEventListener('click', function () {
+      if (!hasStepChanges()) return;
+      saveStep(s.number, state.stepEditFields, function (err) {
+        if (!err) {
+          state.stepOriginalFields = JSON.parse(JSON.stringify(state.stepEditFields));
+          render();
+        }
+      });
+    });
+
+    // Discard
+    var btnDiscard = document.getElementById('btn-discard-step');
+    if (btnDiscard) btnDiscard.addEventListener('click', function () {
+      state.stepEditFields = JSON.parse(JSON.stringify(state.stepOriginalFields));
+      render();
+    });
+  }
+
+  function hasStepChanges() {
+    return JSON.stringify(state.stepEditFields) !== JSON.stringify(state.stepOriginalFields);
+  }
+
+  function navigateStep(dir) {
+    var idx = state.steps.indexOf(state.selectedStep);
+    var nextIdx = idx + dir;
+    if (nextIdx >= 0 && nextIdx < state.steps.length) {
+      openStep(state.steps[nextIdx]);
+    }
+  }
+
+  function updateStepSaveBar() {
+    var bar = document.querySelector('.admin-save-bar');
+    if (!bar) return;
+    var changed = hasStepChanges();
+    var btnSave = document.getElementById('btn-save-step');
+    if (btnSave) btnSave.disabled = !changed || state.saving;
+    // Update word count
+    var wcEl = bar.closest('.admin-editor-main');
+    if (!wcEl) wcEl = document.querySelector('.admin-editor-main');
+    if (wcEl) {
+      var wcSpans = wcEl.querySelectorAll('.admin-wc');
+      if (wcSpans.length > 0) {
+        var wc = totalWordCount(state.stepEditFields.description);
+        wcSpans[0].textContent = wc + ' words';
+        wcSpans[0].className = 'admin-wc ' + (wc >= 100 ? 'admin-wc--ok' : 'admin-wc--warn');
+      }
+    }
+  }
+
+  // --- Themes List View ---
+
+  function renderThemesList() {
+    var html = '<div class="admin-themes-list">';
+
+    html += '<header class="admin-header">' +
+      '<div class="admin-header-left">' +
+        '<button class="admin-btn admin-btn--ghost" id="btn-back-themes">&larr; Back to Readings</button>' +
+        '<h1 class="admin-title">Themes <span class="admin-badge">' + state.themes.length + '</span></h1>' +
+      '</div>' +
+      '<div class="admin-header-right">' +
+        '<button class="admin-btn admin-btn--ghost" id="btn-refresh-themes">Refresh</button>' +
+        '<button class="admin-btn admin-btn--ghost" id="btn-signout-themes">Sign Out</button>' +
+      '</div>' +
+    '</header>';
+
+    if (state.loading) {
+      html += '<div class="admin-loading">Loading themes...</div>';
+    }
+
+    html += '<div class="admin-list-items">';
+    for (var i = 0; i < state.themes.length; i++) {
+      var t = state.themes[i];
+      html += '<div class="admin-list-card" data-theme-slug="' + escAttr(t.slug) + '">' +
+        '<div class="admin-list-card-main">' +
+          '<div class="admin-list-card-title">' +
+            '<span class="admin-list-card-name">' + escHtml(t.name) + '</span>' +
+          '</div>' +
+          '<p class="admin-reading-sub">' + escHtml(t.short_description || '') + '</p>' +
+        '</div>' +
+        '<div class="admin-list-card-meta">' +
+          (t.updated_at ? '<span class="admin-meta-date">' + formatDate(t.updated_at) + '</span>' : '') +
+        '</div>' +
+      '</div>';
+    }
+    if (!state.loading && state.themes.length === 0) {
+      html += '<p class="admin-empty">No themes found. Run the seed script first.</p>';
+    }
+    html += '</div>';
+
+    html += '</div>';
+    return html;
+  }
+
+  function bindThemesList() {
+    var btnBack = document.getElementById('btn-back-themes');
+    if (btnBack) btnBack.addEventListener('click', function () {
+      state.view = 'dashboard';
+      render();
+    });
+
+    var btnRefresh = document.getElementById('btn-refresh-themes');
+    if (btnRefresh) btnRefresh.addEventListener('click', function () { loadThemes(); });
+
+    var btnSignout = document.getElementById('btn-signout-themes');
+    if (btnSignout) btnSignout.addEventListener('click', signOut);
+
+    var cards = document.querySelectorAll('.admin-list-card[data-theme-slug]');
+    for (var i = 0; i < cards.length; i++) {
+      cards[i].addEventListener('click', function () {
+        var slug = this.getAttribute('data-theme-slug');
+        var theme = state.themes.find(function (t) { return t.slug === slug; });
+        if (theme) openTheme(theme);
+      });
+    }
+  }
+
+  function openTheme(theme) {
+    state.selectedTheme = theme;
+    state.themeEditFields = {
+      body: theme.body || '',
+      short_description: theme.short_description || '',
+      meta_description: theme.meta_description || '',
+      pull_quote: theme.pull_quote || '',
+      theme_tags: (theme.theme_tags || []).slice(),
+      tools: (theme.tools || []).slice(),
+    };
+    state.themeOriginalFields = JSON.parse(JSON.stringify(state.themeEditFields));
+    state.view = 'theme-detail';
+    render();
+  }
+
+  // --- Theme Detail View ---
+
+  function renderThemeDetail() {
+    var t = state.selectedTheme;
+    if (!t) return '';
+
+    var hasChanges = JSON.stringify(state.themeEditFields) !== JSON.stringify(state.themeOriginalFields);
+
+    var idx = state.themes.indexOf(t);
+    var hasPrev = idx > 0;
+    var hasNext = idx < state.themes.length - 1;
+
+    var html = '<div class="admin-editor">';
+
+    html += '<header class="admin-editor-header">' +
+      '<button class="admin-btn admin-btn--ghost" id="btn-back-theme">&larr; Back to Themes</button>' +
+      '<div class="admin-editor-nav">' +
+        '<button class="admin-btn admin-btn--ghost" id="btn-prev-theme"' + (hasPrev ? '' : ' disabled') + '>&larr; Prev</button>' +
+        '<span class="admin-nav-pos">' + (idx + 1) + ' / ' + state.themes.length + '</span>' +
+        '<button class="admin-btn admin-btn--ghost" id="btn-next-theme"' + (hasNext ? '' : ' disabled') + '>Next &rarr;</button>' +
+      '</div>' +
+    '</header>';
+
+    html += '<div class="admin-step-editor-layout">';
+
+    // Sidebar
+    html += '<aside class="admin-editor-sidebar">';
+    html += '<h2>' + escHtml(t.slug) + '</h2>';
+    html += '<h3>' + escHtml(t.name) + '</h3>';
+    if (t.image) {
+      html += '<p class="admin-muted" style="font-size:11px;">Image: ' + escHtml(t.image) + '</p>';
+    }
+    if (t.updated_at) {
+      html += '<p class="admin-muted" style="margin-top:12px;font-size:11px;">Updated: ' + formatDate(t.updated_at) + '</p>';
+    }
+    html += '</aside>';
+
+    // Main
+    html += '<div class="admin-editor-main">';
+
+    // Body (HTML content)
+    var bodyWc = wordCount(stripHtml(state.themeEditFields.body));
+    html += '<div class="admin-field-group">';
+    html += '<label class="admin-field-label">Body (HTML) <span class="admin-wc ' +
+      (bodyWc >= 50 ? 'admin-wc--ok' : 'admin-wc--warn') + '">' + bodyWc + ' words</span></label>';
+    html += '<textarea class="admin-input admin-textarea" data-theme-field="body" rows="12">' + escHtml(state.themeEditFields.body) + '</textarea>';
+    html += '</div>';
+
+    // Short description
+    html += '<div class="admin-field-group">';
+    html += '<label class="admin-field-label">Short Description</label>';
+    html += '<input class="admin-input" type="text" data-theme-field="short_description" value="' + escAttr(state.themeEditFields.short_description) + '">';
+    html += '</div>';
+
+    // Meta description
+    html += '<div class="admin-field-group">';
+    html += '<label class="admin-field-label">Meta Description</label>';
+    html += '<input class="admin-input" type="text" data-theme-field="meta_description" value="' + escAttr(state.themeEditFields.meta_description) + '">';
+    html += '</div>';
+
+    // Pull quote
+    html += '<div class="admin-field-group">';
+    html += '<label class="admin-field-label">Pull Quote</label>';
+    html += '<textarea class="admin-input admin-textarea" data-theme-field="pull_quote" rows="2">' + escHtml(state.themeEditFields.pull_quote) + '</textarea>';
+    html += '</div>';
+
+    // Tags list editor
+    html += renderListEditor('theme-tags', 'Theme Tags', state.themeEditFields.theme_tags);
+
+    // Tools list editor
+    html += renderListEditor('theme-tools', 'Recovery Tools', state.themeEditFields.tools);
+
+    // Save bar
+    html += '<div class="admin-save-bar">';
+    if (hasChanges) {
+      html += '<span class="admin-unsaved">Unsaved changes</span>';
+      html += '<button class="admin-btn admin-btn--ghost" id="btn-discard-theme">Discard</button>';
+    }
+    html += '<button class="admin-btn admin-btn--primary" id="btn-save-theme"' +
+      (state.saving ? ' disabled' : '') + (!hasChanges ? ' disabled' : '') + '>' +
+      (state.saving ? 'Saving...' : 'Save') +
+    '</button>';
+    html += '</div>';
+
+    html += '</div>'; // editor-main
+    html += '</div>'; // layout
+    html += '</div>'; // editor
+
+    return html;
+  }
+
+  function bindThemeDetail() {
+    var t = state.selectedTheme;
+    if (!t) return;
+
+    // Back
+    var btnBack = document.getElementById('btn-back-theme');
+    if (btnBack) btnBack.addEventListener('click', function () {
+      if (hasThemeChanges() && !confirm('Discard unsaved changes?')) return;
+      state.view = 'themes-list';
+      state.selectedTheme = null;
+      render();
+    });
+
+    // Prev / Next
+    var btnPrev = document.getElementById('btn-prev-theme');
+    var btnNext = document.getElementById('btn-next-theme');
+    if (btnPrev) btnPrev.addEventListener('click', function () {
+      if (hasThemeChanges() && !confirm('Discard unsaved changes?')) return;
+      navigateTheme(-1);
+    });
+    if (btnNext) btnNext.addEventListener('click', function () {
+      if (hasThemeChanges() && !confirm('Discard unsaved changes?')) return;
+      navigateTheme(1);
+    });
+
+    // Simple fields
+    var inputs = document.querySelectorAll('[data-theme-field]');
+    for (var i = 0; i < inputs.length; i++) {
+      inputs[i].addEventListener('input', function () {
+        var field = this.getAttribute('data-theme-field');
+        state.themeEditFields[field] = this.value;
+        updateThemeSaveBar();
+      });
+    }
+
+    // List editors
+    bindListEditor('theme-tags', state.themeEditFields.theme_tags, function (newList) {
+      state.themeEditFields.theme_tags = newList;
+      render();
+    });
+    bindListEditor('theme-tools', state.themeEditFields.tools, function (newList) {
+      state.themeEditFields.tools = newList;
+      render();
+    });
+
+    // Save
+    var btnSave = document.getElementById('btn-save-theme');
+    if (btnSave) btnSave.addEventListener('click', function () {
+      if (!hasThemeChanges()) return;
+      saveTheme(t.slug, state.themeEditFields, function (err) {
+        if (!err) {
+          state.themeOriginalFields = JSON.parse(JSON.stringify(state.themeEditFields));
+          render();
+        }
+      });
+    });
+
+    // Discard
+    var btnDiscard = document.getElementById('btn-discard-theme');
+    if (btnDiscard) btnDiscard.addEventListener('click', function () {
+      state.themeEditFields = JSON.parse(JSON.stringify(state.themeOriginalFields));
+      render();
+    });
+  }
+
+  function hasThemeChanges() {
+    return JSON.stringify(state.themeEditFields) !== JSON.stringify(state.themeOriginalFields);
+  }
+
+  function navigateTheme(dir) {
+    var idx = state.themes.indexOf(state.selectedTheme);
+    var nextIdx = idx + dir;
+    if (nextIdx >= 0 && nextIdx < state.themes.length) {
+      openTheme(state.themes[nextIdx]);
+    }
+  }
+
+  function updateThemeSaveBar() {
+    var btnSave = document.getElementById('btn-save-theme');
+    if (btnSave) btnSave.disabled = !hasThemeChanges() || state.saving;
+  }
+
+  // --- Reusable List Editor ---
+
+  function renderListEditor(prefix, label, items) {
+    var html = '<div class="admin-field-group admin-list-editor" data-list-prefix="' + prefix + '">';
+    html += '<label class="admin-field-label">' + label + ' <span class="admin-field-hint">(' + items.length + ' items)</span></label>';
+    html += '<div class="admin-list-items-editor">';
+    for (var i = 0; i < items.length; i++) {
+      html += '<div class="admin-list-item-row" data-list-idx="' + i + '">' +
+        '<span class="admin-list-item-handle" title="Drag to reorder">&#9776;</span>' +
+        '<input class="admin-input admin-list-item-input" type="text" value="' + escAttr(items[i]) + '" data-list-input="' + prefix + '" data-idx="' + i + '">' +
+        '<button class="admin-btn admin-btn--sm admin-btn--ghost admin-list-item-up" data-list-up="' + prefix + '" data-idx="' + i + '" title="Move up">&uarr;</button>' +
+        '<button class="admin-btn admin-btn--sm admin-btn--ghost admin-list-item-down" data-list-down="' + prefix + '" data-idx="' + i + '" title="Move down">&darr;</button>' +
+        '<button class="admin-btn admin-btn--sm admin-btn--danger admin-list-item-remove" data-list-remove="' + prefix + '" data-idx="' + i + '" title="Remove">&times;</button>' +
+      '</div>';
+    }
+    html += '</div>';
+    html += '<button class="admin-btn admin-btn--sm" data-list-add="' + prefix + '">+ Add Item</button>';
+    html += '</div>';
+    return html;
+  }
+
+  function bindListEditor(prefix, items, onChange) {
+    // Add item
+    var addBtn = document.querySelector('[data-list-add="' + prefix + '"]');
+    if (addBtn) addBtn.addEventListener('click', function () {
+      items.push('');
+      onChange(items);
+    });
+
+    // Remove items
+    var removeBtns = document.querySelectorAll('[data-list-remove="' + prefix + '"]');
+    for (var r = 0; r < removeBtns.length; r++) {
+      removeBtns[r].addEventListener('click', function (e) {
+        e.stopPropagation();
+        var idx = parseInt(this.getAttribute('data-idx'), 10);
+        items.splice(idx, 1);
+        onChange(items);
+      });
+    }
+
+    // Move up
+    var upBtns = document.querySelectorAll('[data-list-up="' + prefix + '"]');
+    for (var u = 0; u < upBtns.length; u++) {
+      upBtns[u].addEventListener('click', function (e) {
+        e.stopPropagation();
+        var idx = parseInt(this.getAttribute('data-idx'), 10);
+        if (idx > 0) {
+          var tmp = items[idx - 1];
+          items[idx - 1] = items[idx];
+          items[idx] = tmp;
+          onChange(items);
+        }
+      });
+    }
+
+    // Move down
+    var downBtns = document.querySelectorAll('[data-list-down="' + prefix + '"]');
+    for (var dd = 0; dd < downBtns.length; dd++) {
+      downBtns[dd].addEventListener('click', function (e) {
+        e.stopPropagation();
+        var idx = parseInt(this.getAttribute('data-idx'), 10);
+        if (idx < items.length - 1) {
+          var tmp = items[idx + 1];
+          items[idx + 1] = items[idx];
+          items[idx] = tmp;
+          onChange(items);
+        }
+      });
+    }
+
+    // Inline editing
+    var textInputs = document.querySelectorAll('[data-list-input="' + prefix + '"]');
+    for (var t = 0; t < textInputs.length; t++) {
+      textInputs[t].addEventListener('input', function () {
+        var idx = parseInt(this.getAttribute('data-idx'), 10);
+        items[idx] = this.value;
+        // Don't re-render on every keystroke, just update state
+      });
+      // On blur, trigger change detection for save bar
+      textInputs[t].addEventListener('blur', function () {
+        // Update save bar without full re-render
+        if (state.view === 'step-detail') updateStepSaveBar();
+        else if (state.view === 'theme-detail') updateThemeSaveBar();
+      });
+    }
+  }
+
   // --- Utility Functions ---
+
+  function totalWordCount(arr) {
+    if (!arr || !arr.length) return 0;
+    return arr.reduce(function (sum, text) { return sum + wordCount(text); }, 0);
+  }
+
+  function stripHtml(html) {
+    if (!html) return '';
+    return html.replace(/<[^>]*>/g, '').replace(/&[a-zA-Z]+;/g, ' ');
+  }
 
   function getTodayDayOfYear() {
     var now = new Date();
