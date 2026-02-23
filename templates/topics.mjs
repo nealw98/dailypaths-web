@@ -285,19 +285,12 @@ ${shareParagraphs}
             <a href="#share-form-${topic.slug}" class="topic-share-link" data-share-toggle>Share your experience with this theme.</a>
           </div>
           <form id="share-form-${topic.slug}" class="topic-share-form" data-share-form data-topic-slug="${topic.slug}" data-supabase-url="${process.env.SUPABASE_URL}" data-supabase-key="${process.env.SUPABASE_ANON_KEY}" hidden>
-            <label class="topic-share-label" for="share-name-${topic.slug}">First Name, Last Initial</label>
-            <input type="text" id="share-name-${topic.slug}" name="display_name" class="topic-share-input" placeholder="e.g. Sarah M." required>
+            <label class="topic-share-label" for="share-name-${topic.slug}">First Name, Last Initial (or &ldquo;Anonymous&rdquo;)</label>
+            <input type="text" id="share-name-${topic.slug}" name="display_name" class="topic-share-input" placeholder="e.g., Sarah M. or Anonymous" required>
             <label class="topic-share-label" for="share-content-${topic.slug}">${insightPrompt}</label>
             <textarea id="share-content-${topic.slug}" name="content" class="topic-share-textarea" rows="5" maxlength="1200" placeholder="${insightPrompt}" required></textarea>
             <p class="topic-share-counter"><span data-char-count>0</span>/1200 characters</p>
-            <label class="topic-share-consent">
-              <input type="checkbox" name="consent" required>
-              <span>I agree to share this anonymously with the Daily Path community.</span>
-            </label>
-            <label class="topic-share-consent">
-              <input type="checkbox" name="guest_author">
-              <span>Submit anonymously (your name will not be displayed).</span>
-            </label>
+            <p class="topic-share-disclaimer"><em>By clicking submit, you consent to sharing your experience with the Daily Paths community.</em></p>
             <button type="submit" class="topic-share-submit">Submit</button>
             <p class="topic-share-status" data-share-status></p>
           </form>

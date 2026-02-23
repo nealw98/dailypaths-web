@@ -66,12 +66,9 @@
 
       var displayName = form.querySelector('input[name="display_name"]').value.trim();
       var content = form.querySelector('textarea[name="content"]').value.trim();
-      var consent = form.querySelector('input[name="consent"]').checked;
-      var guestAuthorEl = form.querySelector('input[name="guest_author"]');
-      var guestAuthor = guestAuthorEl ? guestAuthorEl.checked : false;
 
-      if (!displayName || !content || !consent) {
-        status.textContent = 'Please complete all fields and confirm consent.';
+      if (!displayName || !content) {
+        status.textContent = 'Please complete all fields.';
         status.className = 'topic-share-status topic-share-status--error';
         return;
       }
@@ -90,11 +87,10 @@
         },
         body: JSON.stringify({
           topic_slug: topicSlug,
-          display_name: guestAuthor ? 'Anonymous' : displayName,
+          display_name: displayName,
           content: content,
           consent_confirmed: true,
-          is_approved: false,
-          guest_author: guestAuthor
+          is_approved: false
         })
       }).then(function (res) {
         if (res.ok) {
@@ -102,8 +98,6 @@
           status.className = 'topic-share-status topic-share-status--success';
           form.querySelector('input[name="display_name"]').value = '';
           form.querySelector('textarea[name="content"]').value = '';
-          form.querySelector('input[name="consent"]').checked = false;
-          if (guestAuthorEl) guestAuthorEl.checked = false;
           var charCounter = form.querySelector('[data-char-count]');
           if (charCounter) charCounter.textContent = '0';
           btn.textContent = 'Submitted';
