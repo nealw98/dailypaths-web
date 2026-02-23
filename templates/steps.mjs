@@ -410,6 +410,23 @@ export function renderStepPage(step, readings = []) {
     `              <li>${q}</li>`
   ).join('\n');
 
+  // Theme URL mapping — links each step to its primary principle page
+  const STEP_THEME_URLS = {
+    1:  { slug: 'powerlessness',        name: 'Powerlessness &amp; Surrender' },
+    2:  { slug: 'higher-power',         name: 'Trusting a Higher Power' },
+    3:  { slug: 'letting-go-of-control', name: 'Letting Go of Control' },
+    4:  { slug: 'honesty',              name: 'Honesty &amp; Self-Awareness' },
+    5:  { slug: 'self-worth',           name: 'Self-Worth &amp; Identity' },
+    6:  { slug: 'boundaries',           name: 'Boundaries' },
+    7:  { slug: 'detachment',           name: 'Detachment with Love' },
+    8:  { slug: 'the-disease',          name: 'Understanding the Disease' },
+    9:  { slug: 'focus-on-yourself',    name: 'Focus on Yourself' },
+    10: { slug: 'one-day-at-a-time',    name: 'One Day at a Time' },
+    11: { slug: 'gratitude-and-hope',   name: 'Gratitude &amp; Hope' },
+    12: { slug: 'fellowship',           name: 'Community &amp; Fellowship' },
+  };
+  const themeInfo = STEP_THEME_URLS[step.number];
+
   // Build tools list — prepend anchor link to readings grid
   const anchorItem = `<a href="#step-readings" class="step-tools-anchor">View all ${step.month} Daily Reflections on Step ${step.number}</a>`;
   const toolItems = [`              <li>${anchorItem}</li>`, ...tools.map(t => `              <li>${t}</li>`)].join('\n');
@@ -435,7 +452,7 @@ export function renderStepPage(step, readings = []) {
           Each month in the Daily Paths app focuses on a specific Step. ${step.month} is dedicated to the Principle of ${step.principle} and Step ${step.number}. Explore the reflections below.
         </p>
         <p class="step-assoc-intro">
-          ${associatedReadings.length} reading${associatedReadings.length === 1 ? '' : 's'} across the year explore the principle of ${step.principle}.
+          ${associatedReadings.length} reading${associatedReadings.length === 1 ? '' : 's'} across the year explore the principle of ${step.principle}. Deep dive into this principle via the <a href="${bp(`/principles/${themeInfo.slug}/`)}" class="step-assoc-theme-link">${themeInfo.name}</a> theme.
         </p>
         <p class="step-assoc-micro-cta"><em>Find these readings and track your progress daily in the app.</em></p>
         <div class="step-assoc-grid">

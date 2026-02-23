@@ -3100,6 +3100,12 @@ html {
   line-height: 1.6;
 }
 
+.step-assoc-theme-link {
+  color: var(--deep-teal);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
 .step-assoc-micro-cta {
   font-family: var(--font-sans);
   font-size: 0.8rem;
