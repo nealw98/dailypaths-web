@@ -1994,27 +1994,61 @@
   };
 
   function renderSharesList() {
+    // Get unique theme slugs that have shares, sorted by theme name
+    var themeSlugs = [];
+    var seen = {};
+    for (var t = 0; t < state.shares.length; t++) {
+      var slug = state.shares[t].topic_slug;
+      if (!seen[slug]) {
+        seen[slug] = true;
+        themeSlugs.push(slug);
+      }
+    }
+    themeSlugs.sort(function (a, b) {
+      return (THEME_NAMES[a] || a).localeCompare(THEME_NAMES[b] || b);
+    });
+
     var filtered = state.shares.filter(function (s) {
-      if (state.sharesFilter === 'pending') return !s.is_approved;
-      if (state.sharesFilter === 'approved') return s.is_approved;
-      return true;
+      if (state.sharesFilter === 'all') return true;
+      return s.topic_slug === state.sharesFilter;
+    });
+
+    // Sort: pending first, then by theme name, then by date
+    filtered.sort(function (a, b) {
+      // Pending first
+      if (!a.is_approved && b.is_approved) return -1;
+      if (a.is_approved && !b.is_approved) return 1;
+      // Then by theme
+      var themeA = THEME_NAMES[a.topic_slug] || a.topic_slug;
+      var themeB = THEME_NAMES[b.topic_slug] || b.topic_slug;
+      if (themeA !== themeB) return themeA.localeCompare(themeB);
+      // Then newest first
+      return (b.created_at || '').localeCompare(a.created_at || '');
     });
 
     var pendingCount = state.shares.filter(function (s) { return !s.is_approved; }).length;
-    var approvedCount = state.shares.filter(function (s) { return s.is_approved; }).length;
 
     var html = '<div class="admin-editor">';
     html += '<div class="admin-editor-header">';
     html += '<button class="admin-btn admin-btn--ghost" id="btn-back-shares">&larr; Back to Dashboard</button>';
     html += '<h2>Member Shares</h2>';
+    if (pendingCount > 0) {
+      html += '<span class="admin-share-status admin-share-status--pending" style="font-size:13px;">' + pendingCount + ' pending</span>';
+    }
     html += '<button class="admin-btn admin-btn--ghost" id="btn-refresh-shares">Refresh</button>';
     html += '</div>';
 
-    // Filter tabs
+    // Theme filter dropdown
     html += '<div class="admin-controls" style="padding:8px 24px;">';
-    html += '<button class="admin-btn ' + (state.sharesFilter === 'pending' ? 'admin-btn--primary' : 'admin-btn--ghost') + '" data-shares-filter="pending">Pending (' + pendingCount + ')</button> ';
-    html += '<button class="admin-btn ' + (state.sharesFilter === 'approved' ? 'admin-btn--primary' : 'admin-btn--ghost') + '" data-shares-filter="approved">Approved (' + approvedCount + ')</button> ';
-    html += '<button class="admin-btn ' + (state.sharesFilter === 'all' ? 'admin-btn--primary' : 'admin-btn--ghost') + '" data-shares-filter="all">All (' + state.shares.length + ')</button>';
+    html += '<select class="admin-select" id="shares-theme-filter">';
+    html += '<option value="all"' + (state.sharesFilter === 'all' ? ' selected' : '') + '>All Themes (' + state.shares.length + ')</option>';
+    for (var f = 0; f < themeSlugs.length; f++) {
+      var fSlug = themeSlugs[f];
+      var fName = THEME_NAMES[fSlug] || fSlug;
+      var fCount = state.shares.filter(function (s) { return s.topic_slug === fSlug; }).length;
+      html += '<option value="' + fSlug + '"' + (state.sharesFilter === fSlug ? ' selected' : '') + '>' + escHtml(fName) + ' (' + fCount + ')</option>';
+    }
+    html += '</select>';
     html += '</div>';
 
     if (state.loading) {
