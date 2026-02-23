@@ -67,6 +67,8 @@
       var displayName = form.querySelector('input[name="display_name"]').value.trim();
       var content = form.querySelector('textarea[name="content"]').value.trim();
       var consent = form.querySelector('input[name="consent"]').checked;
+      var guestAuthorEl = form.querySelector('input[name="guest_author"]');
+      var guestAuthor = guestAuthorEl ? guestAuthorEl.checked : false;
 
       if (!displayName || !content || !consent) {
         status.textContent = 'Please complete all fields and confirm consent.';
@@ -91,7 +93,8 @@
           display_name: displayName,
           content: content,
           consent_confirmed: true,
-          is_approved: false
+          is_approved: false,
+          guest_author: guestAuthor
         })
       }).then(function (res) {
         if (res.ok) {
@@ -100,6 +103,9 @@
           form.querySelector('input[name="display_name"]').value = '';
           form.querySelector('textarea[name="content"]').value = '';
           form.querySelector('input[name="consent"]').checked = false;
+          if (guestAuthorEl) guestAuthorEl.checked = false;
+          var charCounter = form.querySelector('[data-char-count]');
+          if (charCounter) charCounter.textContent = '0';
           btn.textContent = 'Submitted';
           Analytics.trackEvent('Share Form Submit', { topic_slug: topicSlug, status: 'success' });
         } else {
@@ -113,6 +119,37 @@
         Analytics.trackEvent('Share Form Submit', { topic_slug: topicSlug, status: 'error' });
       });
     });
+  }
+
+  // 4b. Read More truncation for long member insights
+  var fullTextEls = document.querySelectorAll('[data-full-text]');
+  for (var rt = 0; rt < fullTextEls.length; rt++) {
+    (function (el) {
+      if (el.textContent.length > 800) {
+        el.classList.add('truncated');
+        var btn = el.parentElement.querySelector('[data-read-more]');
+        if (btn) {
+          btn.removeAttribute('hidden');
+          btn.addEventListener('click', function () {
+            el.classList.remove('truncated');
+            btn.setAttribute('hidden', '');
+          });
+        }
+      }
+    })(fullTextEls[rt]);
+  }
+
+  // 4c. Live character counter for share textareas
+  var shareTextareas = document.querySelectorAll('.topic-share-textarea');
+  for (var tc = 0; tc < shareTextareas.length; tc++) {
+    (function (textarea) {
+      var counter = textarea.parentElement.querySelector('[data-char-count]');
+      if (counter) {
+        textarea.addEventListener('input', function () {
+          counter.textContent = textarea.value.length;
+        });
+      }
+    })(shareTextareas[tc]);
   }
 
   // 5. Header Navigation Tracking

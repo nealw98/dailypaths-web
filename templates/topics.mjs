@@ -175,6 +175,30 @@ ${cards}
   }
   const shareParagraphs = memberShareContent.split('\n\n').map(p => `              <p>${p.trim()}</p>`).join('\n');
 
+  // Build additional insight cards if multiple shares exist
+  let moreInsightsHtml = '';
+  if (topicShares.length > 1) {
+    const insightCards = topicShares.slice(1).map(share => {
+      const excerpt = share.content.length > 150
+        ? share.content.substring(0, 150).replace(/\s+\S*$/, '') + '&hellip;'
+        : share.content;
+      const name = share.display_name || 'An Al-Anon member';
+      return `
+            <div class="topic-more-insight-card">
+              <p class="topic-more-insight-excerpt">&ldquo;${excerpt}&rdquo;</p>
+              <p class="topic-more-insight-name">&mdash; ${name}</p>
+            </div>`;
+    }).join('\n');
+
+    moreInsightsHtml = `
+      <section class="topic-more-insights">
+        <h3 class="topic-more-insights-heading">More from the Community</h3>
+        <div class="topic-more-insights-grid">
+${insightCards}
+        </div>
+      </section>`;
+  }
+
   // Toolbox items with compass SVG icon
   const compassSvg = '<svg class="topic-toolbox-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88"/></svg>';
   const toolboxItems = tools.map(t => `              <li>${compassSvg}<span>${t}</span></li>`).join('\n');
@@ -237,10 +261,13 @@ ${cards}
       <section class="topic-member-insight" aria-label="A member&rsquo;s perspective on ${topic.name}">
         <div class="topic-member-insight-inner">
           <h2 class="topic-member-insight-heading">Member Insight</h2>
-          <blockquote class="topic-member-insight-body">
+          <div class="topic-member-insight-text" data-full-text>
+            <blockquote class="topic-member-insight-body">
 ${shareParagraphs}
-          </blockquote>
-          <p class="topic-member-insight-attribution">&mdash; ${memberShareAttribution}</p>
+            </blockquote>
+          </div>
+          <button class="topic-share-read-more" data-read-more hidden>Read More</button>
+          <p class="topic-member-insight-attribution">&mdash; <span itemprop="author" itemscope itemtype="https://schema.org/Person"><span itemprop="name">${memberShareAttribution}</span></span> on their experience with ${topic.name}</p>
           <div class="topic-share-trigger">
             <a href="#share-form-${topic.slug}" class="topic-share-link" data-share-toggle>Share your experience with this theme.</a>
           </div>
@@ -248,16 +275,22 @@ ${shareParagraphs}
             <label class="topic-share-label" for="share-name-${topic.slug}">First Name, Last Initial</label>
             <input type="text" id="share-name-${topic.slug}" name="display_name" class="topic-share-input" placeholder="e.g. Sarah M." required>
             <label class="topic-share-label" for="share-content-${topic.slug}">Your story&hellip;</label>
-            <textarea id="share-content-${topic.slug}" name="content" class="topic-share-textarea" rows="5" required></textarea>
+            <textarea id="share-content-${topic.slug}" name="content" class="topic-share-textarea" rows="5" maxlength="2000" required></textarea>
+            <p class="topic-share-counter"><span data-char-count>0</span>/2000 characters</p>
             <label class="topic-share-consent">
               <input type="checkbox" name="consent" required>
               <span>I agree to share this anonymously with the Daily Path community.</span>
+            </label>
+            <label class="topic-share-consent">
+              <input type="checkbox" name="guest_author">
+              <span>Submit as Guest Author (your name will appear as a byline).</span>
             </label>
             <button type="submit" class="topic-share-submit">Submit</button>
             <p class="topic-share-status" data-share-status></p>
           </form>
         </div>
       </section>
+${moreInsightsHtml}
 
       <!-- App CTA — full-bleed navy transition -->
       <section class="topic-cta bg-navy">

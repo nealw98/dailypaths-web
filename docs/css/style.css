@@ -3602,7 +3602,18 @@ html {
   align-items: center;
   max-width: 64rem;
   margin: 0 auto;
-  padding: 1rem 2rem 0;
+  padding: 1rem 2rem;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: var(--white);
+  border-bottom: 1px solid var(--cloud);
+}
+
+.topic-nav-header .nav-browse {
+  background: var(--cloud);
+  padding: 0.35rem 0.85rem;
+  border-radius: 999px;
 }
 
 .topic-nav-header a {
@@ -3776,7 +3787,7 @@ html {
 }
 
 .topic-member-insight-inner {
-  max-width: 42rem;
+  max-width: 45rem;
   margin: 0 auto;
   background: #F8F9FA;
   border: 1px solid rgba(0, 0, 0, 0.08);
@@ -3950,6 +3961,118 @@ html {
 
 .topic-share-status--error {
   color: #b44;
+}
+
+/* Read More truncation */
+.topic-member-insight-text {
+  position: relative;
+}
+
+.topic-member-insight-text.truncated {
+  max-height: 16rem;
+  overflow: hidden;
+}
+
+.topic-member-insight-text.truncated::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 5rem;
+  background: linear-gradient(transparent, #F8F9FA);
+  pointer-events: none;
+}
+
+.topic-share-read-more {
+  display: inline-block;
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--ocean);
+  background: none;
+  border: none;
+  padding: 0.5rem 0;
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.topic-share-read-more:hover {
+  color: var(--deep-teal);
+}
+
+/* Character counter */
+.topic-share-counter {
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  color: var(--ink);
+  opacity: 0.5;
+  margin: -0.25rem 0 0;
+  line-height: 1.4;
+}
+
+/* More Insights grid */
+.topic-more-insights {
+  max-width: 45rem;
+  margin: 0 auto;
+  padding: 0 2rem 2.5rem;
+}
+
+.topic-more-insights-heading {
+  font-family: var(--font-serif);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--deep-navy);
+  margin-bottom: 1rem;
+}
+
+.topic-more-insights-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.75rem;
+}
+
+.topic-more-insight-card {
+  background: var(--white);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-top: 3px solid var(--ocean);
+  border-radius: var(--radius);
+  padding: 1.25rem;
+  box-shadow: var(--card-shadow);
+  transition: box-shadow 0.2s, transform 0.2s;
+}
+
+.topic-more-insight-card:hover {
+  box-shadow: var(--card-shadow-hover);
+  transform: translateY(-2px);
+}
+
+.topic-more-insight-excerpt {
+  font-family: var(--font-reading);
+  font-size: 0.9rem;
+  font-style: italic;
+  line-height: 1.7;
+  color: var(--ink);
+  margin: 0 0 0.75rem;
+}
+
+.topic-more-insight-name {
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--ocean);
+  opacity: 0.7;
+  margin: 0;
+}
+
+@media (max-width: 640px) {
+  .topic-more-insights {
+    padding: 0 1.5rem 2rem;
+  }
+  .topic-more-insights-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 /* --- Al-Anon Toolbox --- */
@@ -4406,9 +4529,14 @@ html {
   color: var(--ocean);
   text-transform: uppercase;
   letter-spacing: 0.06em;
+  margin-top: 3rem;
   margin-bottom: 0.75rem;
   padding-bottom: 0.5rem;
   border-bottom: 1px solid var(--cloud);
+}
+
+.topic-reading-group:first-child .topic-reading-group-label {
+  margin-top: 0;
 }
 
 @media (min-width: 640px) {
