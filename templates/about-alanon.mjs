@@ -165,7 +165,7 @@ export function renderAboutAlanonPage() {
             <a href="https://apps.apple.com/app/id6755981862" target="_blank" rel="noopener noreferrer" class="aa-app-cta-badge-link">
               <img src="https://developer.apple.com/app-store/marketing/guidelines/images/badge-download-on-the-app-store.svg" alt="Download Al-Anon Daily Paths on the App Store" class="aa-app-cta-badge aa-app-cta-badge--ios">
             </a>
-            <a href="https://play.google.com/store/apps/details?id=com.dailypaths" target="_blank" rel="noopener noreferrer" class="aa-app-cta-badge-link">
+            <a href="https://play.google.com/store/apps/details?id=com.nealw98.dailypaths" target="_blank" rel="noopener noreferrer" class="aa-app-cta-badge-link">
               <img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" alt="Get Al-Anon Daily Paths on Google Play" class="aa-app-cta-badge aa-app-cta-badge--play">
             </a>
           </div>

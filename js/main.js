@@ -133,7 +133,33 @@
     })(fullTextEls[rt]);
   }
 
-  // 4c. Live character counter for share textareas
+  // 4c. Insight card: 45-word truncation with smooth expand/collapse
+  var insightCardTexts = document.querySelectorAll('[data-insight-card-text]');
+  for (var ic = 0; ic < insightCardTexts.length; ic++) {
+    (function (textEl) {
+      var words = textEl.textContent.trim().split(/\s+/);
+      if (words.length <= 45) return;
+
+      textEl.classList.add('truncated');
+      var btn = textEl.parentElement.querySelector('[data-insight-read-more]');
+      if (!btn) return;
+
+      btn.addEventListener('click', function () {
+        var isExpanded = btn.getAttribute('aria-expanded') === 'true';
+        if (isExpanded) {
+          textEl.classList.add('truncated');
+          btn.setAttribute('aria-expanded', 'false');
+          btn.textContent = 'Read the full reflection \u2192';
+        } else {
+          textEl.classList.remove('truncated');
+          btn.setAttribute('aria-expanded', 'true');
+          btn.textContent = 'Show less';
+        }
+      });
+    })(insightCardTexts[ic]);
+  }
+
+  // 4d. Live character counter for share textareas
   var shareTextareas = document.querySelectorAll('.topic-share-textarea');
   for (var tc = 0; tc < shareTextareas.length; tc++) {
     (function (textarea) {

@@ -54,7 +54,7 @@ ${galleryCards}
             <a href="https://apps.apple.com/app/id6755981862" target="_blank" rel="noopener noreferrer" class="ti-engine-cta-badge-link">
               <img src="https://developer.apple.com/app-store/marketing/guidelines/images/badge-download-on-the-app-store.svg" alt="Download on the App Store" class="ti-engine-cta-badge">
             </a>
-            <a href="https://play.google.com/store/apps/details?id=com.dailypaths" target="_blank" rel="noopener noreferrer" class="ti-engine-cta-badge-link">
+            <a href="https://play.google.com/store/apps/details?id=com.nealw98.dailypaths" target="_blank" rel="noopener noreferrer" class="ti-engine-cta-badge-link">
               <img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" alt="Get it on Google Play" class="ti-engine-cta-badge ti-engine-cta-badge-play">
             </a>
           </div>
@@ -162,43 +162,22 @@ ${cards}
               </div>`;
     }).join('\n');
 
-  // Member share — only show if approved shares exist in the database
-  let memberShareContent = '';
-  let memberShareAttribution = '';
-  let memberShareIsAnonymous = false;
-  if (topicShares.length > 0) {
-    const dbShare = topicShares[0];
-    memberShareContent = dbShare.content;
-    memberShareIsAnonymous = dbShare.guest_author === true || !dbShare.display_name;
-    memberShareAttribution = memberShareIsAnonymous ? 'Anonymous' : dbShare.display_name;
-  }
-  const shareParagraphs = memberShareContent
-    ? memberShareContent.split('\n\n').map(p => `              <p>${p.trim()}</p>`).join('\n')
-    : '';
-
-  // Build additional insight cards if multiple shares exist
-  let moreInsightsHtml = '';
-  if (topicShares.length > 1) {
-    const insightCards = topicShares.slice(1).map(share => {
-      const excerpt = share.content.length > 150
-        ? share.content.substring(0, 150).replace(/\s+\S*$/, '') + '&hellip;'
-        : share.content;
-      const name = share.display_name || 'An Al-Anon member';
-      return `
-            <div class="topic-more-insight-card">
-              <p class="topic-more-insight-excerpt">&ldquo;${excerpt}&rdquo;</p>
-              <p class="topic-more-insight-name">&mdash; ${name}</p>
+  // Build insight cards (up to 3) from approved shares
+  const insightCardsHtml = topicShares.slice(0, 3).map(share => {
+    const name = (share.guest_author === true || !share.display_name)
+      ? 'Anonymous'
+      : share.display_name;
+    const words = share.content.split(/\s+/);
+    const needsTruncation = words.length > 45;
+    return `
+            <div class="insight-card">
+              <div class="insight-card-text" data-insight-card-text>
+                <p>${share.content.split('\n\n').map(p => p.trim()).join('</p><p>')}</p>
+              </div>
+              ${needsTruncation ? '<button class="insight-card-read-more" data-insight-read-more aria-expanded="false">Read the full reflection &rarr;</button>' : ''}
+              <p class="insight-card-attribution">&mdash; ${name}</p>
             </div>`;
-    }).join('\n');
-
-    moreInsightsHtml = `
-      <section class="topic-more-insights">
-        <h3 class="topic-more-insights-heading">More from the Community</h3>
-        <div class="topic-more-insights-grid">
-${insightCards}
-        </div>
-      </section>`;
-  }
+  }).join('\n');
 
   // Toolbox items with compass SVG icon
   const compassSvg = '<svg class="topic-toolbox-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88"/></svg>';
@@ -266,37 +245,34 @@ ${insightCards}
         </div>
       </section>` : ''}
 
-      <!-- Member Insight -->
-      <section class="topic-member-insight" aria-label="A member&rsquo;s perspective on ${topic.name}">
-        <div class="topic-member-insight-inner">
-          ${topicShares.length > 0 ? `
-          <h2 class="topic-member-insight-heading">${insightPrompt}</h2>
-          <div class="topic-member-insight-text" data-full-text>
-            <blockquote class="topic-member-insight-body">
-${shareParagraphs}
-            </blockquote>
+      <!-- Member Insight Cards -->
+      ${topicShares.length > 0 ? `
+      <section class="topic-insight-cards" aria-label="Member insights on ${topic.name}">
+        <div class="topic-insight-cards-inner">
+          <h2 class="topic-insight-cards-heading">${insightPrompt}</h2>
+          <div class="topic-insight-cards-grid">
+${insightCardsHtml}
           </div>
-          <button class="topic-share-read-more" data-read-more hidden>Read More</button>
-          <p class="topic-member-insight-attribution">&mdash; ${memberShareIsAnonymous
-            ? '<span itemprop="author" itemscope itemtype="https://schema.org/Person"><meta itemprop="name" content="Anonymous">Anonymous</span>'
-            : `<span itemprop="author" itemscope itemtype="https://schema.org/Person"><span itemprop="name">${memberShareAttribution}</span></span>`} on their experience with ${topic.name}</p>
-          ` : ''}
-          <div class="topic-share-trigger">
-            <a href="#share-form-${topic.slug}" class="topic-share-link" data-share-toggle>Share your experience with this theme.</a>
-          </div>
-          <form id="share-form-${topic.slug}" class="topic-share-form" data-share-form data-topic-slug="${topic.slug}" data-supabase-url="${process.env.SUPABASE_URL}" data-supabase-key="${process.env.SUPABASE_ANON_KEY}" hidden>
-            <label class="topic-share-label" for="share-name-${topic.slug}">First Name, Last Initial (or &ldquo;Anonymous&rdquo;)</label>
+        </div>
+      </section>` : ''}
+
+      <!-- Insight Form — Terracotta Block -->
+      <div class="bg-terracotta">
+        <div class="topic-insight-form-wrap">
+          <h2 class="topic-insight-form-heading">Share Your Experience</h2>
+          <p class="topic-insight-form-subhead">How has ${topic.name.toLowerCase()} shaped your recovery?</p>
+          <form id="share-form-${topic.slug}" class="topic-share-form topic-insight-form" data-share-form data-topic-slug="${topic.slug}" data-supabase-url="${process.env.SUPABASE_URL}" data-supabase-key="${process.env.SUPABASE_ANON_KEY}">
+            <label class="topic-share-label" for="share-name-${topic.slug}">Name or Initials</label>
             <input type="text" id="share-name-${topic.slug}" name="display_name" class="topic-share-input" placeholder="e.g., Sarah M. or Anonymous" required>
-            <label class="topic-share-label" for="share-content-${topic.slug}">${insightPrompt}</label>
+            <label class="topic-share-label" for="share-content-${topic.slug}">Your Insight</label>
             <textarea id="share-content-${topic.slug}" name="content" class="topic-share-textarea" rows="5" maxlength="1200" required></textarea>
             <p class="topic-share-counter"><span data-char-count>0</span>/1200 characters</p>
-            <p class="topic-share-disclaimer"><em>By clicking submit, you consent to sharing your experience with the Daily Paths community.</em></p>
-            <button type="submit" class="topic-share-submit">Submit</button>
+            <p class="topic-share-disclaimer"><em>By submitting, you consent to sharing your experience with the Daily Paths community.</em></p>
+            <button type="submit" class="topic-insight-submit">Post Insight</button>
             <p class="topic-share-status" data-share-status></p>
           </form>
         </div>
-      </section>
-${moreInsightsHtml}
+      </div>
 
       <!-- App CTA — full-bleed navy transition -->
       <section class="topic-cta bg-navy">
@@ -307,7 +283,7 @@ ${moreInsightsHtml}
             <a href="https://apps.apple.com/app/id6755981862" target="_blank" rel="noopener noreferrer" class="topic-cta-badge-link">
               <img src="https://developer.apple.com/app-store/marketing/guidelines/images/badge-download-on-the-app-store.svg" alt="Download on the App Store" class="topic-cta-badge">
             </a>
-            <a href="https://play.google.com/store/apps/details?id=com.dailypaths" target="_blank" rel="noopener noreferrer" class="topic-cta-badge-link">
+            <a href="https://play.google.com/store/apps/details?id=com.nealw98.dailypaths" target="_blank" rel="noopener noreferrer" class="topic-cta-badge-link">
               <img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" alt="Get it on Google Play" class="topic-cta-badge topic-cta-badge-play">
             </a>
           </div>

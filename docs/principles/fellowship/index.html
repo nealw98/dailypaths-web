@@ -124,38 +124,42 @@
       <!-- Theme Logic — contextual bridge above member insights -->
       
 
-      <!-- Member Insight -->
-      <section class="topic-member-insight" aria-label="A member&rsquo;s perspective on Community & Fellowship">
-        <div class="topic-member-insight-inner">
-          
-          <h2 class="topic-member-insight-heading">What has the support of the fellowship meant for my recovery?</h2>
-          <div class="topic-member-insight-text" data-full-text>
-            <blockquote class="topic-member-insight-body">
-              <p>The Lifeline of Fellowship: Moving from "Me" to "We"
-For a long time, many of us carried a secret that felt like a lead weight. We lived in a self-imposed exile, convinced that if people really knew the chaos behind our front door—the frantic cleaning, the hidden bottles, the rehearsed lies—they would turn away in judgment. We became experts at the "lonely independent," priding ourselves on doing it all on our own because we didn't think we had a choice. Isolation wasn't just a physical state; it was a survival strategy.</p>
-              <p>Entering the fellowship of Al-Anon is like finally putting that weight down. It is the profound, heart-stopping relief of walking into a room and realizing you are no longer the only one. There is an incredible emotional power in the "me too" moments—the first time you see someone nod as you describe a feeling you thought was your private shame. In this community, our secrets lose their teeth.</p>
-              <p>Fellowship is the bridge out of that dark, quiet room. It’s the coffee after the meeting, the phone call when the house feels too loud, and the friends who understand the nuance of our grief without us having to explain it. We stop being "the one with the problem" and start being a part of a "we." This isn't just about making friends; it's about finding a mirror that reflects our worth instead of our failures. We learn that we don't have to be strong enough to do this alone—because we were never meant to.</p>
-            </blockquote>
+      <!-- Member Insight Cards -->
+      
+      <section class="topic-insight-cards" aria-label="Member insights on Community & Fellowship">
+        <div class="topic-insight-cards-inner">
+          <h2 class="topic-insight-cards-heading">What has the support of the fellowship meant for my recovery?</h2>
+          <div class="topic-insight-cards-grid">
+
+            <div class="insight-card">
+              <div class="insight-card-text" data-insight-card-text>
+                <p>The Lifeline of Fellowship: Moving from "Me" to "We"
+For a long time, many of us carried a secret that felt like a lead weight. We lived in a self-imposed exile, convinced that if people really knew the chaos behind our front door—the frantic cleaning, the hidden bottles, the rehearsed lies—they would turn away in judgment. We became experts at the "lonely independent," priding ourselves on doing it all on our own because we didn't think we had a choice. Isolation wasn't just a physical state; it was a survival strategy.</p><p>Entering the fellowship of Al-Anon is like finally putting that weight down. It is the profound, heart-stopping relief of walking into a room and realizing you are no longer the only one. There is an incredible emotional power in the "me too" moments—the first time you see someone nod as you describe a feeling you thought was your private shame. In this community, our secrets lose their teeth.</p><p>Fellowship is the bridge out of that dark, quiet room. It’s the coffee after the meeting, the phone call when the house feels too loud, and the friends who understand the nuance of our grief without us having to explain it. We stop being "the one with the problem" and start being a part of a "we." This isn't just about making friends; it's about finding a mirror that reflects our worth instead of our failures. We learn that we don't have to be strong enough to do this alone—because we were never meant to.</p>
+              </div>
+              <button class="insight-card-read-more" data-insight-read-more aria-expanded="false">Read the full reflection &rarr;</button>
+              <p class="insight-card-attribution">&mdash; An Al-Anon member</p>
+            </div>
           </div>
-          <button class="topic-share-read-more" data-read-more hidden>Read More</button>
-          <p class="topic-member-insight-attribution">&mdash; <span itemprop="author" itemscope itemtype="https://schema.org/Person"><span itemprop="name">An Al-Anon member</span></span> on their experience with Community & Fellowship</p>
-          
-          <div class="topic-share-trigger">
-            <a href="#share-form-fellowship" class="topic-share-link" data-share-toggle>Share your experience with this theme.</a>
-          </div>
-          <form id="share-form-fellowship" class="topic-share-form" data-share-form data-topic-slug="fellowship" data-supabase-url="https://ofmqgqaoubsiwujgvcil.supabase.co" data-supabase-key="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9mbXFncWFvdWJzaXd1amd2Y2lsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjM5MDI1NzEsImV4cCI6MjA3OTQ3ODU3MX0.85ile88Honj3SdXzxGEPFA04LG0B4OjRsbChZ8oUnmE" hidden>
-            <label class="topic-share-label" for="share-name-fellowship">First Name, Last Initial (or &ldquo;Anonymous&rdquo;)</label>
-            <input type="text" id="share-name-fellowship" name="display_name" class="topic-share-input" placeholder="e.g., Sarah M. or Anonymous" required>
-            <label class="topic-share-label" for="share-content-fellowship">What has the support of the fellowship meant for my recovery?</label>
-            <textarea id="share-content-fellowship" name="content" class="topic-share-textarea" rows="5" maxlength="1200" required></textarea>
-            <p class="topic-share-counter"><span data-char-count>0</span>/1200 characters</p>
-            <p class="topic-share-disclaimer"><em>By clicking submit, you consent to sharing your experience with the Daily Paths community.</em></p>
-            <button type="submit" class="topic-share-submit">Submit</button>
-            <p class="topic-share-status" data-share-status></p>
-          </form>
         </div>
       </section>
 
+      <!-- Insight Form — Terracotta Block -->
+      <div class="bg-terracotta">
+        <div class="topic-insight-form-wrap">
+          <h2 class="topic-insight-form-heading">Share Your Experience</h2>
+          <p class="topic-insight-form-subhead">How has community & fellowship shaped your recovery?</p>
+          <form id="share-form-fellowship" class="topic-share-form topic-insight-form" data-share-form data-topic-slug="fellowship" data-supabase-url="https://ofmqgqaoubsiwujgvcil.supabase.co" data-supabase-key="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9mbXFncWFvdWJzaXd1amd2Y2lsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjM5MDI1NzEsImV4cCI6MjA3OTQ3ODU3MX0.85ile88Honj3SdXzxGEPFA04LG0B4OjRsbChZ8oUnmE">
+            <label class="topic-share-label" for="share-name-fellowship">Name or Initials</label>
+            <input type="text" id="share-name-fellowship" name="display_name" class="topic-share-input" placeholder="e.g., Sarah M. or Anonymous" required>
+            <label class="topic-share-label" for="share-content-fellowship">Your Insight</label>
+            <textarea id="share-content-fellowship" name="content" class="topic-share-textarea" rows="5" maxlength="1200" required></textarea>
+            <p class="topic-share-counter"><span data-char-count>0</span>/1200 characters</p>
+            <p class="topic-share-disclaimer"><em>By submitting, you consent to sharing your experience with the Daily Paths community.</em></p>
+            <button type="submit" class="topic-insight-submit">Post Insight</button>
+            <p class="topic-share-status" data-share-status></p>
+          </form>
+        </div>
+      </div>
 
       <!-- App CTA — full-bleed navy transition -->
       <section class="topic-cta bg-navy">
@@ -166,7 +170,7 @@ For a long time, many of us carried a secret that felt like a lead weight. We li
             <a href="https://apps.apple.com/app/id6755981862" target="_blank" rel="noopener noreferrer" class="topic-cta-badge-link">
               <img src="https://developer.apple.com/app-store/marketing/guidelines/images/badge-download-on-the-app-store.svg" alt="Download on the App Store" class="topic-cta-badge">
             </a>
-            <a href="https://play.google.com/store/apps/details?id=com.dailypaths" target="_blank" rel="noopener noreferrer" class="topic-cta-badge-link">
+            <a href="https://play.google.com/store/apps/details?id=com.nealw98.dailypaths" target="_blank" rel="noopener noreferrer" class="topic-cta-badge-link">
               <img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" alt="Get it on Google Play" class="topic-cta-badge topic-cta-badge-play">
             </a>
           </div>
