@@ -347,6 +347,7 @@ cpSync(cssSource, join(outDir, 'css', 'style.css'));
 // JS
 cpSync(join(__dirname, 'js', 'main.js'), join(outDir, 'js', 'main.js'));
 cpSync(join(__dirname, 'js', 'admin.js'), join(outDir, 'js', 'admin.js'));
+cpSync(join(__dirname, 'js', 'analytics.js'), join(outDir, 'js', 'analytics.js'));
 
 // Admin CSS
 cpSync(join(__dirname, 'css', 'admin.css'), join(outDir, 'css', 'admin.css'));

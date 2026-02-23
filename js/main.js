@@ -101,6 +101,7 @@
           form.querySelector('textarea[name="content"]').value = '';
           form.querySelector('input[name="consent"]').checked = false;
           btn.textContent = 'Submitted';
+          Analytics.trackEvent('Share Form Submit', { topic_slug: topicSlug, status: 'success' });
         } else {
           throw new Error(res.status);
         }
@@ -109,9 +110,112 @@
         status.className = 'topic-share-status topic-share-status--error';
         btn.disabled = false;
         btn.textContent = 'Submit';
+        Analytics.trackEvent('Share Form Submit', { topic_slug: topicSlug, status: 'error' });
       });
     });
   }
+
+  // 5. Header Navigation Tracking
+  var headerLinks = document.querySelectorAll('.site-nav .nav-link');
+  for (var hn = 0; hn < headerLinks.length; hn++) {
+    headerLinks[hn].addEventListener('click', function () {
+      Analytics.trackEvent('Navigation Click', {
+        location: 'header',
+        label: this.textContent.trim(),
+        href: this.getAttribute('href')
+      });
+    });
+  }
+
+  // 6. Footer Navigation Tracking
+  var footerLinks = document.querySelectorAll('.footer-nav a');
+  for (var fn = 0; fn < footerLinks.length; fn++) {
+    footerLinks[fn].addEventListener('click', function () {
+      Analytics.trackEvent('Navigation Click', {
+        location: 'footer',
+        label: this.textContent.trim(),
+        href: this.getAttribute('href')
+      });
+    });
+  }
+
+  // 7. Today's Reading Link Tracking
+  var todayBtns = document.querySelectorAll('.hm-today-btn');
+  for (var tb = 0; tb < todayBtns.length; tb++) {
+    todayBtns[tb].addEventListener('click', function () {
+      Analytics.trackEvent('Today Reading Click', {
+        href: this.getAttribute('href')
+      });
+    });
+  }
+
+  // 8. Scroll Depth Tracking
+  (function () {
+    var thresholds = [25, 50, 75, 100];
+    var fired = {};
+
+    function getScrollPercent() {
+      var docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      if (docHeight <= 0) return 100;
+      return Math.round((window.pageYOffset / docHeight) * 100);
+    }
+
+    window.addEventListener('scroll', function () {
+      var pct = getScrollPercent();
+      for (var i = 0; i < thresholds.length; i++) {
+        var t = thresholds[i];
+        if (pct >= t && !fired[t]) {
+          fired[t] = true;
+          Analytics.trackEvent('Scroll Depth', {
+            threshold: t,
+            path: window.location.pathname
+          });
+        }
+      }
+    });
+  })();
+
+  // 9. Time on Page Tracking
+  (function () {
+    var startTime = Date.now();
+    var intervals = [30, 60, 180, 300];
+    var firedIntervals = {};
+
+    setInterval(function () {
+      var elapsed = Math.floor((Date.now() - startTime) / 1000);
+      for (var i = 0; i < intervals.length; i++) {
+        var s = intervals[i];
+        if (elapsed >= s && !firedIntervals[s]) {
+          firedIntervals[s] = true;
+          Analytics.trackEvent('Time on Page', {
+            seconds: s,
+            path: window.location.pathname
+          });
+        }
+      }
+    }, 5000);
+  })();
+
+  // 10. Outbound Link Tracking
+  document.addEventListener('click', function (e) {
+    var link = e.target.closest('a[href]');
+    if (!link) return;
+    var href = link.getAttribute('href');
+    if (!href) return;
+
+    try {
+      var url = new URL(href, window.location.origin);
+      if (url.hostname !== window.location.hostname) {
+        Analytics.trackEvent('Outbound Link Click', {
+          href: href,
+          text: (link.textContent || '').trim().substring(0, 100),
+          path: window.location.pathname
+        });
+      }
+    } catch (err) {
+      // Malformed URL, skip
+    }
+  });
 
   // --- Helpers ---
 
