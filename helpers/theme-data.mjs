@@ -74,6 +74,22 @@ export const TOPIC_INSIGHT_PROMPTS = {
   'fellowship':            'What has the support of the fellowship meant for my recovery?',
 };
 
+/** Custom conversational form questions — theme-specific headers for the Share form */
+export const TOPIC_FORM_QUESTIONS = {
+  'detachment':            'How have you experienced the shift from trying to fix the situation to simply detaching with love?',
+  'powerlessness':         'How did you come to accept your powerlessness over alcoholism and surrender trying to fight it?',
+  'focus-on-yourself':     'How has focusing on your own well-being helped you navigate difficult situations?',
+  'one-day-at-a-time':     'What does living \u2018one day at a time\u2019 actually look like for you and how do you practice it?',
+  'boundaries':            'How do you overcome challenges you face in setting or maintaining your boundaries?',
+  'letting-go-of-control': 'What challenges have you faced in setting or maintaining your boundaries, and how are you learning to navigate them?',
+  'self-worth':            'How has your understanding of your own value and identity evolved since finding the program?',
+  'higher-power':          'What has been your experience in learning to trust in a Power greater than yourself?',
+  'honesty':               'How has practicing honesty\u2014both with yourself and others\u2014opened up new paths for your healing?',
+  'gratitude-and-hope':    'How has looking for gratitude helped you find a sense of hope, even when things feel uncertain?',
+  'the-disease':           'How has your perspective on the disease of alcoholism changed the way you view the chaos?',
+  'fellowship':            'In what ways has the fellowship helped you move through the isolation and realize you are no longer alone?',
+};
+
 /**
  * The 12 Al-Anon themes — each is its own content page.
  *

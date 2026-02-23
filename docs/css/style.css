@@ -3805,15 +3805,28 @@ html {
   margin-bottom: 0;
 }
 
-/* --- Member Insight Cards --- */
+/* --- Member Insight Cards — Voices of the Fellowship --- */
 
 .topic-insight-cards {
   padding: 2.5rem 2rem;
+  margin-top: 5rem;
 }
 
 .topic-insight-cards-inner {
   max-width: 54rem;
   margin: 0 auto;
+}
+
+.topic-insight-cards-label {
+  display: block;
+  font-family: var(--font-sans);
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--ocean);
+  text-align: center;
+  margin-bottom: 0.5rem;
 }
 
 .topic-insight-cards-heading {
@@ -3908,6 +3921,32 @@ html {
   color: var(--ink);
   opacity: 0.55;
   margin: 0;
+}
+
+/* Pagination: hidden overflow cards */
+.insight-card--hidden {
+  display: none;
+}
+
+/* "Show more community insights" button */
+.topic-insight-show-more {
+  display: block;
+  margin: 1.5rem auto 0;
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--deep-navy);
+  background: none;
+  border: 2px solid var(--deep-navy);
+  border-radius: var(--radius);
+  padding: 0.55rem 1.4rem;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+
+.topic-insight-show-more:hover {
+  background: var(--deep-navy);
+  color: var(--white);
 }
 
 /* --- Insight Form — Terracotta Block --- */

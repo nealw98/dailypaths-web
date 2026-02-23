@@ -159,7 +159,48 @@
     })(insightCardTexts[ic]);
   }
 
-  // 4d. Live character counter for share textareas
+  // 4d. "Show more community insights" pagination
+  var showMoreBtns = document.querySelectorAll('[data-insight-show-more]');
+  for (var sm = 0; sm < showMoreBtns.length; sm++) {
+    (function (btn) {
+      btn.addEventListener('click', function () {
+        var grid = btn.parentElement.querySelector('[data-insight-grid]');
+        if (!grid) return;
+        var hidden = grid.querySelectorAll('.insight-card--hidden');
+        for (var h = 0; h < hidden.length; h++) {
+          hidden[h].classList.remove('insight-card--hidden');
+          // Apply truncation to newly-revealed cards
+          var textEl = hidden[h].querySelector('[data-insight-card-text]');
+          if (textEl) {
+            var words = textEl.textContent.trim().split(/\s+/);
+            if (words.length > 45) {
+              textEl.classList.add('truncated');
+              var readMoreBtn = hidden[h].querySelector('[data-insight-read-more]');
+              if (readMoreBtn) {
+                readMoreBtn.addEventListener('click', (function (t, r) {
+                  return function () {
+                    var isExp = r.getAttribute('aria-expanded') === 'true';
+                    if (isExp) {
+                      t.classList.add('truncated');
+                      r.setAttribute('aria-expanded', 'false');
+                      r.textContent = 'Read the full reflection \u2192';
+                    } else {
+                      t.classList.remove('truncated');
+                      r.setAttribute('aria-expanded', 'true');
+                      r.textContent = 'Show less';
+                    }
+                  };
+                })(textEl, readMoreBtn));
+              }
+            }
+          }
+        }
+        btn.style.display = 'none';
+      });
+    })(showMoreBtns[sm]);
+  }
+
+  // 4e. Live character counter for share textareas
   var shareTextareas = document.querySelectorAll('.topic-share-textarea');
   for (var tc = 0; tc < shareTextareas.length; tc++) {
     (function (textarea) {

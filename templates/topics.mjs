@@ -3,7 +3,7 @@ import { dayToSlug } from '../helpers/slug-utils.mjs';
 import { bp } from '../helpers/config.mjs';
 import {
   TOPICS, TOPIC_THEME_TAGS, TOPIC_PULL_QUOTES, TOPIC_TOOLS,
-  TOPIC_INSIGHT_PROMPTS,
+  TOPIC_INSIGHT_PROMPTS, TOPIC_FORM_QUESTIONS,
 } from '../helpers/theme-data.mjs';
 
 // Re-export TOPICS so build.mjs can continue importing from this file
@@ -162,22 +162,28 @@ ${cards}
               </div>`;
     }).join('\n');
 
-  // Build insight cards (up to 3) from approved shares
-  const insightCardsHtml = topicShares.slice(0, 3).map(share => {
+  // Build insight cards from approved shares — schema.org/Comment for EEAT
+  const formQuestion = TOPIC_FORM_QUESTIONS[topic.slug] || `How has ${topic.name.toLowerCase()} shaped your recovery?`;
+
+  function buildInsightCard(share, extraClass = '') {
     const name = (share.guest_author === true || !share.display_name)
       ? 'Anonymous'
       : share.display_name;
     const words = share.content.split(/\s+/);
     const needsTruncation = words.length > 45;
     return `
-            <div class="insight-card">
-              <div class="insight-card-text" data-insight-card-text>
+            <div class="insight-card${extraClass}" itemscope itemtype="https://schema.org/Comment">
+              <div class="insight-card-text" data-insight-card-text itemprop="text">
                 <p>${share.content.split('\n\n').map(p => p.trim()).join('</p><p>')}</p>
               </div>
               ${needsTruncation ? '<button class="insight-card-read-more" data-insight-read-more aria-expanded="false">Read the full reflection &rarr;</button>' : ''}
-              <p class="insight-card-attribution">&mdash; ${name}</p>
+              <p class="insight-card-attribution" itemprop="author">&mdash; ${name}</p>
             </div>`;
-  }).join('\n');
+  }
+
+  const firstThreeCards = topicShares.slice(0, 3).map(s => buildInsightCard(s)).join('\n');
+  const extraCards = topicShares.slice(3).map(s => buildInsightCard(s, ' insight-card--hidden')).join('\n');
+  const hasMore = topicShares.length > 3;
 
   // Toolbox items with compass SVG icon
   const compassSvg = '<svg class="topic-toolbox-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88"/></svg>';
@@ -245,28 +251,31 @@ ${cards}
         </div>
       </section>` : ''}
 
-      <!-- Member Insight Cards -->
+      <!-- Voices of the Fellowship — Member Insight Cards -->
       ${topicShares.length > 0 ? `
       <section class="topic-insight-cards" aria-label="Member insights on ${topic.name}">
         <div class="topic-insight-cards-inner">
+          <span class="topic-insight-cards-label">Voices of the Fellowship</span>
           <h2 class="topic-insight-cards-heading">${insightPrompt}</h2>
-          <div class="topic-insight-cards-grid">
-${insightCardsHtml}
+          <div class="topic-insight-cards-grid" data-insight-grid>
+${firstThreeCards}
+${extraCards}
           </div>
+          ${hasMore ? '<button class="topic-insight-show-more" data-insight-show-more>Show more community insights &darr;</button>' : ''}
         </div>
       </section>` : ''}
 
-      <!-- Insight Form — Terracotta Block -->
+      <!-- Share Your Experience — Terracotta Block -->
       <div class="bg-terracotta">
         <div class="topic-insight-form-wrap">
           <h2 class="topic-insight-form-heading">Share Your Experience</h2>
-          <p class="topic-insight-form-subhead">How has ${topic.name.toLowerCase()} shaped your recovery?</p>
+          <p class="topic-insight-form-subhead">${formQuestion}</p>
           <form id="share-form-${topic.slug}" class="topic-share-form topic-insight-form" data-share-form data-topic-slug="${topic.slug}" data-supabase-url="${process.env.SUPABASE_URL}" data-supabase-key="${process.env.SUPABASE_ANON_KEY}">
-            <label class="topic-share-label" for="share-name-${topic.slug}">Name or Initials</label>
-            <input type="text" id="share-name-${topic.slug}" name="display_name" class="topic-share-input" placeholder="e.g., Sarah M. or Anonymous" required>
+            <label class="topic-share-label" for="share-name-${topic.slug}">Name</label>
+            <input type="text" id="share-name-${topic.slug}" name="display_name" class="topic-share-input" placeholder="Your first name or initials (e.g., Jane S.)" required>
             <label class="topic-share-label" for="share-content-${topic.slug}">Your Insight</label>
-            <textarea id="share-content-${topic.slug}" name="content" class="topic-share-textarea" rows="5" maxlength="1200" required></textarea>
-            <p class="topic-share-counter"><span data-char-count>0</span>/1200 characters</p>
+            <textarea id="share-content-${topic.slug}" name="content" class="topic-share-textarea" rows="5" maxlength="2000" required></textarea>
+            <p class="topic-share-counter"><span data-char-count>0</span>/2000 characters</p>
             <p class="topic-share-disclaimer"><em>By submitting, you consent to sharing your experience with the Daily Paths community.</em></p>
             <button type="submit" class="topic-insight-submit">Post Insight</button>
             <p class="topic-share-status" data-share-status></p>
