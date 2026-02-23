@@ -3,7 +3,7 @@ import { dayToSlug } from '../helpers/slug-utils.mjs';
 import { bp } from '../helpers/config.mjs';
 import {
   TOPICS, TOPIC_THEME_TAGS, TOPIC_PULL_QUOTES, TOPIC_TOOLS,
-  TOPIC_INSIGHT_PROMPTS, DEFAULT_MEMBER_SHARE, MEMBER_SHARES,
+  TOPIC_INSIGHT_PROMPTS,
 } from '../helpers/theme-data.mjs';
 
 // Re-export TOPICS so build.mjs can continue importing from this file
@@ -162,21 +162,19 @@ ${cards}
               </div>`;
     }).join('\n');
 
-  // Member share — use DB share if available, else hardcoded default
-  let memberShareContent;
-  let memberShareAttribution;
+  // Member share — only show if approved shares exist in the database
+  let memberShareContent = '';
+  let memberShareAttribution = '';
   let memberShareIsAnonymous = false;
   if (topicShares.length > 0) {
-    // Use the most recent approved share from the database
     const dbShare = topicShares[0];
     memberShareContent = dbShare.content;
     memberShareIsAnonymous = dbShare.guest_author === true || !dbShare.display_name;
     memberShareAttribution = memberShareIsAnonymous ? 'Anonymous' : dbShare.display_name;
-  } else {
-    memberShareContent = MEMBER_SHARES[topic.slug] || DEFAULT_MEMBER_SHARE;
-    memberShareAttribution = 'An Al-Anon member';
   }
-  const shareParagraphs = memberShareContent.split('\n\n').map(p => `              <p>${p.trim()}</p>`).join('\n');
+  const shareParagraphs = memberShareContent
+    ? memberShareContent.split('\n\n').map(p => `              <p>${p.trim()}</p>`).join('\n')
+    : '';
 
   // Build additional insight cards if multiple shares exist
   let moreInsightsHtml = '';
@@ -271,6 +269,7 @@ ${insightCards}
       <!-- Member Insight -->
       <section class="topic-member-insight" aria-label="A member&rsquo;s perspective on ${topic.name}">
         <div class="topic-member-insight-inner">
+          ${topicShares.length > 0 ? `
           <h2 class="topic-member-insight-heading">${insightPrompt}</h2>
           <div class="topic-member-insight-text" data-full-text>
             <blockquote class="topic-member-insight-body">
@@ -281,6 +280,7 @@ ${shareParagraphs}
           <p class="topic-member-insight-attribution">&mdash; ${memberShareIsAnonymous
             ? '<span itemprop="author" itemscope itemtype="https://schema.org/Person"><meta itemprop="name" content="Anonymous">Anonymous</span>'
             : `<span itemprop="author" itemscope itemtype="https://schema.org/Person"><span itemprop="name">${memberShareAttribution}</span></span>`} on their experience with ${topic.name}</p>
+          ` : ''}
           <div class="topic-share-trigger">
             <a href="#share-form-${topic.slug}" class="topic-share-link" data-share-toggle>Share your experience with this theme.</a>
           </div>
@@ -288,7 +288,7 @@ ${shareParagraphs}
             <label class="topic-share-label" for="share-name-${topic.slug}">First Name, Last Initial (or &ldquo;Anonymous&rdquo;)</label>
             <input type="text" id="share-name-${topic.slug}" name="display_name" class="topic-share-input" placeholder="e.g., Sarah M. or Anonymous" required>
             <label class="topic-share-label" for="share-content-${topic.slug}">${insightPrompt}</label>
-            <textarea id="share-content-${topic.slug}" name="content" class="topic-share-textarea" rows="5" maxlength="1200" placeholder="${insightPrompt}" required></textarea>
+            <textarea id="share-content-${topic.slug}" name="content" class="topic-share-textarea" rows="5" maxlength="1200" required></textarea>
             <p class="topic-share-counter"><span data-char-count>0</span>/1200 characters</p>
             <p class="topic-share-disclaimer"><em>By clicking submit, you consent to sharing your experience with the Daily Paths community.</em></p>
             <button type="submit" class="topic-share-submit">Submit</button>
