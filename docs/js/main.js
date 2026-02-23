@@ -90,7 +90,7 @@
         },
         body: JSON.stringify({
           topic_slug: topicSlug,
-          display_name: displayName,
+          display_name: guestAuthor ? 'Anonymous' : displayName,
           content: content,
           consent_confirmed: true,
           is_approved: false,

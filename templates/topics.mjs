@@ -3,7 +3,7 @@ import { dayToSlug } from '../helpers/slug-utils.mjs';
 import { bp } from '../helpers/config.mjs';
 import {
   TOPICS, TOPIC_THEME_TAGS, TOPIC_PULL_QUOTES, TOPIC_TOOLS,
-  DEFAULT_MEMBER_SHARE, MEMBER_SHARES,
+  TOPIC_INSIGHT_PROMPTS, DEFAULT_MEMBER_SHARE, MEMBER_SHARES,
 } from '../helpers/theme-data.mjs';
 
 // Re-export TOPICS so build.mjs can continue importing from this file
@@ -112,6 +112,7 @@ export function renderTopicPage(topic, featuredReadings, allReadings = [], topic
   const tools = TOPIC_TOOLS[topic.slug] || [];
   const pullQuote = TOPIC_PULL_QUOTES[topic.slug] || '';
   const themeTags = TOPIC_THEME_TAGS[topic.slug] || [];
+  const insightPrompt = TOPIC_INSIGHT_PROMPTS[topic.slug] || `What is your experience with ${topic.name}?`;
 
   // Build theme-matched readings (excluding featured days)
   const featuredDaySet = new Set(topic.featuredDays || []);
@@ -164,11 +165,13 @@ ${cards}
   // Member share — use DB share if available, else hardcoded default
   let memberShareContent;
   let memberShareAttribution;
+  let memberShareIsAnonymous = false;
   if (topicShares.length > 0) {
     // Use the most recent approved share from the database
     const dbShare = topicShares[0];
     memberShareContent = dbShare.content;
-    memberShareAttribution = dbShare.display_name || 'An Al-Anon member';
+    memberShareIsAnonymous = dbShare.guest_author === true || !dbShare.display_name;
+    memberShareAttribution = memberShareIsAnonymous ? 'Anonymous' : dbShare.display_name;
   } else {
     memberShareContent = MEMBER_SHARES[topic.slug] || DEFAULT_MEMBER_SHARE;
     memberShareAttribution = 'An Al-Anon member';
@@ -257,33 +260,43 @@ ${insightCards}
         </div>
       </section>
 
+      <!-- Theme Logic — contextual bridge above member insights -->
+      ${topic.logic ? `
+      <section class="topic-logic">
+        <div class="topic-logic-inner">
+          ${topic.logic}
+        </div>
+      </section>` : ''}
+
       <!-- Member Insight -->
       <section class="topic-member-insight" aria-label="A member&rsquo;s perspective on ${topic.name}">
         <div class="topic-member-insight-inner">
-          <h2 class="topic-member-insight-heading">Member Insight</h2>
+          <h2 class="topic-member-insight-heading">${insightPrompt}</h2>
           <div class="topic-member-insight-text" data-full-text>
             <blockquote class="topic-member-insight-body">
 ${shareParagraphs}
             </blockquote>
           </div>
           <button class="topic-share-read-more" data-read-more hidden>Read More</button>
-          <p class="topic-member-insight-attribution">&mdash; <span itemprop="author" itemscope itemtype="https://schema.org/Person"><span itemprop="name">${memberShareAttribution}</span></span> on their experience with ${topic.name}</p>
+          <p class="topic-member-insight-attribution">&mdash; ${memberShareIsAnonymous
+            ? '<span itemprop="author" itemscope itemtype="https://schema.org/Person"><meta itemprop="name" content="Anonymous">Anonymous</span>'
+            : `<span itemprop="author" itemscope itemtype="https://schema.org/Person"><span itemprop="name">${memberShareAttribution}</span></span>`} on their experience with ${topic.name}</p>
           <div class="topic-share-trigger">
             <a href="#share-form-${topic.slug}" class="topic-share-link" data-share-toggle>Share your experience with this theme.</a>
           </div>
           <form id="share-form-${topic.slug}" class="topic-share-form" data-share-form data-topic-slug="${topic.slug}" data-supabase-url="${process.env.SUPABASE_URL}" data-supabase-key="${process.env.SUPABASE_ANON_KEY}" hidden>
             <label class="topic-share-label" for="share-name-${topic.slug}">First Name, Last Initial</label>
             <input type="text" id="share-name-${topic.slug}" name="display_name" class="topic-share-input" placeholder="e.g. Sarah M." required>
-            <label class="topic-share-label" for="share-content-${topic.slug}">Your story&hellip;</label>
-            <textarea id="share-content-${topic.slug}" name="content" class="topic-share-textarea" rows="5" maxlength="2000" required></textarea>
-            <p class="topic-share-counter"><span data-char-count>0</span>/2000 characters</p>
+            <label class="topic-share-label" for="share-content-${topic.slug}">${insightPrompt}</label>
+            <textarea id="share-content-${topic.slug}" name="content" class="topic-share-textarea" rows="5" maxlength="1200" placeholder="${insightPrompt}" required></textarea>
+            <p class="topic-share-counter"><span data-char-count>0</span>/1200 characters</p>
             <label class="topic-share-consent">
               <input type="checkbox" name="consent" required>
               <span>I agree to share this anonymously with the Daily Path community.</span>
             </label>
             <label class="topic-share-consent">
               <input type="checkbox" name="guest_author">
-              <span>Submit as Guest Author (your name will appear as a byline).</span>
+              <span>Submit anonymously (your name will not be displayed).</span>
             </label>
             <button type="submit" class="topic-share-submit">Submit</button>
             <p class="topic-share-status" data-share-status></p>

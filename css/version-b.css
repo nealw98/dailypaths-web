@@ -3780,6 +3780,31 @@ html {
   color: var(--deep-navy);
 }
 
+/* --- Theme Logic — contextual bridge above member insights --- */
+
+.topic-logic {
+  padding: 0 2rem 1rem;
+}
+
+.topic-logic-inner {
+  max-width: 42rem;
+  margin: 0 auto;
+  border-top: 1px solid var(--cloud);
+  padding-top: 1.5rem;
+}
+
+.topic-logic-inner p {
+  font-family: var(--font-reading);
+  font-size: 1rem;
+  line-height: 1.8;
+  color: var(--ink);
+  margin-bottom: 0.75rem;
+}
+
+.topic-logic-inner p:last-child {
+  margin-bottom: 0;
+}
+
 /* --- Member Insight Inset Box --- */
 
 .topic-member-insight {

@@ -58,6 +58,22 @@ export const TOPIC_TOOLS = {
   'fellowship':            ['Slogan: When Anyone, Anywhere Reaches Out', 'Concept: The Twelfth Step', 'Action: Setting up chairs or being a Greeter'],
 };
 
+/** Featured Member Insight prompts — theme-specific H2 and textarea placeholder */
+export const TOPIC_INSIGHT_PROMPTS = {
+  'detachment':            'What is my experience with practicing detachment with love?',
+  'powerlessness':         'How have I come to accept powerlessness and practice surrender?',
+  'focus-on-yourself':     'In what ways am I learning to keep the focus on myself?',
+  'one-day-at-a-time':     'How do I practice living one day at a time?',
+  'boundaries':            'What have I learned about setting and maintaining healthy boundaries?',
+  'letting-go-of-control': 'How am I learning to let go of my need to control outcomes?',
+  'self-worth':            'How am I reclaiming my sense of self and personal worth?',
+  'higher-power':          'What does it look like for me to trust a Higher Power today?',
+  'honesty':               'How am I practicing honesty and self-awareness in my daily life?',
+  'gratitude-and-hope':    'Where am I finding gratitude and hope in my recovery?',
+  'the-disease':           'How has understanding alcoholism as a disease changed my perspective?',
+  'fellowship':            'What has the support of the fellowship meant for my recovery?',
+};
+
 /**
  * The 12 Al-Anon themes — each is its own content page.
  *
