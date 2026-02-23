@@ -127,18 +127,17 @@ ${relatedItems}
         ` : ''}
       </div>
 
-      <!-- Focus Areas -->
-      ${(stepTheme || theme) ? `
-      <section class="rd-focus-areas">
-        <h2 class="rd-focus-areas-heading">Focus Areas</h2>
-        <div class="rd-focus-areas-links">
-          ${stepPill}
-          ${themePill}
-        </div>
-      </section>
-      ` : ''}
-
     </article>
+
+    ${thoughtHtml ? `
+    <!-- Today's Reminder — full-bleed terracotta -->
+    <section class="rd-reminder bg-terracotta">
+      <div class="rd-reminder-inner">
+        <h2 class="rd-reminder-heading">Today&rsquo;s Reminder</h2>
+        <p class="rd-reminder-text">${thoughtHtml}</p>
+      </div>
+    </section>
+    ` : ''}
 
     <!-- App CTA -->
     <section class="rd-engine-cta bg-navy">
@@ -155,16 +154,6 @@ ${relatedItems}
         </div>
       </div>
     </section>
-
-    ${thoughtHtml ? `
-    <!-- Today's Reminder — full-bleed terracotta -->
-    <section class="rd-reminder bg-terracotta">
-      <div class="rd-reminder-inner">
-        <h2 class="rd-reminder-heading">Today&rsquo;s Reminder</h2>
-        <p class="rd-reminder-text">${thoughtHtml}</p>
-      </div>
-    </section>
-    ` : ''}
 
     <!-- Prev / Next Navigation -->
     <nav class="rd-nav">
