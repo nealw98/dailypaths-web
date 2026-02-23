@@ -3070,102 +3070,10 @@ html {
   text-underline-offset: 2px;
 }
 
-/* Daily Readings — Single-column with View All CTA */
-.step-readings-section {
-  max-width: 42rem;
-  margin: 0 auto;
-  padding: 4rem 2rem;
-}
-
-.step-readings-heading {
-  font-family: var(--font-serif);
-  font-size: 1.3rem;
-  font-weight: 700;
-  color: var(--deep-navy);
-  margin-bottom: 0.5rem;
-}
-
-.step-readings-intro {
-  font-family: var(--font-sans);
-  font-size: 0.85rem;
-  color: var(--ink);
-  opacity: 0.6;
-  margin-bottom: 1.5rem;
-  line-height: 1.6;
-}
-
-.step-readings-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  columns: 1;
-}
-
-.step-reading-item {
-  break-inside: avoid;
-  border-bottom: 1px solid var(--cloud);
-}
-
-.step-reading-link {
-  display: flex;
-  align-items: baseline;
-  gap: 0.75rem;
-  padding: 0.6rem 0;
-  text-decoration: none;
-  color: inherit;
-  transition: background 0.15s;
-}
-
-.step-reading-link:hover {
-  background: var(--pearl);
-  margin-left: -0.5rem;
-  margin-right: -0.5rem;
-  padding-left: 0.5rem;
-  padding-right: 0.5rem;
-  border-radius: var(--radius);
-}
-
-.step-reading-date {
-  font-family: var(--font-sans);
-  font-size: 0.75rem;
-  font-weight: 500;
-  color: var(--sage);
-  white-space: nowrap;
-  min-width: 4.5rem;
-}
-
-.step-reading-title {
-  font-family: var(--font-serif);
-  font-size: 0.95rem;
-  font-weight: 600;
-  color: var(--ink);
-  line-height: 1.3;
-}
-
-.step-reading-link:hover .step-reading-title {
-  color: var(--deep-teal);
-}
-
-.step-readings-cta {
-  margin-top: 1.5rem;
-  text-align: center;
-}
-
-.step-readings-btn {
-  display: inline-block;
-  font-family: var(--font-sans);
-  font-size: 0.9rem;
-  font-weight: 600;
+.bg-sage .step-tools-anchor {
   color: var(--white);
-  background: #1B263B;
-  padding: 0.75rem 2rem;
-  border-radius: var(--radius);
-  text-decoration: none;
-  transition: opacity 0.15s;
-}
-
-.step-readings-btn:hover {
-  opacity: 0.85;
+  text-decoration: underline;
+  text-underline-offset: 2px;
 }
 
 /* Associated Readings — Hub & Spoke Grid */
@@ -3188,6 +3096,15 @@ html {
   font-size: 0.85rem;
   color: var(--ink);
   opacity: 0.6;
+  margin-bottom: 0.5rem;
+  line-height: 1.6;
+}
+
+.step-assoc-micro-cta {
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  color: var(--ink);
+  opacity: 0.5;
   margin-bottom: 1.5rem;
   line-height: 1.6;
 }
@@ -3326,9 +3243,6 @@ html {
   }
   .bg-sage .step-tools-list {
     padding: 1.25rem 1.25rem;
-  }
-  .step-readings-section {
-    padding: 3rem 1.5rem;
   }
   .step-assoc-section {
     padding: 3rem 1.5rem;
@@ -5046,7 +4960,7 @@ html {
 }
 
 .bg-sage {
-  background-color: #4A5D4E;
+  background-color: #3D4F41;
   color: #FFFFFF;
 }
 

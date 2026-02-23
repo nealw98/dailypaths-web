@@ -410,47 +410,9 @@ export function renderStepPage(step, readings = []) {
     `              <li>${q}</li>`
   ).join('\n');
 
-  // Build tools list
-  const toolItems = tools.map(t => `              <li>${t}</li>`).join('\n');
-
-  // Build daily reading list — first 5 readings from the step's month, with "View all" CTA
-  let readingListHtml = '';
-  if (readings.length > 0) {
-    const dayRange = getMonthDayRange(monthIndex);
-    const monthReadings = readings.filter(
-      r => r.day_of_year >= dayRange.start && r.day_of_year <= dayRange.end
-    );
-    const displayReadings = monthReadings.slice(0, 5);
-
-    const listItems = displayReadings.map(r => {
-      const slug = dayToSlug(r.day_of_year);
-      const dayNum = slug.split('-').pop();
-      const monthName = MONTHS[monthIndex];
-      const displayDate = `${monthName.charAt(0).toUpperCase() + monthName.slice(1)} ${dayNum}`;
-
-      return `
-              <li class="step-reading-item">
-                <a href="${bp(`/${slug}/`)}" class="step-reading-link">
-                  <span class="step-reading-date">${displayDate}</span>
-                  <span class="step-reading-title">${r.title || 'Daily Reading'}</span>
-                </a>
-              </li>`;
-    }).join('\n');
-
-    readingListHtml = `
-      <section class="step-readings-section">
-        <h2 class="step-readings-heading">${step.month} Daily Readings</h2>
-        <p class="step-readings-intro">
-          Each day in ${step.month} focuses on Step ${step.number}. Explore this month&rsquo;s reflections.
-        </p>
-        <ul class="step-readings-list">
-${listItems}
-        </ul>
-        <div class="step-readings-cta">
-          <a href="${bp(`/months/${step.monthSlug}/`)}" class="step-readings-btn">View all ${step.month} reflections &rarr;</a>
-        </div>
-      </section>`;
-  }
+  // Build tools list — prepend anchor link to readings grid
+  const anchorItem = `<a href="#step-readings" class="step-tools-anchor">View all ${step.month} Daily Reflections on Step ${step.number}</a>`;
+  const toolItems = [`              <li>${anchorItem}</li>`, ...tools.map(t => `              <li>${t}</li>`)].join('\n');
 
   // Build associated readings — all readings tagged with this step_theme across the year
   const stepTag = `Step ${step.number}`;
@@ -467,11 +429,15 @@ ${listItems}
     }).join('\n');
 
     associatedHtml = `
-      <section class="step-assoc-section">
-        <h2 class="step-assoc-heading">All Readings on Step ${step.number}</h2>
+      <section class="step-assoc-section" id="step-readings">
+        <h2 class="step-assoc-heading">Daily Practice: Step ${step.number} in ${step.month}</h2>
+        <p class="step-assoc-intro">
+          Each month in the Daily Paths app focuses on a specific Step. ${step.month} is dedicated to the Principle of ${step.principle} and Step ${step.number}. Explore the reflections below.
+        </p>
         <p class="step-assoc-intro">
           ${associatedReadings.length} reading${associatedReadings.length === 1 ? '' : 's'} across the year explore the principle of ${step.principle}.
         </p>
+        <p class="step-assoc-micro-cta"><em>Find these readings and track your progress daily in the app.</em></p>
         <div class="step-assoc-grid">
 ${assocItems}
         </div>
@@ -541,7 +507,7 @@ ${questionItems}
     ${tools.length > 0 ? `
     <div class="bg-sage">
       <div class="step-tools">
-        <h2 class="step-tools-heading">Deep Dive: The Principle of ${step.principle}</h2>
+        <h2 class="step-tools-heading">Step ${step.number} in Action</h2>
         <ul class="step-tools-list">
 ${toolItems}
         </ul>
@@ -567,9 +533,6 @@ ${toolItems}
         </div>
       </div>
     </section>
-
-    <!-- Daily Readings -->
-${readingListHtml}
 
     <!-- Associated Readings (Hub & Spoke) -->
 ${associatedHtml}`;
