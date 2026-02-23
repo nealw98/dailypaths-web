@@ -272,7 +272,7 @@ ${extraCards}
           <p class="topic-insight-form-subhead">${formQuestion}</p>
           <form id="share-form-${topic.slug}" class="topic-share-form topic-insight-form" data-share-form data-topic-slug="${topic.slug}" data-supabase-url="${process.env.SUPABASE_URL}" data-supabase-key="${process.env.SUPABASE_ANON_KEY}">
             <label class="topic-share-label" for="share-name-${topic.slug}">Name</label>
-            <input type="text" id="share-name-${topic.slug}" name="display_name" class="topic-share-input" placeholder="Your first name or initials (e.g., Jane S.)" required>
+            <input type="text" id="share-name-${topic.slug}" name="display_name" class="topic-share-input" placeholder="e.g., Sara M. (or anonymous)" required>
             <label class="topic-share-label" for="share-content-${topic.slug}">Your Insight</label>
             <textarea id="share-content-${topic.slug}" name="content" class="topic-share-textarea" rows="5" maxlength="2000" required></textarea>
             <p class="topic-share-counter"><span data-char-count>0</span>/2000 characters</p>

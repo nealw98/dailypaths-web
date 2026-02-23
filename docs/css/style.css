@@ -3750,6 +3750,7 @@ html {
 
 .topic-editorial-intro {
   padding: 2.5rem 2rem 0;
+  margin-bottom: 3rem;
 }
 
 .topic-editorial-intro-inner {
@@ -3784,6 +3785,7 @@ html {
 
 .topic-logic {
   padding: 0 2rem 1rem;
+  margin-bottom: 1rem;
 }
 
 .topic-logic-inner {
@@ -3809,7 +3811,7 @@ html {
 
 .topic-insight-cards {
   padding: 2.5rem 2rem;
-  margin-top: 5rem;
+  margin-top: 3rem;
 }
 
 .topic-insight-cards-inner {
