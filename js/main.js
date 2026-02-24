@@ -101,6 +101,10 @@
           var charCounter = form.querySelector('[data-char-count]');
           if (charCounter) charCounter.textContent = '0';
           btn.textContent = 'Submitted';
+          setTimeout(function () {
+            btn.disabled = false;
+            btn.textContent = 'Post Insight';
+          }, 2000);
           Analytics.trackEvent('Share Form Submit', { topic_slug: topicSlug, status: 'success' });
         } else {
           throw new Error(res.status);
