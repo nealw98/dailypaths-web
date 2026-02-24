@@ -112,7 +112,7 @@ ${bodyContent}
 
   ${bodyClass === 'page-reading' ? `<aside class="author-bio">
     <div class="author-bio-inner">
-      <p class="author-bio-text">Curated by <strong>Neal W.</strong> for Daily Growth, LLC. Grounded in the Twelve Steps and the contemplative tradition of Al-Anon.</p>
+      <p class="author-bio-text">Curated by members of the Al-Anon community for Daily Growth, LLC. Grounded in the Twelve Steps and the contemplative tradition of Al-Anon.</p>
     </div>
   </aside>` : ''}
 
