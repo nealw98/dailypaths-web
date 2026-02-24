@@ -2069,6 +2069,7 @@
         html += '<div class="admin-share-card-header">';
         html += '<span class="admin-share-card-name">' + escHtml(s.display_name) + '</span>';
         html += '<span class="admin-share-status ' + statusClass + '">' + statusLabel + '</span>';
+        if (s.is_featured) html += '<span class="admin-share-status" style="background:#e8f5e9;color:#2e7d32;margin-left:4px;">Featured</span>';
         html += '</div>';
         html += '<div class="admin-share-card-theme">' + escHtml(themeName) + '</div>';
         html += '<div class="admin-share-card-preview">' + escHtml(preview) + '</div>';
@@ -2150,9 +2151,13 @@
     html += '<p class="admin-muted" style="font-size:12px;">Submitted: ' + date + '</p>';
     html += '<p class="admin-muted" style="font-size:12px;">Status: <span class="admin-share-status ' + statusClass + '">' + statusLabel + '</span></p>';
     html += '<div style="margin-top:16px;">';
-    if (!s.is_approved) {
-      html += '<button class="admin-btn admin-btn--primary" id="btn-approve-share" style="width:100%;margin-bottom:8px;">Approve</button>';
+    if (s.is_approved) {
+      html += '<button class="admin-btn admin-btn--ghost" id="btn-toggle-approve" style="width:100%;margin-bottom:8px;">Revert to Pending</button>';
+    } else {
+      html += '<button class="admin-btn admin-btn--primary" id="btn-toggle-approve" style="width:100%;margin-bottom:8px;">Approve</button>';
     }
+    html += '<label style="display:flex;align-items:center;gap:8px;margin:8px 0 12px;font-size:13px;cursor:' + (s.is_approved ? 'pointer' : 'not-allowed') + ';opacity:' + (s.is_approved ? '1' : '0.5') + ';">';
+    html += '<input type="checkbox" id="chk-featured"' + (s.is_featured ? ' checked' : '') + (s.is_approved ? '' : ' disabled') + '> Featured on theme page</label>';
     html += '<button class="admin-btn admin-btn--ghost admin-btn--danger" id="btn-delete-share" style="width:100%;">Delete</button>';
     html += '</div>';
     html += '</aside>';
@@ -2217,12 +2222,28 @@
       });
     }
 
-    // Approve
-    var btnApprove = document.getElementById('btn-approve-share');
-    if (btnApprove) btnApprove.addEventListener('click', function () {
-      saveShare(s.id, { is_approved: true }, function (err) {
+    // Toggle Approve / Revert to Pending
+    var btnToggleApprove = document.getElementById('btn-toggle-approve');
+    if (btnToggleApprove) btnToggleApprove.addEventListener('click', function () {
+      var newApproved = !s.is_approved;
+      var updates = { is_approved: newApproved };
+      if (!newApproved) updates.is_featured = false; // un-feature when reverting to pending
+      saveShare(s.id, updates, function (err) {
         if (!err) {
-          s.is_approved = true;
+          s.is_approved = newApproved;
+          if (!newApproved) s.is_featured = false;
+          render();
+        }
+      });
+    });
+
+    // Toggle Featured
+    var chkFeatured = document.getElementById('chk-featured');
+    if (chkFeatured) chkFeatured.addEventListener('change', function () {
+      var newFeatured = this.checked;
+      saveShare(s.id, { is_featured: newFeatured }, function (err) {
+        if (!err) {
+          s.is_featured = newFeatured;
           render();
         }
       });

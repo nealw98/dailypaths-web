@@ -13,6 +13,7 @@ export async function fetchApprovedShares() {
   const params = new URLSearchParams({
     select: 'id,topic_slug,display_name,content,created_at',
     is_approved: 'eq.true',
+    is_featured: 'eq.true',
     order: 'created_at.desc',
   });
 
@@ -42,6 +43,6 @@ export async function fetchApprovedShares() {
     sharesMap.get(share.topic_slug).push(share);
   }
 
-  console.log(`  Fetched ${shares.length} approved shares across ${sharesMap.size} themes`);
+  console.log(`  Fetched ${shares.length} featured shares across ${sharesMap.size} themes`);
   return sharesMap;
 }
