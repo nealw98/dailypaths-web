@@ -409,8 +409,7 @@ for (const book of BOOKS) {
 }
 
 // CNAME for GitHub Pages custom domain
-// Uncomment when DNS for dailypaths.org is pointed to GitHub Pages
-// writeFileSync(join(outDir, 'CNAME'), 'dailypaths.org', 'utf-8');
+writeFileSync(join(outDir, 'CNAME'), 'dailypaths.org', 'utf-8');
 
 // --- Done ---
 const elapsed = ((Date.now() - start) / 1000).toFixed(2);

@@ -25,7 +25,8 @@ jobs:
         env:
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
           SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
-        run: node build.mjs --base-path=/dailypaths-web
+          SITE_ENV: production
+        run: node build.mjs
 
       - name: Commit and push if changed
         run: |
