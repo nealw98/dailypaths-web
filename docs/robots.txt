@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://nealw98.github.io/dailypaths-web/sitemap.xml
+Sitemap: https://dailypaths.org/sitemap.xml
