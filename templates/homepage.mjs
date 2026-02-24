@@ -62,7 +62,7 @@ export function renderHomepage(todayReading, prevReading, nextReading, allReadin
       <div class="hm-pillar-inner">
         <h2 class="hm-pillar-heading">Al-Anon Themes</h2>
         <p class="hm-pillar-text">Explore daily reflections through the universal themes that weave through our recovery &mdash; detachment, boundaries, gratitude, hope, and more.</p>
-        <a href="${bp('/principles/')}" class="hm-pillar-btn">Explore Themes &rarr;</a>
+        <a href="${bp('/themes/')}" class="hm-pillar-btn">Explore Themes &rarr;</a>
       </div>
     </section>
 

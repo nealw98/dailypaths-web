@@ -452,7 +452,7 @@ export function renderStepPage(step, readings = []) {
           Each month in the Daily Paths app focuses on a specific Step. ${step.month} is dedicated to the Principle of ${step.principle} and Step ${step.number}. Explore the reflections below.
         </p>
         <p class="step-assoc-intro">
-          ${associatedReadings.length} reading${associatedReadings.length === 1 ? '' : 's'} across the year explore the principle of ${step.principle}. Deep dive into this principle via the <a href="${bp(`/principles/${themeInfo.slug}/`)}" class="step-assoc-theme-link">${themeInfo.name}</a> theme.
+          ${associatedReadings.length} reading${associatedReadings.length === 1 ? '' : 's'} across the year explore the principle of ${step.principle}. Deep dive into this principle via the <a href="${bp(`/themes/${themeInfo.slug}/`)}" class="step-assoc-theme-link">${themeInfo.name}</a> theme.
         </p>
         <p class="step-assoc-micro-cta"><em>Find these readings and track your progress daily in the app.</em></p>
         <div class="step-assoc-grid">

@@ -99,7 +99,7 @@ ${json}
       <nav class="site-nav" data-mobile-menu>
         <a href="${bp('/')}" class="nav-link">Home</a>
         <a href="${bp('/steps/')}" class="nav-link">Steps</a>
-        <a href="${bp('/principles/')}" class="nav-link">Themes</a>
+        <a href="${bp('/themes/')}" class="nav-link">Themes</a>
         <a href="${bp('/prayers/')}" class="nav-link">Prayers</a>
         <a href="${bp('/about-alanon/')}" class="nav-link">Al-Anon</a>
       </nav>

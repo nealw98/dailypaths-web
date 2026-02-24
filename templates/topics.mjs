@@ -14,7 +14,7 @@ export { TOPICS };
  */
 export function renderTopicsIndexPage() {
   const galleryCards = TOPICS.map(topic => `
-          <a href="${bp(`/principles/${topic.slug}/`)}" class="ti-gallery-card">
+          <a href="${bp(`/themes/${topic.slug}/`)}" class="ti-gallery-card">
             <h3 class="ti-gallery-card-title">${topic.name}</h3>
             <p class="ti-gallery-card-hook">${topic.shortDescription}</p>
             <span class="ti-gallery-card-cta">Explore &rarr;</span>
@@ -66,7 +66,7 @@ ${galleryCards}
   return wrapInLayout({
     title: 'Al-Anon Themes &mdash; Ideas That Shape the Recovery Journey | Al-Anon Daily Paths',
     description: 'Explore 12 Al-Anon themes including detachment, powerlessness, boundaries, honesty, and more. Each theme includes reflections and curated daily readings for recovery.',
-    canonicalPath: '/principles/',
+    canonicalPath: '/themes/',
     bodyContent,
     bodyClass: 'page-topics-index',
   });
@@ -182,12 +182,12 @@ ${cards}
     <article class="topic-editorial" itemscope itemtype="https://schema.org/Article">
       <!-- Theme Navigation -->
       <nav class="topic-nav-header">
-        <a href="${bp(`/principles/${prevTopic.slug}/`)}" class="nav-prev">
+        <a href="${bp(`/themes/${prevTopic.slug}/`)}" class="nav-prev">
           <span class="nav-arrow">&larr;</span>
           <span class="nav-label">${prevTopic.name}</span>
         </a>
-        <a href="${bp('/principles/')}" class="nav-browse">All Themes</a>
-        <a href="${bp(`/principles/${nextTopic.slug}/`)}" class="nav-next">
+        <a href="${bp('/themes/')}" class="nav-browse">All Themes</a>
+        <a href="${bp(`/themes/${nextTopic.slug}/`)}" class="nav-next">
           <span class="nav-label">${nextTopic.name}</span>
           <span class="nav-arrow">&rarr;</span>
         </a>
@@ -302,7 +302,7 @@ ${readingGroups}
   return wrapInLayout({
     title: `${topic.name} &mdash; Al-Anon Recovery Theme | Daily Paths`,
     description: (topic.metaDescription || topic.shortDescription) + ' Reflections and curated daily readings from Al-Anon Daily Paths.',
-    canonicalPath: `/principles/${topic.slug}/`,
+    canonicalPath: `/themes/${topic.slug}/`,
     bodyContent,
     bodyClass: 'page-topic-detail',
   });

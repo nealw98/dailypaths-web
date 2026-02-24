@@ -40,7 +40,7 @@ export function renderReadingPage(reading, prevReading, nextReading, allReadings
   if (theme) {
     const topicMatch = THEME_TO_TOPIC[theme];
     if (topicMatch) {
-      themePill = `<a href="${bp(`/principles/${topicMatch.slug}/`)}" class="rd-pill rd-pill--theme">${theme}</a>`;
+      themePill = `<a href="${bp(`/themes/${topicMatch.slug}/`)}" class="rd-pill rd-pill--theme">${theme}</a>`;
     } else {
       themePill = `<span class="rd-pill rd-pill--theme">${theme}</span>`;
     }

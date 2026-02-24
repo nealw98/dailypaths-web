@@ -11,7 +11,7 @@ export function renderThemesIndexPage(themeMap) {
 
   const cards = sortedThemes.map(([theme, readings]) => {
     const slug = themeToSlug(theme);
-    return `        <a href="/principles/${slug}/" class="theme-card">
+    return `        <a href="/themes/${slug}/" class="theme-card">
           <h3 class="theme-name">${theme}</h3>
           <p class="theme-count">${readings.length} reading${readings.length === 1 ? '' : 's'}</p>
         </a>`;
@@ -35,7 +35,7 @@ ${cards}
   return wrapInLayout({
     title: 'Browse Al-Anon Reflections by Guiding Principle | Al-Anon Daily Paths',
     description: 'Explore daily Al-Anon reflections organized by recovery themes including detachment, surrender, hope, acceptance, and more.',
-    canonicalPath: '/principles/',
+    canonicalPath: '/themes/',
     bodyContent,
     bodyClass: 'page-themes',
   });
@@ -66,7 +66,7 @@ export function renderThemePage(theme, readings) {
     <div class="theme-detail-page">
       <div class="themes-container">
         <nav class="breadcrumb">
-          <a href="/principles/">Principles</a> <span class="breadcrumb-sep">/</span> <span>${theme}</span>
+          <a href="/themes/">Themes</a> <span class="breadcrumb-sep">/</span> <span>${theme}</span>
         </nav>
 
         <h1 class="page-title">${theme}</h1>
@@ -83,7 +83,7 @@ ${items}
   return wrapInLayout({
     title: `${theme} \u2014 Al-Anon Daily Reflections | Al-Anon Daily Paths`,
     description: `Explore ${readings.length} daily Al-Anon reflections about ${theme.toLowerCase()}. Recovery readings from Al-Anon Daily Paths.`,
-    canonicalPath: `/principles/${slug}/`,
+    canonicalPath: `/themes/${slug}/`,
     bodyContent,
     bodyClass: 'page-theme-detail',
   });
