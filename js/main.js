@@ -153,11 +153,11 @@
         if (isExpanded) {
           textEl.classList.add('truncated');
           btn.setAttribute('aria-expanded', 'false');
-          btn.textContent = 'Read the full reflection \u2192';
+          btn.textContent = 'Read the full reflection';
         } else {
           textEl.classList.remove('truncated');
           btn.setAttribute('aria-expanded', 'true');
-          btn.textContent = 'Show less \u2191';
+          btn.textContent = 'Show less';
         }
       });
     })(insightCardTexts[ic]);

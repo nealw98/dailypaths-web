@@ -3810,7 +3810,7 @@ html {
 /* --- Member Insight Cards — Voices of the Fellowship --- */
 
 .topic-insight-cards {
-  background: #F8F0EE;
+  background: var(--white, #fff);
   padding: 3rem 2rem;
   margin-top: 3rem;
 }

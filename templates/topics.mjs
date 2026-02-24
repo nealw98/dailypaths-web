@@ -154,7 +154,7 @@ ${cards}
               <div class="insight-card-text" data-insight-card-text itemprop="text">
                 <p>${share.content.split('\n\n').map(p => p.trim()).join('</p><p>')}</p>
               </div>
-              ${needsTruncation ? '<button class="insight-card-read-more" data-insight-read-more aria-expanded="false">Read the full reflection &rarr;</button>' : ''}
+              ${needsTruncation ? '<button class="insight-card-read-more" data-insight-read-more aria-expanded="false">Read the full reflection</button>' : ''}
               <p class="insight-card-attribution" itemprop="author">&mdash; ${name}</p>
             </div>`;
   }
@@ -239,7 +239,7 @@ ${cards}
 ${firstThreeCards}
 ${extraCards}
           </div>
-          ${hasMore ? '<button class="topic-insight-show-more" data-insight-show-more>Show more community insights &darr;</button>' : ''}
+          ${hasMore ? '<button class="topic-insight-show-more" data-insight-show-more>Show more community insights</button>' : ''}
         </div>
       </section>` : ''}
 
