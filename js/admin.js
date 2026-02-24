@@ -13,6 +13,12 @@
   var EXT_SUPABASE_URL = 'https://ofmqgqaoubsiwujgvcil.supabase.co';
   var EXT_SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9mbXFncWFvdWJzaXd1amd2Y2lsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjM5MDI1NzEsImV4cCI6MjA3OTQ3ODU3MX0.85ile88Honj3SdXzxGEPFA04LG0B4OjRsbChZ8oUnmE';
 
+  // GitHub Actions — trigger build & deploy (PAT stored in browser localStorage)
+  var GITHUB_REPO = 'nealw98/dailypaths-web';
+  var GITHUB_WORKFLOW = 'build-and-deploy.yml';
+  function getGitHubPat() { return localStorage.getItem('github_pat') || ''; }
+  function setGitHubPat(pat) { localStorage.setItem('github_pat', pat); }
+
   // --- State ---
   var state = {
     session: null,
@@ -45,6 +51,8 @@
     selectedShare: null,
     shareEditFields: {},
     shareOriginalFields: {},
+    // Build
+    building: false,
   };
 
   // --- Supabase Auth Helpers ---
@@ -757,6 +765,9 @@
           (state.appFeedbackCount > 0 ? ' <span class="admin-badge">' + state.appFeedbackCount + '</span>' : '') +
         '</button>' +
         '<button class="admin-btn admin-btn--ghost" id="btn-refresh">Refresh</button>' +
+        '<button class="admin-btn admin-btn--primary" id="btn-build"' + (state.building ? ' disabled' : '') + '>' +
+          (state.building ? 'Building\u2026' : 'Build &amp; Deploy') +
+        '</button>' +
         '<button class="admin-btn admin-btn--ghost" id="btn-signout">Sign Out</button>' +
       '</div>' +
     '</header>';
@@ -1005,6 +1016,44 @@
     if (btnShares) btnShares.addEventListener('click', function () {
       state.view = 'shares-list';
       loadShares();
+    });
+
+    var btnBuild = document.getElementById('btn-build');
+    if (btnBuild) btnBuild.addEventListener('click', function () {
+      if (state.building) return;
+      var pat = getGitHubPat();
+      if (!pat) {
+        pat = prompt('Enter your GitHub Personal Access Token (fine-grained, Actions scope):');
+        if (!pat) return;
+        setGitHubPat(pat);
+      }
+      state.building = true;
+      render();
+      fetch('https://api.github.com/repos/' + GITHUB_REPO + '/actions/workflows/' + GITHUB_WORKFLOW + '/dispatches', {
+        method: 'POST',
+        headers: {
+          'Authorization': 'Bearer ' + pat,
+          'Accept': 'application/vnd.github+json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ ref: 'main' }),
+      }).then(function (res) {
+        if (res.status === 204) {
+          showToast('Build triggered! Site will update in ~2 minutes.', 'success');
+        } else {
+          return res.json().then(function (data) {
+            if (res.status === 401 || res.status === 403) {
+              localStorage.removeItem('github_pat');
+            }
+            throw new Error(data.message || 'Failed to trigger build');
+          });
+        }
+      }).catch(function (err) {
+        showToast('Build failed: ' + err.message, 'error');
+      }).finally(function () {
+        state.building = false;
+        render();
+      });
     });
   }
 
