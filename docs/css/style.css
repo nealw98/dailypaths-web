@@ -3810,7 +3810,7 @@ html {
 /* --- Member Insight Cards — Voices of the Fellowship --- */
 
 .topic-insight-cards {
-  background: var(--white, #fff);
+  background: #FDF2F0;
   padding: 3rem 2rem;
   margin-top: 3rem;
 }
@@ -3848,14 +3848,14 @@ html {
 }
 
 .insight-card {
-  background: #FDF2F0;
+  background: #F9EBE8;
   border-radius: var(--radius);
   padding: 2rem 2rem 1.75rem;
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
-  border: 1px solid rgba(181, 131, 109, 0.15);
-  box-shadow: 0 10px 15px -3px rgba(181, 131, 109, 0.07), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(181, 131, 109, 0.2);
+  box-shadow: 0 4px 12px rgba(181, 131, 109, 0.1);
 }
 
 .insight-card-text {
@@ -3874,7 +3874,7 @@ html {
   max-height: 7rem;
 }
 
-/* Gradient fade on truncated text — blends into card color #FDF2F0 */
+/* Gradient fade on truncated text — blends into card color #F9EBE8 */
 .insight-card-text.truncated::after {
   content: '';
   position: absolute;
@@ -3882,7 +3882,7 @@ html {
   left: 0;
   right: 0;
   height: 3rem;
-  background: linear-gradient(to bottom, rgba(253, 242, 240, 0), rgba(253, 242, 240, 1) 90%);
+  background: linear-gradient(to bottom, rgba(249, 235, 232, 0), rgba(249, 235, 232, 1) 90%);
   pointer-events: none;
 }
 
