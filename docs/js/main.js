@@ -157,7 +157,7 @@
         } else {
           textEl.classList.remove('truncated');
           btn.setAttribute('aria-expanded', 'true');
-          btn.textContent = 'Show less';
+          btn.textContent = 'Show less \u2191';
         }
       });
     })(insightCardTexts[ic]);

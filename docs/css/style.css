@@ -3810,12 +3810,13 @@ html {
 /* --- Member Insight Cards — Voices of the Fellowship --- */
 
 .topic-insight-cards {
-  padding: 2.5rem 2rem;
+  background: #F8F0EE;
+  padding: 3rem 2rem;
   margin-top: 3rem;
 }
 
 .topic-insight-cards-inner {
-  max-width: 54rem;
+  max-width: 750px;
   margin: 0 auto;
 }
 
@@ -3836,24 +3837,25 @@ html {
   font-size: 1.35rem;
   font-weight: 700;
   color: var(--deep-navy);
-  margin-bottom: 1.5rem;
+  margin-bottom: 2rem;
   text-align: center;
 }
 
 .topic-insight-cards-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1.25rem;
-  align-items: start;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
 }
 
 .insight-card {
   background: #FDF2F0;
   border-radius: var(--radius);
-  padding: 1.5rem 1.5rem 1.25rem;
+  padding: 2rem 2rem 1.75rem;
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
+  border: 1px solid rgba(181, 131, 109, 0.15);
+  box-shadow: 0 10px 15px -3px rgba(181, 131, 109, 0.07), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
 }
 
 .insight-card-text {
@@ -3872,7 +3874,7 @@ html {
   max-height: 7rem;
 }
 
-/* Gradient fade on truncated text — blends into #FDF2F0 */
+/* Gradient fade on truncated text — blends into card color #FDF2F0 */
 .insight-card-text.truncated::after {
   content: '';
   position: absolute;
@@ -3905,25 +3907,27 @@ html {
   color: #B5836D;
   background: none;
   border: none;
-  padding: 0;
+  border-bottom: 2px solid #B5836D;
+  padding: 0 0 2px;
   cursor: pointer;
-  text-decoration: underline;
-  text-underline-offset: 2px;
-  transition: color 0.2s;
+  text-decoration: none;
+  transition: color 0.2s, border-color 0.2s;
   align-self: flex-start;
 }
 
 .insight-card-read-more:hover {
   color: #8a5e52;
+  border-bottom-color: #8a5e52;
 }
 
 .insight-card-attribution {
   font-family: var(--font-sans);
-  font-size: 0.75rem;
-  font-weight: 500;
-  color: var(--ink);
-  opacity: 0.55;
-  margin: 0;
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #B5836D;
+  margin: 0.25rem 0 0;
 }
 
 /* Pagination: hidden overflow cards */
@@ -3934,7 +3938,7 @@ html {
 /* "Show more community insights" button */
 .topic-insight-show-more {
   display: block;
-  margin: 1.5rem auto 0;
+  margin: 2rem auto 0;
   font-family: var(--font-sans);
   font-size: 0.85rem;
   font-weight: 600;
