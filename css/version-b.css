@@ -3863,7 +3863,7 @@ html {
 
 /* Expanded state: large enough to never clip real content */
 .insight-card-text:not(.truncated) {
-  max-height: 60rem;
+  max-height: 300rem;
 }
 
 /* Truncated state */

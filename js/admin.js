@@ -41,7 +41,7 @@
     themeOriginalFields: {},
     // Shares
     shares: [],
-    sharesFilter: 'pending',
+    sharesFilter: 'all',
     selectedShare: null,
     shareEditFields: {},
     shareOriginalFields: {},
