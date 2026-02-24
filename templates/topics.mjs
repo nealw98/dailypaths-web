@@ -252,8 +252,8 @@ ${extraCards}
             <label class="topic-share-label" for="share-name-${topic.slug}">Name</label>
             <input type="text" id="share-name-${topic.slug}" name="display_name" class="topic-share-input" placeholder="e.g., Sara M. (or anonymous)" required>
             <label class="topic-share-label" for="share-content-${topic.slug}">Your Insight</label>
-            <textarea id="share-content-${topic.slug}" name="content" class="topic-share-textarea" rows="5" maxlength="2000" required></textarea>
-            <p class="topic-share-counter"><span data-char-count>0</span>/2000 characters</p>
+            <textarea id="share-content-${topic.slug}" name="content" class="topic-share-textarea" rows="5" maxlength="3000" required></textarea>
+            <p class="topic-share-counter"><span data-char-count>0</span>/3000 characters</p>
             <p class="topic-share-disclaimer"><em>By submitting, you consent to sharing your experience with the Daily Paths community.</em></p>
             <button type="submit" class="topic-insight-submit">Post Insight</button>
             <p class="topic-share-status" data-share-status></p>
