@@ -32,7 +32,7 @@ export function renderHomepage(todayReading, prevReading, nextReading, allReadin
         <div class="hm-hero-overlay"></div>
       </div>
       <div class="hm-hero-content">
-        <h1 class="hm-hero-title">Daily Paths</h1>
+        <h1 class="hm-hero-title">Finding Your Path</h1>
         <p class="hm-hero-tagline">Daily reflections and tools for the Al-Anon journey</p>
       </div>
     </section>
