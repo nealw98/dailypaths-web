@@ -58,6 +58,18 @@ export function renderAboutAlanonPage() {
             </a>
           </section>
 
+          <!-- Find a Meeting -->
+          <section class="aa-block aa-block--highlight">
+            <h2 class="aa-block-heading">Find a Meeting</h2>
+            <div class="aa-block-body">
+              <p>Al-Anon meetings are free, confidential, and open to anyone affected by someone else&rsquo;s drinking. Meetings are held in person and online around the world.</p>
+              <p>There are no dues or fees for membership. You will never be asked to pay, and your attendance is completely anonymous.</p>
+            </div>
+            <a href="https://al-anon.org/al-anon-meetings/find-an-al-anon-meeting/" target="_blank" rel="noopener noreferrer" class="aa-meeting-btn">
+              Search the Official Meeting Directory&nbsp;&#8599;
+            </a>
+          </section>
+
           <!-- How It Works — Four Pillars -->
           <section class="aa-block">
             <h2 class="aa-block-heading">How the Program Works</h2>
