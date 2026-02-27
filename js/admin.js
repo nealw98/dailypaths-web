@@ -756,6 +756,7 @@
         '<h1 class="admin-title">Reading Feedback</h1>' +
       '</div>' +
       '<div class="admin-header-right">' +
+        '<a href="/" class="admin-btn admin-btn--ghost" target="_blank">View Site</a>' +
         '<button class="admin-btn admin-btn--ghost" id="btn-steps">Steps</button>' +
         '<button class="admin-btn admin-btn--ghost" id="btn-themes">Themes</button>' +
         '<button class="admin-btn admin-btn--ghost" id="btn-shares">Shares' +
@@ -1093,7 +1094,7 @@
 
     // Editor header
     html += '<header class="admin-editor-header">' +
-      '<button class="admin-btn admin-btn--ghost" id="btn-back">&larr; Back</button>' +
+      '<button class="admin-btn admin-btn--ghost" id="btn-back">Cancel</button>' +
       '<div class="admin-editor-nav">' +
         '<button class="admin-btn admin-btn--ghost" id="btn-prev"' + (hasPrev ? '' : ' disabled') + '>&larr; Prev</button>' +
         '<span class="admin-nav-pos">' + (idx + 1) + ' / ' + state.filteredReadings.length + '</span>' +
@@ -1429,7 +1430,7 @@
 
     html += '<header class="admin-header">' +
       '<div class="admin-header-left">' +
-        '<button class="admin-btn admin-btn--ghost" id="btn-back-fb">&larr; Back to Readings</button>' +
+        '<button class="admin-btn admin-btn--ghost" id="btn-back-fb">Cancel</button>' +
         '<h1 class="admin-title">App Feedback <span class="admin-badge">' + state.appFeedback.length + '</span></h1>' +
       '</div>' +
       '<div class="admin-header-right">' +
@@ -1491,7 +1492,7 @@
 
     html += '<header class="admin-header">' +
       '<div class="admin-header-left">' +
-        '<button class="admin-btn admin-btn--ghost" id="btn-back-steps">&larr; Back to Readings</button>' +
+        '<button class="admin-btn admin-btn--ghost" id="btn-back-steps">Cancel</button>' +
         '<h1 class="admin-title">Steps <span class="admin-badge">' + state.steps.length + '</span></h1>' +
       '</div>' +
       '<div class="admin-header-right">' +
@@ -1582,7 +1583,7 @@
     var html = '<div class="admin-editor">';
 
     html += '<header class="admin-editor-header">' +
-      '<button class="admin-btn admin-btn--ghost" id="btn-back-step">&larr; Back to Steps</button>' +
+      '<button class="admin-btn admin-btn--ghost" id="btn-back-step">Cancel</button>' +
       '<div class="admin-editor-nav">' +
         '<button class="admin-btn admin-btn--ghost" id="btn-prev-step"' + (hasPrev ? '' : ' disabled') + '>&larr; Prev</button>' +
         '<span class="admin-nav-pos">' + (idx + 1) + ' / ' + state.steps.length + '</span>' +
@@ -1762,7 +1763,7 @@
 
     html += '<header class="admin-header">' +
       '<div class="admin-header-left">' +
-        '<button class="admin-btn admin-btn--ghost" id="btn-back-themes">&larr; Back to Readings</button>' +
+        '<button class="admin-btn admin-btn--ghost" id="btn-back-themes">Cancel</button>' +
         '<h1 class="admin-title">Themes <span class="admin-badge">' + state.themes.length + '</span></h1>' +
       '</div>' +
       '<div class="admin-header-right">' +
@@ -1853,7 +1854,7 @@
     var html = '<div class="admin-editor">';
 
     html += '<header class="admin-editor-header">' +
-      '<button class="admin-btn admin-btn--ghost" id="btn-back-theme">&larr; Back to Themes</button>' +
+      '<button class="admin-btn admin-btn--ghost" id="btn-back-theme">Cancel</button>' +
       '<div class="admin-editor-nav">' +
         '<button class="admin-btn admin-btn--ghost" id="btn-prev-theme"' + (hasPrev ? '' : ' disabled') + '>&larr; Prev</button>' +
         '<span class="admin-nav-pos">' + (idx + 1) + ' / ' + state.themes.length + '</span>' +
@@ -2081,7 +2082,7 @@
 
     var html = '<div class="admin-editor">';
     html += '<div class="admin-editor-header">';
-    html += '<button class="admin-btn admin-btn--ghost" id="btn-back-shares">&larr; Back to Dashboard</button>';
+    html += '<button class="admin-btn admin-btn--ghost" id="btn-back-shares">Cancel</button>';
     html += '<h2>Member Shares</h2>';
     if (pendingCount > 0) {
       html += '<span class="admin-share-status admin-share-status--pending" style="font-size:13px;">' + pendingCount + ' pending</span>';
@@ -2189,7 +2190,7 @@
 
     var html = '<div class="admin-editor">';
     html += '<div class="admin-editor-header">';
-    html += '<button class="admin-btn admin-btn--ghost" id="btn-back-share">&larr; Back to Shares</button>';
+    html += '<button class="admin-btn admin-btn--ghost" id="btn-back-share">Cancel</button>';
     html += '<h2>Share from ' + escHtml(s.display_name) + '</h2>';
     html += '</div>';
 
