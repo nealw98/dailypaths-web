@@ -3,6 +3,46 @@
 (function () {
   'use strict';
 
+  // 0. Homepage stale-date fix
+  // The homepage "Today's Reflection" is baked at build time. If the user's
+  // local date no longer matches, fetch today's reading page and swap in
+  // the correct title, date, and preview text.
+  if (document.body.classList.contains('page-home')) {
+    var todaySlugHome = getTodaySlug();
+    var readMoreBtn = document.querySelector('.hm-today-btn');
+    if (readMoreBtn && readMoreBtn.getAttribute('href').indexOf(todaySlugHome) === -1) {
+      // Update the "Read More" link immediately
+      readMoreBtn.setAttribute('href', '/' + todaySlugHome + '/');
+      // Fetch today's reading page and extract content
+      fetch('/' + todaySlugHome + '/')
+        .then(function (res) { return res.text(); })
+        .then(function (html) {
+          var doc = new DOMParser().parseFromString(html, 'text/html');
+          var dateEl = doc.querySelector('.rd-date');
+          var titleEl = doc.querySelector('.rd-title');
+          var bodyEl = doc.querySelector('.rd-body p');
+          if (dateEl) {
+            var homeDateEl = document.querySelector('.hm-today-date');
+            if (homeDateEl) homeDateEl.textContent = dateEl.textContent;
+          }
+          if (titleEl) {
+            var homeTitleEl = document.querySelector('.hm-today-title');
+            if (homeTitleEl) homeTitleEl.textContent = titleEl.textContent;
+          }
+          if (bodyEl) {
+            var homePreviewEl = document.querySelector('.hm-today-preview');
+            if (homePreviewEl) {
+              var text = bodyEl.textContent;
+              homePreviewEl.textContent = text.length > 200
+                ? text.slice(0, 200).replace(/\s+\S*$/, '') + '\u2026'
+                : text;
+            }
+          }
+        })
+        .catch(function () { /* graceful fallback: stale content stays */ });
+    }
+  }
+
   // 1. Today's Reading Link
   // Elements with data-today-link get their href set to today's reading
   var todayLinks = document.querySelectorAll('[data-today-link]');
