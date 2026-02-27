@@ -40,6 +40,12 @@ export function generateSitemap(readings, topics, books = []) {
     }
   }
 
+  // Month archives
+  const months = ['january','february','march','april','may','june','july','august','september','october','november','december'];
+  for (const month of months) {
+    urls.push({ loc: `${BASE_URL}/months/${month}/`, priority: '0.5', changefreq: 'monthly' });
+  }
+
   // Static pages
   urls.push({ loc: BASE_URL + '/essentials/', priority: '0.6', changefreq: 'monthly' });
   urls.push({ loc: BASE_URL + '/about-alanon/', priority: '0.6', changefreq: 'monthly' });

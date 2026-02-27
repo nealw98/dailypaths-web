@@ -301,6 +301,7 @@ const notFoundHtml = wrapInLayout({
       <a href="${bp('/')}" class="btn-primary">Go Home</a>
     </div>`,
   bodyClass: 'page-404',
+  noindex: true,
 });
 writePage(join(outDir, '404.html'), notFoundHtml);
 

@@ -21,6 +21,7 @@ export function wrapInLayout({
   ogType = 'website',
   ogImage,
   bodyClass = '',
+  noindex = false,
 }) {
   const canonicalUrl = BASE_URL + canonicalPath;
   const ogImageUrl = ogImage ? BASE_URL + ogImage : `${BASE_URL}/assets/og-image.png`;
@@ -33,7 +34,7 @@ export function wrapInLayout({
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>${escapeHtml(title)}</title>
   <meta name="description" content="${escapeAttr(description)}">
-  <link rel="canonical" href="${canonicalUrl}">
+  <link rel="canonical" href="${canonicalUrl}">${noindex ? '\n  <meta name="robots" content="noindex, nofollow">' : ''}
 
   <!-- Open Graph -->
   <meta property="og:title" content="${escapeAttr(title)}">
