@@ -1621,6 +1621,14 @@ html {
   margin-bottom: 0;
 }
 
+/* Promises — short single-sentence items need more visual separation */
+#promises .ess-text {
+  margin-bottom: 1.35rem;
+}
+#promises .ess-text:last-of-type {
+  margin-bottom: 0;
+}
+
 /* Verse-style content */
 .ess-verse {
   margin-bottom: 1.25rem;
