@@ -68,7 +68,7 @@ export function renderEssentialsPage() {
       sections: [
         {
           lines: [
-            'Make me an instrument of your peace.',
+            'Lord, make me an instrument of your peace.',
             'Where there is hatred, let me bring love.',
             'Where there is offense, let me bring pardon.',
             'Where there is discord, let me bring union.',
