@@ -181,7 +181,7 @@ export function renderEssentialsPage() {
       const lineCount = item.sections.reduce((n, s) => n + (s.lines ? s.lines.length : 1), 0);
       return lineCount > 3;
     }
-    if (item.paragraphs) return item.paragraphs.length > 3;
+    if (item.paragraphs) return item.paragraphs.length > 1;
     return false;
   }
 
