@@ -18,7 +18,7 @@ export function renderAboutAlanonPage() {
         </div>
         <div class="aa-hero-content">
           <h1 class="aa-hero-title">The Al-Anon Program</h1>
-          <p class="aa-hero-desc">A spiritual path for those affected by someone else&rsquo;s drinking.</p>
+          <p class="aa-hero-desc">A path for those affected by someone else&rsquo;s drinking.</p>
         </div>
       </header>
 
