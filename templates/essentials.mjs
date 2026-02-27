@@ -68,25 +68,34 @@ export function renderEssentialsPage() {
       sections: [
         {
           lines: [
-            'Lord, make me an instrument of your peace.',
-            'Where there is hatred, let me bring love.',
-            'Where there is offense, let me bring pardon.',
-            'Where there is discord, let me bring union.',
-            'Where there is error, let me bring truth.',
-            'Where there is doubt, let me bring faith.',
-            'Where there is despair, let me bring hope.',
-            'Where there is darkness, let me bring your light.',
-            'Where there is sadness, let me bring joy.',
+            'Lord, make me a channel of thy peace,',
+            'that where there is hatred, I may bring love;',
+            'that where there is wrong, I may bring the spirit of forgiveness;',
+            'that where there is discord, I may bring harmony;',
+            'that where there is error, I may bring truth;',
+            'that where there is doubt, I may bring faith;',
+            'that where there is despair, I may bring hope;',
+            'that where there are shadows, I may bring light;',
+            'that where there is sadness, I may bring joy.',
           ],
         },
         {
-          text: 'Let me not seek so much to be consoled as to console, to be understood as to understand, to be loved as to love.',
+          lines: [
+            'Lord, grant that I may seek rather to',
+            'comfort than to be comforted;',
+            'to understand, than to be understood;',
+            'to love, than to be loved.',
+          ],
         },
         {
-          text: 'For it is in giving that we receive, it is in pardoning that we are pardoned, and it is in surrendering that we find new life.',
+          lines: [
+            'For it is by self-forgetting that one finds.',
+            'It is by forgiving that one is forgiven.',
+            'It is by dying that one awakens to Eternal Life.',
+          ],
         },
       ],
-      source: 'Adapted from St. Francis of Assisi',
+      source: 'St. Francis of Assisi',
     },
   ];
 
