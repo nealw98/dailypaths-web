@@ -3,6 +3,18 @@
 (function () {
   'use strict';
 
+  // 0. Homepage stale-date redirect
+  // The homepage "Today's Reflection" is baked at build time. If the user's
+  // local date no longer matches, redirect to the correct reading page.
+  if (document.body.classList.contains('page-home')) {
+    var todaySlugHome = getTodaySlug();
+    var readMoreBtn = document.querySelector('.hm-today-btn');
+    if (readMoreBtn && readMoreBtn.getAttribute('href').indexOf(todaySlugHome) === -1) {
+      window.location.replace('/' + todaySlugHome + '/');
+      return; // stop executing the rest of this IIFE
+    }
+  }
+
   // 1. Today's Reading Link
   // Elements with data-today-link get their href set to today's reading
   var todayLinks = document.querySelectorAll('[data-today-link]');
