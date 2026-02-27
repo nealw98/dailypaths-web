@@ -18,6 +18,8 @@ export function renderHomepage(todayReading, prevReading, nextReading, allReadin
   // Build a plain-text preview (~200 chars) from the opening
   const rawText = (todayReading.opening || todayReading.body || '')
     .replace(/\\n/g, ' ')
+    .replace(/\*\*(.+?)\*\*/g, '$1')
+    .replace(/\*(.+?)\*/g, '$1')
     .replace(/\s+/g, ' ')
     .trim();
   const preview = rawText.length > 200
