@@ -82,6 +82,22 @@ ${galleryCards}
  * @param {Array} featuredReadings - Reading objects matching featuredDays
  * @param {Array} [allReadings] - All 366 readings (for theme-tag matching)
  */
+/**
+ * Inject strategic links to Essentials page in theme body content.
+ * Only links terms on pages OTHER than the term's own page.
+ */
+function injectEssentialsLinks(body, currentSlug) {
+  let html = body;
+  // Link "detachment" to Letting Go card (only on non-detachment pages)
+  if (currentSlug !== 'detachment') {
+    html = html.replace(
+      /\bdetachment\b/i,
+      `<a href="${bp('/essentials/#let-go')}">$&</a>`
+    );
+  }
+  return html;
+}
+
 export function renderTopicPage(topic, featuredReadings, allReadings = [], topicShares = []) {
   const idx = TOPICS.indexOf(topic);
   const prevTopic = TOPICS[(idx - 1 + TOPICS.length) % TOPICS.length];
@@ -217,7 +233,7 @@ ${cards}
       <!-- Editorial Intro with Drop Cap -->
       <section class="topic-editorial-intro">
         <div class="topic-editorial-intro-inner">
-          ${topic.body}
+          ${injectEssentialsLinks(topic.body || '', topic.slug)}
         </div>
       </section>
 

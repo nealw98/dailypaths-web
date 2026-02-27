@@ -41,7 +41,7 @@ export function generateSitemap(readings, topics, books = []) {
   }
 
   // Static pages
-  urls.push({ loc: BASE_URL + '/prayers/', priority: '0.6', changefreq: 'monthly' });
+  urls.push({ loc: BASE_URL + '/essentials/', priority: '0.6', changefreq: 'monthly' });
   urls.push({ loc: BASE_URL + '/about-alanon/', priority: '0.6', changefreq: 'monthly' });
   urls.push({ loc: BASE_URL + '/quiz/', priority: '0.6', changefreq: 'monthly' });
   urls.push({ loc: BASE_URL + '/traditions/', priority: '0.6', changefreq: 'monthly' });

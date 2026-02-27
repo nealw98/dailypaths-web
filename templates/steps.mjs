@@ -401,9 +401,17 @@ export function renderStepPage(step, readings = []) {
   const tagline = STEP_TAGLINES[step.number] || `The Principle of ${step.principle}`;
   // All steps use the shared steps-hero.jpg with blur + navy overlay
 
-  // Build description paragraphs
+  // Build description paragraphs with strategic links to Essentials
   const descParagraphs = step.description || [];
-  const bodyParagraphs = descParagraphs.map(p => `          <p>${p}</p>`).join('\n');
+  const bodyParagraphs = descParagraphs.map(p => {
+    let text = p;
+    // Link "Let Go and Let God" to Essentials Letting Go card
+    text = text.replace(
+      /Let Go and Let God/g,
+      `<a href="${bp('/essentials/#let-go')}">Let Go and Let God</a>`
+    );
+    return `          <p>${text}</p>`;
+  }).join('\n');
 
   // Build reflection questions
   const questionItems = (step.questions || []).map(q =>

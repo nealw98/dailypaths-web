@@ -204,7 +204,31 @@
     })(showMoreBtns[sm]);
   }
 
-  // 4e. Live character counter for share textareas
+  // 4e. Essentials page: Read More / Show Less toggle
+  var essCardBodies = document.querySelectorAll('[data-ess-card-body]');
+  for (var eb = 0; eb < essCardBodies.length; eb++) {
+    (function (bodyEl) {
+      var btn = bodyEl.parentElement.querySelector('[data-ess-read-more]');
+      if (!btn) return;
+
+      btn.addEventListener('click', function () {
+        var isExpanded = btn.getAttribute('aria-expanded') === 'true';
+        if (isExpanded) {
+          bodyEl.classList.add('ess-truncated');
+          btn.setAttribute('aria-expanded', 'false');
+          btn.textContent = 'Read more';
+          // Scroll card back into view
+          bodyEl.closest('.ess-card').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        } else {
+          bodyEl.classList.remove('ess-truncated');
+          btn.setAttribute('aria-expanded', 'true');
+          btn.textContent = 'Show less';
+        }
+      });
+    })(essCardBodies[eb]);
+  }
+
+  // 4f. Live character counter for share textareas
   var shareTextareas = document.querySelectorAll('.topic-share-textarea');
   for (var tc = 0; tc < shareTextareas.length; tc++) {
     (function (textarea) {

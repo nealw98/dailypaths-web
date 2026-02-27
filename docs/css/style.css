@@ -1576,6 +1576,214 @@ html {
 }
 
 /* ==========================================================================
+   Recovery Essentials — Card Grid Layout with Read More
+   ========================================================================== */
+
+/* Editorial Intro */
+.ess-intro {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2.5rem 2rem 0;
+}
+
+.ess-intro-inner {
+  font-family: var(--font-reading);
+  font-size: 1.05rem;
+  line-height: 1.85;
+  color: var(--ink);
+}
+
+.ess-intro-inner p {
+  margin-bottom: 1rem;
+}
+
+.ess-intro-inner p:last-child {
+  margin-bottom: 0;
+}
+
+/* Section headings */
+.ess-section {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+.ess-section:first-of-type {
+  padding-top: 2.5rem;
+}
+
+.ess-section-heading {
+  font-family: var(--font-serif);
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--deep-navy);
+  text-align: center;
+  margin: 2.5rem 0 1.5rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 2px solid var(--cloud);
+}
+
+/* Card Stack — full-width horizontal boxes */
+.ess-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding-bottom: 1rem;
+}
+
+/* Individual Cards */
+.ess-card {
+  background: var(--white);
+  border-radius: var(--radius);
+  padding: 2rem 2rem 1.75rem;
+  scroll-margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.ess-card-title {
+  font-family: var(--font-serif);
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--deep-navy);
+  margin: 0;
+}
+
+.ess-card-logic {
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  font-style: italic;
+  line-height: 1.6;
+  color: var(--slate-blue);
+  margin: 0;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+/* Card body — truncation container */
+.ess-card-body {
+  position: relative;
+  overflow: hidden;
+  transition: max-height 0.4s ease-in-out;
+}
+
+/* Expanded state */
+.ess-card-body:not(.ess-truncated) {
+  max-height: 300rem;
+}
+
+/* Truncated state — show ~3 lines of content */
+.ess-card-body.ess-truncated {
+  max-height: 7.5rem;
+}
+
+/* Gradient fade on truncated text */
+.ess-card-body.ess-truncated::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 3.5rem;
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(255, 255, 255, 1) 90%);
+  pointer-events: none;
+}
+
+/* Card text — Lora for meditative feel */
+.ess-text {
+  font-family: var(--font-reading);
+  font-size: 1rem;
+  line-height: 1.85;
+  color: var(--ink);
+  margin: 0 0 0.85rem;
+}
+
+.ess-text:last-of-type {
+  margin-bottom: 0;
+}
+
+/* Verse-style content */
+.ess-verse {
+  margin-bottom: 1.25rem;
+}
+
+.ess-verse:last-of-type {
+  margin-bottom: 0;
+}
+
+.ess-line {
+  font-family: var(--font-reading);
+  font-size: 1rem;
+  font-style: italic;
+  line-height: 1.85;
+  color: var(--ink);
+  margin-bottom: 0;
+}
+
+/* Source attribution */
+.ess-source {
+  font-family: var(--font-sans);
+  font-size: 0.82rem;
+  color: var(--slate-blue);
+  font-style: italic;
+  margin-top: 1.25rem;
+  margin-bottom: 0;
+  opacity: 0.7;
+}
+
+/* Read More button */
+.ess-read-more {
+  display: inline-block;
+  align-self: flex-start;
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--deep-teal);
+  background: none;
+  border: none;
+  border-bottom: 2px solid var(--deep-teal);
+  padding: 0 0 2px;
+  margin-top: 0.25rem;
+  cursor: pointer;
+  text-decoration: none;
+  transition: color 0.2s, border-color 0.2s;
+}
+
+.ess-read-more:hover {
+  color: var(--ocean);
+  border-bottom-color: var(--ocean);
+}
+
+/* Mobile */
+@media (max-width: 640px) {
+  .ess-intro {
+    padding: 2rem 1.5rem 0;
+  }
+  .ess-section {
+    padding: 0 1.5rem;
+  }
+  .ess-section-heading {
+    font-size: 1.5rem;
+    margin: 2rem 0 1.25rem;
+  }
+  .ess-grid {
+    gap: 1.25rem;
+  }
+  .ess-card {
+    padding: 1.75rem 1.5rem 1.5rem;
+  }
+  .ess-card-title {
+    font-size: 1.25rem;
+  }
+  .ess-text,
+  .ess-line {
+    font-size: 0.95rem;
+  }
+}
+
+/* ==========================================================================
    About Daily Paths — Editorial Drop-Cap Layout (about-project)
    ========================================================================== */
 

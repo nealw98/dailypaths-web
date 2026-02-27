@@ -32,7 +32,7 @@ import { TOPIC_PULL_QUOTES, TOPIC_TOOLS, TOPIC_THEME_TAGS } from './helpers/them
 import { renderPrivacyPage } from './templates/privacy.mjs';
 import { renderSupportPage } from './templates/support.mjs';
 import { renderTermsPage } from './templates/terms.mjs';
-import { renderPrayersPage } from './templates/prayers.mjs';
+import { renderEssentialsPage } from './templates/essentials.mjs';
 import { renderAboutProjectPage } from './templates/about-project.mjs';
 import { renderAboutAlanonPage } from './templates/about-alanon.mjs';
 import { renderQuizPage } from './templates/quiz.mjs';
@@ -144,7 +144,7 @@ const dirs = [
   join(outDir, 'privacy'),
   join(outDir, 'support'),
   join(outDir, 'terms'),
-  join(outDir, 'prayers'),
+  join(outDir, 'essentials'),
   join(outDir, 'about-project'),
   join(outDir, 'about-alanon'),
   join(outDir, 'quiz'),
@@ -256,7 +256,7 @@ console.log('Generating static pages...');
 writePage(join(outDir, 'privacy', 'index.html'), renderPrivacyPage());
 writePage(join(outDir, 'support', 'index.html'), renderSupportPage());
 writePage(join(outDir, 'terms', 'index.html'), renderTermsPage());
-writePage(join(outDir, 'prayers', 'index.html'), renderPrayersPage());
+writePage(join(outDir, 'essentials', 'index.html'), renderEssentialsPage());
 writePage(join(outDir, 'about-project', 'index.html'), renderAboutProjectPage());
 writePage(join(outDir, 'about-alanon', 'index.html'), renderAboutAlanonPage());
 writePage(join(outDir, 'quiz', 'index.html'), renderQuizPage());

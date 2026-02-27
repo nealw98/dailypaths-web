@@ -1264,6 +1264,7 @@
       state.view = 'dashboard';
       state.selectedReading = null;
       render();
+      scrollToToday();
     });
 
     // Prev/Next
@@ -1358,6 +1359,7 @@
       state.view = 'dashboard';
       state.selectedReading = null;
       render();
+      scrollToToday();
     }
   }
 
