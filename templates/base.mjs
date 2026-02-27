@@ -62,7 +62,7 @@ export function wrapInLayout({
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600;1,700&family=Inter:wght@300;400;500&family=Lora:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
 
   <!-- Styles -->
-  <link rel="stylesheet" href="${bp('/css/style.css')}">
+  <link rel="stylesheet" href="${bp('/css/style.css')}?v=${Date.now()}">
 
   ${structuredData ? (Array.isArray(structuredData) ? structuredData : [structuredData]).map(json => `<!-- Structured Data -->
   <script type="application/ld+json">
