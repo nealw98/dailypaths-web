@@ -15,9 +15,7 @@ const basePathArg = args.find(a => a.startsWith('--base-path='));
 export const BASE_PATH = basePathArg ? basePathArg.split('=')[1].replace(/\/$/, '') : '';
 
 /** Absolute site origin for SEO (canonical, og:url, sitemap, robots.txt) */
-export const BASE_URL = process.env.SITE_ENV === 'production'
-  ? 'https://dailypaths.org'
-  : 'https://nealw98.github.io/dailypaths-web';
+export const BASE_URL = 'https://dailypaths.org';
 
 /** Shorthand: prepend BASE_PATH to an absolute path */
 export function bp(path) {

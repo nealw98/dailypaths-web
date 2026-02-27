@@ -35,9 +35,6 @@ import { renderTermsPage } from './templates/terms.mjs';
 import { renderEssentialsPage } from './templates/essentials.mjs';
 import { renderAboutProjectPage } from './templates/about-project.mjs';
 import { renderAboutAlanonPage } from './templates/about-alanon.mjs';
-import { renderQuizPage } from './templates/quiz.mjs';
-import { renderTraditionsPage } from './templates/traditions.mjs';
-import { renderConceptsPage } from './templates/concepts.mjs';
 import { renderStepsIndexPage, renderStepPage, STEPS, STEP_TOOLS, STEP_HOOKS, STEP_TAGLINES, PULL_QUOTES } from './templates/steps.mjs';
 import { renderLiteratureIndexPage, renderLiteraturePage, BOOKS } from './templates/literature.mjs';
 import { renderMonthArchivePage } from './templates/month-archive.mjs';
@@ -147,9 +144,6 @@ const dirs = [
   join(outDir, 'essentials'),
   join(outDir, 'about-project'),
   join(outDir, 'about-alanon'),
-  join(outDir, 'quiz'),
-  join(outDir, 'traditions'),
-  join(outDir, 'concepts'),
   join(outDir, 'steps'),
   ...Array.from({ length: 12 }, (_, i) => join(outDir, 'steps', `step-${i + 1}`)),
   join(outDir, 'literature'),
@@ -259,9 +253,6 @@ writePage(join(outDir, 'terms', 'index.html'), renderTermsPage());
 writePage(join(outDir, 'essentials', 'index.html'), renderEssentialsPage());
 writePage(join(outDir, 'about-project', 'index.html'), renderAboutProjectPage());
 writePage(join(outDir, 'about-alanon', 'index.html'), renderAboutAlanonPage());
-writePage(join(outDir, 'quiz', 'index.html'), renderQuizPage());
-writePage(join(outDir, 'traditions', 'index.html'), renderTraditionsPage());
-writePage(join(outDir, 'concepts', 'index.html'), renderConceptsPage());
 // Admin page
 console.log('Generating admin page...');
 writePage(join(outDir, 'admin', 'index.html'), renderAdminPage());
