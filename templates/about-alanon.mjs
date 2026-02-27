@@ -11,14 +11,14 @@ export function renderAboutAlanonPage() {
 
   const bodyContent = `
       <!-- Hero -->
-      <header class="aa-hero">
-        <div class="aa-hero-image">
+      <header class="page-hero page-hero--bleed">
+        <div class="page-hero-image">
           <img src="${bp('/assets/themes/alanon-hero.jpg')}" alt="Ocean path at sunrise \u2014 The Al-Anon Program" />
-          <div class="aa-hero-overlay"></div>
+          <div class="page-hero-overlay page-hero-overlay--radial"></div>
         </div>
-        <div class="aa-hero-content">
-          <h1 class="aa-hero-title">The Al-Anon Program</h1>
-          <p class="aa-hero-desc">A path for those affected by someone else&rsquo;s drinking.</p>
+        <div class="page-hero-content">
+          <h1 class="page-hero-title">The Al-Anon Program</h1>
+          <p class="page-hero-subtitle">A path for those affected by someone else&rsquo;s drinking.</p>
         </div>
       </header>
 

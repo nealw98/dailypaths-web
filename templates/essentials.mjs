@@ -190,14 +190,14 @@ export function renderEssentialsPage() {
 
   const bodyContent = `
       <!-- Hero -->
-      <header class="pr-hero">
-        <div class="pr-hero-image">
+      <header class="page-hero">
+        <div class="page-hero-image">
           <img src="${bp('/assets/themes/prayers.jpg')}" alt="Stone cairn on a quiet shore &mdash; Al-Anon recovery essentials" />
-          <div class="pr-hero-overlay"></div>
+          <div class="page-hero-overlay"></div>
         </div>
-        <div class="pr-hero-content">
-          <h1 class="pr-hero-title">Recovery Essentials</h1>
-          <p class="pr-hero-tagline">Inspiration and grounding for daily recovery</p>
+        <div class="page-hero-content">
+          <h1 class="page-hero-title">Recovery Essentials</h1>
+          <p class="page-hero-subtitle">Inspiration and grounding for daily recovery</p>
         </div>
       </header>
 
