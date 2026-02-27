@@ -4,15 +4,6 @@ import { bp, BASE_URL } from '../helpers/config.mjs';
 export function renderEssentialsPage() {
   const mainEssentials = [
     {
-      id: 'welcome',
-      title: 'The Al-Anon Welcome',
-      logic: 'Our &ldquo;orientation&rdquo; to the fellowship. It acknowledges the pain of the disease while offering the promise of friendship and a new way of life.',
-      paragraphs: [
-        'We welcome you to the Al-Anon Family Group and hope you will find in this fellowship the help and friendship we have been privileged to enjoy.',
-        'We who live, or have lived, with the problem of alcoholism understand as perhaps few others can. We, too, were lonely and frustrated, but in Al-Anon we discover that no situation is really hopeless and that it is possible for us to find contentment, and even happiness, whether the alcoholic is still drinking or not.',
-      ],
-    },
-    {
       id: 'just-for-today',
       title: 'Just for Today',
       logic: 'A daily discipline of manageable intention. Each line is a small, practical vow that keeps us from spiraling into anxiety about the future or regret about the past.',
