@@ -1626,7 +1626,7 @@ html {
   margin-bottom: 1.25rem;
 }
 
-.ess-verse:last-of-type {
+.ess-verse:last-child {
   margin-bottom: 0;
 }
 
@@ -1637,6 +1637,10 @@ html {
   line-height: 1.85;
   color: var(--ink);
   margin-bottom: 0;
+}
+
+.ess-line--normal {
+  font-style: normal;
 }
 
 /* Source attribution */

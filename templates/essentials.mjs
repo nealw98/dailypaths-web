@@ -64,6 +64,7 @@ export function renderEssentialsPage() {
       id: 'st-francis',
       title: 'Prayer of St. Francis',
       logic: 'A prayer of radical service. It inverts our instinct to seek comfort and asks us instead to become instruments of peace for others.',
+      noItalic: true,
       sections: [
         {
           lines: [
@@ -136,15 +137,17 @@ export function renderEssentialsPage() {
   function renderCardBody(item) {
     let bodyHtml = '';
 
+    const lineClass = item.noItalic ? 'ess-line ess-line--normal' : 'ess-line';
+
     if (item.lines) {
       bodyHtml = `<div class="ess-verse">
-              ${item.lines.map(l => `<p class="ess-line">${l}</p>`).join('\n              ')}
+              ${item.lines.map(l => `<p class="${lineClass}">${l}</p>`).join('\n              ')}
             </div>`;
     } else if (item.sections) {
       bodyHtml = item.sections.map(section => {
         if (section.lines) {
           return `<div class="ess-verse">
-              ${section.lines.map(l => `<p class="ess-line">${l}</p>`).join('\n              ')}
+              ${section.lines.map(l => `<p class="${lineClass}">${l}</p>`).join('\n              ')}
             </div>`;
         }
         return `<p class="ess-text">${section.text}</p>`;
