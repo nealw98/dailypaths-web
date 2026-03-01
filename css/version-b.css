@@ -735,7 +735,7 @@ a.rd-pill--step:hover {
 .rd-content {
   max-width: 700px;
   margin: 0 auto;
-  padding: 0 2rem 3rem;
+  padding: 0 2rem 1rem;
 }
 
 /* High-End Pull Quote */
@@ -783,45 +783,46 @@ a.rd-pill--step:hover {
   margin-bottom: 0;
 }
 
-/* Divider */
+/* Divider — invisible spacer */
 .rd-divider {
-  width: 3rem;
-  height: 1px;
-  background: var(--mist);
-  margin: 2rem 0;
+  width: 0;
+  height: 0;
+  border: none;
+  background: none;
+  margin: 0.75rem 0;
 }
 
-/* Today's Reminder — full-bleed terracotta */
-.rd-reminder {
+/* Today's Reminder — contained card (matches insight-card style) */
+.rd-reminder-card {
+  max-width: 636px;
+  margin: 0 auto;
+  padding: 1.75rem 2rem;
+  background: #F9EBE8;
+  border: 1px solid rgba(181, 131, 109, 0.2);
+  border-radius: 8px;
   text-align: center;
 }
 
-.rd-reminder-inner {
-  max-width: 38rem;
-  margin: 0 auto;
-  padding: 0 2rem;
-}
-
-.rd-reminder-heading {
+.rd-reminder-card .rd-reminder-heading {
   font-family: var(--font-sans);
   font-size: 0.72rem;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.15em;
-  color: rgba(255, 255, 255, 0.7);
-  margin-bottom: 1.25rem;
+  color: rgba(181, 131, 109, 0.7);
+  margin-bottom: 0.75rem;
 }
 
-.rd-reminder-text {
-  font-family: var(--font-serif);
+.rd-reminder-card .rd-reminder-text {
+  font-family: var(--font-reading);
   font-style: italic;
-  font-size: clamp(1.3rem, 2.5vw, 1.7rem);
-  line-height: 1.5;
-  color: var(--white);
+  font-size: 1.08rem;
+  line-height: 1.9;
+  color: var(--ink);
   letter-spacing: -0.01em;
 }
 
-.rd-reminder-text strong {
+.rd-reminder-card .rd-reminder-text strong {
   font-weight: 700;
   font-style: normal;
 }
@@ -830,11 +831,10 @@ a.rd-pill--step:hover {
 .rd-nav {
   max-width: 700px;
   margin: 0 auto;
-  padding: 2.5rem 2rem 3rem;
+  padding: 0.75rem 2rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-top: 1px solid var(--cloud);
 }
 
 .rd-nav-link {
@@ -1037,11 +1037,12 @@ a.rd-pill--step:hover {
   .rd-quote {
     padding: 1.5rem 0 1.75rem;
   }
-  .rd-reminder-inner {
-    padding: 0 1.5rem;
+  .rd-reminder-card {
+    margin: 0 1rem;
+    padding: 1.5rem 1.5rem;
   }
   .rd-nav {
-    padding: 2rem 1.5rem 2.5rem;
+    padding: 0.75rem 1.5rem;
   }
   .rd-nav-link {
     max-width: 48%;

@@ -93,13 +93,6 @@ ${relatedItems}
 
       <!-- Header -->
       <header class="rd-header">
-        <nav class="breadcrumb rd-breadcrumb" aria-label="Breadcrumb">
-          <a href="${bp('/')}">Home</a>
-          <span class="breadcrumb-sep">&rsaquo;</span>
-          <span>Readings</span>
-          <span class="breadcrumb-sep">&rsaquo;</span>
-          <span>${reading.title}</span>
-        </nav>
         <time class="rd-date" datetime="${isoDate}">${reading.display_date}</time>
         <h1 class="rd-title">${reading.title}</h1>
         <div class="rd-pills">
@@ -117,44 +110,19 @@ ${relatedItems}
         <section class="rd-body">
           ${openingHtml}
           ${bodyHtml}
-        </section>
-
-        ${applicationHtml ? `
-        <div class="rd-divider"></div>
-        <section class="rd-body">
           ${applicationHtml}
         </section>
-        ` : ''}
       </div>
 
     </article>
 
     ${thoughtHtml ? `
-    <!-- Today's Reminder — full-bleed terracotta -->
-    <section class="rd-reminder bg-terracotta">
-      <div class="rd-reminder-inner">
-        <h2 class="rd-reminder-heading">Today&rsquo;s Reminder</h2>
-        <p class="rd-reminder-text">${thoughtHtml}</p>
-      </div>
+    <!-- Today's Reminder — card -->
+    <section class="rd-reminder-card">
+      <h2 class="rd-reminder-heading">Today&rsquo;s Reminder</h2>
+      <p class="rd-reminder-text">${thoughtHtml}</p>
     </section>
     ` : ''}
-
-    <!-- App CTA -->
-    <section class="rd-engine-cta bg-navy">
-      <div class="rd-engine-cta-inner">
-        <h2 class="rd-engine-cta-heading">Carry this peace in your pocket.</h2>
-        <p class="rd-engine-cta-text">Never miss a day of recovery. Get this reflection and 365 others delivered to your phone daily. Start your journaling practice today with the Al-Anon Daily Paths app.</p>
-        <div class="rd-engine-cta-badges">
-          <a href="https://apps.apple.com/app/id6755981862" target="_blank" rel="noopener noreferrer" class="rd-engine-cta-badge-link">
-            <img src="https://developer.apple.com/app-store/marketing/guidelines/images/badge-download-on-the-app-store.svg" alt="Download on the App Store" class="rd-engine-cta-badge">
-          </a>
-          <span class="play-coming-soon">
-            <img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" alt="Get it on Google Play" class="rd-engine-cta-badge rd-engine-cta-badge-play">
-            <span class="play-coming-soon-label">Coming Soon</span>
-          </span>
-        </div>
-      </div>
-    </section>
 
     <!-- Prev / Next Navigation -->
     <nav class="rd-nav">
@@ -173,6 +141,24 @@ ${relatedItems}
         <span class="rd-nav-arrow">&rarr;</span>
       </a>
     </nav>
+
+    <!-- App CTA -->
+    <section class="rd-engine-cta bg-navy">
+      <div class="rd-engine-cta-inner">
+        <h2 class="rd-engine-cta-heading">Carry this peace in your pocket.</h2>
+        <p class="rd-engine-cta-text">Never miss a day of recovery. Get this reflection and 365 others delivered to your phone daily. Start your journaling practice today with the Al-Anon Daily Paths app.</p>
+        <div class="rd-engine-cta-badges">
+          <a href="https://apps.apple.com/app/id6755981862" target="_blank" rel="noopener noreferrer" class="rd-engine-cta-badge-link">
+            <img src="https://developer.apple.com/app-store/marketing/guidelines/images/badge-download-on-the-app-store.svg" alt="Download on the App Store" class="rd-engine-cta-badge">
+          </a>
+          <span class="play-coming-soon">
+            <img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" alt="Get it on Google Play" class="rd-engine-cta-badge rd-engine-cta-badge-play">
+            <span class="play-coming-soon-label">Coming Soon</span>
+          </span>
+        </div>
+      </div>
+    </section>
+
 
 ${relatedHtml}`;
 
