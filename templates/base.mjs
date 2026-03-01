@@ -53,9 +53,10 @@ export function wrapInLayout({
   <meta name="twitter:image" content="${ogImageUrl}">
 
   <!-- Favicon -->
-  <link rel="icon" type="image/png" href="${bp('/assets/favicon.png')}">
-  <link rel="icon" type="image/x-icon" href="${bp('/assets/favicon.ico')}">
-  <link rel="apple-touch-icon" href="${bp('/assets/favicon.png')}">
+  <link rel="icon" type="image/png" sizes="48x48" href="${bp('/assets/favicon-48.png')}">
+  <link rel="icon" type="image/png" sizes="512x512" href="${bp('/assets/favicon.png')}">
+  <link rel="icon" type="image/x-icon" sizes="256x256" href="${bp('/assets/favicon.ico')}">
+  <link rel="apple-touch-icon" sizes="512x512" href="${bp('/assets/favicon.png')}">
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">

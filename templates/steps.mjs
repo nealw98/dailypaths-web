@@ -146,7 +146,7 @@ export const STEPS = [
     text: 'Made a list of all persons we had harmed, and became willing to make amends to them all.',
     month: 'August',
     monthSlug: 'august',
-    principle: 'Brotherly Love',
+    principle: 'Responsibility',
     description: [
       'This Step involves truly reviewing our past to identify people negatively impacted by our actions and actively cultivating the sincere desire to make things right. It means setting aside personal justification and taking absolute responsibility for our behavior, regardless of what others may have done to us.',
       'For the Al-Anon member, this Step often reveals the surprising truth that we have harmed ourselves most of all through neglect or desperate survival efforts, meaning our own name must go at the very top of the list. At this stage, we are not required to take immediate action; we only need to become fully willing.',
@@ -165,7 +165,7 @@ export const STEPS = [
     text: 'Made direct amends to such people wherever possible, except when to do so would injure them or others.',
     month: 'September',
     monthSlug: 'september',
-    principle: 'Justice',
+    principle: 'Repair',
     description: [
       'This is a crucial action Step where we take concrete measures to right the wrongs identified in our Step Eight list. It means bravely stepping forward to apologize, make restitution, or fundamentally alter our behavior, while using careful judgment to ensure our actions do not cause further harm.',
       'For the Al-Anon member, this Step is a profound commitment to justice, healing, and maturity. It shifts us from merely feeling guilty to actively cleaning up the debris of the past. Members learn that an amend is often different from a simple apology; sometimes the greatest amend we can make to our loved ones and to ourselves is a lasting change in our attitude and behavior.',
@@ -184,7 +184,7 @@ export const STEPS = [
     text: 'Continued to take personal inventory and when we were wrong promptly admitted it.',
     month: 'October',
     monthSlug: 'october',
-    principle: 'Perseverance',
+    principle: 'Growth',
     description: [
       'This Step transitions the Al-Anon member from the deep clearing of past wreckage into the daily maintenance of continuous spiritual growth. It means consistently applying the self-awareness gained earlier to our everyday lives by taking regular &ldquo;spot checks&rdquo; or daily reviews of our thoughts and actions.',
       'For the Al-Anon member, this practice is essential to avoid slipping back into old, self-destructive survival patterns like controlling, people-pleasing, or reacting to the alcoholic&rsquo;s unpredictable behavior. By promptly admitting our mistakes, we prevent a new buildup of crippling guilt and resentment. Crucially, this Step also requires us to acknowledge our positive choices and successes, teaching us to love our humanness rather than demand perfection.',
@@ -203,7 +203,7 @@ export const STEPS = [
     text: 'Sought through prayer and meditation to improve our conscious contact with God <em>as we understood Him</em>, praying only for knowledge of His will for us and the power to carry that out.',
     month: 'November',
     monthSlug: 'november',
-    principle: 'Spiritual Awareness',
+    principle: 'Connection',
     description: [
       'This Step invites us to consciously maintain and actively deepen the intimate partnership with our Higher Power. It means establishing a disciplined spiritual practice where prayer is the act of talking to God, and meditation is the quiet discipline of listening for His guidance.',
       'For the Al-Anon member, this represents a profound surrender of self-will. We completely stop using frantic prayers to bargain with God or beg Him to cure the alcoholic&rsquo;s disease. Instead, we relinquish our personal agendas and simply ask for the clarity to know our path and the strength to walk it.',
@@ -281,9 +281,10 @@ ${gridCards}
             <a href="https://apps.apple.com/app/id6755981862" target="_blank" rel="noopener noreferrer" class="si-engine-cta-badge-link">
               <img src="https://developer.apple.com/app-store/marketing/guidelines/images/badge-download-on-the-app-store.svg" alt="Download on the App Store" class="si-engine-cta-badge">
             </a>
-            <a href="https://play.google.com/store/apps/details?id=com.nealw98.dailypaths" target="_blank" rel="noopener noreferrer" class="si-engine-cta-badge-link">
+            <span class="play-coming-soon">
               <img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" alt="Get it on Google Play" class="si-engine-cta-badge si-engine-cta-badge-play">
-            </a>
+              <span class="play-coming-soon-label">Coming Soon</span>
+            </span>
           </div>
         </div>
       </section>
@@ -363,10 +364,10 @@ export const STEP_TAGLINES = {
   5: 'Integrity & the Liberation of Truth',
   6: 'Willingness & the Readiness to Change',
   7: 'Humility & the Strength of Asking',
-  8: 'Love & the Path to Reconciliation',
-  9: 'Justice & the Courage to Make Amends',
-  10: 'Perseverance & the Practice of Awareness',
-  11: 'Spiritual Awareness & the Discipline of Listening',
+  8: 'Responsibility & the Path to Reconciliation',
+  9: 'Repair & the Courage to Make Amends',
+  10: 'Growth & the Practice of Awareness',
+  11: 'Connection & the Discipline of Listening',
   12: 'Service & the Gift of Giving Back',
 };
 
@@ -553,9 +554,10 @@ ${toolItems}
           <a href="https://apps.apple.com/app/id6755981862" target="_blank" rel="noopener noreferrer" class="step-engine-cta-badge-link">
             <img src="https://developer.apple.com/app-store/marketing/guidelines/images/badge-download-on-the-app-store.svg" alt="Download on the App Store" class="step-engine-cta-badge">
           </a>
-          <a href="https://play.google.com/store/apps/details?id=com.nealw98.dailypaths" target="_blank" rel="noopener noreferrer" class="step-engine-cta-badge-link">
+          <span class="play-coming-soon">
             <img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" alt="Get it on Google Play" class="step-engine-cta-badge step-engine-cta-badge-play">
-          </a>
+            <span class="play-coming-soon-label">Coming Soon</span>
+          </span>
         </div>
       </div>
     </section>

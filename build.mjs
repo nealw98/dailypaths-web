@@ -364,11 +364,16 @@ for (const src of logoSources) {
 const faviconSources = [
   { src: join(localAssetsDir, 'favicon.png'), dest: 'favicon.png' },
   { src: join(localAssetsDir, 'favicon.ico'), dest: 'favicon.ico' },
+  { src: join(localAssetsDir, 'favicon-48.png'), dest: 'favicon-48.png' },
 ];
 for (const f of faviconSources) {
   if (existsSync(f.src)) {
     cpSync(f.src, join(outDir, 'assets', f.dest));
   }
+}
+// Also copy favicon.ico to site root for search engine discovery
+if (existsSync(join(localAssetsDir, 'favicon.ico'))) {
+  cpSync(join(localAssetsDir, 'favicon.ico'), join(outDir, 'favicon.ico'));
 }
 
 // App Store badge
