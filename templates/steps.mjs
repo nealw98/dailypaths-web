@@ -1,6 +1,7 @@
 import { wrapInLayout } from './base.mjs';
 import { bp } from '../helpers/config.mjs';
 import { dayToSlug, MONTHS, DAYS_IN_MONTH } from '../helpers/slug-utils.mjs';
+import { markdownToHtml } from '../helpers/markdown.mjs';
 
 /**
  * Step data — shared between the index and individual step pages.
@@ -410,12 +411,12 @@ export function renderStepPage(step, readings = []) {
       /Let Go and Let God/g,
       `<a href="${bp('/essentials/#let-go')}">Let Go and Let God</a>`
     );
-    return `          <p>${text}</p>`;
+    return `          <p>${markdownToHtml(text)}</p>`;
   }).join('\n');
 
   // Build reflection questions
   const questionItems = (step.questions || []).map(q =>
-    `              <li>${q}</li>`
+    `              <li>${markdownToHtml(q)}</li>`
   ).join('\n');
 
   // Theme URL mapping — links each step to its primary principle page

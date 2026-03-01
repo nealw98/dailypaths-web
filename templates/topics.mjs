@@ -1,6 +1,7 @@
 import { wrapInLayout } from './base.mjs';
 import { dayToSlug } from '../helpers/slug-utils.mjs';
 import { bp } from '../helpers/config.mjs';
+import { markdownToHtml } from '../helpers/markdown.mjs';
 import {
   TOPICS, TOPIC_THEME_TAGS, TOPIC_PULL_QUOTES, TOPIC_TOOLS,
   TOPIC_INSIGHT_PROMPTS, TOPIC_FORM_QUESTIONS,
@@ -168,7 +169,7 @@ ${cards}
     return `
             <div class="insight-card${extraClass}" itemscope itemtype="https://schema.org/Comment">
               <div class="insight-card-text" data-insight-card-text itemprop="text">
-                <p>${share.content.split('\n\n').map(p => p.trim()).join('</p><p>')}</p>
+                <p>${share.content.split('\n\n').map(p => markdownToHtml(p.trim())).join('</p><p>')}</p>
               </div>
               ${needsTruncation ? '<button class="insight-card-read-more" data-insight-read-more aria-expanded="false">Read the full reflection</button>' : ''}
               <p class="insight-card-attribution" itemprop="author">&mdash; ${name}</p>
@@ -233,7 +234,7 @@ ${cards}
       <!-- Editorial Intro with Drop Cap -->
       <section class="topic-editorial-intro">
         <div class="topic-editorial-intro-inner">
-          ${injectEssentialsLinks(topic.body || '', topic.slug)}
+          ${injectEssentialsLinks(markdownToHtml(topic.body || ''), topic.slug)}
         </div>
       </section>
 
@@ -241,7 +242,7 @@ ${cards}
       ${topic.logic ? `
       <section class="topic-logic">
         <div class="topic-logic-inner">
-          ${topic.logic}
+          ${markdownToHtml(topic.logic)}
         </div>
       </section>` : ''}
 
