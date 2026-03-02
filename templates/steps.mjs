@@ -511,7 +511,10 @@ ${heroHtml}
 
       <!-- Body Content -->
       <section class="step-body">
+        <div class="step-body-text" data-step-body-text>
 ${bodyParagraphs}
+        </div>
+        <button class="step-read-more" data-step-read-more hidden aria-expanded="false">Read more</button>
       </section>
     </article>
 

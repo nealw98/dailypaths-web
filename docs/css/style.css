@@ -2866,6 +2866,44 @@ html {
   text-underline-offset: 2px;
 }
 
+/* Read-more truncation */
+.step-body-text {
+  position: relative;
+  overflow: hidden;
+  transition: max-height 0.4s ease-in-out;
+}
+
+.step-body-text.truncated::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 3rem;
+  background: linear-gradient(to bottom, rgba(250, 249, 247, 0), rgba(250, 249, 247, 1) 90%);
+  pointer-events: none;
+}
+
+.step-read-more {
+  display: inline-block;
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--deep-teal);
+  background: none;
+  border: none;
+  border-bottom: 2px solid var(--deep-teal);
+  padding: 0 0 2px;
+  margin-top: 0.5rem;
+  cursor: pointer;
+  transition: color 0.2s, border-color 0.2s;
+}
+
+.step-read-more:hover {
+  color: var(--ocean);
+  border-bottom-color: var(--ocean);
+}
+
 /* Questions for Reflection — inside .bg-terracotta wrapper */
 .bg-terracotta .step-questions {
   max-width: 42rem;

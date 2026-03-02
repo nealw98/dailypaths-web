@@ -203,7 +203,49 @@
     })(insightCardTexts[ic]);
   }
 
-  // 4d. "Show more community insights" pagination
+  // 4d. Step body: truncate at first section heading with smooth expand/collapse
+  var stepBodyTexts = document.querySelectorAll('[data-step-body-text]');
+  for (var sb = 0; sb < stepBodyTexts.length; sb++) {
+    (function (textEl) {
+      // Find first <p> that is a section heading (<p><strong>full text</strong></p>)
+      var paragraphs = textEl.querySelectorAll('p');
+      var headingEl = null;
+      for (var i = 0; i < paragraphs.length; i++) {
+        var strong = paragraphs[i].querySelector('strong');
+        if (strong && strong.textContent.trim() === paragraphs[i].textContent.trim()) {
+          headingEl = paragraphs[i];
+          break;
+        }
+      }
+      if (!headingEl) return;
+
+      // Show heading + ~2 lines of the next paragraph, then fade
+      var cutoff = headingEl.offsetTop + headingEl.offsetHeight + 96;
+      textEl.style.maxHeight = cutoff + 'px';
+      textEl.classList.add('truncated');
+
+      var btn = textEl.parentElement.querySelector('[data-step-read-more]');
+      if (!btn) return;
+
+      btn.removeAttribute('hidden');
+      btn.addEventListener('click', function () {
+        var isExpanded = btn.getAttribute('aria-expanded') === 'true';
+        if (isExpanded) {
+          textEl.style.maxHeight = cutoff + 'px';
+          textEl.classList.add('truncated');
+          btn.setAttribute('aria-expanded', 'false');
+          btn.textContent = 'Read more';
+        } else {
+          textEl.style.maxHeight = textEl.scrollHeight + 'px';
+          textEl.classList.remove('truncated');
+          btn.setAttribute('aria-expanded', 'true');
+          btn.textContent = 'Show less';
+        }
+      });
+    })(stepBodyTexts[sb]);
+  }
+
+  // 4e. "Show more community insights" pagination
   var showMoreBtns = document.querySelectorAll('[data-insight-show-more]');
   for (var sm = 0; sm < showMoreBtns.length; sm++) {
     (function (btn) {
