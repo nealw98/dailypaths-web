@@ -2600,7 +2600,7 @@ html {
   font-style: italic;
   line-height: 1.6;
   color: var(--slate-blue);
-  margin-top: auto;
+  margin-top: 0;
 }
 
 /* Engine CTA — Full-Width App CTA Block */
