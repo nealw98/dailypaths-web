@@ -1,6 +1,6 @@
 import { wrapInLayout } from './base.mjs';
 import { bp } from '../helpers/config.mjs';
-import { dayToSlug, MONTHS, DAYS_IN_MONTH } from '../helpers/slug-utils.mjs';
+import { readingSlug, stepSlug, MONTHS, DAYS_IN_MONTH } from '../helpers/slug-utils.mjs';
 import { STEPS } from './steps.mjs';
 
 /**
@@ -47,12 +47,12 @@ export function renderMonthArchivePage(monthIndex, readings) {
     if (weekReadings.length === 0) return '';
 
     const readingItems = weekReadings.map(r => {
-      const slug = dayToSlug(r.day_of_year);
+      const rSlug = readingSlug(r.day_of_year, r.title);
       const dayInMonth = r.day_of_year - startDay + 1;
 
       return `
             <li class="ma-reading-item">
-              <a href="${bp(`/${slug}/`)}" class="ma-reading-link">
+              <a href="${bp(`/${rSlug}/`)}" class="ma-reading-link">
                 <span class="ma-reading-day">${monthDisplay} ${dayInMonth}</span>
                 <span class="ma-reading-title">${r.title || 'Daily Reading'}</span>
               </a>
@@ -71,7 +71,7 @@ ${readingItems}
   const bodyContent = `
       <!-- Back to Step link -->
       <nav class="ma-back-nav">
-        <a href="${bp(`/steps/step-${step.number}/`)}" class="ma-back-link">&larr; Back to Step ${step.number}: ${step.principle}</a>
+        <a href="${bp(`/steps/${stepSlug(step.number, step.principle)}/`)}" class="ma-back-link">&larr; Back to Step ${step.number}: ${step.principle}</a>
       </nav>
 
       <!-- Page Header -->

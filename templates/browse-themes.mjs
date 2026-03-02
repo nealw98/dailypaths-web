@@ -1,5 +1,5 @@
 import { wrapInLayout } from './base.mjs';
-import { dayToSlug, themeToSlug } from '../helpers/slug-utils.mjs';
+import { readingSlug, themeToSlug } from '../helpers/slug-utils.mjs';
 
 /**
  * Generate the Themes index page.
@@ -53,9 +53,9 @@ export function renderThemePage(theme, readings) {
   const items = readings
     .sort((a, b) => a.day_of_year - b.day_of_year)
     .map(r => {
-      const readingSlug = dayToSlug(r.day_of_year);
+      const rSlug = readingSlug(r.day_of_year, r.title);
       return `        <li>
-          <a href="/${readingSlug}/">
+          <a href="/${rSlug}/">
             <span class="browse-date">${r.display_date}</span>
             <span class="browse-title">${r.title}</span>
           </a>

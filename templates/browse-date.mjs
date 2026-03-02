@@ -1,5 +1,5 @@
 import { wrapInLayout } from './base.mjs';
-import { dayToSlug, dayToMonthIndex, MONTHS } from '../helpers/slug-utils.mjs';
+import { readingSlug, dayToMonthIndex, MONTHS } from '../helpers/slug-utils.mjs';
 
 const MONTH_NAMES = [
   'January', 'February', 'March', 'April', 'May', 'June',
@@ -23,7 +23,7 @@ export function renderBrowseDatePage(readings) {
     if (monthReadings.length === 0) return '';
 
     const items = monthReadings.map(r => {
-      const slug = dayToSlug(r.day_of_year);
+      const slug = readingSlug(r.day_of_year, r.title);
       return `        <li>
           <a href="/${slug}/">
             <span class="browse-date">${r.display_date}</span>

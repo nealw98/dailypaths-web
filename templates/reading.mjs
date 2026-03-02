@@ -1,9 +1,10 @@
 import { wrapInLayout } from './base.mjs';
 import { textToHtmlParagraphs, renderQuote, stripForMeta } from '../helpers/markdown.mjs';
-import { dayToSlug, dayToIsoDate } from '../helpers/slug-utils.mjs';
+import { dayToIsoDate, readingSlug, stepSlug } from '../helpers/slug-utils.mjs';
 import { readingStructuredData, breadcrumbStructuredData } from '../helpers/seo.mjs';
 import { bp } from '../helpers/config.mjs';
 import { THEME_TO_TOPIC } from '../helpers/theme-data.mjs';
+import { STEPS } from './steps.mjs';
 
 /**
  * Generate the HTML for an individual reading page — Editorial Meditation layout.
@@ -14,12 +15,12 @@ import { THEME_TO_TOPIC } from '../helpers/theme-data.mjs';
  * @param {Array} [allReadings] - All 366 readings (for related readings)
  */
 export function renderReadingPage(reading, prevReading, nextReading, allReadings = []) {
-  const slug = dayToSlug(reading.day_of_year);
+  const slug = readingSlug(reading.day_of_year, reading.title);
   const isoDate = dayToIsoDate(reading.day_of_year);
-  const prevSlug = dayToSlug(prevReading.day_of_year);
-  const nextSlug = dayToSlug(nextReading.day_of_year);
+  const prevSlug = readingSlug(prevReading.day_of_year, prevReading.title);
+  const nextSlug = readingSlug(nextReading.day_of_year, nextReading.title);
 
-  const metaDescription = stripForMeta(reading.opening || reading.body);
+  const metaDescription = `${reading.title}: ${stripForMeta(reading.opening || reading.body)}`;
   const structuredData = [
     readingStructuredData(reading, slug),
     breadcrumbStructuredData(reading, slug),
@@ -52,7 +53,10 @@ export function renderReadingPage(reading, prevReading, nextReading, allReadings
   if (stepTheme) {
     const stepMatch = stepTheme.match(/^Step (\d+)$/);
     if (stepMatch) {
-      stepPill = `<a href="${bp(`/steps/step-${stepMatch[1]}/`)}" class="rd-pill rd-pill--step">${stepTheme}</a>`;
+      const stepNum = parseInt(stepMatch[1], 10);
+      const stepData = STEPS.find(s => s.number === stepNum);
+      const sSlug = stepData ? stepSlug(stepNum, stepData.principle) : `al-anon-step-${stepNum}`;
+      stepPill = `<a href="${bp(`/steps/${sSlug}/`)}" class="rd-pill rd-pill--step">${stepTheme}</a>`;
     } else {
       stepPill = `<span class="rd-pill rd-pill--step">${stepTheme}</span>`;
     }
@@ -69,7 +73,7 @@ export function renderReadingPage(reading, prevReading, nextReading, allReadings
 
     if (related.length > 0) {
       const relatedItems = related.map(r => {
-        const rSlug = dayToSlug(r.day_of_year);
+        const rSlug = readingSlug(r.day_of_year, r.title);
         return `
             <a href="${bp(`/${rSlug}/`)}" class="rd-related-card">
               <span class="rd-related-date">${r.display_date}</span>
@@ -163,7 +167,7 @@ ${relatedItems}
 ${relatedHtml}`;
 
   return wrapInLayout({
-    title: `${reading.display_date} - ${reading.title} | Al-Anon Daily Paths`,
+    title: `${reading.title} \u2013 Al-Anon Daily Reflection for ${reading.display_date} | Daily Paths`,
     description: metaDescription,
     canonicalPath: `/${slug}/`,
     bodyContent,

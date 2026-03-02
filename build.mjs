@@ -21,7 +21,7 @@ import { fetchAllSteps } from './helpers/fetch-steps.mjs';
 import { fetchAllThemes } from './helpers/fetch-themes.mjs';
 import { fetchReadingRatings } from './helpers/fetch-ratings.mjs';
 import { fetchApprovedShares } from './helpers/fetch-shares.mjs';
-import { dayToSlug } from './helpers/slug-utils.mjs';
+import { dayToSlug, readingSlug, stepSlug } from './helpers/slug-utils.mjs';
 import { generateSitemap, generateRobotsTxt } from './helpers/seo.mjs';
 import { generateOgImage } from './helpers/og-image.mjs';
 
@@ -145,6 +145,8 @@ const dirs = [
   join(outDir, 'about-project'),
   join(outDir, 'about-alanon'),
   join(outDir, 'steps'),
+  ...STEPS.map(s => join(outDir, 'steps', stepSlug(s.number, s.principle))),
+  // Old step slugs (for redirects)
   ...Array.from({ length: 12 }, (_, i) => join(outDir, 'steps', `step-${i + 1}`)),
   join(outDir, 'literature'),
   ...BOOKS.map(b => join(outDir, 'literature', b.slug)),
@@ -157,10 +159,12 @@ const dirs = [
 ];
 dirs.forEach(d => mkdirSync(d, { recursive: true }));
 
-// Create reading page directories
+// Create reading page directories (new descriptive slugs + old slugs for redirects)
 for (const reading of readings) {
-  const slug = dayToSlug(reading.day_of_year);
-  mkdirSync(join(outDir, slug), { recursive: true });
+  const newSlug = readingSlug(reading.day_of_year, reading.title);
+  const oldSlug = dayToSlug(reading.day_of_year);
+  mkdirSync(join(outDir, newSlug), { recursive: true });
+  mkdirSync(join(outDir, oldSlug), { recursive: true });
 }
 
 // Create theme (topic) page directories
@@ -196,8 +200,8 @@ for (let i = 0; i < readings.length; i++) {
   const reading = readings[i];
   const prev = readings[(i - 1 + readings.length) % readings.length];
   const next = readings[(i + 1) % readings.length];
-  const slug = dayToSlug(reading.day_of_year);
-  writePage(join(outDir, slug, 'index.html'), renderReadingPage(reading, prev, next, readings));
+  const newSlug = readingSlug(reading.day_of_year, reading.title);
+  writePage(join(outDir, newSlug, 'index.html'), renderReadingPage(reading, prev, next, readings));
 }
 
 // Principles index + individual principle pages
@@ -263,7 +267,7 @@ writePage(join(outDir, 'steps', 'index.html'), renderStepsIndexPage());
 
 for (const step of STEPS) {
   writePage(
-    join(outDir, 'steps', `step-${step.number}`, 'index.html'),
+    join(outDir, 'steps', stepSlug(step.number, step.principle), 'index.html'),
     renderStepPage(step, readings)
   );
 }
@@ -312,9 +316,9 @@ const BATCH_SIZE = 50;
 for (let i = 0; i < readings.length; i += BATCH_SIZE) {
   const batch = readings.slice(i, i + BATCH_SIZE);
   await Promise.all(batch.map(async (reading) => {
-    const slug = dayToSlug(reading.day_of_year);
+    const newSlug = readingSlug(reading.day_of_year, reading.title);
     const png = await generateOgImage(reading);
-    writeFileSync(join(outDir, slug, 'og.png'), png);
+    writeFileSync(join(outDir, newSlug, 'og.png'), png);
   }));
 }
 const ogElapsed = ((Date.now() - ogStart) / 1000).toFixed(1);
@@ -322,8 +326,42 @@ console.log(`  OG images generated in ${ogElapsed}s`);
 
 // --- Step 5: Generate SEO artifacts ---
 console.log('Generating sitemap and robots.txt...');
-writeFileSync(join(outDir, 'sitemap.xml'), generateSitemap(readings, TOPICS, BOOKS), 'utf-8');
+writeFileSync(join(outDir, 'sitemap.xml'), generateSitemap(readings, TOPICS, BOOKS, STEPS), 'utf-8');
 writeFileSync(join(outDir, 'robots.txt'), generateRobotsTxt(), 'utf-8');
+
+// --- Step 5b: Generate redirect pages for old slugs ---
+console.log('Generating redirect pages for old slugs...');
+import { BASE_URL } from './helpers/config.mjs';
+
+function redirectHtml(newPath) {
+  const url = `${BASE_URL}${newPath}`;
+  return `<!DOCTYPE html>
+<html><head>
+<meta http-equiv="refresh" content="0;url=${url}">
+<link rel="canonical" href="${url}">
+<meta name="robots" content="noindex">
+<title>Redirecting&hellip;</title>
+</head><body></body></html>`;
+}
+
+// Reading redirects: /january-1/ → /january-1-new-title-slug/
+for (const reading of readings) {
+  const oldSlug = dayToSlug(reading.day_of_year);
+  const newSlug = readingSlug(reading.day_of_year, reading.title);
+  if (oldSlug !== newSlug) {
+    writeFileSync(join(outDir, oldSlug, 'index.html'), redirectHtml(`/${newSlug}/`), 'utf-8');
+  }
+}
+
+// Step redirects: /steps/step-1/ → /steps/al-anon-step-1-honesty/
+for (const step of STEPS) {
+  const oldPath = `step-${step.number}`;
+  const newPath = stepSlug(step.number, step.principle);
+  if (oldPath !== newPath) {
+    writeFileSync(join(outDir, 'steps', oldPath, 'index.html'), redirectHtml(`/steps/${newPath}/`), 'utf-8');
+  }
+}
+console.log('  Redirect pages generated');
 
 // --- Step 6: Copy static assets ---
 console.log('Copying static assets...');

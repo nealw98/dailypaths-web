@@ -1,5 +1,5 @@
 import { wrapInLayout } from './base.mjs';
-import { dayToSlug } from '../helpers/slug-utils.mjs';
+import { readingSlug } from '../helpers/slug-utils.mjs';
 import { bp } from '../helpers/config.mjs';
 import { markdownToHtml } from '../helpers/markdown.mjs';
 import {
@@ -141,7 +141,7 @@ export function renderTopicPage(topic, featuredReadings, allReadings = [], topic
     .sort((a, b) => a[0].localeCompare(b[0]))
     .map(([theme, readings]) => {
       const cards = readings.map(r => {
-        const slug = dayToSlug(r.day_of_year);
+        const slug = readingSlug(r.day_of_year, r.title);
         return `
                   <a href="${bp(`/${slug}/`)}" class="topic-reading-card">
                     <span class="topic-reading-card-date">${r.display_date}</span>
@@ -187,7 +187,7 @@ ${cards}
 
   // Featured reflection cards
   const featuredCards = featuredReadings.map(r => {
-    const slug = dayToSlug(r.day_of_year);
+    const slug = readingSlug(r.day_of_year, r.title);
     return `
           <a href="${bp(`/${slug}/`)}" class="topic-featured-card">
             <span class="topic-featured-badge">Top Rated</span>

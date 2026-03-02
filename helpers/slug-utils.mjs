@@ -63,4 +63,31 @@ export function dayToIsoDate(dayOfYear) {
   return `${year}-12-31`;
 }
 
+/**
+ * Build a descriptive reading slug: "march-2-the-nature-of-willingness"
+ */
+export function readingSlug(dayOfYear, title) {
+  const dateSlug = dayToSlug(dayOfYear);
+  const titleSlug = (title || '')
+    .toLowerCase()
+    .replace(/[^a-z0-9\s-]/g, '')
+    .replace(/\s+/g, '-')
+    .replace(/-+/g, '-')
+    .replace(/^-|-$/g, '');
+  return titleSlug ? `${dateSlug}-${titleSlug}` : dateSlug;
+}
+
+/**
+ * Build a descriptive step slug: "al-anon-step-1-honesty"
+ */
+export function stepSlug(number, principle) {
+  const prinSlug = (principle || '')
+    .toLowerCase()
+    .replace(/[^a-z0-9\s-]/g, '')
+    .replace(/\s+/g, '-')
+    .replace(/-+/g, '-')
+    .replace(/^-|-$/g, '');
+  return prinSlug ? `al-anon-step-${number}-${prinSlug}` : `al-anon-step-${number}`;
+}
+
 export { MONTHS, DAYS_IN_MONTH };

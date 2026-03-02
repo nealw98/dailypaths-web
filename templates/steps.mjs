@@ -1,6 +1,6 @@
 import { wrapInLayout } from './base.mjs';
 import { bp } from '../helpers/config.mjs';
-import { dayToSlug, MONTHS, DAYS_IN_MONTH } from '../helpers/slug-utils.mjs';
+import { readingSlug, stepSlug, MONTHS, DAYS_IN_MONTH } from '../helpers/slug-utils.mjs';
 import { markdownToHtml } from '../helpers/markdown.mjs';
 
 /**
@@ -245,7 +245,7 @@ export function renderStepsIndexPage() {
   const gridCards = STEPS.map(step => {
     const hook = STEP_HOOKS[step.number] || '';
     return `
-          <a href="${bp(`/steps/step-${step.number}/`)}" class="si-grid-card">
+          <a href="${bp(`/steps/${stepSlug(step.number, step.principle)}/`)}" class="si-grid-card">
             <span class="si-grid-card-number">${step.number}</span>
             <span class="si-grid-card-principle">${step.principle}</span>
             <p class="si-grid-card-hook">${hook}</p>
@@ -447,9 +447,9 @@ export function renderStepPage(step, readings = []) {
   let associatedHtml = '';
   if (associatedReadings.length > 0) {
     const assocItems = associatedReadings.map(r => {
-      const slug = dayToSlug(r.day_of_year);
+      const rSlug = readingSlug(r.day_of_year, r.title);
       return `
-              <a href="${bp(`/${slug}/`)}" class="step-assoc-card">
+              <a href="${bp(`/${rSlug}/`)}" class="step-assoc-card">
                 <span class="step-assoc-date">${r.display_date}</span>
                 <span class="step-assoc-title">${r.title}</span>
               </a>`;
@@ -488,12 +488,12 @@ ${assocItems}
     <article class="step-editorial">
       <!-- Navigation -->
       <nav class="step-nav-header">
-        <a href="${bp(`/steps/step-${prevStep.number}/`)}" class="nav-prev">
+        <a href="${bp(`/steps/${stepSlug(prevStep.number, prevStep.principle)}/`)}" class="nav-prev">
           <span class="nav-arrow">&larr;</span>
           <span class="nav-label">Step ${prevStep.number}: ${prevStep.principle}</span>
         </a>
         <a href="${bp('/steps/')}" class="nav-browse">All Steps</a>
-        <a href="${bp(`/steps/step-${nextStep.number}/`)}" class="nav-next">
+        <a href="${bp(`/steps/${stepSlug(nextStep.number, nextStep.principle)}/`)}" class="nav-next">
           <span class="nav-label">Step ${nextStep.number}: ${nextStep.principle}</span>
           <span class="nav-arrow">&rarr;</span>
         </a>
@@ -571,7 +571,7 @@ ${associatedHtml}`;
   return wrapInLayout({
     title: `Step ${step.number}: ${step.principle} &mdash; Al-Anon 12 Steps | Al-Anon Daily Paths`,
     description: `Explore Step ${step.number} of Al-Anon's Twelve Steps with reflection questions and daily readings for ${step.month}. Recovery guidance from Al-Anon Daily Paths.`,
-    canonicalPath: `/steps/step-${step.number}/`,
+    canonicalPath: `/steps/${stepSlug(step.number, step.principle)}/`,
     bodyContent,
     bodyClass: 'page-step-detail',
   });

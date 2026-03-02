@@ -1,6 +1,6 @@
 import { wrapInLayout } from './base.mjs';
 import { homepageStructuredData } from '../helpers/seo.mjs';
-import { dayToSlug } from '../helpers/slug-utils.mjs';
+import { readingSlug } from '../helpers/slug-utils.mjs';
 import { bp } from '../helpers/config.mjs';
 
 /**
@@ -13,7 +13,7 @@ import { bp } from '../helpers/config.mjs';
  */
 export function renderHomepage(todayReading, prevReading, nextReading, allReadings = []) {
   const structuredData = homepageStructuredData();
-  const slug = dayToSlug(todayReading.day_of_year);
+  const slug = readingSlug(todayReading.day_of_year, todayReading.title);
 
   // Build a plain-text preview (~200 chars) from the opening
   const rawText = (todayReading.opening || todayReading.body || '')

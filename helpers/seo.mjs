@@ -1,10 +1,10 @@
-import { dayToSlug } from './slug-utils.mjs';
+import { readingSlug, stepSlug } from './slug-utils.mjs';
 import { BASE_URL } from './config.mjs';
 
 /**
  * Generate sitemap.xml content for all pages
  */
-export function generateSitemap(readings, topics, books = []) {
+export function generateSitemap(readings, topics, books = [], steps = []) {
   const today = new Date().toISOString().split('T')[0];
 
   let urls = [];
@@ -14,7 +14,7 @@ export function generateSitemap(readings, topics, books = []) {
 
   // Reading pages
   for (const reading of readings) {
-    const slug = dayToSlug(reading.day_of_year);
+    const slug = readingSlug(reading.day_of_year, reading.title);
     urls.push({ loc: `${BASE_URL}/${slug}/`, priority: '0.8', changefreq: 'weekly' });
   }
 
@@ -28,8 +28,9 @@ export function generateSitemap(readings, topics, books = []) {
 
   // Steps
   urls.push({ loc: BASE_URL + '/steps/', priority: '0.7', changefreq: 'monthly' });
-  for (let i = 1; i <= 12; i++) {
-    urls.push({ loc: `${BASE_URL}/steps/step-${i}/`, priority: '0.7', changefreq: 'monthly' });
+  for (const step of (steps.length > 0 ? steps : Array.from({ length: 12 }, (_, i) => ({ number: i + 1 })))) {
+    const sSlug = step.principle ? stepSlug(step.number, step.principle) : `al-anon-step-${step.number}`;
+    urls.push({ loc: `${BASE_URL}/steps/${sSlug}/`, priority: '0.7', changefreq: 'monthly' });
   }
 
   // Literature
