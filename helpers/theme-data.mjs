@@ -81,7 +81,7 @@ export const TOPIC_FORM_QUESTIONS = {
   'focus-on-yourself':     'How has focusing on your own well-being helped you navigate difficult situations?',
   'one-day-at-a-time':     'What does living \u2018one day at a time\u2019 actually look like for you and how do you practice it?',
   'boundaries':            'How do you overcome challenges you face in setting or maintaining your boundaries?',
-  'letting-go-of-control': 'What challenges have you faced in setting or maintaining your boundaries, and how are you learning to navigate them?',
+  'letting-go-of-control': 'What has helped you recognize when you are trying to control a situation, and how are you learning to let go?',
   'self-worth':            'How has your understanding of your own value and identity evolved since finding the program?',
   'higher-power':          'What has been your experience in learning to trust in a Power greater than yourself?',
   'honesty':               'How has practicing honesty\u2014both with yourself and others\u2014opened up new paths for your healing?',
