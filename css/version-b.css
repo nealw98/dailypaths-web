@@ -5048,28 +5048,28 @@ html {
 }
 
 .bg-pearl {
-  background-color: #F5F0EB;
-  color: #4a4a4a;
+  background-color: #D2C4B5;
+  color: #1B2B3A;
 }
 
 .bg-pearl .hm-pillar-heading {
-  color: #2C5F5D;
+  color: #1B2B3A;
   font-style: italic;
 }
 
 .bg-pearl .hm-pillar-text {
-  color: #4a4a4a;
+  color: #1B2B3A;
 }
 
 .bg-pearl .hm-pillar-btn {
-  color: #2C5F5D;
-  border-color: #2C5F5D;
+  color: #1B2B3A;
+  border-color: #1B2B3A;
 }
 
 .bg-pearl .hm-pillar-btn:hover {
-  background: #2C5F5D;
+  background: #1B2B3A;
   color: #FFFFFF;
-  border-color: #2C5F5D;
+  border-color: #1B2B3A;
 }
 
 .bg-terracotta,
