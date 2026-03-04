@@ -68,6 +68,15 @@ export function renderHomepage(todayReading, prevReading, nextReading, allReadin
       </div>
     </section>
 
+    <!-- Al-Anon Intro — pearl band -->
+    <section class="hm-pillar bg-pearl">
+      <div class="hm-pillar-inner">
+        <h2 class="hm-pillar-heading">Are You Affected by Someone Else&rsquo;s Drinking?</h2>
+        <p class="hm-pillar-text">Al-Anon is a fellowship for families and friends of alcoholics. Whether you&rsquo;re living with a problem drinker, grew up in an alcoholic family, or love someone struggling with addiction &mdash; you don&rsquo;t have to face it alone. Daily Paths is your daily reader for the journey, grounded in the Twelve Steps and the Al-Anon principle of taking life one day at a time.</p>
+        <a href="${bp('/about-alanon/')}" class="hm-pillar-btn">Learn More About Al-Anon &rarr;</a>
+      </div>
+    </section>
+
     <!-- Engine CTA — navy band -->
     <section class="hm-engine bg-navy">
       <div class="hm-engine-inner">

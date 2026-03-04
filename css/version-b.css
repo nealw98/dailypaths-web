@@ -5047,9 +5047,35 @@ html {
   color: #FFFFFF;
 }
 
+.bg-pearl {
+  background-color: #F5F0EB;
+  color: #4a4a4a;
+}
+
+.bg-pearl .hm-pillar-heading {
+  color: #2C5F5D;
+  font-style: italic;
+}
+
+.bg-pearl .hm-pillar-text {
+  color: #4a4a4a;
+}
+
+.bg-pearl .hm-pillar-btn {
+  color: #2C5F5D;
+  border-color: #2C5F5D;
+}
+
+.bg-pearl .hm-pillar-btn:hover {
+  background: #2C5F5D;
+  color: #FFFFFF;
+  border-color: #2C5F5D;
+}
+
 .bg-terracotta,
 .bg-sage,
-.bg-navy {
+.bg-navy,
+.bg-pearl {
   width: 100vw;
   margin-left: calc(-50vw + 50%);
   padding: 5rem 0;
