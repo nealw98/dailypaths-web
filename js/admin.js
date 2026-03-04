@@ -1445,13 +1445,22 @@
     html += '<div class="admin-feedback-list">';
     for (var i = 0; i < state.appFeedback.length; i++) {
       var fb = state.appFeedback[i];
+      var deviceParts = [];
+      if (fb.manufacturer) deviceParts.push(escHtml(fb.manufacturer));
+      if (fb.device_model) deviceParts.push(escHtml(fb.device_model));
+      var deviceStr = deviceParts.join(' ');
+      var screenStr = (fb.screen_width && fb.screen_height) ? fb.screen_width + '×' + fb.screen_height : '';
       html += '<div class="admin-feedback-card">' +
         '<div class="admin-feedback-text">' + escHtml(fb.feedback_text) + '</div>' +
         '<div class="admin-feedback-meta">' +
+          '<span>' + formatDate(fb.created_at) + '</span>' +
           '<span>' + escHtml(fb.platform || 'unknown') + '</span>' +
           '<span>v' + escHtml(fb.app_version || '?') + '</span>' +
           (fb.build_number ? '<span>Build ' + escHtml(fb.build_number) + '</span>' : '') +
-          '<span>' + formatDate(fb.created_at) + '</span>' +
+          (fb.os_version ? '<span>' + escHtml(fb.os_version) + '</span>' : '') +
+          (deviceStr ? '<span>' + deviceStr + '</span>' : '') +
+          (screenStr ? '<span>' + screenStr + '</span>' : '') +
+          (fb.font_scale && fb.font_scale !== 1 ? '<span>Font ' + fb.font_scale + '×</span>' : '') +
           (fb.contact_info ? '<a href="mailto:' + escAttr(fb.contact_info) + '">' + escHtml(fb.contact_info) + '</a>' : '') +
         '</div>' +
         '<button class="admin-btn admin-btn--sm admin-btn--danger" data-delete-fb="' + fb.id + '">Delete</button>' +
