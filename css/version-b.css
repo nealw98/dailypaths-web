@@ -3643,6 +3643,42 @@ html {
 .topic-editorial-intro-inner {
   max-width: 42rem;
   margin: 0 auto;
+  position: relative;
+  overflow: hidden;
+  transition: max-height 0.4s ease-in-out;
+}
+
+.topic-editorial-intro-inner.truncated::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 3rem;
+  background: linear-gradient(to bottom,
+    rgba(250, 249, 247, 0),
+    rgba(250, 249, 247, 1) 90%);
+  pointer-events: none;
+}
+
+.topic-read-more {
+  display: inline-block;
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--deep-teal);
+  background: none;
+  border: none;
+  border-bottom: 2px solid var(--deep-teal);
+  padding: 0;
+  cursor: pointer;
+  margin-top: 0.75rem;
+  transition: color 0.2s, border-color 0.2s;
+}
+
+.topic-read-more:hover {
+  color: var(--ocean);
+  border-bottom-color: var(--ocean);
 }
 
 .topic-editorial-intro-inner p {

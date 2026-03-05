@@ -234,9 +234,10 @@ ${cards}
 
       <!-- Editorial Intro with Drop Cap -->
       <section class="topic-editorial-intro">
-        <div class="topic-editorial-intro-inner">
+        <div class="topic-editorial-intro-inner" data-topic-body-text>
           ${injectEssentialsLinks(markdownToHtml(topic.body || ''), topic.slug)}
         </div>
+        <button class="topic-read-more" data-topic-read-more hidden aria-expanded="false">Read more</button>
       </section>
 
       <!-- Theme Logic — contextual bridge above member insights -->

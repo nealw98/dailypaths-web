@@ -245,6 +245,51 @@
     })(stepBodyTexts[sb]);
   }
 
+  // 4d-ii. Topic editorial intro: truncate at ~500 characters with smooth expand/collapse
+  var topicBodyTexts = document.querySelectorAll('[data-topic-body-text]');
+  for (var tb = 0; tb < topicBodyTexts.length; tb++) {
+    (function (textEl) {
+      var paragraphs = textEl.querySelectorAll('p');
+      if (!paragraphs.length) return;
+
+      // Walk paragraphs, accumulate char count, find cutoff
+      var charCount = 0;
+      var cutoffEl = null;
+      for (var i = 0; i < paragraphs.length; i++) {
+        charCount += paragraphs[i].textContent.length;
+        if (charCount >= 500) {
+          cutoffEl = paragraphs[i];
+          break;
+        }
+      }
+      // If all text fits under 500 chars, no truncation needed
+      if (!cutoffEl) return;
+
+      var cutoff = cutoffEl.offsetTop + cutoffEl.offsetHeight;
+      textEl.style.maxHeight = cutoff + 'px';
+      textEl.classList.add('truncated');
+
+      var btn = textEl.parentElement.querySelector('[data-topic-read-more]');
+      if (!btn) return;
+
+      btn.removeAttribute('hidden');
+      btn.addEventListener('click', function () {
+        var isExpanded = btn.getAttribute('aria-expanded') === 'true';
+        if (isExpanded) {
+          textEl.style.maxHeight = cutoff + 'px';
+          textEl.classList.add('truncated');
+          btn.setAttribute('aria-expanded', 'false');
+          btn.textContent = 'Read more';
+        } else {
+          textEl.style.maxHeight = textEl.scrollHeight + 'px';
+          textEl.classList.remove('truncated');
+          btn.setAttribute('aria-expanded', 'true');
+          btn.textContent = 'Show less';
+        }
+      });
+    })(topicBodyTexts[tb]);
+  }
+
   // 4e. "Show more community insights" pagination
   var showMoreBtns = document.querySelectorAll('[data-insight-show-more]');
   for (var sm = 0; sm < showMoreBtns.length; sm++) {

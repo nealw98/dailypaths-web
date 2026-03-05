@@ -35,7 +35,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600;1,700&family=Inter:wght@300;400;500&family=Lora:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
 
   <!-- Styles -->
-  <link rel="stylesheet" href="/css/style.css?v=1772746859183">
+  <link rel="stylesheet" href="/css/style.css?v=1772748639631">
 
   
 
@@ -115,7 +115,7 @@
 
       <!-- Editorial Intro with Drop Cap -->
       <section class="topic-editorial-intro">
-        <div class="topic-editorial-intro-inner">
+        <div class="topic-editorial-intro-inner" data-topic-body-text>
           <p>Self‑worth and identity often get slowly worn down in an alcoholic home. At first, we might not even notice it happening. We start out with our own interests, opinions, and style, but over time the disease pulls more and more attention toward the drinker&mdash;where they are, what mood they&rsquo;re in, how to keep the peace. We learn to read the room before we speak. We crack jokes to lighten things, become the &ldquo;responsible one,&rdquo; or try to disappear so we don&rsquo;t set anyone off. Little by little, the roles we play around the disease start to feel like our whole personality. ​</p>
 <p>Many people in Al‑Anon describe realizing they don&rsquo;t really know themselves. Asked, &ldquo;What do you like? What do you need?&rdquo; they go blank. They can list the alcoholic&rsquo;s preferences in detail but struggle to name their own. Some have spent years as the fixer, the hero, the clown, or the quiet one who never makes trouble. On the outside, they might look high‑functioning&mdash;good grades, solid job, always there for others. On the inside, there&rsquo;s a shaky feeling: &ldquo;If I&rsquo;m not taking care of everyone, who am I?&rdquo; That question can be scary enough that we keep busy rather than sit with it. ​</p>
 <p>Al‑Anon gives people a place to start answering that question slowly. In meetings, we hear others talk about how the disease shaped their behavior&mdash;people‑pleasing, perfectionism, anger, shutting down&mdash;and we begin to see our own patterns with less shame and more clarity. The Steps and tools like inventory help us look at ourselves in a balanced way: not just what&rsquo;s &ldquo;wrong&rdquo; with us, but also our strengths, values, and desires that got buried under crisis. Sponsors might gently ask, &ldquo;What do you want?&rdquo; and actually wait for an answer. That can feel new and uncomfortable. ​</p>
@@ -123,6 +123,7 @@
 <p>Over time, identity begins to shift from &ldquo;the person who lives around the disease&rdquo; to &ldquo;a person with a life that includes the disease, but is not defined by it.&rdquo; Members talk about slowly remembering what colors they like, what kind of music they prefer, what they believe about God, what they want in friendships. They may return to school, change jobs, leave or repair relationships, or simply learn to speak up when something doesn&rsquo;t feel right. None of this happens overnight. It&rsquo;s more like trying on new shoes&mdash;awkward at first, then more natural as we walk in them. ​</p>
 <p>There&rsquo;s also a quiet spiritual side to self‑worth in Al‑Anon. Many members share that, through the program, they come to see themselves as worthy of care in the eyes of a Higher Power, even if they never felt that way growing up. Instead of measuring their value by how well they hold the family together or how much they tolerate, they begin to believe they have worth simply because they exist. That belief can make it easier to say no, to ask for help, and to make choices that honor who they are becoming rather than who the disease has told them they have to be. ​</p>
         </div>
+        <button class="topic-read-more" data-topic-read-more hidden aria-expanded="false">Read more</button>
       </section>
 
       <!-- Theme Logic — contextual bridge above member insights -->
@@ -130,14 +131,31 @@
 
       <!-- Voices of the Fellowship — Member Insight Cards -->
       
+      <section class="topic-insight-cards" aria-label="Member insights on Self-Worth & Identity">
+        <div class="topic-insight-cards-inner">
+          <span class="topic-insight-cards-label">Voices of the Fellowship</span>
+          <h2 class="topic-insight-cards-heading">How am I reclaiming my sense of self and personal worth?</h2>
+          <div class="topic-insight-cards-grid" data-insight-grid>
+
+            <div class="insight-card" itemscope itemtype="https://schema.org/Comment">
+              <div class="insight-card-text" data-insight-card-text itemprop="text">
+                <p>When my husband entered rehab, I remember feeling like I was losing him forever. I couldn’t understand why I felt that way. Everyone around me seemed hopeful, but I felt abandoned.</p><p>After years in Al-Anon, one day I was listening to a speaker and something clicked. When I was a little girl, my dad was an alcoholic. When he got sober, our family life did not get better. After what felt like a short time of him being sober, my parents separated, and I stopped having a relationship with him.</p><p>That day with the help of Al-Anon, I realized something powerful: when I dropped my husband off at rehab, I wasn’t just afraid of him drinking. I was afraid that if he got sober, he would realize I was not worth keeping. I was afraid he would abandon me, just like my dad did. Deep down, I even wondered if I was the reason they drank.</p><p>Thanks to Al-Anon, I now know I was never the reason anyone drank. My dad and I did not have a relationship because he had other issues I didn’t understand. I also learned that I am powerless over whether someone stays in my life or leaves.</p><p>Today I understand that my self-worth is not based on who is in my life or who chooses to stay. My self-worth is something I have to build and work on within myself. With the help of Al-Anon, I am learning to love myself. I am learning to like the person I am becoming. And I am learning to be kind to the person I used to be, because she did not know any better.</p><p>Today, I know that I am worthy of love, and I am worthy of giving love to others.</p>
+              </div>
+              <button class="insight-card-read-more" data-insight-read-more aria-expanded="false">Read the full reflection</button>
+              <p class="insight-card-attribution" itemprop="author">&mdash; Anonymous</p>
+            </div>
+
+          </div>
+          
+        </div>
+      </section>
 
       <!-- Share Your Experience — Terracotta Block -->
       <div class="bg-terracotta">
         <div class="topic-insight-form-wrap">
           <h2 class="topic-insight-form-heading">Share Your Experience</h2>
           <p class="topic-insight-form-subhead">How has your understanding of your own value and identity evolved since finding the program?</p>
-          <form id="share-form-self-worth" class="topic-share-form topic-insight-form" data-share-form data-topic-slug="self-worth" data-supabase-url="https://ofmqgqaoubsiwujgvcil.supabase.co" data-supabase-key="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9mbXFncWFvdWJzaXd1amd2Y2lsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjM5MDI1NzEsImV4cCI6MjA3OTQ3ODU3MX0.85ile88Honj3SdXzxGEPFA04LG0B4OjRsbChZ8oUnmE
-">
+          <form id="share-form-self-worth" class="topic-share-form topic-insight-form" data-share-form data-topic-slug="self-worth" data-supabase-url="https://ofmqgqaoubsiwujgvcil.supabase.co" data-supabase-key="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9mbXFncWFvdWJzaXd1amd2Y2lsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjM5MDI1NzEsImV4cCI6MjA3OTQ3ODU3MX0.85ile88Honj3SdXzxGEPFA04LG0B4OjRsbChZ8oUnmE">
             <label class="topic-share-label" for="share-name-self-worth">Name</label>
             <input type="text" id="share-name-self-worth" name="display_name" class="topic-share-input" placeholder="e.g., Sara M. (or anonymous)" required>
             <label class="topic-share-label" for="share-content-self-worth">Your Insight</label>
