@@ -831,15 +831,15 @@
 
   // --- localStorage seen-count helpers ---
 
-  function getSeenCount(readingId, key) {
+  function getSeenCount(readingId, key, source) {
     try {
-      var v = localStorage.getItem('seen_' + key + '_' + readingId);
+      var v = localStorage.getItem('seen_' + key + '_' + (source || 'all') + '_' + readingId);
       return v ? parseInt(v, 10) : 0;
     } catch (e) { return 0; }
   }
 
-  function setSeenCount(readingId, key, count) {
-    try { localStorage.setItem('seen_' + key + '_' + readingId, String(count)); } catch (e) {}
+  function setSeenCount(readingId, key, count, source) {
+    try { localStorage.setItem('seen_' + key + '_' + (source || 'all') + '_' + readingId, String(count)); } catch (e) {}
   }
 
   function renderReadingCard(r) {
@@ -848,8 +848,8 @@
     var needsReview = unaddressedCount > 0;
 
     // "New" badge logic — compare current counts to what we last dismissed
-    var seenPositive = getSeenCount(r.id, 'positive');
-    var seenFavorites = getSeenCount(r.id, 'favorites');
+    var seenPositive = getSeenCount(r.id, 'positive', state.source);
+    var seenFavorites = getSeenCount(r.id, 'favorites', state.source);
     var newPositiveCount = r.positive_count - seenPositive;
     var hasNewPositive = newPositiveCount > 0;
     var newFavoriteCount = (r.favorites_count || 0) - seenFavorites;
@@ -884,10 +884,10 @@
       html += '<span class="admin-tag admin-tag--amber">Needs Review (' + unaddressedCount + ')</span>';
     }
     if (hasNewPositive) {
-      html += '<span class="admin-tag admin-tag--new-pos" data-dismiss-positive="' + r.id + '" data-count="' + r.positive_count + '">New Positive (' + newPositiveCount + ')</span>';
+      html += '<span class="admin-tag admin-tag--new-pos" data-dismiss-positive="' + r.id + '" data-count="' + r.positive_count + '" data-source="' + (state.source || 'all') + '">New Positive (' + newPositiveCount + ')</span>';
     }
     if (hasNewFavorite) {
-      html += '<span class="admin-tag admin-tag--new-fav" data-dismiss-favorite="' + r.id + '" data-count="' + (r.favorites_count || 0) + '">New Favorite (' + newFavoriteCount + ')</span>';
+      html += '<span class="admin-tag admin-tag--new-fav" data-dismiss-favorite="' + r.id + '" data-count="' + (r.favorites_count || 0) + '" data-source="' + (state.source || 'all') + '">New Favorite (' + newFavoriteCount + ')</span>';
     }
     if (isFullyReviewed) {
       html += '<span class="admin-tag admin-tag--reviewed">Reviewed</span>';
@@ -946,7 +946,8 @@
         e.stopPropagation();
         var rid = this.getAttribute('data-dismiss-positive');
         var count = parseInt(this.getAttribute('data-count'), 10);
-        setSeenCount(rid, 'positive', count);
+        var source = this.getAttribute('data-source');
+        setSeenCount(rid, 'positive', count, source);
         this.remove();
       });
     }
@@ -958,7 +959,8 @@
         e.stopPropagation();
         var rid = this.getAttribute('data-dismiss-favorite');
         var count = parseInt(this.getAttribute('data-count'), 10);
-        setSeenCount(rid, 'favorites', count);
+        var source = this.getAttribute('data-source');
+        setSeenCount(rid, 'favorites', count, source);
         this.remove();
       });
     }
