@@ -71,13 +71,18 @@ export function wrapInLayout({
 ${json}
   </script>`).join('\n  ') : ''}
 
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-HSDBJDBVCS"></script>
+  <!-- Google Analytics (skip admin pages) -->
   <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-HSDBJDBVCS');
+    if (!/^\\/admin(\\/|$)/.test(location.pathname)) {
+      var s = document.createElement('script');
+      s.async = true;
+      s.src = 'https://www.googletagmanager.com/gtag/js?id=G-HSDBJDBVCS';
+      document.head.appendChild(s);
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-HSDBJDBVCS');
+    }
   </script>
 
   <!-- Analytics -->
