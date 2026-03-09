@@ -74,6 +74,7 @@ ${urlEntries}
 export function generateRobotsTxt() {
   return `User-agent: *
 Allow: /
+Disallow: /auth
 
 Sitemap: ${BASE_URL}/sitemap.xml
 `;
