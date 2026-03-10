@@ -35,7 +35,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600;1,700&family=Inter:wght@300;400;500&family=Lora:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
 
   <!-- Styles -->
-  <link rel="stylesheet" href="/css/style.css?v=1773070830337">
+  <link rel="stylesheet" href="/css/style.css?v=1773121407163">
 
   <!-- Structured Data -->
   <script type="application/ld+json">
@@ -90,6 +90,20 @@
     }
   ]
 }
+  </script>
+
+  <!-- Google Analytics (skip admin pages) -->
+  <script>
+    if (!/^\/admin(\/|$)/.test(location.pathname)) {
+      var s = document.createElement('script');
+      s.async = true;
+      s.src = 'https://www.googletagmanager.com/gtag/js?id=G-HSDBJDBVCS';
+      document.head.appendChild(s);
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-HSDBJDBVCS');
+    }
   </script>
 
   <!-- Analytics -->
