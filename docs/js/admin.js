@@ -253,6 +253,7 @@
         return;
       }
       state.appFeedback = result.feedback || [];
+      state.appFeedbackCount = state.appFeedback.length;
       render();
     });
   }
@@ -500,8 +501,11 @@
       case 'negative_pct':
         list.sort(function (a, b) { return b.negative_pct - a.negative_pct || b.total_ratings - a.total_ratings; });
         break;
-      case 'total_ratings':
-        list.sort(function (a, b) { return b.total_ratings - a.total_ratings; });
+      case 'most_positive':
+        list.sort(function (a, b) { return (b.positive_count || 0) - (a.positive_count || 0); });
+        break;
+      case 'most_favorited':
+        list.sort(function (a, b) { return (b.favorites_count || 0) - (a.favorites_count || 0); });
         break;
       case 'day_of_year':
         list.sort(function (a, b) { return a.day_of_year - b.day_of_year; });
@@ -512,9 +516,6 @@
           var db = b.most_recent_feedback || '';
           return db.localeCompare(da);
         });
-        break;
-      case 'favorites':
-        list.sort(function (a, b) { return b.favorites_count - a.favorites_count; });
         break;
     }
 
@@ -625,6 +626,7 @@
         return;
       }
       state.appFeedback = state.appFeedback.filter(function (f) { return f.id !== feedbackId; });
+      state.appFeedbackCount = state.appFeedback.length;
       showToast('Feedback deleted');
       render();
     });
@@ -780,9 +782,9 @@
         '<select id="ctl-sort">' +
           '<option value="day_of_year"' + (state.sort === 'day_of_year' ? ' selected' : '') + '>Day of Year</option>' +
           '<option value="negative_pct"' + (state.sort === 'negative_pct' ? ' selected' : '') + '>Most Negative %</option>' +
-          '<option value="total_ratings"' + (state.sort === 'total_ratings' ? ' selected' : '') + '>Most Ratings</option>' +
+          '<option value="most_positive"' + (state.sort === 'most_positive' ? ' selected' : '') + '>Most Positive</option>' +
+          '<option value="most_favorited"' + (state.sort === 'most_favorited' ? ' selected' : '') + '>Most Favorited</option>' +
           '<option value="most_recent"' + (state.sort === 'most_recent' ? ' selected' : '') + '>Most Recent</option>' +
-          '<option value="favorites"' + (state.sort === 'favorites' ? ' selected' : '') + '>Favorites</option>' +
         '</select>' +
       '</div>' +
       '<div class="admin-control-group">' +
