@@ -46,6 +46,7 @@ export function renderPrivacyPage() {
             <li>Location data</li>
             <li>Device contacts or photos</li>
             <li>Browsing history outside our app</li>
+            <li>Payment information (credit card numbers, billing details). All purchases are processed directly by Apple (App Store) or Google (Google Play). We do not receive or store your payment information.</li>
             <li>Any information that could personally identify you</li>
           </ul>
         </section>
