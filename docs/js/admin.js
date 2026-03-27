@@ -752,6 +752,9 @@
   function renderDashboard() {
     var html = '<div class="admin-dashboard">';
 
+    // Sticky toolbar (header + controls)
+    html += '<div class="admin-toolbar">';
+
     // Header
     html += '<header class="admin-header">' +
       '<div class="admin-header-left">' +
@@ -811,6 +814,8 @@
         '<span class="admin-count">' + state.filteredReadings.length + ' of ' + state.readings.length + ' readings</span>' +
       '</div>' +
     '</div>';
+
+    html += '</div>'; // close .admin-toolbar
 
     // Loading
     if (state.loading) {
@@ -930,8 +935,30 @@
     return html;
   }
 
-  function bindDashboard() {
-    // Card clicks
+  function renderReadingListOnly() {
+    applyFiltersAndSort();
+
+    // Update just the reading list container
+    var listEl = document.querySelector('.admin-reading-list');
+    if (!listEl) return;
+    var html = '';
+    for (var i = 0; i < state.filteredReadings.length; i++) {
+      html += renderReadingCard(state.filteredReadings[i]);
+    }
+    if (state.filteredReadings.length === 0) {
+      html = '<p class="admin-empty">No readings match the current filter.</p>';
+    }
+    listEl.innerHTML = html;
+
+    // Update count label
+    var countEl = document.querySelector('.admin-count');
+    if (countEl) countEl.textContent = state.filteredReadings.length + ' of ' + state.readings.length + ' readings';
+
+    // Re-bind card clicks and badge dismiss handlers
+    bindReadingCards();
+  }
+
+  function bindReadingCards() {
     var cards = document.querySelectorAll('.admin-reading-card');
     for (var i = 0; i < cards.length; i++) {
       cards[i].addEventListener('click', function () {
@@ -940,8 +967,6 @@
         if (reading) openReading(reading);
       });
     }
-
-    // Dismiss "New Positive" badges
     var posBadges = document.querySelectorAll('[data-dismiss-positive]');
     for (var p = 0; p < posBadges.length; p++) {
       posBadges[p].addEventListener('click', function (e) {
@@ -953,8 +978,6 @@
         this.remove();
       });
     }
-
-    // Dismiss "New Favorite" badges
     var favBadges = document.querySelectorAll('[data-dismiss-favorite]');
     for (var f = 0; f < favBadges.length; f++) {
       favBadges[f].addEventListener('click', function (e) {
@@ -966,6 +989,11 @@
         this.remove();
       });
     }
+  }
+
+  function bindDashboard() {
+    // Card clicks and badge dismiss handlers
+    bindReadingCards();
 
     // Controls
     var sortEl = document.getElementById('ctl-sort');
@@ -974,13 +1002,11 @@
 
     if (sortEl) sortEl.addEventListener('change', function () {
       state.sort = this.value;
-      applyFiltersAndSort();
-      render();
+      renderReadingListOnly();
     });
     if (filterEl) filterEl.addEventListener('change', function () {
       state.filter = this.value;
-      applyFiltersAndSort();
-      render();
+      renderReadingListOnly();
     });
     if (sourceEl) sourceEl.addEventListener('change', function () {
       state.source = this.value;

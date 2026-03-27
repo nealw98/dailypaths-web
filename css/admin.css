@@ -208,6 +208,13 @@ body.page-admin main {
 }
 
 /* --- Header --- */
+.admin-toolbar {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: var(--admin-surface);
+}
+
 .admin-header {
   display: flex;
   align-items: center;
@@ -215,9 +222,6 @@ body.page-admin main {
   padding: 16px 24px;
   background: var(--admin-surface);
   border-bottom: 1px solid var(--admin-border);
-  position: sticky;
-  top: 0;
-  z-index: 10;
   flex-wrap: wrap;
   gap: 8px;
 }
