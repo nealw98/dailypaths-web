@@ -256,7 +256,7 @@ export function renderStepsIndexPage() {
       <!-- Hero -->
       <header class="page-hero">
         <div class="page-hero-image">
-          <img src="${bp('/assets/themes/steps-hero.jpg')}" alt="Ocean path at sunrise \u2014 The Twelve Steps of Al-Anon recovery" />
+          <img src="${bp('/assets/themes/steps_hero.jpg')}" alt="Ocean path at sunrise \u2014 The Twelve Steps of Al-Anon recovery" />
           <div class="page-hero-overlay page-hero-overlay--gradient"></div>
         </div>
         <div class="page-hero-content">
@@ -371,7 +371,7 @@ export const STEP_TAGLINES = {
   12: 'Service & the Gift of Giving Back',
 };
 
-/* All steps share the steps-hero.jpg image with a blurred/navy treatment */
+/* All steps share the steps_hero.jpg image with a blurred/navy treatment */
 
 /** Convert step number to word for hero display */
 const NUMBER_WORDS = ['One','Two','Three','Four','Five','Six','Seven','Eight','Nine','Ten','Eleven','Twelve'];
@@ -401,7 +401,7 @@ export function renderStepPage(step, readings = []) {
   const monthIndex = step.number - 1;
   const tools = STEP_TOOLS[step.number] || [];
   const tagline = STEP_TAGLINES[step.number] || `The Principle of ${step.principle}`;
-  // All steps use the shared steps-hero.jpg with blur + navy overlay
+  // All steps use the shared steps_hero.jpg with blur + navy overlay
 
   // Build description paragraphs with strategic links to Essentials
   const descParagraphs = step.description || [];
@@ -475,7 +475,7 @@ ${assocItems}
   const heroHtml = `
       <header class="step-hero step-hero--image">
         <div class="step-hero-image">
-          <img src="${bp('/assets/themes/steps-hero.jpg')}" alt="Ocean path \u2014 Step ${step.number} of Al-Anon: ${step.principle}" />
+          <img src="${bp('/assets/themes/steps_hero.jpg')}" alt="Ocean path \u2014 Step ${step.number} of Al-Anon: ${step.principle}" />
           <div class="step-hero-overlay"></div>
         </div>
         <div class="step-hero-content">
