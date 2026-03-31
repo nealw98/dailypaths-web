@@ -151,6 +151,7 @@ ${bodyContent}
   </footer>
 
   <script src="${bp('/js/main.js')}" defer></script>
+${bodyClass === 'page-reading' ? `  <script src="${bp('/js/calendar.js')}" defer></script>` : ''}
 </body>
 </html>`;
 }

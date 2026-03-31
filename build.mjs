@@ -309,6 +309,18 @@ const notFoundHtml = wrapInLayout({
 });
 writePage(join(outDir, '404.html'), notFoundHtml);
 
+// --- Step 3b: Generate readings manifest for calendar ---
+console.log('Generating readings manifest...');
+const manifest = readings.map(r => ({
+  d: r.day_of_year,
+  title: r.title,
+  date: r.display_date,
+  thought: (r.thought_for_day || '').replace(/\\n/g, ' ').replace(/\*\*(.+?)\*\*/g, '$1').replace(/\*(.+?)\*/g, '$1').slice(0, 120),
+  theme: r.secondary_theme || '',
+  slug: readingSlug(r.day_of_year, r.title),
+}));
+writeFileSync(join(outDir, 'readings-manifest.json'), JSON.stringify(manifest), 'utf-8');
+
 // --- Step 4: Generate OG images for reading pages ---
 console.log('Generating 366 OG images...');
 const ogStart = Date.now();
@@ -378,6 +390,7 @@ cpSync(cssSource, join(outDir, 'css', 'style.css'));
 cpSync(join(__dirname, 'js', 'main.js'), join(outDir, 'js', 'main.js'));
 cpSync(join(__dirname, 'js', 'admin.js'), join(outDir, 'js', 'admin.js'));
 cpSync(join(__dirname, 'js', 'analytics.js'), join(outDir, 'js', 'analytics.js'));
+cpSync(join(__dirname, 'js', 'calendar.js'), join(outDir, 'js', 'calendar.js'));
 
 // Admin CSS
 cpSync(join(__dirname, 'css', 'admin.css'), join(outDir, 'css', 'admin.css'));
