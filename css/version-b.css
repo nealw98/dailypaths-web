@@ -5129,29 +5129,6 @@ html {
   border: 0;
 }
 
-/* Play Store — Coming Soon */
-.play-coming-soon {
-  display: inline-flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 4px;
-  cursor: default;
-}
-
-.play-coming-soon img {
-  opacity: 0.35;
-  filter: grayscale(40%);
-}
-
-.play-coming-soon-label {
-  font-family: 'Inter', sans-serif;
-  font-size: 0.7rem;
-  font-weight: 500;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.55);
-  margin-top: -2px;
-}
 
 /* ==========================================================================
    Calendar Date Picker Modal
