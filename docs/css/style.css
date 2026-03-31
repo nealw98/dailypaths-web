@@ -5157,31 +5157,36 @@ html {
    Calendar Date Picker Modal
    ========================================================================== */
 
-/* Trigger button next to date */
-.rd-date-row {
+/* Interactive date trigger */
+.rd-date--interactive {
   display: inline-flex;
   align-items: center;
-  gap: 0.5rem;
-}
-
-.rd-cal-trigger {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 32px;
-  height: 32px;
-  border: 1px solid var(--cloud);
+  gap: 0.35rem;
+  border: none;
+  background: none;
+  padding: 0.25rem 0.5rem;
+  margin: -0.25rem -0.5rem;
   border-radius: var(--radius);
-  background: var(--white);
-  color: var(--ocean);
   cursor: pointer;
-  transition: all 0.15s ease;
-  flex-shrink: 0;
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ocean);
+  transition: background 0.15s ease;
 }
-.rd-cal-trigger:hover {
+.rd-date--interactive:hover {
   background: var(--cloud);
-  color: var(--deep-teal);
-  border-color: var(--mist);
+}
+.rd-date--interactive:hover .rd-date-icon {
+  opacity: 1;
+}
+.rd-date-icon {
+  color: var(--ocean);
+  opacity: 0.4;
+  transition: opacity 0.15s ease;
+  flex-shrink: 0;
 }
 
 /* Modal overlay */

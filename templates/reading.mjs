@@ -101,16 +101,14 @@ ${relatedItems}
 
       <!-- Header -->
       <header class="rd-header">
-        <div class="rd-date-row">
-          <time class="rd-date" datetime="${isoDate}">${reading.display_date}</time>
-          <button class="rd-cal-trigger" aria-label="Open calendar navigation" data-calendar-trigger data-reading-month="${monthIdx}" data-reading-day="${dayOfMonth}">
-            <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
-              <rect x="1.5" y="3" width="15" height="13" rx="2" stroke="currentColor" stroke-width="1.5"/>
-              <path d="M1.5 7.5h15" stroke="currentColor" stroke-width="1.5"/>
-              <path d="M5.5 1.5v3M12.5 1.5v3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-            </svg>
-          </button>
-        </div>
+        <button class="rd-date rd-date--interactive" aria-label="Open calendar to browse readings by date" data-calendar-trigger data-reading-month="${monthIdx}" data-reading-day="${dayOfMonth}">
+          <time datetime="${isoDate}">${reading.display_date}</time>
+          <svg class="rd-date-icon" width="14" height="14" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+            <rect x="1.5" y="3" width="15" height="13" rx="2" stroke="currentColor" stroke-width="1.5"/>
+            <path d="M1.5 7.5h15" stroke="currentColor" stroke-width="1.5"/>
+            <path d="M5.5 1.5v3M12.5 1.5v3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+        </button>
         <h1 class="rd-title">${reading.title}</h1>
         <div class="rd-pills">
           ${themePill}
