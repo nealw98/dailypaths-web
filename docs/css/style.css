@@ -5327,7 +5327,6 @@ html {
 /* Day cells */
 .cal-cell {
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
   aspect-ratio: 1;
@@ -5341,7 +5340,6 @@ html {
   color: var(--ink);
   transition: all 0.12s;
   position: relative;
-  gap: 3px;
   padding: 0;
 }
 .cal-cell:hover {
@@ -5375,18 +5373,6 @@ html {
 .cal-cell.is-selected:hover {
   background: var(--ocean);
 }
-.cal-cell.is-selected .cal-dot {
-  background: rgba(255, 255, 255, 0.6);
-}
-
-/* Dot indicator under each day */
-.cal-dot {
-  width: 4px;
-  height: 4px;
-  border-radius: 50%;
-  background: var(--mist);
-}
-
 /* Preview card */
 .cal-preview {
   margin: 1rem 1.25rem 1.5rem;

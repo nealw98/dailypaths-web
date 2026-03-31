@@ -195,13 +195,7 @@
         cell.classList.add('is-selected');
       }
 
-      var num = document.createElement('span');
-      num.textContent = d;
-      cell.appendChild(num);
-
-      var dot = document.createElement('span');
-      dot.className = 'cal-dot';
-      cell.appendChild(dot);
+      cell.textContent = d;
 
       grid.appendChild(cell);
     }
