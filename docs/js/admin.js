@@ -1263,8 +1263,8 @@
     var wc = '';
     if (name === 'body') {
       var count = wordCount(value);
-      var cls = count >= 160 && count <= 180 ? 'admin-wc--ok' : 'admin-wc--warn';
-      wc = '<span class="admin-wc ' + cls + '">' + count + ' words (target: 160-180)</span>';
+      var cls = count >= 140 && count <= 160 ? 'admin-wc--ok' : 'admin-wc--warn';
+      wc = '<span class="admin-wc ' + cls + '">' + count + ' words (target: 140-160)</span>';
     } else if (name === 'application') {
       var count = wordCount(value);
       var cls = count >= 25 && count <= 35 ? 'admin-wc--ok' : 'admin-wc--warn';
@@ -1444,8 +1444,8 @@
       var field = input.getAttribute('data-field');
       var count = wordCount(input.value);
       if (field === 'body') {
-        el.textContent = count + ' words (target: 160-180)';
-        el.className = 'admin-wc ' + (count >= 160 && count <= 180 ? 'admin-wc--ok' : 'admin-wc--warn');
+        el.textContent = count + ' words (target: 140-160)';
+        el.className = 'admin-wc ' + (count >= 140 && count <= 160 ? 'admin-wc--ok' : 'admin-wc--warn');
       } else if (field === 'application') {
         el.textContent = count + ' words (target: 25-35)';
         el.className = 'admin-wc ' + (count >= 25 && count <= 35 ? 'admin-wc--ok' : 'admin-wc--warn');

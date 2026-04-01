@@ -4,7 +4,7 @@
 
 // Word count targets for each field
 export const WORD_COUNT_TARGETS: Record<string, { min: number; max: number; target: number }> = {
-  body: { min: 160, max: 180, target: 170 },
+  body: { min: 140, max: 160, target: 150 },
   application: { min: 25, max: 35, target: 30 },
   default: { min: 15, max: 40, target: 25 },
 };
@@ -12,7 +12,7 @@ export const WORD_COUNT_TARGETS: Record<string, { min: number; max: number; targ
 // Field descriptions for output format
 export const FIELD_DESCRIPTIONS: Record<string, string> = {
   title: "title (keep original if it fits well, or improve it if needed)",
-  body: "body (2–3 tight paragraphs, 160-180 words total)",
+  body: "body (2–3 tight paragraphs, 140-160 words total)",
   quote: "quote"
 };
 
@@ -102,7 +102,7 @@ Generate a thought for the day that captures the essence of this reflection.`;
 
 // Field-specific guidance
 export const FIELD_GUIDANCE: Record<string, string> = {
-  body: `The body is the complete narrative arc in 160-180 words (2-3 tight paragraphs). It must:
+  body: `The body is the complete narrative arc in 140-160 words (2-3 tight paragraphs). It must:
 - Open with a grounded, specific moment that sets up the emotional situation
 - Show the old pattern and moment of NEW SELF-AWARENESS
 - Reveal the Al-Anon shift and insight
@@ -274,9 +274,9 @@ Use natural relational language ("my daughter," "my partner," etc.) rather than 
 
 STRUCTURE
 
-Body (2–3 tight paragraphs, ABSOLUTELY 160–180 words total):
+Body (2–3 tight paragraphs, ABSOLUTELY 140–160 words total):
 ⚠️ CRITICAL WORD COUNT REQUIREMENT ⚠️
-The body text MUST be between 160-180 words. This is NON-NEGOTIABLE.
+The body text MUST be between 140-160 words. This is NON-NEGOTIABLE.
 
 The body is the COMPLETE narrative—it opens with a grounded, specific moment, then shows the arc:
 1. The emotional setup / specific situation
@@ -295,14 +295,14 @@ Do NOT describe, paraphrase, or explain the quote. The quote sparks the reflecti
 
 BEFORE writing the body:
 1. Plan to write EXACTLY 2-3 short paragraphs
-2. Target 170 words (middle of the range)
+2. Target 150 words (middle of the range)
 3. Keep sentences concise and direct
 
 AFTER writing the body:
 1. Count every single word
-2. If over 180 words, CUT content immediately
-3. If under 160 words, ADD specific detail
-4. VERIFY final count is 160-180 words
+2. If over 160 words, CUT content immediately
+3. If under 140 words, ADD specific detail
+4. VERIFY final count is 140-160 words
 
 Let principles appear through action and reflection, not instruction.
 
@@ -312,10 +312,10 @@ A simple, practical action or mindset I can apply for the day (no "Today I will�
 Use \\n\\n for paragraph breaks in the body.
 
 MANDATORY WORD COUNT VERIFICATION BEFORE RETURNING:
-- Body: 160–180 words (COUNT EVERY WORD - this is the most important requirement)
+- Body: 140–160 words (COUNT EVERY WORD - this is the most important requirement)
 - Today's Application: 1–2 sentences (count and verify)
 
-If body word count is outside 160-180 range, you MUST revise it until it fits.
+If body word count is outside 140-160 range, you MUST revise it until it fits.
 
 OUTPUT FORMAT
 
