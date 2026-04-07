@@ -122,6 +122,69 @@ export function readingStructuredData(reading, slug) {
 }
 
 /**
+ * Generate Article structured data for a topic (theme) page
+ */
+export function topicStructuredData(topic) {
+  return JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    'headline': topic.name,
+    'description': topic.metaDescription || topic.shortDescription,
+    'author': {
+      '@type': 'Person',
+      'name': 'Neal W.'
+    },
+    'publisher': {
+      '@type': 'Organization',
+      'name': 'Daily Growth, LLC',
+      'logo': {
+        '@type': 'ImageObject',
+        'url': `${BASE_URL}/assets/favicon.png`
+      }
+    },
+    'mainEntityOfPage': {
+      '@type': 'WebPage',
+      '@id': `${BASE_URL}/themes/${topic.slug}/`
+    },
+    'image': `${BASE_URL}/assets/themes/themes-hero.jpg`,
+    'datePublished': '2025-05-01',
+    'dateModified': '2025-05-01',
+    'articleSection': 'Al-Anon Recovery Themes',
+    'keywords': `${topic.name}, Al-Anon, recovery, daily reflection`,
+  }, null, 2);
+}
+
+/**
+ * Generate BreadcrumbList structured data for a topic page
+ */
+export function topicBreadcrumbStructuredData(topic) {
+  return JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    'itemListElement': [
+      {
+        '@type': 'ListItem',
+        'position': 1,
+        'name': 'Home',
+        'item': BASE_URL + '/'
+      },
+      {
+        '@type': 'ListItem',
+        'position': 2,
+        'name': 'Themes',
+        'item': BASE_URL + '/themes/'
+      },
+      {
+        '@type': 'ListItem',
+        'position': 3,
+        'name': topic.name,
+        'item': `${BASE_URL}/themes/${topic.slug}/`
+      }
+    ]
+  }, null, 2);
+}
+
+/**
  * Generate BreadcrumbList structured data for a reading page
  */
 export function breadcrumbStructuredData(reading, slug) {

@@ -2,6 +2,7 @@ import { wrapInLayout } from './base.mjs';
 import { readingSlug } from '../helpers/slug-utils.mjs';
 import { bp } from '../helpers/config.mjs';
 import { markdownToHtml } from '../helpers/markdown.mjs';
+import { topicStructuredData, topicBreadcrumbStructuredData } from '../helpers/seo.mjs';
 import {
   TOPICS, TOPIC_THEME_TAGS, TOPIC_PULL_QUOTES, TOPIC_TOOLS,
   TOPIC_INSIGHT_PROMPTS, TOPIC_FORM_QUESTIONS,
@@ -157,7 +158,7 @@ ${cards}
               </div>`;
     }).join('\n');
 
-  // Build insight cards from approved shares — schema.org/Comment for EEAT
+  // Build insight cards from approved shares
   const formQuestion = TOPIC_FORM_QUESTIONS[topic.slug] || `How has ${topic.name.toLowerCase()} shaped your recovery?`;
 
   function buildInsightCard(share, extraClass = '') {
@@ -167,12 +168,12 @@ ${cards}
     const words = share.content.split(/\s+/);
     const needsTruncation = words.length > 45;
     return `
-            <div class="insight-card${extraClass}" itemscope itemtype="https://schema.org/Comment">
-              <div class="insight-card-text" data-insight-card-text itemprop="text">
+            <div class="insight-card${extraClass}">
+              <div class="insight-card-text" data-insight-card-text>
                 <p>${share.content.split('\n\n').map(p => markdownToHtml(p.trim())).join('</p><p>')}</p>
               </div>
               ${needsTruncation ? '<button class="insight-card-read-more" data-insight-read-more aria-expanded="false">Read the full reflection</button>' : ''}
-              <p class="insight-card-attribution" itemprop="author">&mdash; ${name}</p>
+              <p class="insight-card-attribution">&mdash; ${name}</p>
             </div>`;
   }
 
@@ -196,7 +197,7 @@ ${cards}
   }).join('\n');
 
   const bodyContent = `
-    <article class="topic-editorial" itemscope itemtype="https://schema.org/Article">
+    <article class="topic-editorial">
       <!-- Theme Navigation -->
       <nav class="topic-nav-header">
         <a href="${bp(`/themes/${prevTopic.slug}/`)}" class="nav-prev">
@@ -218,8 +219,8 @@ ${cards}
         </div>
         <div class="topic-hero-content">
           <span class="topic-hero-label">Al-Anon Theme</span>
-          <h1 class="topic-hero-title" itemprop="headline">${topic.name}</h1>
-          <p class="topic-hero-desc" itemprop="description">${topic.shortDescription}</p>
+          <h1 class="topic-hero-title">${topic.name}</h1>
+          <p class="topic-hero-desc">${topic.shortDescription}</p>
         </div>
       </header>
 
@@ -317,11 +318,18 @@ ${readingGroups}
 
     </article>`;
 
+  const structuredData = [
+    topicStructuredData(topic),
+    topicBreadcrumbStructuredData(topic),
+  ];
+
   return wrapInLayout({
     title: `${topic.name} &mdash; Al-Anon Recovery Theme | Daily Paths`,
     description: (topic.metaDescription || topic.shortDescription) + ' Reflections and curated daily readings from Al-Anon Daily Paths.',
     canonicalPath: `/themes/${topic.slug}/`,
     bodyContent,
     bodyClass: 'page-topic-detail',
+    structuredData,
+    ogType: 'article',
   });
 }
