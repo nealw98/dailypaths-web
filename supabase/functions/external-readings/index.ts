@@ -6,8 +6,6 @@ const corsHeaders = {
   'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
 };
 
-const EXTERNAL_SUPABASE_URL = 'https://ofmqgqaoubsiwujgvcil.supabase.co';
-
 serve(async (req) => {
   // Handle CORS preflight requests
   if (req.method === 'OPTIONS') {
@@ -15,17 +13,11 @@ serve(async (req) => {
   }
 
   try {
-    const serviceRoleKey = Deno.env.get('EXTERNAL_SUPABASE_SERVICE_ROLE_KEY');
-    if (!serviceRoleKey) {
-      console.error('EXTERNAL_SUPABASE_SERVICE_ROLE_KEY not configured');
-      return new Response(
-        JSON.stringify({ error: 'External database not configured' }),
-        { status: 500, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
-      );
-    }
-
-    // External Supabase for ALL data (readings AND ratings)
-    const externalSupabase = createClient(EXTERNAL_SUPABASE_URL, serviceRoleKey);
+    // After consolidating onto a single Supabase project, this function reads
+    // data from its own project — no more cross-project service-role key.
+    const supabaseUrl = Deno.env.get('SUPABASE_URL')!;
+    const serviceRoleKey = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!;
+    const externalSupabase = createClient(supabaseUrl, serviceRoleKey);
     
     const { action, data } = await req.json();
 
@@ -598,30 +590,31 @@ serve(async (req) => {
           );
         }
 
-        // Get feedback with optional source filter - include addressed field
-        let feedbackQuery = externalSupabase
-          .from('app_reading_feedback')
-          .select('reading_id, rating, created_at, source, addressed');
-        
-        // Filter by source if specified (not 'all')
+        // Pull pre-aggregated rating counts from the admin_reading_feedback_stats view
+        // (grouped by reading_id + source). This avoids the PostgREST 1000-row cap that
+        // hit us when raw app_reading_feedback exceeded 1k rows.
+        let statsQuery = externalSupabase
+          .from('admin_reading_feedback_stats')
+          .select('reading_id, source, total_ratings, positive_count, neutral_count, negative_count, unaddressed_negative_count, most_recent_feedback');
+
         if (source && source !== 'all') {
-          feedbackQuery = feedbackQuery.eq('source', source);
+          statsQuery = statsQuery.eq('source', source);
         }
-        
-        const { data: feedbackData, error: feedbackError } = await feedbackQuery;
+
+        const { data: statsData, error: feedbackError } = await statsQuery;
 
         if (feedbackError) {
-          console.error('Error fetching feedback:', feedbackError);
+          console.error('Error fetching feedback stats:', feedbackError);
           return new Response(
             JSON.stringify({ error: feedbackError.message }),
             { status: 500, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
           );
         }
 
-        // Get favorites count per reading
+        // Pull pre-aggregated favorites counts from the view
         const { data: favoritesData, error: favoritesError } = await externalSupabase
-          .from('app_favorites')
-          .select('reading_id');
+          .from('admin_reading_favorites_stats')
+          .select('reading_id, favorites_count');
 
         if (favoritesError) {
           console.error('Error fetching favorites:', favoritesError);
@@ -644,13 +637,15 @@ serve(async (req) => {
           dauMap.set(d.day_of_year, d.active_devices);
         });
 
-        // Aggregate favorites by reading
+        // Build favorites map from the view
         const favoritesMap = new Map<string, number>();
         favoritesData?.forEach(f => {
-          favoritesMap.set(f.reading_id, (favoritesMap.get(f.reading_id) || 0) + 1);
+          favoritesMap.set(f.reading_id, f.favorites_count);
         });
 
-        // Aggregate feedback by reading - now including unaddressed_negative_count
+        // Combine per-source rows into one entry per reading. When the caller
+        // filtered to a single source, each reading appears once; for 'all',
+        // multiple rows per reading get summed here.
         const feedbackMap = new Map<string, {
           total_ratings: number;
           positive_count: number;
@@ -660,31 +655,26 @@ serve(async (req) => {
           most_recent_feedback: string | null;
         }>();
 
-        feedbackData?.forEach(f => {
-          if (!feedbackMap.has(f.reading_id)) {
-            feedbackMap.set(f.reading_id, {
+        statsData?.forEach(row => {
+          let entry = feedbackMap.get(row.reading_id);
+          if (!entry) {
+            entry = {
               total_ratings: 0,
               positive_count: 0,
               neutral_count: 0,
               negative_count: 0,
               unaddressed_negative_count: 0,
               most_recent_feedback: null
-            });
+            };
+            feedbackMap.set(row.reading_id, entry);
           }
-          const entry = feedbackMap.get(f.reading_id)!;
-          entry.total_ratings++;
-          if (f.rating === 'positive') entry.positive_count++;
-          else if (f.rating === 'neutral') entry.neutral_count++;
-          else if (f.rating === 'negative') {
-            entry.negative_count++;
-            // Count unaddressed negative feedback
-            if (!f.addressed) {
-              entry.unaddressed_negative_count++;
-            }
-          }
-          
-          if (!entry.most_recent_feedback || f.created_at > entry.most_recent_feedback) {
-            entry.most_recent_feedback = f.created_at;
+          entry.total_ratings += row.total_ratings;
+          entry.positive_count += row.positive_count;
+          entry.neutral_count += row.neutral_count;
+          entry.negative_count += row.negative_count;
+          entry.unaddressed_negative_count += row.unaddressed_negative_count;
+          if (row.most_recent_feedback && (!entry.most_recent_feedback || row.most_recent_feedback > entry.most_recent_feedback)) {
+            entry.most_recent_feedback = row.most_recent_feedback;
           }
         });
 

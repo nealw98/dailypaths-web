@@ -5,13 +5,14 @@
   'use strict';
 
   // --- Config ---
-  var MAIN_SUPABASE_URL = 'https://hnmesmsegmgablcawogs.supabase.co';
-  var MAIN_SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhubWVzbXNlZ21nYWJsY2F3b2dzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjQzNzIxOTAsImV4cCI6MjA3OTk0ODE5MH0.oEbM_Ah8J5ogRW-aIZPJQPEMoI4ZGB2ncbFPiF1G_mU';
+  // Single Supabase project (Daily Paths) — auth, data, and edge functions all live here.
+  var MAIN_SUPABASE_URL = 'https://ofmqgqaoubsiwujgvcil.supabase.co';
+  var MAIN_SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9mbXFncWFvdWJzaXd1amd2Y2lsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjM5MDI1NzEsImV4cCI6MjA3OTQ3ODU3MX0.85ile88Honj3SdXzxGEPFA04LG0B4OjRsbChZ8oUnmE';
   var EDGE_FN_URL = MAIN_SUPABASE_URL + '/functions/v1/external-readings';
 
-  // External Supabase — direct access for steps & themes (no edge function needed)
-  var EXT_SUPABASE_URL = 'https://ofmqgqaoubsiwujgvcil.supabase.co';
-  var EXT_SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9mbXFncWFvdWJzaXd1amd2Y2lsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjM5MDI1NzEsImV4cCI6MjA3OTQ3ODU3MX0.85ile88Honj3SdXzxGEPFA04LG0B4OjRsbChZ8oUnmE';
+  // Legacy alias — steps & themes direct REST reads still use this name.
+  var EXT_SUPABASE_URL = MAIN_SUPABASE_URL;
+  var EXT_SUPABASE_ANON_KEY = MAIN_SUPABASE_ANON_KEY;
 
   // GitHub Actions — trigger build & deploy (PAT stored in browser localStorage)
   var GITHUB_REPO = 'nealw98/dailypaths-web';
