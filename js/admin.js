@@ -1412,8 +1412,16 @@
       inputs[i].addEventListener('input', function () {
         var field = this.getAttribute('data-field');
         state.editFields[field] = this.value;
+        if (state.revised && this.tagName === 'TEXTAREA') autoGrowTextarea(this);
         updateSaveBar();
       });
+    }
+
+    // In compare mode, grow the Published textareas to fit their content so both
+    // sides are fully visible and top-aligned (the Revised pane auto-sizes already).
+    if (state.revised) {
+      var grows = document.querySelectorAll('.admin-editor-main--compare textarea[data-field]');
+      for (var g = 0; g < grows.length; g++) autoGrowTextarea(grows[g]);
     }
 
     // Save
@@ -2673,6 +2681,12 @@
   function wordCount(text) {
     if (!text) return 0;
     return text.trim().split(/\s+/).filter(function (w) { return w.length > 0; }).length;
+  }
+
+  function autoGrowTextarea(el) {
+    if (!el) return;
+    el.style.height = 'auto';
+    el.style.height = (el.scrollHeight + 2) + 'px';
   }
 
   function formatDate(iso) {

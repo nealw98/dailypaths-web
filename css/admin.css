@@ -538,6 +538,13 @@ body.page-admin main {
   min-width: 0;
 }
 
+/* In compare mode the Published textarea height is auto-managed (auto-grow JS)
+   so it matches its content and lines up with the Revised pane. */
+.admin-compare-col textarea.admin-textarea {
+  overflow: hidden;
+  resize: none;
+}
+
 .admin-compare-tag {
   display: block;
   font-size: 11px;
