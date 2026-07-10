@@ -37,6 +37,10 @@
     saving: false,
     editFields: {},
     originalFields: {},
+    // Revised readings (readings_revised) comparison
+    revised: null,          // readings_revised row for the selected reading, or null
+    revisedLoading: false,
+    revisedDays: {},        // map of day_of_year -> true, for dashboard "Revised" badges
     // Steps & Themes
     steps: [],
     themes: [],
@@ -206,6 +210,7 @@
   function loadReadings() {
     state.loading = true;
     render();
+    loadRevisedDays();
     callEdgeFn('fetch-app-readings-with-feedback', { source: state.source }, { auth: false }, function (err, result) {
       state.loading = false;
       if (err) {
@@ -239,6 +244,58 @@
       }
       state.feedbackDetails = result.details || [];
       render();
+    });
+  }
+
+  // Load the set of day_of_year values that have a revised version in readings_revised,
+  // so dashboard cards can show a "Revised" badge. Read directly from the external
+  // project with the anon key (same pattern as steps/themes/shares). Non-fatal on error.
+  function loadRevisedDays() {
+    fetch(EXT_SUPABASE_URL + '/rest/v1/readings_revised?select=day_of_year', {
+      headers: {
+        'apikey': EXT_SUPABASE_ANON_KEY,
+        'Authorization': 'Bearer ' + EXT_SUPABASE_ANON_KEY,
+      },
+    })
+    .then(function (res) { return res.json(); })
+    .then(function (rows) {
+      if (!Array.isArray(rows)) return;
+      var map = {};
+      rows.forEach(function (r) { if (r.day_of_year != null) map[r.day_of_year] = true; });
+      state.revisedDays = map;
+      if (state.view === 'dashboard') renderReadingListOnly();
+    })
+    .catch(function () { /* badges just won't show */ });
+  }
+
+  // Load the revised version (from readings_revised) for the reading being edited.
+  function loadRevised(reading) {
+    state.revised = null;
+    if (!reading || reading.day_of_year == null) {
+      state.revisedLoading = false;
+      return;
+    }
+    state.revisedLoading = true;
+    var url = EXT_SUPABASE_URL + '/rest/v1/readings_revised' +
+      '?day_of_year=eq.' + encodeURIComponent(reading.day_of_year) +
+      '&select=title,opening,body,quote,application,thought_for_day,display_date,day_of_year&limit=1';
+    fetch(url, {
+      headers: {
+        'apikey': EXT_SUPABASE_ANON_KEY,
+        'Authorization': 'Bearer ' + EXT_SUPABASE_ANON_KEY,
+      },
+    })
+    .then(function (res) { return res.json(); })
+    .then(function (rows) {
+      state.revisedLoading = false;
+      state.revised = (Array.isArray(rows) && rows.length) ? rows[0] : null;
+      // Only re-render if still viewing this reading
+      if (state.view === 'reading' && state.selectedReading === reading) render();
+    })
+    .catch(function () {
+      state.revisedLoading = false;
+      state.revised = null;
+      if (state.view === 'reading' && state.selectedReading === reading) render();
     });
   }
 
@@ -906,6 +963,9 @@
     if (r.admin_notes) {
       html += '<span class="admin-tag admin-tag--blue" title="Has admin notes">Notes</span>';
     }
+    if (state.revisedDays[r.day_of_year]) {
+      html += '<span class="admin-tag admin-tag--revised" title="A revised version exists in readings_revised">Revised</span>';
+    }
 
     html += '</div>';
 
@@ -1101,9 +1161,12 @@
     };
     state.originalFields = JSON.parse(JSON.stringify(state.editFields));
     state.feedbackDetails = [];
+    state.revised = null;
+    state.revisedLoading = true;
     state.view = 'reading';
     render();
     loadFeedbackDetails(reading.id);
+    loadRevised(reading);
   }
 
   // --- Reading Editor View ---
@@ -1132,6 +1195,16 @@
         '<button class="admin-btn admin-btn--ghost" id="btn-next"' + (hasNext ? '' : ' disabled') + '>Next &rarr;</button>' +
       '</div>' +
     '</header>';
+
+    // Revised-version banner
+    if (state.revised) {
+      html += '<div class="admin-compare-banner">' +
+        '<span class="admin-compare-banner-label">&#10024; Revised version available &mdash; shown beside each field on the right</span>' +
+        '<button class="admin-btn admin-btn--sm admin-btn--primary" id="btn-copy-all">Copy all revised &rarr;</button>' +
+      '</div>';
+    } else if (state.revisedLoading) {
+      html += '<div class="admin-compare-banner admin-compare-banner--muted">Checking for a revised version&hellip;</div>';
+    }
 
     // Two-column layout
     html += '<div class="admin-editor-layout">';
@@ -1221,24 +1294,25 @@
     html += '</aside>';
 
     // Right content - editor
-    html += '<div class="admin-editor-main">';
+    var rev = state.revised;
+    html += '<div class="admin-editor-main' + (rev ? ' admin-editor-main--compare' : '') + '">';
 
     // Title
-    html += renderField('title', 'Title', state.editFields.title, 'input');
+    html += renderField('title', 'Title', state.editFields.title, 'input', undefined, rev ? rev.title : undefined);
     // Quote
-    html += renderField('quote', 'Quote', state.editFields.quote, 'textarea', 3);
+    html += renderField('quote', 'Quote', state.editFields.quote, 'textarea', 3, rev ? rev.quote : undefined);
     // Opening (read-only)
     html += '<div class="admin-field-group">' +
       '<label class="admin-field-label">Opening <span class="admin-field-hint">(read-only)</span></label>' +
       '<div class="admin-field-readonly">' + escHtml(r.opening || '') + '</div>' +
     '</div>';
     // Body
-    html += renderField('body', 'Body', state.editFields.body, 'textarea', 8);
+    html += renderField('body', 'Body', state.editFields.body, 'textarea', 8, rev ? rev.body : undefined);
     // Application
-    html += renderField('application', 'Application', state.editFields.application, 'textarea', 4);
+    html += renderField('application', 'Application', state.editFields.application, 'textarea', 4, rev ? rev.application : undefined);
     // Thought for the Day
-    html += renderField('thought_for_day', 'Thought for the Day', state.editFields.thought_for_day, 'textarea', 2);
-    // Admin Notes
+    html += renderField('thought_for_day', 'Thought for the Day', state.editFields.thought_for_day, 'textarea', 2, rev ? rev.thought_for_day : undefined);
+    // Admin Notes (no revised counterpart)
     html += renderField('admin_notes', 'Admin Notes', state.editFields.admin_notes, 'textarea', 3);
 
     // Save bar
@@ -1260,7 +1334,10 @@
     return html;
   }
 
-  function renderField(name, label, value, type, rows) {
+  function renderField(name, label, value, type, rows, revisedValue) {
+    var hasCompare = revisedValue !== undefined && revisedValue !== null;
+    var differs = hasCompare && String(revisedValue).trim() !== String(value || '').trim();
+
     var wc = '';
     if (name === 'body') {
       var count = wordCount(value);
@@ -1272,13 +1349,31 @@
       wc = '<span class="admin-wc ' + cls + '">' + count + ' words (target: 25-35)</span>';
     }
 
-    var html = '<div class="admin-field-group">';
-    html += '<label class="admin-field-label">' + label + ' ' + wc + '</label>';
+    var control = (type === 'textarea')
+      ? '<textarea class="admin-input admin-textarea" data-field="' + name + '" rows="' + (rows || 4) + '">' + escHtml(value) + '</textarea>'
+      : '<input class="admin-input" type="text" data-field="' + name + '" value="' + escAttr(value) + '">';
 
-    if (type === 'textarea') {
-      html += '<textarea class="admin-input admin-textarea" data-field="' + name + '" rows="' + (rows || 4) + '">' + escHtml(value) + '</textarea>';
+    var html = '<div class="admin-field-group">';
+    html += '<label class="admin-field-label">' + label + ' ' + wc;
+    if (differs) {
+      html += '<button type="button" class="admin-btn admin-btn--sm admin-copy-btn" data-copy-field="' + name + '">Copy &rarr;</button>';
+    } else if (hasCompare) {
+      html += '<span class="admin-same-tag">identical</span>';
+    }
+    html += '</label>';
+
+    if (hasCompare) {
+      html += '<div class="admin-compare-cols">' +
+        '<div class="admin-compare-col">' +
+          '<span class="admin-compare-tag">Published</span>' + control +
+        '</div>' +
+        '<div class="admin-compare-col admin-compare-col--revised' + (differs ? ' is-diff' : '') + '">' +
+          '<span class="admin-compare-tag">Revised</span>' +
+          '<div class="admin-field-readonly admin-revised-text">' + escHtml(revisedValue) + '</div>' +
+        '</div>' +
+      '</div>';
     } else {
-      html += '<input class="admin-input" type="text" data-field="' + name + '" value="' + escAttr(value) + '">';
+      html += control;
     }
 
     html += '</div>';
@@ -1339,6 +1434,30 @@
     if (btnDiscard) btnDiscard.addEventListener('click', function () {
       state.editFields = JSON.parse(JSON.stringify(state.originalFields));
       render();
+    });
+
+    // Copy revised -> published (single field)
+    var copyBtns = document.querySelectorAll('[data-copy-field]');
+    for (var c = 0; c < copyBtns.length; c++) {
+      copyBtns[c].addEventListener('click', function () {
+        var f = this.getAttribute('data-copy-field');
+        if (state.revised && state.revised[f] != null) {
+          state.editFields[f] = state.revised[f];
+          render();
+          showToast('Copied revised ' + f.replace(/_/g, ' ') + ' → published');
+        }
+      });
+    }
+
+    // Copy all revised fields -> published
+    var btnCopyAll = document.getElementById('btn-copy-all');
+    if (btnCopyAll) btnCopyAll.addEventListener('click', function () {
+      if (!state.revised) return;
+      ['title', 'quote', 'body', 'application', 'thought_for_day'].forEach(function (f) {
+        if (state.revised[f] != null) state.editFields[f] = state.revised[f];
+      });
+      render();
+      showToast('Copied all revised fields → published');
     });
 
     // Review actions

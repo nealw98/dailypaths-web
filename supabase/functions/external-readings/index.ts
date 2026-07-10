@@ -734,25 +734,25 @@ serve(async (req) => {
           );
         }
 
-        // Fetch from prior table (readings_prior)
-        const { data: priorReading, error: priorError } = await externalSupabase
-          .from('readings_prior')
+        // Fetch from revised table (readings_revised)
+        const { data: revisedReading, error: revisedError } = await externalSupabase
+          .from('readings_revised')
           .select('id, title, opening, body, application, quote, thought_for_day, display_date, day_of_year')
           .eq('day_of_year', dayOfYear)
           .maybeSingle();
 
-        if (priorError) {
-          console.error('Error fetching prior reading:', priorError);
+        if (revisedError) {
+          console.error('Error fetching revised reading:', revisedError);
           return new Response(
-            JSON.stringify({ error: priorError.message }),
+            JSON.stringify({ error: revisedError.message }),
             { status: 500, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
           );
         }
 
-        console.log('Current found:', !!originalReading, 'Prior found:', !!priorReading);
+        console.log('Current found:', !!originalReading, 'Revised found:', !!revisedReading);
 
         return new Response(
-          JSON.stringify({ current: originalReading, prior: priorReading }),
+          JSON.stringify({ current: originalReading, revised: revisedReading }),
           { headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
         );
       }
