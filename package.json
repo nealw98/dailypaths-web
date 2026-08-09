@@ -6,7 +6,8 @@
   "scripts": {
     "build": "node build.mjs",
     "build:a": "node build.mjs --version=a",
-    "build:b": "node build.mjs --version=b"
+    "build:b": "node build.mjs --version=b",
+    "build:c": "node build.mjs --version=c"
   },
   "dependencies": {
     "dotenv": "^16.4.7",

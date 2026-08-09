@@ -1,12 +1,22 @@
 import { wrapInLayout } from './base.mjs';
 import { bp, BASE_URL } from '../helpers/config.mjs';
+import { photoHero, pill, appPanel, ripple } from './ui.mjs';
 
+/**
+ * Recovery Essentials.
+ *
+ * The long readings sit in a 900px column of white cards, set in full — the
+ * prototype excerpted them to 3–4 lines and offered a "read the whole passage"
+ * link; with the full text on the page that affordance is gone.
+ *
+ * The prayers move into a full-bleed teal band with the ripple motif.
+ */
 export function renderEssentialsPage() {
-  const mainEssentials = [
+  const readings = [
     {
       id: 'just-for-today',
       title: 'Just for Today',
-      logic: 'A daily discipline of manageable intention. Each line is a small, practical vow that keeps us from spiraling into anxiety about the future or regret about the past.',
+      note: 'Nine reflections',
       paragraphs: [
         'Just for today I will try to live through this day only, and not tackle my whole life problem at once.',
         'Just for today I will be happy. This assumes to be true what Abraham Lincoln said, that &ldquo;most folks are as happy as they make up their minds to be.&rdquo;',
@@ -22,7 +32,7 @@ export function renderEssentialsPage() {
     {
       id: 'just-for-tonight',
       title: 'Just for Tonight',
-      logic: 'The evening companion to &ldquo;Just for Today.&rdquo; It offers a way to close the day with gratitude and surrender, releasing what cannot be fixed tonight.',
+      note: 'Five reflections',
       paragraphs: [
         'Just for tonight, I will be grateful. I will give thanks for the past day &mdash; its failures as well as its successes, its sadness as well as its joy and its pain as well as its pleasure. I will take comfort in knowing that every event and circumstance that occurred today can be used for my good and the good of others.',
         'Just for tonight, I will accept that I have done the best I could, remembering that my goal is spiritual progress and not perfection. I will let go of any expectation I had for this day, as well as any disappointment, shame or guilt I felt for not being perfect today.',
@@ -34,7 +44,8 @@ export function renderEssentialsPage() {
     {
       id: 'let-go',
       title: 'Letting Go',
-      logic: 'A meditation on what detachment actually looks like in practice. Each line redefines &ldquo;letting go&rdquo; as an act of love, not abandonment.',
+      note: 'Thirteen lines',
+      verse: true,
       paragraphs: [
         'To &ldquo;let go&rdquo; does not mean to stop caring, it means I can&rsquo;t do it for someone else.',
         'To &ldquo;let go&rdquo; is not to cut myself off, it&rsquo;s the realization I can&rsquo;t control another.',
@@ -54,7 +65,7 @@ export function renderEssentialsPage() {
     {
       id: 'promises',
       title: 'The Al-Anon Promises',
-      logic: 'A description of the &ldquo;spiritual awakening&rdquo; in action. These promises show us what a life of dignity and purpose looks like after the wreckage has been cleared.',
+      note: 'From Survival to Recovery, p. 269&ndash;270',
       paragraphs: [
         'If we willingly surrender ourselves to the spiritual discipline of the Twelve Steps, our lives will be transformed. We will become mature, responsible individuals with a great capacity for joy, fulfillment, and wonder.',
         'Though we may never be perfect, continued spiritual progress will reveal to us our enormous potential. We will discover that we are worthy of love and loving.',
@@ -72,208 +83,174 @@ export function renderEssentialsPage() {
         'We will laugh more.',
         'Fear will be replaced by faith, and gratitude will come naturally as we realize that our Higher Power is doing for us what we cannot do for ourselves.',
       ],
-      source: 'From Survival to Recovery, p. 269-270',
     },
     {
       id: 'st-francis',
       title: 'Prayer of St. Francis',
-      logic: 'A prayer of radical service. It inverts our instinct to seek comfort and asks us instead to become instruments of peace for others.',
-      noItalic: true,
-      sections: [
-        {
-          lines: [
-            'Lord, make me a channel of thy peace,',
-            'that where there is hatred, I may bring love;',
-            'that where there is wrong, I may bring the spirit of forgiveness;',
-            'that where there is discord, I may bring harmony;',
-            'that where there is error, I may bring truth;',
-            'that where there is doubt, I may bring faith;',
-            'that where there is despair, I may bring hope;',
-            'that where there are shadows, I may bring light;',
-            'that where there is sadness, I may bring joy.',
-          ],
-        },
-        {
-          lines: [
-            'Lord, grant that I may seek rather to',
-            'comfort than to be comforted;',
-            'to understand, than to be understood;',
-            'to love, than to be loved.',
-          ],
-        },
-        {
-          lines: [
-            'For it is by self-forgetting that one finds.',
-            'It is by forgiving that one is forgiven.',
-            'It is by dying that one awakens to Eternal Life.',
-          ],
-        },
+      note: 'St. Francis of Assisi',
+      verse: true,
+      stanzas: [
+        [
+          'Lord, make me a channel of thy peace,',
+          'that where there is hatred, I may bring love;',
+          'that where there is wrong, I may bring the spirit of forgiveness;',
+          'that where there is discord, I may bring harmony;',
+          'that where there is error, I may bring truth;',
+          'that where there is doubt, I may bring faith;',
+          'that where there is despair, I may bring hope;',
+          'that where there are shadows, I may bring light;',
+          'that where there is sadness, I may bring joy.',
+        ],
+        [
+          'Lord, grant that I may seek rather to',
+          'comfort than to be comforted;',
+          'to understand, than to be understood;',
+          'to love, than to be loved.',
+        ],
+        [
+          'For it is by self-forgetting that one finds.',
+          'It is by forgiving that one is forgiven.',
+          'It is by dying that one awakens to Eternal Life.',
+        ],
       ],
-      source: 'St. Francis of Assisi',
     },
   ];
 
-  const recoveryAnchors = [
+  const prayers = [
     {
       id: 'serenity',
       title: 'Serenity Prayer',
-      logic: 'The cornerstone of every meeting. It draws a clean line between what we can and cannot control&mdash;a line most of us have spent years ignoring.',
       lines: [
         'God, grant me the serenity',
         'to accept the things I cannot change,',
         'courage to change the things I can,',
         'and wisdom to know the difference.',
       ],
-      source: 'Reinhold Niebuhr',
+      note: 'Reinhold Niebuhr',
     },
     {
       id: 'third-step',
       title: 'Third Step Prayer',
-      logic: 'The moment of surrender. We offer ourselves&mdash;our will, our plans, our control&mdash;and ask to be used for a purpose greater than our fear.',
-      paragraphs: [
+      lines: [
         'God, I offer myself to Thee &mdash; to build with me and to do with me as Thou wilt. Relieve me of the bondage of self, that I may better do Thy will. Take away my difficulties, that victory over them may bear witness to those I would help of Thy Power, Thy Love, and Thy Way of life. May I do Thy will always!',
-        'Amen.',
       ],
+      note: 'Amen.',
     },
     {
       id: 'seventh-step',
       title: 'Seventh Step Prayer',
-      logic: 'A prayer of willingness. Having identified our character defects, we ask for the strength to let them go&mdash;not through willpower, but through grace.',
-      paragraphs: [
+      lines: [
         'My Creator, I am now willing that you should have all of me, good and bad. I pray that you now remove from me every single defect of character which stands in the way of my usefulness to you and my fellows. Grant me strength, as I go out from here, to do your bidding.',
-        'Amen.',
       ],
+      note: 'Amen.',
     },
     {
       id: 'set-aside',
       title: 'Set Aside Prayer',
-      logic: 'A prayer of openness. It asks us to release what we think we already know so that we can learn something new.',
-      paragraphs: [
-        'Dear God, please help me set aside everything I think I know&mdash;about myself, my disease, the Big Book, the 12 Steps, the Program, the Fellowship, all spiritual terms, and especially you God&mdash;so I may have an open mind and a new experience with all these things. Please help me see the Truth.',
-        'Amen.',
+      lines: [
+        'Dear God, please help me set aside everything I think I know &mdash; about myself, my disease, the Big Book, the 12 Steps, the Program, the Fellowship, all spiritual terms, and especially you God &mdash; so I may have an open mind and a new experience with all these things. Please help me see the Truth.',
       ],
+      note: 'Amen.',
     },
   ];
 
-  const allEssentials = [...mainEssentials, ...recoveryAnchors];
+  // Jump nav — the five readings plus the prayers band
+  const jumpTargets = [
+    ...readings.map(r => ({ id: r.id, label: r.title })),
+    { id: 'prayers', label: 'Recovery Prayers' },
+  ];
 
-  function renderCardBody(item) {
-    let bodyHtml = '';
+  const jumpNav = jumpTargets
+    .map(t => pill(t.label, { href: `#${t.id}` }))
+    .join('\n        ');
 
-    const lineClass = item.noItalic ? 'ess-line ess-line--normal' : 'ess-line';
-
-    if (item.lines) {
-      bodyHtml = `<div class="ess-verse">
-              ${item.lines.map(l => `<p class="${lineClass}">${l}</p>`).join('\n              ')}
-            </div>`;
-    } else if (item.sections) {
-      bodyHtml = item.sections.map(section => {
-        if (section.lines) {
-          return `<div class="ess-verse">
-              ${section.lines.map(l => `<p class="${lineClass}">${l}</p>`).join('\n              ')}
-            </div>`;
-        }
-        return `<p class="ess-text">${section.text}</p>`;
-      }).join('\n            ');
-    } else if (item.paragraphs) {
-      bodyHtml = item.paragraphs.map(p =>
-        `<p class="ess-text">${p}</p>`
-      ).join('\n            ');
+  function renderReadingCard(item) {
+    let lines;
+    if (item.stanzas) {
+      lines = item.stanzas
+        .map(stanza => `<div class="ess-verse">${stanza.map(l => `<p class="ess-line">${l}</p>`).join('')}</div>`)
+        .join('');
+    } else if (item.verse) {
+      lines = `<div class="ess-verse">${item.paragraphs.map(l => `<p class="ess-line">${l}</p>`).join('')}</div>`;
+    } else {
+      lines = item.paragraphs.map(p => `<p class="ess-line">${p}</p>`).join('');
     }
 
-    const sourceHtml = item.source
-      ? `\n            <p class="ess-source">&mdash; ${item.source}</p>`
-      : '';
-
-    return bodyHtml + sourceHtml;
-  }
-
-  // Count lines/paragraphs to determine if truncation is needed (> 3 items)
-  function needsTruncation(item) {
-    if (item.lines) return item.lines.length > 3;
-    if (item.sections) {
-      const lineCount = item.sections.reduce((n, s) => n + (s.lines ? s.lines.length : 1), 0);
-      return lineCount > 3;
-    }
-    if (item.paragraphs) return item.paragraphs.length > 1;
-    return false;
-  }
-
-  function renderCard(item) {
-    const truncatable = needsTruncation(item);
     return `
-          <div class="ess-card" id="${item.id}">
-            <h3 class="ess-card-title">${item.title}</h3>
-            <div class="ess-card-body${truncatable ? ' ess-truncated' : ''}" data-ess-card-body>
-            ${renderCardBody(item)}
-            </div>${truncatable ? `
-            <button class="ess-read-more" data-ess-read-more aria-expanded="false">Read more</button>` : ''}
-          </div>`;
+        <article class="ess-card" id="${item.id}">
+          <h2 class="ess-card-title">${item.title}</h2>
+          <div class="ess-lines">${lines}</div>
+          <div class="ess-card-footer"><p>${item.note}</p></div>
+        </article>`;
   }
 
-  const mainCards = mainEssentials.map(renderCard).join('\n');
-  const anchorCards = recoveryAnchors.map(renderCard).join('\n');
+  const prayerCards = prayers.map(p => `
+            <article class="prayer-card" id="${p.id}">
+              <h3 class="prayer-card-title">${p.title}</h3>
+              ${p.lines.length > 1
+                ? `<p class="prayer-card-body">${p.lines.join('<br>')}</p>`
+                : `<p class="prayer-card-body">${p.lines[0]}</p>`}
+              <p class="prayer-card-note">${p.note}</p>
+            </article>`).join('');
 
   const bodyContent = `
-      <!-- Hero -->
-      <header class="page-hero">
-        <div class="page-hero-image">
-          <img src="${bp('/assets/themes/prayers.jpg')}" alt="Stone cairn on a quiet shore &mdash; Al-Anon recovery essentials" />
-          <div class="page-hero-overlay"></div>
-        </div>
-        <div class="page-hero-content">
-          <h1 class="page-hero-title">Recovery Essentials</h1>
-          <p class="page-hero-subtitle">Inspiration and grounding for daily recovery</p>
-        </div>
-      </header>
+${photoHero({
+    image: bp('/assets/themes/prayers.jpg'),
+    alt: 'Stone cairn on a quiet shore — the essentials of Al-Anon recovery',
+    title: 'Recovery Essentials',
+    subtitle: 'Inspiration and grounding for daily recovery.',
+    size: 'md',
+  })}
 
-      <!-- Anchor Navigation -->
-      <nav class="pr-anchor-nav" id="ess-anchor-nav" aria-label="Essentials navigation">
-        ${allEssentials.map(e => `<a href="#${e.id}" class="pr-anchor-link">${e.title}</a>`).join('\n        ')}
+    <section class="wrap section--sm">
+      <nav class="pill-row" aria-label="Jump to a reading">
+        ${jumpNav}
       </nav>
+    </section>
 
-      <!-- Main Essentials -->
-      <section class="ess-section">
-        <div class="ess-grid">
-${mainCards}
+    <section class="ess-column">
+${readings.map(renderReadingCard).join('\n')}
+    </section>
+
+    <section class="prayer-band" id="prayers">
+      ${ripple(700)}
+      <div class="prayer-band-inner">
+        <p class="eyebrow eyebrow--on-dark">Recovery prayers</p>
+        <h2 class="prayer-band-heading">The prayers you already know</h2>
+        <p class="prayer-band-intro">Set line by line for reading aloud.</p>
+        <div class="prayer-grid">${prayerCards}
         </div>
-      </section>
+      </div>
+    </section>
 
-      <!-- Recovery Anchors -->
-      <section class="ess-section">
-        <h2 class="ess-section-heading">Recovery Prayers</h2>
-        <div class="ess-grid">
-${anchorCards}
-        </div>
-      </section>`;
+    <div class="wrap section--lg" id="get-the-app">
+      ${appPanel({
+        tone: 'seafoam',
+        heading: 'Keep these close, wherever you are.',
+        text: 'Every reading and prayer here lives in the app &mdash; and you can add your own beside them.',
+        context: 'essentials',
+      })}
+    </div>`;
 
-  // Schema.org structured data with HasPart
+  const allEntries = [...readings, ...prayers];
+
   const structuredData = JSON.stringify({
     '@context': 'https://schema.org',
     '@type': 'Article',
-    'headline': 'Recovery Essentials — Al-Anon Daily Paths',
-    'description': 'The foundational readings, prayers, and meditations of the Al-Anon program. A curated reference for recovery essentials including Just for Today, the Serenity Prayer, Letting Go, and more.',
-    'author': {
-      '@type': 'Person',
-      'name': 'Neal W.'
-    },
-    'publisher': {
+    headline: 'Recovery Essentials — Al-Anon Daily Paths',
+    description: 'The foundational readings, prayers, and meditations of the Al-Anon program. A curated reference for recovery essentials including Just for Today, the Serenity Prayer, Letting Go, and more.',
+    author: { '@type': 'Person', name: 'Neal W.' },
+    publisher: {
       '@type': 'Organization',
-      'name': 'Daily Growth, LLC',
-      'logo': {
-        '@type': 'ImageObject',
-        'url': `${BASE_URL}/assets/favicon.png`
-      }
+      name: 'Daily Growth, LLC',
+      logo: { '@type': 'ImageObject', url: `${BASE_URL}/assets/favicon.png` },
     },
-    'mainEntityOfPage': {
-      '@type': 'WebPage',
-      '@id': `${BASE_URL}/essentials/`
-    },
-    'hasPart': allEssentials.map((e, i) => ({
+    mainEntityOfPage: { '@type': 'WebPage', '@id': `${BASE_URL}/essentials/` },
+    hasPart: allEntries.map((e, i) => ({
       '@type': 'CreativeWork',
-      'name': e.title,
-      'position': i + 1
-    }))
+      name: e.title,
+      position: i + 1,
+    })),
   }, null, 2);
 
   return wrapInLayout({
@@ -283,5 +260,7 @@ ${anchorCards}
     bodyContent,
     bodyClass: 'page-essentials',
     structuredData,
+    navSection: 'essentials',
+    hasAppPanel: true,
   });
 }

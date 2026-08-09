@@ -52,6 +52,37 @@ export function renderQuote(quoteText) {
 }
 
 /**
+ * Split a quote field into its body and its parenthetical citation.
+ *
+ * The design system's QuoteBlock sets the two separately — Lora for the
+ * quotation, uppercase Manrope for the attribution — so callers need them
+ * apart rather than as one pre-built blockquote.
+ *
+ * @param {string} quoteText
+ * @returns {{ paragraphs: string[], citation: string }}
+ */
+export function parseQuote(quoteText) {
+  if (!quoteText) return { text: '', citation: '' };
+  const normalized = quoteText.replace(/\\n\\n/g, '\n\n').replace(/\\n/g, '\n');
+  let citation = '';
+  const paragraphs = normalized
+    .split(/\n\n+/)
+    .filter(p => p.trim())
+    .map(para => {
+      let cleaned = para.trim().replace(/^\*+|\*+$/g, '').trim();
+      const attrMatch = cleaned.match(/^(.*?)(\s*\(([^)]+)\)\s*)$/s);
+      if (attrMatch) {
+        const [, quote, , ref] = attrMatch;
+        citation = ref.trim();
+        cleaned = quote.trim();
+      }
+      return markdownToHtml(cleaned);
+    });
+
+  return { paragraphs, citation };
+}
+
+/**
  * Strip markdown and HTML for use in meta descriptions
  */
 export function stripForMeta(text, maxLength = 155) {

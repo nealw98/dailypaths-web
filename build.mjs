@@ -38,8 +38,9 @@ import { renderAboutAlanonPage } from './templates/about-alanon.mjs';
 import { renderStepsIndexPage, renderStepPage, STEPS, STEP_TOOLS, STEP_HOOKS, STEP_TAGLINES, PULL_QUOTES } from './templates/steps.mjs';
 import { renderLiteratureIndexPage, renderLiteraturePage, BOOKS } from './templates/literature.mjs';
 import { renderMonthArchivePage } from './templates/month-archive.mjs';
+import { renderStartPage } from './templates/start.mjs';
 import { renderAdminPage } from './templates/admin.mjs';
-import { wrapInLayout } from './templates/base.mjs';
+import { wrapInLayout, setTodayPath } from './templates/base.mjs';
 import { bp } from './helpers/config.mjs';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -48,7 +49,7 @@ const ROOT = __dirname;
 // Parse CLI args
 const args = process.argv.slice(2);
 const versionArg = args.find(a => a.startsWith('--version='));
-const cssVersion = versionArg ? versionArg.split('=')[1] : 'b';
+const cssVersion = versionArg ? versionArg.split('=')[1] : 'c';
 const outDir = join(ROOT, 'docs');
 
 console.log(`\nDaily Paths Static Site Generator`);
@@ -142,6 +143,7 @@ const dirs = [
   join(outDir, 'support'),
   join(outDir, 'terms'),
   join(outDir, 'essentials'),
+  join(outDir, 'start'),
   join(outDir, 'about-project'),
   join(outDir, 'about-alanon'),
   join(outDir, 'steps'),
@@ -192,6 +194,11 @@ const todayIdx = readings.findIndex(r => r.day_of_year === todayDayOfYear);
 const todayReading = readings[todayIdx >= 0 ? todayIdx : 0];
 const todayPrev = readings[(todayIdx - 1 + readings.length) % readings.length];
 const todayNext = readings[(todayIdx + 1) % readings.length];
+
+// The header's "Today's Reflection" item points here; the client corrects it
+// if the visitor's local date has moved past this build.
+setTodayPath(`/${readingSlug(todayReading.day_of_year, todayReading.title)}/`);
+
 writePage(join(outDir, 'index.html'), renderHomepage(todayReading, todayPrev, todayNext, readings));
 
 // Reading pages
@@ -255,6 +262,7 @@ writePage(join(outDir, 'privacy', 'index.html'), renderPrivacyPage());
 writePage(join(outDir, 'support', 'index.html'), renderSupportPage());
 writePage(join(outDir, 'terms', 'index.html'), renderTermsPage());
 writePage(join(outDir, 'essentials', 'index.html'), renderEssentialsPage());
+writePage(join(outDir, 'start', 'index.html'), renderStartPage(readings));
 writePage(join(outDir, 'about-project', 'index.html'), renderAboutProjectPage());
 writePage(join(outDir, 'about-alanon', 'index.html'), renderAboutAlanonPage());
 // Admin page
@@ -409,6 +417,11 @@ for (const src of logoSources) {
     cpSync(src, join(outDir, 'assets', 'logo.png'));
     break;
   }
+}
+
+// App icon — the header brand lockup (38px) and the home app CTA (64px)
+if (existsSync(join(localAssetsDir, 'app-icon.png'))) {
+  cpSync(join(localAssetsDir, 'app-icon.png'), join(outDir, 'assets', 'app-icon.png'));
 }
 
 // Favicons

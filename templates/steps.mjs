@@ -2,6 +2,9 @@ import { wrapInLayout } from './base.mjs';
 import { bp } from '../helpers/config.mjs';
 import { readingSlug, stepSlug, MONTHS, DAYS_IN_MONTH } from '../helpers/slug-utils.mjs';
 import { markdownToHtml } from '../helpers/markdown.mjs';
+import {
+  photoHero, quoteBlock, detailRail, appPanel, readingCard, icon, ripple, storeBadges,
+} from './ui.mjs';
 
 /**
  * Step data — shared between the index and individual step pages.
@@ -239,72 +242,54 @@ export const STEPS = [
 ];
 
 /**
- * Generate the Steps index page — overview of all 12 steps with links.
+ * Generate the Steps index page — all twelve Steps as cards.
  */
 export function renderStepsIndexPage() {
-  const gridCards = STEPS.map(step => {
-    const hook = STEP_HOOKS[step.number] || '';
-    return `
-          <a href="${bp(`/steps/${stepSlug(step.number, step.principle)}/`)}" class="si-grid-card">
-            <span class="si-grid-card-number">${step.number}</span>
-            <span class="si-grid-card-principle">${step.principle}</span>
-            <p class="si-grid-card-hook">${hook}</p>
-          </a>`;
-  }).join('\n');
+  const gridCards = STEPS.map(step => `
+          <a href="${bp(`/steps/${stepSlug(step.number, step.principle)}/`)}" class="card-elevated step-card">
+            <span class="step-card-numeral">${step.number}</span>
+            <span>
+              <span class="step-card-keyword">${step.principle}</span>
+              <span class="step-card-hook">${STEP_HOOKS[step.number] || ''}</span>
+              <span class="step-card-cta">Read the Step &rarr;</span>
+            </span>
+          </a>`).join('');
 
   const bodyContent = `
-      <!-- Hero -->
-      <header class="page-hero">
-        <div class="page-hero-image">
-          <img src="${bp('/assets/themes/steps_hero.jpg')}" alt="Ocean path at sunrise \u2014 The Twelve Steps of Al-Anon recovery" />
-          <div class="page-hero-overlay page-hero-overlay--gradient"></div>
-        </div>
-        <div class="page-hero-content">
-          <h1 class="page-hero-title">The Twelve Steps</h1>
-          <p class="page-hero-subtitle">A Framework for Personal Freedom</p>
-        </div>
-      </header>
+${photoHero({
+    image: bp('/assets/themes/steps-hub-hero.jpg'),
+    alt: 'Coastal path at first light — the Twelve Steps of Al-Anon recovery',
+    title: 'The Twelve Steps',
+    subtitle: 'A framework for personal freedom',
+    size: 'sm',
+  })}
 
-      <!-- Steps Grid -->
-      <div class="si-grid-wrap">
-        <div class="si-grid">
-${gridCards}
-        </div>
+    <section class="wrap section--md">
+      <div class="step-card-grid step-card-grid--index">${gridCards}
       </div>
+    </section>
 
-      <!-- Engine CTA -->
-      <section class="si-engine-cta bg-navy">
-        <div class="si-engine-cta-inner">
-          <h2 class="si-engine-cta-heading">Take your Step work further.</h2>
-          <p class="si-engine-cta-text">The Al-Anon Daily Paths app isn&rsquo;t just for reading&mdash;it&rsquo;s for growing. Use our built-in journaling tools to record your progress through the Steps and Traditions, all in one private place.</p>
-          <div class="si-engine-cta-badges">
-            <a href="https://apps.apple.com/app/id6755981862" target="_blank" rel="noopener noreferrer" class="si-engine-cta-badge-link">
-              <img src="https://developer.apple.com/app-store/marketing/guidelines/images/badge-download-on-the-app-store.svg" alt="Download on the App Store" class="si-engine-cta-badge">
-            </a>
-            <a href="https://play.google.com/store/apps/details?id=com.nealw98.dailypaths" target="_blank" rel="noopener noreferrer" class="si-engine-cta-badge-link">
-              <img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" alt="Get it on Google Play" class="si-engine-cta-badge si-engine-cta-badge-play">
-            </a>
-          </div>
-        </div>
-      </section>
-
-      <!-- Attribution -->
-      <div class="si-attribution-wrap">
-        <p class="si-attribution">
-          The Twelve Steps are adapted from Alcoholics Anonymous and used by
-          Al-Anon Family Groups. For the official Al-Anon perspective on the Steps,
-          visit <a href="https://al-anon.org/for-members/the-legacies/the-twelve-steps/" target="_blank" rel="noopener noreferrer">al-anon.org</a>.
-        </p>
-      </div>`;
+    <div class="wrap section--md" id="get-the-app">
+      ${appPanel({
+        tone: 'white',
+        heading: 'Take your Step work further.',
+        text: 'The app isn&rsquo;t just for reading &mdash; use the built-in journaling tools to record your progress through the Steps and Traditions, all in one private place.',
+        context: 'steps',
+      })}
+      <p class="fine-print">The Twelve Steps are adapted from Alcoholics Anonymous and used by Al-Anon Family Groups. For the official Al-Anon perspective on the Steps, visit <a href="https://al-anon.org/for-members/the-legacies/the-twelve-steps/" target="_blank" rel="noopener noreferrer">al-anon.org</a>.</p>
+    </div>`;
 
   return wrapInLayout({
-    title: 'The 12 Steps of Al-Anon &mdash; Recovery Reflections & Questions | Al-Anon Daily Paths',
+    title: 'The 12 Steps of Al-Anon — Recovery Reflections & Questions | Al-Anon Daily Paths',
     description: 'Explore the Twelve Steps of Al-Anon with reflection questions for each step. Each month of Al-Anon Daily Paths readings focuses on one step.',
     canonicalPath: '/steps/',
     bodyContent,
     bodyClass: 'page-steps-index',
+    navSection: 'steps',
+    hasAppPanel: true,
   });
 }
+
 
 /** Step tools — practical actions for working each step */
 export const STEP_TOOLS = {
@@ -390,34 +375,55 @@ function getMonthDayRange(monthIndex) {
 /**
  * Generate an individual step page.
  *
+ * Step rail, photo hero, then an 820px column: the Step text in a teal-edged
+ * quote panel, the body sections, Questions for Reflection, Step N in Action.
+ * The daily-practice reading grid and the app CTA sit in the wider column.
+ *
  * @param {Object} step - Step data from STEPS array
- * @param {Array} [readings] - All 366 readings (optional, for daily reading cards)
+ * @param {Array} [readings] - All 366 readings (for the daily practice grid)
  */
 export function renderStepPage(step, readings = []) {
   const prevStep = STEPS[(step.number - 2 + 12) % 12];
   const nextStep = STEPS[step.number % 12];
 
-  const monthIndex = step.number - 1;
   const tools = STEP_TOOLS[step.number] || [];
   const tagline = STEP_TAGLINES[step.number] || `The Principle of ${step.principle}`;
-  // All steps use the shared steps_hero.jpg with blur + navy overlay
+  const stepWord = wordNumber(step.number);
 
-  // Build description paragraphs with strategic links to Essentials
-  const descParagraphs = step.description || [];
-  const bodyParagraphs = descParagraphs.map(p => {
-    let text = p;
-    // Link "Let Go and Let God" to Essentials Letting Go card
-    text = text.replace(
+  // Body sections. A description paragraph that is entirely bold is a section
+  // heading in the source data — the design sets those as Cormorant H2s over
+  // the Lora paragraphs that follow, so promote them rather than emitting a
+  // bold paragraph. "Let Go and Let God" links through to Essentials.
+  const sections = [];
+  for (const paragraph of step.description || []) {
+    const linked = paragraph.replace(
       /Let Go and Let God/g,
       `<a href="${bp('/essentials/#let-go')}">Let Go and Let God</a>`
     );
-    return `          <p>${markdownToHtml(text)}</p>`;
+    const headingMatch = linked.match(/^\s*\*\*(.+?)\*\*\s*$/);
+    if (headingMatch) {
+      sections.push({ heading: headingMatch[1], paragraphs: [] });
+    } else {
+      if (sections.length === 0) sections.push({ heading: null, paragraphs: [] });
+      sections[sections.length - 1].paragraphs.push(linked);
+    }
+  }
+
+  const bodySections = sections.map(section => {
+    const heading = section.heading
+      ? `<h2 class="step-body-heading">${markdownToHtml(section.heading)}</h2>`
+      : '';
+    const paras = section.paragraphs.map(p => `<p>${markdownToHtml(p)}</p>`).join('\n            ');
+    return `          <div class="step-body-section">${heading}
+            ${paras}
+          </div>`;
   }).join('\n');
 
-  // Build reflection questions
-  const questionItems = (step.questions || []).map(q =>
-    `              <li>${markdownToHtml(q)}</li>`
-  ).join('\n');
+  const questionItems = (step.questions || []).map(q => `
+              <li>
+                ${icon('feather', { size: 18 })}
+                <span class="questions-text">${markdownToHtml(q)}</span>
+              </li>`).join('');
 
   // Theme URL mapping — links each step to its primary principle page
   const STEP_THEME_URLS = {
@@ -436,141 +442,99 @@ export function renderStepPage(step, readings = []) {
   };
   const themeInfo = STEP_THEME_URLS[step.number];
 
-  // Build tools list — prepend anchor link to readings grid
-  const anchorItem = `<a href="#step-readings" class="step-tools-anchor">View all ${step.month} Daily Reflections on Step ${step.number}</a>`;
-  const toolItems = [`              <li>${anchorItem}</li>`, ...tools.map(t => `              <li>${t}</li>`)].join('\n');
+  const toolItems = [
+    `<li><a href="#step-readings">View all ${step.month} reflections on Step ${step.number}</a></li>`,
+    ...tools.map(t => `<li><span>${t}</span></li>`),
+  ].map(li => `              ${li}`).join('\n');
 
-  // Build associated readings — all readings tagged with this step_theme across the year
+  // Readings tagged to this Step across the year
   const stepTag = `Step ${step.number}`;
   const associatedReadings = readings.filter(r => r.step_theme === stepTag);
-  let associatedHtml = '';
-  if (associatedReadings.length > 0) {
-    const assocItems = associatedReadings.map(r => {
-      const rSlug = readingSlug(r.day_of_year, r.title);
-      return `
-              <a href="${bp(`/${rSlug}/`)}" class="step-assoc-card">
-                <span class="step-assoc-date">${r.display_date}</span>
-                <span class="step-assoc-title">${r.title}</span>
-              </a>`;
-    }).join('\n');
 
-    associatedHtml = `
-      <section class="step-assoc-section" id="step-readings">
-        <h2 class="step-assoc-heading">Daily Practice: Step ${step.number} in ${step.month}</h2>
-        <p class="step-assoc-intro">
-          Each month in the Daily Paths app focuses on a specific Step. ${step.month} is dedicated to the Principle of ${step.principle} and Step ${step.number}. Explore the reflections below.
-        </p>
-        <p class="step-assoc-intro">
-          ${associatedReadings.length} reading${associatedReadings.length === 1 ? '' : 's'} across the year explore the principle of ${step.principle}. Deep dive into this principle via the <a href="${bp(`/themes/${themeInfo.slug}/`)}" class="step-assoc-theme-link">${themeInfo.name}</a> theme.
-        </p>
-        <p class="step-assoc-micro-cta"><em>Find these readings and track your progress daily in the app.</em></p>
-        <div class="step-assoc-grid">
-${assocItems}
-        </div>
-      </section>`;
+  let dailyPracticeHtml = '';
+  if (associatedReadings.length > 0) {
+    const cards = associatedReadings.map(r => readingCard({
+      href: bp(`/${readingSlug(r.day_of_year, r.title)}/`),
+      date: r.display_date,
+      title: r.title,
+    })).join('\n');
+
+    dailyPracticeHtml = `
+    <section class="wrap section--lg" id="step-readings">
+      <p class="eyebrow">Daily practice</p>
+      <h2 class="daily-practice-heading">Step ${step.number} in ${step.month}</h2>
+      <p class="daily-practice-intro">Each month in the app focuses on one Step. ${step.month} is dedicated to the principle of ${step.principle}. ${associatedReadings.length} reading${associatedReadings.length === 1 ? '' : 's'} across the year explore it &mdash; deep dive through the <a href="${bp(`/themes/${themeInfo.slug}/`)}">${themeInfo.name}</a> theme.</p>
+      <div class="reading-grid daily-practice-grid">
+${cards}
+      </div>
+    </section>`;
   }
 
-  // Hero section — all steps use shared blurred hero
-  const heroHtml = `
-      <header class="step-hero step-hero--image">
-        <div class="step-hero-image">
-          <img src="${bp('/assets/themes/steps_hero.jpg')}" alt="Ocean path \u2014 Step ${step.number} of Al-Anon: ${step.principle}" />
-          <div class="step-hero-overlay"></div>
-        </div>
-        <div class="step-hero-content">
-          <h1 class="step-hero-title">Step ${wordNumber(step.number)}</h1>
-          <p class="step-hero-tagline">${tagline.toUpperCase()}</p>
-        </div>
-      </header>`;
-
   const bodyContent = `
-    <article class="step-editorial">
-      <!-- Navigation -->
-      <nav class="step-nav-header">
-        <a href="${bp(`/steps/${stepSlug(prevStep.number, prevStep.principle)}/`)}" class="nav-prev">
-          <span class="nav-arrow">&larr;</span>
-          <span class="nav-label">Step ${prevStep.number}: ${prevStep.principle}</span>
-        </a>
-        <a href="${bp('/steps/')}" class="nav-browse">All Steps</a>
-        <a href="${bp(`/steps/${stepSlug(nextStep.number, nextStep.principle)}/`)}" class="nav-next">
-          <span class="nav-label">Step ${nextStep.number}: ${nextStep.principle}</span>
-          <span class="nav-arrow">&rarr;</span>
-        </a>
-      </nav>
+${detailRail({
+    prevHref: bp(`/steps/${stepSlug(prevStep.number, prevStep.principle)}/`),
+    prevLabel: `Step ${prevStep.number}: ${prevStep.principle}`,
+    allHref: bp('/steps/'),
+    allLabel: 'All Steps',
+    nextHref: bp(`/steps/${stepSlug(nextStep.number, nextStep.principle)}/`),
+    nextLabel: `Step ${nextStep.number}: ${nextStep.principle}`,
+  })}
 
-      <!-- Hero Section -->
-${heroHtml}
+${photoHero({
+    image: bp('/assets/themes/steps-hub-hero.jpg'),
+    alt: `Coastal path at first light — Step ${step.number} of Al-Anon: ${step.principle}`,
+    eyebrow: tagline,
+    title: `Step ${stepWord}`,
+    size: 'lg',
+    titleClass: 'photo-hero-title--step',
+  })}
 
-      <!-- Step Definition — Editorial Pull Quote -->
-      <section class="step-definition">
-        <blockquote class="step-definition-quote">
-          <p>${step.text}</p>
-        </blockquote>
-      </section>
-
-      <!-- Body Content -->
-      <section class="step-body">
-        <div class="step-body-text" data-step-body-text>
-${bodyParagraphs}
-        </div>
-        <button class="step-read-more" data-step-read-more hidden aria-expanded="false">Read more</button>
-      </section>
-    </article>
-
-    <!-- Questions for Reflection -->
-    ${step.questions && step.questions.length > 0 ? `
-    <div class="bg-terracotta">
-      <div class="step-questions">
-        <h2 class="step-questions-heading">Questions for Reflection</h2>
-        <p class="step-questions-intro">
-          Take your time with these questions. There are no right answers &mdash;
-          only honest ones.
-        </p>
-        <ul class="step-questions-list">
-${questionItems}
-        </ul>
+    <article class="rd-article">
+      <div class="quote-panel">
+        ${quoteBlock({ text: step.text, attribution: `Step ${stepWord}` })}
       </div>
-    </div>` : ''}
 
-    <!-- Deep Dive: Step Tools -->
-    ${tools.length > 0 ? `
-    <div class="bg-sage">
-      <div class="step-tools">
-        <h2 class="step-tools-heading">Step ${step.number} in Action</h2>
-        <ul class="step-tools-list">
+${bodySections}
+
+      ${step.questions && step.questions.length > 0 ? `<div class="panel-outlined questions-card">
+        <h2 class="questions-heading">Questions for Reflection</h2>
+        <p class="questions-intro">Take your time with these. There are no right answers &mdash; only honest ones.</p>
+        <ul class="questions-list">${questionItems}
+        </ul>
+      </div>` : ''}
+
+      ${tools.length > 0 ? `<div class="panel-seafoam action-panel">
+        <h2 class="action-panel-heading">Step ${step.number} in Action</h2>
+        <ul class="action-list">
 ${toolItems}
         </ul>
-        <p class="step-tools-resource">
-          Go deeper with Al-Anon&rsquo;s
-          <a href="https://ecomm.al-anon.org/EN/ItemDetail?iProductCode=B24" target="_blank" rel="noopener noreferrer"><em>Paths to Recovery</em></a>.
-        </p>
-      </div>
-    </div>` : ''}
+        <p class="action-panel-resource">Go deeper with Al-Anon&rsquo;s <a href="https://ecomm.al-anon.org/EN/ItemDetail?iProductCode=B24" target="_blank" rel="noopener noreferrer"><em>Paths to Recovery</em></a>.</p>
+      </div>` : ''}
+    </article>
+${dailyPracticeHtml}
 
-    <!-- App CTA — full-bleed navy transition -->
-    <section class="step-engine-cta bg-navy">
-      <div class="step-engine-cta-inner">
-        <h2 class="step-engine-cta-heading">Deepen your work on Step ${step.number}.</h2>
-        <p class="step-engine-cta-text">Our journaling tools are designed to help you process Step ${step.number} in real-time. Use the Al-Anon Daily Paths app to track your insights and receive daily reminders for your recovery journey.</p>
-        <div class="step-engine-cta-badges">
-          <a href="https://apps.apple.com/app/id6755981862" target="_blank" rel="noopener noreferrer" class="step-engine-cta-badge-link">
-            <img src="https://developer.apple.com/app-store/marketing/guidelines/images/badge-download-on-the-app-store.svg" alt="Download on the App Store" class="step-engine-cta-badge">
-          </a>
-          <a href="https://play.google.com/store/apps/details?id=com.nealw98.dailypaths" target="_blank" rel="noopener noreferrer" class="step-engine-cta-badge-link">
-            <img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" alt="Get it on Google Play" class="step-engine-cta-badge step-engine-cta-badge-play">
-          </a>
+    <div class="wrap section--md" id="get-the-app">
+      <div class="panel-gradient">
+        ${ripple(520)}
+        <div class="app-panel-inner">
+          <div class="app-panel-text">
+            <h2 class="app-panel-heading">Deepen your work on Step ${step.number}.</h2>
+            <p class="app-panel-body">The journaling tools help you process Step ${step.number} in real time &mdash; track your insights and get a daily reminder.</p>
+          </div>
+          <div class="app-panel-actions">
+            ${storeBadges({ context: 'step' })}
+          </div>
         </div>
       </div>
-    </section>
-
-    <!-- Associated Readings (Hub & Spoke) -->
-${associatedHtml}`;
+    </div>`;
 
   return wrapInLayout({
-    title: `Step ${step.number}: ${step.principle} &mdash; Al-Anon 12 Steps | Al-Anon Daily Paths`,
+    title: `Step ${step.number}: ${step.principle} — Al-Anon 12 Steps | Al-Anon Daily Paths`,
     description: `Explore Step ${step.number} of Al-Anon's Twelve Steps with reflection questions and daily readings for ${step.month}. Recovery guidance from Al-Anon Daily Paths.`,
     canonicalPath: `/steps/${stepSlug(step.number, step.principle)}/`,
     bodyContent,
     bodyClass: 'page-step-detail',
+    navSection: 'steps',
+    hasAppPanel: true,
   });
 }

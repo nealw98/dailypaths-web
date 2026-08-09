@@ -1,104 +1,150 @@
 import { wrapInLayout } from './base.mjs';
 import { homepageStructuredData } from '../helpers/seo.mjs';
-import { readingSlug } from '../helpers/slug-utils.mjs';
+import { readingSlug, stepSlug } from '../helpers/slug-utils.mjs';
 import { bp } from '../helpers/config.mjs';
+import { STEPS, STEP_HOOKS } from './steps.mjs';
+import { TOPICS } from '../helpers/theme-data.mjs';
+import { icon, appPanel, sectionHeader, tealBand, glassPanel } from './ui.mjs';
 
 /**
- * Generate the homepage HTML — Premium Magazine Cover layout.
+ * Generate the homepage — "reading-first" hero.
+ *
+ * The reflection itself opens the page on the sand background; there is no
+ * marketing hero and no separate today's-reflection card (it would duplicate).
  *
  * @param {Object} todayReading - Today's reading object
- * @param {Object} prevReading - Previous day's reading (for nav)
- * @param {Object} nextReading - Next day's reading (for nav)
- * @param {Array} [allReadings] - All 366 readings (for related readings sidebar)
+ * @param {Object} prevReading - Previous day's reading (unused; kept for signature stability)
+ * @param {Object} nextReading - Next day's reading (unused; kept for signature stability)
+ * @param {Array} [allReadings] - All 366 readings
  */
 export function renderHomepage(todayReading, prevReading, nextReading, allReadings = []) {
   const structuredData = homepageStructuredData();
   const slug = readingSlug(todayReading.day_of_year, todayReading.title);
+  const readingHref = bp(`/${slug}/`);
 
-  // Build a plain-text preview (~200 chars) from the opening
+  // Plain-text excerpt (~200 chars) from the opening
   const rawText = (todayReading.opening || todayReading.body || '')
     .replace(/\\n/g, ' ')
     .replace(/\*\*(.+?)\*\*/g, '$1')
     .replace(/\*(.+?)\*/g, '$1')
     .replace(/\s+/g, ' ')
     .trim();
-  const preview = rawText.length > 200
-    ? rawText.slice(0, 200).replace(/\s+\S*$/, '') + '\u2026'
+  const excerpt = rawText.length > 200
+    ? rawText.slice(0, 200).replace(/\s+\S*$/, '') + '…'
     : rawText;
 
+  // First four Steps
+  const stepCards = STEPS.slice(0, 4).map(step => `
+            <a href="${bp(`/steps/${stepSlug(step.number, step.principle)}/`)}" class="card-elevated step-card">
+              <span class="step-card-numeral">${step.number}</span>
+              <span>
+                <span class="step-card-keyword">${step.principle}</span>
+                <span class="step-card-hook">${STEP_HOOKS[step.number] || ''}</span>
+              </span>
+            </a>`).join('');
+
+  // First three Themes
+  const themeCards = TOPICS.slice(0, 3).map(topic => `
+            <a href="${bp(`/themes/${topic.slug}/`)}" class="card-tinted theme-preview-card">
+              <span class="theme-preview-title">${topic.name}</span>
+              <span class="theme-preview-line">${topic.shortDescription}</span>
+              <span class="theme-preview-cta">Explore &rarr;</span>
+            </a>`).join('');
+
+  const newcomerBand = tealBand({
+    eyebrow: 'New here',
+    heading: 'Are you affected by someone else&rsquo;s drinking?',
+    body: 'Al-Anon is a fellowship for families and friends of alcoholics. Whether you&rsquo;re living with a problem drinker, grew up in an alcoholic family, or love someone struggling with addiction &mdash; you don&rsquo;t have to face it alone.',
+    actions: `<a href="${bp('/start/')}" class="btn btn--secondary">Start here &rarr;</a>
+            <a href="${bp('/about-alanon/')}" class="link-on-dark">What Al-Anon is</a>`,
+    aside: glassPanel({
+      label: 'Recovery essentials',
+      lines: [
+        'God, grant me the serenity',
+        'to accept the things I cannot change,',
+        'courage to change the things I can,',
+        'and wisdom to know the difference.',
+      ],
+      caption: 'Serenity Prayer',
+    }),
+  });
+
   const bodyContent = `
-    <!-- Magazine Cover Hero -->
-    <section class="hm-hero">
-      <div class="hm-hero-image">
-        <img src="${bp('/assets/hero-image.jpg')}" alt="Sunlit meadow path representing the Al-Anon recovery journey \u2014 Al-Anon Daily Paths" />
-        <div class="hm-hero-overlay"></div>
-      </div>
-      <div class="hm-hero-content">
-        <h1 class="hm-hero-title">Finding Your Path</h1>
-        <p class="hm-hero-tagline">Daily reflections and tools for the Al-Anon journey</p>
-      </div>
-    </section>
-
-    <!-- Today's Reflection — Editorial Teaser -->
-    <section class="hm-today">
-      <div class="hm-today-inner">
-        <span class="hm-today-label">Today&rsquo;s Reflection</span>
-        <p class="hm-today-date">${todayReading.display_date}</p>
-        <h2 class="hm-today-title">${todayReading.title}</h2>
-        <p class="hm-today-preview">${preview}</p>
-        <a href="${bp(`/${slug}/`)}" class="hm-today-btn">Read More &rarr;</a>
-      </div>
-    </section>
-
-    <!-- Content Pillar: The Steps — sage band -->
-    <section class="hm-pillar bg-sage">
-      <div class="hm-pillar-inner">
-        <h2 class="hm-pillar-heading">The Twelve Steps</h2>
-        <p class="hm-pillar-text">A month-by-month framework for personal freedom. Each Step builds on the last &mdash; from admitting powerlessness to finding a life of purpose and service.</p>
-        <a href="${bp('/steps/')}" class="hm-pillar-btn">Explore the Steps &rarr;</a>
-      </div>
-    </section>
-
-    <!-- Content Pillar: Al-Anon Themes — terracotta band -->
-    <section class="hm-pillar bg-terracotta">
-      <div class="hm-pillar-inner">
-        <h2 class="hm-pillar-heading">Al-Anon Themes</h2>
-        <p class="hm-pillar-text">Explore daily reflections through the universal themes that weave through our recovery &mdash; detachment, boundaries, gratitude, hope, and more.</p>
-        <a href="${bp('/themes/')}" class="hm-pillar-btn">Explore Themes &rarr;</a>
-      </div>
-    </section>
-
-    <!-- Al-Anon Intro — pearl band -->
-    <section class="hm-pillar bg-pearl">
-      <div class="hm-pillar-inner">
-        <h2 class="hm-pillar-heading">Are You Affected by Someone Else&rsquo;s Drinking?</h2>
-        <p class="hm-pillar-text">Al-Anon is a fellowship for families and friends of alcoholics. Whether you&rsquo;re living with a problem drinker, grew up in an alcoholic family, or love someone struggling with addiction &mdash; you don&rsquo;t have to face it alone.</p>
-        <a href="${bp('/about-alanon/')}" class="hm-pillar-btn">Learn More About Al-Anon &rarr;</a>
-      </div>
-    </section>
-
-    <!-- Engine CTA — navy band -->
-    <section class="hm-engine bg-navy">
-      <div class="hm-engine-inner">
-        <h2 class="hm-engine-heading">Serenity is a daily practice. Let us walk the path with you.</h2>
-        <p class="hm-engine-text">Download Al-Anon Daily Paths to receive daily notifications, track your recovery milestones, and journal your reflections in a private, secure space.</p>
-        <div class="hm-engine-badges">
-          <a href="https://apps.apple.com/app/id6755981862" target="_blank" rel="noopener noreferrer" class="hm-engine-badge-link">
-            <img src="https://developer.apple.com/app-store/marketing/guidelines/images/badge-download-on-the-app-store.svg" alt="Download on the App Store" class="hm-engine-badge">
-          </a>
-          <a href="https://play.google.com/store/apps/details?id=com.nealw98.dailypaths" target="_blank" rel="noopener noreferrer" class="hm-engine-badge-link">
-            <img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" alt="Get it on Google Play" class="hm-engine-badge hm-engine-badge-play">
-          </a>
+    <!-- Hero: today's reflection opens the page -->
+    <section class="home-hero">
+      <div class="home-hero-inner">
+        <div>
+          <p class="eyebrow">
+            ${icon('lightOnWater', { size: 18 })}
+            <span>Today&rsquo;s Reflection &middot; <span data-today-date>${todayReading.display_date}</span></span>
+          </p>
+          <h1 class="home-hero-title" data-today-title>${todayReading.title}</h1>
+          <p class="home-hero-excerpt" data-today-excerpt>${excerpt}</p>
+          <div class="btn-row">
+            <a href="${readingHref}" class="btn btn--lg" data-today-cta>Continue reading</a>
+            <a href="#get-the-app" class="btn btn--lg btn--ghost">Get the app</a>
+          </div>
+        </div>
+        <div class="home-hero-photo">
+          <img src="${bp('/assets/hero-image.jpg')}" alt="Sunlit meadow path — the Al-Anon recovery journey" width="880" height="620">
         </div>
       </div>
-    </section>`;
+    </section>
+
+    <!-- A door, not a pitch -->
+    <section class="wrap section--sm">
+      <a href="${bp('/start/')}" class="newcomer-strip">
+        ${icon('lightOnWater', { size: 18, className: 'newcomer-strip-icon' })}
+        <span class="newcomer-strip-label">New here?</span>
+        <span class="newcomer-strip-cta">Find out if Al-Anon is for you &rarr;</span>
+      </a>
+    </section>
+
+    <!-- The Twelve Steps -->
+    <section class="wrap section">
+      ${sectionHeader({
+        heading: 'The Twelve Steps',
+        description: 'A month-by-month framework for personal freedom. Each Step builds on the last &mdash; from admitting powerlessness to finding a life of purpose and service.',
+        linkHref: bp('/steps/'),
+        linkLabel: 'Explore the Steps &rarr;',
+      })}
+      <div class="step-card-grid">${stepCards}
+      </div>
+    </section>
+
+    <!-- Al-Anon Themes -->
+    <section class="wrap section">
+      ${sectionHeader({
+        heading: 'Al-Anon Themes',
+        description: 'The universal ideas that weave through recovery &mdash; detachment, boundaries, gratitude, hope, and more.',
+        linkHref: bp('/themes/'),
+        linkLabel: 'Explore Themes &rarr;',
+      })}
+      <div class="theme-preview-grid">${themeCards}
+      </div>
+    </section>
+
+${newcomerBand}
+
+    <!-- App CTA -->
+    <div class="wrap section" id="get-the-app">
+      ${appPanel({
+        tone: 'white',
+        heading: 'Serenity is a daily practice. Let us walk the path with you.',
+        text: 'Download Al-Anon Daily Paths to receive daily notifications, track your recovery milestones, and journal your reflections in a private, secure space.',
+        showIcon: true,
+        context: 'home',
+      })}
+    </div>`;
 
   return wrapInLayout({
-    title: 'Al-Anon Daily Paths \u2014 Daily Reflections for Recovery',
+    title: 'Al-Anon Daily Paths — Daily Reflections for Recovery',
     description: 'Free daily Al-Anon reflections for your recovery journey. 366 original readings grounded in the Twelve Steps, written in the contemplative tradition of Al-Anon literature.',
     canonicalPath: '/',
     bodyContent,
     structuredData,
     bodyClass: 'page-home',
+    navSection: 'home',
+    hasAppPanel: true,
   });
 }

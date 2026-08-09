@@ -49,6 +49,7 @@ export function generateSitemap(readings, topics, books = [], steps = []) {
 
   // Static pages
   urls.push({ loc: BASE_URL + '/essentials/', priority: '0.6', changefreq: 'monthly' });
+  urls.push({ loc: BASE_URL + '/start/', priority: '0.8', changefreq: 'monthly' });
   urls.push({ loc: BASE_URL + '/about-alanon/', priority: '0.6', changefreq: 'monthly' });
   urls.push({ loc: BASE_URL + '/about-project/', priority: '0.5', changefreq: 'monthly' });
   urls.push({ loc: BASE_URL + '/privacy/', priority: '0.3', changefreq: 'monthly' });

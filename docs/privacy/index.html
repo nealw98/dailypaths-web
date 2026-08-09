@@ -6,6 +6,7 @@
   <title>Privacy Policy | Al-Anon Daily Paths</title>
   <meta name="description" content="Al-Anon Daily Paths privacy policy. Learn how we protect your privacy with anonymous-only data collection.">
   <link rel="canonical" href="https://dailypaths.org/privacy/">
+  <meta name="theme-color" content="#f4f1ea">
 
   <!-- Open Graph -->
   <meta property="og:title" content="Privacy Policy | Al-Anon Daily Paths">
@@ -29,13 +30,13 @@
   <link rel="icon" type="image/x-icon" sizes="256x256" href="/assets/favicon.ico">
   <link rel="apple-touch-icon" sizes="512x512" href="/assets/favicon.png">
 
-  <!-- Fonts -->
+  <!-- Fonts — Cormorant Garamond (display), Manrope (UI), Lora (reading) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600;1,700&family=Inter:wght@300;400;500&family=Lora:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Manrope:wght@400;500;600;700&family=Lora:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
 
   <!-- Styles -->
-  <link rel="stylesheet" href="/css/style.css?v=1786254229058">
+  <link rel="stylesheet" href="/css/style.css?v=1786317846968">
 
   
 
@@ -70,27 +71,46 @@
   </script>
 </head>
 <body class="page-privacy">
+  <a href="#main" class="skip-link">Skip to content</a>
+
   <header class="site-header">
     <div class="header-inner">
-      <a href="/" class="site-logo">
-        <span class="site-name">Al-Anon Daily Paths</span>
+      <a href="/" class="brand">
+        <img src="/assets/app-icon.png" alt="" class="brand-icon" width="38" height="38">
+        <span class="brand-text">
+          <span class="brand-name">Al-Anon Daily Paths</span>
+          <span class="brand-sub">Daily reflections</span>
+        </span>
       </a>
-      <button class="menu-toggle" data-menu-toggle aria-label="Toggle menu" aria-expanded="false">
-        <span class="menu-bar"></span>
-        <span class="menu-bar"></span>
-        <span class="menu-bar"></span>
-      </button>
-      <nav class="site-nav" data-mobile-menu>
+      <span class="header-divider" aria-hidden="true"></span>
+      <nav class="site-nav" aria-label="Main navigation">
         <a href="/" class="nav-link">Home</a>
+        <a href="/august-9-let-go-and-let-god/" class="nav-link" data-today-link>Today's Reflection</a>
         <a href="/steps/" class="nav-link">Steps</a>
         <a href="/themes/" class="nav-link">Themes</a>
         <a href="/essentials/" class="nav-link">Essentials</a>
         <a href="/about-alanon/" class="nav-link">Al-Anon</a>
       </nav>
+      <a href="/#get-the-app" class="btn btn--sm header-cta">Get the app</a>
+      <button type="button" class="menu-toggle" data-menu-toggle aria-expanded="false" aria-controls="mobile-menu">
+        <span class="menu-glyph" aria-hidden="true"><span></span><span></span><span></span></span>
+        <span data-menu-label>Menu</span>
+      </button>
+    </div>
+    <div class="mobile-menu" id="mobile-menu" data-mobile-menu hidden>
+      <nav aria-label="Mobile navigation">
+        <a href="/" class="mobile-menu-row">Home<svg class="dp-icon mobile-menu-chevron" width="16" height="16" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 8l8 8-8 8" stroke-width="2"/></svg></a>
+        <a href="/august-9-let-go-and-let-god/" class="mobile-menu-row" data-today-link>Today's Reflection<svg class="dp-icon mobile-menu-chevron" width="16" height="16" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 8l8 8-8 8" stroke-width="2"/></svg></a>
+        <a href="/steps/" class="mobile-menu-row">Steps<svg class="dp-icon mobile-menu-chevron" width="16" height="16" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 8l8 8-8 8" stroke-width="2"/></svg></a>
+        <a href="/themes/" class="mobile-menu-row">Themes<svg class="dp-icon mobile-menu-chevron" width="16" height="16" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 8l8 8-8 8" stroke-width="2"/></svg></a>
+        <a href="/essentials/" class="mobile-menu-row">Essentials<svg class="dp-icon mobile-menu-chevron" width="16" height="16" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 8l8 8-8 8" stroke-width="2"/></svg></a>
+        <a href="/about-alanon/" class="mobile-menu-row">Al-Anon<svg class="dp-icon mobile-menu-chevron" width="16" height="16" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 8l8 8-8 8" stroke-width="2"/></svg></a>
+      </nav>
+      <a href="/#get-the-app" class="btn btn--full mobile-menu-cta">Get the app</a>
     </div>
   </header>
 
-  <main>
+  <main id="main">
 
     <div class="content-page">
       <div class="content-container">
@@ -214,23 +234,43 @@
     </div>
   </main>
 
-  
-
   <footer class="site-footer">
     <div class="footer-inner">
       <div class="footer-brand">
-        <span class="footer-name">Al-Anon Daily Paths</span>
-        <p class="footer-tagline">Daily reflections for the Al-Anon journey</p>
+        <p class="footer-wordmark">Al-Anon Daily Paths</p>
+        <p class="footer-tagline">Daily reflections for the Al-Anon journey.</p>
       </div>
-      <nav class="footer-nav">
-        <a href="/about-project/">About</a>
-        <a href="/about-alanon/">Al-Anon</a>
-        <a href="/support/">Support</a>
-        <a href="/privacy/">Privacy</a>
-        <a href="/terms/">Terms</a>
-      </nav>
-      <p class="footer-copyright">&copy; 2026 Daily Growth, LLC. All rights reserved.</p>
-      <p class="footer-crisis">In crisis? Help is available 24/7. Call or text <strong>988</strong> (USA).</p>
+      <div class="footer-col">
+        <p class="footer-col-title">Read</p>
+        <nav class="footer-links" aria-label="Readings">
+          <a href="/august-9-let-go-and-let-god/" data-today-link>Today&rsquo;s reflection</a>
+          <a href="/steps/">The Twelve Steps</a>
+          <a href="/themes/">Themes</a>
+          <a href="/essentials/">Essentials</a>
+        </nav>
+      </div>
+      <div class="footer-col">
+        <p class="footer-col-title">Al-Anon</p>
+        <nav class="footer-links" aria-label="About Al-Anon">
+          <a href="/start/">Start here</a>
+          <a href="/about-alanon/">About Al-Anon</a>
+          <a href="/about-project/">About the project</a>
+          <a href="https://al-anon.org" target="_blank" rel="noopener noreferrer">al-anon.org</a>
+        </nav>
+      </div>
+      <div class="footer-col">
+        <p class="footer-col-title">More</p>
+        <nav class="footer-links" aria-label="More">
+          <a href="/support/">Support</a>
+          <a href="/privacy/">Privacy</a>
+          <a href="/terms/">Terms</a>
+          <a href="/#get-the-app">Get the app</a>
+        </nav>
+      </div>
+    </div>
+    <div class="footer-bar">
+      <p>&copy; 2026 Daily Growth, LLC. All rights reserved.</p>
+      <p>In crisis? Help is available 24/7. Call or text <strong>988</strong> (USA).</p>
     </div>
   </footer>
 

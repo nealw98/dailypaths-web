@@ -3,48 +3,45 @@
 (function () {
   'use strict';
 
-  // 0. Homepage stale-date fix
-  // The homepage "Today's Reflection" is baked at build time. If the user's
-  // local date no longer matches, fetch today's reading page and swap in
-  // the correct title, date, and preview text.
+  // ---------------------------------------------------------------------------
+  // 1. Homepage stale-date fix
+  // The homepage hero is baked at build time. If the visitor's local date has
+  // moved past the build date, fetch today's reading and swap in the correct
+  // date, title, and excerpt.
+  // ---------------------------------------------------------------------------
   if (document.body.classList.contains('page-home')) {
     var todaySlugHome = getTodaySlug();
-    var readMoreBtn = document.querySelector('.hm-today-btn');
-    if (readMoreBtn && readMoreBtn.getAttribute('href').indexOf(todaySlugHome) === -1) {
-      // Update the "Read More" link immediately
-      readMoreBtn.setAttribute('href', '/' + todaySlugHome + '/');
-      // Fetch today's reading page and extract content
+    var heroCta = document.querySelector('[data-today-cta]');
+    if (heroCta && heroCta.getAttribute('href').indexOf(todaySlugHome) === -1) {
+      heroCta.setAttribute('href', '/' + todaySlugHome + '/');
       fetch('/' + todaySlugHome + '/')
         .then(function (res) { return res.text(); })
         .then(function (html) {
           var doc = new DOMParser().parseFromString(html, 'text/html');
-          var dateEl = doc.querySelector('.rd-date');
-          var titleEl = doc.querySelector('.rd-title');
+          var titleEl = doc.querySelector('.photo-hero-title');
           var bodyEl = doc.querySelector('.rd-body p');
-          if (dateEl) {
-            var homeDateEl = document.querySelector('.hm-today-date');
-            if (homeDateEl) homeDateEl.textContent = dateEl.textContent;
+          var timeEl = doc.querySelector('.photo-hero .eyebrow time');
+
+          if (timeEl) {
+            // Hero eyebrow reads "August 9 · Step Eight" — keep just the date
+            var dateText = timeEl.textContent.split('·')[0].trim();
+            setText('[data-today-date]', dateText);
           }
-          if (titleEl) {
-            var homeTitleEl = document.querySelector('.hm-today-title');
-            if (homeTitleEl) homeTitleEl.textContent = titleEl.textContent;
-          }
+          if (titleEl) setText('[data-today-title]', titleEl.textContent.trim());
           if (bodyEl) {
-            var homePreviewEl = document.querySelector('.hm-today-preview');
-            if (homePreviewEl) {
-              var text = bodyEl.textContent;
-              homePreviewEl.textContent = text.length > 200
-                ? text.slice(0, 200).replace(/\s+\S*$/, '') + '\u2026'
-                : text;
-            }
+            var text = bodyEl.textContent.trim();
+            setText('[data-today-excerpt]', text.length > 200
+              ? text.slice(0, 200).replace(/\s+\S*$/, '') + '…'
+              : text);
           }
         })
         .catch(function () { /* graceful fallback: stale content stays */ });
     }
   }
 
-  // 1. Today's Reading Link
-  // Elements with data-today-link get their href set to today's reading
+  // ---------------------------------------------------------------------------
+  // 2. "Today's Reflection" links — correct the baked href to the local date
+  // ---------------------------------------------------------------------------
   var todayLinks = document.querySelectorAll('[data-today-link]');
   if (todayLinks.length > 0) {
     var slug = getTodaySlug();
@@ -53,46 +50,63 @@
     }
   }
 
-  // 2. Hide "Return to Today" if already on today's reading
-  var todayNav = document.querySelector('[data-today-nav]');
-  if (todayNav) {
-    var todaySlug = getTodaySlug();
-    var path = window.location.pathname;
-    if (path.indexOf(todaySlug) !== -1 || path === '/' || path.match(/\/index\.html?\/?$/)) {
-      todayNav.style.display = 'none';
-    }
-  }
-
-  // 3. Mobile Navigation Toggle
+  // ---------------------------------------------------------------------------
+  // 3. Mobile menu — toggles the dropdown and the Menu ⇄ Close label
+  // ---------------------------------------------------------------------------
   var menuToggle = document.querySelector('[data-menu-toggle]');
   var mobileMenu = document.querySelector('[data-mobile-menu]');
   if (menuToggle && mobileMenu) {
+    var menuLabel = menuToggle.querySelector('[data-menu-label]');
     menuToggle.addEventListener('click', function () {
-      var isOpen = mobileMenu.classList.toggle('is-open');
-      menuToggle.setAttribute('aria-expanded', isOpen);
+      var isOpen = mobileMenu.hasAttribute('hidden');
+      if (isOpen) {
+        mobileMenu.removeAttribute('hidden');
+      } else {
+        mobileMenu.setAttribute('hidden', '');
+      }
+      menuToggle.setAttribute('aria-expanded', String(isOpen));
+      if (menuLabel) menuLabel.textContent = isOpen ? 'Close' : 'Menu';
     });
   }
 
-  // 4. Member Share Form
-  var shareToggles = document.querySelectorAll('[data-share-toggle]');
-  for (var s = 0; s < shareToggles.length; s++) {
-    shareToggles[s].addEventListener('click', function (e) {
-      e.preventDefault();
-      var targetId = this.getAttribute('href').slice(1);
-      var form = document.getElementById(targetId);
-      if (form) {
-        var isHidden = form.hasAttribute('hidden');
-        if (isHidden) {
-          form.removeAttribute('hidden');
-          this.textContent = 'Cancel';
+  // ---------------------------------------------------------------------------
+  // 4. Start here self-check
+  // Client-side only. Answers are never persisted, never transmitted, and no
+  // analytics event fires per answer — the page promises exactly that.
+  // ---------------------------------------------------------------------------
+  var quiz = document.querySelector('[data-quiz]');
+  if (quiz) {
+    var quizResponse = document.querySelector('[data-quiz-response]');
+    var quizCountEl = document.querySelector('[data-quiz-count]');
+    var toggles = quiz.querySelectorAll('[data-quiz-toggle]');
+
+    var updateQuiz = function () {
+      var count = 0;
+      for (var q = 0; q < toggles.length; q++) {
+        if (toggles[q].getAttribute('aria-pressed') === 'true') count++;
+      }
+      if (quizCountEl) quizCountEl.textContent = String(count);
+      if (quizResponse) {
+        if (count > 0) {
+          quizResponse.removeAttribute('hidden');
         } else {
-          form.setAttribute('hidden', '');
-          this.textContent = 'Share your experience with this theme.';
+          quizResponse.setAttribute('hidden', '');
         }
       }
-    });
+    };
+
+    for (var t = 0; t < toggles.length; t++) {
+      toggles[t].addEventListener('click', function () {
+        var pressed = this.getAttribute('aria-pressed') === 'true';
+        this.setAttribute('aria-pressed', String(!pressed));
+        updateQuiz();
+      });
+    }
   }
 
+  // ---------------------------------------------------------------------------
+  // 5. Member share form
+  // ---------------------------------------------------------------------------
   var shareForms = document.querySelectorAll('[data-share-form]');
   for (var f = 0; f < shareForms.length; f++) {
     shareForms[f].addEventListener('submit', function (e) {
@@ -109,12 +123,12 @@
 
       if (!displayName || !content) {
         status.textContent = 'Please complete all fields.';
-        status.className = 'topic-share-status topic-share-status--error';
+        status.className = 'share-status share-status--error';
         return;
       }
 
       btn.disabled = true;
-      btn.textContent = 'Submitting\u2026';
+      btn.textContent = 'Submitting…';
       status.textContent = '';
 
       fetch(supabaseUrl + '/rest/v1/member_shares', {
@@ -133,164 +147,67 @@
           is_approved: false
         })
       }).then(function (res) {
-        if (res.ok) {
-          status.textContent = 'Thank you for sharing. Your story will be reviewed before it appears.';
-          status.className = 'topic-share-status topic-share-status--success';
-          form.querySelector('input[name="display_name"]').value = '';
-          form.querySelector('textarea[name="content"]').value = '';
-          var charCounter = form.querySelector('[data-char-count]');
-          if (charCounter) charCounter.textContent = '0';
-          btn.textContent = 'Submitted';
-          setTimeout(function () {
-            btn.disabled = false;
-            btn.textContent = 'Post Insight';
-          }, 2000);
-          Analytics.trackEvent('Share Form Submit', { topic_slug: topicSlug, status: 'success' });
-        } else {
-          throw new Error(res.status);
-        }
+        if (!res.ok) throw new Error(res.status);
+        status.textContent = 'Thank you for sharing. Your story will be reviewed before it appears.';
+        status.className = 'share-status share-status--success';
+        form.querySelector('input[name="display_name"]').value = '';
+        form.querySelector('textarea[name="content"]').value = '';
+        var charCounter = form.querySelector('[data-char-count]');
+        if (charCounter) charCounter.textContent = '0';
+        btn.textContent = 'Submitted';
+        setTimeout(function () {
+          btn.disabled = false;
+          btn.textContent = 'Post insight';
+        }, 2000);
+        Analytics.trackEvent('Share Form Submit', { topic_slug: topicSlug, status: 'success' });
       }).catch(function () {
         status.textContent = 'Something went wrong. Please try again.';
-        status.className = 'topic-share-status topic-share-status--error';
+        status.className = 'share-status share-status--error';
         btn.disabled = false;
-        btn.textContent = 'Submit';
+        btn.textContent = 'Post insight';
         Analytics.trackEvent('Share Form Submit', { topic_slug: topicSlug, status: 'error' });
       });
     });
   }
 
-  // 4b. Read More truncation for long member insights
-  var fullTextEls = document.querySelectorAll('[data-full-text]');
-  for (var rt = 0; rt < fullTextEls.length; rt++) {
-    (function (el) {
-      if (el.textContent.length > 800) {
-        el.classList.add('truncated');
-        var btn = el.parentElement.querySelector('[data-read-more]');
-        if (btn) {
-          btn.removeAttribute('hidden');
-          btn.addEventListener('click', function () {
-            el.classList.remove('truncated');
-            btn.setAttribute('hidden', '');
-          });
-        }
-      }
-    })(fullTextEls[rt]);
+  // Live character counter
+  var shareTextareas = document.querySelectorAll('[data-share-form] textarea');
+  for (var tc = 0; tc < shareTextareas.length; tc++) {
+    (function (textarea) {
+      var form = textarea.closest('[data-share-form]');
+      var counter = form && form.querySelector('[data-char-count]');
+      if (!counter) return;
+      textarea.addEventListener('input', function () {
+        counter.textContent = String(textarea.value.length);
+      });
+    })(shareTextareas[tc]);
   }
 
-  // 4c. Insight card: 45-word truncation with smooth expand/collapse
+  // ---------------------------------------------------------------------------
+  // 6. Member insight cards — 45-word truncation with expand/collapse
+  // ---------------------------------------------------------------------------
+  function wireInsightCard(textEl) {
+    var words = textEl.textContent.trim().split(/\s+/);
+    if (words.length <= 45) return;
+
+    textEl.classList.add('truncated');
+    var btn = textEl.parentElement.querySelector('[data-insight-read-more]');
+    if (!btn) return;
+
+    btn.addEventListener('click', function () {
+      var isExpanded = btn.getAttribute('aria-expanded') === 'true';
+      textEl.classList.toggle('truncated', isExpanded);
+      btn.setAttribute('aria-expanded', String(!isExpanded));
+      btn.textContent = isExpanded ? 'Read the full reflection' : 'Show less';
+    });
+  }
+
   var insightCardTexts = document.querySelectorAll('[data-insight-card-text]');
   for (var ic = 0; ic < insightCardTexts.length; ic++) {
-    (function (textEl) {
-      var words = textEl.textContent.trim().split(/\s+/);
-      if (words.length <= 45) return;
-
-      textEl.classList.add('truncated');
-      var btn = textEl.parentElement.querySelector('[data-insight-read-more]');
-      if (!btn) return;
-
-      btn.addEventListener('click', function () {
-        var isExpanded = btn.getAttribute('aria-expanded') === 'true';
-        if (isExpanded) {
-          textEl.classList.add('truncated');
-          btn.setAttribute('aria-expanded', 'false');
-          btn.textContent = 'Read the full reflection';
-        } else {
-          textEl.classList.remove('truncated');
-          btn.setAttribute('aria-expanded', 'true');
-          btn.textContent = 'Show less';
-        }
-      });
-    })(insightCardTexts[ic]);
+    wireInsightCard(insightCardTexts[ic]);
   }
 
-  // 4d. Step body: truncate at first section heading with smooth expand/collapse
-  var stepBodyTexts = document.querySelectorAll('[data-step-body-text]');
-  for (var sb = 0; sb < stepBodyTexts.length; sb++) {
-    (function (textEl) {
-      // Find first <p> that is a section heading (<p><strong>full text</strong></p>)
-      var paragraphs = textEl.querySelectorAll('p');
-      var headingEl = null;
-      for (var i = 0; i < paragraphs.length; i++) {
-        var strong = paragraphs[i].querySelector('strong');
-        if (strong && strong.textContent.trim() === paragraphs[i].textContent.trim()) {
-          headingEl = paragraphs[i];
-          break;
-        }
-      }
-      if (!headingEl) return;
-
-      // Show heading + ~2 lines of the next paragraph, then fade
-      var cutoff = headingEl.offsetTop + headingEl.offsetHeight + 96;
-      textEl.style.maxHeight = cutoff + 'px';
-      textEl.classList.add('truncated');
-
-      var btn = textEl.parentElement.querySelector('[data-step-read-more]');
-      if (!btn) return;
-
-      btn.removeAttribute('hidden');
-      btn.addEventListener('click', function () {
-        var isExpanded = btn.getAttribute('aria-expanded') === 'true';
-        if (isExpanded) {
-          textEl.style.maxHeight = cutoff + 'px';
-          textEl.classList.add('truncated');
-          btn.setAttribute('aria-expanded', 'false');
-          btn.textContent = 'Read more';
-        } else {
-          textEl.style.maxHeight = textEl.scrollHeight + 'px';
-          textEl.classList.remove('truncated');
-          btn.setAttribute('aria-expanded', 'true');
-          btn.textContent = 'Show less';
-        }
-      });
-    })(stepBodyTexts[sb]);
-  }
-
-  // 4d-ii. Topic editorial intro: truncate at ~500 characters with smooth expand/collapse
-  var topicBodyTexts = document.querySelectorAll('[data-topic-body-text]');
-  for (var tb = 0; tb < topicBodyTexts.length; tb++) {
-    (function (textEl) {
-      var paragraphs = textEl.querySelectorAll('p');
-      if (!paragraphs.length) return;
-
-      // Walk paragraphs, accumulate char count, find cutoff
-      var charCount = 0;
-      var cutoffEl = null;
-      for (var i = 0; i < paragraphs.length; i++) {
-        charCount += paragraphs[i].textContent.length;
-        if (charCount >= 500) {
-          cutoffEl = paragraphs[i];
-          break;
-        }
-      }
-      // If all text fits under 500 chars, no truncation needed
-      if (!cutoffEl) return;
-
-      var cutoff = cutoffEl.offsetTop + cutoffEl.offsetHeight;
-      textEl.style.maxHeight = cutoff + 'px';
-      textEl.classList.add('truncated');
-
-      var btn = textEl.parentElement.querySelector('[data-topic-read-more]');
-      if (!btn) return;
-
-      btn.removeAttribute('hidden');
-      btn.addEventListener('click', function () {
-        var isExpanded = btn.getAttribute('aria-expanded') === 'true';
-        if (isExpanded) {
-          textEl.style.maxHeight = cutoff + 'px';
-          textEl.classList.add('truncated');
-          btn.setAttribute('aria-expanded', 'false');
-          btn.textContent = 'Read more';
-        } else {
-          textEl.style.maxHeight = textEl.scrollHeight + 'px';
-          textEl.classList.remove('truncated');
-          btn.setAttribute('aria-expanded', 'true');
-          btn.textContent = 'Show less';
-        }
-      });
-    })(topicBodyTexts[tb]);
-  }
-
-  // 4e. "Show more community insights" pagination
+  // "Show more community insights"
   var showMoreBtns = document.querySelectorAll('[data-insight-show-more]');
   for (var sm = 0; sm < showMoreBtns.length; sm++) {
     (function (btn) {
@@ -300,109 +217,31 @@
         var hidden = grid.querySelectorAll('.insight-card--hidden');
         for (var h = 0; h < hidden.length; h++) {
           hidden[h].classList.remove('insight-card--hidden');
-          // Apply truncation to newly-revealed cards
           var textEl = hidden[h].querySelector('[data-insight-card-text]');
-          if (textEl) {
-            var words = textEl.textContent.trim().split(/\s+/);
-            if (words.length > 45) {
-              textEl.classList.add('truncated');
-              var readMoreBtn = hidden[h].querySelector('[data-insight-read-more]');
-              if (readMoreBtn) {
-                readMoreBtn.addEventListener('click', (function (t, r) {
-                  return function () {
-                    var isExp = r.getAttribute('aria-expanded') === 'true';
-                    if (isExp) {
-                      t.classList.add('truncated');
-                      r.setAttribute('aria-expanded', 'false');
-                      r.textContent = 'Read the full reflection \u2192';
-                    } else {
-                      t.classList.remove('truncated');
-                      r.setAttribute('aria-expanded', 'true');
-                      r.textContent = 'Show less';
-                    }
-                  };
-                })(textEl, readMoreBtn));
-              }
-            }
-          }
+          if (textEl) wireInsightCard(textEl);
         }
         btn.style.display = 'none';
       });
     })(showMoreBtns[sm]);
   }
 
-  // 4e. Essentials page: Read More / Show Less toggle
-  var essCardBodies = document.querySelectorAll('[data-ess-card-body]');
-  for (var eb = 0; eb < essCardBodies.length; eb++) {
-    (function (bodyEl) {
-      var btn = bodyEl.parentElement.querySelector('[data-ess-read-more]');
-      if (!btn) return;
+  // ---------------------------------------------------------------------------
+  // 7. Navigation tracking
+  // ---------------------------------------------------------------------------
+  trackNav('.site-nav .nav-link', 'header');
+  trackNav('.mobile-menu-row', 'mobile-menu');
+  trackNav('.footer-links a', 'footer');
 
-      btn.addEventListener('click', function () {
-        var isExpanded = btn.getAttribute('aria-expanded') === 'true';
-        if (isExpanded) {
-          bodyEl.classList.add('ess-truncated');
-          btn.setAttribute('aria-expanded', 'false');
-          btn.textContent = 'Read more';
-          // Scroll card back into view
-          bodyEl.closest('.ess-card').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-        } else {
-          bodyEl.classList.remove('ess-truncated');
-          btn.setAttribute('aria-expanded', 'true');
-          btn.textContent = 'Show less';
-        }
-      });
-    })(essCardBodies[eb]);
-  }
-
-  // 4f. Live character counter for share textareas
-  var shareTextareas = document.querySelectorAll('.topic-share-textarea');
-  for (var tc = 0; tc < shareTextareas.length; tc++) {
-    (function (textarea) {
-      var counter = textarea.parentElement.querySelector('[data-char-count]');
-      if (counter) {
-        textarea.addEventListener('input', function () {
-          counter.textContent = textarea.value.length;
-        });
-      }
-    })(shareTextareas[tc]);
-  }
-
-  // 5. Header Navigation Tracking
-  var headerLinks = document.querySelectorAll('.site-nav .nav-link');
-  for (var hn = 0; hn < headerLinks.length; hn++) {
-    headerLinks[hn].addEventListener('click', function () {
-      Analytics.trackEvent('Navigation Click', {
-        location: 'header',
-        label: this.textContent.trim(),
-        href: this.getAttribute('href')
-      });
+  var todayCtas = document.querySelectorAll('[data-today-cta]');
+  for (var tb = 0; tb < todayCtas.length; tb++) {
+    todayCtas[tb].addEventListener('click', function () {
+      Analytics.trackEvent('Today Reading Click', { href: this.getAttribute('href') });
     });
   }
 
-  // 6. Footer Navigation Tracking
-  var footerLinks = document.querySelectorAll('.footer-nav a');
-  for (var fn = 0; fn < footerLinks.length; fn++) {
-    footerLinks[fn].addEventListener('click', function () {
-      Analytics.trackEvent('Navigation Click', {
-        location: 'footer',
-        label: this.textContent.trim(),
-        href: this.getAttribute('href')
-      });
-    });
-  }
-
-  // 7. Today's Reading Link Tracking
-  var todayBtns = document.querySelectorAll('.hm-today-btn');
-  for (var tb = 0; tb < todayBtns.length; tb++) {
-    todayBtns[tb].addEventListener('click', function () {
-      Analytics.trackEvent('Today Reading Click', {
-        href: this.getAttribute('href')
-      });
-    });
-  }
-
-  // 8. Scroll Depth Tracking
+  // ---------------------------------------------------------------------------
+  // 8. Scroll depth
+  // ---------------------------------------------------------------------------
   (function () {
     var thresholds = [25, 50, 75, 100];
     var fired = {};
@@ -419,16 +258,15 @@
         var t = thresholds[i];
         if (pct >= t && !fired[t]) {
           fired[t] = true;
-          Analytics.trackEvent('Scroll Depth', {
-            threshold: t,
-            path: window.location.pathname
-          });
+          Analytics.trackEvent('Scroll Depth', { threshold: t, path: window.location.pathname });
         }
       }
     });
   })();
 
-  // 9. Time on Page Tracking
+  // ---------------------------------------------------------------------------
+  // 9. Time on page
+  // ---------------------------------------------------------------------------
   (function () {
     var startTime = Date.now();
     var intervals = [30, 60, 180, 300];
@@ -440,16 +278,15 @@
         var s = intervals[i];
         if (elapsed >= s && !firedIntervals[s]) {
           firedIntervals[s] = true;
-          Analytics.trackEvent('Time on Page', {
-            seconds: s,
-            path: window.location.pathname
-          });
+          Analytics.trackEvent('Time on Page', { seconds: s, path: window.location.pathname });
         }
       }
     }, 5000);
   })();
 
-  // 10. Outbound Link Tracking
+  // ---------------------------------------------------------------------------
+  // 10. Outbound links
+  // ---------------------------------------------------------------------------
   document.addEventListener('click', function (e) {
     var link = e.target.closest('a[href]');
     if (!link) return;
@@ -471,6 +308,24 @@
   });
 
   // --- Helpers ---
+
+  function setText(selector, value) {
+    var el = document.querySelector(selector);
+    if (el) el.textContent = value;
+  }
+
+  function trackNav(selector, location) {
+    var links = document.querySelectorAll(selector);
+    for (var i = 0; i < links.length; i++) {
+      links[i].addEventListener('click', function () {
+        Analytics.trackEvent('Navigation Click', {
+          location: location,
+          label: this.textContent.trim(),
+          href: this.getAttribute('href')
+        });
+      });
+    }
+  }
 
   function getTodaySlug() {
     var months = [

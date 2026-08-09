@@ -69,6 +69,7 @@ ${readingItems}
   }).join('\n');
 
   const bodyContent = `
+    <div class="wrap section--md">
       <!-- Back to Step link -->
       <nav class="ma-back-nav">
         <a href="${bp(`/steps/${stepSlug(step.number, step.principle)}/`)}" class="ma-back-link">&larr; Back to Step ${step.number}: ${step.principle}</a>
@@ -99,10 +100,11 @@ ${weekSections}
             </a>
           </div>
         </div>
-      </section>`;
+      </section>
+    </div>`;
 
   return wrapInLayout({
-    title: `${monthDisplay} Daily Readings &mdash; Step ${step.number}: ${step.principle} | Al-Anon Daily Paths`,
+    title: `${monthDisplay} Daily Readings — Step ${step.number}: ${step.principle} | Al-Anon Daily Paths`,
     description: `All 31 ${monthDisplay} daily reflections for Step ${step.number} of Al-Anon. Browse readings by week for the month of ${monthDisplay}.`,
     canonicalPath: `/months/${monthName}/`,
     bodyContent,
