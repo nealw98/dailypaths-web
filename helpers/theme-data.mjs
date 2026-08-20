@@ -33,7 +33,7 @@ export const TOPIC_PULL_QUOTES = {
   'focus-on-yourself':     'Focusing on ourselves is the most radical \u2014 and most difficult \u2014 shift in recovery.',
   'one-day-at-a-time':     'Handle just today, and trust that tomorrow will take care of itself.',
   'boundaries':            'Boundaries aren\u2019t walls. They\u2019re the foundation that makes real love possible.',
-  'letting-go-of-control': 'The need to control is the disease talking through us.',
+  'letting-go-of-control': 'Caring and carrying are not the same thing.',
   'self-worth':            'Recovery is, in part, an excavation \u2014 digging out the person who was buried under years of coping.',
   'higher-power':          'What matters is the willingness to stop relying solely on ourselves.',
   'honesty':               'Honesty in Al-Anon starts with ourselves \u2014 admitting what we feel, owning what we\u2019ve done.',
@@ -192,9 +192,9 @@ export const TOPICS = [
   },
   {
     slug: 'letting-go-of-control',
-    name: 'Letting Go of Control',
-    shortDescription: 'Recognizing the many ways we try to manage, fix, or manipulate outcomes.',
-    metaDescription: 'Stop managing, fixing, and controlling what was never yours to carry. Daily Al-Anon reflections on releasing the need to control.',
+    name: 'Letting Go',
+    shortDescription: 'Recognizing what isn\'t yours to control and learning to put it down.',
+    metaDescription: 'Explore what letting go means in Al-Anon: respecting another person\'s choices, facing the facts, releasing control, and caring without carrying.',
     image: 'letting-go-of-control.jpg',
     imageAlt: 'Two women laughing together while cooking \u2014 letting go of control in Al-Anon recovery',
     body: `
@@ -203,7 +203,7 @@ export const TOPICS = [
         require us to have the solution; it only requires the desire to be
         taught a new way to live and a readiness to let go of old defenses.
       </p>`,
-    featuredDays: [3, 72, 168, 266, 320],
+    featuredDays: [7, 18, 71, 247],
   },
   {
     slug: 'self-worth',
