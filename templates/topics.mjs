@@ -163,11 +163,21 @@ ${photoHero({
         <div class="manipulation-inventory-grid">
           <div>
             <h3>What I recognize coming toward me</h3>
-            <p>Guilt &middot; threats &middot; blame &middot; urgent demands</p>
+            <ul>
+              <li>Guilt</li>
+              <li>Threats</li>
+              <li>Blame</li>
+              <li>Urgent demands</li>
+            </ul>
           </div>
           <div>
             <h3>What I may not recognize in myself</h3>
-            <p>Rescuing &middot; bargaining &middot; monitoring &middot; rehearsing</p>
+            <ul>
+              <li>Rescuing</li>
+              <li>Bargaining</li>
+              <li>Monitoring</li>
+              <li>Rehearsing</li>
+            </ul>
           </div>
         </div>
         <p class="manipulation-inventory-close">I do not have to accept manipulation, and I do not have to use it.</p>

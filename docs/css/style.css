@@ -1898,15 +1898,15 @@ a.card-tinted:hover { background: var(--surface-card); }
 
 .manipulation-inventory {
   margin: clamp(46px, 8vw, 82px) 0;
-  padding: clamp(26px, 5vw, 46px);
-  border-radius: var(--radius-tinted);
-  background: linear-gradient(135deg, #eef6f2, #f8f3e9);
-  box-shadow: var(--shadow-card);
+  padding: clamp(28px, 4vw, 40px) 0 0;
+  border-top: 1px solid var(--border-card);
+  border-bottom: 1px solid var(--border-card);
 }
 
 .manipulation-inventory-heading {
-  max-width: 58ch;
-  margin-bottom: 28px;
+  max-width: 61ch;
+  margin: 0 auto 30px;
+  text-align: center;
 }
 
 .manipulation-inventory-heading h2 {
@@ -1926,19 +1926,19 @@ a.card-tinted:hover { background: var(--surface-card); }
 .manipulation-inventory-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 14px;
+  border-top: 1px solid var(--border-card);
 }
 
 .manipulation-inventory-grid > div {
-  padding: 22px;
-  border: 1px solid rgba(26, 96, 86, .16);
-  border-radius: 12px;
-  background: rgba(255,255,255,.72);
+  padding: 28px clamp(22px, 4vw, 38px) 32px;
 }
 
-.manipulation-inventory-grid h3 { margin: 0 0 10px; font-family: var(--font-display); font-size: 21px; line-height: 1.25; }
-.manipulation-inventory-grid p { margin: 0; font-size: 14px; line-height: 1.6; color: var(--text-muted); }
-.manipulation-inventory-close { margin: 22px 0 0; font-family: var(--font-display); font-size: 22px; line-height: 1.4; text-align: center; }
+.manipulation-inventory-grid > div + div { border-left: 1px solid var(--border-card); }
+.manipulation-inventory-grid h3 { margin: 0 0 18px; font-family: var(--font-body); font-size: 12px; font-weight: 700; line-height: 1.45; letter-spacing: .07em; text-transform: uppercase; color: var(--accent); }
+.manipulation-inventory-grid ul { display: grid; gap: 0; margin: 0; padding: 0; list-style: none; }
+.manipulation-inventory-grid li { padding: 9px 0; border-bottom: 1px solid var(--rule); font-family: var(--font-display); font-size: 22px; line-height: 1.25; }
+.manipulation-inventory-grid li:last-child { border-bottom: 0; }
+.manipulation-inventory-close { margin: 0; padding: 20px 24px 22px; border-top: 1px solid var(--border-card); font-family: var(--font-display); font-size: 22px; line-height: 1.4; text-align: center; color: var(--accent-deep); }
 
 .mine-not-mine {
   display: grid;
@@ -1970,7 +1970,9 @@ a.card-tinted:hover { background: var(--surface-card); }
 @media (max-width: 720px) {
   .theme-feature { grid-template-columns: 1fr; }
   .theme-feature img { min-height: 220px; max-height: 260px; order: -1; }
+  .manipulation-inventory-heading { padding: 0 18px; text-align: left; }
   .manipulation-inventory-grid { grid-template-columns: 1fr; }
+  .manipulation-inventory-grid > div + div { border-top: 1px solid var(--border-card); border-left: 0; }
   .mine-not-mine, .letting-go-scenarios { grid-template-columns: 1fr; }
 }
 
