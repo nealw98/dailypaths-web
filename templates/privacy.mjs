@@ -6,7 +6,7 @@ export function renderPrivacyPage() {
     <div class="content-page">
       <div class="content-container">
         <h1 class="page-title">Privacy Policy</h1>
-        <p class="page-meta">Last updated: December 11, 2024</p>
+        <p class="page-meta">Last updated: August 25, 2026</p>
 
         <section class="content-section">
           <h2>Overview</h2>
@@ -39,10 +39,84 @@ export function renderPrivacyPage() {
         </section>
 
         <section class="content-section">
+          <h2>Data Stored on Your Device</h2>
+          <p>
+            Some features of Al-Anon Daily Paths create personal content, including
+            journal entries, gratitude entries, personal prayers, bookmarks, and
+            audio listening progress. This content is stored locally on your device.
+            It is never transmitted to our servers, and we cannot access, read, or
+            share it.
+          </p>
+        </section>
+
+        <section class="content-section">
+          <h2>Backup &amp; Sync</h2>
+          <p>
+            Al-Anon Daily Paths can automatically back up your personal content —
+            journal entries, gratitude entries, personal prayers, bookmarks, and
+            listening progress — so it is protected if you lose your device and
+            stays up to date across your devices.
+          </p>
+          <ul>
+            <li>
+              <strong>On iOS,</strong> backups are stored in your private iCloud
+              account when you are signed in to iCloud with iCloud Drive turned on.
+            </li>
+            <li>
+              <strong>On Android,</strong> backups are stored in your own Google
+              Drive account, in a hidden folder reserved for the app, and only
+              after you choose to connect your Google account.
+            </li>
+          </ul>
+          <p>
+            Backup data travels directly from your device to your personal cloud
+            account. It is never sent to or stored on our servers, and we cannot
+            access it. Once stored in your iCloud or Google Drive account, it is
+            also protected by Apple's or Google's privacy policies and your own
+            account settings.
+          </p>
+          <p>
+            Device settings, purchase information, and downloaded audio are not
+            included in backups.
+          </p>
+          <p>
+            You stay in control: from the app's Backup &amp; Sync screen you can
+            turn sync off, disconnect Google Drive, or permanently delete your
+            Daily Paths data from iCloud or Google Drive at any time.
+          </p>
+        </section>
+
+        <section class="content-section">
+          <h2>Google User Data</h2>
+          <p>
+            On Android, Backup &amp; Sync uses Google Drive through Google Sign-In.
+            The app requests only the <em>drive.appdata</em> permission, which
+            limits its access to a hidden, app-specific folder in your Google
+            Drive. The app cannot see, read, or modify any of your other Google
+            Drive files.
+          </p>
+          <p>
+            When you connect your Google account, the app can see your Google
+            account email address. It is used only on your device to manage the
+            connection and show which account is connected; it is never
+            transmitted to us.
+          </p>
+          <p>
+            Al-Anon Daily Paths' use of information received from Google APIs
+            adheres to the
+            <a href="https://developers.google.com/terms/api-services-user-data-policy" target="_blank" rel="noopener">Google
+            API Services User Data Policy</a>, including the Limited Use
+            requirements.
+          </p>
+        </section>
+
+        <section class="content-section">
           <h2>Information We Do Not Collect</h2>
           <p>We do not collect:</p>
           <ul>
-            <li>Your name, email address, or contact information</li>
+            <li>Your name, email address, or contact information (if you connect
+              Google Drive for backups, your Google account email is visible to
+              the app on your device only and is never sent to us)</li>
             <li>Location data</li>
             <li>Device contacts or photos</li>
             <li>Browsing history outside our app</li>
@@ -65,8 +139,11 @@ export function renderPrivacyPage() {
           <h2>Data Sharing</h2>
           <p>
             We do not sell, trade, or share your information with third parties.
-            All data remains within our secure systems and is used solely for
-            improving the Al-Anon Daily Paths experience.
+            The anonymous feedback and preference data we collect remains within
+            our secure systems and is used solely for improving the Al-Anon Daily
+            Paths experience. Your personal content and backups are different:
+            they belong to you, stay on your device and in your personal cloud
+            account, and never pass through our systems at all.
           </p>
         </section>
 
@@ -94,6 +171,9 @@ export function renderPrivacyPage() {
             You can use Al-Anon Daily Paths without providing any feedback or ratings.
             The core reading experience does not require any data collection beyond
             the anonymous device identifier used to remember your preferences.
+            Backup &amp; Sync is likewise under your control: you can turn it off,
+            disconnect Google Drive, or delete your cloud data from within the
+            app at any time.
           </p>
         </section>
 
