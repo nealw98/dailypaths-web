@@ -1,0 +1,6 @@
+:root{
+--space-xs:4px;--space-sm:8px;--space-md:16px;--space-lg-plus:20px;--space-lg:24px;--space-xl:32px;--space-xxl:40px;
+--radius-card:10px;--radius:12px;--radius-lg:16px;--radius-pill:999px;
+--tap-min:44px;--button-height:52px;--pill-height:34px;--tool-row-height:100px;--icon-pip-width:115px;
+--page-max:1160px;
+}

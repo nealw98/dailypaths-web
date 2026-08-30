@@ -7,3 +7,6 @@ test-og.mjs
 # Supabase CLI local state
 .supabase/
 supabase/.temp/
+
+# Generated tagging output
+scripts/out/

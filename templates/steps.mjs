@@ -429,7 +429,7 @@ export function renderStepPage(step, readings = []) {
   const STEP_THEME_URLS = {
     1:  { slug: 'powerlessness',        name: 'Powerlessness &amp; Surrender' },
     2:  { slug: 'higher-power',         name: 'Trusting a Higher Power' },
-    3:  { slug: 'letting-go-of-control', name: 'Letting Go of Control' },
+    3:  { slug: 'letting-go',            name: 'Letting Go' },
     4:  { slug: 'honesty',              name: 'Honesty &amp; Self-Awareness' },
     5:  { slug: 'self-worth',           name: 'Self-Worth &amp; Identity' },
     6:  { slug: 'boundaries',           name: 'Boundaries' },
@@ -463,7 +463,7 @@ export function renderStepPage(step, readings = []) {
     <section class="wrap section--lg" id="step-readings">
       <p class="eyebrow">Daily practice</p>
       <h2 class="daily-practice-heading">Step ${step.number} in ${step.month}</h2>
-      <p class="daily-practice-intro">Each month in the app focuses on one Step. ${step.month} is dedicated to the principle of ${step.principle}. ${associatedReadings.length} reading${associatedReadings.length === 1 ? '' : 's'} across the year explore it &mdash; deep dive through the <a href="${bp(`/themes/${themeInfo.slug}/`)}">${themeInfo.name}</a> theme.</p>
+      <p class="daily-practice-intro">Each month in the app focuses on one Step. ${step.month} is dedicated to the principle of ${step.principle}. ${associatedReadings.length} reading${associatedReadings.length === 1 ? '' : 's'} across the year explore it &mdash; deep dive through the <a href="${bp(`/topics/${themeInfo.slug}/`)}">${themeInfo.name}</a> topic.</p>
       <div class="reading-grid daily-practice-grid">
 ${cards}
       </div>

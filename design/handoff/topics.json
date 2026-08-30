@@ -1,0 +1,122 @@
+{
+  "version": "2026-08",
+  "navLabel": "Topics",
+  "sizing": {
+    "minReadingsPerTopic": 12,
+    "maxReadingsPerTopic": 45,
+    "maxTopicsPerReading": 3
+  },
+  "topics": [
+    {
+      "slug": "letting-go",
+      "title": "Letting Go",
+      "kind": "readings",
+      "line": "Powerlessness, surrender, and the many ways we try to manage what isn't ours."
+    },
+    {
+      "slug": "living-with-active-drinking",
+      "title": "Living With Active Drinking",
+      "kind": "readings",
+      "line": "Getting through the day when the drinking hasn't stopped."
+    },
+    {
+      "slug": "anger-and-resentment",
+      "title": "Anger and Resentment",
+      "kind": "readings",
+      "line": "What to do with the anger you were told not to have."
+    },
+    {
+      "slug": "fear-and-worry",
+      "title": "Fear and Worry",
+      "kind": "readings",
+      "line": "Waiting up, imagining the worst, living braced for the next thing."
+    },
+    {
+      "slug": "guilt-blame-shame",
+      "title": "Guilt, Blame, and Shame",
+      "kind": "readings",
+      "line": "Whether you caused it, and what to do with the part that isn't yours."
+    },
+    {
+      "slug": "detachment-with-love",
+      "title": "Detachment with Love",
+      "kind": "readings",
+      "line": "Stepping out of the chaos without stepping away from the person."
+    },
+    {
+      "slug": "helping-or-enabling",
+      "title": "Helping or Enabling?",
+      "kind": "readings",
+      "line": "The line between love and rescue, and how to tell where you are."
+    },
+    {
+      "slug": "boundaries",
+      "title": "Boundaries and Saying No",
+      "kind": "readings",
+      "line": "Saying no as an act of self-respect, not punishment."
+    },
+    {
+      "slug": "getting-yourself-back",
+      "title": "Getting Yourself Back",
+      "kind": "readings",
+      "line": "Reclaiming the life and the self that years of crisis eroded."
+    },
+    {
+      "slug": "one-day-at-a-time",
+      "title": "One Day at a Time",
+      "kind": "readings",
+      "line": "Putting down the future and the past, and keeping today."
+    },
+    {
+      "slug": "higher-power-and-trust",
+      "title": "Higher Power and Trust",
+      "kind": "readings",
+      "line": "Finding something to lean on — including if the word God is hard."
+    },
+    {
+      "slug": "gratitude",
+      "title": "Gratitude",
+      "kind": "readings",
+      "line": "Noticing what's here, on the days it doesn't come naturally."
+    },
+    {
+      "slug": "alcoholism-as-a-disease",
+      "title": "Alcoholism as a Disease",
+      "kind": "background",
+      "line": "What the illness is, and why understanding it changes everything else."
+    },
+    {
+      "slug": "youre-not-alone",
+      "title": "You're Not Alone",
+      "kind": "background",
+      "line": "Meetings, fellowship, and the end of doing this by yourself."
+    }
+  ],
+  "reserve": [
+    {
+      "slug": "grown-children-of-alcoholics",
+      "title": "Grown Children of Alcoholics",
+      "note": "Distinct audience, heavy search demand; may not match the readings."
+    },
+    {
+      "slug": "forgiveness-and-amends",
+      "title": "Forgiveness and Amends",
+      "note": "Add if Step Eight/Nine readings cluster."
+    },
+    {
+      "slug": "when-things-get-better",
+      "title": "When Things Get Better",
+      "note": "For members years in — returning readers."
+    }
+  ],
+  "retired": [
+    "Powerlessness & Surrender",
+    "Letting Go of Control",
+    "Focus on Yourself",
+    "Self-Worth & Identity",
+    "Honesty & Self-Awareness",
+    "Gratitude & Hope",
+    "Understanding the Disease",
+    "Community & Fellowship"
+  ]
+}

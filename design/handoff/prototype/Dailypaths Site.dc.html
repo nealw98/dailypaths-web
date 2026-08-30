@@ -1,0 +1,1092 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="_ds/daily-paths-design-system-3f5691b4-7c66-4a08-9601-3601168a68f2/tokens/fonts.css">
+<link rel="stylesheet" href="_ds/daily-paths-design-system-3f5691b4-7c66-4a08-9601-3601168a68f2/tokens/colors.css">
+<link rel="stylesheet" href="_ds/daily-paths-design-system-3f5691b4-7c66-4a08-9601-3601168a68f2/tokens/typography.css">
+<link rel="stylesheet" href="_ds/daily-paths-design-system-3f5691b4-7c66-4a08-9601-3601168a68f2/tokens/spacing.css">
+<link rel="stylesheet" href="_ds/daily-paths-design-system-3f5691b4-7c66-4a08-9601-3601168a68f2/tokens/elevation.css">
+<link rel="stylesheet" href="_ds/daily-paths-design-system-3f5691b4-7c66-4a08-9601-3601168a68f2/tokens/base.css">
+<link rel="stylesheet" href="_ds/daily-paths-design-system-3f5691b4-7c66-4a08-9601-3601168a68f2/styles.css">
+<script src="_ds/daily-paths-design-system-3f5691b4-7c66-4a08-9601-3601168a68f2/_ds_bundle.js"></script>
+<style>
+body{margin:0;background:#e3ded4}
+a{color:var(--text-link);text-decoration:none}
+a:hover{color:var(--accent-strong)}
+::-webkit-scrollbar{height:6px;width:6px}
+::-webkit-scrollbar-thumb{background:rgba(0,0,0,.18);border-radius:99px}
+</style>
+</helmet>
+
+<div style="min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:18px 18px 56px;font-family:var(--dp-font-body)">
+
+  <div style="position:sticky;top:12px;z-index:40;display:flex;align-items:center;gap:14px;flex-wrap:wrap;justify-content:center;background:rgba(28,37,36,.92);backdrop-filter:blur(10px);color:#fff;padding:8px 10px 8px 16px;border-radius:999px;box-shadow:0 8px 24px rgba(25,28,28,.18);margin-bottom:20px">
+    <span style="font-size:12px;letter-spacing:.5px;text-transform:uppercase;color:rgba(255,255,255,.6)">dailypaths.org · mock</span>
+    <div style="display:flex;gap:4px;background:rgba(255,255,255,.10);padding:3px;border-radius:999px">
+      <button onClick="{{ setDesktop }}" style="border:none;cursor:pointer;font-family:var(--dp-font-body);font-weight:600;font-size:13px;padding:6px 14px;border-radius:999px;background:{{ desktopBg }};color:{{ desktopFg }}">Desktop</button>
+      <button onClick="{{ setMobile }}" style="border:none;cursor:pointer;font-family:var(--dp-font-body);font-weight:600;font-size:13px;padding:6px 14px;border-radius:999px;background:{{ mobileBg }};color:{{ mobileFg }}">Mobile</button>
+    </div>
+  </div>
+
+  <div style="width:{{ frameWidth }};max-width:100%;background:var(--surface);border-radius:16px;overflow:hidden;box-shadow:0 24px 60px rgba(25,28,28,.22);container-type:inline-size;transition:width 260ms cubic-bezier(.4,0,.2,1)">
+
+    <header style="position:sticky;top:0;z-index:20;background:var(--surface-glass);backdrop-filter:blur(12px);border-bottom:1px solid var(--rule)">
+      <div style="max-width:1160px;margin:0 auto;padding:12px 5cqw;display:flex;align-items:center;gap:clamp(16px,2.4cqw,32px)">
+        <button onClick="{{ goHome }}" style="background:none;border:none;padding:0;cursor:pointer;display:flex;align-items:center;gap:11px;text-align:left">
+          <img src="assets/icon.png" alt="" style="width:38px;height:38px;border-radius:9px;box-shadow:var(--shadow-card);flex-shrink:0">
+          <span style="display:flex;flex-direction:column;gap:2px">
+            <span style="font-family:var(--dp-font-display);font-style:italic;font-weight:600;font-size:22px;line-height:1;letter-spacing:0.1px;color:var(--accent-strong);white-space:nowrap">Al-Anon Daily Paths</span>
+            <span style="font-family:var(--dp-font-body);font-weight:600;font-size:10px;line-height:1;letter-spacing:1.1px;text-transform:uppercase;color:var(--text-muted);white-space:nowrap">Daily reflections</span>
+          </span>
+        </button>
+        <span style="width:1px;align-self:stretch;background:var(--rule);margin-left:auto;display:{{ ctaDisplay }}"></span>
+        <button onClick="{{ toggleMenu }}" style="display:{{ burgerDisplay }};margin-left:auto;align-items:center;gap:8px;min-height:40px;padding:0 14px;border:none;border-radius:12px;background:var(--surface-high);color:var(--accent-strong);font-family:var(--dp-font-body);font-weight:600;font-size:14px;cursor:pointer">
+          <span style="display:flex;flex-direction:column;gap:3.5px">
+            <span style="display:block;width:16px;height:1.6px;border-radius:2px;background:currentColor"></span>
+            <span style="display:block;width:16px;height:1.6px;border-radius:2px;background:currentColor"></span>
+            <span style="display:block;width:16px;height:1.6px;border-radius:2px;background:currentColor"></span>
+          </span>
+          {{ burgerLabel }}
+        </button>
+        <nav style="display:{{ navDisplay }};gap:22px;overflow-x:auto;padding:2px 0">
+          <sc-for list="{{ nav }}" as="n" hint-placeholder-count="5">
+            <button onClick="{{ n.onClick }}" style="background:none;border:none;padding:5px 0 4px;cursor:pointer;white-space:nowrap;font-family:var(--dp-font-body);font-weight:600;font-size:14.5px;line-height:1.2;letter-spacing:-0.1px;color:{{ n.color }};border-bottom:2px solid {{ n.underline }}">{{ n.label }}</button>
+          </sc-for>
+        </nav>
+        <div style="display:{{ ctaDisplay }};flex-shrink:0">
+          <x-import component-from-global-scope="DailyPathsDesignSystem_3f5691.Button" size="sm" style="{{ nowrap }}" hint-size="120px,40px">Get the app</x-import>
+        </div>
+      </div>
+      <sc-if value="{{ menuOpen }}" hint-placeholder-val="{{ false }}">
+        <div style="border-top:1px solid var(--rule);background:var(--surface-lowest);padding:8px 5cqw 16px;box-shadow:var(--shadow-surface)">
+          <sc-for list="{{ nav }}" as="n" hint-placeholder-count="6">
+            <button onClick="{{ n.onClick }}" style="display:flex;width:100%;align-items:center;justify-content:space-between;gap:12px;background:none;border:none;border-bottom:1px solid var(--rule);padding:15px 2px;cursor:pointer;text-align:left;font-family:var(--dp-font-body);font-weight:600;font-size:17px;color:{{ n.color }}">
+              {{ n.label }}
+              <x-import component-from-global-scope="DailyPathsDesignSystem_3f5691.Icon" name="chevronRight" size="16" hint-size="16px,16px"></x-import>
+            </button>
+          </sc-for>
+          <div style="margin-top:16px">
+            <x-import component-from-global-scope="DailyPathsDesignSystem_3f5691.Button" full="{{ true }}" hint-size="100%,48px">Get the app</x-import>
+          </div>
+        </div>
+      </sc-if>
+    </header>
+
+    <sc-if value="{{ isReflection }}" hint-placeholder-val="{{ true }}">
+      <div>
+        <section style="position:relative;min-height:clamp(240px,30cqw,380px);display:flex;align-items:flex-end;background-image:url(assets/reflections/reflections-37.webp);background-size:cover;background-position:center">
+          <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(28,37,36,.10) 0%,rgba(28,37,36,.72) 100%)"></div>
+          <div style="position:relative;width:100%;max-width:1160px;margin:0 auto;padding:0 5cqw clamp(28px,4cqw,52px)">
+            <div style="font-weight:600;font-size:13px;letter-spacing:.4px;text-transform:uppercase;color:rgba(255,255,255,.72)">August 9 · Step Eight</div>
+            <h1 style="margin:12px 0 0;max-width:18ch;font-family:var(--dp-font-display);font-weight:600;font-size:clamp(36px,4.8cqw,60px);line-height:1.08;letter-spacing:-0.5px;color:#fff;text-wrap:pretty">Let Go and Let God</h1>
+          </div>
+        </section>
+
+        <article style="max-width:820px;margin:0 auto;padding:clamp(28px,4cqw,52px) 5cqw 0">
+          <div style="display:flex;gap:10px;flex-wrap:wrap">
+            <span onClick="{{ goTheme }}" style="cursor:pointer" style-hover="opacity:.72"><x-import component-from-global-scope="DailyPathsDesignSystem_3f5691.Pill" hint-size="110px,32px">Letting Go →</x-import></span>
+            <span onClick="{{ goStep1 }}" style="cursor:pointer" style-hover="opacity:.72"><x-import component-from-global-scope="DailyPathsDesignSystem_3f5691.Pill" hint-size="90px,32px">Step Eight →</x-import></span>
+          </div>
+          <div style="margin:26px 0 30px;padding:24px 26px;background:var(--surface-lowest);border-left:3.5px solid var(--accent);border-radius:0 14px 14px 0;box-shadow:var(--shadow-card)">
+            <x-import component-from-global-scope="DailyPathsDesignSystem_3f5691.QuoteBlock" attribution="Paths to Recovery, p. 82" hint-size="100%,100px">Step Eight becomes the opportunity to &lsquo;Let Go and Let God&rsquo; and the opportunity to begin a new partnership with that Power in ridding themselves of the past.</x-import>
+          </div>
+          <sc-for list="{{ reflectionBody }}" as="p" hint-placeholder-count="4">
+            <p style="margin:0 0 22px;font-family:var(--dp-font-reading);font-size:clamp(18px,1.6cqw,19.5px);line-height:1.62;color:var(--text-primary);text-wrap:pretty">{{ p }}</p>
+          </sc-for>
+
+          <div style="margin:34px 0 0;background:var(--accent-soft);border-radius:16px;padding:clamp(22px,2.6cqw,32px)">
+            <div style="font-weight:600;font-size:13px;letter-spacing:.4px;text-transform:uppercase;color:var(--dp-teal-700)">Today's Reminder</div>
+            <p style="margin:12px 0 0;font-family:var(--dp-font-reading);font-size:clamp(19px,1.9cqw,23px);line-height:1.6;color:var(--dp-teal-900)">Partnership means I do my part and God does God's part.</p>
+          </div>
+
+          <div style="margin:32px 0 0;display:flex;gap:14px;flex-wrap:wrap">
+            <div style="flex:1 1 220px;background:var(--surface-lowest);border:0.5px solid var(--border-card);border-radius:10px;padding:16px 18px;box-shadow:var(--shadow-card);cursor:pointer">
+              <div style="font-size:12px;letter-spacing:.5px;text-transform:uppercase;color:var(--text-muted)">← Previous</div>
+              <div style="margin-top:6px;font-weight:600;font-size:16px;color:var(--accent-strong)">How Do We Acquire Willingness</div>
+            </div>
+            <div style="flex:1 1 220px;background:var(--surface-lowest);border:0.5px solid var(--border-card);border-radius:10px;padding:16px 18px;box-shadow:var(--shadow-card);text-align:right;cursor:pointer">
+              <div style="font-size:12px;letter-spacing:.5px;text-transform:uppercase;color:var(--text-muted)">Next →</div>
+              <div style="margin-top:6px;font-weight:600;font-size:16px;color:var(--accent-strong)">Without Dumping the Garbage</div>
+            </div>
+          </div>
+          <div style="margin:16px 0 0;text-align:center">
+            <span style="font-weight:600;font-size:15px;color:var(--accent);cursor:pointer">Browse the reading calendar →</span>
+          </div>
+
+          <p style="margin:26px 0 0;font-size:13px;line-height:22px;color:var(--text-muted)">Curated by members of the Al-Anon community for Daily Growth, LLC. Grounded in the Twelve Steps and the contemplative tradition of Al-Anon.</p>
+        </article>
+
+        <section style="max-width:1160px;margin:0 auto;padding:clamp(28px,3.4cqw,44px) 5cqw 0">
+          <div onClick="{{ goStart }}" style="cursor:pointer;background:var(--accent-soft);border-radius:16px;padding:clamp(22px,2.6cqw,30px) clamp(22px,3cqw,34px);display:flex;gap:24px;align-items:center;justify-content:space-between;flex-wrap:wrap" style-hover="opacity:.88">
+            <div style="display:flex;gap:16px;align-items:flex-start;max-width:62ch">
+              <div style="flex-shrink:0;margin-top:3px">
+                <x-import component-from-global-scope="DailyPathsDesignSystem_3f5691.Icon" name="lightOnWater" size="28" color="var(--dp-teal-700)" hint-size="28px,28px"></x-import>
+              </div>
+              <div>
+                <div style="font-family:var(--dp-font-display);font-weight:600;font-size:clamp(24px,2.6cqw,30px);line-height:1.2;letter-spacing:-0.3px;color:var(--dp-teal-900)">Is someone else's drinking affecting your life?</div>
+                <p style="margin:8px 0 0;font-size:16px;line-height:26px;color:var(--dp-teal-800)">Twelve questions, two minutes. Nothing you answer is saved or sent anywhere.</p>
+              </div>
+            </div>
+            <div style="flex-shrink:0">
+              <x-import component-from-global-scope="DailyPathsDesignSystem_3f5691.Button" hint-size="150px,48px">Start here →</x-import>
+            </div>
+          </div>
+        </section>
+
+        <section style="max-width:1160px;margin:0 auto;padding:clamp(44px,5.5cqw,76px) 5cqw 0">
+          <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:24px;flex-wrap:wrap">
+            <div>
+              <div style="font-weight:600;font-size:13px;letter-spacing:.4px;text-transform:uppercase;color:var(--accent)">Keep reading</div>
+              <h2 style="margin:10px 0 0;font-family:var(--dp-font-display);font-weight:600;font-size:clamp(28px,3.4cqw,40px);letter-spacing:-0.4px">More on letting go</h2>
+              <p style="margin:10px 0 0;font-size:17px;line-height:28px;color:var(--text-muted);max-width:58ch">Forty-two readings on what was never yours to cure.</p>
+            </div>
+            <button onClick="{{ goTheme }}" style="background:none;border:none;padding:0;cursor:pointer;color:var(--accent);font-family:var(--dp-font-body);font-weight:600;font-size:15px;white-space:nowrap">All of Letting Go →</button>
+          </div>
+          <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:14px;margin-top:28px">
+            <sc-for list="{{ siblingReadings }}" as="r" hint-placeholder-count="3">
+              <div onClick="{{ goHome }}" style="cursor:pointer;background:var(--surface-low);border-radius:14px;padding:22px 22px 24px;box-shadow:var(--shadow-card)" style-hover="background:var(--surface-card)">
+                <div style="font-size:12px;letter-spacing:.5px;text-transform:uppercase;color:var(--text-muted)">{{ r.date }}</div>
+                <div style="margin-top:8px;font-family:var(--dp-font-display);font-weight:600;font-size:22px;letter-spacing:-0.2px">{{ r.title }}</div>
+                <div style="margin-top:8px;font-size:16px;line-height:26px;color:var(--text-muted)">{{ r.why }}</div>
+                <div style="margin-top:14px;font-weight:600;font-size:14px;color:var(--accent)">Read →</div>
+              </div>
+            </sc-for>
+          </div>
+
+          <div style="margin-top:44px;padding-top:26px;border-top:1px solid var(--rule)">
+            <div style="font-weight:600;font-size:13px;letter-spacing:.4px;text-transform:uppercase;color:var(--accent)">Related topics</div>
+            <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:14px;margin-top:18px">
+              <sc-for list="{{ alsoTopics }}" as="t" hint-placeholder-count="3">
+                <div onClick="{{ t.onClick }}" style="cursor:pointer;background:var(--surface-lowest);border:0.5px solid var(--border-card);border-radius:14px;padding:20px 22px 22px;box-shadow:var(--shadow-card)" style-hover="background:var(--surface-card)">
+                  <div style="font-family:var(--dp-font-display);font-weight:600;font-size:21px;letter-spacing:-0.2px">{{ t.title }}</div>
+                  <div style="margin-top:7px;font-size:16px;line-height:25px;color:var(--text-muted)">{{ t.line }}</div>
+                  <div style="margin-top:14px;font-size:13px;letter-spacing:.3px;color:var(--text-muted)">{{ t.meta }}</div>
+                </div>
+              </sc-for>
+            </div>
+          </div>
+        </section>
+
+        <section style="max-width:1160px;margin:0 auto;padding:clamp(44px,5.5cqw,76px) 5cqw 0">
+          <div style="background:var(--surface-lowest);border-radius:16px;box-shadow:var(--shadow-ambient);padding:clamp(28px,4cqw,56px);display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:clamp(20px,3cqw,44px);align-items:center">
+            <div>
+              <h2 style="margin:0;font-family:var(--dp-font-display);font-weight:600;font-size:clamp(26px,3.2cqw,38px);line-height:1.15;letter-spacing:-0.4px;text-wrap:pretty">Serenity is a daily practice. Let us walk the path with you.</h2>
+              <p style="margin:12px 0 0;font-size:17px;line-height:28px;color:var(--text-muted)">Download Al-Anon Daily Paths to get the day's reflection each morning and a private place to write.</p>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:14px;align-items:flex-start">
+              <div style="display:flex;align-items:center;gap:14px">
+                <img src="assets/icon.png" alt="Al-Anon Daily Paths app icon" style="width:64px;height:64px;border-radius:14px;box-shadow:var(--shadow-surface)">
+                <div>
+                  <div style="font-weight:600;font-size:16px">Al-Anon Daily Paths</div>
+                  <div style="font-size:14px;color:var(--text-muted)">iPhone · Android</div>
+                </div>
+              </div>
+              <div style="display:flex;gap:10px;flex-wrap:wrap">
+                <div style="display:flex;align-items:center;gap:9px;background:#1C2524;color:#fff;border-radius:10px;padding:9px 16px">
+                  <span style="font-size:11px;letter-spacing:.3px;color:rgba(255,255,255,.7)">Download on the<br><span style="font-size:16px;font-weight:600;letter-spacing:-0.2px;color:#fff">App Store</span></span>
+                </div>
+                <div style="display:flex;align-items:center;gap:9px;background:#1C2524;color:#fff;border-radius:10px;padding:9px 16px">
+                  <span style="font-size:11px;letter-spacing:.3px;color:rgba(255,255,255,.7)">Get it on<br><span style="font-size:16px;font-weight:600;letter-spacing:-0.2px;color:#fff">Google Play</span></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ isSteps }}" hint-placeholder-val="{{ true }}">
+      <div>
+        <section style="position:relative;min-height:clamp(220px,26cqw,340px);display:flex;align-items:flex-end;background-image:url(assets/reflections/reflections-21.webp);background-size:cover;background-position:center">
+          <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(28,37,36,.10) 0%,rgba(28,37,36,.72) 100%)"></div>
+          <div style="position:relative;width:100%;max-width:1160px;margin:0 auto;padding:0 5cqw clamp(28px,4cqw,52px)">
+            <h1 style="margin:0;font-family:var(--dp-font-display);font-weight:500;font-size:clamp(34px,4.8cqw,60px);line-height:1.1;letter-spacing:-0.8px;color:#fff">The Twelve Steps</h1>
+            <p style="margin:10px 0 0;font-family:var(--dp-font-reading);font-size:clamp(16px,1.6cqw,20px);color:rgba(255,255,255,.85)">A framework for personal freedom</p>
+          </div>
+        </section>
+        <section style="max-width:1160px;margin:0 auto;padding:clamp(32px,4cqw,56px) 5cqw 0">
+          <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:16px">
+            <sc-for list="{{ steps }}" as="s" hint-placeholder-count="12">
+              <div onClick="{{ s.onClick }}" style="display:flex;gap:16px;align-items:flex-start;background:var(--surface-lowest);border:0.5px solid var(--border-card);border-radius:10px;box-shadow:var(--shadow-card);padding:20px;cursor:pointer" style-hover="box-shadow:var(--shadow-surface)">
+                <span style="font-family:var(--dp-font-display);font-weight:600;font-size:34px;line-height:1;color:var(--accent-soft)">{{ s.n }}</span>
+                <span>
+                  <span style="display:block;font-weight:600;font-size:18px;color:var(--text-primary)">{{ s.word }}</span>
+                  <span style="display:block;margin-top:6px;font-size:16px;line-height:26px;color:var(--text-muted)">{{ s.line }}</span>
+                  <span style="display:block;margin-top:12px;font-weight:600;font-size:14px;color:var(--accent)">Read the Step →</span>
+                </span>
+              </div>
+            </sc-for>
+          </div>
+          <p style="margin:26px 0 0;font-size:13px;line-height:22px;color:var(--text-muted)">The Twelve Steps are adapted from Alcoholics Anonymous and used by Al-Anon Family Groups. For the official Al-Anon perspective on the Steps, visit <a href="https://al-anon.org/for-members/the-legacies/the-twelve-steps/">al-anon.org</a>.</p>
+        </section>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ isThemes }}" hint-placeholder-val="{{ true }}">
+      <div>
+        <section style="position:relative;min-height:clamp(220px,26cqw,340px);display:flex;align-items:flex-end;background-image:url(assets/themes-hero.jpg);background-size:cover;background-position:center">
+          <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(28,37,36,.10) 0%,rgba(28,37,36,.72) 100%)"></div>
+          <div style="position:relative;width:100%;max-width:1160px;margin:0 auto;padding:0 5cqw clamp(28px,4cqw,52px)">
+            <h1 style="margin:0;font-family:var(--dp-font-display);font-weight:500;font-size:clamp(34px,4.8cqw,60px);line-height:1.1;letter-spacing:-0.8px;color:#fff">Topics</h1>
+            <p style="margin:10px 0 0;font-family:var(--dp-font-reading);font-size:clamp(16px,1.6cqw,20px);color:rgba(255,255,255,.85)">Fourteen ways in — twelve reading collections and two pieces of background.</p>
+          </div>
+        </section>
+        <section style="max-width:1160px;margin:0 auto;padding:clamp(32px,4cqw,56px) 5cqw 0">
+          <p style="margin:0 0 28px;max-width:64ch;font-family:var(--dp-font-reading);font-size:clamp(17px,1.6cqw,20px);line-height:1.7;color:var(--text-muted)">Topics are how most people look for a reading — by what is happening to them, not by where they are in the program. Each topic gathers readings from across the Twelve Steps. Working the Steps in order instead? <span onClick="{{ goSteps }}" style="color:var(--accent);font-weight:600;cursor:pointer">Read the Twelve Steps →</span> Not sure where to start? <span onClick="{{ goLoved }}" style="color:var(--accent);font-weight:600;cursor:pointer">The most read readings →</span></p>
+          <p style="margin:-14px 0 28px;max-width:64ch;font-size:15px;line-height:25px;color:var(--text-muted)">Two of these are background rather than reading collections — subjects worth understanding that the daily readings don't cover directly.</p>
+          <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px">
+            <sc-for list="{{ themes }}" as="t" hint-placeholder-count="12">
+              <div onClick="{{ t.onClick }}" style="background:var(--surface-lowest);border:0.5px solid var(--border-card);border-radius:14px;box-shadow:var(--shadow-card);padding:24px;cursor:pointer;display:flex;flex-direction:column;gap:8px" style-hover="box-shadow:var(--shadow-surface)">
+                <div style="font-family:var(--dp-font-display);font-weight:600;font-size:23px;line-height:1.2;letter-spacing:-0.2px;text-wrap:pretty">{{ t.title }}</div>
+                <div style="font-size:16px;line-height:26px;color:var(--text-muted)">{{ t.line }}</div>
+                <div style="margin-top:auto;padding-top:12px;display:flex;gap:12px;justify-content:space-between;align-items:baseline;flex-wrap:wrap">
+                  <span style="font-weight:600;font-size:14px;color:var(--accent)">Explore →</span>
+                  <span style="font-size:12px;letter-spacing:.3px;color:var(--text-muted)">{{ t.meta }}</span>
+                </div>
+              </div>
+            </sc-for>
+          </div>
+        </section>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ isStep1 }}" hint-placeholder-val="{{ false }}">
+      <div>
+        <div style="border-bottom:1px solid var(--rule);background:var(--surface-low)">
+          <div style="max-width:1160px;margin:0 auto;padding:12px 5cqw;display:flex;gap:18px;justify-content:space-between;align-items:center;font-weight:600;font-size:14px;color:var(--text-muted)">
+            <span style="cursor:pointer">← Step 12: Service</span>
+            <span onClick="{{ goSteps }}" style="cursor:pointer;color:var(--accent)">All Steps</span>
+            <span style="cursor:pointer">Step 2: Hope →</span>
+          </div>
+        </div>
+
+        <section style="position:relative;min-height:clamp(240px,30cqw,400px);display:flex;align-items:flex-end;background-image:url(assets/reflections/reflections-4.webp);background-size:cover;background-position:center">
+          <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(28,37,36,.10) 0%,rgba(28,37,36,.74) 100%)"></div>
+          <div style="position:relative;width:100%;max-width:1160px;margin:0 auto;padding:0 5cqw clamp(28px,4cqw,52px)">
+            <div style="font-weight:600;font-size:13px;letter-spacing:.4px;text-transform:uppercase;color:rgba(255,255,255,.72)">Honesty &amp; the power of surrender</div>
+            <h1 style="margin:12px 0 0;font-family:var(--dp-font-display);font-weight:500;font-size:clamp(36px,5cqw,62px);line-height:1.08;letter-spacing:-0.9px;color:#fff">Step One</h1>
+          </div>
+        </section>
+
+        <article style="max-width:820px;margin:0 auto;padding:clamp(28px,4cqw,52px) 5cqw 0">
+          <div style="padding:24px 26px;background:var(--surface-lowest);border-left:3.5px solid var(--accent);border-radius:0 14px 14px 0;box-shadow:var(--shadow-card)">
+            <x-import component-from-global-scope="DailyPathsDesignSystem_3f5691.QuoteBlock" attribution="Step One" hint-size="100%,80px">We admitted we were powerless over alcohol — that our lives had become unmanageable.</x-import>
+          </div>
+          <sc-for list="{{ step1Body }}" as="b" hint-placeholder-count="6">
+            <div style="margin-top:26px">
+              <sc-if value="{{ b.h }}" hint-placeholder-val="{{ true }}">
+                <h2 style="margin:0 0 12px;font-family:var(--dp-font-display);font-weight:600;font-size:clamp(23px,2.4cqw,28px);letter-spacing:-0.2px;text-wrap:pretty">{{ b.h }}</h2>
+              </sc-if>
+              <p style="margin:0;font-family:var(--dp-font-reading);font-size:clamp(18px,1.6cqw,19.5px);line-height:1.62;color:var(--text-primary);text-wrap:pretty">{{ b.p }}</p>
+            </div>
+          </sc-for>
+
+          <div style="margin-top:clamp(32px,4cqw,52px);background:var(--surface-lowest);border:0.5px solid var(--border-card);border-radius:16px;box-shadow:var(--shadow-surface);padding:clamp(24px,3cqw,36px)">
+            <h2 style="margin:0;font-family:var(--dp-font-display);font-weight:600;font-size:clamp(23px,2.4cqw,28px)">Questions for Reflection</h2>
+            <p style="margin:8px 0 20px;font-size:16px;line-height:26px;color:var(--text-muted)">Take your time with these. There are no right answers — only honest ones.</p>
+            <div style="display:flex;flex-direction:column;gap:14px">
+              <sc-for list="{{ step1Questions }}" as="q" hint-placeholder-count="6">
+                <div style="display:flex;gap:12px;align-items:flex-start;padding-bottom:14px;border-bottom:1px solid var(--rule)">
+                  <x-import component-from-global-scope="DailyPathsDesignSystem_3f5691.Icon" name="feather" size="18" color="var(--accent)" hint-size="18px,18px"></x-import>
+                  <span style="font-family:var(--dp-font-reading);font-size:17px;line-height:27px;color:var(--text-primary)">{{ q }}</span>
+                </div>
+              </sc-for>
+            </div>
+          </div>
+
+          <div style="margin-top:clamp(24px,3cqw,36px);background:var(--accent-soft);border-radius:16px;padding:clamp(24px,3cqw,36px)">
+            <h2 style="margin:0 0 16px;font-family:var(--dp-font-display);font-weight:600;font-size:clamp(23px,2.4cqw,28px);color:var(--dp-teal-900)">Step 1 in Action</h2>
+            <div style="display:flex;flex-direction:column;gap:12px">
+              <sc-for list="{{ step1Actions }}" as="a" hint-placeholder-count="4">
+                <div style="display:flex;gap:10px;align-items:flex-start;font-size:16px;line-height:26px;color:var(--dp-teal-900)">
+                  <span style="color:var(--dp-teal-700)">·</span><span>{{ a }}</span>
+                </div>
+              </sc-for>
+            </div>
+            <p style="margin:18px 0 0;font-size:16px;line-height:26px;color:var(--dp-teal-700)">Go deeper with Al-Anon's <em>Paths to Recovery</em>.</p>
+          </div>
+        </article>
+
+        <section style="max-width:1160px;margin:0 auto;padding:clamp(40px,5cqw,72px) 5cqw 0">
+          <div style="font-weight:600;font-size:13px;letter-spacing:.4px;text-transform:uppercase;color:var(--accent)">Most read</div>
+          <h2 style="margin:10px 0 8px;font-family:var(--dp-font-display);font-weight:600;font-size:clamp(26px,3.2cqw,38px);letter-spacing:-0.3px">Six readings on Step One</h2>
+          <p style="margin:0 0 8px;max-width:62ch;font-size:17px;line-height:28px;color:var(--text-muted)">The ones people come back to. For the rest, read by topic — <span onClick="{{ goTheme }}" style="color:var(--accent);font-weight:600;cursor:pointer">Letting Go</span> — or browse the calendar by date.</p>
+          <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px;margin-top:22px">
+            <sc-for list="{{ stepTop }}" as="r" hint-placeholder-count="6">
+              <div onClick="{{ goReflection }}" style="cursor:pointer;background:var(--surface-lowest);border:0.5px solid var(--border-card);border-radius:10px;box-shadow:var(--shadow-card);padding:18px" style-hover="box-shadow:var(--shadow-surface)">
+                <div style="font-size:12px;letter-spacing:.5px;text-transform:uppercase;color:var(--text-muted)">{{ r.date }}</div>
+                <div style="margin-top:6px;font-weight:600;font-size:16px;line-height:24px;color:var(--text-primary)">{{ r.title }}</div>
+                <div style="margin-top:7px;font-size:14px;line-height:22px;color:var(--text-muted)">{{ r.why }}</div>
+              </div>
+            </sc-for>
+          </div>
+          <div style="margin-top:clamp(32px,4cqw,56px);background:var(--hero-gradient);border-radius:16px;color:#fff;padding:clamp(26px,3.4cqw,44px);position:relative;overflow:hidden">
+            <x-import component-from-global-scope="DailyPathsDesignSystem_3f5691.RippleField" size="520" hint-size="1px,1px"></x-import>
+            <div style="position:relative;display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:28px;align-items:center">
+              <div>
+                <h2 style="margin:0;font-family:var(--dp-font-display);font-weight:500;font-size:clamp(24px,2.8cqw,34px);color:#fff">Deepen your work on Step 1.</h2>
+                <p style="margin:10px 0 0;font-size:16px;line-height:26px;color:rgba(255,255,255,.85)">The journaling tools help you process Step 1 in real time — track your insights and get a daily reminder.</p>
+              </div>
+              <div style="display:flex;gap:10px;flex-wrap:wrap">
+                <x-import component-from-global-scope="DailyPathsDesignSystem_3f5691.Button" variant="secondary" hint-size="140px,48px">App Store</x-import>
+                <button style="min-height:48px;padding:0 22px;border-radius:12px;background:transparent;border:none;box-shadow:inset 0 0 0 1px rgba(255,255,255,.5);color:#fff;font-family:var(--dp-font-body);font-weight:600;font-size:17px;cursor:pointer" style-hover="background:rgba(255,255,255,.12)">Google Play</button>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ isTheme }}" hint-placeholder-val="{{ false }}">
+      <div>
+        <div style="border-bottom:1px solid var(--rule);background:var(--surface-low)">
+          <div style="max-width:1160px;margin:0 auto;padding:12px 5cqw;display:flex;gap:18px;justify-content:space-between;align-items:center;font-weight:600;font-size:14px;color:var(--text-muted)">
+            <span style="cursor:pointer">← Living With Active Drinking</span>
+            <span onClick="{{ goThemes }}" style="cursor:pointer;color:var(--accent)">All topics</span>
+            <span style="cursor:pointer">Anger and Resentment →</span>
+          </div>
+        </div>
+
+        <section style="position:relative;min-height:clamp(240px,30cqw,400px);display:flex;align-items:flex-end;background-image:url(assets/themes-hero.jpg);background-size:cover;background-position:center">
+          <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(28,37,36,.10) 0%,rgba(28,37,36,.74) 100%)"></div>
+          <div style="position:relative;width:100%;max-width:1160px;margin:0 auto;padding:0 5cqw clamp(28px,4cqw,52px)">
+            <div style="font-weight:600;font-size:13px;letter-spacing:.4px;text-transform:uppercase;color:rgba(255,255,255,.72)">Topic</div>
+            <h1 style="margin:12px 0 0;max-width:16ch;font-family:var(--dp-font-display);font-weight:500;font-size:clamp(34px,4.6cqw,58px);line-height:1.08;letter-spacing:-0.8px;color:#fff;text-wrap:pretty">Letting Go</h1>
+            <p style="margin:12px 0 0;font-family:var(--dp-font-reading);font-size:clamp(16px,1.6cqw,20px);color:rgba(255,255,255,.85)">Powerlessness, surrender, and the many ways we try to manage what isn't ours.</p>
+          </div>
+        </section>
+
+        <article style="max-width:820px;margin:0 auto;padding:clamp(28px,4cqw,52px) 5cqw 0">
+          <p style="margin:0 0 30px;font-family:var(--dp-font-display);font-style:italic;font-size:clamp(24px,2.9cqw,34px);line-height:1.5;color:var(--accent-strong);text-align:center;text-wrap:pretty">&ldquo;Surrender isn't giving up — it's giving over.&rdquo;</p>
+          <sc-for list="{{ themeBody }}" as="p" hint-placeholder-count="5">
+            <p style="margin:0 0 22px;font-family:var(--dp-font-reading);font-size:clamp(18px,1.6cqw,19.5px);line-height:1.62;color:var(--text-primary);text-wrap:pretty">{{ p }}</p>
+          </sc-for>
+
+          <div style="margin-top:clamp(24px,3cqw,36px);background:var(--surface-lowest);border:0.5px solid var(--border-card);border-radius:16px;box-shadow:var(--shadow-surface);padding:clamp(24px,3cqw,36px)">
+            <h2 style="margin:0;font-family:var(--dp-font-display);font-weight:600;font-size:clamp(23px,2.4cqw,28px)">Share Your Experience</h2>
+            <p style="margin:8px 0 20px;font-size:16px;line-height:26px;color:var(--text-muted)">What was the first thing you let go of — and what happened?</p>
+            <div style="display:flex;flex-direction:column;gap:14px">
+              <x-import component-from-global-scope="DailyPathsDesignSystem_3f5691.Field" style="{{ fieldTall }}" hint-size="100%,48px">
+                <x-import component-from-global-scope="DailyPathsDesignSystem_3f5691.Input" placeholder="Name" hint-size="100%,24px"></x-import>
+              </x-import>
+              <x-import component-from-global-scope="DailyPathsDesignSystem_3f5691.Field" style="{{ fieldArea }}" hint-size="100%,120px">
+                <textarea rows="4" placeholder="Your insight…" style="flex:1;min-width:0;border:none;background:transparent;outline:none;font-family:var(--dp-font-body);font-size:16px;line-height:26px;color:var(--text-primary);resize:vertical"></textarea>
+              </x-import>
+              <div style="display:flex;gap:14px;align-items:center;justify-content:space-between;flex-wrap:wrap">
+                <span style="font-size:13px;color:var(--text-muted)">0 / 3000 characters</span>
+                <x-import component-from-global-scope="DailyPathsDesignSystem_3f5691.Button" hint-size="130px,48px">Post insight</x-import>
+              </div>
+              <p style="margin:0;font-size:13px;line-height:21px;color:var(--text-muted)">By submitting, you consent to sharing your experience with the Daily Paths community.</p>
+            </div>
+          </div>
+
+          <div style="margin-top:clamp(24px,3cqw,36px);background:var(--surface-low);border-radius:14px;padding:clamp(24px,3cqw,36px)">
+            <div style="font-size:12px;letter-spacing:.6px;text-transform:uppercase;color:var(--text-muted)">Al-Anon reading on this topic</div>
+            <h2 style="margin:10px 0 16px;font-family:var(--dp-font-display);font-weight:600;font-size:clamp(23px,2.4cqw,28px)">{{ topicReading.title }}</h2>
+            <div style="display:flex;flex-direction:column;gap:14px">
+              <sc-for list="{{ topicReading.lines }}" as="l" hint-placeholder-count="4">
+                <p style="margin:0;font-family:var(--dp-font-reading);font-size:17px;line-height:28px;color:var(--text-primary);text-wrap:pretty">{{ l }}</p>
+              </sc-for>
+            </div>
+            <div style="margin-top:18px;padding-top:14px;border-top:1px solid var(--rule);display:flex;gap:14px;justify-content:space-between;align-items:baseline;flex-wrap:wrap">
+              <span style="font-size:12px;letter-spacing:.5px;text-transform:uppercase;color:var(--text-muted)">{{ topicReading.note }}</span>
+              <span style="font-weight:600;font-size:15px;color:var(--accent);cursor:pointer">Read the whole passage →</span>
+            </div>
+          </div>
+        </article>
+
+        <section style="max-width:1160px;margin:0 auto;padding:clamp(40px,5cqw,72px) 5cqw 0">
+          <h2 style="margin:0;font-family:var(--dp-font-display);font-weight:600;font-size:clamp(26px,3.2cqw,38px);letter-spacing:-0.3px">Most read on this topic</h2>
+          <p style="margin:8px 0 22px;font-size:17px;line-height:28px;color:var(--text-muted)">The five members save most often — from five different Steps.</p>
+          <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:14px">
+            <sc-for list="{{ featuredReadings }}" as="r" hint-placeholder-count="5">
+              <div onClick="{{ goReflection }}" style="cursor:pointer;background:var(--surface-lowest);border:0.5px solid var(--border-card);border-radius:10px;box-shadow:var(--shadow-card);padding:18px" style-hover="box-shadow:var(--shadow-surface)">
+                <div style="font-size:11px;letter-spacing:.5px;text-transform:uppercase;color:var(--accent)">{{ r.step }} · {{ r.date }}</div>
+                <div style="margin-top:8px;font-weight:600;font-size:16px;line-height:24px">{{ r.title }}</div>
+              </div>
+            </sc-for>
+          </div>
+
+          <h2 style="margin:clamp(36px,4cqw,60px) 0 6px;font-family:var(--dp-font-display);font-weight:600;font-size:clamp(24px,2.9cqw,34px);letter-spacing:-0.3px">Readings across the Steps</h2>
+          <p style="margin:0 0 20px;font-size:17px;line-height:28px;color:var(--text-muted)">Sixteen more readings on this topic, drawn from seven Steps.</p>
+          <div style="display:flex;flex-direction:column;gap:26px">
+            <sc-for list="{{ themeGroups }}" as="g" hint-placeholder-count="4">
+              <div>
+                <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px">
+                  <span style="font-size:11px;letter-spacing:.6px;text-transform:uppercase;color:var(--text-muted)">{{ g.title }}</span>
+                  <span style="flex:1;height:1px;background:var(--rule)"></span>
+                </div>
+                <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:10px">
+                  <sc-for list="{{ g.items }}" as="r" hint-placeholder-count="4">
+                    <div onClick="{{ goReflection }}" style="cursor:pointer;background:var(--surface-low);border-radius:10px;padding:14px 16px" style-hover="background:var(--surface-card)">
+                      <div style="font-size:12px;letter-spacing:.4px;text-transform:uppercase;color:var(--text-muted)">{{ r.date }}</div>
+                      <div style="margin-top:5px;font-weight:600;font-size:16px;line-height:25px">{{ r.title }}</div>
+                    </div>
+                  </sc-for>
+                </div>
+              </div>
+            </sc-for>
+          </div>
+
+        </section>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ isBackground }}" hint-placeholder-val="{{ false }}">
+      <div>
+        <div style="border-bottom:1px solid var(--rule);background:var(--surface-low)">
+          <div style="max-width:1160px;margin:0 auto;padding:12px 5cqw;display:flex;gap:18px;justify-content:space-between;align-items:center;font-weight:600;font-size:14px;color:var(--text-muted)">
+            <span style="cursor:pointer">← Gratitude</span>
+            <span onClick="{{ goThemes }}" style="cursor:pointer;color:var(--accent)">All topics</span>
+            <span style="cursor:pointer">You're Not Alone →</span>
+          </div>
+        </div>
+
+        <section style="position:relative;min-height:clamp(240px,30cqw,400px);display:flex;align-items:flex-end;background-image:url(assets/reflections/reflections-4.webp);background-size:cover;background-position:center">
+          <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(28,37,36,.10) 0%,rgba(28,37,36,.74) 100%)"></div>
+          <div style="position:relative;width:100%;max-width:1160px;margin:0 auto;padding:0 5cqw clamp(28px,4cqw,52px)">
+            <div style="font-weight:600;font-size:13px;letter-spacing:.4px;text-transform:uppercase;color:rgba(255,255,255,.72)">Background</div>
+            <h1 style="margin:12px 0 0;max-width:16ch;font-family:var(--dp-font-display);font-weight:500;font-size:clamp(34px,4.6cqw,58px);line-height:1.08;letter-spacing:-0.8px;color:#fff;text-wrap:pretty">Alcoholism as a Disease</h1>
+            <p style="margin:12px 0 0;max-width:46ch;font-family:var(--dp-font-reading);font-size:clamp(16px,1.6cqw,20px);line-height:1.6;color:rgba(255,255,255,.85)">What the illness is, and why understanding it changes everything else.</p>
+          </div>
+        </section>
+
+        <article style="max-width:820px;margin:0 auto;padding:clamp(28px,4cqw,52px) 5cqw 0">
+          <p style="margin:0 0 24px;font-size:15px;line-height:25px;color:var(--text-muted)">This is background, not a daily reading. It's here because almost everything else on this site makes more sense once you have it.</p>
+          <sc-for list="{{ backgroundBody }}" as="b" hint-placeholder-count="4">
+            <div style="margin-bottom:26px">
+              <sc-if value="{{ b.h }}" hint-placeholder-val="{{ true }}">
+                <h2 style="margin:0 0 12px;font-family:var(--dp-font-display);font-weight:600;font-size:clamp(23px,2.4cqw,28px);letter-spacing:-0.2px;text-wrap:pretty">{{ b.h }}</h2>
+              </sc-if>
+              <p style="margin:0;font-family:var(--dp-font-reading);font-size:clamp(18px,1.6cqw,19.5px);line-height:1.62;color:var(--text-primary);text-wrap:pretty">{{ b.p }}</p>
+            </div>
+          </sc-for>
+        </article>
+
+        <section style="max-width:820px;margin:0 auto;padding:clamp(20px,2.5cqw,32px) 5cqw 0">
+          <div style="display:flex;align-items:center;gap:14px;margin-bottom:18px">
+            <span style="font-size:11px;letter-spacing:.6px;text-transform:uppercase;color:var(--text-muted)">In Al-Anon's own words</span>
+            <span style="flex:1;height:1px;background:var(--rule)"></span>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:16px">
+            <sc-for list="{{ litQuotes }}" as="q" hint-placeholder-count="3">
+              <div style="background:var(--surface-lowest);border-left:3.5px solid var(--accent);border-radius:0 14px 14px 0;box-shadow:var(--shadow-card);padding:24px 26px">
+                <p style="margin:0;font-family:var(--dp-font-reading);font-size:19px;line-height:1.55;color:var(--text-primary);text-wrap:pretty">{{ q.text }}</p>
+                <div style="margin-top:16px;padding-top:14px;border-top:1px solid var(--rule);display:flex;gap:14px;justify-content:space-between;align-items:baseline;flex-wrap:wrap">
+                  <span style="font-size:13px;letter-spacing:.3px;color:var(--text-muted)">{{ q.source }}</span>
+                  <a href="https://al-anon.org/al-anon-bookstore/" style="font-weight:600;font-size:14px">Find this book at al-anon.org ↗</a>
+                </div>
+              </div>
+            </sc-for>
+          </div>
+          <p style="margin:16px 0 0;font-size:13px;line-height:22px;color:var(--text-muted)">Passages are placeholders in this mock. Use Al-Anon's exact approved wording, with permission, or link out instead of quoting.</p>
+        </section>
+
+        <section style="max-width:1160px;margin:0 auto;padding:clamp(40px,5cqw,72px) 5cqw 0">
+          <div style="max-width:820px;margin:0 auto">
+            <h2 style="margin:0;font-family:var(--dp-font-display);font-weight:600;font-size:clamp(24px,2.9cqw,34px);letter-spacing:-0.3px">Where the readings pick this up</h2>
+            <p style="margin:10px 0 22px;max-width:62ch;font-size:17px;line-height:28px;color:var(--text-muted)">There's no set of daily readings on the disease itself. What the readings do is work out what it means to live with it.</p>
+          </div>
+          <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px">
+            <sc-for list="{{ backgroundLinks }}" as="l" hint-placeholder-count="4">
+              <div onClick="{{ l.onClick }}" style="cursor:pointer;background:var(--surface-lowest);border:0.5px solid var(--border-card);border-radius:14px;box-shadow:var(--shadow-card);padding:22px" style-hover="box-shadow:var(--shadow-surface)">
+                <div style="font-family:var(--dp-font-display);font-weight:600;font-size:22px;letter-spacing:-0.2px;text-wrap:pretty">{{ l.title }}</div>
+                <div style="margin-top:8px;font-size:16px;line-height:26px;color:var(--text-muted)">{{ l.line }}</div>
+                <div style="margin-top:14px;display:flex;gap:12px;justify-content:space-between;align-items:baseline">
+                  <span style="font-weight:600;font-size:14px;color:var(--accent)">Explore →</span>
+                  <span style="font-size:12px;color:var(--text-muted)">{{ l.meta }}</span>
+                </div>
+              </div>
+            </sc-for>
+          </div>
+        </section>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ isLoved }}" hint-placeholder-val="{{ false }}">
+      <div>
+        <section style="position:relative;min-height:clamp(240px,30cqw,380px);display:flex;align-items:flex-end;background-image:url(assets/hero-image.jpg);background-size:cover;background-position:center">
+          <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(28,37,36,.10) 0%,rgba(28,37,36,.74) 100%)"></div>
+          <div style="position:relative;width:100%;max-width:1160px;margin:0 auto;padding:0 5cqw clamp(28px,4cqw,52px)">
+            <div style="font-weight:600;font-size:13px;letter-spacing:.4px;text-transform:uppercase;color:rgba(255,255,255,.72)">Most read</div>
+            <h1 style="margin:12px 0 0;font-family:var(--dp-font-display);font-weight:500;font-size:clamp(34px,4.8cqw,60px);line-height:1.1;letter-spacing:-0.8px;color:#fff">The readings people come back to</h1>
+            <p style="margin:10px 0 0;max-width:48ch;font-family:var(--dp-font-reading);font-size:clamp(16px,1.6cqw,20px);line-height:1.6;color:rgba(255,255,255,.85)">Twenty-four of the 366, chosen by the people reading them.</p>
+          </div>
+        </section>
+
+        <section style="max-width:1160px;margin:0 auto;padding:clamp(32px,4cqw,56px) 5cqw 0">
+          <p style="margin:0 0 28px;max-width:64ch;font-family:var(--dp-font-reading);font-size:clamp(17px,1.6cqw,20px);line-height:1.7;color:var(--text-muted)">If you're new, start anywhere on this page. These are the readings members save and return to most often — a fair sample of what a morning here is like.</p>
+          <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px">
+            <sc-for list="{{ lovedTop }}" as="r" hint-placeholder-count="6">
+              <div onClick="{{ goReflection }}" style="cursor:pointer;background:var(--surface-lowest);border:0.5px solid var(--border-card);border-radius:14px;box-shadow:var(--shadow-surface);padding:clamp(22px,2.6cqw,30px);display:flex;flex-direction:column;gap:10px" style-hover="box-shadow:var(--shadow-ambient)">
+                <div style="font-size:11px;letter-spacing:.6px;text-transform:uppercase;color:var(--text-muted)">{{ r.date }} · {{ r.topic }}</div>
+                <div style="font-family:var(--dp-font-display);font-weight:600;font-size:clamp(23px,2.3cqw,27px);line-height:1.2;letter-spacing:-0.2px;text-wrap:pretty">{{ r.title }}</div>
+                <p style="margin:0;font-family:var(--dp-font-reading);font-size:16px;line-height:26px;color:var(--text-muted);text-wrap:pretty">{{ r.line }}</p>
+                <div style="margin-top:auto;padding-top:10px;font-weight:600;font-size:14px;color:var(--accent)">Read it →</div>
+              </div>
+            </sc-for>
+          </div>
+
+          <div style="display:flex;align-items:center;gap:14px;margin:clamp(36px,4cqw,56px) 0 20px">
+            <span style="font-size:11px;letter-spacing:.6px;text-transform:uppercase;color:var(--text-muted)">Also well read</span>
+            <span style="flex:1;height:1px;background:var(--rule)"></span>
+          </div>
+          <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:10px">
+            <sc-for list="{{ lovedMore }}" as="r" hint-placeholder-count="18">
+              <div onClick="{{ goReflection }}" style="cursor:pointer;background:var(--surface-low);border-radius:10px;padding:15px 17px" style-hover="background:var(--surface-card)">
+                <div style="font-size:12px;letter-spacing:.4px;text-transform:uppercase;color:var(--text-muted)">{{ r.date }} · {{ r.topic }}</div>
+                <div style="margin-top:5px;font-weight:600;font-size:16px;line-height:25px">{{ r.title }}</div>
+              </div>
+            </sc-for>
+          </div>
+          <p style="margin:26px 0 0;font-size:13px;line-height:22px;color:var(--text-muted)">Ordered by how often members save a reading in the app. Updated monthly.</p>
+        </section>
+
+        <section style="max-width:1160px;margin:0 auto;padding:clamp(44px,5.5cqw,76px) 5cqw 0">
+          <div style="background:var(--accent-soft);border-radius:16px;padding:clamp(26px,3.4cqw,44px);display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:28px;align-items:center">
+            <div>
+              <h2 style="margin:0;font-family:var(--dp-font-display);font-weight:600;font-size:clamp(24px,2.8cqw,34px);letter-spacing:-0.3px;color:var(--dp-teal-900)">Read by topic instead</h2>
+              <p style="margin:10px 0 0;font-size:17px;line-height:28px;color:var(--dp-teal-700)">Twelve topics gather the rest of the 366 — by what's happening, not by date.</p>
+            </div>
+            <div>
+              <x-import component-from-global-scope="DailyPathsDesignSystem_3f5691.Button" onClick="{{ goThemes }}" hint-size="150px,48px">All topics →</x-import>
+            </div>
+          </div>
+        </section>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ isPrayers }}" hint-placeholder-val="{{ false }}">
+      <div>
+        <section style="position:relative;min-height:clamp(240px,30cqw,380px);display:flex;align-items:flex-end;background-image:url(assets/reflections/reflections-12.webp);background-size:cover;background-position:center">
+          <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(28,37,36,.10) 0%,rgba(28,37,36,.74) 100%)"></div>
+          <div style="position:relative;width:100%;max-width:1160px;margin:0 auto;padding:0 5cqw clamp(28px,4cqw,52px)">
+            <h1 style="margin:0;font-family:var(--dp-font-display);font-weight:500;font-size:clamp(34px,4.8cqw,60px);line-height:1.1;letter-spacing:-0.8px;color:#fff">Prayers</h1>
+            <p style="margin:10px 0 0;font-family:var(--dp-font-reading);font-size:clamp(16px,1.6cqw,20px);color:rgba(255,255,255,.85)">The prayers you already know — set line by line for reading aloud.</p>
+          </div>
+        </section>
+
+        <section style="max-width:1160px;margin:0 auto;padding:clamp(32px,4cqw,56px) 5cqw 0">
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px">
+            <sc-for list="{{ prayers }}" as="p" hint-placeholder-count="5">
+              <div style="background:var(--surface-lowest);border:0.5px solid var(--border-card);border-radius:14px;box-shadow:var(--shadow-card);padding:clamp(24px,3cqw,32px);display:flex;flex-direction:column;gap:14px;text-align:center">
+                <div style="font-size:12px;letter-spacing:.6px;text-transform:uppercase;color:var(--text-muted)">{{ p.title }}</div>
+                <p style="margin:0;white-space:pre-line;font-family:var(--dp-font-display);font-style:italic;font-size:19px;line-height:1.7;color:var(--text-primary);text-wrap:pretty">{{ p.body }}</p>
+                <div style="margin-top:auto;font-size:13px;color:var(--text-muted)">{{ p.note }}</div>
+              </div>
+            </sc-for>
+          </div>
+        </section>
+
+        <section style="max-width:1160px;margin:0 auto;padding:clamp(44px,5.5cqw,72px) 5cqw 0">
+          <div style="background:var(--accent-soft);border-radius:16px;padding:clamp(26px,3.4cqw,44px);display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:28px;align-items:center">
+            <div>
+              <h2 style="margin:0;font-family:var(--dp-font-display);font-weight:600;font-size:clamp(24px,2.8cqw,34px);letter-spacing:-0.3px;color:var(--dp-teal-900)">Add your own prayers.</h2>
+              <p style="margin:10px 0 0;font-size:17px;line-height:28px;color:var(--dp-teal-700)">Every prayer here lives in the app, and you can keep your own beside them.</p>
+            </div>
+            <div style="display:flex;gap:10px;flex-wrap:wrap">
+              <x-import component-from-global-scope="DailyPathsDesignSystem_3f5691.Button" hint-size="140px,48px">App Store</x-import>
+              <x-import component-from-global-scope="DailyPathsDesignSystem_3f5691.Button" variant="ghost" hint-size="140px,48px">Google Play</x-import>
+            </div>
+          </div>
+        </section>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ isStart }}" hint-placeholder-val="{{ false }}">
+      <div>
+        <section style="background:var(--hero-gradient);color:#fff;position:relative;overflow:hidden">
+          <x-import component-from-global-scope="DailyPathsDesignSystem_3f5691.RippleField" size="620" hint-size="1px,1px"></x-import>
+          <div style="position:relative;max-width:820px;margin:0 auto;padding:clamp(44px,6cqw,84px) 5cqw clamp(36px,5cqw,64px)">
+            <div style="font-weight:600;font-size:13px;letter-spacing:.4px;text-transform:uppercase;color:rgba(255,255,255,.7)">New here</div>
+            <h1 style="margin:14px 0 0;font-family:var(--dp-font-display);font-weight:500;font-size:clamp(36px,5.2cqw,64px);line-height:1.08;letter-spacing:-0.9px;color:#fff;text-wrap:pretty">Start here</h1>
+            <p style="margin:16px 0 0;font-family:var(--dp-font-reading);font-size:clamp(17px,1.7cqw,21px);line-height:1.7;color:rgba(255,255,255,.88)">If someone else's drinking is affecting your life, you don't have to have it figured out to begin. What Al-Anon is, whether it's for you, and four small things to do first. Five minutes, no sign-up.</p>
+          </div>
+        </section>
+
+        <section style="max-width:820px;margin:0 auto;padding:clamp(32px,4cqw,56px) 5cqw 0">
+          <div style="display:flex;align-items:baseline;gap:12px">
+            <span style="font-family:var(--dp-font-display);font-weight:600;font-size:34px;line-height:1;color:var(--accent-soft)">1</span>
+            <h2 style="margin:0;font-family:var(--dp-font-display);font-weight:600;font-size:clamp(24px,2.8cqw,32px);letter-spacing:-0.3px">See whether this is your situation</h2>
+          </div>
+          <p style="margin:12px 0 20px;padding-left:46px;font-size:17px;line-height:28px;color:var(--text-muted)">Tap any that sound familiar. Nothing is saved, and nothing is sent.</p>
+          <div style="padding-left:46px;display:flex;flex-direction:column;gap:10px">
+            <sc-for list="{{ quizItems }}" as="q" hint-placeholder-count="5">
+              <button onClick="{{ q.onClick }}" style="display:flex;align-items:flex-start;gap:12px;width:100%;text-align:left;cursor:pointer;padding:16px 18px;border-radius:12px;background:{{ q.bg }};border:{{ q.border }};color:{{ q.color }};font-family:var(--dp-font-reading);font-size:17px;line-height:27px;transition:background 180ms cubic-bezier(.4,0,.2,1)">
+                <span style="flex-shrink:0;margin-top:3px;width:20px;height:20px;border-radius:6px;background:{{ q.boxBg }};border:{{ q.boxBorder }};display:flex;align-items:center;justify-content:center">
+                  <span style="width:9px;height:5px;border-left:1.8px solid #fff;border-bottom:1.8px solid #fff;transform:rotate(-45deg) translate(1px,-1px);opacity:{{ q.tick }}"></span>
+                </span>
+                {{ q.text }}
+              </button>
+            </sc-for>
+          </div>
+          <sc-if value="{{ quizAnswered }}" hint-placeholder-val="{{ false }}">
+            <div style="margin:20px 0 0 46px;padding:22px 24px;background:var(--surface-lowest);border:0.5px solid var(--border-card);border-radius:14px;box-shadow:var(--shadow-card)">
+              <p style="margin:0;font-family:var(--dp-font-display);font-style:italic;font-size:22px;line-height:1.6;color:var(--accent-strong)">You checked {{ quizCount }}. That's not a diagnosis — it's just a sign you're in the right place.</p>
+              <p style="margin:12px 0 0;font-size:16px;line-height:26px;color:var(--text-muted)">Al-Anon is for people whose lives are affected by someone else's drinking, whether or not that person ever stops.</p>
+            </div>
+          </sc-if>
+        </section>
+
+        <section style="max-width:820px;margin:0 auto;padding:clamp(36px,4.5cqw,64px) 5cqw 0">
+          <div style="display:flex;align-items:baseline;gap:12px">
+            <span style="font-family:var(--dp-font-display);font-weight:600;font-size:34px;line-height:1;color:var(--accent-soft)">2</span>
+            <h2 style="margin:0;font-family:var(--dp-font-display);font-weight:600;font-size:clamp(24px,2.8cqw,32px);letter-spacing:-0.3px">Know what you'd be walking into</h2>
+          </div>
+          <div style="margin-top:20px;padding-left:46px;display:flex;flex-direction:column;gap:12px">
+            <sc-for list="{{ startFacts }}" as="f" hint-placeholder-count="3">
+              <div style="display:flex;gap:16px;align-items:flex-start;background:var(--surface-low);border-radius:14px;padding:20px 22px">
+                <x-import component-from-global-scope="DailyPathsDesignSystem_3f5691.Icon" name="{{ f.icon }}" size="28" color="var(--accent)" hint-size="28px,28px"></x-import>
+                <span>
+                  <span style="display:block;font-weight:600;font-size:17px;color:var(--text-primary)">{{ f.title }}</span>
+                  <span style="display:block;margin-top:6px;font-size:16px;line-height:26px;color:var(--text-muted)">{{ f.body }}</span>
+                </span>
+              </div>
+            </sc-for>
+          </div>
+          <div style="margin:26px 0 0 46px">
+            <h3 style="margin:0 0 12px;font-family:var(--dp-font-display);font-weight:600;font-size:clamp(21px,2.2cqw,25px);letter-spacing:-0.2px">What Al-Anon is</h3>
+            <sc-for list="{{ whatIsAlanon }}" as="p" hint-placeholder-count="2">
+              <p style="margin:0 0 18px;font-family:var(--dp-font-reading);font-size:clamp(18px,1.6cqw,19.5px);line-height:1.62;color:var(--text-primary);text-wrap:pretty">{{ p }}</p>
+            </sc-for>
+            <a href="https://al-anon.org/newcomers/what-is-al-anon-alateen/" style="font-weight:600;font-size:15px">Learn more at al-anon.org ↗</a>
+          </div>
+          <div style="margin:30px 0 0 46px;display:flex;flex-direction:column;gap:12px">
+            <sc-for list="{{ faqs }}" as="f" hint-placeholder-count="3">
+              <div style="background:var(--surface-low);border-radius:14px;padding:22px 24px">
+                <div style="font-family:var(--dp-font-display);font-weight:600;font-size:21px;letter-spacing:-0.2px">{{ f.q }}</div>
+                <p style="margin:8px 0 0;font-family:var(--dp-font-reading);font-size:16px;line-height:26px;color:var(--text-primary);text-wrap:pretty">{{ f.a }}</p>
+              </div>
+            </sc-for>
+            <a href="https://al-anon.org/newcomers/faq/" style="font-weight:600;font-size:15px">More questions answered at al-anon.org ↗</a>
+          </div>
+        </section>
+
+        <section style="max-width:820px;margin:0 auto;padding:clamp(36px,4.5cqw,64px) 5cqw 0">
+          <div style="display:flex;align-items:baseline;gap:12px">
+            <span style="font-family:var(--dp-font-display);font-weight:600;font-size:34px;line-height:1;color:var(--accent-soft)">3</span>
+            <h2 style="margin:0;font-family:var(--dp-font-display);font-weight:600;font-size:clamp(24px,2.8cqw,32px);letter-spacing:-0.3px">Read three things this week</h2>
+          </div>
+          <p style="margin:12px 0 20px;padding-left:46px;font-size:17px;line-height:28px;color:var(--text-muted)">Not the whole book. Three readings that most of us needed first.</p>
+          <div style="padding-left:46px;display:flex;flex-direction:column;gap:12px">
+            <sc-for list="{{ startWeek }}" as="w" hint-placeholder-count="3">
+              <div onClick="{{ goReflection }}" style="cursor:pointer;background:var(--surface-lowest);border:0.5px solid var(--border-card);border-radius:10px;box-shadow:var(--shadow-card);padding:20px 22px" style-hover="box-shadow:var(--shadow-surface)">
+                <div style="font-size:11px;letter-spacing:.6px;text-transform:uppercase;color:var(--text-muted)">{{ w.day }}</div>
+                <div style="margin-top:6px;font-family:var(--dp-font-display);font-weight:600;font-size:23px;letter-spacing:-0.2px">{{ w.title }}</div>
+                <div style="margin-top:6px;font-family:var(--dp-font-reading);font-size:16px;line-height:26px;color:var(--text-muted)">{{ w.why }}</div>
+                <div style="margin-top:12px;font-weight:600;font-size:14px;color:var(--accent)">Read it →</div>
+              </div>
+            </sc-for>
+          </div>
+        </section>
+
+        <section style="max-width:820px;margin:0 auto;padding:clamp(36px,4.5cqw,64px) 5cqw 0">
+          <div style="display:flex;align-items:baseline;gap:12px">
+            <span style="font-family:var(--dp-font-display);font-weight:600;font-size:34px;line-height:1;color:var(--accent-soft)">4</span>
+            <h2 style="margin:0;font-family:var(--dp-font-display);font-weight:600;font-size:clamp(24px,2.8cqw,32px);letter-spacing:-0.3px">Sit in one meeting</h2>
+          </div>
+          <div style="margin-top:18px;padding-left:46px">
+            <p style="margin:0 0 16px;font-family:var(--dp-font-reading);font-size:clamp(18px,1.6cqw,19.5px);line-height:1.62;color:var(--text-primary);text-wrap:pretty">You don't have to speak. Most people say nothing at their first meeting, and no one asks them to. You can join an online meeting from a closed door in your own house and leave whenever you want. If it isn't right, try a different group — they vary more than you'd expect.</p>
+            <div style="display:flex;gap:12px;flex-wrap:wrap">
+              <x-import component-from-global-scope="DailyPathsDesignSystem_3f5691.Button" hint-size="220px,48px">Find a meeting near you ↗</x-import>
+              <x-import component-from-global-scope="DailyPathsDesignSystem_3f5691.Button" variant="ghost" onClick="{{ goPrayers }}" hint-size="180px,48px">Read the Serenity Prayer</x-import>
+            </div>
+          </div>
+        </section>
+
+        <section style="max-width:1160px;margin:0 auto;padding:clamp(48px,6cqw,84px) 5cqw 0">
+          <div style="max-width:820px;margin:0 auto">
+            <div style="font-weight:600;font-size:13px;letter-spacing:.4px;text-transform:uppercase;color:var(--accent)">If you keep going</div>
+            <h2 style="margin:10px 0 0;font-family:var(--dp-font-display);font-weight:600;font-size:clamp(26px,3.2cqw,38px);letter-spacing:-0.3px">How the program works</h2>
+            <p style="margin:10px 0 0;max-width:62ch;font-size:17px;line-height:28px;color:var(--text-muted)">Al-Anon has no therapists and no mandatory course of treatment. It rests on four things instead.</p>
+          </div>
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin-top:28px">
+            <sc-for list="{{ pillars }}" as="p" hint-placeholder-count="4">
+              <div onClick="{{ p.onClick }}" style="background:var(--surface-lowest);border:0.5px solid var(--border-card);border-radius:14px;box-shadow:var(--shadow-card);padding:26px 24px;display:flex;flex-direction:column;gap:8px;cursor:pointer" style-hover="box-shadow:var(--shadow-surface)">
+                <x-import component-from-global-scope="DailyPathsDesignSystem_3f5691.Icon" name="{{ p.icon }}" size="34" color="var(--accent)" hint-size="34px,34px"></x-import>
+                <div style="margin-top:4px;font-size:11px;letter-spacing:.6px;text-transform:uppercase;color:var(--text-muted)">{{ p.eyebrow }}</div>
+                <div style="font-family:var(--dp-font-display);font-weight:600;font-size:24px;letter-spacing:-0.2px">{{ p.title }}</div>
+                <div style="font-size:16px;line-height:26px;color:var(--text-muted)">{{ p.body }}</div>
+                <div style="margin-top:auto;padding-top:12px;font-weight:600;font-size:14px;color:var(--accent)">{{ p.link }}</div>
+              </div>
+            </sc-for>
+          </div>
+        </section>
+
+        <section style="max-width:1160px;margin:0 auto;padding:clamp(44px,5.5cqw,76px) 5cqw 0">
+          <div style="max-width:820px;margin:0 auto">
+            <h2 style="margin:0;font-family:var(--dp-font-display);font-weight:600;font-size:clamp(24px,2.9cqw,34px);letter-spacing:-0.3px">Related fellowships</h2>
+            <p style="margin:10px 0 0;max-width:60ch;font-size:17px;line-height:28px;color:var(--text-muted)">Al-Anon is part of a wider family of twelve-step programs. These may fit your situation better.</p>
+          </div>
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px;margin-top:24px">
+            <sc-for list="{{ fellowships }}" as="f" hint-placeholder-count="3">
+              <div style="background:var(--surface-lowest);border:0.5px solid var(--border-card);border-radius:10px;box-shadow:var(--shadow-card);padding:20px;cursor:pointer" style-hover="box-shadow:var(--shadow-surface)">
+                <div style="font-weight:600;font-size:17px;line-height:25px">{{ f.name }}</div>
+                <div style="margin-top:6px;font-size:16px;line-height:26px;color:var(--text-muted)">{{ f.line }}</div>
+                <div style="margin-top:12px;font-weight:600;font-size:14px;color:var(--accent)">Visit ↗</div>
+              </div>
+            </sc-for>
+          </div>
+          <p style="margin:22px auto 0;max-width:820px;font-size:13px;line-height:22px;color:var(--text-muted)">Daily Paths is an independent project and is not affiliated with, endorsed by, or approved by Al-Anon Family Group Headquarters, Inc. For official Al-Anon information, please visit <a href="https://al-anon.org">al-anon.org</a>.</p>
+        </section>
+
+        <section style="max-width:820px;margin:0 auto;padding:clamp(40px,5cqw,72px) 5cqw 0">
+          <div style="background:var(--accent-soft);border-radius:16px;padding:clamp(24px,3cqw,40px)">
+            <h2 style="margin:0;font-family:var(--dp-font-display);font-weight:600;font-size:clamp(22px,2.6cqw,30px);letter-spacing:-0.3px;color:var(--dp-teal-900)">One reading a day, wherever you are</h2>
+            <p style="margin:10px 0 20px;font-size:17px;line-height:28px;color:var(--dp-teal-700)">The app sends the day's reflection each morning and gives you a private place to write — nothing leaves your phone.</p>
+            <div style="display:flex;gap:10px;flex-wrap:wrap">
+              <x-import component-from-global-scope="DailyPathsDesignSystem_3f5691.Button" hint-size="140px,48px">App Store</x-import>
+              <x-import component-from-global-scope="DailyPathsDesignSystem_3f5691.Button" variant="ghost" hint-size="140px,48px">Google Play</x-import>
+            </div>
+          </div>
+          <p style="margin:22px 0 0;font-size:13px;line-height:22px;color:var(--text-muted)">In crisis? Help is available 24/7 — call or text <strong>988</strong> (USA).</p>
+        </section>
+      </div>
+    </sc-if>
+
+    <footer style="background:var(--accent-strong);color:rgba(255,255,255,.85);margin-top:clamp(52px,7cqw,88px);position:relative;overflow:hidden">
+      <div style="max-width:1160px;margin:0 auto;padding:clamp(36px,4.5cqw,56px) 5cqw 32px;display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:32px">
+        <div>
+          <div style="font-family:var(--dp-font-display);font-style:italic;font-weight:600;font-size:26px;color:#fff">Al-Anon Daily Paths</div>
+          <p style="margin-top:10px;font-size:16px;line-height:26px;max-width:36ch">Daily reflections for the Al-Anon journey.</p>
+        </div>
+        <sc-for list="{{ footerCols }}" as="c" hint-placeholder-count="3">
+          <div>
+            <div style="font-size:12px;letter-spacing:.6px;text-transform:uppercase;color:rgba(255,255,255,.55);margin-bottom:12px">{{ c.title }}</div>
+            <div style="display:flex;flex-direction:column;gap:9px">
+              <sc-for list="{{ c.links }}" as="l" hint-placeholder-count="4">
+                <span style="font-size:15px;cursor:pointer">{{ l }}</span>
+              </sc-for>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+      <div style="border-top:1px solid rgba(255,255,255,.15);padding:16px 5cqw;display:flex;gap:12px;flex-wrap:wrap;justify-content:space-between;font-size:12.5px;letter-spacing:.3px;color:rgba(255,255,255,.6)">
+        <span>© 2026 Daily Growth, LLC. All rights reserved.</span>
+        <span>In crisis? Help is available 24/7. Call or text <strong style="color:#fff">988</strong> (USA).</span>
+      </div>
+    </footer>
+  </div>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;device&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;desktop&quot;,&quot;mobile&quot;],&quot;default&quot;:&quot;desktop&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Mock&quot;}}">
+class Component extends DCLogic {
+  state = { page: "home", device: null, menuOpen: false, quiz: {} };
+
+  get device() { return this.state.device || this.props.device || "desktop"; }
+
+  toggleQuiz = (i) => () => this.setState((s) => ({ quiz: { ...s.quiz, [i]: !s.quiz[i] } }));
+
+  go = (page) => () => { this.setState({ page, menuOpen: false }); window.scrollTo({ top: 0, behavior: "smooth" }); };
+
+  renderVals() {
+    const page = this.state.page;
+    const device = this.device;
+    const on = "#fff", off = "transparent";
+    const navItems = [
+      ["home", "Today's Reflection"], ["themes", "Topics"],
+      ["prayers", "Prayers"], ["start", "Start here"],
+    ];
+    const section = ["step1", "steps", "theme", "background", "loved"].includes(page) ? "themes" : page;
+
+    return {
+      isReflection: page === "home",
+      isSteps: page === "steps",
+      isThemes: page === "themes",
+      isStep1: page === "step1",
+      isTheme: page === "theme",
+      isPrayers: page === "prayers",
+      isLoved: page === "loved",
+      isBackground: page === "background",
+      isStart: page === "start",
+      goStart: this.go("start"),
+
+      quizItems: this.QUIZ.map((q, i) => {
+        const on = !!this.state.quiz[i];
+        return {
+          text: q, onClick: this.toggleQuiz(i),
+          bg: on ? "var(--accent-soft)" : "var(--surface-lowest)",
+          border: on ? "1px solid transparent" : "1px solid var(--border-soft)",
+          color: on ? "var(--dp-teal-900)" : "var(--text-primary)",
+          boxBg: on ? "var(--accent-strong)" : "transparent",
+          boxBorder: on ? "1.5px solid var(--accent-strong)" : "1.5px solid var(--border-soft)",
+          tick: on ? 1 : 0,
+        };
+      }),
+      quizCount: Object.values(this.state.quiz).filter(Boolean).length,
+      quizAnswered: Object.values(this.state.quiz).some(Boolean),
+
+      startWeek: [
+        { day: "Read first", title: "The Power of We", why: "Why the Step starts with \u201cwe\u201d — and what changes when you stop carrying it alone." },
+        { day: "Then", title: "Coming for Relief", why: "Most of us arrive exhausted rather than convinced. That's enough to begin with." },
+        { day: "Then", title: "The Three C's", why: "You didn't cause it, you can't control it, you can't cure it." },
+      ],
+      startFacts: [
+        { icon: "leafOnWater", title: "It's free, always", body: "No dues, no fees, nothing to buy. Meetings are open to anyone affected by someone else's drinking." },
+        { icon: "stackedStones", title: "It's anonymous", body: "First names only. What's said in a meeting stays there. No one will contact you unless you ask." },
+        { icon: "seedling", title: "It's not therapy, and it's not religion", body: "No therapists, no treatment plan, no doctrine — a spiritual program, with a Higher Power of your own understanding." },
+      ],
+      isStub: false,
+      stubTitle: "",
+
+      whatIsAlanon: [
+        "Al-Anon Family Groups are a fellowship of relatives and friends of alcoholics who share their experience, strength, and hope in order to solve their common problems. Al-Anon is not allied with any sect, denomination, political entity, organization, or institution.",
+        "The program is based on the Twelve Steps and Twelve Traditions, adapted from Alcoholics Anonymous. Members discover that they are not alone, and that they can find contentment and even happiness — whether the alcoholic is still drinking or not.",
+      ],
+      pillars: [
+        { eyebrow: "The architecture", icon: "stackedStones", title: "The Twelve Steps", body: "A spiritual framework for personal growth. The Steps help members honestly examine their own attitudes and behaviors — not to fix the alcoholic, but to find freedom for themselves.", link: "Explore the Steps →", onClick: this.go("steps") },
+        { eyebrow: "The community", icon: "leafOnWater", title: "The Fellowship", body: "Regular gatherings — in person and online — where members share experience, strength, and hope. The fellowship is where isolation ends and recovery becomes real.", link: "Find meetings ↗", onClick: null },
+        { eyebrow: "The wisdom", icon: "book", title: "The Literature", body: "Conference-Approved books, pamphlets, and daily readers developed by Al-Anon members for Al-Anon members — the written wisdom of families who walked this path before you.", link: "Browse literature →", onClick: null },
+        { eyebrow: "The practice", icon: "seedling", title: "Service", body: "Giving back to the fellowship that gave so much to you. Service — from making coffee to sponsoring newcomers — is how members keep what they have by giving it away.", link: "Learn about service ↗", onClick: null },
+      ],
+      faqs: [
+        { q: "Is Al-Anon a religious program?", a: "No. Al-Anon is a spiritual program, not a religious one. Members are encouraged to find a Higher Power of their own understanding. There is no doctrine, no creed, and no requirement to believe anything in particular." },
+        { q: "Is my privacy protected?", a: "Yes. Anonymity is a foundational principle. What you share in a meeting stays in the meeting. Members use first names only, and no one will contact you unless you ask." },
+        { q: "What about young people?", a: "Alateen is part of the Al-Anon family, designed for younger members (ages 13–18) affected by someone else's drinking." },
+      ],
+      fellowships: [
+        { name: "Adult Children of Alcoholics (ACA)", line: "For adults who grew up in alcoholic or dysfunctional homes." },
+        { name: "Co-Dependents Anonymous (CoDA)", line: "For anyone seeking healthy, fulfilling relationships." },
+        { name: "Alateen", line: "For younger members affected by someone else's drinking." },
+      ],
+
+      lovedTop: [
+        ["January 1", "The Power of We", "You're Not Alone", "Why the Step starts with \u201cwe\u201d — and what changes when you stop carrying it alone."],
+        ["March 11", "Taking Responsibility Off My Shoulders", "Letting Go", "The moment you realize whose job it was never was yours."],
+        ["June 17", "Too Tired to Hold On", "Letting Go", "Surrender doesn't always arrive as insight. Sometimes it's exhaustion."],
+        ["May 4", "Acceptance Despite Wrongs", "Detachment with Love", "Accepting what happened without deciding it was fine."],
+        ["July 6", "The Passenger Seat", "Higher Power and Trust", "What it feels like to stop driving every outcome."],
+        ["October 5", "Imperfection and Recovery", "Getting Yourself Back", "Progress, not perfection — years in, and still true."],
+      ].map(([date, title, topic, line]) => ({ date, title, topic, line })),
+      lovedMore: [
+        ["January 2", "Coming for Relief", "Letting Go"],
+        ["January 18", "The Burden Lifted", "Letting Go"],
+        ["January 28", "The Warm Bath of Victimhood", "Guilt, Blame, and Shame"],
+        ["February 9", "Nothing Changes If Nothing Changes", "Getting Yourself Back"],
+        ["February 27", "I Cannot Do Everything", "Boundaries and Saying No"],
+        ["March 5", "The Geography of Relief", "One Day at a Time"],
+        ["March 23", "The Acceptance Steps", "Letting Go"],
+        ["April 12", "Saying No Without a Speech", "Boundaries and Saying No"],
+        ["April 30", "The Disease, Not the Person", "Alcoholism as a Disease"],
+        ["May 25", "Burden Lifted", "Letting Go"],
+        ["June 3", "Unconditional Acceptance", "Detachment with Love"],
+        ["June 21", "One Day Is Enough", "One Day at a Time"],
+        ["July 3", "Totally Willing", "Higher Power and Trust"],
+        ["August 9", "Let Go and Let God", "Higher Power and Trust"],
+        ["September 3", "Mitigating, Not Undoing", "Guilt, Blame, and Shame"],
+        ["September 19", "Counting What's Here", "Gratitude"],
+        ["October 24", "Powerlessness Over Others", "Letting Go"],
+        ["December 2", "The Room That Understood", "You're Not Alone"],
+      ].map(([date, title, topic]) => ({ date, title, topic })),
+
+      prayers: [
+        { title: "Serenity Prayer", body: "God, grant me the serenity\nto accept the things I cannot change,\ncourage to change the things I can,\nand wisdom to know the difference.", note: "Reinhold Niebuhr" },
+        { title: "Third Step Prayer", body: "God, I offer myself to Thee — to build with me and to do with me as Thou wilt. Relieve me of the bondage of self, that I may better do Thy will.", note: "Amen." },
+        { title: "Seventh Step Prayer", body: "My Creator, I am now willing that you should have all of me, good and bad. I pray that you now remove from me every single defect of character which stands in the way of my usefulness to you and my fellows.", note: "Amen." },
+        { title: "Set Aside Prayer", body: "Dear God, please help me set aside everything I think I know — about myself, my disease, the Steps, the Program, the Fellowship, and especially you — so I may have an open mind and a new experience.", note: "Amen." },
+        { title: "Prayer of St. Francis", body: "Lord, make me a channel of thy peace,\nthat where there is hatred, I may bring love;\nthat where there is despair, I may bring hope;\nthat where there is sadness, I may bring joy.", note: "St. Francis of Assisi" },
+      ],
+      topicReading: {
+        title: "Letting Go",
+        note: "Thirteen lines · Al-Anon reading",
+        lines: [
+          "To \u201clet go\u201d does not mean to stop caring, it means I can't do it for someone else.",
+          "To \u201clet go\u201d is not to cut myself off, it's the realization I can't control another.",
+          "To \u201clet go\u201d is not to judge, but to allow another to be a human being.",
+          "To \u201clet go\u201d is to fear less and to love more.",
+        ],
+      },
+
+      frameWidth: device === "mobile" ? "402px" : "1280px",
+      ctaDisplay: device === "mobile" ? "none" : "block",
+      desktopBg: device === "desktop" ? on : off,
+      desktopFg: device === "desktop" ? "#1C2524" : "rgba(255,255,255,.75)",
+      mobileBg: device === "mobile" ? on : off,
+      mobileFg: device === "mobile" ? "#1C2524" : "rgba(255,255,255,.75)",
+
+      ghostOnDark: { color: "#fff", boxShadow: "inset 0 0 0 1px rgba(255,255,255,.5)" },
+      nowrap: { whiteSpace: "nowrap", flexShrink: 0 },
+      fieldTall: { padding: "12px 14px" },
+      fieldArea: { alignItems: "flex-start", padding: "12px 14px" },
+
+      nav: navItems.map(([id, label]) => ({
+        label,
+        color: id === section ? "var(--accent-strong)" : "var(--text-muted)",
+        underline: id === section ? "var(--accent)" : "transparent",
+        onClick: this.go(id),
+      })),
+
+      setDesktop: () => this.setState({ device: "desktop", menuOpen: false }),
+      setMobile: () => this.setState({ device: "mobile" }),
+
+      navDisplay: device === "mobile" ? "none" : "flex",
+      burgerDisplay: device === "mobile" ? "flex" : "none",
+      menuOpen: device === "mobile" && this.state.menuOpen,
+      toggleMenu: () => this.setState((s) => ({ menuOpen: !s.menuOpen })),
+      burgerLabel: this.state.menuOpen ? "Close" : "Menu",
+
+      goHome: this.go("home"),
+      goReflection: this.go("home"),
+      goSteps: this.go("steps"),
+      goThemes: this.go("themes"),
+
+      goAlanon: this.go("start"),
+      goPrayers: this.go("prayers"),
+      goLoved: this.go("loved"),
+      goBackground: this.go("background"),
+      backgroundBody: [
+        { h: null, p: "Most of us arrive with a moral explanation for what's happening. If they loved us enough, they'd stop. If we were worth staying sober for, they would. If we found the right words, the right consequence, the right morning to bring it up, it would land. Every one of those explanations puts the outcome in someone's character — theirs or ours." },
+        { h: "What the disease model actually says", p: "Al-Anon holds that alcoholism is an illness, not a moral failing and not a choice being made against you. It follows a course. It affects judgment and memory. It does not respond to argument, to love, or to consequences the way ordinary behavior does. That's not a comforting story invented to excuse anyone — it's the observation that a whole fellowship was built on." },
+        { h: "Why it matters for you, not for them", p: "If the drinking is a symptom of an illness, then it was never yours to cure, and your effort was never the deciding factor. That's the hardest sentence in the program and also the one that gives your life back. It's the reason \u201cyou didn't cause it, you can't control it, you can't cure it\u201d is repeated in rooms every night." },
+        { h: "A family illness", p: "The other half of the model is that the illness reaches everyone in the house. The watching, the managing, the covering, the bracing — those are responses to a disease, not defects in you. Recovery in Al-Anon means treating your own half, whether or not the drinker ever treats theirs." },
+      ],
+      litQuotes: [
+        { text: "[Placeholder — passage on alcoholism as a family illness. Insert Al-Anon's approved wording or replace this card with a link.]", source: "How Al-Anon Works, Ch. 2" },
+        { text: "[Placeholder — passage on the Three C's. Insert Al-Anon's approved wording or replace this card with a link.]", source: "Courage to Change, p. 41" },
+        { text: "[Placeholder — passage on recovery for the family regardless of the drinker. Insert approved wording or link out.]", source: "From Survival to Recovery, p. 12" },
+      ],
+      backgroundLinks: [
+        { title: "Living With Active Drinking", line: "Getting through the day when the drinking hasn't stopped.", meta: "31 readings", onClick: this.go("theme") },
+        { title: "Helping or Enabling?", line: "The line between love and rescue.", meta: "19 readings", onClick: this.go("theme") },
+        { title: "Letting Go", line: "What was never yours to cure.", meta: "42 readings", onClick: this.go("theme") },
+        { title: "Guilt, Blame, and Shame", line: "The part that isn't yours.", meta: "24 readings", onClick: this.go("theme") },
+      ],
+      goStep1: this.go("step1"),
+      goTheme: this.go("theme"),
+
+      steps: this.STEPS.map((s) => ({ ...s, onClick: this.go("step1") })),
+      stepsPreview: this.STEPS.slice(0, 4).map((s) => ({ ...s, onClick: this.go("step1") })),
+      themes: this.THEMES.map((t) => ({ ...t, onClick: this.go(t.kind === "explainer" ? "background" : "theme") })),
+      themesPreview: this.THEMES.slice(0, 4).map((t) => ({ ...t, onClick: this.go("theme") })),
+
+      siblingReadings: [
+        { date: "March 18", title: "Whose Problem Is It", why: "Sorting what's mine to carry from what only looks like it is." },
+        { date: "June 2", title: "The Hands Open", why: "Letting go isn't giving up — it's stopping the part that never worked." },
+        { date: "November 27", title: "Still Loving, Not Steering", why: "You can care about someone without managing their next decision." },
+      ],
+      alsoTopics: [
+        { title: "Higher Power and Trust", line: "Handing over what you can't hold, to something steadier than you.", meta: "38 readings", onClick: this.go("theme") },
+        { title: "Guilt, Blame, and Shame", line: "The part that isn't yours, and the part that is.", meta: "24 readings", onClick: this.go("theme") },
+        { title: "Step Eight", line: "Willingness — the Step this reading belongs to.", meta: "Six most-read readings", onClick: this.go("step1") },
+      ],
+
+      step1Body: [
+        { h: null, p: "There comes a time when holding everything together stops working. It may not look dramatic from the outside. It might be another night of checking the clock, listening for the door, or replaying the same argument in your head. It might be a quiet morning at the kitchen table when the thought finally comes: \u201cI can't do this anymore.\u201d For many of us, that moment is where Step One truly begins." },
+        { h: null, p: "In Al-Anon, Step One is not about failure. It's about honesty. Many of us have been the \u201cstrong ones\u201d for a long time — the problem-solvers, the planners, the ones who keep the family, the job, and the appearance of normalcy intact. Yet Step One invites us into a different kind of strength: the courage to see what is real. And we don't do this alone. The very first word of the Step is \u201cWe.\u201d" },
+        { h: "Powerlessness — facing the illusion of control", p: "Powerlessness doesn't mean we are weak, unloving, or incapable. It means that no matter how much we love someone, we cannot control alcohol or another person's choices. In the program we learn a simple truth many members call the Three C's: we didn't cause the drinking, we can't control it, and we can't cure it. Recognizing this doesn't mean we stop caring; it means we stop confusing control with love." },
+        { h: "Unmanageability — what our lives have become", p: "This unmanageability can be obvious — missed work, constant crises, arguments that never resolve. But it can also be hidden. Some of us kept everything looking fine on the outside while falling apart inside. Unmanageability often shows up in our inner world first: thoughts consumed by the alcoholic's behavior, lying awake rehearsing conversations, walking on eggshells. Step One gently asks: what has my life become while I've been trying to control the uncontrollable?" },
+        { h: "From isolation to \u201cWe\u201d", p: "Many people arrive at Al-Anon feeling completely alone. Then we begin to hear others share — about checking phones, hiding how bad things were, pretending everything was fine, feeling angry and guilty at the same time. We see that our reactions are not signs that we are defective; they are common responses to living with the disease of alcoholism." },
+        { h: "Acceptance and the first taste of relief", p: "Accepting Step One doesn't instantly change the alcoholic or the circumstances. What changes first is our stance toward all of it. We give ourselves permission to stop fighting a losing battle, and we put down a role we were never meant to carry. Instead of pouring all our energy into changing someone else, we can start to look at what might bring sanity and peace into our own day." },
+      ],
+      step1Questions: [
+        "In what ways have I tried to control another person's drinking or behavior?",
+        "What has happened in my life that feels unmanageable?",
+        "Can I accept that I am powerless over alcohol and other people's choices?",
+        "What would it mean for me to stop fighting and simply admit the truth?",
+        "How has my need to control affected my relationships, my health, and my peace of mind?",
+        "Where do I feel most exhausted from trying to manage what I cannot control?",
+      ],
+      step1Actions: [
+        "Write a \u201cpowerlessness list\u201d describing where I tried to control and what happened.",
+        "Identify my Three C's: I didn't cause it, can't control it, can't cure it.",
+        "Share my Step One list with a sponsor or trusted Al-Anon member.",
+        "Attend a Step One–focused meeting and listen for my story.",
+      ],
+      stepTop: [
+        ["January 1", "The Power of We", "Why the Step starts with \u201cwe\u201d — and what changes when you stop carrying it alone."],
+        ["January 2", "Coming for Relief", "Most of us arrive exhausted rather than convinced."],
+        ["January 5", "A Family Disease", "Alcoholism reaches everyone in the house, not only the drinker."],
+        ["March 5", "The Geography of Relief", "Where the weight actually lifts — and where it doesn't."],
+        ["May 25", "Burden Lifted", "What admitting powerlessness gave back."],
+        ["October 24", "Powerlessness Over Others", "The Three C's, years into the program."],
+      ].map(([date, title, why]) => ({ date, title, why })),
+
+      themeBody: [
+        "You're driving to work, rehearsing the same speech you gave last week, and the week before that. You told yourself you wouldn't do this again — no more lectures, no more crying in the car — but there you are, planning one more conversation you hope will finally make the drinking stop. That's what a lot of us bring to Al-Anon: the feeling that if we just try a little harder, we can fix this.",
+        "Powerlessness is what we run into when all that effort doesn't work. We pour bottles out, we make rules, we cover for missed shifts, we bargain with God. Then they drink again anyway. At some point many of us feel something break inside: if all this work could have fixed it, it would be fixed by now. That's the doorway into powerlessness.",
+        "Surrender grows out of that honesty, and it doesn't usually look dramatic. It might be the night you finally go to bed instead of sitting up until 3 a.m. waiting for the sound of keys in the door. On the outside it's one small thing you stop doing. On the inside it can feel like stepping off a cliff.",
+        "As we keep practicing these small surrenders, something starts to shift. We get a little more sleep. We sit in a meeting and say \u201cI can't do this by myself anymore,\u201d and people nod instead of judging us. It doesn't mean the drinking stops. It means we're no longer trying to run a battle we can't win — and there's a bit more energy left for our own life.",
+        "For many members this is where a Higher Power begins to matter. Once we stop trying to be in charge of every outcome, there's room for something else to have a say. Our prayers might be simple: \u201cI can't. Please help.\u201d Powerlessness and surrender don't shrink our lives; they open a door to a different way of living than constant panic and control.",
+      ],
+      featuredReadings: [
+        ["May 4", "Acceptance Despite Wrongs", "Step Five"], ["March 11", "Taking Responsibility Off My Shoulders", "Step Three"],
+        ["March 23", "The Acceptance Steps", "Step Three"], ["March 5", "The Geography of Relief", "Step Twelve"],
+        ["January 28", "The Warm Bath of Victimhood", "Step One"],
+      ].map(([date, title, step]) => ({ date, title, step })),
+      themeGroups: [
+        { title: "Step One", items: [["January 2", "Coming for Relief"], ["January 3", "The Convincing Game"], ["January 7", "Impossible Responsibilities"], ["January 18", "The Burden Lifted"]] },
+        { title: "Step Two", items: [["February 27", "I Cannot Do Everything"]] },
+        { title: "Step Three", items: [["March 12", "The Limits of Control"], ["March 28", "Accepting Al-Anon as It Is"], ["May 1", "Beginning to Unburden"]] },
+        { title: "Step Six", items: [["June 3", "Unconditional Acceptance"], ["June 17", "Too Tired to Hold On"]] },
+        { title: "Step Seven", items: [["July 3", "Totally Willing"], ["July 6", "The Passenger Seat"]] },
+        { title: "Step Nine", items: [["September 3", "Mitigating, Not Undoing"]] },
+        { title: "Step Ten", items: [["October 5", "Imperfection and Recovery"], ["October 24", "Powerlessness Over Others"]] },
+      ].map((g) => ({ title: g.title, items: g.items.map(([date, title]) => ({ date, title })) })),
+
+      reflectionBody: [
+        "I've been carrying my Step Eight list like a burden for six months. Pulling it out. Staring at the names. Trying to force myself to feel willing. Berating myself for not being willing yet. My sponsor finally asked: Who's in charge of this process — you or God?",
+        "Let Go and Let God. I've been trying to do this Step through sheer force of will. Make the list through my effort. Manufacture willingness through my determination. Change my heart through my work. But Step Eight asks me to partner with God, not do it alone.",
+        "Let go of my timeline for when I should be willing. Let God work on my heart in God's way and pace. Let go of my shame about not being willing yet. Let God give willingness as a gift, not something I earn. This partnership means I do my part — I make the list, I pray for willingness, I examine my own behavior — and then I let God do what only God can do, which is actually change my heart toward people I'm still angry at.",
+        "I can write at the top of my Step Eight list: My part — make the list, pray for willingness, examine my behavior. God's part — give me willingness, change my heart, determine the timing. When I'm trying to do God's part, I can stop and let go. My job is to show up. God's job is transformation.",
+      ],
+
+      footerCols: [
+        { title: "Read", links: ["Today's reflection", "Most read", "Topics", "The Twelve Steps", "Reading calendar"] },
+        { title: "Al-Anon", links: ["Start here", "How the program works", "About the project", "al-anon.org"] },
+        { title: "More", links: ["Prayers", "Privacy", "Terms", "Get the app"] },
+      ],
+    };
+  }
+
+  QUIZ = [
+    "Do you worry about how much someone else drinks?",
+    "Do you tell lies to cover up for someone else's drinking?",
+    "Do you feel that if the drinker cared about you, they would stop?",
+    "Do you feel angry, confused, or depressed most of the time?",
+    "Do you feel there is no one who understands your problems?",
+  ];
+
+  STEPS = [
+    { n: "1", word: "Honesty", line: "Admitting powerlessness to reclaim your life." },
+    { n: "2", word: "Hope", line: "Finding a path toward a restored perspective." },
+    { n: "3", word: "Faith", line: "The decision to release the burden of control." },
+    { n: "4", word: "Courage", line: "A fearless look into the mirror of the soul." },
+    { n: "5", word: "Integrity", line: "The healing power of radical honesty." },
+    { n: "6", word: "Willingness", line: "Preparing the heart for lasting change." },
+    { n: "7", word: "Humility", line: "The humble request for a new way of being." },
+    { n: "8", word: "Responsibility", line: "Mapping the journey toward reconciliation." },
+    { n: "9", word: "Repair", line: "The courage to make things right." },
+    { n: "10", word: "Growth", line: "The daily practice of self-awareness." },
+    { n: "11", word: "Connection", line: "Seeking conscious contact through stillness." },
+    { n: "12", word: "Service", line: "Carrying the message; living the principles." },
+  ];
+
+  THEMES = [
+    { title: "Letting Go", line: "Powerlessness, surrender, and the many ways we try to manage what isn't ours.", meta: "42 readings", kind: "readings" },
+    { title: "Living With Active Drinking", line: "Getting through the day when the drinking hasn't stopped.", meta: "31 readings", kind: "readings" },
+    { title: "Anger and Resentment", line: "What to do with the anger you were told not to have.", meta: "28 readings", kind: "readings" },
+    { title: "Fear and Worry", line: "Waiting up, imagining the worst, living braced for the next thing.", meta: "26 readings", kind: "readings" },
+    { title: "Guilt, Blame, and Shame", line: "Whether you caused it, and what to do with the part that isn't yours.", meta: "24 readings", kind: "readings" },
+    { title: "Detachment with Love", line: "Stepping out of the chaos without stepping away from the person.", meta: "33 readings", kind: "readings" },
+    { title: "Helping or Enabling?", line: "The line between love and rescue, and how to tell where you are.", meta: "19 readings", kind: "readings" },
+    { title: "Boundaries and Saying No", line: "Saying no as an act of self-respect, not punishment.", meta: "22 readings", kind: "readings" },
+    { title: "Getting Yourself Back", line: "Reclaiming the life and the self that years of crisis eroded.", meta: "35 readings", kind: "readings" },
+    { title: "One Day at a Time", line: "Putting down the future and the past, and keeping today.", meta: "29 readings", kind: "readings" },
+    { title: "Higher Power and Trust", line: "Finding something to lean on — including if the word God is hard.", meta: "27 readings", kind: "readings" },
+    { title: "Gratitude", line: "Noticing what's here, on the days it doesn't come naturally.", meta: "21 readings", kind: "readings" },
+    { title: "Alcoholism as a Disease", line: "What the illness is, and why understanding it changes everything else.", meta: "Background · Al-Anon literature", kind: "explainer" },
+    { title: "You're Not Alone", line: "Meetings, fellowship, and the end of doing this by yourself.", meta: "Background · Al-Anon literature", kind: "explainer" },
+  ];
+}
+
+</script>
+</body>
+</html>

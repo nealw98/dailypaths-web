@@ -8,37 +8,38 @@ import {
   TOPIC_INSIGHT_PROMPTS, TOPIC_FORM_QUESTIONS,
 } from '../helpers/theme-data.mjs';
 import { photoHero, detailRail, appPanel, readingCard } from './ui.mjs';
+import { LETTING_GO_ARTICLE } from './theme-guides/letting-go.mjs';
 
 // Re-export TOPICS so build.mjs can continue importing from this file
 export { TOPICS };
 
 /**
- * Render the Themes index page — all twelve themes as cards.
+ * Render the Topics index page — all twelve topics as cards.
  */
 export function renderTopicsIndexPage() {
   const cards = TOPICS.map(topic => `
-          <a href="${bp(`/themes/${topic.slug}/`)}" class="card-elevated theme-index-card">
+          <a href="${bp(`/topics/${topic.slug}/`)}" class="card-elevated theme-index-card">
             <span class="theme-index-title">${topic.name}</span>
             <span class="theme-index-line">${topic.shortDescription}</span>
             <span class="theme-index-cta">Explore &rarr;</span>
           </a>`).join('');
 
-  const lettingGo = TOPICS.find(topic => topic.slug === 'letting-go-of-control');
+  const lettingGo = TOPICS.find(topic => topic.slug === 'letting-go');
   const bodyContent = `
 ${photoHero({
     image: bp('/assets/themes/themes-hero.jpg'),
-    alt: 'Forest path through morning light — the themes of Al-Anon recovery',
-    title: 'Recovery Themes',
+    alt: 'Forest path through morning light — the topics of Al-Anon recovery',
+    title: 'Topics',
     subtitle: 'Original essays and daily reflections for the questions that follow us into recovery.',
     size: 'sm',
   })}
 
     <section class="wrap section--md">
-      <p class="eyebrow">Theme guides</p>
+      <p class="eyebrow">Topic guides</p>
       <h2 class="section-title">A place to follow an idea further</h2>
       <p class="lede theme-index-intro">The daily readings meet us in a moment. These guides gather related readings into a fuller exploration of the patterns, choices, and spiritual principles that shape recovery.</p>
 
-      <a href="${bp(`/themes/${lettingGo.slug}/`)}" class="theme-feature">
+      <a href="${bp(`/topics/${lettingGo.slug}/`)}" class="theme-feature">
         <div class="theme-feature-copy">
           <span class="eyebrow">Featured guide</span>
           <span class="theme-feature-title">${lettingGo.name}</span>
@@ -48,7 +49,7 @@ ${photoHero({
         <img src="${bp(`/assets/themes/${lettingGo.image}`)}" alt="${lettingGo.imageAlt}" loading="lazy">
       </a>
 
-      <h2 class="section-title theme-index-all-title">Explore all themes</h2>
+      <h2 class="section-title theme-index-all-title">Explore all topics</h2>
       <div class="theme-index-grid">${cards}
       </div>
     </section>
@@ -63,12 +64,12 @@ ${photoHero({
     </div>`;
 
   return wrapInLayout({
-    title: 'Recovery Themes — Essays & Daily Reflections | Daily Paths',
+    title: 'Recovery Topics — Essays & Daily Reflections | Daily Paths',
     description: 'Explore original recovery essays and connected daily reflections on letting go, detachment, boundaries, powerlessness, honesty, fellowship, and more.',
-    canonicalPath: '/themes/',
+    canonicalPath: '/topics/',
     bodyContent,
     bodyClass: 'page-topics-index',
-    navSection: 'themes',
+    navSection: 'topics',
     hasAppPanel: true,
   });
 }
@@ -82,194 +83,179 @@ function injectEssentialsLinks(body, currentSlug) {
   return body.replace(/\bdetachment\b/i, `<a href="${bp('/essentials/#let-go')}">$&</a>`);
 }
 
-function renderLettingGoGuide(topic, allReadings, prevTopic, nextTopic) {
-  const readingDays = [7, 18, 71, 247];
-  const guideReadings = readingDays
+const PRINCIPLE_WORDS = ['One', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine', 'Ten', 'Eleven', 'Twelve'];
+
+/** "Step 9" → "Step Nine" for reading-card eyebrows. */
+function principleLabel(stepTheme) {
+  if (!stepTheme) return '';
+  return stepTheme.replace(/\b(\d+)\b/, m => PRINCIPLE_WORDS[Number(m) - 1] || m);
+}
+
+/** Rewrite <a data-reading="N"> and <a data-theme="slug"> resolver markup. */
+function resolveGuideLinks(html, allReadings) {
+  return html
+    .replace(/<a data-reading="(\d+)">([^<]+)<\/a>/g, (match, day, label) => {
+      const reading = allReadings.find(r => r.day_of_year === Number(day));
+      if (!reading) return label;
+      return `<a href="${bp(`/${readingSlug(reading.day_of_year, reading.title)}/`)}">${label}</a>`;
+    })
+    .replace(/<a data-theme="([a-z0-9-]+)">([^<]+)<\/a>/g,
+      (match, slug, label) => `<a href="${bp(`/topics/${slug}/`)}">${label}</a>`);
+}
+
+/* ───────────── Letting Go — bespoke topic article ─────────────
+   Structure and copy: design/handoff/topics/letting-go/ (supersedes the fixed
+   four-chapter spine for this page). All inserts are responsive live text;
+   the reference PNGs are visual direction only. */
+
+/**
+ * The two dark diagram figures render the final art from assets/themes/,
+ * with the full insert text kept in visually-hidden markup for screen
+ * readers (design/handoff/topics/letting-go/IMPLEMENTATION.md).
+ */
+function renderWorryLoop(insert) {
+  const stations = insert.stations.map((station, i) => `
+            <p>${i + 1}. ${station.title} &mdash; ${station.sub}: ${station.lines.join(' ')}</p>`).join('');
+  return `
+      <figure class="tg-diagram">
+        <img src="${bp(`/assets/themes/${insert.image}`)}" alt="${insert.alt}" width="1536" height="1024" loading="lazy">
+        <div class="visually-hidden">
+          <p>${insert.eyebrow}. ${insert.lede}</p>${stations}
+          <p>${insert.center}</p>
+          <p>${insert.caption}</p>
+        </div>
+      </figure>`;
+}
+
+function renderWhatReturns(insert) {
+  const items = insert.inside.items.join(', ');
+  const outside = [...insert.outsideAbove, ...insert.outsideBelow].join(', ');
+  return `
+      <figure class="tg-diagram">
+        <img src="${bp(`/assets/themes/${insert.image}`)}" alt="${insert.alt}" width="1536" height="1024" loading="lazy">
+        <div class="visually-hidden">
+          <p>${insert.eyebrow}. ${insert.inside.title}: ${items}.</p>
+          <p>Outside the circle: ${outside}.</p>
+          <p>${insert.caption}</p>
+        </div>
+      </figure>`;
+}
+
+/** Let Go and Let God — a quiet seafoam text aside; no graphics. */
+function renderLetGoLetGod(insert) {
+  const paras = insert.body.map(p => `<p>${p}</p>`).join('\n          ');
+  return `
+      <section class="lg-spirit">
+        <div class="lg-spirit-inner">
+          <h3>${insert.heading}</h3>
+          <p class="lg-spirit-q">${insert.question}</p>
+          ${paras}
+          <blockquote class="lg-spirit-quote">${insert.quote}</blockquote>
+          <a class="lg-spirit-link" href="${bp(`/topics/${insert.link.theme}/`)}">${insert.link.label} &rarr;</a>
+        </div>
+      </section>`;
+}
+
+/** Tonight's Next Honest Action — light, spacious, moving toward rest. */
+function renderNextHonestAction(insert) {
+  const rows = insert.questions.map((question, i) => `
+          <li><span class="na-n">${i + 1}</span><p>${question}</p></li>`).join('');
+  return `
+      <section class="na-panel">
+        <p class="na-eyebrow">${insert.eyebrow}</p>
+        <ol>${rows}
+        </ol>
+        <p class="na-close">${insert.close}</p>
+      </section>`;
+}
+
+const INSERT_RENDERERS = {
+  worryLoop: renderWorryLoop,
+  whatReturns: renderWhatReturns,
+  letGoLetGod: renderLetGoLetGod,
+  nextHonestAction: renderNextHonestAction,
+};
+
+/**
+ * Render the Letting Go topic page — one emotional journey, not a stack of
+ * equally weighted boxes: prose sections with authored headings, one
+ * extracted pull quote, and four live-text inserts placed by the storyboard.
+ */
+function renderLettingGoArticle(article, topic, allReadings, prevTopic, nextTopic) {
+  const resolve = html => resolveGuideLinks(html, allReadings);
+
+  const flow = article.sections.map(section => {
+    if (section.pullQuote) {
+      return `
+      <blockquote class="tg-thesis">
+        <p>&ldquo;${section.pullQuote}&rdquo;</p>
+      </blockquote>`;
+    }
+    if (section.insert) {
+      const renderInsert = INSERT_RENDERERS[section.insert];
+      const data = article.inserts[section.insert];
+      if (!renderInsert || !data) throw new Error(`Letting Go article: unknown insert "${section.insert}"`);
+      return renderInsert(data);
+    }
+    const paras = section.body.map(p => `<p>${resolve(p)}</p>`).join('\n          ');
+    return `
+      <section class="tg-section">
+        ${section.heading ? `<h2>${section.heading}</h2>` : ''}
+        <div class="prose-lora">
+          ${paras}
+        </div>
+      </section>`;
+  }).join('\n');
+
+  const guideReadings = article.readings.days
     .map(day => allReadings.find(reading => reading.day_of_year === day))
     .filter(Boolean);
 
-  const readingLink = (day, label) => {
-    const reading = guideReadings.find(item => item.day_of_year === day);
-    if (!reading) return label;
-    return `<a href="${bp(`/${readingSlug(reading.day_of_year, reading.title)}/`)}">${label}</a>`;
-  };
-
   const guideCards = guideReadings.map(reading => readingCard({
     href: bp(`/${readingSlug(reading.day_of_year, reading.title)}/`),
-    date: reading.display_date,
+    date: `${principleLabel(reading.step_theme)} &middot; ${reading.display_date}`,
     title: reading.title,
-    tone: 'tinted',
+    tone: 'white',
   })).join('\n');
 
   const bodyContent = `
 ${detailRail({
-    prevHref: bp(`/themes/${prevTopic.slug}/`),
+    prevHref: bp(`/topics/${prevTopic.slug}/`),
     prevLabel: prevTopic.name,
-    allHref: bp('/themes/'),
-    allLabel: 'All Themes',
-    nextHref: bp(`/themes/${nextTopic.slug}/`),
+    allHref: bp('/topics/'),
+    allLabel: 'All topics',
+    nextHref: bp(`/topics/${nextTopic.slug}/`),
     nextLabel: nextTopic.name,
   })}
 
 ${photoHero({
-    image: bp(`/assets/themes/${topic.image}`),
-    alt: topic.imageAlt,
-    eyebrow: 'Recovery theme guide',
-    title: topic.name,
-    subtitle: topic.shortDescription,
+    image: bp(`/assets/themes/${article.hero.image}`),
+    alt: article.hero.alt,
+    eyebrow: 'Recovery topic',
+    title: article.title,
+    subtitle: article.definition,
     size: 'lg',
     titleClass: 'photo-hero-title--theme',
   })}
 
-    <article class="rd-article theme-guide">
-      <div class="prose-lora theme-guide-opening">
-        <p>I&rsquo;ve spent so long trying to prevent disaster that it&rsquo;s second nature.</p>
-        <p>When someone I love is struggling, letting go can feel like betrayal. I want the best for them. I can see the danger, the consequences, and all the things that might go wrong. If I can help, why shouldn&rsquo;t I?</p>
-        <p>That question can keep me awake at night. It can also keep me managing another person&rsquo;s life while mine grows smaller around the effort.</p>
-      </div>
-
-      <p class="pull-quote">&ldquo;The fear and regret that rob me of sleep go by the name &lsquo;If only.&rsquo;&rdquo;</p>
-
-      <section class="theme-guide-section">
-        <p class="eyebrow">What it means</p>
-        <h2>Love without taking over</h2>
-        <div class="prose-lora">
-          <p>Letting go respects another person&rsquo;s dignity: their right to make their own decisions and live through their own journey. It means returning their choices and consequences to them while keeping the focus on my side of the street: my choices, my boundaries, my conduct, and my care for myself.</p>
-          <p>It asks me to stop playing Higher Power in someone else&rsquo;s life. They have a Higher Power, and I am not it. I cannot understand the totality of their journey or know which experience may finally reach them. If the idea of a Higher Power is difficult, I can begin with the simpler truth that life is bigger than either of us.</p>
-          <p>${readingLink(7, 'Impossible Responsibilities')} describes the relief of putting down responsibilities that were never ours to carry. That is not abandonment. It is an honest return to the limits of our role.</p>
-        </div>
-      </section>
-
-      <aside class="truth-callout">
-        <span class="eyebrow">A return to the facts</span>
-        <p>It is not my job to break through their denial. It is my job to confront my own.</p>
-      </aside>
-
-      <section class="theme-guide-section">
-        <p class="eyebrow">What it does not mean</p>
-        <h2>Letting go is not shutting down</h2>
-        <div class="prose-lora">
-          <p>It does not mean slamming the door, punishing someone with silence, or pretending their pain does not matter. I can listen with love without picking up the baton. I can acknowledge real difficulty without feeding self-pity, assigning blame, or taking responsibility for solving it.</p>
-          <p>It also does not require me to accept manipulation. I can decline guilt, pressure, threats, and manufactured emergencies. At the same time, I have to look honestly at the ways I may manipulate too&mdash;through rescuing, pleading, monitoring, bargaining, or arranging consequences to force the outcome I want.</p>
-        </div>
-      </section>
-
-      <aside class="manipulation-inventory">
-        <div class="manipulation-inventory-heading">
-          <span class="eyebrow">The manipulation mirror</span>
-          <h2>Can I recognize in myself what I resist in someone else?</h2>
-          <p>Seeing my own behavior clearly does not excuse theirs. It simply returns my attention to the part I can change.</p>
-        </div>
-        <div class="manipulation-inventory-grid">
-          <div>
-            <h3>Pressure I receive</h3>
-            <ul>
-              <li>Blame</li>
-              <li>Anger</li>
-              <li>Promises</li>
-              <li>Threats</li>
-              <li>Crisis</li>
-              <li>Disappointment</li>
-            </ul>
-          </div>
-          <div>
-            <h3>Pressure I use</h3>
-            <ul>
-              <li>Rehearsed arguments</li>
-              <li>Guilt</li>
-              <li>Silent treatment</li>
-              <li>Empty threats</li>
-              <li>Exaggerated consequences</li>
-              <li>Help with strings attached</li>
-            </ul>
-          </div>
-        </div>
-        <p class="manipulation-inventory-close">Letting go interrupts both.</p>
-      </aside>
-
-      <section class="theme-guide-section">
-        <p class="eyebrow">A useful distinction</p>
-        <h2>What is mine&mdash;and what isn&rsquo;t?</h2>
-        <div class="mine-not-mine">
-          <div>
-            <h3>Mine</h3>
-            <ul>
-              <li>My choices and behavior</li>
-              <li>What I will and will not do</li>
-              <li>My boundaries and safety</li>
-              <li>Getting support and caring for myself</li>
-              <li>Facing the truth of the situation</li>
-            </ul>
-          </div>
-          <div>
-            <h3>Not mine</h3>
-            <ul>
-              <li>Their choices and recovery</li>
-              <li>Their crisis and consequences</li>
-              <li>Whether they accept help</li>
-              <li>What other people think of my boundary</li>
-              <li>Forcing them to see what I see</li>
-            </ul>
-          </div>
-        </div>
-      </section>
-
-      <p class="pull-quote">&ldquo;Caring and carrying are not the same thing.&rdquo;</p>
-
-      <section class="theme-guide-section">
-        <p class="eyebrow">Everyday practice</p>
-        <h2>Where letting go becomes concrete</h2>
-        <div class="letting-go-scenarios">
-          <div><h3>Monitoring</h3><p>Checking a phone, email, location, or story to manage my fear. I can step back and practice <a href="${bp('/themes/detachment/')}">detachment with love</a>.</p></div>
-          <div><h3>Rescuing</h3><p>Paying, explaining, covering, or speaking on someone&rsquo;s behalf. I can let their choices meet their consequences and keep my <a href="${bp('/themes/boundaries/')}">boundaries</a>.</p></div>
-          <div><h3>Rehearsing</h3><p>Planning the perfect words that will finally make them change. I can tell the truth once, then return the focus to <a href="${bp('/themes/focus-on-yourself/')}">my own life</a>.</p></div>
-        </div>
-        <div class="prose-lora">
-          <p>${readingLink(71, 'Taking Responsibility Off My Shoulders')} asks a practical question: is this mine to carry, or is it something I need to release? The answer may not remove the pain, but it can show me my next honest action.</p>
-        </div>
-      </section>
-
-      <section class="theme-guide-section letting-go-practice">
-        <p class="eyebrow">A letting-go practice</p>
-        <h2>Pause before picking it up</h2>
-        <ol>
-          <li><strong>Name it.</strong> What person, result, or crisis am I trying to control?</li>
-          <li><strong>Check the facts.</strong> What do I actually know, apart from fear and prediction?</li>
-          <li><strong>Separate the responsibilities.</strong> What belongs to me, and what belongs to them?</li>
-          <li><strong>Ask for support.</strong> A meeting, sponsor, or trusted program friend can help me hear the truth.</li>
-          <li><strong>Choose one action.</strong> Do what is mine, release the rest, and allow the discomfort to pass without using control for relief.</li>
-        </ol>
-      </section>
-
-      <details class="reflection-questions">
-        <summary>Questions for reflection</summary>
-        <ul>
-          <li>What is the fear beneath my urge to act?</li>
-          <li>Am I afraid that setting a boundary makes me a bad person?</li>
-          <li>What facts am I avoiding because control feels more hopeful?</li>
-          <li>What would caring look like if I did not carry this?</li>
-          <li>Can I trust their journey to a Higher Power and take care of the life in front of me?</li>
-        </ul>
-      </details>
+    <article class="rd-article tg-article">
+${flow}
     </article>
 
-    ${guideReadings.length > 0 ? `<section class="wrap section--lg theme-reading-collection">
-      <p class="eyebrow">Continue with the daily readings</p>
-      <h2 class="section-title">Reflections on letting go</h2>
-      <p class="section-desc">Four readings that approach the difference between caring, carrying, and completing what is actually ours to do.</p>
+    ${guideReadings.length > 0 ? `<section class="wrap section--lg theme-reading-collection" id="readings">
+      <h2 class="section-title">${article.readings.heading}</h2>
       <div class="featured-grid">${guideCards}</div>
     </section>` : ''}
 
     <section class="wrap section--md theme-sources">
-      <p class="eyebrow">Grounded in the program</p>
-      <p>This guide draws on recurring ideas in Al-Anon literature, including <cite>How Al-Anon Works</cite>, <cite>Paths to Recovery</cite>, and <cite>Courage to Change</cite>, together with the original Daily Paths readings linked above. Daily Paths is an independent project and is not affiliated with Al-Anon Family Group Headquarters, Inc.</p>
+      <p>${article.sources}</p>
     </section>
 
     <div class="wrap section--md" id="get-the-app">
       ${appPanel({
         tone: 'seafoam',
-        heading: 'Practice letting go, one day at a time.',
-        text: 'Read, reflect, save what speaks to you, and use private journaling tools in the Daily Paths app.',
+        heading: article.cta.heading,
+        text: article.cta.text,
         context: 'theme',
       })}
     </div>`;
@@ -277,12 +263,12 @@ ${photoHero({
   return wrapInLayout({
     title: 'Letting Go in Al-Anon — Caring Without Carrying | Daily Paths',
     description: topic.metaDescription,
-    canonicalPath: `/themes/${topic.slug}/`,
+    canonicalPath: `/topics/${topic.slug}/`,
     bodyContent,
     bodyClass: 'page-topic-detail page-letting-go',
     structuredData: [topicStructuredData(topic), topicBreadcrumbStructuredData(topic)],
     ogType: 'article',
-    navSection: 'themes',
+    navSection: 'topics',
     hasAppPanel: true,
   });
 }
@@ -304,8 +290,8 @@ export function renderTopicPage(topic, featuredReadings, allReadings = [], topic
   const prevTopic = TOPICS[(idx - 1 + TOPICS.length) % TOPICS.length];
   const nextTopic = TOPICS[(idx + 1) % TOPICS.length];
 
-  if (topic.slug === 'letting-go-of-control') {
-    return renderLettingGoGuide(topic, allReadings, prevTopic, nextTopic);
+  if (topic.slug === 'letting-go') {
+    return renderLettingGoArticle(LETTING_GO_ARTICLE, topic, allReadings, prevTopic, nextTopic);
   }
 
   const pullQuote = TOPIC_PULL_QUOTES[topic.slug] || '';
@@ -387,18 +373,18 @@ ${cards}
 
   const bodyContent = `
 ${detailRail({
-    prevHref: bp(`/themes/${prevTopic.slug}/`),
+    prevHref: bp(`/topics/${prevTopic.slug}/`),
     prevLabel: prevTopic.name,
-    allHref: bp('/themes/'),
-    allLabel: 'All Themes',
-    nextHref: bp(`/themes/${nextTopic.slug}/`),
+    allHref: bp('/topics/'),
+    allLabel: 'All topics',
+    nextHref: bp(`/topics/${nextTopic.slug}/`),
     nextLabel: nextTopic.name,
   })}
 
 ${photoHero({
     image: bp('/assets/themes/themes-hero.jpg'),
     alt: `Forest path through morning light — ${topic.name} in Al-Anon recovery`,
-    eyebrow: 'Al-Anon theme',
+    eyebrow: 'Topic',
     title: topic.name,
     subtitle: topic.shortDescription,
     size: 'lg',
@@ -446,14 +432,14 @@ ${extraCards}
       </div>
     </article>
 
-    ${featuredReadings.length > 0 ? `<section class="wrap section--lg">
+    ${featuredReadings.length > 0 ? `<section class="wrap section--lg" id="readings">
       <h2 class="section-title">Featured Reflections</h2>
       <p class="section-desc" style="margin-bottom:22px">${featuredReadings.length} hand-picked reading${featuredReadings.length === 1 ? '' : 's'} on ${topic.name.toLowerCase()}.</p>
       <div class="featured-grid">${featuredCards}
       </div>
     </section>` : ''}
 
-    ${additionalReadings.length > 0 ? `<section class="wrap section--lg">
+    ${additionalReadings.length > 0 ? `<section class="wrap section--lg"${featuredReadings.length > 0 ? '' : ' id="readings"'}>
       <h2 class="section-title">Daily Reflections on ${topic.name}</h2>
       <p class="section-desc" style="margin-bottom:20px">${additionalReadings.length} additional reading${additionalReadings.length === 1 ? '' : 's'} explore this theme.</p>
       <div class="theme-groups">
@@ -476,14 +462,14 @@ ${readingGroups}
   ];
 
   return wrapInLayout({
-    title: `${topic.name} — Al-Anon Recovery Theme | Daily Paths`,
+    title: `${topic.name} — Al-Anon Recovery Topic | Daily Paths`,
     description: (topic.metaDescription || topic.shortDescription) + ' Reflections and curated daily readings from Al-Anon Daily Paths.',
-    canonicalPath: `/themes/${topic.slug}/`,
+    canonicalPath: `/topics/${topic.slug}/`,
     bodyContent,
     bodyClass: 'page-topic-detail',
     structuredData,
     ogType: 'article',
-    navSection: 'themes',
+    navSection: 'topics',
     hasAppPanel: true,
   });
 }

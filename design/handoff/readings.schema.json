@@ -1,0 +1,78 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Daily Paths reading",
+  "type": "object",
+  "required": [
+    "date",
+    "slug",
+    "title",
+    "body",
+    "step",
+    "topics"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "date": {
+      "type": "string",
+      "pattern": "^(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$",
+      "description": "MM-DD. Natural key; 366 records including 02-29."
+    },
+    "slug": {
+      "type": "string",
+      "pattern": "^[a-z0-9-]+$"
+    },
+    "title": {
+      "type": "string"
+    },
+    "quote": {
+      "type": "string",
+      "description": "Quoted passage shown in the quote card. Attribute it or omit it."
+    },
+    "attribution": {
+      "type": "string",
+      "description": "e.g. 'Paths to Recovery, p. 82'. Required whenever quote is present."
+    },
+    "body": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "minItems": 1,
+      "description": "Paragraphs, plain text."
+    },
+    "reminder": {
+      "type": "string",
+      "description": "One line, shown in the seafoam Today's Reminder panel."
+    },
+    "step": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 12,
+      "description": "Exactly one. Derived from the reading's month."
+    },
+    "topics": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "minItems": 1,
+      "maxItems": 3,
+      "description": "Topic slugs from topics.json. topics[0] is the primary and owns the reading."
+    },
+    "favorites": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "From the app. Drives the popularity surfaces. Never rendered."
+    },
+    "thumbs": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "From the app. Never rendered."
+    }
+  },
+  "dependentRequired": {
+    "quote": [
+      "attribution"
+    ]
+  }
+}

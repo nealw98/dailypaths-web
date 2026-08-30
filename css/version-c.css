@@ -273,8 +273,9 @@ button { font-family: inherit; }
 .prose-lora p {
   margin: 0 0 22px;
   font-family: var(--font-reading);
-  font-size: clamp(17px, 1.5vw, 18.5px);
-  line-height: 1.66;
+  /* Web reading scale — the design system's phone scale reads small at 820px */
+  font-size: clamp(18px, 1.6vw, 19.5px);
+  line-height: 1.62;
   color: var(--text-primary);
 }
 
@@ -495,7 +496,7 @@ a.pill:hover {
   color: var(--text-muted);
   font-family: var(--font-body);
   font-weight: 600;
-  font-size: 14.5px;
+  font-size: 15px;
   line-height: 1.2;
   letter-spacing: -.1px;
   white-space: nowrap;
@@ -1475,32 +1476,171 @@ a.card-tinted:hover { background: var(--surface-card); }
   color: var(--accent-strong);
 }
 
-.rd-app-panel { margin-top: 36px; }
+.rd-calendar-link { margin: 20px 0 0; text-align: center; }
 
-.rd-app-panel-inner { position: relative; }
-
-.rd-app-heading {
-  margin: 0;
-  font-family: var(--font-display);
-  font-weight: 500;
-  font-size: clamp(24px, 2.8vw, 34px);
-  line-height: 1.18;
-  color: #fff;
+.rd-calendar-trigger {
+  padding: 4px 6px;
+  border: 0;
+  background: none;
+  cursor: pointer;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 15px;
+  color: var(--accent);
 }
 
-.rd-app-text {
-  margin: 12px 0 20px;
-  max-width: 52ch;
+.rd-calendar-trigger:hover { text-decoration: underline; }
+
+/* New here — the one loud thing on the page; the whole panel is the link.
+   The privacy line must stay literally true: the quiz saves and sends nothing. */
+.new-here-panel {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px 22px;
+  margin-top: clamp(40px, 6vw, 60px);
+  padding: clamp(22px, 3.4vw, 30px) clamp(22px, 4vw, 34px);
+  border-radius: var(--radius-lg);
+  background: var(--accent-soft);
+  transition: box-shadow var(--dur) var(--ease);
+}
+
+.new-here-panel:hover { box-shadow: var(--shadow-surface); }
+
+.new-here-icon {
+  flex-shrink: 0;
+  align-self: flex-start;
+  margin-top: 6px;
+  color: var(--accent);
+}
+
+.new-here-copy {
+  flex: 1 1 300px;
+  display: grid;
+  gap: 8px;
+}
+
+.new-here-heading {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(24px, 2.6vw, 30px);
+  line-height: 1.2;
+  color: var(--accent-deep);
+}
+
+.new-here-line {
   font-size: 16px;
   line-height: 26px;
-  color: rgba(255, 255, 255, .85);
+  color: var(--accent-strong);
 }
 
-.rd-related-grid {
+.new-here-btn { flex-shrink: 0; }
+
+/* Keep reading — sibling readings from this reading's own topic */
+.kr-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-  gap: 12px;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 14px;
+  margin-top: 22px;
+}
+
+.kr-card {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 22px;
+  border-radius: var(--radius-tinted);
+  background: var(--surface-low);
+  box-shadow: var(--shadow-card);
+  transition: background var(--dur) var(--ease);
+}
+
+.kr-card:hover { background: var(--surface-card); }
+
+.kr-card-date {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: .6px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.kr-card-title {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 22px;
+  line-height: 1.25;
+}
+
+.kr-card-teaser {
+  font-size: 16px;
+  line-height: 26px;
+  color: var(--text-muted);
+}
+
+.kr-card-cta {
+  margin-top: auto;
+  padding-top: 6px;
+  font-weight: 600;
+  font-size: 15px;
+  color: var(--accent);
+}
+
+.kr-more {
   margin-top: 20px;
+  text-align: center;
+}
+
+/* Anchored from the reading page's "More readings →"; clear the sticky header */
+#readings { scroll-margin-top: 80px; }
+
+/* Related topics — distinct in kind from the reading cards: white + hairline */
+.rt-section {
+  margin-top: 44px;
+  padding-top: 26px;
+  border-top: 1px solid var(--rule);
+}
+
+.rt-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 14px;
+  margin-top: 18px;
+}
+
+.rt-card {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 22px;
+  border: 0.5px solid var(--border-card);
+  border-radius: var(--radius-tinted);
+  background: var(--surface-lowest);
+  box-shadow: var(--shadow-card);
+  transition: box-shadow var(--dur) var(--ease);
+}
+
+.rt-card:hover { box-shadow: var(--shadow-surface); }
+
+.rt-card-title {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 21px;
+  line-height: 1.25;
+}
+
+.rt-card-line {
+  font-size: 16px;
+  line-height: 26px;
+  color: var(--text-muted);
+}
+
+.rt-card-meta {
+  margin-top: auto;
+  padding-top: 6px;
+  font-weight: 600;
+  font-size: 15px;
+  color: var(--accent);
 }
 
 /* ───────────────────────────── Step detail ───────────────────────────── */
@@ -1864,105 +2004,190 @@ a.card-tinted:hover { background: var(--surface-card); }
   color: var(--accent);
 }
 
-/* ───────────────────── Letting Go theme guide ───────────────────── */
+/* ─────────────── Letting Go topic article (2.0) ───────────────
+   Bespoke structure per design/handoff/topics/letting-go/: prose sections
+   with authored headings, one extracted pull quote (.tg-thesis), and four
+   live-text inserts placed by the storyboard. */
 
-.theme-guide { padding-bottom: 8px; }
-.theme-guide-opening p:first-child {
-  font-size: clamp(23px, 3vw, 30px);
-  line-height: 1.45;
+.tg-article { padding-bottom: 8px; }
+
+.tg-section { margin-top: clamp(38px, 6vw, 60px); }
+.tg-section:first-child { margin-top: 6px; }
+
+.tg-section h2 {
+  margin: 0 0 18px;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(25px, 2.8vw, 32px);
+  letter-spacing: -.3px;
+  line-height: 1.2;
   color: var(--text-primary);
 }
 
-.theme-guide-section { margin-top: clamp(42px, 7vw, 76px); }
-.theme-guide-section h2 {
+.tg-thesis {
+  margin: clamp(40px, 6vw, 60px) 0;
+  padding: clamp(26px, 4vw, 38px) 0;
+  border-top: 1px solid var(--accent-strong);
+  border-bottom: 1px solid var(--accent-strong);
+}
+
+.tg-thesis p {
+  max-width: 36ch;
+  margin: 0 auto;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 500;
+  font-size: clamp(24px, 2.8vw, 34px);
+  line-height: 1.45;
+  text-align: center;
+  color: var(--accent-strong);
+}
+
+/* Diagram figures — final art for the two dark inserts; the full insert
+   text is provided in visually-hidden markup for screen readers. */
+.tg-diagram { margin: 26px 0 10px; }
+
+.tg-diagram img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius-lg);
+}
+
+/* Let Go and Let God — a quiet seafoam text aside, no graphics. Dark teal is
+   reserved for the article's two diagram figures; text asides use seafoam
+   like the practice and newcomer panels. Art-directed values fixed by spec;
+   type sizes are em ratios off the body (title 1.6 · subtitle 1.05 ·
+   pull-quote 1.15 · link 0.85). */
+.lg-spirit {
+  margin: clamp(40px, 6vw, 60px) 0;
+  padding: clamp(28px, 4vw, 40px);
+  border-radius: 16px;
+  background: #BAECE6;
+  font-size: clamp(17px, 1.5vw, 18.5px);
+}
+
+.lg-spirit h3 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1.6em;
+  letter-spacing: -.3px;
+  color: #214743;
+}
+
+.lg-spirit-q {
   margin: 8px 0 18px;
   font-family: var(--font-display);
-  font-size: clamp(28px, 4vw, 40px);
-  line-height: 1.15;
+  font-style: italic;
+  font-weight: 500;
+  font-size: 1.05em;
+  color: #2D514E;
+}
+
+.lg-spirit-inner > p:not(.lg-spirit-q) {
+  max-width: 58ch;
+  margin: 0 0 16px;
+  font-family: var(--font-reading);
+  font-size: 1em;
+  line-height: 1.66;
+  color: #1C2524;
+}
+
+.lg-spirit-quote {
+  max-width: 34ch;
+  margin: clamp(26px, 4vw, 36px) auto;
+  padding: clamp(18px, 3vw, 26px) 0;
+  border-top: 1px solid rgba(28, 37, 36, .18);
+  border-bottom: 1px solid rgba(28, 37, 36, .18);
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 500;
+  font-size: 1.15em;
+  line-height: 1.45;
+  text-align: center;
+  color: #214743;
+}
+
+.lg-spirit-link {
+  display: inline-block;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: .85em;
+  color: #376662;
+}
+
+.lg-spirit-link:hover { text-decoration: underline; }
+
+/* Tonight's Next Honest Action — light, spacious, moving toward rest. */
+.na-panel {
+  margin: 26px 0 10px;
+  padding: clamp(28px, 5vw, 48px) clamp(24px, 4.5vw, 48px);
+  border: 1px solid var(--border-card);
+  border-radius: var(--radius-lg);
+  background: var(--surface-lowest);
+  box-shadow: var(--shadow-card);
+}
+
+.na-eyebrow {
+  margin: 0;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 13px;
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+  text-align: center;
+  color: var(--accent);
+}
+
+.na-panel ol {
+  display: grid;
+  margin: clamp(20px, 3vw, 28px) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.na-panel li {
+  display: grid;
+  grid-template-columns: 36px 1fr;
+  gap: 16px;
+  align-items: center;
+  padding: 15px 0;
+  border-bottom: 1px dotted var(--border-soft);
+}
+
+.na-panel li:last-child { border-bottom: 0; }
+
+.na-n {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border: 1px dotted var(--accent);
+  border-radius: 50%;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 18px;
+  color: var(--accent-strong);
+}
+
+.na-panel li p {
+  margin: 0;
+  font-size: 16px;
+  line-height: 26px;
   color: var(--text-primary);
 }
 
-.truth-callout {
-  margin: clamp(38px, 6vw, 62px) 0;
-  padding: 28px clamp(24px, 5vw, 46px);
-  border-left: 4px solid var(--accent);
-  background: var(--surface-card);
-}
-
-.truth-callout p {
-  margin: 10px 0 0;
+.na-close {
+  margin: clamp(22px, 3.5vw, 30px) 0 0;
   font-family: var(--font-display);
-  font-size: clamp(24px, 3.5vw, 34px);
-  line-height: 1.3;
-}
-
-.manipulation-inventory {
-  margin: clamp(46px, 8vw, 82px) 0;
-  padding: clamp(28px, 4vw, 40px) 0 0;
-  border-top: 1px solid var(--border-card);
-  border-bottom: 1px solid var(--border-card);
-}
-
-.manipulation-inventory-heading {
-  max-width: 61ch;
-  margin: 0 auto 30px;
+  font-style: italic;
+  font-size: clamp(19px, 2.1vw, 23px);
   text-align: center;
+  color: var(--accent-deep);
 }
 
-.manipulation-inventory-heading h2 {
-  margin-top: 8px;
-  margin-bottom: 8px;
-  font-family: var(--font-display);
-  font-size: clamp(25px, 3.5vw, 36px);
-  line-height: 1.2;
-}
-
-.manipulation-inventory-heading p {
-  margin: 0;
-  line-height: 1.6;
-  color: var(--text-muted);
-}
-
-.manipulation-inventory-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  border-top: 1px solid var(--border-card);
-}
-
-.manipulation-inventory-grid > div {
-  padding: 28px clamp(22px, 4vw, 38px) 32px;
-}
-
-.manipulation-inventory-grid > div + div { border-left: 1px solid var(--border-card); }
-.manipulation-inventory-grid h3 { margin: 0 0 18px; font-family: var(--font-body); font-size: 12px; font-weight: 700; line-height: 1.45; letter-spacing: .07em; text-transform: uppercase; color: var(--accent); }
-.manipulation-inventory-grid ul { display: grid; gap: 0; margin: 0; padding: 0; list-style: none; }
-.manipulation-inventory-grid li { padding: 9px 0; border-bottom: 1px solid var(--rule); font-family: var(--font-display); font-size: 22px; line-height: 1.25; }
-.manipulation-inventory-grid li:last-child { border-bottom: 0; }
-.manipulation-inventory-close { margin: 0; padding: 20px 24px 22px; border-top: 1px solid var(--border-card); font-family: var(--font-display); font-size: 22px; line-height: 1.4; text-align: center; color: var(--accent-deep); }
-
-.mine-not-mine {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 16px;
-}
-.mine-not-mine > div { padding: 25px 28px; border: 1px solid var(--border-card); border-radius: var(--radius-tinted); background: var(--surface-lowest); }
-.mine-not-mine h3, .letting-go-scenarios h3 { margin: 0 0 12px; font-family: var(--font-display); font-size: 23px; }
-.mine-not-mine ul { margin: 0; padding-left: 20px; }
-.mine-not-mine li { margin: 8px 0; line-height: 1.55; }
-
-.letting-go-scenarios { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; margin: 22px 0 26px; }
-.letting-go-scenarios > div { padding: 23px; border-radius: var(--radius-tinted); background: var(--surface-card); }
-.letting-go-scenarios p { margin: 0; font-size: 15px; line-height: 1.65; }
-.letting-go-scenarios a { color: var(--accent); text-decoration: underline; text-underline-offset: 2px; }
-
-.letting-go-practice { padding: clamp(26px, 5vw, 46px); border-radius: var(--radius-tinted); background: var(--surface-card); }
-.letting-go-practice ol { margin: 20px 0 0; padding-left: 24px; }
-.letting-go-practice li { margin: 13px 0; padding-left: 6px; line-height: 1.65; }
-
-.reflection-questions { margin-top: 24px; padding: 22px 26px; border: 1px solid var(--border-card); border-radius: var(--radius-tinted); }
-.reflection-questions summary { cursor: pointer; font-family: var(--font-display); font-size: 23px; font-weight: 600; }
-.reflection-questions ul { margin: 20px 0 0; padding-left: 22px; }
-.reflection-questions li { margin: 10px 0; line-height: 1.6; }
 .theme-reading-collection .featured-grid { margin-top: 24px; }
 .theme-sources { border-top: 1px solid var(--border-card); }
 .theme-sources > p:last-child { max-width: 76ch; margin: 10px 0 0; font-size: 14px; line-height: 1.7; color: var(--text-muted); }
@@ -1970,10 +2195,6 @@ a.card-tinted:hover { background: var(--surface-card); }
 @media (max-width: 720px) {
   .theme-feature { grid-template-columns: 1fr; }
   .theme-feature img { min-height: 220px; max-height: 260px; order: -1; }
-  .manipulation-inventory-heading { padding: 0 18px; text-align: left; }
-  .manipulation-inventory-grid { grid-template-columns: 1fr; }
-  .manipulation-inventory-grid > div + div { border-top: 1px solid var(--border-card); border-left: 0; }
-  .mine-not-mine, .letting-go-scenarios { grid-template-columns: 1fr; }
 }
 
 /* These carry long member prose, not short metadata, so auto-fit (which
@@ -3168,4 +3389,286 @@ a.card-tinted:hover { background: var(--surface-card); }
   .photo-hero-title,
   .photo-hero-sub,
   .photo-hero .eyebrow { color: var(--text-primary) !important; }
+}
+
+/* ─────────────── Calendar modal (reading pages) ───────────────
+   Ported from version-b (the modal shipped without version-c styles);
+   markup lives in js/calendar.js, opened by [data-calendar-trigger]. */
+
+.cal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity var(--dur) var(--ease), visibility var(--dur) var(--ease);
+}
+
+.cal-overlay.is-open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.cal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, .35);
+  backdrop-filter: blur(2px);
+}
+
+.cal-panel {
+  position: relative;
+  width: 100%;
+  max-width: 400px;
+  max-height: 90vh;
+  overflow-y: auto;
+  background: var(--surface);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, .2);
+  transform: translateY(16px);
+  transition: transform var(--dur-slow) var(--ease);
+}
+
+.cal-overlay.is-open .cal-panel { transform: translateY(0); }
+
+.cal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 24px 12px;
+}
+
+.cal-header-title {
+  font-family: var(--font-body);
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.cal-close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border: none;
+  border-radius: var(--radius);
+  background: transparent;
+  color: var(--text-primary);
+  cursor: pointer;
+  font-size: 19px;
+  transition: background var(--dur-fast) var(--ease);
+}
+
+.cal-close:hover { background: var(--surface-card); }
+
+.cal-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 4px 24px 12px;
+}
+
+.cal-month-label {
+  font-family: var(--font-display);
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--accent-strong);
+}
+
+.cal-nav-arrows {
+  display: flex;
+  gap: 8px;
+}
+
+.cal-arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+  background: var(--surface-lowest);
+  color: var(--text-primary);
+  cursor: pointer;
+  font-size: 16px;
+  transition: background var(--dur-fast) var(--ease), border-color var(--dur-fast) var(--ease);
+}
+
+.cal-arrow:hover {
+  background: var(--surface-card);
+  border-color: var(--border-soft);
+}
+
+.cal-grid { padding: 0 20px; }
+
+.cal-weekdays {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  margin-bottom: 4px;
+}
+
+.cal-weekday {
+  padding: 8px 0;
+  text-align: center;
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+  color: var(--text-muted);
+}
+
+.cal-days {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 2px;
+}
+
+.cal-cell {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 1;
+  padding: 0;
+  border: none;
+  border-radius: var(--radius);
+  background: transparent;
+  cursor: pointer;
+  font-family: var(--font-body);
+  font-size: 14px;
+  color: var(--text-primary);
+  transition: background var(--dur-fast) var(--ease);
+}
+
+.cal-cell:hover { background: var(--surface-card); }
+
+.cal-cell.is-empty {
+  cursor: default;
+  pointer-events: none;
+}
+
+.cal-cell.is-today {
+  font-weight: 600;
+  color: var(--accent-strong);
+}
+
+.cal-cell.is-today::before {
+  content: '';
+  position: absolute;
+  inset: 3px;
+  border: 2px solid var(--accent-strong);
+  border-radius: var(--radius);
+  opacity: .3;
+}
+
+.cal-cell.is-current-reading {
+  color: var(--accent-strong);
+  font-weight: 600;
+}
+
+.cal-cell.is-selected {
+  background: var(--accent-strong);
+  color: #fff;
+  font-weight: 600;
+}
+
+.cal-cell.is-selected:hover { background: var(--accent); }
+
+.cal-preview {
+  margin: 16px 20px 24px;
+  padding: 20px 24px;
+  background: var(--surface-lowest);
+  border: 1px solid var(--border-card);
+  border-radius: var(--radius);
+}
+
+.cal-preview-empty {
+  padding: 16px 0;
+  text-align: center;
+  font-family: var(--font-body);
+  font-size: 14px;
+  color: var(--text-muted);
+}
+
+.cal-preview-date {
+  margin-bottom: 2px;
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.cal-preview-theme {
+  margin-bottom: 8px;
+  font-family: var(--font-body);
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.cal-preview-title {
+  margin-bottom: 10px;
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--text-primary);
+}
+
+.cal-preview-thought {
+  margin-bottom: 20px;
+  font-family: var(--font-reading);
+  font-size: 14.5px;
+  line-height: 1.6;
+  color: var(--text-primary);
+  opacity: .8;
+}
+
+.cal-preview-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  padding: 13px 24px;
+  border: none;
+  border-radius: var(--radius);
+  background: var(--accent-strong);
+  cursor: pointer;
+  font-family: var(--font-body);
+  font-size: 15px;
+  font-weight: 500;
+  color: #fff;
+  text-decoration: none;
+  transition: filter var(--dur-fast) var(--ease);
+}
+
+.cal-preview-btn:hover {
+  filter: brightness(1.06);
+  color: #fff;
+}
+
+@media (max-width: 640px) {
+  .cal-overlay {
+    align-items: flex-end;
+    padding: 0;
+  }
+  .cal-panel {
+    max-width: 100%;
+    max-height: 92vh;
+    border-radius: 20px 20px 0 0;
+    transform: translateY(100%);
+  }
+  .cal-overlay.is-open .cal-panel {
+    transform: translateY(0);
+  }
+  .cal-cell { font-size: 13px; }
 }

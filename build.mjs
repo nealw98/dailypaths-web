@@ -25,7 +25,6 @@ import { dayToSlug, readingSlug, stepSlug } from './helpers/slug-utils.mjs';
 import { generateSitemap, generateRobotsTxt } from './helpers/seo.mjs';
 import { generateOgImage } from './helpers/og-image.mjs';
 
-import { renderHomepage } from './templates/homepage.mjs';
 import { renderReadingPage } from './templates/reading.mjs';
 import { renderTopicsIndexPage, renderTopicPage, TOPICS } from './templates/topics.mjs';
 import { TOPIC_PULL_QUOTES, TOPIC_TOOLS, TOPIC_THEME_TAGS } from './helpers/theme-data.mjs';
@@ -40,7 +39,7 @@ import { renderLiteratureIndexPage, renderLiteraturePage, BOOKS } from './templa
 import { renderMonthArchivePage } from './templates/month-archive.mjs';
 import { renderStartPage } from './templates/start.mjs';
 import { renderAdminPage } from './templates/admin.mjs';
-import { wrapInLayout, setTodayPath } from './templates/base.mjs';
+import { wrapInLayout } from './templates/base.mjs';
 import { bp } from './helpers/config.mjs';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -138,7 +137,7 @@ const dirs = [
   join(outDir, 'css'),
   join(outDir, 'js'),
   join(outDir, 'assets'),
-  join(outDir, 'themes'),
+  join(outDir, 'topics'),
   join(outDir, 'privacy'),
   join(outDir, 'support'),
   join(outDir, 'terms'),
@@ -169,9 +168,9 @@ for (const reading of readings) {
   mkdirSync(join(outDir, oldSlug), { recursive: true });
 }
 
-// Create theme (topic) page directories
+// Create topic page directories
 for (const topic of TOPICS) {
-  mkdirSync(join(outDir, 'themes', topic.slug), { recursive: true });
+  mkdirSync(join(outDir, 'topics', topic.slug), { recursive: true });
 }
 
 // --- Step 3: Generate pages ---
@@ -182,8 +181,9 @@ function writePage(filePath, html) {
   pageCount++;
 }
 
-// Homepage — show today's reading
-console.log('Generating homepage...');
+// Home IS today's reading — one template, one canonical (the reading's own
+// URL), refreshed by the daily rebuild.
+console.log("Generating home page (today's reading)...");
 const now = new Date();
 const todayMonth = now.getMonth(); // 0-indexed
 const todayDate = now.getDate();
@@ -195,11 +195,7 @@ const todayReading = readings[todayIdx >= 0 ? todayIdx : 0];
 const todayPrev = readings[(todayIdx - 1 + readings.length) % readings.length];
 const todayNext = readings[(todayIdx + 1) % readings.length];
 
-// The header's "Today's Reflection" item points here; the client corrects it
-// if the visitor's local date has moved past this build.
-setTodayPath(`/${readingSlug(todayReading.day_of_year, todayReading.title)}/`);
-
-writePage(join(outDir, 'index.html'), renderHomepage(todayReading, todayPrev, todayNext, readings));
+writePage(join(outDir, 'index.html'), renderReadingPage(todayReading, todayPrev, todayNext, readings, ratingsMap));
 
 // Reading pages
 console.log('Generating 366 reading pages...');
@@ -208,12 +204,12 @@ for (let i = 0; i < readings.length; i++) {
   const prev = readings[(i - 1 + readings.length) % readings.length];
   const next = readings[(i + 1) % readings.length];
   const newSlug = readingSlug(reading.day_of_year, reading.title);
-  writePage(join(outDir, newSlug, 'index.html'), renderReadingPage(reading, prev, next, readings));
+  writePage(join(outDir, newSlug, 'index.html'), renderReadingPage(reading, prev, next, readings, ratingsMap));
 }
 
 // Principles index + individual principle pages
 console.log(`Generating principle pages (${TOPICS.length} principles)...`);
-writePage(join(outDir, 'themes', 'index.html'), renderTopicsIndexPage());
+writePage(join(outDir, 'topics', 'index.html'), renderTopicsIndexPage());
 
 // Build a readings lookup by day_of_year for featured reading resolution
 const readingsByDay = new Map();
@@ -251,7 +247,7 @@ for (const topic of TOPICS) {
   const topicShares = sharesMap.get(topic.slug) || [];
 
   writePage(
-    join(outDir, 'themes', topic.slug, 'index.html'),
+    join(outDir, 'topics', topic.slug, 'index.html'),
     renderTopicPage(topic, featuredReadings, readings, topicShares)
   );
 }
@@ -379,6 +375,18 @@ for (const step of STEPS) {
   const newPath = stepSlug(step.number, step.principle);
   if (oldPath !== newPath) {
     writeFileSync(join(outDir, 'steps', oldPath, 'index.html'), redirectHtml(`/steps/${newPath}/`), 'utf-8');
+  }
+}
+
+// Theme → Topic redirects: /themes/... → /topics/... (plus renamed slugs)
+const LEGACY_TOPIC_SLUGS = { 'letting-go': ['letting-go-of-control'] };
+mkdirSync(join(outDir, 'themes'), { recursive: true });
+writeFileSync(join(outDir, 'themes', 'index.html'), redirectHtml('/topics/'), 'utf-8');
+for (const topic of TOPICS) {
+  const oldSlugs = [topic.slug, ...(LEGACY_TOPIC_SLUGS[topic.slug] || [])];
+  for (const oldSlug of oldSlugs) {
+    mkdirSync(join(outDir, 'themes', oldSlug), { recursive: true });
+    writeFileSync(join(outDir, 'themes', oldSlug, 'index.html'), redirectHtml(`/topics/${topic.slug}/`), 'utf-8');
   }
 }
 console.log('  Redirect pages generated');

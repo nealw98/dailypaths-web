@@ -3,25 +3,61 @@ import { textToHtmlParagraphs, parseQuote, stripForMeta } from '../helpers/markd
 import { dayToIsoDate, dayToMonthIndex, readingSlug, stepSlug, DAYS_IN_MONTH } from '../helpers/slug-utils.mjs';
 import { readingStructuredData, breadcrumbStructuredData } from '../helpers/seo.mjs';
 import { bp } from '../helpers/config.mjs';
-import { THEME_TO_TOPIC } from '../helpers/theme-data.mjs';
+import { THEME_TO_TOPIC, TOPICS, TOPIC_RELATED, DEFAULT_RELATED_TOPICS } from '../helpers/theme-data.mjs';
 import { STEPS } from './steps.mjs';
-import { photoHero, quoteBlock, pill, readingCard, ripple, storeBadges } from './ui.mjs';
+import { photoHero, quoteBlock, pill, icon, appPanel } from './ui.mjs';
 
 const NUMBER_WORDS = ['One', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine', 'Ten', 'Eleven', 'Twelve'];
 
+const SMALL_COUNT_WORDS = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten',
+  'eleven', 'twelve', 'thirteen', 'fourteen', 'fifteen', 'sixteen', 'seventeen', 'eighteen', 'nineteen'];
+const TENS_COUNT_WORDS = ['', '', 'twenty', 'thirty', 'forty', 'fifty', 'sixty', 'seventy', 'eighty', 'ninety'];
+
+/** 42 → "forty-two"; falls back to the numeral past ninety-nine. */
+function countToWords(n) {
+  if (n < 20) return SMALL_COUNT_WORDS[n];
+  if (n < 100) {
+    const tens = TENS_COUNT_WORDS[Math.floor(n / 10)];
+    const ones = n % 10;
+    return ones ? `${tens}-${SMALL_COUNT_WORDS[ones]}` : tens;
+  }
+  return String(n);
+}
+
+function lowerFirst(text) { return text ? text.charAt(0).toLowerCase() + text.slice(1) : text; }
+function upperFirst(text) { return text ? text.charAt(0).toUpperCase() + text.slice(1) : text; }
+function stripPeriod(text) { return text ? text.replace(/\.\s*$/, '') : text; }
+
 /**
- * Generate the HTML for an individual reading page.
+ * Card teaser: the reading's own reminder line, used only when it fits on
+ * roughly one line. Interim until the authored `teaser` field exists in the
+ * reading record (design/handoff/daily-reflection-page.md).
+ */
+function readingTeaser(reading) {
+  const teaser = (reading.thought_for_day || '')
+    .replace(/\\n/g, ' ')
+    .replace(/\*\*(.+?)\*\*/g, '$1')
+    .replace(/\*(.+?)\*/g, '$1')
+    .trim();
+  return teaser.length > 0 && teaser.length <= 110 ? teaser : '';
+}
+
+/**
+ * Generate the HTML for an individual reading page — the site's main hub
+ * (the home page renders today's through this same template).
  *
- * Photo hero, then a single 820px reading column: pills, the source quotation
- * in a teal-edged panel, the reflection in Lora, Today's Reminder, prev/next,
- * app CTA, attribution.
+ * A reflection hands you to its own topic, its own Step, and other readings
+ * in that topic — nothing generic (design/handoff/daily-reflection-page.md):
+ * hero → linked pills → quote → body → reminder → prev/next → calendar →
+ * attribution → New here panel → Keep reading → Related topics → app CTA.
  *
  * @param {Object} reading - The reading data object
  * @param {Object} prevReading - Previous day's reading (for nav)
  * @param {Object} nextReading - Next day's reading (for nav)
- * @param {Array} [allReadings] - All 366 readings (for related readings)
+ * @param {Array} [allReadings] - All 366 readings (for sibling selection)
+ * @param {Map} [ratingsMap] - day_of_year → {positive, total}, ranks siblings
  */
-export function renderReadingPage(reading, prevReading, nextReading, allReadings = []) {
+export function renderReadingPage(reading, prevReading, nextReading, allReadings = [], ratingsMap = new Map()) {
   const slug = readingSlug(reading.day_of_year, reading.title);
   const isoDate = dayToIsoDate(reading.day_of_year);
   const monthIdx = dayToMonthIndex(reading.day_of_year);
@@ -46,17 +82,24 @@ export function renderReadingPage(reading, prevReading, nextReading, allReadings
     ? `${reading.display_date} &middot; Step ${stepWord}`
     : reading.display_date;
 
-  // Pills — theme and step, each linking to its hub
-  const pills = [];
+  // Pills — the reading's own topic and Step as live, arrowed links. The same
+  // destinations reappear after the reading (Keep reading, the Step card):
+  // intentional duplication at two different moments.
   const theme = reading.secondary_theme;
-  if (theme) {
-    const topicMatch = THEME_TO_TOPIC[theme];
-    pills.push(pill(theme, topicMatch ? { href: bp(`/themes/${topicMatch.slug}/`) } : {}));
+  const topicMatch = theme ? THEME_TO_TOPIC[theme] : null;
+  const topicData = topicMatch ? TOPICS.find(t => t.slug === topicMatch.slug) : null;
+  const stepData = stepNum ? STEPS.find(s => s.number === stepNum) : null;
+  const stepPath = stepData ? `/steps/${stepSlug(stepNum, stepData.principle)}/` : null;
+
+  const pills = [];
+  if (topicMatch) {
+    pills.push(pill(`${topicMatch.name} &rarr;`, { href: bp(`/topics/${topicMatch.slug}/`) }));
+  } else if (theme) {
+    pills.push(pill(theme));
   }
   if (reading.step_theme) {
-    const stepData = stepNum ? STEPS.find(s => s.number === stepNum) : null;
-    const sSlug = stepData ? stepSlug(stepNum, stepData.principle) : null;
-    pills.push(pill(reading.step_theme, sSlug ? { href: bp(`/steps/${sSlug}/`) } : {}));
+    const principleWords = reading.step_theme.replace(/\b(\d+)\b/, m => NUMBER_WORDS[Number(m) - 1] || m);
+    pills.push(stepPath ? pill(`${principleWords} &rarr;`, { href: bp(stepPath) }) : pill(principleWords));
   }
 
   // Source quotation
@@ -81,31 +124,85 @@ export function renderReadingPage(reading, prevReading, nextReading, allReadings
       .replace(/\*(.+?)\*/g, '<em>$1</em>')
     : '';
 
-  // Related readings — 4 more from the same theme
-  let relatedHtml = '';
-  if (theme && allReadings.length > 0) {
-    const topicMatch = THEME_TO_TOPIC[theme];
-    const topicName = topicMatch ? topicMatch.name : theme;
-    const related = allReadings
-      .filter(r => r.secondary_theme === theme && r.day_of_year !== reading.day_of_year)
-      .slice(0, 4);
+  // Keep reading — three siblings from this reading's topic. Deterministic,
+  // build-time selection: highest positive ratings first, excluding this
+  // reading and its prev/next neighbors; ties break by date ascending.
+  let keepReadingHtml = '';
+  if (topicMatch && allReadings.length > 0) {
+    const collection = allReadings.filter(r => {
+      const t = r.secondary_theme && THEME_TO_TOPIC[r.secondary_theme];
+      return t && t.slug === topicMatch.slug;
+    });
+    const excluded = new Set([reading.day_of_year, prevReading.day_of_year, nextReading.day_of_year]);
+    const siblings = collection
+      .filter(r => !excluded.has(r.day_of_year))
+      .sort((a, b) => {
+        const ra = (ratingsMap.get(a.day_of_year) || {}).positive || 0;
+        const rb = (ratingsMap.get(b.day_of_year) || {}).positive || 0;
+        if (rb !== ra) return rb - ra;
+        return a.day_of_year - b.day_of_year;
+      })
+      .slice(0, 3);
 
-    if (related.length > 0) {
-      const cards = related.map(r => readingCard({
-        href: bp(`/${readingSlug(r.day_of_year, r.title)}/`),
-        date: r.display_date,
-        title: r.title,
-      })).join('\n');
+    if (siblings.length > 0) {
+      const cards = siblings.map(r => {
+        const teaser = readingTeaser(r);
+        return `
+          <a href="${bp(`/${readingSlug(r.day_of_year, r.title)}/`)}" class="kr-card">
+            <span class="kr-card-date">${r.display_date}</span>
+            <span class="kr-card-title">${r.title}</span>
+            ${teaser ? `<span class="kr-card-teaser">${teaser}</span>` : ''}
+            <span class="kr-card-cta">Read &rarr;</span>
+          </a>`;
+      }).join('');
 
-      relatedHtml = `
+      const topicHref = bp(`/topics/${topicMatch.slug}/`);
+      const collectionLine = topicData
+        ? `${upperFirst(countToWords(collection.length))} readings on ${lowerFirst(stripPeriod(topicData.shortDescription))}.`
+        : '';
+      keepReadingHtml = `
     <section class="wrap wrap--article section--lg">
-      <h2 class="section-title">Reflections on ${topicName}</h2>
-      <div class="rd-related-grid">
-${cards}
+      <p class="eyebrow">Keep reading</p>
+      <h2 class="section-title">More on ${topicMatch.name.toLowerCase()}</h2>
+      ${collectionLine ? `<p class="section-desc">${collectionLine}</p>` : ''}
+      <div class="kr-grid">${cards}
+      </div>
+      <div class="kr-more">
+        <a href="${topicHref}#readings" class="text-link">More readings &rarr;</a>
       </div>
     </section>`;
     }
   }
+
+  // Related topics — scaffolding on every reading page: two topic cards from
+  // the topic-adjacency map (per-reading secondary topics replace this when
+  // topics-v2 tagging lands), then the reading's Step, worded to explain
+  // itself to a newcomer. Untagged readings fall back to the default pair.
+  const relatedSlugs = (topicMatch && TOPIC_RELATED[topicMatch.slug]) || DEFAULT_RELATED_TOPICS;
+  const relatedCards = relatedSlugs
+    .map(slug => TOPICS.find(t => t.slug === slug))
+    .filter(t => t && (!topicMatch || t.slug !== topicMatch.slug))
+    .slice(0, 2)
+    .map(t => `
+          <a href="${bp(`/topics/${t.slug}/`)}" class="rt-card">
+            <span class="rt-card-title">${t.name}</span>
+            <span class="rt-card-line">${t.shortDescription}</span>
+            <span class="rt-card-meta">Read &rarr;</span>
+          </a>`);
+  if (stepData) {
+    relatedCards.push(`
+          <a href="${bp(stepPath)}" class="rt-card">
+            <span class="rt-card-title">${stepData.principle}</span>
+            <span class="rt-card-line">Step ${stepWord} &mdash; the Step this reading belongs to.</span>
+            <span class="rt-card-meta">Read &rarr;</span>
+          </a>`);
+  }
+  const relatedTopicsHtml = `
+    <section class="wrap wrap--article rt-section">
+      <p class="eyebrow">Related topics</p>
+      <div class="rt-grid">${relatedCards.join('')}
+      </div>
+    </section>`;
 
   const bodyContent = `
 ${photoHero({
@@ -120,14 +217,6 @@ ${photoHero({
     <article class="rd-article">
       <div class="pill-row rd-pills">
         ${pills.join('\n        ')}
-        <button type="button" class="pill" data-calendar-trigger data-reading-month="${monthIdx}" data-reading-day="${dayOfMonth}" aria-label="Browse readings by date">
-          <svg width="14" height="14" viewBox="0 0 18 18" fill="none" aria-hidden="true">
-            <rect x="1.5" y="3" width="15" height="13" rx="2" stroke="currentColor" stroke-width="1.5"/>
-            <path d="M1.5 7.5h15" stroke="currentColor" stroke-width="1.5"/>
-            <path d="M5.5 1.5v3M12.5 1.5v3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-          </svg>
-          Browse by date
-        </button>
       </div>
 
       ${quoteHtml}
@@ -154,18 +243,37 @@ ${photoHero({
         </a>
       </nav>
 
-      <div class="panel-gradient rd-app-panel" id="get-the-app">
-        ${ripple(420)}
-        <div class="rd-app-panel-inner">
-          <h2 class="rd-app-heading">Carry this peace in your pocket.</h2>
-          <p class="rd-app-text">Never miss a day. Get this reflection and 365 others delivered to your phone daily, and start your journaling practice in the app.</p>
-          ${storeBadges({ context: 'reading' })}
-        </div>
-      </div>
-
-      <p class="fine-print">Curated by members of the Al-Anon community for Daily Growth, LLC. Grounded in the Twelve Steps and the contemplative tradition of Al-Anon.</p>
+      <p class="rd-calendar-link">
+        <button type="button" class="rd-calendar-trigger" data-calendar-trigger data-reading-month="${monthIdx}" data-reading-day="${dayOfMonth}">Browse the reading calendar &rarr;</button>
+      </p>
     </article>
-${relatedHtml}`;
+
+    <div class="wrap wrap--article">
+      <a href="${bp('/start/')}" class="new-here-panel">
+        ${icon('lightOnWater', { size: 28, className: 'new-here-icon' })}
+        <span class="new-here-copy">
+          <span class="new-here-heading">Is someone else&rsquo;s drinking affecting your life?</span>
+          <span class="new-here-line">Five questions, two minutes. Nothing you answer is saved or sent anywhere.</span>
+        </span>
+        <span class="btn new-here-btn">Start here &rarr;</span>
+      </a>
+    </div>
+${keepReadingHtml}
+${relatedTopicsHtml}
+
+    <div class="wrap wrap--article section--md" id="get-the-app">
+      ${appPanel({
+        tone: 'white',
+        showIcon: true,
+        heading: 'Serenity is a daily practice.<br>Let us walk the path with you.',
+        text: 'Download Al-Anon Daily Paths to get the day&rsquo;s reflection each morning and a private place to write.',
+        context: 'reading',
+      })}
+    </div>
+
+    <div class="wrap wrap--article">
+      <p class="fine-print">Curated by members of the Al-Anon community for Daily Growth, LLC. Grounded in the Twelve Steps and the contemplative tradition of Al-Anon.</p>
+    </div>`;
 
   return wrapInLayout({
     title: `${reading.title} – Al-Anon Daily Reflection for ${reading.display_date} | Daily Paths`,

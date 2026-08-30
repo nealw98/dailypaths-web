@@ -2,24 +2,14 @@ import { bp, BASE_URL } from '../helpers/config.mjs';
 import { icon } from './ui.mjs';
 
 /**
- * Path to today's reading, used for the "Today's Reflection" nav item.
- * Set once by build.mjs before pages render; `data-today-link` lets the client
- * correct it if the visitor's local date has moved past the build date.
+ * Header nav — home IS today's reading, so "Today's Reflection" points to /.
+ * Five items is the ceiling; "Start here" stays out by design.
  */
-let TODAY_PATH = '/';
-
-/** @param {string} path - e.g. "/august-9-let-go-and-let-god/" */
-export function setTodayPath(path) {
-  TODAY_PATH = path;
-}
-
-/** Header nav — six items is the ceiling; "Start here" stays out by design. */
 function navItems() {
   return [
-    { id: 'home', label: 'Home', href: bp('/') },
-    { id: 'reflection', label: "Today's Reflection", href: bp(TODAY_PATH), today: true },
+    { id: 'reflection', label: "Today's Reflection", href: bp('/') },
     { id: 'steps', label: 'Steps', href: bp('/steps/') },
-    { id: 'themes', label: 'Themes', href: bp('/themes/') },
+    { id: 'topics', label: 'Topics', href: bp('/topics/') },
     { id: 'essentials', label: 'Essentials', href: bp('/essentials/') },
     { id: 'alanon', label: 'Al-Anon', href: bp('/about-alanon/') },
   ];
@@ -37,7 +27,7 @@ function navItems() {
  * @param {string} [options.ogType] - Open Graph type (default: "website")
  * @param {string} [options.bodyClass] - Additional class for <body>
  * @param {string} [options.navSection] - Nav item to mark active. Step detail
- *   pages pass "steps"; theme detail pages pass "themes".
+ *   pages pass "steps"; topic detail pages pass "topics".
  * @param {boolean} [options.hasAppPanel] - Page contains #get-the-app, so the
  *   header CTA can scroll in place instead of going home.
  */
@@ -63,12 +53,12 @@ export function wrapInLayout({
 
   const desktopNav = nav.map(n => {
     const active = n.id === navSection;
-    return `        <a href="${n.href}" class="nav-link${active ? ' is-active' : ''}"${active ? ' aria-current="page"' : ''}${n.today ? ' data-today-link' : ''}>${n.label}</a>`;
+    return `        <a href="${n.href}" class="nav-link${active ? ' is-active' : ''}"${active ? ' aria-current="page"' : ''}>${n.label}</a>`;
   }).join('\n');
 
   const mobileNav = nav.map(n => {
     const active = n.id === navSection;
-    return `        <a href="${n.href}" class="mobile-menu-row${active ? ' is-active' : ''}"${n.today ? ' data-today-link' : ''}>${n.label}${icon('chevronRight', { size: 16, className: 'mobile-menu-chevron' })}</a>`;
+    return `        <a href="${n.href}" class="mobile-menu-row${active ? ' is-active' : ''}">${n.label}${icon('chevronRight', { size: 16, className: 'mobile-menu-chevron' })}</a>`;
   }).join('\n');
 
   return `<!DOCTYPE html>
@@ -189,9 +179,9 @@ ${bodyContent}
       <div class="footer-col">
         <p class="footer-col-title">Read</p>
         <nav class="footer-links" aria-label="Readings">
-          <a href="${bp(TODAY_PATH)}" data-today-link>Today&rsquo;s reflection</a>
+          <a href="${bp('/')}">Today&rsquo;s reflection</a>
           <a href="${bp('/steps/')}">The Twelve Steps</a>
-          <a href="${bp('/themes/')}">Themes</a>
+          <a href="${bp('/topics/')}">Topics</a>
           <a href="${bp('/essentials/')}">Essentials</a>
         </nav>
       </div>

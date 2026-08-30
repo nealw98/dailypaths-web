@@ -2,10 +2,10 @@
   "version": "0.0.1",
   "configurations": [
     {
-      "name": "dev-server",
-      "runtimeExecutable": "npx",
-      "runtimeArgs": ["serve", "docs", "-l", "3000"],
-      "port": 3000
+      "name": "preview",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": ["-m", "http.server", "8788", "--directory", "docs"],
+      "port": 8788
     }
   ]
 }
