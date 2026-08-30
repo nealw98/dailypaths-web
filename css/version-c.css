@@ -1864,116 +1864,197 @@ a.card-tinted:hover { background: var(--surface-card); }
   color: var(--accent);
 }
 
-/* ───────────────────── Letting Go theme guide ───────────────────── */
+/* ─────────────── Letting Go topic article (2.0) ───────────────
+   Bespoke structure per design/handoff/topics/letting-go/: prose sections
+   with authored headings, one extracted pull quote (.tg-thesis), and four
+   live-text inserts placed by the storyboard. */
 
-.theme-guide { padding-bottom: 8px; }
-.theme-guide-opening p:first-child {
-  font-size: clamp(23px, 3vw, 30px);
-  line-height: 1.45;
+.tg-article { padding-bottom: 8px; }
+
+.tg-section { margin-top: clamp(38px, 6vw, 60px); }
+.tg-section:first-child { margin-top: 6px; }
+
+.tg-section h2 {
+  margin: 0 0 18px;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(25px, 2.8vw, 32px);
+  letter-spacing: -.3px;
+  line-height: 1.2;
   color: var(--text-primary);
 }
 
-.theme-guide-section { margin-top: clamp(42px, 7vw, 76px); }
-.theme-guide-section h2 {
+.tg-thesis {
+  margin: clamp(40px, 6vw, 60px) 0;
+  padding: clamp(26px, 4vw, 38px) 0;
+  border-top: 1px solid var(--accent-strong);
+  border-bottom: 1px solid var(--accent-strong);
+}
+
+.tg-thesis p {
+  max-width: 36ch;
+  margin: 0 auto;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 500;
+  font-size: clamp(24px, 2.8vw, 34px);
+  line-height: 1.45;
+  text-align: center;
+  color: var(--accent-strong);
+}
+
+/* Diagram figures — final art for the two dark inserts; the full insert
+   text is provided in visually-hidden markup for screen readers. */
+.tg-diagram { margin: 26px 0 10px; }
+
+.tg-diagram img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius-lg);
+}
+
+/* Let Go and Let God — a quiet seafoam text aside, no graphics. Dark teal is
+   reserved for the article's two diagram figures; text asides use seafoam
+   like the practice and newcomer panels. Art-directed values fixed by spec;
+   type sizes are em ratios off the body (title 1.6 · subtitle 1.05 ·
+   pull-quote 1.15 · link 0.85). */
+.lg-spirit {
+  margin: clamp(40px, 6vw, 60px) 0;
+  padding: clamp(28px, 4vw, 40px);
+  border-radius: 16px;
+  background: #BAECE6;
+  font-size: clamp(17px, 1.5vw, 18.5px);
+}
+
+.lg-spirit h3 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1.6em;
+  letter-spacing: -.3px;
+  color: #214743;
+}
+
+.lg-spirit-q {
   margin: 8px 0 18px;
   font-family: var(--font-display);
-  font-size: clamp(28px, 4vw, 40px);
-  line-height: 1.15;
+  font-style: italic;
+  font-weight: 500;
+  font-size: 1.05em;
+  color: #2D514E;
+}
+
+.lg-spirit-inner > p:not(.lg-spirit-q) {
+  max-width: 58ch;
+  margin: 0 0 16px;
+  font-family: var(--font-reading);
+  font-size: 1em;
+  line-height: 1.66;
+  color: #1C2524;
+}
+
+.lg-spirit-quote {
+  max-width: 34ch;
+  margin: clamp(26px, 4vw, 36px) auto;
+  padding: clamp(18px, 3vw, 26px) 0;
+  border-top: 1px solid rgba(28, 37, 36, .18);
+  border-bottom: 1px solid rgba(28, 37, 36, .18);
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 500;
+  font-size: 1.15em;
+  line-height: 1.45;
+  text-align: center;
+  color: #214743;
+}
+
+.lg-spirit-link {
+  display: inline-block;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: .85em;
+  color: #376662;
+}
+
+.lg-spirit-link:hover { text-decoration: underline; }
+
+/* Tonight's Next Honest Action — light, spacious, moving toward rest. */
+.na-panel {
+  margin: 26px 0 10px;
+  padding: clamp(28px, 5vw, 48px) clamp(24px, 4.5vw, 48px);
+  border: 1px solid var(--border-card);
+  border-radius: var(--radius-lg);
+  background: var(--surface-lowest);
+  box-shadow: var(--shadow-card);
+}
+
+.na-eyebrow {
+  margin: 0;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 13px;
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+  text-align: center;
+  color: var(--accent);
+}
+
+.na-panel ol {
+  display: grid;
+  margin: clamp(20px, 3vw, 28px) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.na-panel li {
+  display: grid;
+  grid-template-columns: 36px 1fr;
+  gap: 16px;
+  align-items: center;
+  padding: 15px 0;
+  border-bottom: 1px dotted var(--border-soft);
+}
+
+.na-panel li:last-child { border-bottom: 0; }
+
+.na-n {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border: 1px dotted var(--accent);
+  border-radius: 50%;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 18px;
+  color: var(--accent-strong);
+}
+
+.na-panel li p {
+  margin: 0;
+  font-size: 16px;
+  line-height: 26px;
   color: var(--text-primary);
 }
 
-.truth-callout {
-  margin: clamp(38px, 6vw, 62px) 0;
-  padding: 28px clamp(24px, 5vw, 46px);
-  border-left: 4px solid var(--accent);
-  background: var(--surface-card);
-}
-
-.truth-callout p {
-  margin: 10px 0 0;
+.na-close {
+  margin: clamp(22px, 3.5vw, 30px) 0 0;
   font-family: var(--font-display);
-  font-size: clamp(24px, 3.5vw, 34px);
-  line-height: 1.3;
-}
-
-.manipulation-inventory {
-  margin: clamp(46px, 8vw, 82px) 0;
-  padding: clamp(28px, 4vw, 40px) 0 0;
-  border-top: 1px solid var(--border-card);
-  border-bottom: 1px solid var(--border-card);
-}
-
-.manipulation-inventory-heading {
-  max-width: 61ch;
-  margin: 0 auto 30px;
+  font-style: italic;
+  font-size: clamp(19px, 2.1vw, 23px);
   text-align: center;
+  color: var(--accent-deep);
 }
 
-.manipulation-inventory-heading h2 {
-  margin-top: 8px;
-  margin-bottom: 8px;
-  font-family: var(--font-display);
-  font-size: clamp(25px, 3.5vw, 36px);
-  line-height: 1.2;
-}
-
-.manipulation-inventory-heading p {
-  margin: 0;
-  line-height: 1.6;
-  color: var(--text-muted);
-}
-
-.manipulation-inventory-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  border-top: 1px solid var(--border-card);
-}
-
-.manipulation-inventory-grid > div {
-  padding: 28px clamp(22px, 4vw, 38px) 32px;
-}
-
-.manipulation-inventory-grid > div + div { border-left: 1px solid var(--border-card); }
-.manipulation-inventory-grid h3 { margin: 0 0 18px; font-family: var(--font-body); font-size: 12px; font-weight: 700; line-height: 1.45; letter-spacing: .07em; text-transform: uppercase; color: var(--accent); }
-.manipulation-inventory-grid ul { display: grid; gap: 0; margin: 0; padding: 0; list-style: none; }
-.manipulation-inventory-grid li { padding: 9px 0; border-bottom: 1px solid var(--rule); font-family: var(--font-display); font-size: 22px; line-height: 1.25; }
-.manipulation-inventory-grid li:last-child { border-bottom: 0; }
-.manipulation-inventory-close { margin: 0; padding: 20px 24px 22px; border-top: 1px solid var(--border-card); font-family: var(--font-display); font-size: 22px; line-height: 1.4; text-align: center; color: var(--accent-deep); }
-
-.mine-not-mine {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 16px;
-}
-.mine-not-mine > div { padding: 25px 28px; border: 1px solid var(--border-card); border-radius: var(--radius-tinted); background: var(--surface-lowest); }
-.mine-not-mine h3, .letting-go-scenarios h3 { margin: 0 0 12px; font-family: var(--font-display); font-size: 23px; }
-.mine-not-mine ul { margin: 0; padding-left: 20px; }
-.mine-not-mine li { margin: 8px 0; line-height: 1.55; }
-
-.letting-go-scenarios { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; margin: 22px 0 26px; }
-.letting-go-scenarios > div { padding: 23px; border-radius: var(--radius-tinted); background: var(--surface-card); }
-.letting-go-scenarios p { margin: 0; font-size: 15px; line-height: 1.65; }
-.letting-go-scenarios a { color: var(--accent); text-decoration: underline; text-underline-offset: 2px; }
-
-.letting-go-practice { padding: clamp(26px, 5vw, 46px); border-radius: var(--radius-tinted); background: var(--surface-card); }
-.letting-go-practice ol { margin: 20px 0 0; padding-left: 24px; }
-.letting-go-practice li { margin: 13px 0; padding-left: 6px; line-height: 1.65; }
-
-.reflection-questions { margin-top: 24px; padding: 22px 26px; border: 1px solid var(--border-card); border-radius: var(--radius-tinted); }
-.reflection-questions summary { cursor: pointer; font-family: var(--font-display); font-size: 23px; font-weight: 600; }
-.reflection-questions ul { margin: 20px 0 0; padding-left: 22px; }
-.reflection-questions li { margin: 10px 0; line-height: 1.6; }
 .theme-reading-collection .featured-grid { margin-top: 24px; }
 .theme-sources { border-top: 1px solid var(--border-card); }
-.theme-sources > p:last-child { max-width: 76ch; margin: 10px 0 0; font-size: 14px; line-height: 1.7; color: var(--text-muted); }
+.theme-sources > p { max-width: 76ch; margin: 10px 0 0; font-size: 14px; line-height: 1.7; color: var(--text-muted); }
 
 @media (max-width: 720px) {
   .theme-feature { grid-template-columns: 1fr; }
   .theme-feature img { min-height: 220px; max-height: 260px; order: -1; }
-  .manipulation-inventory-heading { padding: 0 18px; text-align: left; }
-  .manipulation-inventory-grid { grid-template-columns: 1fr; }
-  .manipulation-inventory-grid > div + div { border-top: 1px solid var(--border-card); border-left: 0; }
-  .mine-not-mine, .letting-go-scenarios { grid-template-columns: 1fr; }
 }
 
 /* These carry long member prose, not short metadata, so auto-fit (which
