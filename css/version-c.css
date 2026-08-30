@@ -2190,7 +2190,7 @@ a.card-tinted:hover { background: var(--surface-card); }
 
 .theme-reading-collection .featured-grid { margin-top: 24px; }
 .theme-sources { border-top: 1px solid var(--border-card); }
-.theme-sources > p:last-child { max-width: 76ch; margin: 10px 0 0; font-size: 14px; line-height: 1.7; color: var(--text-muted); }
+.theme-sources > p { max-width: 76ch; margin: 10px 0 0; font-size: 14px; line-height: 1.7; color: var(--text-muted); }
 
 @media (max-width: 720px) {
   .theme-feature { grid-template-columns: 1fr; }

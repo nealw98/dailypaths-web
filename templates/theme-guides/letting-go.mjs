@@ -54,7 +54,7 @@ export const LETTING_GO_ARTICLE = {
         'The night shift does not end in the morning.',
         'It continues through checking phones, reading moods, tracking whereabouts, covering mistakes, paying bills, rehearsing conversations, and searching for the words that will finally make someone understand.',
         'You may call it helping. You may believe that staying alert is what love requires. Meanwhile, another person&rsquo;s life becomes the problem you are always solving while your own life waits.',
-        'Daily Paths&rsquo; <em><a data-reading="7">Impossible Responsibilities</a></em> describes the relief of putting down responsibilities that were never ours to carry. That relief begins with an uncomfortable question:',
+        'The January 7 reading, <em><a data-reading="7">Impossible Responsibilities</a></em>, describes the relief of putting down responsibilities that were never ours to carry. That relief begins with an uncomfortable question:',
         '<em>Have I accepted an assignment that no human being could complete?</em>',
       ],
     },
@@ -190,10 +190,13 @@ export const LETTING_GO_ARTICLE = {
 
   readings: {
     heading: 'Continue with the Daily Paths readings',
-    days: [7, 18, 71, 247],
+    days: [355, 71, 43, 70],
   },
 
-  sources: 'This guide draws on recurring ideas in Al-Anon literature, including <cite>How Al-Anon Works</cite>, <cite>Paths to Recovery</cite>, and <cite>Courage to Change</cite>, together with the Daily Paths readings linked above. Daily Paths is an independent project and is not affiliated with Al-Anon Family Group Headquarters, Inc.',
+  sources: [
+    'Related Al-Anon principles are explored in <a href="https://ecomm.al-anon.org/ItemDetail?iProductCode=B32" target="_blank" rel="noopener noreferrer"><cite>How Al-Anon Works</cite></a>, <a href="https://ecomm.al-anon.org/ItemDetail?iProductCode=B24" target="_blank" rel="noopener noreferrer"><cite>Paths to Recovery</cite></a>, and <a href="https://ecomm.al-anon.org/ItemDetail?iProductCode=B16" target="_blank" rel="noopener noreferrer"><cite>Courage to Change</cite></a>. The Daily Paths readings linked above explore how those principles apply to letting go.',
+    'Daily Paths is an independent project and is not affiliated with Al-Anon Family Group Headquarters, Inc.',
+  ],
 
   cta: {
     heading: 'Practice letting go, one day at a time.',

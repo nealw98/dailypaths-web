@@ -248,7 +248,7 @@ ${flow}
     </section>` : ''}
 
     <section class="wrap section--md theme-sources">
-      <p>${article.sources}</p>
+      ${article.sources.map(p => `<p>${p}</p>`).join('\n      ')}
     </section>
 
     <div class="wrap section--md" id="get-the-app">
