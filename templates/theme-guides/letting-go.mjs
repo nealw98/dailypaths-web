@@ -31,14 +31,16 @@ export const LETTING_GO_ARTICLE = {
     {
       heading: 'The night shift',
       body: [
-        'You are exhausted, but your mind will not let you sleep.',
-        'It scans tomorrow for trouble. What crisis might be coming? What warning have you missed? What could you say, arrange, check, or prevent before things fall apart again?',
+        'You are exhausted, but your mind won&rsquo;t let you sleep.',
+        'The fear underneath that vigilance may sound like this:',
+        '<em>When someone I love is struggling, letting go can feel like betrayal. I want the best for them. I can see the danger, the consequences, and all the things that might go wrong. If I can help, why shouldn&rsquo;t I?</em>',
+        'Your mind scans tomorrow for trouble. What crisis is coming? What disappointment lies ahead? What could you say, arrange, check, or prevent before things fall apart again?',
         'Then it turns toward yesterday. Why didn&rsquo;t you see it sooner? What should you have done differently? If only you had said the right thing, recognized the danger, or acted before it was too late.',
-        'The mind moves between prediction and regret, reviewing the past as preparation for the future. Every possibility feels urgent. Rest feels irresponsible when there may still be something you can figure out.',
-        'Your body is in bed, but some part of you is still standing watch.',
+        'The mind moves between prediction and regret, reviewing the past as preparation for the future. Every possible situation feels urgent, a problem to be solved. Rest feels irresponsible when there may still be something you can figure out.',
+        'Your body is in bed, but part of you is still standing watch.',
       ],
     },
-    { pullQuote: 'My body is in bed, but some part of me is still standing watch.' },
+    { pullQuote: 'My body is in bed, but part of me is still standing watch.' },
     {
       heading: 'The promise hidden inside the worry',
       body: [
@@ -72,7 +74,9 @@ export const LETTING_GO_ARTICLE = {
       heading: 'Caring without carrying',
       body: [
         'Letting go is not shutting down. It is not punishing someone with silence, pretending their pain does not matter, or abandoning a person who needs appropriate help.',
-        'You can listen without taking over. You can tell the truth without forcing someone to accept it. You can offer help without assuming responsibility for what they do next. You can decline guilt, pressure, threats, and manufactured emergencies without becoming cruel.',
+        'You can listen without taking over. You can tell the truth without forcing someone to accept it. You can offer help without assuming responsibility for what they do next.',
+        'An honest inventory has two sides:',
+        'It also does not require me to accept manipulation. I can decline guilt, pressure, threats, and manufactured emergencies. At the same time, I have to look honestly at the ways I may manipulate too&mdash;through rescuing, pleading, monitoring, bargaining, or arranging consequences to force the outcome I want. Seeing my own behavior clearly does not excuse theirs. It simply returns my attention to the part I can change.',
         'Letting go returns another person&rsquo;s choices and consequences to them. In doing so, it respects their dignity&mdash;their right to make decisions and live through their own journey.',
         'It also returns you to yours.',
         '<em>I can love someone without making myself responsible for what happens next.</em>',
