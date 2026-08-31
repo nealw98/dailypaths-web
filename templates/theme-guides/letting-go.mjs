@@ -13,7 +13,7 @@
  */
 
 export const LETTING_GO_ARTICLE = {
-  slug: 'letting-go-of-control',
+  slug: 'letting-go',
   title: 'Letting Go',
   definition: 'Caring without carrying &mdash; releasing the need to manage, fix, or control.',
   hero: {

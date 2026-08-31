@@ -61,7 +61,7 @@ export function renderAboutProjectPage() {
                 <p class="ap-compare-subtitle">Explore &amp; Discover</p>
                 <ul class="ap-compare-list">
                   <li>
-                    <span class="ap-compare-feature">Recovery Themes</span>
+                    <span class="ap-compare-feature">Recovery Topics</span>
                     <span class="ap-compare-detail">Twelve curated explorations of the ideas that shape Al-Anon recovery&mdash;from detachment and boundaries to gratitude and hope.</span>
                   </li>
                   <li>
@@ -159,7 +159,7 @@ export function renderAboutProjectPage() {
         <div class="ap-nav-cta-inner">
           <h2 class="ap-nav-cta-heading">Continue the Journey</h2>
           <div class="ap-nav-cta-actions">
-            <a href="${bp('/themes/')}" class="ap-nav-cta-btn">Explore the 12 Themes</a>
+            <a href="${bp('/topics/')}" class="ap-nav-cta-btn">Explore the 12 Topics</a>
             <a href="${bp('/steps/')}" class="ap-nav-cta-btn">Begin the 12 Steps</a>
           </div>
         </div>

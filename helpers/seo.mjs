@@ -19,11 +19,11 @@ export function generateSitemap(readings, topics, books = [], steps = []) {
   }
 
   // Principles index
-  urls.push({ loc: BASE_URL + '/themes/', priority: '0.7', changefreq: 'weekly' });
+  urls.push({ loc: BASE_URL + '/topics/', priority: '0.7', changefreq: 'weekly' });
 
   // Individual principle (topic) pages
   for (const topic of topics) {
-    urls.push({ loc: `${BASE_URL}/themes/${topic.slug}/`, priority: '0.6', changefreq: 'monthly' });
+    urls.push({ loc: `${BASE_URL}/topics/${topic.slug}/`, priority: '0.6', changefreq: 'monthly' });
   }
 
   // Steps
@@ -145,7 +145,7 @@ export function topicStructuredData(topic) {
     },
     'mainEntityOfPage': {
       '@type': 'WebPage',
-      '@id': `${BASE_URL}/themes/${topic.slug}/`
+      '@id': `${BASE_URL}/topics/${topic.slug}/`
     },
     'image': `${BASE_URL}/assets/themes/themes-hero.jpg`,
     'datePublished': '2025-05-01',
@@ -172,14 +172,14 @@ export function topicBreadcrumbStructuredData(topic) {
       {
         '@type': 'ListItem',
         'position': 2,
-        'name': 'Themes',
-        'item': BASE_URL + '/themes/'
+        'name': 'Topics',
+        'item': BASE_URL + '/topics/'
       },
       {
         '@type': 'ListItem',
         'position': 3,
         'name': topic.name,
-        'item': `${BASE_URL}/themes/${topic.slug}/`
+        'item': `${BASE_URL}/topics/${topic.slug}/`
       }
     ]
   }, null, 2);

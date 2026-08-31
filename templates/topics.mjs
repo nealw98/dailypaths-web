@@ -14,32 +14,32 @@ import { LETTING_GO_ARTICLE } from './theme-guides/letting-go.mjs';
 export { TOPICS };
 
 /**
- * Render the Themes index page — all twelve themes as cards.
+ * Render the Topics index page — all twelve topics as cards.
  */
 export function renderTopicsIndexPage() {
   const cards = TOPICS.map(topic => `
-          <a href="${bp(`/themes/${topic.slug}/`)}" class="card-elevated theme-index-card">
+          <a href="${bp(`/topics/${topic.slug}/`)}" class="card-elevated theme-index-card">
             <span class="theme-index-title">${topic.name}</span>
             <span class="theme-index-line">${topic.shortDescription}</span>
             <span class="theme-index-cta">Explore &rarr;</span>
           </a>`).join('');
 
-  const lettingGo = TOPICS.find(topic => topic.slug === 'letting-go-of-control');
+  const lettingGo = TOPICS.find(topic => topic.slug === 'letting-go');
   const bodyContent = `
 ${photoHero({
     image: bp('/assets/themes/themes-hero.jpg'),
-    alt: 'Forest path through morning light — the themes of Al-Anon recovery',
-    title: 'Recovery Themes',
+    alt: 'Forest path through morning light — the topics of Al-Anon recovery',
+    title: 'Topics',
     subtitle: 'Original essays and daily reflections for the questions that follow us into recovery.',
     size: 'sm',
   })}
 
     <section class="wrap section--md">
-      <p class="eyebrow">Theme guides</p>
+      <p class="eyebrow">Topic guides</p>
       <h2 class="section-title">A place to follow an idea further</h2>
       <p class="lede theme-index-intro">The daily readings meet us in a moment. These guides gather related readings into a fuller exploration of the patterns, choices, and spiritual principles that shape recovery.</p>
 
-      <a href="${bp(`/themes/${lettingGo.slug}/`)}" class="theme-feature">
+      <a href="${bp(`/topics/${lettingGo.slug}/`)}" class="theme-feature">
         <div class="theme-feature-copy">
           <span class="eyebrow">Featured guide</span>
           <span class="theme-feature-title">${lettingGo.name}</span>
@@ -49,7 +49,7 @@ ${photoHero({
         <img src="${bp(`/assets/themes/${lettingGo.image}`)}" alt="${lettingGo.imageAlt}" loading="lazy">
       </a>
 
-      <h2 class="section-title theme-index-all-title">Explore all themes</h2>
+      <h2 class="section-title theme-index-all-title">Explore all topics</h2>
       <div class="theme-index-grid">${cards}
       </div>
     </section>
@@ -64,12 +64,12 @@ ${photoHero({
     </div>`;
 
   return wrapInLayout({
-    title: 'Recovery Themes — Essays & Daily Reflections | Daily Paths',
+    title: 'Recovery Topics — Essays & Daily Reflections | Daily Paths',
     description: 'Explore original recovery essays and connected daily reflections on letting go, detachment, boundaries, powerlessness, honesty, fellowship, and more.',
-    canonicalPath: '/themes/',
+    canonicalPath: '/topics/',
     bodyContent,
     bodyClass: 'page-topics-index',
-    navSection: 'themes',
+    navSection: 'topics',
     hasAppPanel: true,
   });
 }
@@ -100,18 +100,18 @@ function resolveGuideLinks(html, allReadings) {
       return `<a href="${bp(`/${readingSlug(reading.day_of_year, reading.title)}/`)}">${label}</a>`;
     })
     .replace(/<a data-theme="([a-z0-9-]+)">([^<]+)<\/a>/g,
-      (match, slug, label) => `<a href="${bp(`/themes/${slug}/`)}">${label}</a>`);
+      (match, slug, label) => `<a href="${bp(`/topics/${slug}/`)}">${label}</a>`);
 }
 
 /* ───────────── Letting Go — bespoke topic article ─────────────
-   Structure and copy: design/handoff/themes/letting-go/ (supersedes the fixed
+   Structure and copy: design/handoff/topics/letting-go/ (supersedes the fixed
    four-chapter spine for this page). All inserts are responsive live text;
    the reference PNGs are visual direction only. */
 
 /**
  * The two dark diagram figures render the final art from assets/themes/,
  * with the full insert text kept in visually-hidden markup for screen
- * readers (design/handoff/themes/letting-go/IMPLEMENTATION.md).
+ * readers (design/handoff/topics/letting-go/IMPLEMENTATION.md).
  */
 function renderWorryLoop(insert) {
   const stations = insert.stations.map((station, i) => `
@@ -151,7 +151,7 @@ function renderLetGoLetGod(insert) {
           <p class="lg-spirit-q">${insert.question}</p>
           ${paras}
           <blockquote class="lg-spirit-quote">${insert.quote}</blockquote>
-          <a class="lg-spirit-link" href="${bp(`/themes/${insert.link.theme}/`)}">${insert.link.label} &rarr;</a>
+          <a class="lg-spirit-link" href="${bp(`/topics/${insert.link.theme}/`)}">${insert.link.label} &rarr;</a>
         </div>
       </section>`;
 }
@@ -220,18 +220,18 @@ function renderLettingGoArticle(article, topic, allReadings, prevTopic, nextTopi
 
   const bodyContent = `
 ${detailRail({
-    prevHref: bp(`/themes/${prevTopic.slug}/`),
+    prevHref: bp(`/topics/${prevTopic.slug}/`),
     prevLabel: prevTopic.name,
-    allHref: bp('/themes/'),
-    allLabel: 'All Themes',
-    nextHref: bp(`/themes/${nextTopic.slug}/`),
+    allHref: bp('/topics/'),
+    allLabel: 'All topics',
+    nextHref: bp(`/topics/${nextTopic.slug}/`),
     nextLabel: nextTopic.name,
   })}
 
 ${photoHero({
     image: bp(`/assets/themes/${article.hero.image}`),
     alt: article.hero.alt,
-    eyebrow: 'Recovery theme',
+    eyebrow: 'Recovery topic',
     title: article.title,
     subtitle: article.definition,
     size: 'lg',
@@ -263,12 +263,12 @@ ${flow}
   return wrapInLayout({
     title: 'Letting Go in Al-Anon — Caring Without Carrying | Daily Paths',
     description: topic.metaDescription,
-    canonicalPath: `/themes/${topic.slug}/`,
+    canonicalPath: `/topics/${topic.slug}/`,
     bodyContent,
     bodyClass: 'page-topic-detail page-letting-go',
     structuredData: [topicStructuredData(topic), topicBreadcrumbStructuredData(topic)],
     ogType: 'article',
-    navSection: 'themes',
+    navSection: 'topics',
     hasAppPanel: true,
   });
 }
@@ -290,7 +290,7 @@ export function renderTopicPage(topic, featuredReadings, allReadings = [], topic
   const prevTopic = TOPICS[(idx - 1 + TOPICS.length) % TOPICS.length];
   const nextTopic = TOPICS[(idx + 1) % TOPICS.length];
 
-  if (topic.slug === 'letting-go-of-control') {
+  if (topic.slug === 'letting-go') {
     return renderLettingGoArticle(LETTING_GO_ARTICLE, topic, allReadings, prevTopic, nextTopic);
   }
 
@@ -373,18 +373,18 @@ ${cards}
 
   const bodyContent = `
 ${detailRail({
-    prevHref: bp(`/themes/${prevTopic.slug}/`),
+    prevHref: bp(`/topics/${prevTopic.slug}/`),
     prevLabel: prevTopic.name,
-    allHref: bp('/themes/'),
-    allLabel: 'All Themes',
-    nextHref: bp(`/themes/${nextTopic.slug}/`),
+    allHref: bp('/topics/'),
+    allLabel: 'All topics',
+    nextHref: bp(`/topics/${nextTopic.slug}/`),
     nextLabel: nextTopic.name,
   })}
 
 ${photoHero({
     image: bp('/assets/themes/themes-hero.jpg'),
     alt: `Forest path through morning light — ${topic.name} in Al-Anon recovery`,
-    eyebrow: 'Al-Anon theme',
+    eyebrow: 'Topic',
     title: topic.name,
     subtitle: topic.shortDescription,
     size: 'lg',
@@ -432,14 +432,14 @@ ${extraCards}
       </div>
     </article>
 
-    ${featuredReadings.length > 0 ? `<section class="wrap section--lg">
+    ${featuredReadings.length > 0 ? `<section class="wrap section--lg" id="readings">
       <h2 class="section-title">Featured Reflections</h2>
       <p class="section-desc" style="margin-bottom:22px">${featuredReadings.length} hand-picked reading${featuredReadings.length === 1 ? '' : 's'} on ${topic.name.toLowerCase()}.</p>
       <div class="featured-grid">${featuredCards}
       </div>
     </section>` : ''}
 
-    ${additionalReadings.length > 0 ? `<section class="wrap section--lg">
+    ${additionalReadings.length > 0 ? `<section class="wrap section--lg"${featuredReadings.length > 0 ? '' : ' id="readings"'}>
       <h2 class="section-title">Daily Reflections on ${topic.name}</h2>
       <p class="section-desc" style="margin-bottom:20px">${additionalReadings.length} additional reading${additionalReadings.length === 1 ? '' : 's'} explore this theme.</p>
       <div class="theme-groups">
@@ -462,14 +462,14 @@ ${readingGroups}
   ];
 
   return wrapInLayout({
-    title: `${topic.name} — Al-Anon Recovery Theme | Daily Paths`,
+    title: `${topic.name} — Al-Anon Recovery Topic | Daily Paths`,
     description: (topic.metaDescription || topic.shortDescription) + ' Reflections and curated daily readings from Al-Anon Daily Paths.',
-    canonicalPath: `/themes/${topic.slug}/`,
+    canonicalPath: `/topics/${topic.slug}/`,
     bodyContent,
     bodyClass: 'page-topic-detail',
     structuredData,
     ogType: 'article',
-    navSection: 'themes',
+    navSection: 'topics',
     hasAppPanel: true,
   });
 }

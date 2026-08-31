@@ -187,7 +187,7 @@ ${meetingBand}
       ${appPanel({
         tone: 'seafoam',
         heading: 'Your daily companion',
-        text: 'Al-Anon provides the framework for a new way of life. Daily Paths is the daily touchstone &mdash; helping you apply the Steps and themes in the moments you need them most.',
+        text: 'Al-Anon provides the framework for a new way of life. Daily Paths is the daily touchstone &mdash; helping you apply the Steps and topics in the moments you need them most.',
         context: 'alanon',
       })}
     </div>`;

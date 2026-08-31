@@ -17,7 +17,7 @@ export const TOPIC_THEME_TAGS = {
   'focus-on-yourself':     ['Self-Care', 'Self-care', 'Self-focus', 'Self-love', 'Self-Acceptance', 'Self-acceptance', 'Redirection', 'Focus'],
   'one-day-at-a-time':     ['Presence', 'Patience', 'Simplicity', 'Peace', 'Serenity'],
   'boundaries':            ['Boundaries', 'Respect', 'Independence', 'Self-Discipline'],
-  'letting-go-of-control': ['Control', 'Flexibility', 'Willingness', 'Self-will'],
+  'letting-go': ['Control', 'Flexibility', 'Willingness', 'Self-will'],
   'self-worth':            ['Self-worth', 'Self-esteem', 'Self-compassion', 'Identity', 'Self-forgiveness'],
   'higher-power':          ['Faith', 'Trust', 'Prayer', 'Spiritual Connection', 'Spiritual intimacy', 'Reliance', 'Spirit'],
   'honesty':               ['Honesty', 'Truth', 'Self-awareness', 'Awareness', 'Integrity', 'Clarity'],
@@ -33,7 +33,7 @@ export const TOPIC_PULL_QUOTES = {
   'focus-on-yourself':     'Focusing on ourselves is the most radical \u2014 and most difficult \u2014 shift in recovery.',
   'one-day-at-a-time':     'Handle just today, and trust that tomorrow will take care of itself.',
   'boundaries':            'Boundaries aren\u2019t walls. They\u2019re the foundation that makes real love possible.',
-  'letting-go-of-control': 'Caring and carrying are not the same thing.',
+  'letting-go': 'Caring and carrying are not the same thing.',
   'self-worth':            'Recovery is, in part, an excavation \u2014 digging out the person who was buried under years of coping.',
   'higher-power':          'What matters is the willingness to stop relying solely on ourselves.',
   'honesty':               'Honesty in Al-Anon starts with ourselves \u2014 admitting what we feel, owning what we\u2019ve done.',
@@ -49,7 +49,7 @@ export const TOPIC_TOOLS = {
   'focus-on-yourself':     ['Slogan: Progress Not Perfection', 'Concept: Amends (The 8th &amp; 9th Step process)', 'Action: Releasing a resentment'],
   'one-day-at-a-time':     ['Slogan: Keep It Simple', 'Slogan: How Important Is It?', 'Concept: The Hula Hoop (Staying inside your own circle)', 'Action: A \u201CGod Box\u201D (putting worries inside)'],
   'boundaries':            ['Slogan: Say what you mean, mean what you say, but don\u2019t say it mean', 'Concept: JADE (Justify, Argue, Defend, Explain)'],
-  'letting-go-of-control': ['Slogan: Easy Does It', 'Concept: The Leap of Faith', 'Action: Saying \u201CYes\u201D to a sponsor or a service position'],
+  'letting-go': ['Slogan: Easy Does It', 'Concept: The Leap of Faith', 'Action: Saying \u201CYes\u201D to a sponsor or a service position'],
   'self-worth':            ['Slogan: Live and Let Live', 'Concept: The 4th Step Moral Inventory', 'Action: Admitting a mistake without an excuse'],
   'higher-power':          ['Slogan: Just for Today', 'Concept: A Power Greater Than Ourselves', 'Action: Attending one more meeting'],
   'honesty':               ['Slogan: Keep an Open Mind', 'Concept: Rigorous Honesty', 'Action: Mirror Work (Looking at our own part)'],
@@ -65,7 +65,7 @@ export const TOPIC_INSIGHT_PROMPTS = {
   'focus-on-yourself':     'In what ways am I learning to keep the focus on myself?',
   'one-day-at-a-time':     'How do I practice living one day at a time?',
   'boundaries':            'What have I learned about setting and maintaining healthy boundaries?',
-  'letting-go-of-control': 'How am I learning to let go of my need to control outcomes?',
+  'letting-go': 'How am I learning to let go of my need to control outcomes?',
   'self-worth':            'How am I reclaiming my sense of self and personal worth?',
   'higher-power':          'What does it look like for me to trust a Higher Power today?',
   'honesty':               'How am I practicing honesty and self-awareness in my daily life?',
@@ -81,7 +81,7 @@ export const TOPIC_FORM_QUESTIONS = {
   'focus-on-yourself':     'How has focusing on your own well-being helped you navigate difficult situations?',
   'one-day-at-a-time':     'What does living \u2018one day at a time\u2019 actually look like for you and how do you practice it?',
   'boundaries':            'How do you overcome challenges you face in setting or maintaining your boundaries?',
-  'letting-go-of-control': 'What has helped you recognize when you are trying to control a situation, and how are you learning to let go?',
+  'letting-go': 'What has helped you recognize when you are trying to control a situation, and how are you learning to let go?',
   'self-worth':            'How has your understanding of your own value and identity evolved since finding the program?',
   'higher-power':          'What has been your experience in learning to trust in a Power greater than yourself?',
   'honesty':               'How has practicing honesty\u2014both with yourself and others\u2014opened up new paths for your healing?',
@@ -191,12 +191,12 @@ export const TOPICS = [
     featuredDays: [8, 9, 23, 99, 114],
   },
   {
-    slug: 'letting-go-of-control',
+    slug: 'letting-go',
     name: 'Letting Go',
     shortDescription: 'Recognizing what isn\'t yours to control and learning to put it down.',
     metaDescription: 'Explore what letting go means in Al-Anon: respecting another person\'s choices, facing the facts, releasing control, and caring without carrying.',
-    image: 'letting-go-of-control.jpg',
-    imageAlt: 'Two women laughing together while cooking \u2014 letting go of control in Al-Anon recovery',
+    image: 'themes-hero.jpg',
+    imageAlt: 'Forest path through morning light \u2014 letting go in Al-Anon recovery',
     body: `
       <p>
         Willingness is the &ldquo;key in the lock.&rdquo; It doesn&rsquo;t
@@ -327,3 +327,30 @@ for (const [topicSlug, tags] of Object.entries(TOPIC_THEME_TAGS)) {
     THEME_TO_TOPIC[tag] = { slug: topicSlug, name: topic.name };
   }
 }
+
+/**
+ * Topic-level relatedness for the reading page's "Related topics" cards —
+ * each topic names its two nearest neighbors. Interim source until per-reading
+ * secondary topics (topics[1..2]) arrive with the topics-v2 tagging.
+ */
+export const TOPIC_RELATED = {
+  'detachment':            ['letting-go', 'boundaries'],
+  'powerlessness':         ['letting-go', 'one-day-at-a-time'],
+  'focus-on-yourself':     ['self-worth', 'boundaries'],
+  'one-day-at-a-time':     ['powerlessness', 'gratitude-and-hope'],
+  'boundaries':            ['detachment', 'focus-on-yourself'],
+  'letting-go':            ['detachment', 'powerlessness'],
+  'self-worth':            ['focus-on-yourself', 'honesty'],
+  'higher-power':          ['powerlessness', 'gratitude-and-hope'],
+  'honesty':               ['self-worth', 'focus-on-yourself'],
+  'gratitude-and-hope':    ['one-day-at-a-time', 'higher-power'],
+  'the-disease':           ['detachment', 'fellowship'],
+  'fellowship':            ['the-disease', 'gratitude-and-hope'],
+};
+
+/**
+ * Fallback pair for readings whose legacy tag maps to no topic yet, so the
+ * Related topics scaffolding renders on every reading page: the collection
+ * spine plus the most universally applicable topic.
+ */
+export const DEFAULT_RELATED_TOPICS = ['letting-go', 'one-day-at-a-time'];

@@ -1,0 +1,20 @@
+:root{
+/* Static display + section tokens (from constants/theme.ts) */
+--type-h1-size:34px;--type-h1-lh:40px;--type-h1-ls:-0.6px;
+--type-h2-size:28px;--type-h2-lh:34px;--type-h2-ls:-0.4px;
+--type-h3-size:21px;--type-h3-lh:27px;--type-h3-ls:-0.2px;
+--type-body-large-size:19px;--type-body-large-lh:32px;--type-body-large-ls:-0.1px;
+--type-quote-size:19px;--type-quote-lh:26px;--type-quote-ls:-0.1px;
+--type-body-size:17px;--type-body-lh:28px;--type-body-ls:-0.1px;
+--type-body-small-size:15px;--type-body-small-lh:24px;--type-body-small-ls:-0.08px;
+--type-label-size:13px;--type-label-lh:20px;--type-label-ls:-0.05px;
+--type-caption-size:12px;--type-caption-lh:16px;--type-caption-ls:0.4px;
+
+/* Editorial (Cormorant Garamond) */
+--type-greeting-size:36px;--type-greeting-lh:44px;--type-greeting-ls:-0.5px;
+--type-page-title-size:32px;--type-page-title-lh:35px;--type-page-title-ls:-0.3px;
+--type-section-title-size:25px;--type-section-title-lh:30px;
+--type-brand-size:22px;--type-brand-lh:27px;
+
+--weight-light:300;--weight-regular:400;--weight-medium:500;--weight-semibold:600;--weight-bold:700;--weight-extrabold:800;
+}

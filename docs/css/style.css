@@ -273,8 +273,9 @@ button { font-family: inherit; }
 .prose-lora p {
   margin: 0 0 22px;
   font-family: var(--font-reading);
-  font-size: clamp(17px, 1.5vw, 18.5px);
-  line-height: 1.66;
+  /* Web reading scale — the design system's phone scale reads small at 820px */
+  font-size: clamp(18px, 1.6vw, 19.5px);
+  line-height: 1.62;
   color: var(--text-primary);
 }
 
@@ -495,7 +496,7 @@ a.pill:hover {
   color: var(--text-muted);
   font-family: var(--font-body);
   font-weight: 600;
-  font-size: 14.5px;
+  font-size: 15px;
   line-height: 1.2;
   letter-spacing: -.1px;
   white-space: nowrap;
@@ -1475,32 +1476,171 @@ a.card-tinted:hover { background: var(--surface-card); }
   color: var(--accent-strong);
 }
 
-.rd-app-panel { margin-top: 36px; }
+.rd-calendar-link { margin: 20px 0 0; text-align: center; }
 
-.rd-app-panel-inner { position: relative; }
-
-.rd-app-heading {
-  margin: 0;
-  font-family: var(--font-display);
-  font-weight: 500;
-  font-size: clamp(24px, 2.8vw, 34px);
-  line-height: 1.18;
-  color: #fff;
+.rd-calendar-trigger {
+  padding: 4px 6px;
+  border: 0;
+  background: none;
+  cursor: pointer;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 15px;
+  color: var(--accent);
 }
 
-.rd-app-text {
-  margin: 12px 0 20px;
-  max-width: 52ch;
+.rd-calendar-trigger:hover { text-decoration: underline; }
+
+/* New here — the one loud thing on the page; the whole panel is the link.
+   The privacy line must stay literally true: the quiz saves and sends nothing. */
+.new-here-panel {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px 22px;
+  margin-top: clamp(40px, 6vw, 60px);
+  padding: clamp(22px, 3.4vw, 30px) clamp(22px, 4vw, 34px);
+  border-radius: var(--radius-lg);
+  background: var(--accent-soft);
+  transition: box-shadow var(--dur) var(--ease);
+}
+
+.new-here-panel:hover { box-shadow: var(--shadow-surface); }
+
+.new-here-icon {
+  flex-shrink: 0;
+  align-self: flex-start;
+  margin-top: 6px;
+  color: var(--accent);
+}
+
+.new-here-copy {
+  flex: 1 1 300px;
+  display: grid;
+  gap: 8px;
+}
+
+.new-here-heading {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(24px, 2.6vw, 30px);
+  line-height: 1.2;
+  color: var(--accent-deep);
+}
+
+.new-here-line {
   font-size: 16px;
   line-height: 26px;
-  color: rgba(255, 255, 255, .85);
+  color: var(--accent-strong);
 }
 
-.rd-related-grid {
+.new-here-btn { flex-shrink: 0; }
+
+/* Keep reading — sibling readings from this reading's own topic */
+.kr-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-  gap: 12px;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 14px;
+  margin-top: 22px;
+}
+
+.kr-card {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 22px;
+  border-radius: var(--radius-tinted);
+  background: var(--surface-low);
+  box-shadow: var(--shadow-card);
+  transition: background var(--dur) var(--ease);
+}
+
+.kr-card:hover { background: var(--surface-card); }
+
+.kr-card-date {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: .6px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.kr-card-title {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 22px;
+  line-height: 1.25;
+}
+
+.kr-card-teaser {
+  font-size: 16px;
+  line-height: 26px;
+  color: var(--text-muted);
+}
+
+.kr-card-cta {
+  margin-top: auto;
+  padding-top: 6px;
+  font-weight: 600;
+  font-size: 15px;
+  color: var(--accent);
+}
+
+.kr-more {
   margin-top: 20px;
+  text-align: center;
+}
+
+/* Anchored from the reading page's "More readings →"; clear the sticky header */
+#readings { scroll-margin-top: 80px; }
+
+/* Related topics — distinct in kind from the reading cards: white + hairline */
+.rt-section {
+  margin-top: 44px;
+  padding-top: 26px;
+  border-top: 1px solid var(--rule);
+}
+
+.rt-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 14px;
+  margin-top: 18px;
+}
+
+.rt-card {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 22px;
+  border: 0.5px solid var(--border-card);
+  border-radius: var(--radius-tinted);
+  background: var(--surface-lowest);
+  box-shadow: var(--shadow-card);
+  transition: box-shadow var(--dur) var(--ease);
+}
+
+.rt-card:hover { box-shadow: var(--shadow-surface); }
+
+.rt-card-title {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 21px;
+  line-height: 1.25;
+}
+
+.rt-card-line {
+  font-size: 16px;
+  line-height: 26px;
+  color: var(--text-muted);
+}
+
+.rt-card-meta {
+  margin-top: auto;
+  padding-top: 6px;
+  font-weight: 600;
+  font-size: 15px;
+  color: var(--accent);
 }
 
 /* ───────────────────────────── Step detail ───────────────────────────── */
@@ -3249,4 +3389,286 @@ a.card-tinted:hover { background: var(--surface-card); }
   .photo-hero-title,
   .photo-hero-sub,
   .photo-hero .eyebrow { color: var(--text-primary) !important; }
+}
+
+/* ─────────────── Calendar modal (reading pages) ───────────────
+   Ported from version-b (the modal shipped without version-c styles);
+   markup lives in js/calendar.js, opened by [data-calendar-trigger]. */
+
+.cal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity var(--dur) var(--ease), visibility var(--dur) var(--ease);
+}
+
+.cal-overlay.is-open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.cal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, .35);
+  backdrop-filter: blur(2px);
+}
+
+.cal-panel {
+  position: relative;
+  width: 100%;
+  max-width: 400px;
+  max-height: 90vh;
+  overflow-y: auto;
+  background: var(--surface);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, .2);
+  transform: translateY(16px);
+  transition: transform var(--dur-slow) var(--ease);
+}
+
+.cal-overlay.is-open .cal-panel { transform: translateY(0); }
+
+.cal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 24px 12px;
+}
+
+.cal-header-title {
+  font-family: var(--font-body);
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.cal-close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border: none;
+  border-radius: var(--radius);
+  background: transparent;
+  color: var(--text-primary);
+  cursor: pointer;
+  font-size: 19px;
+  transition: background var(--dur-fast) var(--ease);
+}
+
+.cal-close:hover { background: var(--surface-card); }
+
+.cal-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 4px 24px 12px;
+}
+
+.cal-month-label {
+  font-family: var(--font-display);
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--accent-strong);
+}
+
+.cal-nav-arrows {
+  display: flex;
+  gap: 8px;
+}
+
+.cal-arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+  background: var(--surface-lowest);
+  color: var(--text-primary);
+  cursor: pointer;
+  font-size: 16px;
+  transition: background var(--dur-fast) var(--ease), border-color var(--dur-fast) var(--ease);
+}
+
+.cal-arrow:hover {
+  background: var(--surface-card);
+  border-color: var(--border-soft);
+}
+
+.cal-grid { padding: 0 20px; }
+
+.cal-weekdays {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  margin-bottom: 4px;
+}
+
+.cal-weekday {
+  padding: 8px 0;
+  text-align: center;
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+  color: var(--text-muted);
+}
+
+.cal-days {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 2px;
+}
+
+.cal-cell {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 1;
+  padding: 0;
+  border: none;
+  border-radius: var(--radius);
+  background: transparent;
+  cursor: pointer;
+  font-family: var(--font-body);
+  font-size: 14px;
+  color: var(--text-primary);
+  transition: background var(--dur-fast) var(--ease);
+}
+
+.cal-cell:hover { background: var(--surface-card); }
+
+.cal-cell.is-empty {
+  cursor: default;
+  pointer-events: none;
+}
+
+.cal-cell.is-today {
+  font-weight: 600;
+  color: var(--accent-strong);
+}
+
+.cal-cell.is-today::before {
+  content: '';
+  position: absolute;
+  inset: 3px;
+  border: 2px solid var(--accent-strong);
+  border-radius: var(--radius);
+  opacity: .3;
+}
+
+.cal-cell.is-current-reading {
+  color: var(--accent-strong);
+  font-weight: 600;
+}
+
+.cal-cell.is-selected {
+  background: var(--accent-strong);
+  color: #fff;
+  font-weight: 600;
+}
+
+.cal-cell.is-selected:hover { background: var(--accent); }
+
+.cal-preview {
+  margin: 16px 20px 24px;
+  padding: 20px 24px;
+  background: var(--surface-lowest);
+  border: 1px solid var(--border-card);
+  border-radius: var(--radius);
+}
+
+.cal-preview-empty {
+  padding: 16px 0;
+  text-align: center;
+  font-family: var(--font-body);
+  font-size: 14px;
+  color: var(--text-muted);
+}
+
+.cal-preview-date {
+  margin-bottom: 2px;
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.cal-preview-theme {
+  margin-bottom: 8px;
+  font-family: var(--font-body);
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.cal-preview-title {
+  margin-bottom: 10px;
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--text-primary);
+}
+
+.cal-preview-thought {
+  margin-bottom: 20px;
+  font-family: var(--font-reading);
+  font-size: 14.5px;
+  line-height: 1.6;
+  color: var(--text-primary);
+  opacity: .8;
+}
+
+.cal-preview-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  padding: 13px 24px;
+  border: none;
+  border-radius: var(--radius);
+  background: var(--accent-strong);
+  cursor: pointer;
+  font-family: var(--font-body);
+  font-size: 15px;
+  font-weight: 500;
+  color: #fff;
+  text-decoration: none;
+  transition: filter var(--dur-fast) var(--ease);
+}
+
+.cal-preview-btn:hover {
+  filter: brightness(1.06);
+  color: #fff;
+}
+
+@media (max-width: 640px) {
+  .cal-overlay {
+    align-items: flex-end;
+    padding: 0;
+  }
+  .cal-panel {
+    max-width: 100%;
+    max-height: 92vh;
+    border-radius: 20px 20px 0 0;
+    transform: translateY(100%);
+  }
+  .cal-overlay.is-open .cal-panel {
+    transform: translateY(0);
+  }
+  .cal-cell { font-size: 13px; }
 }
