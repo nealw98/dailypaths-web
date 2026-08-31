@@ -32,15 +32,13 @@ export const LETTING_GO_ARTICLE = {
       heading: 'The night shift',
       body: [
         'You are exhausted, but your mind won&rsquo;t let you sleep.',
-        'The fear underneath that vigilance may sound like this:',
-        '<em>When someone I love is struggling, letting go can feel like betrayal. I want the best for them. I can see the danger, the consequences, and all the things that might go wrong. If I can help, why shouldn&rsquo;t I?</em>',
         'Your mind scans tomorrow for trouble. What crisis is coming? What disappointment lies ahead? What could you say, arrange, check, or prevent before things fall apart again?',
         'Then it turns toward yesterday. Why didn&rsquo;t you see it sooner? What should you have done differently? If only you had said the right thing, recognized the danger, or acted before it was too late.',
         'The mind moves between prediction and regret, reviewing the past as preparation for the future. Every possible situation feels urgent, a problem to be solved. Rest feels irresponsible when there may still be something you can figure out.',
         'Your body is in bed, but part of you is still standing watch.',
       ],
     },
-    { pullQuote: 'My body is in bed, but part of me is still standing watch.' },
+    { pullQuote: 'When someone I love is struggling, letting go can feel like betrayal. I want the best for them. I can see the danger, the consequences, and all the things that might go wrong. If I can help, why shouldn&rsquo;t I?' },
     {
       heading: 'The promise hidden inside the worry',
       body: [
