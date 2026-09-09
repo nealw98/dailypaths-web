@@ -38,7 +38,7 @@ Node 20 or newer; install using the lockfile. Supply `SUPABASE_URL` and `SUPABAS
 
 The private build fetches published content read-only at build time. It excludes the admin page and contribution forms, disables production analytics, emits `noindex`, and disallows indexing. It does not include a production CNAME. The homepage chooses the visitor's current reflection from the generated 366-day manifest, so it continues to advance without daily redeployment. Database edits require a new build to appear.
 
-Use the Sites project in `.openai/hosting.json`; do not create another site. GitHub `2.0` is the development source of truth. The Sites repository is a deployment copy of the same source. Continue all future changes here, then sync that same revision to Sites. Do not push new website work to GitHub `main` or change public hosting until launch is requested.
+Use the Sites project in `.openai/hosting.json`; do not create another site. GitHub `2.0` is the development source of truth. The Sites repository stores compact deployment snapshots of the same source tree, so the first private upload does not carry the entire historical GitHub repository. Continue all editing on GitHub `2.0`. For Sites, create a deployment commit from the exact reviewed GitHub tree, using the previous Sites commit as its parent when present; record the GitHub revision in its message. Verify identical trees, push the deployment commit, and package the matching build. Never rewrite GitHub history for this. After publishing, return the working checkout to `2.0`. Do not push new website work to GitHub `main` or change public hosting until launch is requested.
 
 ## Before launch
 
