@@ -3,51 +3,24 @@
 (function () {
   'use strict';
 
-  // ---------------------------------------------------------------------------
-  // 1. Homepage stale-date fix
-  // The homepage hero is baked at build time. If the visitor's local date has
-  // moved past the build date, fetch today's reading and swap in the correct
-  // date, title, and excerpt.
-  // ---------------------------------------------------------------------------
-  if (document.body.classList.contains('page-home')) {
-    var todaySlugHome = getTodaySlug();
-    var heroCta = document.querySelector('[data-today-cta]');
-    if (heroCta && heroCta.getAttribute('href').indexOf(todaySlugHome) === -1) {
-      heroCta.setAttribute('href', '/' + todaySlugHome + '/');
-      fetch('/' + todaySlugHome + '/')
-        .then(function (res) { return res.text(); })
-        .then(function (html) {
-          var doc = new DOMParser().parseFromString(html, 'text/html');
-          var titleEl = doc.querySelector('.photo-hero-title');
-          var bodyEl = doc.querySelector('.rd-body p');
-          var timeEl = doc.querySelector('.photo-hero .eyebrow time');
-
-          if (timeEl) {
-            // Hero eyebrow reads "August 9 · Step Eight" — keep just the date
-            var dateText = timeEl.textContent.split('·')[0].trim();
-            setText('[data-today-date]', dateText);
-          }
-          if (titleEl) setText('[data-today-title]', titleEl.textContent.trim());
-          if (bodyEl) {
-            var text = bodyEl.textContent.trim();
-            setText('[data-today-excerpt]', text.length > 200
-              ? text.slice(0, 200).replace(/\s+\S*$/, '') + '…'
-              : text);
-          }
-        })
-        .catch(function () { /* graceful fallback: stale content stays */ });
-    }
-  }
-
-  // ---------------------------------------------------------------------------
-  // 2. "Today's Reflection" links — correct the baked href to the local date
-  // ---------------------------------------------------------------------------
-  var todayLinks = document.querySelectorAll('[data-today-link]');
-  if (todayLinks.length > 0) {
-    var slug = getTodaySlug();
-    for (var i = 0; i < todayLinks.length; i++) {
-      todayLinks[i].href = '/' + slug + '/';
-    }
+  // Use the fixed 366-day calendar, independent of the current year's leap status.
+  // The manifest points directly to reading pages (date aliases are HTML redirects).
+  if (document.querySelector('[data-today-cta], [data-today-link]')) {
+    fetch('/readings-manifest.json').then(function (response) {
+      if (!response.ok) throw new Error('Reading index unavailable');
+      return response.json();
+    }).then(function (readings) {
+      var date = new Date();
+      var monthDays = [31,29,31,30,31,30,31,31,30,31,30,31];
+      var day = date.getDate();
+      for (var m = 0; m < date.getMonth(); m++) day += monthDays[m];
+      var reading = readings.find(function (r) { return r.d === day; });
+      if (!reading) return;
+      document.querySelectorAll('[data-today-cta], [data-today-link]').forEach(function (link) { link.href = '/' + reading.slug + '/'; });
+      setText('[data-today-title]', reading.title);
+      setText('[data-today-date]', reading.date);
+      if (reading.excerpt) setText('[data-today-excerpt]', reading.excerpt.replace(/\s+\S*$/, '') + '…');
+    }).catch(function () { /* Build-time content remains usable offline. */ });
   }
 
   // ---------------------------------------------------------------------------
@@ -111,6 +84,7 @@
   for (var f = 0; f < shareForms.length; f++) {
     shareForms[f].addEventListener('submit', function (e) {
       e.preventDefault();
+      if (document.querySelector('meta[name="site-mode"][content="preview"]')) return;
       var form = this;
       var status = form.querySelector('[data-share-status]');
       var btn = form.querySelector('button[type="submit"]');

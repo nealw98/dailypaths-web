@@ -40,7 +40,8 @@ import { renderMonthArchivePage } from './templates/month-archive.mjs';
 import { renderStartPage } from './templates/start.mjs';
 import { renderAdminPage } from './templates/admin.mjs';
 import { wrapInLayout } from './templates/base.mjs';
-import { bp } from './helpers/config.mjs';
+import { bp, IS_PREVIEW } from './helpers/config.mjs';
+import { renderHomePage, renderArticlesPage, renderGuidesPage, renderReflectionsPage } from './templates/editorial.mjs';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = __dirname;
@@ -49,7 +50,7 @@ const ROOT = __dirname;
 const args = process.argv.slice(2);
 const versionArg = args.find(a => a.startsWith('--version='));
 const cssVersion = versionArg ? versionArg.split('=')[1] : 'c';
-const outDir = join(ROOT, 'docs');
+const outDir = join(ROOT, IS_PREVIEW ? 'dist' : 'docs');
 
 console.log(`\nDaily Paths Static Site Generator`);
 console.log(`  CSS version: ${cssVersion}`);
@@ -177,13 +178,13 @@ for (const topic of TOPICS) {
 let pageCount = 0;
 
 function writePage(filePath, html) {
+  if (IS_PREVIEW) html = html.replace(/<form\b[^>]*data-share-form[\s\S]*?<\/form>/g, '<p class="sd-small">Contributions are available on the live site.</p>');
   writeFileSync(filePath, html, 'utf-8');
   pageCount++;
 }
 
-// Home IS today's reading — one template, one canonical (the reading's own
-// URL), refreshed by the daily rebuild.
-console.log("Generating home page (today's reading)...");
+// Separate editorial homepage with a real daily reflection as its lead.
+console.log("Generating editorial homepage...");
 const now = new Date();
 const todayMonth = now.getMonth(); // 0-indexed
 const todayDate = now.getDate();
@@ -195,7 +196,12 @@ const todayReading = readings[todayIdx >= 0 ? todayIdx : 0];
 const todayPrev = readings[(todayIdx - 1 + readings.length) % readings.length];
 const todayNext = readings[(todayIdx + 1) % readings.length];
 
-writePage(join(outDir, 'index.html'), renderReadingPage(todayReading, todayPrev, todayNext, readings, ratingsMap));
+writePage(join(outDir, 'index.html'), renderHomePage(todayReading));
+
+for (const [path, render] of [['articles', renderArticlesPage], ['guides', renderGuidesPage], ['reflections', () => renderReflectionsPage(todayReading)]]) {
+  mkdirSync(join(outDir, path), {recursive:true});
+  writePage(join(outDir,path,'index.html'), render());
+}
 
 // Reading pages
 console.log('Generating 366 reading pages...');
@@ -263,7 +269,7 @@ writePage(join(outDir, 'about-project', 'index.html'), renderAboutProjectPage())
 writePage(join(outDir, 'about-alanon', 'index.html'), renderAboutAlanonPage());
 // Admin page
 console.log('Generating admin page...');
-writePage(join(outDir, 'admin', 'index.html'), renderAdminPage());
+if (!IS_PREVIEW) writePage(join(outDir, 'admin', 'index.html'), renderAdminPage());
 
 // Steps index + individual step pages
 console.log('Generating step pages (12 steps)...');
@@ -320,6 +326,7 @@ const manifest = readings.map(r => ({
   title: r.title,
   date: r.display_date,
   thought: (r.thought_for_day || '').replace(/\\n/g, ' ').replace(/\*\*(.+?)\*\*/g, '$1').replace(/\*(.+?)\*/g, '$1').slice(0, 120),
+  excerpt: (r.opening || '').replace(/<[^>]*>/g, '').replace(/\\n/g, ' ').replace(/[*_]/g, '').replace(/\s+/g, ' ').trim().slice(0, 205),
   theme: r.secondary_theme || '',
   slug: readingSlug(r.day_of_year, r.title),
 }));
@@ -401,10 +408,11 @@ if (!existsSync(cssSource)) {
   process.exit(1);
 }
 cpSync(cssSource, join(outDir, 'css', 'style.css'));
+cpSync(join(ROOT, 'css', 'soft-daylight.css'), join(outDir, 'css', 'soft-daylight.css'));
 
 // JS
 cpSync(join(__dirname, 'js', 'main.js'), join(outDir, 'js', 'main.js'));
-cpSync(join(__dirname, 'js', 'admin.js'), join(outDir, 'js', 'admin.js'));
+if (!IS_PREVIEW) cpSync(join(__dirname, 'js', 'admin.js'), join(outDir, 'js', 'admin.js'));
 cpSync(join(__dirname, 'js', 'analytics.js'), join(outDir, 'js', 'analytics.js'));
 cpSync(join(__dirname, 'js', 'calendar.js'), join(outDir, 'js', 'calendar.js'));
 
@@ -490,7 +498,7 @@ for (const book of BOOKS) {
 }
 
 // CNAME for GitHub Pages custom domain
-writeFileSync(join(outDir, 'CNAME'), 'dailypaths.org', 'utf-8');
+if (!IS_PREVIEW) writeFileSync(join(outDir, 'CNAME'), 'dailypaths.org', 'utf-8');
 
 // --- Done ---
 const elapsed = ((Date.now() - start) / 1000).toFixed(2);

@@ -1,17 +1,15 @@
-import { bp, BASE_URL } from '../helpers/config.mjs';
+import { bp, BASE_URL, IS_PREVIEW } from '../helpers/config.mjs';
 import { icon } from './ui.mjs';
 
 /**
- * Header nav — home IS today's reading, so "Today's Reflection" points to /.
- * Five items is the ceiling; "Start here" stays out by design.
+ * Compact editorial navigation; reflection pages retain their dated URLs.
  */
 function navItems() {
   return [
-    { id: 'reflection', label: "Today's Reflection", href: bp('/') },
-    { id: 'steps', label: 'Steps', href: bp('/steps/') },
-    { id: 'topics', label: 'Topics', href: bp('/topics/') },
-    { id: 'essentials', label: 'Essentials', href: bp('/essentials/') },
-    { id: 'alanon', label: 'Al-Anon', href: bp('/about-alanon/') },
+    { id: 'reflection', label: 'Daily Reflections', href: bp('/reflections/') },
+    { id: 'articles', label: 'Articles', href: bp('/articles/') },
+    { id: 'guides', label: 'Guides', href: bp('/guides/') },
+    { id: 'start', label: 'Start Here', href: bp('/start/') },
   ];
 }
 
@@ -68,7 +66,7 @@ export function wrapInLayout({
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>${escapeHtml(title)}</title>
   <meta name="description" content="${escapeAttr(description)}">
-  <link rel="canonical" href="${canonicalUrl}">${noindex ? '\n  <meta name="robots" content="noindex, nofollow">' : ''}
+  <link rel="canonical" href="${canonicalUrl}">${(noindex || IS_PREVIEW) ? '\n  <meta name="robots" content="noindex, nofollow">' : ''}
   <meta name="theme-color" content="#f4f1ea">
 
   <!-- Open Graph -->
@@ -99,14 +97,17 @@ export function wrapInLayout({
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Manrope:wght@400;500;600;700&family=Lora:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
 
   <!-- Styles -->
+  <meta name="site-mode" content="${IS_PREVIEW ? 'preview' : 'production'}">
   <link rel="stylesheet" href="${bp('/css/style.css')}?v=${Date.now()}">
+
+  <link rel="stylesheet" href="${bp('/css/soft-daylight.css')}">
 
   ${structuredData ? (Array.isArray(structuredData) ? structuredData : [structuredData]).map(json => `<!-- Structured Data -->
   <script type="application/ld+json">
 ${json}
   </script>`).join('\n  ') : ''}
 
-  <!-- Google Analytics (skip admin pages) -->
+  ${IS_PREVIEW ? `<script src="${bp('/js/analytics.js')}"></script>` : `  <!-- Google Analytics (skip admin pages) -->
   <script>
     if (!/^\\/admin(\\/|$)/.test(location.pathname)) {
       var s = document.createElement('script');
@@ -135,6 +136,7 @@ ${json}
     Analytics.init('mixpanel');
     Analytics.trackPageView();
   </script>
+`}
 </head>
 <body${bodyClass ? ` class="${bodyClass}"` : ''}>
   <a href="#main" class="skip-link">Skip to content</a>
@@ -142,10 +144,9 @@ ${json}
   <header class="site-header">
     <div class="header-inner">
       <a href="${bp('/')}" class="brand">
-        <img src="${bp('/assets/app-icon.png')}" alt="" class="brand-icon" width="38" height="38">
         <span class="brand-text">
-          <span class="brand-name">Al-Anon Daily Paths</span>
-          <span class="brand-sub">Daily reflections</span>
+          <span class="brand-name">Daily Paths<span class="brand-period">.</span></span>
+          <span class="brand-sub">A little space for yourself</span>
         </span>
       </a>
       <span class="header-divider" aria-hidden="true"></span>
@@ -173,8 +174,8 @@ ${bodyContent}
   <footer class="site-footer">
     <div class="footer-inner">
       <div class="footer-brand">
-        <p class="footer-wordmark">Al-Anon Daily Paths</p>
-        <p class="footer-tagline">Daily reflections for the Al-Anon journey.</p>
+        <p class="footer-wordmark">Daily Paths.</p>
+        <p class="footer-tagline">For people affected by someone else’s drinking.</p>
       </div>
       <div class="footer-col">
         <p class="footer-col-title">About</p>
@@ -182,6 +183,7 @@ ${bodyContent}
           <a href="${bp('/start/')}">Start here</a>
           <a href="${bp('/about-project/')}">About the project</a>
           <a href="${bp('/support/')}">Support</a>
+          <a href="${bp('/about-alanon/')}">About Al-Anon</a>
         </nav>
       </div>
       <div class="footer-col">
@@ -189,6 +191,8 @@ ${bodyContent}
         <nav class="footer-links" aria-label="More">
           <a href="${bp('/privacy/')}">Privacy</a>
           <a href="${bp('/terms/')}">Terms</a>
+          <a href="${bp('/essentials/')}">Essentials</a>
+          <a href="${bp('/steps/')}">The Twelve Steps</a>
           <a href="${appHref}">Get the app</a>
         </nav>
       </div>

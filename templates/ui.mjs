@@ -220,30 +220,16 @@ export function appPanel({ tone = 'seafoam', heading, text, showIcon = false, co
  * separates them (guidelines/inserts-system).
  */
 export function terminalBand({
-  heading = 'Carry today&rsquo;s reading with you.',
-  text = 'The reflection, your notes, and your own inventory in one private place. Nothing you write is shared.',
-  screen = 'Screenshots/today.png',
-  screenAlt = 'The Daily Paths app showing today&rsquo;s reflection and the daily tools',
-  screenOffset = '0',
+  heading = 'Make room for yourself,<br><em>every day.</em>',
+  text = 'A daily reflection. A place for your thoughts. Small ways to bring the focus back to you.',
 } = {}) {
-  // Blank 9:16 device until the real captures land. Pass `screen` (plus a
-  // `screenOffset` tuned to that capture's header height) to show one.
-  const device = `<div class="terminal-band-device" aria-hidden="${screen ? 'false' : 'true'}">
-            <div class="terminal-band-screen"${screen ? ` style="--screen-offset: ${screenOffset}"` : ''}>${screen
-              ? `<img src="${bp(`/assets/${screen}`)}" alt="${screenAlt}" loading="lazy">`
-              : ''}</div>
-          </div>`;
-  return `<section class="terminal-band" id="get-the-app">
-        <div class="terminal-band-inner">
-          ${device}
-          <div class="terminal-band-copy">
-            <p class="terminal-band-eyebrow">The app</p>
-            <h2 class="terminal-band-heading">${heading}</h2>
-            <p class="terminal-band-text">${text}</p>
-            ${storeBadges({ context: 'band' })}
-          </div>
-        </div>
-      </section>`;
+  return `<section class="sd-app" id="get-the-app" aria-label="The Daily Paths app">
+    <img class="sd-app-background" src="${bp('/assets/articles/soft-daylight-journal.webp')}" alt="" width="1672" height="941" loading="lazy">
+    <div class="sd-app-inner sd-wrap">
+      <div class="sd-phone"><img src="${bp('/assets/Screenshots/today-actual.png')}" alt="The actual Daily Paths app: today’s reflection, journal, and daily tools" width="944" height="2048" loading="lazy"></div>
+      <div class="sd-app-copy"><p class="sd-kicker">Daily Paths, wherever you are</p><h2>${heading}</h2><p>${text}</p>${storeBadges({ context: 'band' })}</div>
+    </div>
+  </section>`;
 }
 
 /**

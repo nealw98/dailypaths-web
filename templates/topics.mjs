@@ -35,16 +35,16 @@ ${photoHero({
   })}
 
     <section class="wrap section--md">
-      <p class="eyebrow">Topic guides</p>
+      <p class="eyebrow">Explore the topics</p>
       <h2 class="section-title">A place to follow an idea further</h2>
-      <p class="lede theme-index-intro">The daily readings meet us in a moment. These guides gather related readings into a fuller exploration of the patterns, choices, and spiritual principles that shape recovery.</p>
+      <p class="lede theme-index-intro">The daily readings meet us in a moment. These pages gather related readings into a fuller exploration of the patterns, choices, and spiritual principles that shape recovery.</p>
 
       <a href="${bp(`/topics/${lettingGo.slug}/`)}" class="theme-feature">
         <div class="theme-feature-copy">
-          <span class="eyebrow">Featured guide</span>
+          <span class="eyebrow">Featured article</span>
           <span class="theme-feature-title">${lettingGo.name}</span>
           <span class="theme-feature-line">${lettingGo.shortDescription}</span>
-          <span class="theme-index-cta">Read the guide &rarr;</span>
+          <span class="theme-index-cta">Read the article &rarr;</span>
         </div>
         <img src="${bp(`/assets/${lettingGo.image}`)}" alt="${lettingGo.imageAlt}" loading="lazy">
       </a>
@@ -224,7 +224,7 @@ ${detailRail({
 ${photoHero({
     image: bp(`/assets/${article.hero.image}`),
     alt: article.hero.alt,
-    eyebrow: 'Recovery topic',
+    eyebrow: 'Article · Letting go',
     title: article.title,
     subtitle: article.definition,
     size: 'lg',

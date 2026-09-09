@@ -10,3 +10,6 @@ supabase/.temp/
 
 # Generated tagging output
 scripts/out/
+
+# Private Sites output; source stays on 2.0.
+dist/

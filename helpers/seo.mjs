@@ -1,5 +1,5 @@
 import { readingSlug, stepSlug } from './slug-utils.mjs';
-import { BASE_URL } from './config.mjs';
+import { BASE_URL, IS_PREVIEW } from './config.mjs';
 
 /**
  * Generate sitemap.xml content for all pages
@@ -11,6 +11,8 @@ export function generateSitemap(readings, topics, books = [], steps = []) {
 
   // Homepage
   urls.push({ loc: BASE_URL + '/', priority: '1.0', changefreq: 'daily' });
+
+  for (const path of ['/articles/', '/guides/', '/reflections/']) urls.push({loc:BASE_URL + path, priority:'0.8', changefreq:'weekly'});
 
   // Reading pages
   for (const reading of readings) {
@@ -73,6 +75,7 @@ ${urlEntries}
  * Generate robots.txt
  */
 export function generateRobotsTxt() {
+  if (IS_PREVIEW) return 'User-agent: *\nDisallow: /\n';
   return `User-agent: *
 Allow: /
 Disallow: /auth
