@@ -6,17 +6,9 @@ import { bp } from '../helpers/config.mjs';
 import { THEME_TO_TOPIC, TOPICS, TOPIC_RELATED, DEFAULT_RELATED_TOPICS } from '../helpers/theme-data.mjs';
 import { STEPS } from './steps.mjs';
 import { photoHero, quoteBlock, pill, icon, terminalBand } from './ui.mjs';
+import { reflectionImage } from '../helpers/reflection-images.mjs';
 
 const NUMBER_WORDS = ['One', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine', 'Ten', 'Eleven', 'Twelve'];
-
-/**
- * The one brand hero for every daily reflection (and the home page):
- * a consistent landing image, chosen by the site owner.
- */
-const READING_HERO = {
-  image: 'articles/daily_reflections.webp',
-  alt: 'A sunlit path through a green mountain valley',
-};
 
 const SMALL_COUNT_WORDS = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten',
   'eleven', 'twelve', 'thirteen', 'fourteen', 'fifteen', 'sixteen', 'seventeen', 'eighteen', 'nineteen'];
@@ -215,8 +207,8 @@ export function renderReadingPage(reading, prevReading, nextReading, allReadings
 
   const bodyContent = `
 ${photoHero({
-    image: bp(`/assets/${READING_HERO.image}`),
-    alt: `${READING_HERO.alt} — Al-Anon daily reflection for ${reading.display_date}`,
+    image: bp(`/assets/${reflectionImage(reading.day_of_year)}`),
+    alt: '',
     eyebrow: `<time datetime="${isoDate}">${heroEyebrow}</time>`,
     title: reading.title,
     size: 'md',

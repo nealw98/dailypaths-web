@@ -51,7 +51,7 @@ Use the Sites project in `.openai/hosting.json`; do not create another site. Git
 
 ## Reflection image rotation
 
-Neal has an app reflection-photo collection to add under `assets/reflections/`. Use a simple daily rotation on full reflection pages once the collection is available; do not match photos to subjects or individual readings at this stage. Keep the homepage window photograph as the consistent Soft Daylight anchor. The collection was not yet present on the remote `2.0` branch when this foundation was prepared.
+The 42 app photos in `assets/reflections/` now rotate across full reflection pages by calendar day, cycling in numeric filename order. This is a simple daily rotation, not a match between photographs and subjects. The homepage keeps its consistent Soft Daylight window photograph. The choice is stable when revisiting a dated reading and works with the existing 366-day calendar. Matching images to individual reflections is explicitly deferred.
 
 ## Asset provenance
 

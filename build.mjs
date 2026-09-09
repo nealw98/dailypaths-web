@@ -478,6 +478,7 @@ if (existsSync(articlesAssetsDir)) {
 }
 
 // App screenshots — shipped as uploaded; the band renders them unaltered
+cpSync(join(localAssetsDir, 'reflections'), join(outDir, 'assets', 'reflections'), { recursive: true });
 const screenshotsAssetsDir = join(localAssetsDir, 'Screenshots');
 if (existsSync(screenshotsAssetsDir)) {
   cpSync(screenshotsAssetsDir, join(outDir, 'assets', 'Screenshots'), { recursive: true });
