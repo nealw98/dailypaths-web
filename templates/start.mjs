@@ -1,7 +1,7 @@
 import { wrapInLayout } from './base.mjs';
 import { bp } from '../helpers/config.mjs';
 import { readingSlug } from '../helpers/slug-utils.mjs';
-import { icon, ripple, appPanel, MEETING_DIRECTORY_URL } from './ui.mjs';
+import { icon, ripple, MEETING_DIRECTORY_URL , terminalBand } from './ui.mjs';
 
 /**
  * Start here — the newcomer funnel.
@@ -179,12 +179,7 @@ export function renderStartPage(readings = []) {
     </section>
 
     <div class="wrap wrap--article section--lg" id="get-the-app">
-      ${appPanel({
-        tone: 'seafoam',
-        heading: 'One reading a day, wherever you are',
-        text: 'The app sends the day&rsquo;s reflection each morning and gives you a private place to write &mdash; nothing leaves your phone.',
-        context: 'start',
-      })}
+      ${terminalBand()}
       <p class="fine-print">In crisis? Help is available 24/7 &mdash; call or text <strong>988</strong> (USA).</p>
     </div>`;
 

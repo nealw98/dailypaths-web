@@ -17,8 +17,8 @@ export const LETTING_GO_ARTICLE = {
   title: 'Letting Go',
   definition: 'Caring without carrying &mdash; releasing the need to manage, fix, or control.',
   hero: {
-    image: 'themes-hero.jpg',
-    alt: 'Forest path through morning light — letting go in Al-Anon recovery',
+    image: 'articles/letting-go-hero.jpg',
+    alt: 'An open hand releasing into warm light — letting go in Al-Anon recovery',
   },
 
   /**

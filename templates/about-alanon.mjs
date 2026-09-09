@@ -1,7 +1,7 @@
 import { wrapInLayout } from './base.mjs';
 import { bp } from '../helpers/config.mjs';
 import {
-  photoHero, icon, tealBand, glassPanel, appPanel, MEETING_DIRECTORY_URL,
+  photoHero, icon, tealBand, glassPanel, terminalBand, MEETING_DIRECTORY_URL,
 } from './ui.mjs';
 
 /**
@@ -183,14 +183,7 @@ ${meetingBand}
       <p class="fine-print">Daily Paths is an independent project and is not affiliated with, endorsed by, or approved by Al-Anon Family Group Headquarters, Inc. For official Al-Anon information, please visit <a href="https://al-anon.org" target="_blank" rel="noopener noreferrer">al-anon.org</a>.</p>
     </section>
 
-    <div class="wrap section--md" id="get-the-app">
-      ${appPanel({
-        tone: 'seafoam',
-        heading: 'Your daily companion',
-        text: 'Al-Anon provides the framework for a new way of life. Daily Paths is the daily touchstone &mdash; helping you apply the Steps and topics in the moments you need them most.',
-        context: 'alanon',
-      })}
-    </div>`;
+    ${terminalBand()}`;
 
   return wrapInLayout({
     title: 'The Al-Anon Program — Steps, Fellowship, Literature & Service | Al-Anon Daily Paths',

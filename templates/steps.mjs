@@ -3,7 +3,7 @@ import { bp } from '../helpers/config.mjs';
 import { readingSlug, stepSlug, MONTHS, DAYS_IN_MONTH } from '../helpers/slug-utils.mjs';
 import { markdownToHtml } from '../helpers/markdown.mjs';
 import {
-  photoHero, quoteBlock, detailRail, appPanel, readingCard, icon, ripple, storeBadges,
+  photoHero, quoteBlock, detailRail, terminalBand, readingCard, icon,
 } from './ui.mjs';
 
 /**
@@ -12,6 +12,8 @@ import {
 export const STEPS = [
   {
     number: 1,
+    heroImage: 'themes/step-1-hero.jpg',
+    heroAlt: 'A seedling rising from cracked earth at sunrise',
     text: 'We admitted we were powerless over alcohol &mdash; that our lives had become unmanageable.',
     month: 'January',
     monthSlug: 'january',
@@ -31,6 +33,8 @@ export const STEPS = [
   },
   {
     number: 2,
+    heroImage: 'articles/step-2-hero.jpg',
+    heroAlt: 'A kingfisher perched calm and bright',
     text: 'Came to believe that a Power greater than ourselves could restore us to sanity.',
     month: 'February',
     monthSlug: 'february',
@@ -69,6 +73,8 @@ export const STEPS = [
   },
   {
     number: 4,
+    heroImage: 'themes/steps_hero.jpg',
+    heroAlt: 'A journal resting on a coastal path',
     text: 'Made a searching and fearless moral inventory of ourselves.',
     month: 'April',
     monthSlug: 'april',
@@ -127,6 +133,8 @@ export const STEPS = [
   },
   {
     number: 7,
+    heroImage: 'themes/prayers.jpg',
+    heroAlt: 'Stones stacked patiently in balance',
     text: 'Humbly asked Him to remove our shortcomings.',
     month: 'July',
     monthSlug: 'july',
@@ -184,6 +192,8 @@ export const STEPS = [
   },
   {
     number: 10,
+    heroImage: 'articles/step-10-hero.jpg',
+    heroAlt: 'Reading quietly in a field of tall grass',
     text: 'Continued to take personal inventory and when we were wrong promptly admitted it.',
     month: 'October',
     monthSlug: 'october',
@@ -203,6 +213,8 @@ export const STEPS = [
   },
   {
     number: 11,
+    heroImage: 'articles/step-11-hero.jpg',
+    heroAlt: 'A single candle flame in the dark',
     text: 'Sought through prayer and meditation to improve our conscious contact with God <em>as we understood Him</em>, praying only for knowledge of His will for us and the power to carry that out.',
     month: 'November',
     monthSlug: 'november',
@@ -257,8 +269,8 @@ export function renderStepsIndexPage() {
 
   const bodyContent = `
 ${photoHero({
-    image: bp('/assets/themes/steps-hub-hero.jpg'),
-    alt: 'Coastal path at first light — the Twelve Steps of Al-Anon recovery',
+    image: bp('/assets/articles/steps-index-hero.jpg'),
+    alt: 'Two figures greeting the sunrise with joined hands — the Twelve Steps of Al-Anon recovery',
     title: 'The Twelve Steps',
     subtitle: 'A framework for personal freedom',
     size: 'sm',
@@ -269,15 +281,11 @@ ${photoHero({
       </div>
     </section>
 
-    <div class="wrap section--md" id="get-the-app">
-      ${appPanel({
-        tone: 'white',
-        heading: 'Take your Step work further.',
-        text: 'The app isn&rsquo;t just for reading &mdash; use the built-in journaling tools to record your progress through the Steps and Traditions, all in one private place.',
-        context: 'steps',
-      })}
+    <div class="wrap section--md">
       <p class="fine-print">The Twelve Steps are adapted from Alcoholics Anonymous and used by Al-Anon Family Groups. For the official Al-Anon perspective on the Steps, visit <a href="https://al-anon.org/for-members/the-legacies/the-twelve-steps/" target="_blank" rel="noopener noreferrer">al-anon.org</a>.</p>
-    </div>`;
+    </div>
+
+    ${terminalBand()}`;
 
   return wrapInLayout({
     title: 'The 12 Steps of Al-Anon — Recovery Reflections & Questions | Al-Anon Daily Paths',
@@ -481,8 +489,8 @@ ${detailRail({
   })}
 
 ${photoHero({
-    image: bp('/assets/themes/steps-hub-hero.jpg'),
-    alt: `Coastal path at first light — Step ${step.number} of Al-Anon: ${step.principle}`,
+    image: bp(`/assets/${step.heroImage || 'themes/steps-hub-hero.jpg'}`),
+    alt: step.heroAlt ? `${step.heroAlt} — Step ${step.number} of Al-Anon: ${step.principle}` : `Coastal path at first light — Step ${step.number} of Al-Anon: ${step.principle}`,
     eyebrow: tagline,
     title: `Step ${stepWord}`,
     size: 'lg',
@@ -513,20 +521,7 @@ ${toolItems}
     </article>
 ${dailyPracticeHtml}
 
-    <div class="wrap section--md" id="get-the-app">
-      <div class="panel-gradient">
-        ${ripple(520)}
-        <div class="app-panel-inner">
-          <div class="app-panel-text">
-            <h2 class="app-panel-heading">Deepen your work on Step ${step.number}.</h2>
-            <p class="app-panel-body">The journaling tools help you process Step ${step.number} in real time &mdash; track your insights and get a daily reminder.</p>
-          </div>
-          <div class="app-panel-actions">
-            ${storeBadges({ context: 'step' })}
-          </div>
-        </div>
-      </div>
-    </div>`;
+    ${terminalBand()}`;
 
   return wrapInLayout({
     title: `Step ${step.number}: ${step.principle} — Al-Anon 12 Steps | Al-Anon Daily Paths`,

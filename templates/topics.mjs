@@ -7,7 +7,7 @@ import {
   TOPICS, TOPIC_THEME_TAGS, TOPIC_PULL_QUOTES,
   TOPIC_INSIGHT_PROMPTS, TOPIC_FORM_QUESTIONS,
 } from '../helpers/theme-data.mjs';
-import { photoHero, detailRail, appPanel, readingCard } from './ui.mjs';
+import { photoHero, detailRail, readingCard , terminalBand } from './ui.mjs';
 import { LETTING_GO_ARTICLE } from './theme-guides/letting-go.mjs';
 
 // Re-export TOPICS so build.mjs can continue importing from this file
@@ -27,8 +27,8 @@ export function renderTopicsIndexPage() {
   const lettingGo = TOPICS.find(topic => topic.slug === 'letting-go');
   const bodyContent = `
 ${photoHero({
-    image: bp('/assets/themes/themes-hero.jpg'),
-    alt: 'Forest path through morning light — the topics of Al-Anon recovery',
+    image: bp('/assets/articles/topics-index-hero.jpg'),
+    alt: 'An open country road toward a spreading tree under clearing skies',
     title: 'Topics',
     subtitle: 'Original essays and daily reflections for the questions that follow us into recovery.',
     size: 'sm',
@@ -46,7 +46,7 @@ ${photoHero({
           <span class="theme-feature-line">${lettingGo.shortDescription}</span>
           <span class="theme-index-cta">Read the guide &rarr;</span>
         </div>
-        <img src="${bp(`/assets/themes/${lettingGo.image}`)}" alt="${lettingGo.imageAlt}" loading="lazy">
+        <img src="${bp(`/assets/${lettingGo.image}`)}" alt="${lettingGo.imageAlt}" loading="lazy">
       </a>
 
       <h2 class="section-title theme-index-all-title">Explore all topics</h2>
@@ -54,14 +54,7 @@ ${photoHero({
       </div>
     </section>
 
-    <div class="wrap section--md" id="get-the-app">
-      ${appPanel({
-        tone: 'seafoam',
-        heading: 'Carry these themes into your daily practice.',
-        text: 'Use the app&rsquo;s private journaling tools to reflect on what you read and notice how your understanding changes over time.',
-        context: 'themes',
-      })}
-    </div>`;
+    ${terminalBand()}`;
 
   return wrapInLayout({
     title: 'Recovery Topics — Essays & Daily Reflections | Daily Paths',
@@ -229,7 +222,7 @@ ${detailRail({
   })}
 
 ${photoHero({
-    image: bp(`/assets/themes/${article.hero.image}`),
+    image: bp(`/assets/${article.hero.image}`),
     alt: article.hero.alt,
     eyebrow: 'Recovery topic',
     title: article.title,
@@ -251,14 +244,7 @@ ${flow}
       ${article.sources.map(p => `<p>${p}</p>`).join('\n      ')}
     </section>
 
-    <div class="wrap section--md" id="get-the-app">
-      ${appPanel({
-        tone: 'seafoam',
-        heading: article.cta.heading,
-        text: article.cta.text,
-        context: 'theme',
-      })}
-    </div>`;
+    ${terminalBand()}`;
 
   return wrapInLayout({
     title: 'Letting Go in Al-Anon — Caring Without Carrying | Daily Paths',
@@ -382,8 +368,8 @@ ${detailRail({
   })}
 
 ${photoHero({
-    image: bp('/assets/themes/themes-hero.jpg'),
-    alt: `Forest path through morning light — ${topic.name} in Al-Anon recovery`,
+    image: bp(`/assets/${topic.image}`),
+    alt: topic.imageAlt,
     eyebrow: 'Topic',
     title: topic.name,
     subtitle: topic.shortDescription,
@@ -447,14 +433,7 @@ ${readingGroups}
       </div>
     </section>` : ''}
 
-    <div class="wrap section--md" id="get-the-app">
-      ${appPanel({
-        tone: 'seafoam',
-        heading: 'Apply this theme to your life, daily.',
-        text: `Use the app&rsquo;s journaling tools to process ${topic.name.toLowerCase()} in real time.`,
-        context: 'theme',
-      })}
-    </div>`;
+    ${terminalBand()}`;
 
   const structuredData = [
     topicStructuredData(topic),

@@ -1,6 +1,6 @@
 import { wrapInLayout } from './base.mjs';
 import { bp, BASE_URL } from '../helpers/config.mjs';
-import { photoHero, pill, appPanel, ripple } from './ui.mjs';
+import { photoHero, pill, ripple , terminalBand } from './ui.mjs';
 
 /**
  * Recovery Essentials.
@@ -223,14 +223,7 @@ ${readings.map(renderReadingCard).join('\n')}
       </div>
     </section>
 
-    <div class="wrap section--lg" id="get-the-app">
-      ${appPanel({
-        tone: 'seafoam',
-        heading: 'Keep these close, wherever you are.',
-        text: 'Every reading and prayer here lives in the app &mdash; and you can add your own beside them.',
-        context: 'essentials',
-      })}
-    </div>`;
+    ${terminalBand()}`;
 
   const allEntries = [...readings, ...prayers];
 

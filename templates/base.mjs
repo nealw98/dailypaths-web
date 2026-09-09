@@ -177,27 +177,16 @@ ${bodyContent}
         <p class="footer-tagline">Daily reflections for the Al-Anon journey.</p>
       </div>
       <div class="footer-col">
-        <p class="footer-col-title">Read</p>
-        <nav class="footer-links" aria-label="Readings">
-          <a href="${bp('/')}">Today&rsquo;s reflection</a>
-          <a href="${bp('/steps/')}">The Twelve Steps</a>
-          <a href="${bp('/topics/')}">Topics</a>
-          <a href="${bp('/essentials/')}">Essentials</a>
-        </nav>
-      </div>
-      <div class="footer-col">
-        <p class="footer-col-title">Al-Anon</p>
-        <nav class="footer-links" aria-label="About Al-Anon">
+        <p class="footer-col-title">About</p>
+        <nav class="footer-links" aria-label="About">
           <a href="${bp('/start/')}">Start here</a>
-          <a href="${bp('/about-alanon/')}">About Al-Anon</a>
           <a href="${bp('/about-project/')}">About the project</a>
-          <a href="https://al-anon.org" target="_blank" rel="noopener noreferrer">al-anon.org</a>
+          <a href="${bp('/support/')}">Support</a>
         </nav>
       </div>
       <div class="footer-col">
         <p class="footer-col-title">More</p>
         <nav class="footer-links" aria-label="More">
-          <a href="${bp('/support/')}">Support</a>
           <a href="${bp('/privacy/')}">Privacy</a>
           <a href="${bp('/terms/')}">Terms</a>
           <a href="${appHref}">Get the app</a>

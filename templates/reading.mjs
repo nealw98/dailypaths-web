@@ -5,9 +5,18 @@ import { readingStructuredData, breadcrumbStructuredData } from '../helpers/seo.
 import { bp } from '../helpers/config.mjs';
 import { THEME_TO_TOPIC, TOPICS, TOPIC_RELATED, DEFAULT_RELATED_TOPICS } from '../helpers/theme-data.mjs';
 import { STEPS } from './steps.mjs';
-import { photoHero, quoteBlock, pill, icon, appPanel } from './ui.mjs';
+import { photoHero, quoteBlock, pill, icon, terminalBand } from './ui.mjs';
 
 const NUMBER_WORDS = ['One', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine', 'Ten', 'Eleven', 'Twelve'];
+
+/**
+ * The one brand hero for every daily reflection (and the home page):
+ * a consistent landing image, chosen by the site owner.
+ */
+const READING_HERO = {
+  image: 'articles/daily_reflections.webp',
+  alt: 'A sunlit path through a green mountain valley',
+};
 
 const SMALL_COUNT_WORDS = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten',
   'eleven', 'twelve', 'thirteen', 'fourteen', 'fifteen', 'sixteen', 'seventeen', 'eighteen', 'nineteen'];
@@ -206,8 +215,8 @@ export function renderReadingPage(reading, prevReading, nextReading, allReadings
 
   const bodyContent = `
 ${photoHero({
-    image: bp('/assets/themes/al-anon-hero.jpg'),
-    alt: `Footbridge over a quiet stream — Al-Anon daily reflection for ${reading.display_date}`,
+    image: bp(`/assets/${READING_HERO.image}`),
+    alt: `${READING_HERO.alt} — Al-Anon daily reflection for ${reading.display_date}`,
     eyebrow: `<time datetime="${isoDate}">${heroEyebrow}</time>`,
     title: reading.title,
     size: 'md',
@@ -261,19 +270,11 @@ ${photoHero({
 ${keepReadingHtml}
 ${relatedTopicsHtml}
 
-    <div class="wrap wrap--article section--md" id="get-the-app">
-      ${appPanel({
-        tone: 'white',
-        showIcon: true,
-        heading: 'Serenity is a daily practice.<br>Let us walk the path with you.',
-        text: 'Download Al-Anon Daily Paths to get the day&rsquo;s reflection each morning and a private place to write.',
-        context: 'reading',
-      })}
-    </div>
-
     <div class="wrap wrap--article">
       <p class="fine-print">Curated by members of the Al-Anon community for Daily Growth, LLC. Grounded in the Twelve Steps and the contemplative tradition of Al-Anon.</p>
-    </div>`;
+    </div>
+
+    ${terminalBand()}`;
 
   return wrapInLayout({
     title: `${reading.title} – Al-Anon Daily Reflection for ${reading.display_date} | Daily Paths`,

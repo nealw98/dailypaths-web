@@ -52,7 +52,21 @@
   --accent: var(--dp-teal-600);
   --accent-strong: var(--dp-teal-800);
   --accent-deep: var(--dp-teal-900);
-  --accent-soft: var(--dp-teal-200);
+  --accent-soft: var(--dp-teal-200); /* app surfaces only — see --callout-* for web */
+
+  /* Callout tints (website) — see guidelines/inserts-system */
+  --dp-cream: #E8D8D0;
+  --dp-sage-100: #DCE5DF;
+  --dp-terracotta: #8F5546;
+  --callout-reflect: var(--dp-cream);
+  --callout-reflect-label: #6B4A3E;
+  --callout-utility: var(--dp-sage-100);
+
+  /* Illustration plate / terminal band / footer */
+  --graphic-field: var(--dp-teal-900);
+  --graphic-figure: var(--dp-sand-50);
+  --band-bg: var(--dp-teal-900);
+  --footer-bg: var(--surface); /* the page's normal ground */
 
   --border: var(--dp-green-500);
   --border-soft: var(--dp-green-400);
@@ -596,18 +610,21 @@ a.pill:hover {
 /* ───────────────────────────── Footer ───────────────────────────── */
 
 .site-footer {
-  background: var(--accent-strong);
-  color: rgba(255, 255, 255, .85);
+  background: var(--footer-bg);
+  color: var(--text-muted);
   margin-top: var(--rhythm);
 }
+
+/* The band docks directly onto the footer — no page surface between them. */
+body:has(.terminal-band) .site-footer { margin-top: 0; }
 
 .footer-inner {
   max-width: var(--page-max);
   margin: 0 auto;
-  padding: clamp(36px, 4.5vw, 56px) var(--gutter) 32px;
+  padding: clamp(18px, 2.4vw, 26px) var(--gutter) 16px;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-  gap: 32px;
+  grid-template-columns: 1.6fr 1fr 1fr;
+  gap: 14px 28px;
 }
 
 .footer-wordmark {
@@ -615,56 +632,56 @@ a.pill:hover {
   font-family: var(--font-display);
   font-style: italic;
   font-weight: 600;
-  font-size: 26px;
+  font-size: 22px;
   line-height: 1.15;
-  color: #fff;
+  color: var(--accent-strong);
 }
 
 .footer-tagline {
-  margin: 10px 0 0;
-  max-width: 36ch;
-  font-size: 15px;
-  line-height: 24px;
+  margin: 5px 0 0;
+  max-width: 32ch;
+  font-size: 13px;
+  line-height: 18px;
 }
 
 .footer-col-title {
-  margin: 0 0 12px;
+  margin: 0 0 5px;
   font-size: 12px;
   letter-spacing: .6px;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, .55);
+  color: var(--accent);
 }
 
 .footer-links {
   display: flex;
   flex-direction: column;
-  gap: 9px;
+  gap: 3px;
 }
 
 .footer-links a {
-  font-size: 15px;
-  color: rgba(255, 255, 255, .85);
+  font-size: 13.5px;
+  color: var(--text-muted);
 }
 
 .footer-links a:hover {
-  color: #fff;
+  color: var(--text-primary);
   text-decoration: underline;
 }
 
 .footer-bar {
-  border-top: 1px solid rgba(255, 255, 255, .15);
-  padding: 16px var(--gutter);
+  border-top: 1px solid var(--rule);
+  padding: 9px var(--gutter);
   display: flex;
   gap: 12px;
   flex-wrap: wrap;
   justify-content: space-between;
   font-size: 12.5px;
   letter-spacing: .3px;
-  color: rgba(255, 255, 255, .6);
+  color: var(--text-muted);
 }
 
 .footer-bar p { margin: 0; }
-.footer-bar strong { color: #fff; }
+.footer-bar strong { color: var(--text-primary); }
 
 /* ───────────────────────────── Photo hero ───────────────────────────── */
 
@@ -813,7 +830,7 @@ a.card-tinted:hover { background: var(--surface-card); }
 }
 
 .panel-seafoam {
-  background: var(--accent-soft);
+  background: var(--callout-reflect);
   border-radius: var(--radius-lg);
   padding: clamp(22px, 2.6vw, 32px);
 }
@@ -989,7 +1006,7 @@ a.card-tinted:hover { background: var(--surface-card); }
   box-shadow: var(--shadow-ambient);
 }
 
-.app-panel--seafoam { background: var(--accent-soft); }
+.app-panel--seafoam { background: var(--callout-utility); }
 
 .app-panel--gradient {
   background: var(--hero-gradient);
@@ -1185,7 +1202,7 @@ a.card-tinted:hover { background: var(--surface-card); }
   font-size: 12px;
   letter-spacing: .6px;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, .55);
+  color: var(--accent);
 }
 
 .glass-panel-verse {
@@ -1501,7 +1518,7 @@ a.card-tinted:hover { background: var(--surface-card); }
   margin-top: clamp(40px, 6vw, 60px);
   padding: clamp(22px, 3.4vw, 30px) clamp(22px, 4vw, 34px);
   border-radius: var(--radius-lg);
-  background: var(--accent-soft);
+  background: var(--callout-utility);
   transition: box-shadow var(--dur) var(--ease);
 }
 
@@ -2063,7 +2080,7 @@ a.card-tinted:hover { background: var(--surface-card); }
   margin: clamp(40px, 6vw, 60px) 0;
   padding: clamp(28px, 4vw, 40px);
   border-radius: 16px;
-  background: #BAECE6;
+  background: var(--callout-utility);
   font-size: clamp(17px, 1.5vw, 18.5px);
 }
 
@@ -2375,7 +2392,7 @@ a.card-tinted:hover { background: var(--surface-card); }
   font-size: 12px;
   letter-spacing: .6px;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, .55);
+  color: var(--accent);
 }
 
 .prayer-card-body {
@@ -3068,7 +3085,7 @@ a.card-tinted:hover { background: var(--surface-card); }
 .book-app-card,
 .ap-nav-cta {
   margin-top: clamp(28px, 3.4vw, 44px);
-  background: var(--accent-soft);
+  background: var(--callout-utility);
   border-radius: var(--radius-lg);
   padding: clamp(24px, 3vw, 40px);
 }
@@ -3202,7 +3219,7 @@ a.card-tinted:hover { background: var(--surface-card); }
 .ma-engine-cta,
 .aa-app-cta {
   margin-top: clamp(32px, 4vw, 56px);
-  background: var(--accent-soft);
+  background: var(--callout-utility);
   border-radius: var(--radius-lg);
   padding: clamp(24px, 3vw, 40px);
 }
@@ -3671,4 +3688,109 @@ a.card-tinted:hover { background: var(--surface-card); }
     transform: translateY(0);
   }
   .cal-cell { font-size: 13px; }
+}
+
+
+/* Cream reflect panels — the reading voice raised; labels in the cream brown */
+.panel-seafoam .eyebrow,
+.panel-seafoam .reminder-label,
+.reminder-label { color: var(--callout-reflect-label); }
+
+/* Tier 0 — inline links: quiet rule at 42%, full on hover */
+.prose-lora a { text-decoration-color: rgba(55, 102, 98, .42); }
+.prose-lora a:hover { text-decoration-color: currentColor; }
+.gloss {
+  text-decoration: underline dotted;
+  text-decoration-color: var(--accent);
+  text-underline-offset: 3px;
+}
+
+/* × Alert — terracotta rule only, physical safety only */
+.alert-safety {
+  margin: 26px 0;
+  padding: 2px 0 2px 18px;
+  border-left: 3px solid var(--dp-terracotta);
+}
+.alert-safety > b { font-family: var(--font-body); font-weight: 700; }
+.alert-safety p { margin: 6px 0 0; font-family: var(--font-reading); line-height: 1.6; }
+
+/* Tier 4 terminal band — deep green, full-bleed, square; shows the app
+   (screen cropped below its green header) with store badges. Docks directly
+   onto the light footer — value contrast does the separating. */
+.terminal-band {
+  margin-top: var(--rhythm);
+  background: var(--band-bg);
+  overflow: hidden;
+}
+.terminal-band-inner {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  gap: 28px clamp(32px, 5vw, 64px);
+  max-width: var(--page-max);
+  margin: 0 auto;
+  padding: clamp(36px, 5vw, 56px) var(--gutter);
+}
+.terminal-band-copy { flex: 1 1 380px; }
+.terminal-band-eyebrow {
+  margin: 0 0 10px;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 13px;
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+  color: var(--accent-soft);
+}
+.terminal-band-heading {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(26px, 3vw, 36px);
+  letter-spacing: -.3px;
+  color: #FFFFFF;
+}
+.terminal-band-text {
+  margin: 8px 0 22px;
+  max-width: 52ch;
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.65;
+  color: var(--accent-soft);
+}
+/* The device is a 6.9" iPhone at true display proportions (1320x2868),
+   sized off the copy column beside it (~1.5x its height) — never off the
+   image, so the band's own padding sets the band height. Screenshots are
+   rendered exactly as uploaded: scaled to the screen width, nothing cropped
+   or recomposed here. --screen-offset can nudge one up if ever needed. */
+.terminal-band-device {
+  flex: 0 0 auto;
+  width: min(144px, 40vw);
+  padding: 5px;
+  border-radius: 26px;
+  background: #000;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, .3);
+}
+.terminal-band-screen {
+  aspect-ratio: 1320 / 2868;
+  overflow: hidden;
+  border-radius: 21px;
+  /* The app's own page colour, so a capture shorter than the 6.9" screen
+     continues seamlessly instead of showing a seam. */
+  background: #F3F1EB;
+}
+.terminal-band-screen img {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin-top: var(--screen-offset, 0);
+}
+
+@media (max-width: 720px) {
+  .terminal-band-device { margin-inline: auto; }
+}
+
+@media (max-width: 640px) {
+  .footer-inner { grid-template-columns: 1fr 1fr; }
+  .footer-brand { grid-column: 1 / -1; }
 }

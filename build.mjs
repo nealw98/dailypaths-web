@@ -463,6 +463,18 @@ if (existsSync(join(localAssetsDir, 'hero-image.jpg'))) {
   cpSync(join(localAssetsDir, 'hero-image.jpg'), join(outDir, 'assets', 'hero-image.jpg'));
 }
 
+// Article hero images
+const articlesAssetsDir = join(localAssetsDir, 'articles');
+if (existsSync(articlesAssetsDir)) {
+  cpSync(articlesAssetsDir, join(outDir, 'assets', 'articles'), { recursive: true });
+}
+
+// App screenshots — shipped as uploaded; the band renders them unaltered
+const screenshotsAssetsDir = join(localAssetsDir, 'Screenshots');
+if (existsSync(screenshotsAssetsDir)) {
+  cpSync(screenshotsAssetsDir, join(outDir, 'assets', 'Screenshots'), { recursive: true });
+}
+
 // Theme images
 const themesAssetsDir = join(localAssetsDir, 'themes');
 if (existsSync(themesAssetsDir)) {

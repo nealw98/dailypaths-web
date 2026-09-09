@@ -212,6 +212,41 @@ export function appPanel({ tone = 'seafoam', heading, text, showIcon = false, co
 }
 
 /**
+ * Tier 4 terminal band — the site's single standing conversion (the app).
+ * Shows the product: a real app screen cropped below the app's green header,
+ * store badges (never a generic button), fixed eyebrow/field/layout. The
+ * screen and the two lines beside it may vary by page; everything else is a
+ * fixture. Docks directly onto the light footer — no gap; value contrast
+ * separates them (guidelines/inserts-system).
+ */
+export function terminalBand({
+  heading = 'Carry today&rsquo;s reading with you.',
+  text = 'The reflection, your notes, and your own inventory in one private place. Nothing you write is shared.',
+  screen = 'Screenshots/today.png',
+  screenAlt = 'The Daily Paths app showing today&rsquo;s reflection and the daily tools',
+  screenOffset = '0',
+} = {}) {
+  // Blank 9:16 device until the real captures land. Pass `screen` (plus a
+  // `screenOffset` tuned to that capture's header height) to show one.
+  const device = `<div class="terminal-band-device" aria-hidden="${screen ? 'false' : 'true'}">
+            <div class="terminal-band-screen"${screen ? ` style="--screen-offset: ${screenOffset}"` : ''}>${screen
+              ? `<img src="${bp(`/assets/${screen}`)}" alt="${screenAlt}" loading="lazy">`
+              : ''}</div>
+          </div>`;
+  return `<section class="terminal-band" id="get-the-app">
+        <div class="terminal-band-inner">
+          ${device}
+          <div class="terminal-band-copy">
+            <p class="terminal-band-eyebrow">The app</p>
+            <h2 class="terminal-band-heading">${heading}</h2>
+            <p class="terminal-band-text">${text}</p>
+            ${storeBadges({ context: 'band' })}
+          </div>
+        </div>
+      </section>`;
+}
+
+/**
  * Full-bleed teal band with the ripple motif and a two-column body.
  *
  * @param {Object} options
