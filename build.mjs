@@ -409,6 +409,7 @@ if (!existsSync(cssSource)) {
 }
 cpSync(cssSource, join(outDir, 'css', 'style.css'));
 cpSync(join(ROOT, 'css', 'soft-daylight.css'), join(outDir, 'css', 'soft-daylight.css'));
+cpSync(join(ROOT, 'css', 'editorial-home.css'), join(outDir, 'css', 'editorial-home.css'));
 
 // JS
 cpSync(join(__dirname, 'js', 'main.js'), join(outDir, 'js', 'main.js'));

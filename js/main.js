@@ -19,7 +19,7 @@
       document.querySelectorAll('[data-today-cta], [data-today-link]').forEach(function (link) { link.href = '/' + reading.slug + '/'; });
       setText('[data-today-title]', reading.title);
       setText('[data-today-date]', reading.date);
-      if (reading.excerpt) setText('[data-today-excerpt]', reading.excerpt.replace(/\s+\S*$/, '') + '…');
+      if (reading.excerpt) setText('[data-today-excerpt]', reading.excerpt.length > 155 ? reading.excerpt.slice(0, 155).replace(/\s+\S*$/, '') + '…' : reading.excerpt);
     }).catch(function () { /* Build-time content remains usable offline. */ });
   }
 

@@ -170,3 +170,8 @@ a:focus-visible,button:focus-visible,input:focus-visible {outline:3px solid #657
   .sd-months{gap:0 22px;}.sd-months a{font-size:23px;gap:10px;}.sd-months .sd-kicker{font-size:9px;}
   .photo-hero{min-height:300px;}.rd-article{padding-top:35px;}.prose-lora{font-size:17px;}
 }
+
+/* Shared masthead identity from the approved editorial homepage. */
+.brand-name,.footer-wordmark{font-family:var(--font-body);font-style:normal;font-weight:800;letter-spacing:-1.2px}
+.brand-name{font-size:30px}
+.brand-sub{font-family:Georgia,serif;letter-spacing:0;text-transform:none}

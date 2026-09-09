@@ -6,7 +6,8 @@ This is the active website work, continuing the existing `2.0` branch. The publi
 
 - Warm white, restrained olive, daylight photography, confident editorial typography.
 - Full-bleed daily reflection hero. People and recognizable everyday moments are appropriate.
-- Two featured articles on the homepage. Quieter upright headings and generous spacing through the middle of the page.
+- The supplied full-page mockup is the visual specification, not loose inspiration. Homepage: bold sans-serif masthead over the full-bleed window photograph, expressive italic serif hero, portrait article images beside text, three guides in a compact horizontal row, shallow photographic app invitation, centered compact email signup, and a small publication footer. All six guides remain on the guide index.
+- The homepage has its own `editorial-home.css` and does not load the legacy version-c / soft-daylight stylesheets. Do not revert it to stacked cards, a separate header band, numbered guide lists, or a tall app section. Preserve the compositional reference in `design/approved-homepage-reference.webp`.
 - Six guides: Where to Start, Detachment, Boundaries, Finding Support, One Day at a Time, Finding Yourself.
 - Letting Go remains a prominent article, linked from the homepage, articles index, and guides index.
 - Photographic app invitation with the actual supplied app screenshot, not a simulated screen.
@@ -55,4 +56,4 @@ The 42 app photos in `assets/reflections/` now rotate across full reflection pag
 
 ## Asset provenance
 
-`soft-daylight-window.webp` and `soft-daylight-journal.webp` are generated photographic assets prepared for this design. `Screenshots/today-actual.png` is Neal's supplied app screenshot from September 9, 2026. Other assets were already committed to `2.0` and remain available.
+`editorial-window.webp`, `editorial-doorway.webp`, and `editorial-phone.webp` reconstruct the photography direction in the supplied reference; `soft-daylight-journal.webp` supports the photographic app invitation. These are generated assets. The earlier window photo is retained as an unused asset. `Screenshots/today-actual.png` is Neal's supplied app screenshot from September 9, 2026. Other assets were already committed to `2.0` and remain available.

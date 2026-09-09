@@ -6,10 +6,9 @@ import { icon } from './ui.mjs';
  */
 function navItems() {
   return [
-    { id: 'reflection', label: 'Daily Reflections', href: bp('/reflections/') },
+    { id: 'reflection', label: 'Reflections', href: bp('/reflections/') },
     { id: 'articles', label: 'Articles', href: bp('/articles/') },
     { id: 'guides', label: 'Guides', href: bp('/guides/') },
-    { id: 'start', label: 'Start Here', href: bp('/start/') },
   ];
 }
 
@@ -42,6 +41,7 @@ export function wrapInLayout({
   navSection = '',
   hasAppPanel = false,
 }) {
+  const isHome = bodyClass === 'page-home';
   const canonicalUrl = BASE_URL + canonicalPath;
   const ogImageUrl = ogImage ? BASE_URL + ogImage : `${BASE_URL}/assets/og-image.png`;
   const twitterCard = ogImage ? 'summary_large_image' : 'summary';
@@ -94,13 +94,11 @@ export function wrapInLayout({
   <!-- Fonts — Cormorant Garamond (display), Manrope (UI), Lora (reading) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Manrope:wght@400;500;600;700&family=Lora:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Manrope:wght@400;500;600;700&family=Lora:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
 
   <!-- Styles -->
   <meta name="site-mode" content="${IS_PREVIEW ? 'preview' : 'production'}">
-  <link rel="stylesheet" href="${bp('/css/style.css')}?v=${Date.now()}">
-
-  <link rel="stylesheet" href="${bp('/css/soft-daylight.css')}">
+  ${isHome ? `<link rel="stylesheet" href="${bp('/css/editorial-home.css')}">` : `<link rel="stylesheet" href="${bp('/css/style.css')}?v=${Date.now()}"><link rel="stylesheet" href="${bp('/css/soft-daylight.css')}">`}
 
   ${structuredData ? (Array.isArray(structuredData) ? structuredData : [structuredData]).map(json => `<!-- Structured Data -->
   <script type="application/ld+json">
@@ -145,8 +143,8 @@ ${json}
     <div class="header-inner">
       <a href="${bp('/')}" class="brand">
         <span class="brand-text">
-          <span class="brand-name">Daily Paths<span class="brand-period">.</span></span>
-          <span class="brand-sub">A little space for yourself</span>
+          <span class="brand-name">Daily Paths</span>
+          <span class="brand-sub">For people affected by someone else’s drinking.</span>
         </span>
       </a>
       <span class="header-divider" aria-hidden="true"></span>
@@ -171,7 +169,7 @@ ${mobileNav}
 ${bodyContent}
   </main>
 
-  <footer class="site-footer">
+  ${isHome ? `<footer class="ed-footer ed-wrap"><a class="ed-footer-brand" href="${bp('/')}"><strong>Daily Paths</strong><span>For people affected by someone else’s drinking.</span></a><nav aria-label="Footer"><a href="${bp('/about-project/')}">About</a><a href="${bp('/start/')}">Start here</a><a href="${bp('/essentials/')}">Resources</a><a href="${bp('/privacy/')}">Privacy</a><a href="${bp('/terms/')}">Terms</a></nav></footer>` : `  <footer class="site-footer">
     <div class="footer-inner">
       <div class="footer-brand">
         <p class="footer-wordmark">Daily Paths.</p>
@@ -202,6 +200,7 @@ ${bodyContent}
       <p>In crisis? Help is available 24/7. Call or text <strong>988</strong> (USA).</p>
     </div>
   </footer>
+`}
 
   <script src="${bp('/js/main.js')}" defer></script>
 ${bodyClass === 'page-reading' ? `  <script src="${bp('/js/calendar.js')}" defer></script>` : ''}
