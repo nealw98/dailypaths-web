@@ -10,10 +10,16 @@ Cormorant Garamond italic for devotional display/prayers and the wordmark, and M
 for the interface. Sizes remain provisional until representative page reviews finish.
 Review order: daily reflection, guide, article, homepage, then indexes/supporting pages.
 
-Only `/typography-review/reflection/` uses the new system. It renders the complete
+The reflection typography and sizes were approved by Neal on September 10, 2026.
+The guide is next: `/typography-review/guide/` uses the existing Start Here content
+with the proposed full guide title, upright Newsreader, section headings, and shared
+reading/interface roles. This is typography review, not approval of the launch copy.
+Both review pages include direct links to each other to avoid confusion with normal routes.
+
+`/typography-review/reflection/` renders the complete
 September 9 reflection with its original text, imagery, calendar, reminder, related
 reading and app invitation. Normal routes retain the last published design. The review
-route exists only in private builds, is not indexed, and is absent from the sitemap.
+routes exist only in private builds, are not indexed, and are absent from the sitemap.
 The fonts are served locally with their licenses to avoid dependence on Google font
 loading. Shared role tokens are in `css/tokens/typography.css`; assignments are in
 `css/typography.css`. No page-specific replacement type scales are introduced.

@@ -133,3 +133,8 @@ h3,h4,h5,h6,.type-chapter-h2 { font:var(--chapter-h2); letter-spacing:var(--chap
 .ed-app h2 em,.sd-app-copy h2 em { font-family:inherit; font-weight:500; }
 /* Color changes for the lede are scoped to dark surfaces above, not separate type roles. */
 @media(max-width:780px) { .header-inner { gap:16px; } .site-nav { gap:18px; } }
+.typography-review-nav { display:flex; flex-wrap:wrap; gap:12px 24px; align-items:center; padding:12px var(--gutter); border-bottom:1px solid var(--rule); font:var(--small); }
+.typography-review-nav a { font:var(--nav); text-decoration:underline; text-underline-offset:4px; }
+.typography-review-nav [aria-current="page"] { color:var(--accent-strong); text-decoration-thickness:2px; }
+.content-guide .start-hero-inner { max-width:var(--reading-measure); }
+.content-guide .start-hero-lede { max-width:58ch; }

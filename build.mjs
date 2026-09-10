@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-import { layoutWithoutTypography, TYPOGRAPHY_REVIEW_DAY, TYPOGRAPHY_REVIEW_PATH } from './helpers/typography-review.mjs';
+import { layoutWithoutTypography, TYPOGRAPHY_REVIEW_DAY, TYPOGRAPHY_REVIEW_PATH, GUIDE_REVIEW_PATH } from './helpers/typography-review.mjs';
 
 /**
  * Daily Paths Static Site Generator
@@ -224,6 +224,9 @@ if (IS_PREVIEW) {
     readings[i], readings[(i - 1 + readings.length) % readings.length],
     readings[(i + 1) % readings.length], readings, ratingsMap, { typographyPreview: true }
   ));
+  const guideReviewDir = join(outDir, GUIDE_REVIEW_PATH.slice(1));
+  mkdirSync(guideReviewDir, { recursive: true });
+  writePage(join(guideReviewDir, 'index.html'), renderStartPage(readings, { typographyPreview: true }));
 }
 
 // Principles index + individual principle pages

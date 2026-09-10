@@ -1,5 +1,6 @@
 import { bp, BASE_URL, IS_PREVIEW } from '../helpers/config.mjs';
 import { icon } from './ui.mjs';
+import { TYPOGRAPHY_REVIEW_PATH, GUIDE_REVIEW_PATH } from '../helpers/typography-review.mjs';
 
 /**
  * Compact editorial navigation; reflection pages retain their dated URLs.
@@ -174,6 +175,7 @@ ${mobileNav}
     </div>
   </header>
 
+  ${typographyPreview ? `<nav class="typography-review-nav" aria-label="Typography review pages"><span>Typography review</span><a href="${bp(TYPOGRAPHY_REVIEW_PATH)}"${canonicalPath === TYPOGRAPHY_REVIEW_PATH ? ' aria-current="page"' : ''}>Reflection</a><a href="${bp(GUIDE_REVIEW_PATH)}"${canonicalPath === GUIDE_REVIEW_PATH ? ' aria-current="page"' : ''}>Guide</a></nav>` : ''}
   <main id="main">
 ${bodyContent}
   </main>

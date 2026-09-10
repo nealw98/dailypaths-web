@@ -1,6 +1,7 @@
 import { wrapInLayout } from './base.mjs';
 import { bp } from '../helpers/config.mjs';
 import { readingSlug } from '../helpers/slug-utils.mjs';
+import { GUIDE_REVIEW_PATH } from '../helpers/typography-review.mjs';
 import { icon, ripple, MEETING_DIRECTORY_URL , terminalBand } from './ui.mjs';
 
 /**
@@ -71,7 +72,7 @@ const FIRST_READINGS = [
  * @param {Array} readings - All 366 readings, used to resolve the three
  *   newcomer readings to real URLs.
  */
-export function renderStartPage(readings = []) {
+export function renderStartPage(readings = [], { typographyPreview = false } = {}) {
   const byTitle = new Map();
   const byDay = new Map();
   for (const r of readings) {
@@ -114,9 +115,9 @@ export function renderStartPage(readings = []) {
     <section class="start-hero">
       ${ripple(620)}
       <div class="start-hero-inner">
-        <p class="eyebrow eyebrow--on-dark">New here</p>
-        <h1 class="start-hero-title">Start here</h1>
-        <p class="start-hero-lede">If someone else&rsquo;s drinking is affecting your life, you don&rsquo;t have to have it figured out to begin. Five minutes, four small things, no sign-up.</p>
+        <p class="eyebrow eyebrow--on-dark">${typographyPreview ? 'Where to start · A Daily Paths guide' : 'New here'}</p>
+        <h1 class="start-hero-title">${typographyPreview ? 'Where to Start When Someone Else’s Drinking Affects You' : 'Start here'}</h1>
+        <p class="start-hero-lede${typographyPreview ? ' type-lede' : ''}">If someone else&rsquo;s drinking is affecting your life, you don&rsquo;t have to have it figured out to begin. Five minutes, four small things, no sign-up.</p>
       </div>
     </section>
 
@@ -184,11 +185,14 @@ export function renderStartPage(readings = []) {
     </div>`;
 
   return wrapInLayout({
-    title: 'Start Here — Is Al-Anon For You? | Al-Anon Daily Paths',
+    title: typographyPreview ? 'Where to Start — Guide Typography Review | Daily Paths' : 'Start Here — Is Al-Anon For You? | Al-Anon Daily Paths',
     description: 'New to Al-Anon? Find out in five minutes whether it applies to you. A short self-check, what a meeting is actually like, three readings to start with, and how to find a meeting. No sign-up.',
-    canonicalPath: '/start/',
+    canonicalPath: typographyPreview ? GUIDE_REVIEW_PATH : '/start/',
     bodyContent,
-    bodyClass: 'page-start',
+    bodyClass: typographyPreview ? 'page-start content-guide' : 'page-start',
+    typographyPreview,
+    noindex: typographyPreview,
+    navSection: typographyPreview ? 'guides' : '',
     hasAppPanel: true,
   });
 }
