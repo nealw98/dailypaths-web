@@ -83,6 +83,12 @@ Use the Sites project in `.openai/hosting.json`; do not create another site. Git
 
 The 42 app photos in `assets/reflections/` now rotate across full reflection pages by calendar day, cycling in numeric filename order. This is a simple daily rotation, not a match between photographs and subjects. The homepage keeps its consistent Soft Daylight window photograph. The choice is stable when revisiting a dated reading and works with the existing 366-day calendar. Matching images to individual reflections is explicitly deferred.
 
+September 10, “The Lie of Habitual Apologies,” is the single approved trial for a
+bespoke reflection image and Soft Daylight hero treatment. It uses a purpose-built
+entryway photograph with calm space for dark type on desktop and a stacked image/title
+treatment on narrow screens. Do not apply it to other readings until the trial is
+reviewed.
+
 ## Asset provenance
 
 `editorial-window.webp`, `editorial-doorway.webp`, and `editorial-phone.webp` reconstruct the photography direction in the supplied reference; `soft-daylight-journal.webp` supports the photographic app invitation. These are generated assets. The earlier window photo is retained as an unused asset. `Screenshots/today-actual.png` is Neal's supplied app screenshot from September 9, 2026. Other assets were already committed to `2.0` and remain available.

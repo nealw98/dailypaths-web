@@ -61,6 +61,7 @@ function readingTeaser(reading) {
  */
 export function renderReadingPage(reading, prevReading, nextReading, allReadings = [], ratingsMap = new Map(), { typographyPreview = false } = {}) {
   const slug = readingSlug(reading.day_of_year, reading.title);
+  const isSoftDaylightTrial = reading.day_of_year === 253 && !typographyPreview;
   const isoDate = dayToIsoDate(reading.day_of_year);
   const monthIdx = dayToMonthIndex(reading.day_of_year);
   let dayOfMonth = reading.day_of_year;
@@ -208,12 +209,15 @@ export function renderReadingPage(reading, prevReading, nextReading, allReadings
 
   const bodyContent = `
 ${photoHero({
-    image: bp(`/assets/${reflectionImage(reading.day_of_year)}`),
+    image: bp(isSoftDaylightTrial
+      ? '/assets/reflections/september-10-habitual-apologies-soft-daylight.webp'
+      : `/assets/${reflectionImage(reading.day_of_year)}`),
     alt: '',
     eyebrow: `<time datetime="${isoDate}">${heroEyebrow}</time>`,
     title: reading.title,
     size: 'md',
     titleClass: 'photo-hero-title--reading',
+    heroClass: isSoftDaylightTrial ? 'photo-hero--soft-daylight' : '',
   })}
 
     <article class="rd-article">

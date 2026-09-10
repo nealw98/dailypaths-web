@@ -136,9 +136,10 @@ export function storeBadges({ context = '' } = {}) {
  * @param {string} [options.subtitle] - Lora sub-line
  * @param {string} [options.size] - "sm" | "md" | "lg" — controls min-height
  * @param {string} [options.titleClass] - Extra class for measure/weight tweaks
+ * @param {string} [options.heroClass] - Optional variant class on the hero
  */
-export function photoHero({ image, alt, eyebrow, title, subtitle, size = 'md', titleClass = '' }) {
-  return `<header class="photo-hero photo-hero--${size}">
+export function photoHero({ image, alt, eyebrow, title, subtitle, size = 'md', titleClass = '', heroClass = '' }) {
+  return `<header class="photo-hero photo-hero--${size}${heroClass ? ` ${heroClass}` : ''}">
         <img class="photo-hero-img" src="${image}" alt="${alt}" />
         <div class="photo-hero-scrim"></div>
         <div class="photo-hero-inner">

@@ -368,6 +368,37 @@ h3,
 .photo-hero-title { margin-top: var(--space-2); max-width: 18ch; }
 .photo-hero-sub { max-width: 42ch; margin-top: var(--space-3); color: rgba(255,255,255,.9); }
 
+/* September 10 trial: the homepage's Soft Daylight grammar on a reading. */
+.page-reading .photo-hero--soft-daylight {
+  min-height: clamp(520px, 48vw, 640px);
+  align-items: center;
+  background: #f4f1e9;
+  isolation: isolate;
+}
+
+.photo-hero--soft-daylight .photo-hero-img { object-position: center center; }
+.photo-hero--soft-daylight .photo-hero-scrim {
+  background:
+    linear-gradient(90deg,
+      rgba(250,249,245,.99) 0%,
+      rgba(250,249,245,.95) 30%,
+      rgba(250,249,245,.78) 43%,
+      rgba(250,249,245,.28) 56%,
+      rgba(250,249,245,0) 70%),
+    linear-gradient(180deg, rgba(35,49,45,.04), transparent 45%, rgba(35,49,45,.08));
+}
+.photo-hero--soft-daylight .photo-hero-inner {
+  width: min(calc(100% - (2 * var(--gutter-system))), var(--content-wide));
+  padding: var(--space-7) 0;
+}
+.photo-hero--soft-daylight .eyebrow,
+.photo-hero--soft-daylight .photo-hero-title { color: var(--text-primary, #34382e) !important; }
+.photo-hero--soft-daylight .eyebrow { letter-spacing: 1.25px; }
+.page-reading .photo-hero--soft-daylight .photo-hero-title {
+  max-width: 9.5ch;
+  text-shadow: none;
+}
+
 .start-hero-inner { max-width: var(--content-reading); padding-top: var(--space-7); padding-bottom: var(--space-7); }
 .start-hero-title { margin-top: var(--space-2); }
 .start-hero-lede { max-width: 52ch; margin-top: var(--space-4); color: rgba(255,255,255,.9); }
@@ -447,6 +478,29 @@ h3,
   .sd-app { min-height: 560px; }
   .sd-app-inner { min-height: 560px; }
   .footer-inner { grid-template-columns: 1fr; gap: var(--space-4); }
+}
+
+@media (max-width: 760px) {
+  .page-reading .photo-hero--soft-daylight {
+    min-height: 610px;
+    display: block;
+    background: var(--surface, #faf9f5);
+  }
+  .photo-hero--soft-daylight .photo-hero-img {
+    inset: 0 0 auto;
+    height: 315px;
+    object-position: 64% center;
+  }
+  .photo-hero--soft-daylight .photo-hero-scrim {
+    inset: 0 0 auto;
+    height: 315px;
+    background: linear-gradient(180deg, rgba(35,49,45,.02), rgba(250,249,245,.08) 72%, var(--surface, #faf9f5));
+  }
+  .photo-hero--soft-daylight .photo-hero-inner {
+    width: auto;
+    padding: 345px var(--gutter-system) var(--space-6);
+  }
+  .page-reading .photo-hero--soft-daylight .photo-hero-title { max-width: 11ch; }
 }
 
 @media (prefers-reduced-motion: reduce) {
