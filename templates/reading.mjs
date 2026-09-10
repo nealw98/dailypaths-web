@@ -61,7 +61,7 @@ function readingTeaser(reading) {
  */
 export function renderReadingPage(reading, prevReading, nextReading, allReadings = [], ratingsMap = new Map(), { typographyPreview = false } = {}) {
   const slug = readingSlug(reading.day_of_year, reading.title);
-  const isSoftDaylightTrial = reading.day_of_year === 253 && !typographyPreview;
+  const isSoftDaylightTrial = slug === 'september-10-the-lie-of-habitual-apologies' && !typographyPreview;
   const isoDate = dayToIsoDate(reading.day_of_year);
   const monthIdx = dayToMonthIndex(reading.day_of_year);
   let dayOfMonth = reading.day_of_year;

@@ -482,25 +482,33 @@ h3,
 
 @media (max-width: 760px) {
   .page-reading .photo-hero--soft-daylight {
-    min-height: 610px;
+    --trial-image-height: clamp(280px, 78vw, 330px);
+    min-height: 0;
     display: block;
+    padding-top: var(--trial-image-height);
     background: var(--surface, #faf9f5);
   }
   .photo-hero--soft-daylight .photo-hero-img {
     inset: 0 0 auto;
-    height: 315px;
+    height: var(--trial-image-height);
     object-position: 64% center;
   }
   .photo-hero--soft-daylight .photo-hero-scrim {
     inset: 0 0 auto;
-    height: 315px;
+    height: var(--trial-image-height);
     background: linear-gradient(180deg, rgba(35,49,45,.02), rgba(250,249,245,.08) 72%, var(--surface, #faf9f5));
   }
   .photo-hero--soft-daylight .photo-hero-inner {
     width: auto;
-    padding: 345px var(--gutter-system) var(--space-6);
+    padding: var(--space-4) var(--gutter-system) 20px;
   }
-  .page-reading .photo-hero--soft-daylight .photo-hero-title { max-width: 11ch; }
+  .page-reading .photo-hero--soft-daylight .photo-hero-title {
+    max-width: 10.5ch;
+    margin-top: var(--space-1);
+    font-size: clamp(40px, 10.2vw, 44px);
+    line-height: 1.04;
+  }
+  .photo-hero--soft-daylight + .rd-article { padding-top: var(--space-3); }
 }
 
 @media (prefers-reduced-motion: reduce) {
