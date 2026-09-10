@@ -7,8 +7,9 @@ import {
   TOPICS, TOPIC_THEME_TAGS, TOPIC_PULL_QUOTES,
   TOPIC_INSIGHT_PROMPTS, TOPIC_FORM_QUESTIONS,
 } from '../helpers/theme-data.mjs';
-import { photoHero, detailRail, readingCard , terminalBand } from './ui.mjs';
+import { photoHero, readingCard, terminalBand } from './ui.mjs';
 import { LETTING_GO_ARTICLE } from './theme-guides/letting-go.mjs';
+import { GUIDES } from '../helpers/content-catalog.mjs';
 
 // Re-export TOPICS so build.mjs can continue importing from this file
 export { TOPICS };
@@ -174,7 +175,16 @@ const INSERT_RENDERERS = {
  * equally weighted boxes: prose sections with authored headings, one
  * extracted pull quote, and four live-text inserts placed by the storyboard.
  */
-function renderLettingGoArticle(article, topic, allReadings, prevTopic, nextTopic) {
+function collectionRail({ href, label, title }) {
+  return `<nav class="collection-rail" aria-label="Breadcrumb">
+    <div class="collection-rail-inner">
+      <a href="${bp(href)}">&larr; Back to ${label}</a>
+      <span aria-current="page">${title}</span>
+    </div>
+  </nav>`;
+}
+
+function renderLettingGoArticle(article, topic, allReadings) {
   const resolve = html => resolveGuideLinks(html, allReadings);
 
   const flow = article.sections.map(section => {
@@ -212,14 +222,7 @@ function renderLettingGoArticle(article, topic, allReadings, prevTopic, nextTopi
   })).join('\n');
 
   const bodyContent = `
-${detailRail({
-    prevHref: bp(`/topics/${prevTopic.slug}/`),
-    prevLabel: prevTopic.name,
-    allHref: bp('/topics/'),
-    allLabel: 'All topics',
-    nextHref: bp(`/topics/${nextTopic.slug}/`),
-    nextLabel: nextTopic.name,
-  })}
+${collectionRail({ href: '/articles/', label: 'Articles', title: 'Letting Go' })}
 
 ${photoHero({
     image: bp(`/assets/${article.hero.image}`),
@@ -254,7 +257,7 @@ ${flow}
     bodyClass: 'page-topic-detail page-letting-go',
     structuredData: [topicStructuredData(topic), topicBreadcrumbStructuredData(topic)],
     ogType: 'article',
-    navSection: 'topics',
+    navSection: 'articles',
     hasAppPanel: true,
   });
 }
@@ -272,12 +275,8 @@ ${flow}
  * @param {Array} [topicShares] - Approved member shares
  */
 export function renderTopicPage(topic, featuredReadings, allReadings = [], topicShares = []) {
-  const idx = TOPICS.indexOf(topic);
-  const prevTopic = TOPICS[(idx - 1 + TOPICS.length) % TOPICS.length];
-  const nextTopic = TOPICS[(idx + 1) % TOPICS.length];
-
   if (topic.slug === 'letting-go') {
-    return renderLettingGoArticle(LETTING_GO_ARTICLE, topic, allReadings, prevTopic, nextTopic);
+    return renderLettingGoArticle(LETTING_GO_ARTICLE, topic, allReadings);
   }
 
   const pullQuote = TOPIC_PULL_QUOTES[topic.slug] || '';
@@ -357,20 +356,19 @@ ${cards}
             <span class="featured-card-title">${r.title}</span>
           </a>`).join('');
 
+  const topicPath = `/topics/${topic.slug}/`;
+  const isGuide = GUIDES.some(guide => guide.path === topicPath);
+  const collection = isGuide
+    ? { href: '/guides/', label: 'Guides', eyebrow: 'Guide' }
+    : { href: '/articles/', label: 'Articles', eyebrow: 'Article' };
+
   const bodyContent = `
-${detailRail({
-    prevHref: bp(`/topics/${prevTopic.slug}/`),
-    prevLabel: prevTopic.name,
-    allHref: bp('/topics/'),
-    allLabel: 'All topics',
-    nextHref: bp(`/topics/${nextTopic.slug}/`),
-    nextLabel: nextTopic.name,
-  })}
+${collectionRail({ href: collection.href, label: collection.label, title: topic.name })}
 
 ${photoHero({
     image: bp(`/assets/${topic.image}`),
     alt: topic.imageAlt,
-    eyebrow: 'Topic',
+    eyebrow: collection.eyebrow,
     title: topic.name,
     subtitle: topic.shortDescription,
     size: 'lg',
@@ -448,7 +446,7 @@ ${readingGroups}
     bodyClass: 'page-topic-detail',
     structuredData,
     ogType: 'article',
-    navSection: 'topics',
+    navSection: isGuide ? 'guides' : 'articles',
     hasAppPanel: true,
   });
 }

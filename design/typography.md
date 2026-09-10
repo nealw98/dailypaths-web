@@ -87,27 +87,28 @@ overexposed display serifs.
 
 ## 3. The ladder
 
-Every role, with the token name to build. Sizes are `clamp(min, preferred, max)`.
+The implemented roles live in `css/site-system.css`. Sizes are
+`clamp(min, preferred, max)` and must remain visibly stepped in context, not merely
+different on paper.
 
 | Role | Family | Weight | Size | LH | Tracking | Used by |
 |---|---|---|---|---|---|---|
-| `display-devotional` | Cormorant *italic* | 500 | `clamp(36px,5.2vw,64px)` | 1.05 | −0.5px | Reflection hero, home hero |
-| `display-editorial` | Newsreader | 500 | `clamp(34px,4.6vw,56px)` | 1.08 | −0.8px | Article hero titles |
-| `guide-title` | Newsreader | 500 | `clamp(30px,3.4vw,44px)` | 1.14 | −0.6px | Guide hero titles — lower ceiling because they run long; cap at ~22ch per line |
-| `page-title` | Newsreader | 500 | `clamp(30px,3.6vw,44px)` | 1.12 | −0.6px | Index pages |
-| `section-h2` | Newsreader | 500 | `clamp(27px,3.2vw,38px)` | 1.15 | −0.5px | Top-level sections |
-| `chapter-h2` | Newsreader | 500 | `clamp(24px,2.6vw,30px)` | 1.2 | −0.4px | Sub-heads in articles/guides |
-| `card-title` | Newsreader | 500 | `clamp(19px,1.9vw,23px)` | 1.25 | −0.3px | All cards |
-| `lede` | Newsreader | 400 | `clamp(20px,2vw,23px)` | 1.55 | — | One per page, `--accent-strong` |
-| `thesis-quote` | Cormorant *italic* | 500 | `clamp(24px,2.8vw,34px)` | 1.45 | −0.3px | One per article, centered |
-| `body-reading` | Newsreader | 400 | `clamp(17px,1.5vw,18.5px)` | 1.66 | — | All long-form prose |
+| `reflection` | Cormorant *italic* | 500 | `clamp(44px,5.2vw,68px)` | 1.04 | −0.4px | Reflection hero, home hero |
+| `page` / `article` | Newsreader | 500 | `clamp(42px,4.2vw,58px)` | 1.08 | −0.7px | Index and article titles |
+| `guide` | Newsreader | 500 | `clamp(36px,3.5vw,48px)` | 1.12 | −0.5px | Guide heroes; cap at 22ch |
+| `section` | Newsreader | 500 | `clamp(30px,2.8vw,38px)` | 1.14 | −0.45px | Top-level page sections |
+| `chapter` | Newsreader | 500 | `clamp(25px,2.2vw,30px)` | 1.2 | −0.3px | Sub-heads in articles/guides |
+| `card` | Newsreader | 500 | `clamp(20px,1.7vw,24px)` | 1.24 | −0.2px | Card titles |
+| `lede` | Newsreader | 400 | `clamp(19px,1.55vw,22px)` | 1.55 | — | One per page |
+| `thesis-quote` | Cormorant *italic* | 500 | `clamp(25px,2.6vw,34px)` | 1.42 | −0.25px | One per article, centered |
+| `body-reading` | Newsreader | 400 | `clamp(17.5px,1.25vw,18.5px)` | 1.68 | — | All long-form prose |
 | `takeaway` | Newsreader *italic* | 400 | same as body | 1.66 | — | Chapter closers, inline |
 | `prayer` | Cormorant *italic* | 500 | 19px | 1.7 | — | Prayers only, centered |
-| `body-ui` | Manrope | 400 | 17px | 28px | −0.1px | Outside the reading column |
+| `body-ui` | Manrope | 400 | 16px | 1.65 | — | Outside the reading column |
 | `small` | Manrope | 400 | 15px | 24px | — | Card body, secondary |
-| `label` | Manrope | 600 | 13px | — | **+1.4px** uppercase | Eyebrows, folios |
-| `nav` / `button` | Manrope | 600 | 14–15px | — | −0.1px | Nav, buttons, inline links |
-| `caption` | Manrope | 400 | 12px | 16px | +0.3px | Dates, sources, disclaimers |
+| `label` | Manrope | 600 | 12px | 1.5 | +1.4px uppercase | Eyebrows, folios |
+| `nav` / `button` | Manrope | 600 | 15px | 1.4 | — | Nav, buttons, inline links |
+| `caption` | Manrope | 400 | 12px | 1.5 | +0.3px | Dates, sources, disclaimers |
 
 ### Reconciliations — these supersede the old per-page values
 
@@ -116,8 +117,8 @@ Every role, with the token name to build. Sizes are `clamp(min, preferred, max)`
 - **Eyebrow tracking** was +0.4px in the app and on early pages, +1.4px on the theme-page
   folios. **+1.4px wins** for web — it is what makes small caps read as editorial rather than
   as a form label.
-- **Reading body keeps its exact metrics** (`clamp(17px,1.5vw,18.5px)`/1.66) so swapping Lora
-  for Newsreader does not reflow any existing page.
+- **Reading body is intentionally quiet** (`clamp(17.5px,1.25vw,18.5px)`/1.68), with a
+  maximum measure of 68 characters. It is the stable baseline beneath the display ladder.
 - **Reading titles**: the app uses Manrope Light 300 at 36/44. That is an app-only exception;
   on the web a reading title is `display-devotional`.
 
@@ -129,21 +130,16 @@ Every role, with the token name to build. Sizes are `clamp(min, preferred, max)`
   last line of a chapter.
 - **Manrope never sets long-form prose.** Newsreader never sets a button or a label.
 - **Negative tracking above 15px**, none below.
-- **Reading measure is 820px**; full-width sections are 1160px. Never set `body-reading`
-  wider than ~70ch.
+- **Reading measure is 760px**; full-width sections are 1160px. Never set `body-reading`
+  wider than 68ch.
 - Do not add a fourth family. Do not add a weight outside 400/500/600.
 
 ## 5. Loading
 
-```html
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..700;1,6..72,300..700&display=swap">
-```
-
-Cormorant Garamond and Manrope already load via the design system's `tokens/fonts.css`.
-**Lora is no longer used** — nothing in the ladder references it. Newsreader is a variable font
-with an optical-size axis; let `opsz` track the font size.
+All three families are served locally through `css/tokens/fonts.css`; normal pages do
+not depend on Google Fonts. **Lora is no longer used** — nothing in the ladder
+references it. Newsreader is a variable font with an optical-size axis; let `opsz`
+track the font size.
 
 ## 6. Settled
 

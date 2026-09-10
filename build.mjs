@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-import { layoutWithoutTypography, TYPOGRAPHY_REVIEW_DAY, TYPOGRAPHY_REVIEW_PATH, GUIDE_REVIEW_PATH } from './helpers/typography-review.mjs';
+import { TYPOGRAPHY_REVIEW_DAY, TYPOGRAPHY_REVIEW_PATH, GUIDE_REVIEW_PATH } from './helpers/typography-review.mjs';
 
 /**
  * Daily Paths Static Site Generator
@@ -342,7 +342,7 @@ const manifest = readings.map(r => ({
   title: r.title,
   date: r.display_date,
   thought: (r.thought_for_day || '').replace(/\\n/g, ' ').replace(/\*\*(.+?)\*\*/g, '$1').replace(/\*(.+?)\*/g, '$1').slice(0, 120),
-  excerpt: (r.opening || '').replace(/<[^>]*>/g, '').replace(/\\n/g, ' ').replace(/[*_]/g, '').replace(/\s+/g, ' ').trim().slice(0, 205),
+  excerpt: (r.opening || r.body || '').replace(/<[^>]*>/g, '').replace(/\\n/g, ' ').replace(/[*_]/g, '').replace(/\s+/g, ' ').trim().slice(0, 205),
   theme: r.secondary_theme || '',
   slug: readingSlug(r.day_of_year, r.title),
 }));
@@ -423,17 +423,20 @@ if (!existsSync(cssSource)) {
   console.error(`CSS file not found: ${cssSource}`);
   process.exit(1);
 }
-// Keep established layout geometry while all type comes from the shared tokens.
-writeFileSync(join(outDir, 'css', 'style.css'), layoutWithoutTypography(readFileSync(cssSource, 'utf8')));
+// Preserve each stylesheet intact. The shared system stylesheet loads last and
+// owns the final typography cascade; attempting to remove declarations with a
+// regex also removed resets, tokens, and layout rules from complex selectors.
+writeFileSync(join(outDir, 'css', 'style.css'), readFileSync(cssSource, 'utf8'));
 for (const name of ['soft-daylight.css', 'editorial-home.css']) {
-  writeFileSync(join(outDir, 'css', name), layoutWithoutTypography(readFileSync(join(ROOT, 'css', name), 'utf8')));
+  writeFileSync(join(outDir, 'css', name), readFileSync(join(ROOT, 'css', name), 'utf8'));
 }
-cpSync(join(ROOT, 'css', 'typography.css'), join(outDir, 'css', 'typography.css'));
-cpSync(join(ROOT, 'css', 'tokens'), join(outDir, 'css', 'tokens'), { recursive: true });
+cpSync(join(ROOT, 'css', 'site-system.css'), join(outDir, 'css', 'site-system.css'));
+mkdirSync(join(outDir, 'css', 'tokens'), { recursive: true });
+cpSync(join(ROOT, 'css', 'tokens', 'fonts.css'), join(outDir, 'css', 'tokens', 'fonts.css'));
 cpSync(join(ROOT, 'assets', 'fonts'), join(outDir, 'assets', 'fonts'), { recursive: true });
 if (IS_PREVIEW) {
   const reviewLayout = ['version-c.css', 'soft-daylight.css'].map(name =>
-    layoutWithoutTypography(readFileSync(join(ROOT, 'css', name), 'utf8'))
+    readFileSync(join(ROOT, 'css', name), 'utf8')
   ).join('\n');
   writeFileSync(join(outDir, 'css', 'typography-review-layout.css'), reviewLayout);
 }

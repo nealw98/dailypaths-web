@@ -2,29 +2,29 @@
 
 This is the active website work, continuing the existing `2.0` branch. The public website remains on `main`. The September 9, 2026 Soft Daylight decisions below supersede older visual proposals in `design/handoff/`; those files remain useful source material.
 
-## Typography implemented site-wide
+## Shared visual system implemented site-wide
 
-Neal approved the reflection typography and guide review on September 10, 2026,
-then authorized applying the supplied `design/typography.md` across the full site.
-Newsreader sets practical headings and reading prose; Cormorant Garamond italic
-sets devotional titles, prayers, the wordmark, and one article thesis quote;
-Manrope sets interface text. All use the shared role sizes and weights in
-`css/tokens/typography.css`, with assignments in `css/typography.css`.
+The September 10, 2026 cohesion pass replaces the conflicting per-page typography
+rules with one final cascade layer: `css/site-system.css`. Newsreader sets practical
+headings and reading prose; Cormorant Garamond italic is reserved for reflection
+titles, prayers, the wordmark, and an occasional thesis quote; Manrope sets interface
+text. The type ladder visibly distinguishes a daily reflection, index or article
+title, guide title, section, chapter, card, lede, reading body, and label.
 
-Every normal route now loads the same locally served font files and shared roles.
-The build removes old font declarations from the inherited layout stylesheets,
-keeping page geometry, imagery, content, and interactions. Future typography edits
-belong in the shared tokens/assignments, not the old layout source values.
-Guide/article type roles follow `helpers/content-catalog.mjs` without changing URLs.
-The complete Where to Start page uses the reviewed longer title and lede.
+Every normal route loads the same locally served fonts and the shared system after
+its structural stylesheet. Structural styles are copied intact: do not reintroduce
+the old build-time CSS regex that removed declarations, because it also removed
+resets and layout rules. Future cross-site typography, measures, spacing, masthead,
+footer, and repeated-component edits belong in `css/site-system.css`; page-specific
+geometry remains in the structural stylesheets. Guide/article roles follow
+`helpers/content-catalog.mjs` without changing stable URLs.
 
 The two private `/typography-review/` routes remain available for old links but
 now use the same typography as the normal pages. They are excluded from indexing.
 The old local migration stash is superseded; do not apply it over this implementation.
-The next requested work is Daily Reflection page layout, as a separate task.
-Launch content review is still separate from typography approval.
+Launch content review remains separate from visual-system approval.
 
-## Agreed direction (layout; earlier typography is superseded above)
+## Agreed direction
 
 - Warm white, restrained olive, daylight photography, confident editorial typography.
 - Full-bleed daily reflection hero. People and recognizable everyday moments are appropriate.
