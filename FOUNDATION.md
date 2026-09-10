@@ -35,6 +35,13 @@ Launch content review is still separate from typography approval.
 - Photographic app invitation with the actual supplied app screenshot, not a simulated screen.
 - One email invitation on the homepage. Attraction, not promotion: no popups, urgency, repeated subscription prompts, or invented social proof.
 
+## Brand lockup
+
+The path icon precedes the Cormorant italic wordmark in the shared header and both
+footer layouts. Use the existing 48px and 192px icon assets with responsive selection.
+The tagline is “Daily reflections and practical guidance for a life of your own.”
+It is defined once in the base template and wraps on narrow screens.
+
 ## What is reused
 
 The complete 366-day reflection collection, 12 steps, 12 existing topic pages, legal pages, About, Al-Anon information, Start Here, Essentials, literature, date archives, related reflections, calendar, and existing URLs. The detailed Letting Go article and its original diagrams are retained. The latest `2.0` photography, callout hierarchy, and supporting assets are retained.
