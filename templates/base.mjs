@@ -40,6 +40,7 @@ export function wrapInLayout({
   noindex = false,
   navSection = '',
   hasAppPanel = false,
+  typographyPreview = false,
 }) {
   const isHome = bodyClass === 'page-home';
   const canonicalUrl = BASE_URL + canonicalPath;
@@ -91,7 +92,13 @@ export function wrapInLayout({
   <link rel="icon" type="image/x-icon" sizes="256x256" href="${bp('/assets/favicon.ico')}">
   <link rel="apple-touch-icon" sizes="512x512" href="${bp('/assets/favicon.png')}">
 
-  <!-- Fonts — Cormorant Garamond (display), Manrope (UI), Lora (reading) -->
+  ${typographyPreview ? `  <!-- Real font files are served locally for this review. -->
+  <link rel="stylesheet" href="${bp('/css/typography-review-layout.css')}">
+  <link rel="stylesheet" href="${bp('/css/tokens/fonts.css')}">
+  <link rel="stylesheet" href="${bp('/css/tokens/typography.css')}">
+  <link rel="stylesheet" href="${bp('/css/typography.css')}">
+  <meta name="site-mode" content="${IS_PREVIEW ? 'preview' : 'production'}">
+` : `  <!-- Fonts — Cormorant Garamond (display), Manrope (UI), Lora (reading) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Manrope:wght@400;500;600;700&family=Lora:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
@@ -99,6 +106,8 @@ export function wrapInLayout({
   <!-- Styles -->
   <meta name="site-mode" content="${IS_PREVIEW ? 'preview' : 'production'}">
   ${isHome ? `<link rel="stylesheet" href="${bp('/css/editorial-home.css')}">` : `<link rel="stylesheet" href="${bp('/css/style.css')}?v=${Date.now()}"><link rel="stylesheet" href="${bp('/css/soft-daylight.css')}">`}
+
+`}
 
   ${structuredData ? (Array.isArray(structuredData) ? structuredData : [structuredData]).map(json => `<!-- Structured Data -->
   <script type="application/ld+json">
@@ -172,7 +181,7 @@ ${bodyContent}
   ${isHome ? `<footer class="ed-footer ed-wrap"><a class="ed-footer-brand" href="${bp('/')}"><strong>Daily Paths</strong><span>For people affected by someone else’s drinking.</span></a><nav aria-label="Footer"><a href="${bp('/about-project/')}">About</a><a href="${bp('/start/')}">Start here</a><a href="${bp('/essentials/')}">Resources</a><a href="${bp('/privacy/')}">Privacy</a><a href="${bp('/terms/')}">Terms</a></nav></footer>` : `  <footer class="site-footer">
     <div class="footer-inner">
       <div class="footer-brand">
-        <p class="footer-wordmark">Daily Paths.</p>
+        <p class="footer-wordmark">Daily Paths${typographyPreview ? '' : '.'}</p>
         <p class="footer-tagline">For people affected by someone else’s drinking.</p>
       </div>
       <div class="footer-col">

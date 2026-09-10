@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import { layoutWithoutTypography, TYPOGRAPHY_REVIEW_DAY, TYPOGRAPHY_REVIEW_PATH } from './helpers/typography-review.mjs';
 
 /**
  * Daily Paths Static Site Generator
@@ -12,7 +13,7 @@
  */
 
 import 'dotenv/config';
-import { mkdirSync, writeFileSync, cpSync, rmSync, existsSync } from 'node:fs';
+import { mkdirSync, writeFileSync, readFileSync, cpSync, rmSync, existsSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -213,6 +214,18 @@ for (let i = 0; i < readings.length; i++) {
   writePage(join(outDir, newSlug, 'index.html'), renderReadingPage(reading, prev, next, readings, ratingsMap));
 }
 
+// One stable, complete reading for page-by-page typography review; private only.
+if (IS_PREVIEW) {
+  const i = readings.findIndex(r => r.day_of_year === TYPOGRAPHY_REVIEW_DAY);
+  if (i < 0) throw new Error('Missing typography review reflection');
+  const reviewDir = join(outDir, TYPOGRAPHY_REVIEW_PATH.slice(1));
+  mkdirSync(reviewDir, { recursive: true });
+  writePage(join(reviewDir, 'index.html'), renderReadingPage(
+    readings[i], readings[(i - 1 + readings.length) % readings.length],
+    readings[(i + 1) % readings.length], readings, ratingsMap, { typographyPreview: true }
+  ));
+}
+
 // Principles index + individual principle pages
 console.log(`Generating principle pages (${TOPICS.length} principles)...`);
 writePage(join(outDir, 'topics', 'index.html'), renderTopicsIndexPage());
@@ -410,6 +423,16 @@ if (!existsSync(cssSource)) {
 cpSync(cssSource, join(outDir, 'css', 'style.css'));
 cpSync(join(ROOT, 'css', 'soft-daylight.css'), join(outDir, 'css', 'soft-daylight.css'));
 cpSync(join(ROOT, 'css', 'editorial-home.css'), join(outDir, 'css', 'editorial-home.css'));
+if (IS_PREVIEW) {
+  cpSync(join(ROOT, 'css', 'typography.css'), join(outDir, 'css', 'typography.css'));
+  cpSync(join(ROOT, 'css', 'tokens'), join(outDir, 'css', 'tokens'), { recursive: true });
+  cpSync(join(ROOT, 'assets', 'fonts'), join(outDir, 'assets', 'fonts'), { recursive: true });
+  const reviewLayout = ['version-c.css', 'soft-daylight.css'].map(name =>
+    layoutWithoutTypography(readFileSync(join(ROOT, 'css', name), 'utf8'))
+  ).join('\n');
+  writeFileSync(join(outDir, 'css', 'typography-review-layout.css'), reviewLayout);
+}
+
 
 // JS
 cpSync(join(__dirname, 'js', 'main.js'), join(outDir, 'js', 'main.js'));

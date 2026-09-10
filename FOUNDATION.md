@@ -2,7 +2,25 @@
 
 This is the active website work, continuing the existing `2.0` branch. The public website remains on `main`. The September 9, 2026 Soft Daylight decisions below supersede older visual proposals in `design/handoff/`; those files remain useful source material.
 
-## Agreed direction
+## Typography review in progress
+
+The supplied `design/typography.md` supersedes the earlier Lora/Georgia type choices.
+Its three families are Newsreader for practical headings and all reading body,
+Cormorant Garamond italic for devotional display/prayers and the wordmark, and Manrope
+for the interface. Sizes remain provisional until representative page reviews finish.
+Review order: daily reflection, guide, article, homepage, then indexes/supporting pages.
+
+Only `/typography-review/reflection/` uses the new system. It renders the complete
+September 9 reflection with its original text, imagery, calendar, reminder, related
+reading and app invitation. Normal routes retain the last published design. The review
+route exists only in private builds, is not indexed, and is absent from the sitemap.
+The fonts are served locally with their licenses to avoid dependence on Google font
+loading. Shared role tokens are in `css/tokens/typography.css`; assignments are in
+`css/typography.css`. No page-specific replacement type scales are introduced.
+The paused whole-site changes are retained in a named local Git stash; do not apply
+that draft until the representative reviews establish the final system.
+
+## Agreed direction (layout; earlier typography is superseded above)
 
 - Warm white, restrained olive, daylight photography, confident editorial typography.
 - Full-bleed daily reflection hero. People and recognizable everyday moments are appropriate.

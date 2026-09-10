@@ -1,0 +1,135 @@
+/* Role assignments only. Sizes, weights, leading and tracking live in tokens/typography.css. */
+:root {
+  --font-body: var(--font-ui);
+  --font-display: var(--font-editorial);
+  --font-reading: var(--font-editorial);
+  --display: var(--font-editorial);
+  --hero: var(--font-devotional);
+  --reading: var(--font-editorial);
+  --ui: var(--font-ui);
+  --measure: var(--reading-measure);
+  --page-max: var(--full-measure);
+  --accent-strong: #444e34;
+}
+html { font-optical-sizing:auto; font-synthesis:none; }
+body { font:var(--body-ui); letter-spacing:var(--body-ui-tracking); }
+button,input,textarea,select { font:var(--body-ui); letter-spacing:var(--body-ui-tracking); }
+strong,b { font-weight:600; }
+em,i { font-style:italic; }
+h1,h2,h3,h4,h5,h6 { font-style:normal; text-wrap:pretty; overflow-wrap:anywhere; }
+h1,.type-page-title { font:var(--page-title); letter-spacing:var(--page-title-tracking); }
+h2,.type-section-h2 { font:var(--section-h2); letter-spacing:var(--section-h2-tracking); }
+h3,h4,h5,h6,.type-chapter-h2 { font:var(--chapter-h2); letter-spacing:var(--chapter-h2-tracking); }
+.type-display-devotional,.page-home h1,.page-reading h1 {
+  font:var(--display-devotional); letter-spacing:var(--display-devotional-tracking);
+}
+.type-display-editorial,.content-article h1 {
+  font:var(--display-editorial); letter-spacing:var(--display-editorial-tracking);
+}
+.type-guide-title,.content-guide h1 {
+  font:var(--guide-title); letter-spacing:var(--guide-title-tracking); max-width:22ch;
+}
+/* Wordmark is the explicit devotional exception on every page. */
+.brand-name,.footer-wordmark,.ed-footer-brand strong {
+  font:var(--wordmark); letter-spacing:-.5px;
+}
+.brand-period { display:none; }
+.type-card-title,
+.ed-story h3,.ed-guide-row h3,.sd-story h3,.sd-guide-list h3,.sd-months a,
+.reading-card-title,.featured-card-title,.kr-card-title,.rt-card-title,.prevnext-title,
+.theme-index-title,.theme-preview-title,.theme-feature-title,.step-card-keyword,
+.ess-card-title,.pillar-title,.fellow-name,.faq-q,.faq-item h3,.start-fact-title,
+.start-week-title,.book-card-title,.theme-name,.ma-reading-title,.cal-preview-title {
+  font:var(--card-title); letter-spacing:var(--card-title-tracking);
+}
+/* Heading hierarchy inside prose is intentionally smaller than top-level sections. */
+.rd-article h2,.prose-reading h2,.content-section h2,.ap-section h2,
+.tg-section h2,.step-body-heading,.questions-heading,.action-panel-heading,
+.start-step-title,.aa-heading,.quiz-card-heading,.book-app-heading,.ap-nav-cta-heading,
+.ma-engine-cta-heading,.aa-app-cta-heading,.share-heading,.new-here-heading {
+  font:var(--chapter-h2); letter-spacing:var(--chapter-h2-tracking);
+}
+.type-body-reading,.prose-reading,.prose-reading p,.prose-reading li,
+.content-section p,.content-section li,.ap-section p,.ap-resource-list li,.ap-compare-list li,
+.book-description p,.faq-item p,.faq-a,.step-body-section p,.questions-text,
+.action-list li,.ess-line,.quiz-list span,.quiz-toggle,.start-meeting-text,
+.start-week-why,.insight-card-text p,.lg-spirit-inner>p,.lg-spirit-quote,
+.na-panel li p,.quote-block-text,.quote-block-text p,.reminder-text,.alert-safety p {
+  font:var(--body-reading); letter-spacing:var(--body-reading-tracking);
+}
+.type-lede,.lede,.prose-reading .type-lede {
+  font:var(--lede); letter-spacing:var(--lede-tracking); color:var(--accent-strong);
+}
+/* One paragraph is explicitly marked as the lede in each page template. */
+.type-thesis-quote,.tg-thesis,.tg-thesis p,.content-article .pull-quote {
+  font:var(--thesis-quote); letter-spacing:var(--thesis-quote-tracking); text-align:center;
+}
+.content-guide .pull-quote { font:var(--body-reading); letter-spacing:normal; font-style:italic; }
+.type-takeaway,.takeaway,.chapter-takeaway,.na-close {
+  font:var(--takeaway); letter-spacing:var(--takeaway-tracking);
+  color:inherit; background:none; border:0; border-radius:0; box-shadow:none; padding:0; text-align:inherit;
+}
+.type-prayer,.prayer-card-body,.prayer-card-body p,.prayer {
+  font:var(--prayer); letter-spacing:var(--prayer-tracking); text-align:center;
+}
+/* Prose-adjacent summaries use interface text, never decorative display type. */
+.type-small,.small,.section-desc,.sd-story>p:not(.sd-kicker),.ed-story-copy>p:not(.ed-label),
+.sd-guide-list p,.ed-guide-row p,.sd-guide-intro>p:not(.sd-kicker),.sd-related-note p,
+.theme-index-line,.theme-preview-line,.theme-feature-line,.step-card-hook,.kr-card-teaser,
+.rt-card-line,.pillar-body,.fellow-line,.book-card-desc,.book-meta,.book-also-available,
+.start-fact-body,.quiz-response-follow,.questions-intro,.quiz-card-intro,.start-step-intro,
+.new-here-line,.share-prompt,.terminal-band-text,.app-panel-body,.sd-app-copy>p:not(.sd-kicker),
+.ed-app-copy>p,.ed-email>p,.sd-email p:not(.sd-kicker),.book-app-text,.ap-compare-subtitle,
+.ma-engine-cta-text,.aa-app-cta-text,.field input,.field textarea,.ed-email input,.cal-preview-thought {
+  font:var(--small); letter-spacing:var(--small-tracking);
+}
+.type-label,.label,.eyebrow,.ed-label,.sd-kicker,.na-eyebrow,.reminder-label,
+.footer-col-title,.group-head-label,.glass-panel-label,.terminal-band-eyebrow,
+.pillar-eyebrow,.start-week-label,.book-card-category,.book-category,.theme-count,
+.prayer-card-title,.sd-guide-number,.start-step-numeral,.step-card-numeral,.na-n {
+  font:var(--label); letter-spacing:var(--label-tracking); text-transform:uppercase;
+}
+.type-nav,.nav-link,.header-cta,.mobile-menu-row,.mobile-menu-cta,.menu-toggle,
+.text-link,.sd-text-link,.ed-link,.detail-rail-link,.newcomer-strip-cta,.pill,
+.theme-index-cta,.theme-preview-cta,.step-card-cta,.kr-card-cta,.rt-card-meta,
+.lg-spirit-link,.pillar-link,.fellow-cta,.start-week-cta,.external-link,.contact-link,
+.ap-block-link,.aa-block-link,.book-app-link,.ma-back-link,.link-on-dark,.month-nav a,.month-jump a,
+.footer-links a,.ed-footer nav,.ed-keep-reading a,.breadcrumb {
+  font:var(--nav); letter-spacing:var(--nav-tracking);
+}
+.type-button,button,.btn,.btn--sm,.btn-primary,.sd-button,.ed-button,
+.book-purchase-btn,.ap-nav-cta-btn,.aa-meeting-btn,.rd-date-btn,.rd-calendar-trigger,
+.insight-card-read-more,.insight-show-more,.cal-preview-btn {
+  font:var(--button); letter-spacing:var(--button-tracking);
+}
+.type-caption,.caption,.brand-sub,.footer-tagline,.footer-bar,.footer-bar p,.ed-footer-brand span,
+.fine-print,.text-muted,.ap-disclaimer,.literature-disclaimer,.aa-disclaimer,.ap-curator,
+.reading-card-date,.featured-card-meta,.kr-card-date,.ma-reading-day,.browse-date,
+.quote-block-attr,.ed-reflection-meta>p:last-child,.prevnext-label,.glass-panel-caption,
+.ed-photo-caption,.sd-hero-note,.ed-app-platforms,.ed-email .ed-email-note,.prayer-card-note,
+.share-counter,.share-consent,.share-status,.theme-sources>p,.insight-card-attribution,
+.ess-card-footer,.cal-weekday,.cal-preview-date,.cal-preview-theme {
+  font:var(--caption); letter-spacing:var(--caption-tracking); text-transform:none;
+}
+.cal-header-title,.cal-month-label,.cal-cell,.cal-arrow,.cal-close,.cal-preview-empty {
+  font:var(--nav); letter-spacing:var(--nav-tracking);
+}
+/* Other emphasized asides remain practical, conserving the single thesis quote. */
+.lg-spirit-q,.lg-spirit-quote,.quiz-closer,.quiz-response-lead,.glass-panel-verse {
+  font:var(--takeaway); letter-spacing:var(--takeaway-tracking);
+}
+.quote-block-glyph { font:var(--section-h2); letter-spacing:normal; }
+/* Shared measures replace the competing homepage and interior widths. */
+.ed-wrap,.sd-wrap,.header-inner,.footer-inner,.footer-bar,.photo-hero-inner { max-width:var(--full-measure); }
+.rd-article,.wrap--article { max-width:var(--reading-measure); }
+.prose-reading,.content-section,.ap-section,.book-description,.step-body-section,
+.start-meeting-text,.tg-thesis { max-width:var(--reading-line); }
+.prose-reading { margin-inline:auto; }
+.ed-hero h1 { max-width:22ch; }
+.photo-hero,.start-hero { --accent-strong:#f4f1ea; }
+.ed-hero .type-lede { max-width:40ch; }
+.ed-app { height:auto; min-height:clamp(275px,24.2vw,360px); }
+.ed-app-inner { min-height:inherit; }
+.ed-app h2 em,.sd-app-copy h2 em { font-family:inherit; font-weight:500; }
+/* Color changes for the lede are scoped to dark surfaces above, not separate type roles. */
+@media(max-width:780px) { .header-inner { gap:16px; } .site-nav { gap:18px; } }

@@ -7,6 +7,7 @@ import { THEME_TO_TOPIC, TOPICS, TOPIC_RELATED, DEFAULT_RELATED_TOPICS } from '.
 import { STEPS } from './steps.mjs';
 import { photoHero, quoteBlock, pill, icon, terminalBand } from './ui.mjs';
 import { reflectionImage } from '../helpers/reflection-images.mjs';
+import { TYPOGRAPHY_REVIEW_PATH } from '../helpers/typography-review.mjs';
 
 const NUMBER_WORDS = ['One', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine', 'Ten', 'Eleven', 'Twelve'];
 
@@ -58,7 +59,7 @@ function readingTeaser(reading) {
  * @param {Array} [allReadings] - All 366 readings (for sibling selection)
  * @param {Map} [ratingsMap] - day_of_year → {positive, total}, ranks siblings
  */
-export function renderReadingPage(reading, prevReading, nextReading, allReadings = [], ratingsMap = new Map()) {
+export function renderReadingPage(reading, prevReading, nextReading, allReadings = [], ratingsMap = new Map(), { typographyPreview = false } = {}) {
   const slug = readingSlug(reading.day_of_year, reading.title);
   const isoDate = dayToIsoDate(reading.day_of_year);
   const monthIdx = dayToMonthIndex(reading.day_of_year);
@@ -114,7 +115,9 @@ export function renderReadingPage(reading, prevReading, nextReading, allReadings
           </div>`
     : '';
 
-  const openingHtml = textToHtmlParagraphs(reading.opening);
+  const openingHtml = typographyPreview
+    ? textToHtmlParagraphs(reading.opening).replace('<p>', '<p class="type-lede">')
+    : textToHtmlParagraphs(reading.opening);
   const bodyHtml = textToHtmlParagraphs(reading.body);
   const applicationHtml = reading.application ? textToHtmlParagraphs(reading.application) : '';
 
@@ -271,9 +274,11 @@ ${relatedTopicsHtml}
   return wrapInLayout({
     title: `${reading.title} – Al-Anon Daily Reflection for ${reading.display_date} | Daily Paths`,
     description: metaDescription,
-    canonicalPath: `/${slug}/`,
-    bodyContent,
-    structuredData,
+    canonicalPath: typographyPreview ? TYPOGRAPHY_REVIEW_PATH : `/${slug}/`,
+    bodyContent: typographyPreview ? bodyContent.replaceAll('prose-lora', 'prose-reading') : bodyContent,
+    structuredData: typographyPreview ? undefined : structuredData,
+    typographyPreview,
+    noindex: typographyPreview,
     ogType: 'article',
     ogImage: `/${slug}/og.png`,
     bodyClass: 'page-reading',
