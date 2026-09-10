@@ -115,9 +115,7 @@ export function renderReadingPage(reading, prevReading, nextReading, allReadings
           </div>`
     : '';
 
-  const openingHtml = typographyPreview
-    ? textToHtmlParagraphs(reading.opening).replace('<p>', '<p class="type-lede">')
-    : textToHtmlParagraphs(reading.opening);
+  const openingHtml = textToHtmlParagraphs(reading.opening).replace('<p>', '<p class="type-lede">');
   const bodyHtml = textToHtmlParagraphs(reading.body);
   const applicationHtml = reading.application ? textToHtmlParagraphs(reading.application) : '';
 

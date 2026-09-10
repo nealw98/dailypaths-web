@@ -115,9 +115,9 @@ export function renderStartPage(readings = [], { typographyPreview = false } = {
     <section class="start-hero">
       ${ripple(620)}
       <div class="start-hero-inner">
-        <p class="eyebrow eyebrow--on-dark">${typographyPreview ? 'Where to start · A Daily Paths guide' : 'New here'}</p>
-        <h1 class="start-hero-title">${typographyPreview ? 'Where to Start When Someone Else’s Drinking Affects You' : 'Start here'}</h1>
-        <p class="start-hero-lede${typographyPreview ? ' type-lede' : ''}">If someone else&rsquo;s drinking is affecting your life, you don&rsquo;t have to have it figured out to begin. Five minutes, four small things, no sign-up.</p>
+        <p class="eyebrow eyebrow--on-dark">Where to start · A Daily Paths guide</p>
+        <h1 class="start-hero-title">Where to Start When Someone Else’s Drinking Affects You</h1>
+        <p class="start-hero-lede type-lede">If someone else&rsquo;s drinking is affecting your life, you don&rsquo;t have to have it figured out to begin. Five minutes, four small things, no sign-up.</p>
       </div>
     </section>
 

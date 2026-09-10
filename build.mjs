@@ -423,13 +423,15 @@ if (!existsSync(cssSource)) {
   console.error(`CSS file not found: ${cssSource}`);
   process.exit(1);
 }
-cpSync(cssSource, join(outDir, 'css', 'style.css'));
-cpSync(join(ROOT, 'css', 'soft-daylight.css'), join(outDir, 'css', 'soft-daylight.css'));
-cpSync(join(ROOT, 'css', 'editorial-home.css'), join(outDir, 'css', 'editorial-home.css'));
+// Keep established layout geometry while all type comes from the shared tokens.
+writeFileSync(join(outDir, 'css', 'style.css'), layoutWithoutTypography(readFileSync(cssSource, 'utf8')));
+for (const name of ['soft-daylight.css', 'editorial-home.css']) {
+  writeFileSync(join(outDir, 'css', name), layoutWithoutTypography(readFileSync(join(ROOT, 'css', name), 'utf8')));
+}
+cpSync(join(ROOT, 'css', 'typography.css'), join(outDir, 'css', 'typography.css'));
+cpSync(join(ROOT, 'css', 'tokens'), join(outDir, 'css', 'tokens'), { recursive: true });
+cpSync(join(ROOT, 'assets', 'fonts'), join(outDir, 'assets', 'fonts'), { recursive: true });
 if (IS_PREVIEW) {
-  cpSync(join(ROOT, 'css', 'typography.css'), join(outDir, 'css', 'typography.css'));
-  cpSync(join(ROOT, 'css', 'tokens'), join(outDir, 'css', 'tokens'), { recursive: true });
-  cpSync(join(ROOT, 'assets', 'fonts'), join(outDir, 'assets', 'fonts'), { recursive: true });
   const reviewLayout = ['version-c.css', 'soft-daylight.css'].map(name =>
     layoutWithoutTypography(readFileSync(join(ROOT, 'css', name), 'utf8'))
   ).join('\n');

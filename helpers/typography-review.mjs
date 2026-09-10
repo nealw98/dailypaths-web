@@ -6,7 +6,7 @@ export const GUIDE_REVIEW_PATH = '/typography-review/guide/';
 
 export function layoutWithoutTypography(css) {
   return css
-    .replace(/(?<=[{;])\s*(?:font(?:-[a-z-]+)?|line-height|letter-spacing|text-transform)\s*:[^;{}]*(?:;|(?=}))/g, '')
+    .replace(/(?<=[{;])(?:\s|\/\*[\s\S]*?\*\/)*(?:font(?:-[a-z-]+)?|line-height|letter-spacing|text-transform)\s*:[^;{}]*(?=;|})/g, '')
     .replace(/--(?:font-body|font-display|font-reading|display|hero|reading|ui)\s*:[^;{}]+;?/g, '')
     .replaceAll('prose-lora', 'prose-reading');
 }

@@ -2,29 +2,27 @@
 
 This is the active website work, continuing the existing `2.0` branch. The public website remains on `main`. The September 9, 2026 Soft Daylight decisions below supersede older visual proposals in `design/handoff/`; those files remain useful source material.
 
-## Typography review in progress
+## Typography implemented site-wide
 
-The supplied `design/typography.md` supersedes the earlier Lora/Georgia type choices.
-Its three families are Newsreader for practical headings and all reading body,
-Cormorant Garamond italic for devotional display/prayers and the wordmark, and Manrope
-for the interface. Sizes remain provisional until representative page reviews finish.
-Review order: daily reflection, guide, article, homepage, then indexes/supporting pages.
+Neal approved the reflection typography and guide review on September 10, 2026,
+then authorized applying the supplied `design/typography.md` across the full site.
+Newsreader sets practical headings and reading prose; Cormorant Garamond italic
+sets devotional titles, prayers, the wordmark, and one article thesis quote;
+Manrope sets interface text. All use the shared role sizes and weights in
+`css/tokens/typography.css`, with assignments in `css/typography.css`.
 
-The reflection typography and sizes were approved by Neal on September 10, 2026.
-The guide is next: `/typography-review/guide/` uses the existing Start Here content
-with the proposed full guide title, upright Newsreader, section headings, and shared
-reading/interface roles. This is typography review, not approval of the launch copy.
-Both review pages include direct links to each other to avoid confusion with normal routes.
+Every normal route now loads the same locally served font files and shared roles.
+The build removes old font declarations from the inherited layout stylesheets,
+keeping page geometry, imagery, content, and interactions. Future typography edits
+belong in the shared tokens/assignments, not the old layout source values.
+Guide/article type roles follow `helpers/content-catalog.mjs` without changing URLs.
+The complete Where to Start page uses the reviewed longer title and lede.
 
-`/typography-review/reflection/` renders the complete
-September 9 reflection with its original text, imagery, calendar, reminder, related
-reading and app invitation. Normal routes retain the last published design. The review
-routes exist only in private builds, are not indexed, and are absent from the sitemap.
-The fonts are served locally with their licenses to avoid dependence on Google font
-loading. Shared role tokens are in `css/tokens/typography.css`; assignments are in
-`css/typography.css`. No page-specific replacement type scales are introduced.
-The paused whole-site changes are retained in a named local Git stash; do not apply
-that draft until the representative reviews establish the final system.
+The two private `/typography-review/` routes remain available for old links but
+now use the same typography as the normal pages. They are excluded from indexing.
+The old local migration stash is superseded; do not apply it over this implementation.
+The next requested work is Daily Reflection page layout, as a separate task.
+Launch content review is still separate from typography approval.
 
 ## Agreed direction (layout; earlier typography is superseded above)
 

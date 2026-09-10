@@ -57,11 +57,13 @@ h3,h4,h5,h6,.type-chapter-h2 { font:var(--chapter-h2); letter-spacing:var(--chap
 .na-panel li p,.quote-block-text,.quote-block-text p,.reminder-text,.alert-safety p {
   font:var(--body-reading); letter-spacing:var(--body-reading-tracking);
 }
-.type-lede,.lede,.prose-reading .type-lede {
+.type-lede,.lede,.prose-reading .type-lede,.ed-hero-deck,.photo-hero-sub,
+.ma-subtitle,.book-subtitle,.ap-hero-desc {
   font:var(--lede); letter-spacing:var(--lede-tracking); color:var(--accent-strong);
 }
 /* One paragraph is explicitly marked as the lede in each page template. */
-.type-thesis-quote,.tg-thesis,.tg-thesis p,.content-article .pull-quote {
+.tg-thesis,.tg-thesis p { font:var(--takeaway); letter-spacing:var(--takeaway-tracking); }
+.type-thesis-quote,.type-thesis-quote p,.content-article .pull-quote {
   font:var(--thesis-quote); letter-spacing:var(--thesis-quote-tracking); text-align:center;
 }
 .content-guide .pull-quote { font:var(--body-reading); letter-spacing:normal; font-style:italic; }
@@ -138,3 +140,19 @@ h3,h4,h5,h6,.type-chapter-h2 { font:var(--chapter-h2); letter-spacing:var(--chap
 .typography-review-nav [aria-current="page"] { color:var(--accent-strong); text-decoration-thickness:2px; }
 .content-guide .start-hero-inner { max-width:var(--reading-measure); }
 .content-guide .start-hero-lede { max-width:58ch; }
+/* Supporting pages use the same roles as the reviewed reading and guide. */
+.page-description,.daily-practice-intro,.prayer-band-intro,.sd-page-heading>p:not(.sd-kicker),
+.sd-hero-excerpt,.teal-band-body,.home-hero-excerpt,.error-page p,
+.content-container>p:not(.page-meta) { font:var(--body-reading); letter-spacing:var(--body-reading-tracking); max-width:var(--reading-line); }
+.page-meta,.theme-sources,.ed-all-guides { font:var(--caption); letter-spacing:var(--caption-tracking); }
+.source-citation-footer,.source-citation-footer cite { font:var(--caption); letter-spacing:var(--caption-tracking); }
+.source-citation .quote-text { font:var(--body-reading); letter-spacing:var(--body-reading-tracking); }
+.ed-keep-reading,.ed-keep-reading a,.ed-footer nav a,.mobile-menu a { font:var(--nav); letter-spacing:var(--nav-tracking); }
+.lg-spirit h3 { font:var(--chapter-h2); letter-spacing:var(--chapter-h2-tracking); }
+.prayer-card-body { white-space:pre-line; }
+.page-home .ed-hero { --accent-strong:#444e34; }
+/* Text grows with user settings; compact navigation moves to its existing menu. */
+@media(max-width:1000px) {
+  .site-nav,.header-cta { display:none; }
+  .menu-toggle { display:inline-flex; align-items:center; gap:8px; margin-left:auto; }
+}
