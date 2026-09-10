@@ -3,9 +3,12 @@ import { icon } from './ui.mjs';
 import { TYPOGRAPHY_REVIEW_PATH, GUIDE_REVIEW_PATH } from '../helpers/typography-review.mjs';
 import { GUIDES } from '../helpers/content-catalog.mjs';
 
-const BRAND_TAGLINE = 'Daily reflections and practical guidance for a life of your own.';
 function brandIcon() {
-  return `<img class="brand-mark-icon" src="${bp('/assets/favicon-48.png')}" srcset="${bp('/assets/favicon-48.png')} 48w, ${bp('/assets/app-icon.png')} 192w" sizes="44px" width="44" height="44" alt="">`;
+  return `<img class="brand-mark-icon" src="${bp('/assets/favicon-48.png')}" srcset="${bp('/assets/favicon-48.png')} 48w, ${bp('/assets/app-icon.png')} 192w" sizes="42px" width="42" height="42" alt="">`;
+}
+
+function brandLockup(wordmarkClass = 'brand-name') {
+  return `${brandIcon()}<span class="${wordmarkClass}">Daily Paths</span>`;
 }
 
 /**
@@ -108,7 +111,7 @@ export function wrapInLayout({
   <!-- Page structure first, then the shared Daily Paths design system. -->
   ${isHome ? `<link rel="stylesheet" href="${bp('/css/editorial-home.css')}?v=brand-icon-1">` : `<link rel="stylesheet" href="${bp('/css/style.css')}?v=brand-icon-1"><link rel="stylesheet" href="${bp('/css/soft-daylight.css')}?v=brand-icon-1">`}
   <link rel="stylesheet" href="${bp('/css/tokens/fonts.css')}?v=brand-icon-1">
-  <link rel="stylesheet" href="${bp('/css/site-system.css')}?v=cohesion-1">
+  <link rel="stylesheet" href="${bp('/css/site-system.css')}?v=cohesion-2">
   <meta name="site-mode" content="${IS_PREVIEW ? 'preview' : 'production'}">
 
   ${structuredData ? (Array.isArray(structuredData) ? structuredData : [structuredData]).map(json => `<!-- Structured Data -->
@@ -153,11 +156,7 @@ ${json}
   <header class="site-header">
     <div class="header-inner">
       <a href="${bp('/')}" class="brand">
-        ${brandIcon()}
-        <span class="brand-text">
-          <span class="brand-name">Daily Paths</span>
-          <span class="brand-sub">${BRAND_TAGLINE}</span>
-        </span>
+        ${brandLockup()}
       </a>
       <span class="header-divider" aria-hidden="true"></span>
       <nav class="site-nav" aria-label="Main navigation">
@@ -182,10 +181,10 @@ ${mobileNav}
 ${bodyContent}
   </main>
 
-  ${isHome ? `<footer class="ed-footer ed-wrap"><a class="ed-footer-brand" href="${bp('/')}">${brandIcon()}<span class="brand-text"><strong>Daily Paths</strong><span>${BRAND_TAGLINE}</span></span></a><nav aria-label="Footer"><a href="${bp('/about-project/')}">About</a><a href="${bp('/start/')}">Start here</a><a href="${bp('/essentials/')}">Resources</a><a href="${bp('/privacy/')}">Privacy</a><a href="${bp('/terms/')}">Terms</a></nav></footer>` : `  <footer class="site-footer">
+  ${isHome ? `<footer class="ed-footer ed-wrap"><a class="ed-footer-brand" href="${bp('/')}">${brandLockup('footer-wordmark')}</a><nav aria-label="Footer"><a href="${bp('/about-project/')}">About</a><a href="${bp('/start/')}">Start here</a><a href="${bp('/essentials/')}">Resources</a><a href="${bp('/privacy/')}">Privacy</a><a href="${bp('/terms/')}">Terms</a></nav></footer>` : `  <footer class="site-footer">
     <div class="footer-inner">
       <div class="footer-brand">
-        <a class="footer-brand-lockup" href="${bp('/')}">${brandIcon()}<span class="brand-text"><span class="footer-wordmark">Daily Paths</span><span class="footer-tagline">${BRAND_TAGLINE}</span></span></a>
+        <a class="footer-brand-lockup" href="${bp('/')}">${brandLockup('footer-wordmark')}</a>
       </div>
       <div class="footer-col">
         <p class="footer-col-title">About</p>
