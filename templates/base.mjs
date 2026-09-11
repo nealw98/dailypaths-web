@@ -180,25 +180,20 @@ ${mobileNav}
 ${bodyContent}
   </main>
 
-  ${isHome ? `<footer class="ed-footer ed-wrap"><nav aria-label="Footer"><a href="${bp('/about-project/')}">About</a><a href="${bp('/start/')}">Start here</a><a href="${bp('/essentials/')}">Resources</a><a href="${bp('/privacy/')}">Privacy</a><a href="${bp('/terms/')}">Terms</a></nav></footer>` : `  <footer class="site-footer">
+  ${isHome ? `<footer class="ed-footer ed-wrap"><nav aria-label="Footer"><a href="${bp('/about-project/')}">About</a><a href="${bp('/support/')}">Contact us</a><a href="${bp('/privacy/')}">Privacy</a><a href="${bp('/terms/')}">Terms</a></nav></footer>` : `  <footer class="site-footer">
     <div class="footer-inner">
       <div class="footer-col">
         <p class="footer-col-title">About</p>
         <nav class="footer-links" aria-label="About">
-          <a href="${bp('/start/')}">Start here</a>
           <a href="${bp('/about-project/')}">About the project</a>
-          <a href="${bp('/support/')}">Support</a>
-          <a href="${bp('/about-alanon/')}">About Al-Anon</a>
+          <a href="${bp('/support/')}">Contact us</a>
         </nav>
       </div>
       <div class="footer-col">
-        <p class="footer-col-title">More</p>
-        <nav class="footer-links" aria-label="More">
+        <p class="footer-col-title">Legal</p>
+        <nav class="footer-links" aria-label="Legal">
           <a href="${bp('/privacy/')}">Privacy</a>
           <a href="${bp('/terms/')}">Terms</a>
-          <a href="${bp('/essentials/')}">Essentials</a>
-          <a href="${bp('/reflections/')}">Reflections by Step</a>
-          <a href="${appHref}">Get the app</a>
         </nav>
       </div>
     </div>
