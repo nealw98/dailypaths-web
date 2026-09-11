@@ -1,10 +1,10 @@
-import { readingSlug } from './slug-utils.mjs';
+import { readingSlug, stepRecordSlug } from './slug-utils.mjs';
 import { BASE_URL, IS_PREVIEW } from './config.mjs';
 
 /**
  * Generate sitemap.xml content for all pages
  */
-export function generateSitemap(readings, topics, books = []) {
+export function generateSitemap(readings, topics, books = [], steps = []) {
   const today = new Date().toISOString().split('T')[0];
 
   let urls = [];
@@ -26,6 +26,12 @@ export function generateSitemap(readings, topics, books = []) {
   // Individual principle (topic) pages
   for (const topic of topics) {
     urls.push({ loc: `${BASE_URL}/topics/${topic.slug}/`, priority: '0.6', changefreq: 'monthly' });
+  }
+
+  // Supporting Step articles. The retired /steps/ index is a redirect and is
+  // intentionally omitted; Step navigation now begins at /reflections/.
+  for (const step of steps) {
+    urls.push({ loc: `${BASE_URL}/steps/${stepRecordSlug(step)}/`, priority: '0.6', changefreq: 'monthly' });
   }
 
   // Literature

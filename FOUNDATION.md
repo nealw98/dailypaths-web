@@ -58,10 +58,12 @@ existing links and search references continue to work while display names evolve
 The reflection library is organized by Step rather than by date. `/reflections/`
 is the collection index, with one Step-led collection for each month; the month is
 secondary metadata. Each `/months/[month]/` page leads with the Step, its principle,
-the short description, and the Step text before the dated reading list. The former
-Step index and detail URLs redirect to these collections and are excluded from the
-sitemap. Traditions and Concepts may become parallel collection views later; do not
-add them to the Step cards until their structure is decided.
+the short description, and the Step text before the dated reading list, followed by
+a “More about Step [number]” link to the supporting long-form Step article. The
+former `/steps/` index redirects to `/reflections/`; individual established Step
+URLs remain available as supporting articles and stay in the sitemap. Traditions
+and Concepts may become parallel collection views later; do not add them to the
+Step cards until their structure is decided.
 
 ## Working on content
 

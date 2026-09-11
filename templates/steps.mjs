@@ -499,8 +499,8 @@ ${cards}
 ${detailRail({
     prevHref: bp(`/steps/${stepRecordSlug(prevStep)}/`),
     prevLabel: `Step ${prevStep.number}: ${prevStep.principle}`,
-    allHref: bp('/steps/'),
-    allLabel: 'All Steps',
+    allHref: bp('/reflections/'),
+    allLabel: 'All reflection collections',
     nextHref: bp(`/steps/${stepRecordSlug(nextStep)}/`),
     nextLabel: `Step ${nextStep.number}: ${nextStep.principle}`,
   })}
@@ -546,7 +546,7 @@ ${dailyPracticeHtml}
     canonicalPath: `/steps/${stepRecordSlug(step)}/`,
     bodyContent,
     bodyClass: 'page-step-detail',
-    navSection: 'steps',
+    navSection: 'reflection',
     hasAppPanel: true,
   });
 }

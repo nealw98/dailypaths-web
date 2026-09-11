@@ -35,7 +35,7 @@ import { renderTermsPage } from './templates/terms.mjs';
 import { renderEssentialsPage } from './templates/essentials.mjs';
 import { renderAboutProjectPage } from './templates/about-project.mjs';
 import { renderAboutAlanonPage } from './templates/about-alanon.mjs';
-import { STEPS, STEP_TOOLS, STEP_HOOKS, STEP_TAGLINES, PULL_QUOTES } from './templates/steps.mjs';
+import { renderStepPage, STEPS, STEP_TOOLS, STEP_HOOKS, STEP_TAGLINES, PULL_QUOTES } from './templates/steps.mjs';
 import { renderLiteratureIndexPage, renderLiteraturePage, BOOKS } from './templates/literature.mjs';
 import { renderMonthArchivePage } from './templates/month-archive.mjs';
 import { renderStartPage } from './templates/start.mjs';
@@ -287,14 +287,14 @@ writePage(join(outDir, 'about-alanon', 'index.html'), renderAboutAlanonPage());
 console.log('Generating admin page...');
 if (!IS_PREVIEW) writePage(join(outDir, 'admin', 'index.html'), renderAdminPage());
 
-// The reflection library now owns Step navigation. Preserve the established
-// Step URLs as direct redirects to their corresponding monthly collections.
-console.log('Generating Step redirects to reflection collections...');
+// The reflection library owns the Step index, while the established individual
+// Step URLs remain available as supporting long-form articles.
+console.log('Generating Step articles and reflection index redirect...');
 writePage(join(outDir, 'steps', 'index.html'), redirectHtml('/reflections/'));
 for (const step of STEPS) {
   writePage(
     join(outDir, 'steps', stepRecordSlug(step), 'index.html'),
-    redirectHtml(`/months/${step.monthSlug}/`)
+    renderStepPage(step, readings)
   );
 }
 
@@ -365,7 +365,7 @@ console.log(`  OG images generated in ${ogElapsed}s`);
 
 // --- Step 5: Generate SEO artifacts ---
 console.log('Generating sitemap and robots.txt...');
-writeFileSync(join(outDir, 'sitemap.xml'), generateSitemap(readings, TOPICS, BOOKS), 'utf-8');
+writeFileSync(join(outDir, 'sitemap.xml'), generateSitemap(readings, TOPICS, BOOKS, STEPS), 'utf-8');
 writeFileSync(join(outDir, 'robots.txt'), generateRobotsTxt(), 'utf-8');
 
 // --- Step 5b: Generate redirect pages for old slugs ---
@@ -392,10 +392,10 @@ for (const reading of readings) {
   }
 }
 
-// Legacy Step routes also go directly to the reflection collection.
+// Legacy Step routes point to the stable individual Step articles.
 for (const step of STEPS) {
   const oldPath = `step-${step.number}`;
-  writeFileSync(join(outDir, 'steps', oldPath, 'index.html'), redirectHtml(`/months/${step.monthSlug}/`), 'utf-8');
+  writeFileSync(join(outDir, 'steps', oldPath, 'index.html'), redirectHtml(`/steps/${stepRecordSlug(step)}/`), 'utf-8');
 }
 
 // Theme → Topic redirects: /themes/... → /topics/... (plus renamed slugs)

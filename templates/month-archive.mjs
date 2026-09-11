@@ -1,6 +1,6 @@
 import { wrapInLayout } from './base.mjs';
 import { bp } from '../helpers/config.mjs';
-import { readingSlug, MONTHS, DAYS_IN_MONTH } from '../helpers/slug-utils.mjs';
+import { readingSlug, stepRecordSlug, MONTHS, DAYS_IN_MONTH } from '../helpers/slug-utils.mjs';
 import { STEPS, STEP_HOOKS } from './steps.mjs';
 
 /**
@@ -81,6 +81,7 @@ ${readingItems}
         <h1 class="ma-title">Step ${step.number} &mdash; ${step.principle}</h1>
         <p class="ma-subtitle">${STEP_HOOKS[step.number]}</p>
         <p class="ma-step-statement">${step.text}</p>
+        <a class="ma-step-more" href="${bp(`/steps/${stepRecordSlug(step)}/`)}">More about Step ${step.number} &rarr;</a>
       </header>
 
       <!-- Weekly Chapters -->

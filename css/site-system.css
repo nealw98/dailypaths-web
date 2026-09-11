@@ -172,6 +172,16 @@ h3,
   color: var(--text-primary);
 }
 
+.ma-step-more {
+  display: inline-flex;
+  margin-top: 16px;
+  font: 600 14px/1.4 var(--font-ui);
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.ma-step-more:hover { text-decoration: underline; }
+
 .reflection-index-lead {
   display: flex;
   align-items: center;
