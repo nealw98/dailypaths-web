@@ -200,9 +200,9 @@ export function renderReadingPage(reading, prevReading, nextReading, allReadings
         : '';
       keepReadingHtml = `
     <section class="wrap wrap--article section--lg kr-section${isDiscoveryTrial ? ' kr-section--trial' : ''}" aria-labelledby="keep-reading-heading">
-      <p class="eyebrow">${isDiscoveryTrial ? 'Continue reflecting' : 'Keep reading'}</p>
-      <h2 class="section-title" id="keep-reading-heading">${isDiscoveryTrial ? 'More for where you are' : `More on ${topicMatch.name.toLowerCase()}`}</h2>
-      ${isDiscoveryTrial ? `<p class="section-desc">Related reflections on ${topicMatch.name.toLowerCase()}, Step ${stepWord}, and closely connected ideas.</p>` : (collectionLine ? `<p class="section-desc">${collectionLine}</p>` : '')}
+      <p class="eyebrow">${isDiscoveryTrial ? 'Related Readings' : 'Keep reading'}</p>
+      <h2 class="section-title" id="keep-reading-heading">${isDiscoveryTrial ? `Additional reflections on ${topicMatch.name.toLowerCase()}` : `More on ${topicMatch.name.toLowerCase()}`}</h2>
+      ${isDiscoveryTrial ? '' : (collectionLine ? `<p class="section-desc">${collectionLine}</p>` : '')}
       <div class="kr-grid${isDiscoveryTrial ? ' kr-grid--carousel' : ''}">${cards}
       </div>
       <div class="kr-more">

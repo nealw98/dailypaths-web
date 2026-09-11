@@ -106,6 +106,9 @@ a horizontal rail; a separate 300-by-600-style desktop ad rail that becomes a sh
 mobile block; one relevant article and one practical Step guide; and a combined
 closing app/email invitation. The universal Start Here panel is removed only from
 this trial page. Email remains visibly “coming soon” while `NEWSLETTER_ACTION` is unset.
+The trial’s discovery heading is “Related Readings,” followed by “Additional
+reflections on [topic]” with no descriptive sentence beneath it. The closing app
+CTA uses Neal’s September 9 Daily Paths screen capture.
 
 Within the seafoam takeaway panel, the reminder message is the highest-value element:
 the memorable line a reader can carry into the day and receive on their phone. The
