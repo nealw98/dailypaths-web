@@ -1,6 +1,6 @@
 import { wrapInLayout } from './base.mjs';
 import { textToHtmlParagraphs, parseQuote, stripForMeta } from '../helpers/markdown.mjs';
-import { dayToIsoDate, dayToMonthIndex, readingSlug, stepRecordSlug, DAYS_IN_MONTH } from '../helpers/slug-utils.mjs';
+import { dayToIsoDate, dayToMonthIndex, readingSlug, DAYS_IN_MONTH } from '../helpers/slug-utils.mjs';
 import { readingStructuredData, breadcrumbStructuredData } from '../helpers/seo.mjs';
 import { bp } from '../helpers/config.mjs';
 import { THEME_TO_TOPIC, TOPICS, TOPIC_RELATED, DEFAULT_RELATED_TOPICS } from '../helpers/theme-data.mjs';
@@ -94,7 +94,7 @@ export function renderReadingPage(reading, prevReading, nextReading, allReadings
   const topicMatch = theme ? THEME_TO_TOPIC[theme] : null;
   const topicData = topicMatch ? TOPICS.find(t => t.slug === topicMatch.slug) : null;
   const stepData = stepNum ? STEPS.find(s => s.number === stepNum) : null;
-  const stepPath = stepData ? `/steps/${stepRecordSlug(stepData)}/` : null;
+  const stepPath = stepData ? `/months/${stepData.monthSlug}/` : null;
   const monthStepData = STEPS.find(step => step.number === monthIdx + 1);
 
   const pills = [];
@@ -257,10 +257,10 @@ export function renderReadingPage(reading, prevReading, nextReading, allReadings
           <span class="deeper-card-cta">Read the article &rarr;</span>
         </a>` : ''}
         ${stepData ? `<a href="${bp(stepPath)}" class="deeper-card">
-          <span class="deeper-card-type">Practical guide</span>
+          <span class="deeper-card-type">Reflection collection</span>
           <span class="deeper-card-title">Step ${stepWord}: ${stepData.principle}</span>
-          <span class="deeper-card-line">A practical look at responsibility, amends, and changing the behavior that caused harm.</span>
-          <span class="deeper-card-cta">Explore the guide &rarr;</span>
+          <span class="deeper-card-line">${STEP_HOOKS[stepData.number]} Read all ${stepData.month} reflections.</span>
+          <span class="deeper-card-cta">Explore the collection &rarr;</span>
         </a>` : ''}
       </div>
     </section>` : relatedTopicsHtml;

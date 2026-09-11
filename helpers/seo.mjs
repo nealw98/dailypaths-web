@@ -1,10 +1,10 @@
-import { readingSlug, stepRecordSlug } from './slug-utils.mjs';
+import { readingSlug } from './slug-utils.mjs';
 import { BASE_URL, IS_PREVIEW } from './config.mjs';
 
 /**
  * Generate sitemap.xml content for all pages
  */
-export function generateSitemap(readings, topics, books = [], steps = []) {
+export function generateSitemap(readings, topics, books = []) {
   const today = new Date().toISOString().split('T')[0];
 
   let urls = [];
@@ -26,13 +26,6 @@ export function generateSitemap(readings, topics, books = [], steps = []) {
   // Individual principle (topic) pages
   for (const topic of topics) {
     urls.push({ loc: `${BASE_URL}/topics/${topic.slug}/`, priority: '0.6', changefreq: 'monthly' });
-  }
-
-  // Steps
-  urls.push({ loc: BASE_URL + '/steps/', priority: '0.7', changefreq: 'monthly' });
-  for (const step of (steps.length > 0 ? steps : Array.from({ length: 12 }, (_, i) => ({ number: i + 1 })))) {
-    const sSlug = step.principle ? stepRecordSlug(step) : `al-anon-step-${step.number}`;
-    urls.push({ loc: `${BASE_URL}/steps/${sSlug}/`, priority: '0.7', changefreq: 'monthly' });
   }
 
   // Literature

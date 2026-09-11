@@ -25,8 +25,8 @@ export function renderAboutAlanonPage() {
       iconName: 'stackedStones',
       title: 'The Twelve Steps',
       body: 'A spiritual framework for personal growth. The Steps help members honestly examine their own attitudes and behaviors &mdash; not to fix the alcoholic, but to find freedom for themselves.',
-      link: 'Explore the Steps &rarr;',
-      href: bp('/steps/'),
+      link: 'Explore reflections by Step &rarr;',
+      href: bp('/reflections/'),
       external: false,
     },
     {

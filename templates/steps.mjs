@@ -266,16 +266,17 @@ export const STEPS = [
 ];
 
 /**
- * Generate the Steps index page — all twelve Steps as cards.
+ * Generate the reflection collection index using the established Steps cards.
  */
-export function renderStepsIndexPage() {
-  const gridCards = STEPS.map(step => `
-          <a href="${bp(`/steps/${stepRecordSlug(step)}/`)}" class="card-elevated step-card">
+export function renderReflectionsIndexPage(todayReading) {
+  const gridCards = STEPS.map((step, index) => `
+          <a href="${bp(`/months/${step.monthSlug}/`)}" class="card-elevated step-card">
             <span class="step-card-numeral">${step.number}</span>
             <span>
               <span class="step-card-keyword">${step.principle}</span>
               <span class="step-card-hook">${STEP_HOOKS[step.number] || ''}</span>
-              <span class="step-card-cta">Read the Step &rarr;</span>
+              <span class="step-card-month">${step.month} &middot; ${DAYS_IN_MONTH[index]} reflections</span>
+              <span class="step-card-cta">View reflections &rarr;</span>
             </span>
           </a>`).join('');
 
@@ -284,11 +285,15 @@ ${photoHero({
     image: bp('/assets/articles/steps-index-hero.jpg'),
     alt: 'Two figures greeting the sunrise with joined hands — the Twelve Steps of Al-Anon recovery',
     title: 'The Twelve Steps',
-    subtitle: 'A framework for personal freedom',
+    subtitle: '366 daily reflections, organized one Step at a time',
     size: 'sm',
   })}
 
     <section class="wrap section--md">
+      <div class="reflection-index-lead">
+        <p>Choose a Step and its spiritual principle. Each collection follows one month of readings; the date is there when you need it.</p>
+        <a class="btn" data-today-link href="${bp(`/${readingSlug(todayReading.day_of_year, todayReading.title)}/`)}">Read today&rsquo;s reflection &rarr;</a>
+      </div>
       <div class="step-card-grid step-card-grid--index">${gridCards}
       </div>
     </section>
@@ -300,12 +305,12 @@ ${photoHero({
     ${terminalBand()}`;
 
   return wrapInLayout({
-    title: 'The 12 Steps of Al-Anon — Recovery Reflections & Questions | Al-Anon Daily Paths',
-    description: 'Explore the Twelve Steps of Al-Anon with reflection questions for each step. Each month of Al-Anon Daily Paths readings focuses on one step.',
-    canonicalPath: '/steps/',
+    title: 'Daily Reflections by Step — Al-Anon Daily Paths',
+    description: 'Explore 366 daily reflections organized around the Twelve Steps and their spiritual principles, or begin with today’s reading.',
+    canonicalPath: '/reflections/',
     bodyContent,
-    bodyClass: 'page-steps-index',
-    navSection: 'steps',
+    bodyClass: 'page-steps-index page-reflections-index',
+    navSection: 'reflection',
     hasAppPanel: true,
   });
 }

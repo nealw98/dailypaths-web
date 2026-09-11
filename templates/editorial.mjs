@@ -3,6 +3,7 @@ import { terminalBand, APP_STORE_URL, PLAY_STORE_URL } from './ui.mjs';
 import { bp } from '../helpers/config.mjs';
 import { readingSlug } from '../helpers/slug-utils.mjs';
 import { GUIDES, ARTICLES } from '../helpers/content-catalog.mjs';
+import { renderReflectionsIndexPage } from './steps.mjs';
 
 const esc = value => String(value ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const plain = value => String(value || '').replace(/<[^>]*>/g, '').replace(/\\n/g, ' ').replace(/[*_]/g, '').replace(/\s+/g, ' ').trim();
@@ -51,7 +52,5 @@ export function renderGuidesPage() {
 }
 
 export function renderReflectionsPage(reading) {
-  const months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
-  return wrapInLayout({ title:'Daily Reflections — Daily Paths', description:'A year of daily reflections. Read today’s reflection or find a reading by date.', canonicalPath:'/reflections/', bodyClass:'page-editorial', navSection:'reflection', hasAppPanel:true,
-    bodyContent:`<header class="sd-page-heading sd-wrap"><p class="sd-kicker">One day at a time</p><h1>A moment for yourself.</h1><p>There is no need to catch up. Begin with today.</p><a class="sd-button" data-today-link href="${bp('/' + readingSlug(reading.day_of_year,reading.title) + '/')}">Read today’s reflection <span aria-hidden="true">↗</span></a></header><section class="sd-wrap sd-archive"><h2>Find a reflection by date</h2><nav class="sd-months" aria-label="Reflection months">${months.map((month,i)=>`<a href="${bp('/months/'+month.toLowerCase()+'/')}"><span class="sd-kicker">${String(i+1).padStart(2,'0')}</span><span>${month}</span><span aria-hidden="true">↗</span></a>`).join('')}</nav></section>${terminalBand()}`});
+  return renderReflectionsIndexPage(reading);
 }

@@ -1,7 +1,7 @@
 import { wrapInLayout } from './base.mjs';
 import { bp } from '../helpers/config.mjs';
-import { readingSlug, stepRecordSlug, MONTHS, DAYS_IN_MONTH } from '../helpers/slug-utils.mjs';
-import { STEPS } from './steps.mjs';
+import { readingSlug, MONTHS, DAYS_IN_MONTH } from '../helpers/slug-utils.mjs';
+import { STEPS, STEP_HOOKS } from './steps.mjs';
 
 /**
  * Weekly chapter labels for grouping daily readings.
@@ -70,15 +70,17 @@ ${readingItems}
 
   const bodyContent = `
     <div class="wrap section--md">
-      <!-- Back to Step link -->
+      <!-- Back to reflection collections -->
       <nav class="ma-back-nav">
-        <a href="${bp(`/steps/${stepRecordSlug(step)}/`)}" class="ma-back-link">&larr; Back to Step ${step.number}: ${step.principle}</a>
+        <a href="${bp('/reflections/')}" class="ma-back-link">&larr; All reflection collections</a>
       </nav>
 
       <!-- Page Header -->
       <header class="ma-header">
-        <h1 class="ma-title">${monthDisplay} Reflections</h1>
-        <p class="ma-subtitle">31 daily readings for Step ${step.number}: ${step.principle}</p>
+        <p class="eyebrow ma-collection-eyebrow">${monthDisplay} &middot; ${monthReadings.length} reflections</p>
+        <h1 class="ma-title">Step ${step.number} &mdash; ${step.principle}</h1>
+        <p class="ma-subtitle">${STEP_HOOKS[step.number]}</p>
+        <p class="ma-step-statement">${step.text}</p>
       </header>
 
       <!-- Weekly Chapters -->
@@ -104,8 +106,8 @@ ${weekSections}
     </div>`;
 
   return wrapInLayout({
-    title: `${monthDisplay} Daily Readings — Step ${step.number}: ${step.principle} | Al-Anon Daily Paths`,
-    description: `All 31 ${monthDisplay} daily reflections for Step ${step.number} of Al-Anon. Browse readings by week for the month of ${monthDisplay}.`,
+    title: `Step ${step.number}: ${step.principle} — ${monthDisplay} Daily Reflections | Daily Paths`,
+    description: `${monthReadings.length} ${monthDisplay} daily reflections for Step ${step.number}, ${step.principle}. ${STEP_HOOKS[step.number]}`,
     canonicalPath: `/months/${monthName}/`,
     bodyContent,
     bodyClass: 'page-month-archive',

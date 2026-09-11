@@ -33,8 +33,7 @@ function navItems() {
  * @param {string} [options.structuredData] - JSON-LD string
  * @param {string} [options.ogType] - Open Graph type (default: "website")
  * @param {string} [options.bodyClass] - Additional class for <body>
- * @param {string} [options.navSection] - Nav item to mark active. Step detail
- *   pages pass "steps"; topic detail pages pass "topics".
+ * @param {string} [options.navSection] - Nav item to mark active.
  * @param {boolean} [options.hasAppPanel] - Page contains #get-the-app, so the
  *   header CTA can scroll in place instead of going home.
  */
@@ -111,7 +110,7 @@ export function wrapInLayout({
   <!-- Page structure first, then the shared Daily Paths design system. -->
   ${isHome ? `<link rel="stylesheet" href="${bp('/css/editorial-home.css')}?v=brand-icon-1">` : `<link rel="stylesheet" href="${bp('/css/style.css')}?v=brand-icon-1"><link rel="stylesheet" href="${bp('/css/soft-daylight.css')}?v=brand-icon-1">`}
   <link rel="stylesheet" href="${bp('/css/tokens/fonts.css')}?v=brand-icon-1">
-  <link rel="stylesheet" href="${bp('/css/site-system.css')}?v=reflection-discovery-trial-3">
+  <link rel="stylesheet" href="${bp('/css/site-system.css')}?v=step-first-reflections-1">
   <meta name="site-mode" content="${IS_PREVIEW ? 'preview' : 'production'}">
 
   ${structuredData ? (Array.isArray(structuredData) ? structuredData : [structuredData]).map(json => `<!-- Structured Data -->
@@ -201,7 +200,7 @@ ${bodyContent}
           <a href="${bp('/privacy/')}">Privacy</a>
           <a href="${bp('/terms/')}">Terms</a>
           <a href="${bp('/essentials/')}">Essentials</a>
-          <a href="${bp('/steps/')}">The Twelve Steps</a>
+          <a href="${bp('/reflections/')}">Reflections by Step</a>
           <a href="${appHref}">Get the app</a>
         </nav>
       </div>

@@ -160,7 +160,7 @@ export function renderAboutProjectPage() {
           <h2 class="ap-nav-cta-heading">Continue the Journey</h2>
           <div class="ap-nav-cta-actions">
             <a href="${bp('/topics/')}" class="ap-nav-cta-btn">Explore the 12 Topics</a>
-            <a href="${bp('/steps/')}" class="ap-nav-cta-btn">Begin the 12 Steps</a>
+            <a href="${bp('/reflections/')}" class="ap-nav-cta-btn">Explore reflections by Step</a>
           </div>
         </div>
       </section>`;
