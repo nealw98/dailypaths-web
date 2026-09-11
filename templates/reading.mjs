@@ -61,7 +61,7 @@ function readingTeaser(reading) {
  */
 export function renderReadingPage(reading, prevReading, nextReading, allReadings = [], ratingsMap = new Map(), { typographyPreview = false } = {}) {
   const slug = readingSlug(reading.day_of_year, reading.title);
-  const isSoftDaylightTrial = slug === 'september-10-the-lie-of-habitual-apologies' && !typographyPreview;
+  const hasBespokeHero = slug === 'september-10-the-lie-of-habitual-apologies' && !typographyPreview;
   const isoDate = dayToIsoDate(reading.day_of_year);
   const monthIdx = dayToMonthIndex(reading.day_of_year);
   let dayOfMonth = reading.day_of_year;
@@ -164,9 +164,9 @@ export function renderReadingPage(reading, prevReading, nextReading, allReadings
         ? `${upperFirst(countToWords(collection.length))} readings on ${lowerFirst(stripPeriod(topicData.shortDescription))}.`
         : '';
       keepReadingHtml = `
-    <section class="wrap wrap--article section--lg">
+    <section class="wrap wrap--article section--lg kr-section" aria-labelledby="keep-reading-heading">
       <p class="eyebrow">Keep reading</p>
-      <h2 class="section-title">More on ${topicMatch.name.toLowerCase()}</h2>
+      <h2 class="section-title" id="keep-reading-heading">More on ${topicMatch.name.toLowerCase()}</h2>
       ${collectionLine ? `<p class="section-desc">${collectionLine}</p>` : ''}
       <div class="kr-grid">${cards}
       </div>
@@ -176,6 +176,14 @@ export function renderReadingPage(reading, prevReading, nextReading, allReadings
     </section>`;
     }
   }
+
+  // The real ad integration will replace the contents of this reserved slot.
+  // Keeping it in the template now lets spacing and discovery modules be
+  // designed around advertising without mixing paid and editorial cards.
+  const adPlaceholderHtml = `
+    <aside class="ad-slot wrap wrap--article" data-ad-slot="reflection-after-keep-reading" aria-label="Advertisement">
+      <span class="ad-slot-label">Advertisement</span>
+    </aside>`;
 
   // Related topics — scaffolding on every reading page: two topic cards from
   // the topic-adjacency map (per-reading secondary topics replace this when
@@ -209,15 +217,15 @@ export function renderReadingPage(reading, prevReading, nextReading, allReadings
 
   const bodyContent = `
 ${photoHero({
-    image: bp(isSoftDaylightTrial
+    image: bp(hasBespokeHero
       ? '/assets/reflections/september-10-habitual-apologies-soft-daylight.webp'
-      : `/assets/${reflectionImage(reading.day_of_year)}`),
+      : `/assets/${reflectionImage(reading.day_of_year, topicMatch?.slug)}`),
     alt: '',
     eyebrow: `<time datetime="${isoDate}">${heroEyebrow}</time>`,
     title: reading.title,
     size: 'md',
     titleClass: 'photo-hero-title--reading',
-    heroClass: isSoftDaylightTrial ? 'photo-hero--soft-daylight' : '',
+    heroClass: 'photo-hero--soft-daylight',
   })}
 
     <article class="rd-article">
@@ -265,6 +273,7 @@ ${photoHero({
       </a>
     </div>
 ${keepReadingHtml}
+${adPlaceholderHtml}
 ${relatedTopicsHtml}
 
     <div class="wrap wrap--article">

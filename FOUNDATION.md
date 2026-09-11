@@ -79,16 +79,26 @@ Use the Sites project in `.openai/hosting.json`; do not create another site. Git
 - Confirm app-store destinations and all final content links.
 - Rebuild with production configuration, review generated output, then request/execute the explicitly authorized launch. Preserve existing redirects and the daily rebuild workflow.
 
-## Reflection image rotation
+## Reflection imagery and discovery
 
-The 42 app photos in `assets/reflections/` now rotate across full reflection pages by calendar day, cycling in numeric filename order. This is a simple daily rotation, not a match between photographs and subjects. The homepage keeps its consistent Soft Daylight window photograph. The choice is stable when revisiting a dated reading and works with the existing 366-day calendar. Matching images to individual reflections is explicitly deferred.
+Every dated reflection now uses the Soft Daylight hero grammar. Twelve purpose-built
+photographs map to the twelve reflection themes, replacing the unrelated landscape
+and app-photo rotation. The images show recognizable domestic moments in natural
+window light, with warm cream, restrained olive, varied people, and quiet space for
+live typography. September 10 retains its bespoke entryway photograph. The image
+selection is stable and thematically related to each reading; titles are always HTML,
+never baked into image assets.
 
-September 10, “The Lie of Habitual Apologies,” is the single approved trial for a
-bespoke reflection image and Soft Daylight hero treatment. It uses a purpose-built
-entryway photograph with calm space for dark type on desktop and a stacked image/title
-treatment on narrow screens. Do not apply it to other readings until the trial is
-reviewed.
+On phones, the date and title sit inside a warm image-to-paper fade at the foot of the
+hero. This keeps the compactness of an overlaid hero without relying on a dark scenic
+photograph or a heavy black scrim. Long reflection titles may wrap to three or four
+balanced lines.
+
+“Keep reading” remains a three-card grid on larger screens and becomes a native,
+single-row scroll-snap carousel on phones. Paid content is never inserted as a card.
+A separate, labelled advertisement slot follows the reading carousel and reserves
+the page height a future ad provider will need.
 
 ## Asset provenance
 
-`editorial-window.webp`, `editorial-doorway.webp`, and `editorial-phone.webp` reconstruct the photography direction in the supplied reference; `soft-daylight-journal.webp` supports the photographic app invitation. These are generated assets. The earlier window photo is retained as an unused asset. `Screenshots/today-actual.png` is Neal's supplied app screenshot from September 9, 2026. Other assets were already committed to `2.0` and remain available.
+`editorial-window.webp`, `editorial-doorway.webp`, and `editorial-phone.webp` reconstruct the photography direction in the supplied reference; `soft-daylight-journal.webp` supports the photographic app invitation. The twelve `soft-daylight-*.jpg` reflection heroes and the bespoke September 10 entryway hero are generated assets. The earlier landscape and app-photo collection is retained but no longer selected by reflection pages. `Screenshots/today-actual.png` is Neal's supplied app screenshot from September 9, 2026. Other assets were already committed to `2.0` and remain available.
