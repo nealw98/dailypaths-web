@@ -99,6 +99,10 @@ single-row scroll-snap carousel on phones. Paid content is never inserted as a c
 A separate, labelled advertisement slot follows the reading carousel and reserves
 the page height a future ad provider will need.
 
+Within the seafoam takeaway panel, the reminder message is the highest-value element:
+the memorable line a reader can carry into the day and receive on their phone. The
+small “Today’s Reminder” label is only a muted locator and must never compete with it.
+
 ## Asset provenance
 
 `editorial-window.webp`, `editorial-doorway.webp`, and `editorial-phone.webp` reconstruct the photography direction in the supplied reference; `soft-daylight-journal.webp` supports the photographic app invitation. The twelve `soft-daylight-*.jpg` reflection heroes and the bespoke September 10 entryway hero are generated assets. The earlier landscape and app-photo collection is retained but no longer selected by reflection pages. `Screenshots/today-actual.png` is Neal's supplied app screenshot from September 9, 2026. Other assets were already committed to `2.0` and remain available.
