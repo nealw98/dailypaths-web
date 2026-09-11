@@ -38,6 +38,7 @@ import { renderAboutAlanonPage } from './templates/about-alanon.mjs';
 import { renderStepPage, STEPS, STEP_TOOLS, STEP_HOOKS, STEP_TAGLINES, PULL_QUOTES } from './templates/steps.mjs';
 import { renderLiteratureIndexPage, renderLiteraturePage, BOOKS } from './templates/literature.mjs';
 import { renderMonthArchivePage } from './templates/month-archive.mjs';
+import { renderFavoriteReadingsPage } from './templates/favorite-readings.mjs';
 import { renderStartPage } from './templates/start.mjs';
 import { renderAdminPage } from './templates/admin.mjs';
 import { wrapInLayout } from './templates/base.mjs';
@@ -154,6 +155,7 @@ const dirs = [
   join(outDir, 'literature'),
   ...BOOKS.map(b => join(outDir, 'literature', b.slug)),
   join(outDir, 'admin'),
+  join(outDir, 'reflections', 'favorites'),
   join(outDir, 'months'),
   ...Array.from({ length: 12 }, (_, i) => {
     const months = ['january','february','march','april','may','june','july','august','september','october','november','december'];
@@ -203,6 +205,7 @@ for (const [path, render] of [['articles', renderArticlesPage], ['guides', rende
   mkdirSync(join(outDir, path), {recursive:true});
   writePage(join(outDir,path,'index.html'), render());
 }
+writePage(join(outDir, 'reflections', 'favorites', 'index.html'), renderFavoriteReadingsPage(readings, ratingsMap));
 
 // Reading pages
 console.log('Generating 366 reading pages...');

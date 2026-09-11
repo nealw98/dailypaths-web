@@ -13,6 +13,7 @@ export function generateSitemap(readings, topics, books = [], steps = []) {
   urls.push({ loc: BASE_URL + '/', priority: '1.0', changefreq: 'daily' });
 
   for (const path of ['/articles/', '/guides/', '/reflections/']) urls.push({loc:BASE_URL + path, priority:'0.8', changefreq:'weekly'});
+  urls.push({ loc: BASE_URL + '/reflections/favorites/', priority: '0.7', changefreq: 'weekly' });
 
   // Reading pages
   for (const reading of readings) {

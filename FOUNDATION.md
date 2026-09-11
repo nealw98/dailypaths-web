@@ -65,6 +65,14 @@ URLs remain available as supporting articles and stay in the sitemap. Traditions
 and Concepts may become parallel collection views later; do not add them to the
 Step cards until their structure is decided.
 
+The Reflections index uses `assets/articles/daily-reflections-hero.webp`, a custom
+Soft Daylight journaling photograph, beneath the “Daily Reflections” page title.
+The twelve collection cards contain only the Step number, principle, one-line
+description, and “View reflections” link; month/date metadata begins on the
+collection page. `/reflections/favorites/` lists the ten readings with the highest
+year-wide combined score of positive responses plus app favorites, with favorites
+and positive responses used as tie-breakers in that order.
+
 ## Working on content
 
 1. Pick a guide or article and inventory its existing text before drafting.

@@ -269,30 +269,32 @@ export const STEPS = [
  * Generate the reflection collection index using the established Steps cards.
  */
 export function renderReflectionsIndexPage(todayReading) {
-  const gridCards = STEPS.map((step, index) => `
+  const gridCards = STEPS.map(step => `
           <a href="${bp(`/months/${step.monthSlug}/`)}" class="card-elevated step-card">
             <span class="step-card-numeral">${step.number}</span>
             <span>
               <span class="step-card-keyword">${step.principle}</span>
               <span class="step-card-hook">${STEP_HOOKS[step.number] || ''}</span>
-              <span class="step-card-month">${step.month} &middot; ${DAYS_IN_MONTH[index]} reflections</span>
               <span class="step-card-cta">View reflections &rarr;</span>
             </span>
           </a>`).join('');
 
   const bodyContent = `
 ${photoHero({
-    image: bp('/assets/articles/steps-index-hero.jpg'),
-    alt: 'Two figures greeting the sunrise with joined hands — the Twelve Steps of Al-Anon recovery',
-    title: 'The Twelve Steps',
-    subtitle: '366 daily reflections, organized one Step at a time',
+    image: bp('/assets/articles/daily-reflections-hero.webp'),
+    alt: 'A person journaling beside an open window in soft morning daylight',
+    title: 'Daily Reflections',
+    subtitle: 'A year of readings shaped by the Twelve Steps',
     size: 'sm',
   })}
 
     <section class="wrap section--md">
       <div class="reflection-index-lead">
-        <p>Choose a Step and its spiritual principle. Each collection follows one month of readings; the date is there when you need it.</p>
-        <a class="btn" data-today-link href="${bp(`/${readingSlug(todayReading.day_of_year, todayReading.title)}/`)}">Read today&rsquo;s reflection &rarr;</a>
+        <p>Each month follows one Step and one spiritual principle. Choose a collection, or begin with the readings people return to most.</p>
+        <div class="reflection-index-actions">
+          <a class="btn" data-today-link href="${bp(`/${readingSlug(todayReading.day_of_year, todayReading.title)}/`)}">Read today&rsquo;s reflection &rarr;</a>
+          <a class="btn btn--ghost" href="${bp('/reflections/favorites/')}">Favorite readings &rarr;</a>
+        </div>
       </div>
       <div class="step-card-grid step-card-grid--index">${gridCards}
       </div>

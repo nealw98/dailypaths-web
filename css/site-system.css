@@ -182,6 +182,25 @@ h3,
 
 .ma-step-more:hover { text-decoration: underline; }
 
+.favorite-readings-method {
+  max-width: 620px;
+  margin: 12px 0 0;
+  font: var(--type-small);
+  color: var(--text-muted);
+}
+
+.favorite-reading-list {
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+}
+
+.favorite-reading-rank {
+  display: block;
+  margin-bottom: 8px;
+  font: var(--type-label);
+  letter-spacing: 1.25px;
+  color: var(--accent-soft);
+}
+
 .reflection-index-lead {
   display: flex;
   align-items: center;
@@ -197,15 +216,11 @@ h3,
   color: var(--text-muted);
 }
 
-.reflection-index-lead .btn { flex: 0 0 auto; }
-
-.step-card-month {
-  display: block;
-  margin-top: 13px;
-  font: var(--type-label);
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  color: var(--text-muted);
+.reflection-index-actions {
+  display: flex;
+  flex: 0 0 auto;
+  flex-wrap: wrap;
+  gap: 10px;
 }
 
 @media (max-width: 640px) {
@@ -214,6 +229,9 @@ h3,
     flex-direction: column;
     gap: 18px;
   }
+
+  .reflection-index-actions { width: 100%; }
+  .reflection-index-actions .btn { flex: 1 1 auto; }
 }
 
 .prose-reading,
