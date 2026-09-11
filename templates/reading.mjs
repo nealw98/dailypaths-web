@@ -204,14 +204,6 @@ export function renderReadingPage(reading, prevReading, nextReading, allReadings
     }
   }
 
-  // The real ad integration will replace the contents of this reserved slot.
-  // Keeping it in the template now lets spacing and discovery modules be
-  // designed around advertising without mixing paid and editorial cards.
-  const adPlaceholderHtml = `
-    <aside class="ad-slot wrap wrap--article" data-ad-slot="reflection-after-keep-reading" aria-label="Advertisement">
-      <span class="ad-slot-label">Advertisement</span>
-    </aside>`;
-
   // Related topics — scaffolding on every reading page: two topic cards from
   // the topic-adjacency map (per-reading secondary topics replace this when
   // topics-v2 tagging lands), then the reading's Step, worded to explain
@@ -322,11 +314,8 @@ ${photoHero({
         <span class="btn new-here-btn">Start here &rarr;</span>
       </a>
     </div>`}
-${isDiscoveryTrial ? `<div class="reading-discovery-shell">
 ${keepReadingHtml}
-${adPlaceholderHtml.replace('ad-slot wrap wrap--article', 'ad-slot ad-slot--rail')}
 ${goDeeperHtml}
-    </div>` : `${keepReadingHtml}\n${adPlaceholderHtml}\n${goDeeperHtml}`}
 
     <div class="wrap wrap--article">
       <p class="fine-print">Curated by members of the Al-Anon community for Daily Growth, LLC. Grounded in the Twelve Steps and the contemplative tradition of Al-Anon.</p>

@@ -39,7 +39,6 @@ export function renderFavoriteReadingsPage(readings, ratingsMap = new Map()) {
         <p class="eyebrow ma-collection-eyebrow">Across the year &middot; Top 10</p>
         <h1 class="ma-title">Favorite Readings</h1>
         <p class="ma-subtitle">The reflections readers return to most.</p>
-        <p class="favorite-readings-method">Ranked by the combined total of positive responses and app favorites.</p>
       </header>
       <ol class="ma-week-list favorite-reading-list">
 ${readingItems}
@@ -49,7 +48,7 @@ ${readingItems}
 
   return wrapInLayout({
     title: 'Favorite Daily Reflections — Daily Paths',
-    description: 'The ten Daily Paths reflections with the highest combined positive responses and app favorites across the year.',
+    description: 'Ten favorite Daily Paths reflections selected from across the year.',
     canonicalPath: '/reflections/favorites/',
     bodyContent,
     bodyClass: 'page-month-archive page-favorite-readings',

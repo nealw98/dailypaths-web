@@ -108,9 +108,9 @@ export function wrapInLayout({
   <link rel="apple-touch-icon" sizes="512x512" href="${bp('/assets/favicon.png')}">
 
   <!-- Page structure first, then the shared Daily Paths design system. -->
-  ${isHome ? `<link rel="stylesheet" href="${bp('/css/editorial-home.css')}?v=brand-icon-1">` : `<link rel="stylesheet" href="${bp('/css/style.css')}?v=brand-icon-1"><link rel="stylesheet" href="${bp('/css/soft-daylight.css')}?v=brand-icon-1">`}
+  ${isHome ? `<link rel="stylesheet" href="${bp('/css/editorial-home.css')}?v=footer-cleanup-1">` : `<link rel="stylesheet" href="${bp('/css/style.css')}?v=brand-icon-1"><link rel="stylesheet" href="${bp('/css/soft-daylight.css')}?v=brand-icon-1">`}
   <link rel="stylesheet" href="${bp('/css/tokens/fonts.css')}?v=brand-icon-1">
-  <link rel="stylesheet" href="${bp('/css/site-system.css')}?v=reflection-favorites-1">
+  <link rel="stylesheet" href="${bp('/css/site-system.css')}?v=footer-cleanup-1">
   <meta name="site-mode" content="${IS_PREVIEW ? 'preview' : 'production'}">
 
   ${structuredData ? (Array.isArray(structuredData) ? structuredData : [structuredData]).map(json => `<!-- Structured Data -->
@@ -180,11 +180,8 @@ ${mobileNav}
 ${bodyContent}
   </main>
 
-  ${isHome ? `<footer class="ed-footer ed-wrap"><a class="ed-footer-brand" href="${bp('/')}">${brandLockup('footer-wordmark')}</a><nav aria-label="Footer"><a href="${bp('/about-project/')}">About</a><a href="${bp('/start/')}">Start here</a><a href="${bp('/essentials/')}">Resources</a><a href="${bp('/privacy/')}">Privacy</a><a href="${bp('/terms/')}">Terms</a></nav></footer>` : `  <footer class="site-footer">
+  ${isHome ? `<footer class="ed-footer ed-wrap"><nav aria-label="Footer"><a href="${bp('/about-project/')}">About</a><a href="${bp('/start/')}">Start here</a><a href="${bp('/essentials/')}">Resources</a><a href="${bp('/privacy/')}">Privacy</a><a href="${bp('/terms/')}">Terms</a></nav></footer>` : `  <footer class="site-footer">
     <div class="footer-inner">
-      <div class="footer-brand">
-        <a class="footer-brand-lockup" href="${bp('/')}">${brandLockup('footer-wordmark')}</a>
-      </div>
       <div class="footer-col">
         <p class="footer-col-title">About</p>
         <nav class="footer-links" aria-label="About">

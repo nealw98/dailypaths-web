@@ -37,10 +37,11 @@ Launch content review remains separate from visual-system approval.
 
 ## Brand lockup
 
-The path icon precedes the Cormorant italic wordmark in the shared header and both
-footer layouts. The lockup is icon plus “Daily Paths” only—no tagline. Use the
-existing 48px and 192px icon assets with responsive selection and keep the icon and
-wordmark optically balanced as one compact mark.
+The path icon precedes the Cormorant italic wordmark in the shared header. The
+lockup is icon plus “Daily Paths” only—no tagline. Use the existing 48px and 192px
+icon assets with responsive selection and keep the icon and wordmark optically
+balanced as one compact mark. Footers are intentionally utility-only and do not
+repeat the brand lockup.
 
 ## What is reused
 

@@ -182,13 +182,6 @@ h3,
 
 .ma-step-more:hover { text-decoration: underline; }
 
-.favorite-readings-method {
-  max-width: 620px;
-  margin: 12px 0 0;
-  font: var(--type-small);
-  color: var(--text-muted);
-}
-
 .favorite-reading-list {
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
 }
@@ -508,41 +501,9 @@ h3,
   text-wrap: balance;
 }
 
-/* Advertising remains visibly separate from editorial discovery. The future
-   provider mounts into this reserved surface without changing page rhythm. */
-.ad-slot {
-  min-height: 220px;
-  margin-top: var(--space-6);
-  display: grid;
-  place-items: center;
-  border-block: 1px solid var(--rule, #dfdfd3);
-  background: color-mix(in srgb, var(--surface-low, #f3f2eb) 58%, transparent);
-}
-
-.ad-slot-label {
-  font: var(--type-label);
-  letter-spacing: 1.25px;
-  text-transform: uppercase;
-  color: color-mix(in srgb, var(--text-muted, #66685d) 68%, transparent);
-}
-
 /* September 11 discovery trial. Six links remain in the HTML while the
-   horizontal rail protects the page's vertical rhythm. The ad is a separate
-   desktop rail and moves between reflection links and deeper resources on
-   phones. */
-.reading-discovery-shell {
-  width: min(calc(100% - (2 * var(--gutter-system))), var(--content-wide));
-  margin-inline: auto;
-  display: grid;
-  grid-template-columns: minmax(0, var(--content-reading)) minmax(260px, 300px);
-  grid-template-areas:
-    "readings ad"
-    "deeper ad";
-  column-gap: clamp(32px, 5vw, 64px);
-  align-items: start;
-}
-.reading-discovery-shell > .wrap { width: 100%; max-width: none; margin-inline: 0; }
-.kr-section--trial { grid-area: readings; overflow: hidden; }
+   horizontal rail protects the page's vertical rhythm. */
+.kr-section--trial { overflow: hidden; }
 .discovery-trial-page .eyebrow {
   font: normal 600 10px/1.4 var(--font-ui);
   letter-spacing: 1px;
@@ -561,15 +522,7 @@ h3,
   scrollbar-width: thin;
 }
 .kr-grid--carousel .kr-card { min-width: 0; min-height: 250px; scroll-snap-align: start; }
-.ad-slot--rail {
-  grid-area: ad;
-  width: 100%;
-  min-height: 600px;
-  margin-top: var(--space-7);
-  border: 1px solid var(--rule, #dfdfd3);
-}
 .deeper-section {
-  grid-area: deeper;
   padding: var(--space-6) 0 var(--space-7);
   border-top: 1px solid var(--rule, #dfdfd3);
 }
@@ -656,6 +609,7 @@ h3,
 
 .site-footer { margin-top: 0; background: var(--surface, #faf9f5); border-top: 1px solid var(--rule, #dfdfd3); }
 .footer-inner { width: min(calc(100% - (2 * var(--gutter-system))), var(--content-wide)); padding: var(--space-5) 0 var(--space-4); }
+.site-footer .footer-inner { max-width: 720px; grid-template-columns: repeat(2, minmax(0, 1fr)); }
 .footer-bar { width: min(calc(100% - (2 * var(--gutter-system))), var(--content-wide)); padding: var(--space-2) 0; }
 
 @media (max-width: 960px) {
@@ -701,23 +655,11 @@ h3,
 
   .sd-app { min-height: 560px; }
   .sd-app-inner { min-height: 560px; }
-  .footer-inner { grid-template-columns: 1fr; gap: var(--space-4); }
+  .site-footer .footer-inner { grid-template-columns: 1fr; gap: var(--space-4); }
 }
 
 @media (max-width: 760px) {
-  .reading-discovery-shell {
-    display: flex;
-    width: min(calc(100% - (2 * var(--gutter-system))), var(--content-reading));
-    flex-direction: column;
-  }
-  .kr-section--trial { order: 1; }
-  .ad-slot--rail {
-    order: 2;
-    min-height: 250px;
-    margin-top: var(--space-4);
-    border-inline: 0;
-  }
-  .deeper-section { order: 3; padding-top: var(--space-6); }
+  .deeper-section { padding-top: var(--space-6); }
   .deeper-grid { grid-template-columns: 1fr; }
   .kr-grid--carousel {
     grid-auto-columns: min(82vw, 320px);
@@ -797,10 +739,6 @@ h3,
   }
   .kr-more { margin-top: var(--space-2); }
 
-  .ad-slot {
-    min-height: 250px;
-    margin-top: var(--space-5);
-  }
 }
 
 @media (prefers-reduced-motion: reduce) {
