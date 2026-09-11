@@ -242,9 +242,11 @@ h3,
 .reminder-text {
   max-width: 32ch;
   margin-top: 12px;
+  margin-inline: auto;
   font: italic 400 clamp(23px, 2.2vw, 28px)/1.5 var(--font-editorial);
   letter-spacing: 0;
   color: #4a5046;
+  text-align: center;
   text-wrap: pretty;
 }
 

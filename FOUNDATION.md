@@ -103,7 +103,7 @@ Within the seafoam takeaway panel, the reminder message is the highest-value ele
 the memorable line a reader can carry into the day and receive on their phone. The
 small “Today’s Reminder” label is only a muted locator and must never compete with it.
 The takeaway uses a light italic editorial voice in warm ink: related to a pull quote,
-but left-aligned and more direct.
+but centered and more direct while its label remains quiet and separate.
 
 ## Asset provenance
 
