@@ -99,6 +99,14 @@ single-row scroll-snap carousel on phones. Paid content is never inserted as a c
 A separate, labelled advertisement slot follows the reading carousel and reserves
 the page height a future ad provider will need.
 
+September 11 is the approved review route for the next discovery model; the other
+365 reflections remain unchanged until Neal reviews it. The trial contains six
+crawlable reflection links (topic, current Step, and an adjacent idea), displayed as
+a horizontal rail; a separate 300-by-600-style desktop ad rail that becomes a short
+mobile block; one relevant article and one practical Step guide; and a combined
+closing app/email invitation. The universal Start Here panel is removed only from
+this trial page. Email remains visibly “coming soon” while `NEWSLETTER_ACTION` is unset.
+
 Within the seafoam takeaway panel, the reminder message is the highest-value element:
 the memorable line a reader can carry into the day and receive on their phone. The
 small “Today’s Reminder” label is only a muted locator and must never compete with it.

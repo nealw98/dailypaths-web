@@ -11,6 +11,14 @@
 
 import { bp } from '../helpers/config.mjs';
 
+function escapeAttr(value) {
+  return String(value)
+    .replaceAll('&', '&amp;')
+    .replaceAll('"', '&quot;')
+    .replaceAll('<', '&lt;')
+    .replaceAll('>', '&gt;');
+}
+
 export const APP_STORE_URL = 'https://apps.apple.com/app/id6755981862';
 export const PLAY_STORE_URL = 'https://play.google.com/store/apps/details?id=com.nealw98.dailypaths';
 export const MEETING_DIRECTORY_URL = 'https://al-anon.org/al-anon-meetings/find-an-al-anon-meeting/';
@@ -223,12 +231,24 @@ export function appPanel({ tone = 'seafoam', heading, text, showIcon = false, co
 export function terminalBand({
   heading = 'Make room for yourself,<br><em>every day.</em>',
   text = 'A daily reflection. A place for your thoughts. Small ways to bring the focus back to you.',
+  showEmailOption = false,
 } = {}) {
+  const newsletterAction = process.env.NEWSLETTER_ACTION?.trim();
+  const emailOption = showEmailOption ? `<div class="sd-app-email">
+        <p class="sd-app-email-title">Prefer email?</p>
+        <p class="sd-app-email-copy">Receive the daily reflection in your inbox.</p>
+        <form class="sd-app-email-form" ${newsletterAction ? `action="${escapeAttr(newsletterAction)}" method="post"` : 'aria-describedby="reading-email-status"'}>
+          <label class="sr-only" for="reading-newsletter-email">Your email address</label>
+          <input id="reading-newsletter-email" name="email" type="email" autocomplete="email" placeholder="Your email address" ${newsletterAction ? 'required' : 'disabled'}>
+          <button type="submit" ${newsletterAction ? '' : 'disabled'}>Sign me up</button>
+        </form>
+        ${newsletterAction ? `<p class="sd-app-email-note"><a href="${bp('/privacy/')}">Privacy</a> · Unsubscribe at any time.</p>` : '<p class="sd-app-email-note" id="reading-email-status">Email signup is coming soon.</p>'}
+      </div>` : '';
   return `<section class="sd-app" id="get-the-app" aria-label="The Daily Paths app">
     <img class="sd-app-background" src="${bp('/assets/articles/soft-daylight-journal.webp')}" alt="" width="1672" height="941" loading="lazy">
     <div class="sd-app-inner sd-wrap">
       <div class="sd-phone"><img src="${bp('/assets/Screenshots/today-actual.png')}" alt="The actual Daily Paths app: today’s reflection, journal, and daily tools" width="944" height="2048" loading="lazy"></div>
-      <div class="sd-app-copy"><p class="sd-kicker">Daily Paths, wherever you are</p><h2>${heading}</h2><p>${text}</p>${storeBadges({ context: 'band' })}</div>
+      <div class="sd-app-copy"><p class="sd-kicker">Daily Paths, wherever you are</p><h2>${heading}</h2><p>${text}</p>${storeBadges({ context: 'band' })}${emailOption}</div>
     </div>
   </section>`;
 }

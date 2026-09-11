@@ -8,6 +8,7 @@ import { STEPS } from './steps.mjs';
 import { photoHero, quoteBlock, pill, icon, terminalBand } from './ui.mjs';
 import { reflectionImage } from '../helpers/reflection-images.mjs';
 import { TYPOGRAPHY_REVIEW_PATH } from '../helpers/typography-review.mjs';
+import { ARTICLES } from '../helpers/content-catalog.mjs';
 
 const NUMBER_WORDS = ['One', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine', 'Ten', 'Eleven', 'Twelve'];
 
@@ -62,6 +63,7 @@ function readingTeaser(reading) {
 export function renderReadingPage(reading, prevReading, nextReading, allReadings = [], ratingsMap = new Map(), { typographyPreview = false } = {}) {
   const slug = readingSlug(reading.day_of_year, reading.title);
   const hasBespokeHero = slug === 'september-10-the-lie-of-habitual-apologies' && !typographyPreview;
+  const isDiscoveryTrial = slug === 'september-11-the-trap-of-self-spared-discomfort' && !typographyPreview;
   const isoDate = dayToIsoDate(reading.day_of_year);
   const monthIdx = dayToMonthIndex(reading.day_of_year);
   let dayOfMonth = reading.day_of_year;
@@ -127,9 +129,10 @@ export function renderReadingPage(reading, prevReading, nextReading, allReadings
       .replace(/\*(.+?)\*/g, '<em>$1</em>')
     : '';
 
-  // Keep reading — three siblings from this reading's topic. Deterministic,
-  // build-time selection: highest positive ratings first, excluding this
-  // reading and its prev/next neighbors; ties break by date ascending.
+  // Keep reading — the September 11 trial expands this to six crawlable links:
+  // three from the main topic, two more from the current Step, and one from an
+  // adjacent topic. The remaining 365 pages retain their current three-card
+  // treatment until the trial is approved.
   let keepReadingHtml = '';
   if (topicMatch && allReadings.length > 0) {
     const collection = allReadings.filter(r => {
@@ -137,21 +140,53 @@ export function renderReadingPage(reading, prevReading, nextReading, allReadings
       return t && t.slug === topicMatch.slug;
     });
     const excluded = new Set([reading.day_of_year, prevReading.day_of_year, nextReading.day_of_year]);
-    const siblings = collection
+    const rankReadings = candidates => candidates
       .filter(r => !excluded.has(r.day_of_year))
       .sort((a, b) => {
         const ra = (ratingsMap.get(a.day_of_year) || {}).positive || 0;
         const rb = (ratingsMap.get(b.day_of_year) || {}).positive || 0;
         if (rb !== ra) return rb - ra;
         return a.day_of_year - b.day_of_year;
-      })
-      .slice(0, 3);
+      });
 
-    if (siblings.length > 0) {
-      const cards = siblings.map(r => {
+    let selections;
+    if (isDiscoveryTrial) {
+      selections = [];
+      const selectedDays = new Set(excluded);
+      const addCandidates = (candidates, targetCount, context) => {
+        if (selections.length >= targetCount) return;
+        for (const candidate of rankReadings(candidates)) {
+          if (selectedDays.has(candidate.day_of_year)) continue;
+          selections.push({ reading: candidate, context: typeof context === 'function' ? context(candidate) : context });
+          selectedDays.add(candidate.day_of_year);
+          if (selections.length >= targetCount) break;
+        }
+      };
+
+      addCandidates(collection, 3, candidate => candidate.step_theme === reading.step_theme
+        ? `${topicMatch.name} · Step ${stepWord}`
+        : topicMatch.name);
+      addCandidates(allReadings.filter(candidate => candidate.step_theme === reading.step_theme), 5, `Step ${stepWord}`);
+
+      const adjacentTopicSlugs = TOPIC_RELATED[topicMatch.slug] || DEFAULT_RELATED_TOPICS;
+      addCandidates(allReadings.filter(candidate => {
+        const candidateTopic = candidate.secondary_theme && THEME_TO_TOPIC[candidate.secondary_theme];
+        return candidateTopic && adjacentTopicSlugs.includes(candidateTopic.slug);
+      }), 6, candidate => {
+        const candidateTopic = candidate.secondary_theme && THEME_TO_TOPIC[candidate.secondary_theme];
+        return candidateTopic?.name || 'Related reflection';
+      });
+      addCandidates(allReadings, 6, 'Daily reflection');
+    } else {
+      selections = rankReadings(collection).slice(0, 3).map(candidate => ({ reading: candidate, context: '' }));
+    }
+
+    if (selections.length > 0) {
+      const cards = selections.map(({ reading: r, context }) => {
         const teaser = readingTeaser(r);
         return `
           <a href="${bp(`/${readingSlug(r.day_of_year, r.title)}/`)}" class="kr-card">
+            ${context ? `<span class="kr-card-context">${context}</span>` : ''}
             <span class="kr-card-date">${r.display_date}</span>
             <span class="kr-card-title">${r.title}</span>
             ${teaser ? `<span class="kr-card-teaser">${teaser}</span>` : ''}
@@ -164,11 +199,11 @@ export function renderReadingPage(reading, prevReading, nextReading, allReadings
         ? `${upperFirst(countToWords(collection.length))} readings on ${lowerFirst(stripPeriod(topicData.shortDescription))}.`
         : '';
       keepReadingHtml = `
-    <section class="wrap wrap--article section--lg kr-section" aria-labelledby="keep-reading-heading">
-      <p class="eyebrow">Keep reading</p>
-      <h2 class="section-title" id="keep-reading-heading">More on ${topicMatch.name.toLowerCase()}</h2>
-      ${collectionLine ? `<p class="section-desc">${collectionLine}</p>` : ''}
-      <div class="kr-grid">${cards}
+    <section class="wrap wrap--article section--lg kr-section${isDiscoveryTrial ? ' kr-section--trial' : ''}" aria-labelledby="keep-reading-heading">
+      <p class="eyebrow">${isDiscoveryTrial ? 'Continue reflecting' : 'Keep reading'}</p>
+      <h2 class="section-title" id="keep-reading-heading">${isDiscoveryTrial ? 'More for where you are' : `More on ${topicMatch.name.toLowerCase()}`}</h2>
+      ${isDiscoveryTrial ? `<p class="section-desc">Related reflections on ${topicMatch.name.toLowerCase()}, Step ${stepWord}, and closely connected ideas.</p>` : (collectionLine ? `<p class="section-desc">${collectionLine}</p>` : '')}
+      <div class="kr-grid${isDiscoveryTrial ? ' kr-grid--carousel' : ''}">${cards}
       </div>
       <div class="kr-more">
         <a href="${topicHref}#readings" class="text-link">More readings &rarr;</a>
@@ -214,6 +249,29 @@ export function renderReadingPage(reading, prevReading, nextReading, allReadings
       <div class="rt-grid">${relatedCards.join('')}
       </div>
     </section>`;
+
+  const relatedArticle = isDiscoveryTrial
+    ? ARTICLES.find(article => article.path === `/topics/${topicMatch.slug}/`)
+    : null;
+  const goDeeperHtml = isDiscoveryTrial ? `
+    <section class="wrap wrap--article deeper-section" aria-labelledby="go-deeper-heading">
+      <p class="eyebrow">Go deeper</p>
+      <h2 class="section-title" id="go-deeper-heading">Understand it. Put it into practice.</h2>
+      <div class="deeper-grid">
+        ${relatedArticle ? `<a href="${bp(relatedArticle.path)}" class="deeper-card">
+          <span class="deeper-card-type">Relevant article</span>
+          <span class="deeper-card-title">${relatedArticle.title}</span>
+          <span class="deeper-card-line">${relatedArticle.description}</span>
+          <span class="deeper-card-cta">Read the article &rarr;</span>
+        </a>` : ''}
+        ${stepData ? `<a href="${bp(stepPath)}" class="deeper-card">
+          <span class="deeper-card-type">Practical guide</span>
+          <span class="deeper-card-title">Step ${stepWord}: ${stepData.principle}</span>
+          <span class="deeper-card-line">A practical look at responsibility, amends, and changing the behavior that caused harm.</span>
+          <span class="deeper-card-cta">Explore the guide &rarr;</span>
+        </a>` : ''}
+      </div>
+    </section>` : relatedTopicsHtml;
 
   const bodyContent = `
 ${photoHero({
@@ -262,7 +320,7 @@ ${photoHero({
       </p>
     </article>
 
-    <div class="wrap wrap--article">
+    ${isDiscoveryTrial ? '' : `<div class="wrap wrap--article">
       <a href="${bp('/start/')}" class="new-here-panel">
         ${icon('lightOnWater', { size: 28, className: 'new-here-icon' })}
         <span class="new-here-copy">
@@ -271,16 +329,18 @@ ${photoHero({
         </span>
         <span class="btn new-here-btn">Start here &rarr;</span>
       </a>
-    </div>
+    </div>`}
+${isDiscoveryTrial ? `<div class="reading-discovery-shell">
 ${keepReadingHtml}
-${adPlaceholderHtml}
-${relatedTopicsHtml}
+${adPlaceholderHtml.replace('ad-slot wrap wrap--article', 'ad-slot ad-slot--rail')}
+${goDeeperHtml}
+    </div>` : `${keepReadingHtml}\n${adPlaceholderHtml}\n${goDeeperHtml}`}
 
     <div class="wrap wrap--article">
       <p class="fine-print">Curated by members of the Al-Anon community for Daily Growth, LLC. Grounded in the Twelve Steps and the contemplative tradition of Al-Anon.</p>
     </div>
 
-    ${terminalBand()}`;
+    ${terminalBand({ showEmailOption: isDiscoveryTrial })}`;
 
   return wrapInLayout({
     title: `${reading.title} – Al-Anon Daily Reflection for ${reading.display_date} | Daily Paths`,

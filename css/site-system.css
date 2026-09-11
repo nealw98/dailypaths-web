@@ -451,6 +451,103 @@ h3,
   color: color-mix(in srgb, var(--text-muted, #66685d) 68%, transparent);
 }
 
+/* September 11 discovery trial. Six links remain in the HTML while the
+   horizontal rail protects the page's vertical rhythm. The ad is a separate
+   desktop rail and moves between reflection links and deeper resources on
+   phones. */
+.reading-discovery-shell {
+  width: min(calc(100% - (2 * var(--gutter-system))), var(--content-wide));
+  margin-inline: auto;
+  display: grid;
+  grid-template-columns: minmax(0, var(--content-reading)) minmax(260px, 300px);
+  grid-template-areas:
+    "readings ad"
+    "deeper ad";
+  column-gap: clamp(32px, 5vw, 64px);
+  align-items: start;
+}
+.reading-discovery-shell > .wrap { width: 100%; max-width: none; margin-inline: 0; }
+.kr-section--trial { grid-area: readings; overflow: hidden; }
+.kr-grid--carousel {
+  grid-template-columns: none;
+  grid-auto-flow: column;
+  grid-auto-columns: calc(33.333% - 9.34px);
+  overflow-x: auto;
+  overscroll-behavior-inline: contain;
+  scroll-snap-type: inline mandatory;
+  padding: 2px 2px 16px;
+  scrollbar-width: thin;
+}
+.kr-grid--carousel .kr-card { min-width: 0; min-height: 250px; scroll-snap-align: start; }
+.kr-card-context {
+  min-height: 2.8em;
+  font: normal 600 10px/1.4 var(--font-ui);
+  letter-spacing: 1.15px;
+  text-transform: uppercase;
+  color: var(--accent-strong, #4f5b3d);
+}
+.ad-slot--rail {
+  grid-area: ad;
+  width: 100%;
+  min-height: 600px;
+  margin-top: var(--space-7);
+  border: 1px solid var(--rule, #dfdfd3);
+}
+.deeper-section {
+  grid-area: deeper;
+  padding: var(--space-6) 0 var(--space-7);
+  border-top: 1px solid var(--rule, #dfdfd3);
+}
+.deeper-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: var(--space-4); }
+.deeper-card {
+  display: flex;
+  min-width: 0;
+  min-height: 230px;
+  flex-direction: column;
+  gap: 9px;
+  padding: var(--space-4);
+  border: 1px solid var(--border-card, #d7d7cc);
+  border-radius: var(--radius-tinted, 4px);
+  background: var(--surface-lowest, #fffef9);
+  box-shadow: var(--shadow-card);
+}
+.deeper-card:hover { box-shadow: var(--shadow-surface); }
+.deeper-card-type {
+  font: var(--type-label);
+  letter-spacing: 1.1px;
+  text-transform: uppercase;
+  color: var(--accent-strong, #4f5b3d);
+}
+.deeper-card-title { font: var(--type-card); color: var(--text-primary, #34382e); }
+.deeper-card-line { font: var(--type-small); color: var(--text-muted, #66685d); }
+.deeper-card-cta { margin-top: auto; padding-top: var(--space-2); font: var(--type-nav); color: var(--accent-strong, #4f5b3d); }
+
+/* The app remains the primary conversion; email is a compact alternative in
+   the same closing band. It stays truthful while the provider is unconnected. */
+.sd-app-email { margin-top: var(--space-4); padding-top: var(--space-4); border-top: 1px solid rgba(79,91,61,.28); }
+.sd-app-email-title { margin: 0; font: normal 500 20px/1.25 var(--font-editorial); color: #3e4532; }
+.sd-app-email-copy { margin: 4px 0 12px; font: normal 400 13px/1.6 var(--font-ui); color: #596047; }
+.sd-app-email-form { display: flex; gap: 8px; max-width: 430px; }
+.sd-app-email-form input {
+  min-width: 0;
+  flex: 1;
+  border: 1px solid #aeb59a;
+  border-radius: 2px;
+  background: #fffef9;
+  padding: 11px 12px;
+  font: normal 400 13px/1.4 var(--font-ui);
+}
+.sd-app-email-form button {
+  border: 0;
+  border-radius: 2px;
+  background: var(--accent-strong, #4f5b3d);
+  color: #fff;
+  padding: 10px 16px;
+  font: var(--type-nav);
+}
+.sd-app-email-form :disabled { cursor: default; opacity: .58; }
+.sd-app-email-note { margin: 8px 0 0; font: var(--type-caption); color: #596047; }
+
 .start-hero-inner { max-width: var(--content-reading); padding-top: var(--space-7); padding-bottom: var(--space-7); }
 .start-hero-title { margin-top: var(--space-2); }
 .start-hero-lede { max-width: 52ch; margin-top: var(--space-4); color: rgba(255,255,255,.9); }
@@ -533,6 +630,30 @@ h3,
 }
 
 @media (max-width: 760px) {
+  .reading-discovery-shell {
+    display: flex;
+    width: min(calc(100% - (2 * var(--gutter-system))), var(--content-reading));
+    flex-direction: column;
+  }
+  .kr-section--trial { order: 1; }
+  .ad-slot--rail {
+    order: 2;
+    min-height: 250px;
+    margin-top: var(--space-4);
+    border-inline: 0;
+  }
+  .deeper-section { order: 3; padding-top: var(--space-6); }
+  .deeper-grid { grid-template-columns: 1fr; }
+  .kr-grid--carousel {
+    grid-auto-columns: min(82vw, 320px);
+    margin-inline: calc(var(--gutter-system) * -1);
+    padding-inline: var(--gutter-system);
+    scrollbar-width: none;
+  }
+  .kr-grid--carousel::-webkit-scrollbar { display: none; }
+  .kr-grid--carousel .kr-card { min-height: 218px; }
+  .sd-app-email-form { max-width: 100%; }
+
   .page-reading .photo-hero--soft-daylight {
     min-height: clamp(410px, 112vw, 480px);
     display: flex;
