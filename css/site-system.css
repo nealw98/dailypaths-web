@@ -232,6 +232,28 @@ h3,
 .sd-email p:not(.sd-kicker),
 .book-app-text { font: var(--type-small); letter-spacing: 0; }
 
+/* Give the daily takeaway its own editorial emphasis without repeating the
+   olive quotation rule used earlier in the reading. */
+.reminder-panel {
+  padding: clamp(26px, 3.2vw, 38px);
+  border: 0;
+}
+
+.reminder-text {
+  max-width: 32ch;
+  margin-top: 12px;
+  font: italic 500 clamp(23px, 2.2vw, 28px)/1.45 var(--font-editorial);
+  letter-spacing: -.1px;
+  color: var(--dp-teal-900);
+  text-wrap: pretty;
+}
+
+/* Previous and next links should orient the reader, not compete with the page. */
+.prevnext-title {
+  font: normal 400 clamp(17px, 1.25vw, 19px)/1.4 var(--font-editorial);
+  letter-spacing: 0;
+}
+
 .eyebrow,
 .ed-label,
 .sd-kicker,
