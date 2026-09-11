@@ -1,6 +1,6 @@
 import { wrapInLayout } from './base.mjs';
 import { bp } from '../helpers/config.mjs';
-import { readingSlug, stepSlug, MONTHS, DAYS_IN_MONTH } from '../helpers/slug-utils.mjs';
+import { readingSlug, stepRecordSlug, MONTHS, DAYS_IN_MONTH } from '../helpers/slug-utils.mjs';
 import { markdownToHtml } from '../helpers/markdown.mjs';
 import {
   photoHero, quoteBlock, detailRail, terminalBand, readingCard, icon,
@@ -173,10 +173,11 @@ export const STEPS = [
   },
   {
     number: 9,
+    pathSlug: 'al-anon-step-9-repair',
     text: 'Made direct amends to such people wherever possible, except when to do so would injure them or others.',
     month: 'September',
     monthSlug: 'september',
-    principle: 'Repair',
+    principle: 'Responsibility',
     description: [
       'This is a crucial action Step where we take concrete measures to right the wrongs identified in our Step Eight list. It means bravely stepping forward to apologize, make restitution, or fundamentally alter our behavior, while using careful judgment to ensure our actions do not cause further harm.',
       'For the Al-Anon member, this Step is a profound commitment to justice, healing, and maturity. It shifts us from merely feeling guilty to actively cleaning up the debris of the past. Members learn that an amend is often different from a simple apology; sometimes the greatest amend we can make to our loved ones and to ourselves is a lasting change in our attitude and behavior.',
@@ -258,7 +259,7 @@ export const STEPS = [
  */
 export function renderStepsIndexPage() {
   const gridCards = STEPS.map(step => `
-          <a href="${bp(`/steps/${stepSlug(step.number, step.principle)}/`)}" class="card-elevated step-card">
+          <a href="${bp(`/steps/${stepRecordSlug(step)}/`)}" class="card-elevated step-card">
             <span class="step-card-numeral">${step.number}</span>
             <span>
               <span class="step-card-keyword">${step.principle}</span>
@@ -357,7 +358,7 @@ export const STEP_TAGLINES = {
   6: 'Willingness & the Readiness to Change',
   7: 'Humility & the Strength of Asking',
   8: 'Responsibility & the Path to Reconciliation',
-  9: 'Repair & the Courage to Make Amends',
+  9: 'Responsibility & the Courage to Make Amends',
   10: 'Growth & the Practice of Awareness',
   11: 'Connection & the Discipline of Listening',
   12: 'Service & the Gift of Giving Back',
@@ -480,11 +481,11 @@ ${cards}
 
   const bodyContent = `
 ${detailRail({
-    prevHref: bp(`/steps/${stepSlug(prevStep.number, prevStep.principle)}/`),
+    prevHref: bp(`/steps/${stepRecordSlug(prevStep)}/`),
     prevLabel: `Step ${prevStep.number}: ${prevStep.principle}`,
     allHref: bp('/steps/'),
     allLabel: 'All Steps',
-    nextHref: bp(`/steps/${stepSlug(nextStep.number, nextStep.principle)}/`),
+    nextHref: bp(`/steps/${stepRecordSlug(nextStep)}/`),
     nextLabel: `Step ${nextStep.number}: ${nextStep.principle}`,
   })}
 
@@ -526,7 +527,7 @@ ${dailyPracticeHtml}
   return wrapInLayout({
     title: `Step ${step.number}: ${step.principle} — Al-Anon 12 Steps | Al-Anon Daily Paths`,
     description: `Explore Step ${step.number} of Al-Anon's Twelve Steps with reflection questions and daily readings for ${step.month}. Recovery guidance from Al-Anon Daily Paths.`,
-    canonicalPath: `/steps/${stepSlug(step.number, step.principle)}/`,
+    canonicalPath: `/steps/${stepRecordSlug(step)}/`,
     bodyContent,
     bodyClass: 'page-step-detail',
     navSection: 'steps',

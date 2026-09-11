@@ -50,6 +50,10 @@ The complete 366-day reflection collection, 12 steps, 12 existing topic pages, l
 
 The guide index currently leads to existing source material. These are not six newly commissioned, launch-approved long-form guides. Finding Yourself currently opens Self-Worth & Identity; Finding Support opens the existing Al-Anon introduction. Expand and review each source as the writing progresses. The support guide still needs the agreed coverage of other relevant groups.
 
+Step Nine uses “Responsibility” as its displayed principle throughout the site. Its
+established `/steps/al-anon-step-9-repair/` path remains unchanged so existing links
+and search references continue to work.
+
 ## Working on content
 
 1. Pick a guide or article and inventory its existing text before drafting.

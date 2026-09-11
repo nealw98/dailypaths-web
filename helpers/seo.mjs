@@ -1,4 +1,4 @@
-import { readingSlug, stepSlug } from './slug-utils.mjs';
+import { readingSlug, stepRecordSlug } from './slug-utils.mjs';
 import { BASE_URL, IS_PREVIEW } from './config.mjs';
 
 /**
@@ -31,7 +31,7 @@ export function generateSitemap(readings, topics, books = [], steps = []) {
   // Steps
   urls.push({ loc: BASE_URL + '/steps/', priority: '0.7', changefreq: 'monthly' });
   for (const step of (steps.length > 0 ? steps : Array.from({ length: 12 }, (_, i) => ({ number: i + 1 })))) {
-    const sSlug = step.principle ? stepSlug(step.number, step.principle) : `al-anon-step-${step.number}`;
+    const sSlug = step.principle ? stepRecordSlug(step) : `al-anon-step-${step.number}`;
     urls.push({ loc: `${BASE_URL}/steps/${sSlug}/`, priority: '0.7', changefreq: 'monthly' });
   }
 

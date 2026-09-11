@@ -1,6 +1,6 @@
 import { wrapInLayout } from './base.mjs';
 import { textToHtmlParagraphs, parseQuote, stripForMeta } from '../helpers/markdown.mjs';
-import { dayToIsoDate, dayToMonthIndex, readingSlug, stepSlug, DAYS_IN_MONTH } from '../helpers/slug-utils.mjs';
+import { dayToIsoDate, dayToMonthIndex, readingSlug, stepRecordSlug, DAYS_IN_MONTH } from '../helpers/slug-utils.mjs';
 import { readingStructuredData, breadcrumbStructuredData } from '../helpers/seo.mjs';
 import { bp } from '../helpers/config.mjs';
 import { THEME_TO_TOPIC, TOPICS, TOPIC_RELATED, DEFAULT_RELATED_TOPICS } from '../helpers/theme-data.mjs';
@@ -94,7 +94,7 @@ export function renderReadingPage(reading, prevReading, nextReading, allReadings
   const topicMatch = theme ? THEME_TO_TOPIC[theme] : null;
   const topicData = topicMatch ? TOPICS.find(t => t.slug === topicMatch.slug) : null;
   const stepData = stepNum ? STEPS.find(s => s.number === stepNum) : null;
-  const stepPath = stepData ? `/steps/${stepSlug(stepNum, stepData.principle)}/` : null;
+  const stepPath = stepData ? `/steps/${stepRecordSlug(stepData)}/` : null;
   const monthStepData = STEPS.find(step => step.number === monthIdx + 1);
 
   const pills = [];

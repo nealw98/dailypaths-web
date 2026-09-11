@@ -90,4 +90,12 @@ export function stepSlug(number, principle) {
   return prinSlug ? `al-anon-step-${number}-${prinSlug}` : `al-anon-step-${number}`;
 }
 
+/**
+ * Return the stable URL slug for a Step record. A record may retain a legacy
+ * path even when its display principle changes.
+ */
+export function stepRecordSlug(step) {
+  return step?.pathSlug || stepSlug(step?.number, step?.principle);
+}
+
 export { MONTHS, DAYS_IN_MONTH };

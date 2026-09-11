@@ -1,6 +1,6 @@
 import { wrapInLayout } from './base.mjs';
 import { bp } from '../helpers/config.mjs';
-import { readingSlug, stepSlug, MONTHS, DAYS_IN_MONTH } from '../helpers/slug-utils.mjs';
+import { readingSlug, stepRecordSlug, MONTHS, DAYS_IN_MONTH } from '../helpers/slug-utils.mjs';
 import { STEPS } from './steps.mjs';
 
 /**
@@ -72,7 +72,7 @@ ${readingItems}
     <div class="wrap section--md">
       <!-- Back to Step link -->
       <nav class="ma-back-nav">
-        <a href="${bp(`/steps/${stepSlug(step.number, step.principle)}/`)}" class="ma-back-link">&larr; Back to Step ${step.number}: ${step.principle}</a>
+        <a href="${bp(`/steps/${stepRecordSlug(step)}/`)}" class="ma-back-link">&larr; Back to Step ${step.number}: ${step.principle}</a>
       </nav>
 
       <!-- Page Header -->

@@ -22,7 +22,7 @@ import { fetchAllSteps } from './helpers/fetch-steps.mjs';
 import { fetchAllThemes } from './helpers/fetch-themes.mjs';
 import { fetchReadingRatings } from './helpers/fetch-ratings.mjs';
 import { fetchApprovedShares } from './helpers/fetch-shares.mjs';
-import { dayToSlug, readingSlug, stepSlug } from './helpers/slug-utils.mjs';
+import { dayToSlug, readingSlug, stepRecordSlug } from './helpers/slug-utils.mjs';
 import { generateSitemap, generateRobotsTxt } from './helpers/seo.mjs';
 import { generateOgImage } from './helpers/og-image.mjs';
 
@@ -81,7 +81,7 @@ if (supabaseSteps) {
     }
     // Update global lookup objects
     if (dbStep.hook) STEP_HOOKS[n] = dbStep.hook;
-    if (dbStep.tagline) STEP_TAGLINES[n] = dbStep.tagline;
+    if (dbStep.tagline && n !== 9) STEP_TAGLINES[n] = dbStep.tagline;
     if (dbStep.pull_quote) PULL_QUOTES[n] = dbStep.pull_quote;
     if (dbStep.tools && dbStep.tools.length > 0) STEP_TOOLS[n] = dbStep.tools;
   }
@@ -148,7 +148,7 @@ const dirs = [
   join(outDir, 'about-project'),
   join(outDir, 'about-alanon'),
   join(outDir, 'steps'),
-  ...STEPS.map(s => join(outDir, 'steps', stepSlug(s.number, s.principle))),
+  ...STEPS.map(s => join(outDir, 'steps', stepRecordSlug(s))),
   // Old step slugs (for redirects)
   ...Array.from({ length: 12 }, (_, i) => join(outDir, 'steps', `step-${i + 1}`)),
   join(outDir, 'literature'),
@@ -293,7 +293,7 @@ writePage(join(outDir, 'steps', 'index.html'), renderStepsIndexPage());
 
 for (const step of STEPS) {
   writePage(
-    join(outDir, 'steps', stepSlug(step.number, step.principle), 'index.html'),
+    join(outDir, 'steps', stepRecordSlug(step), 'index.html'),
     renderStepPage(step, readings)
   );
 }
@@ -395,7 +395,7 @@ for (const reading of readings) {
 // Step redirects: /steps/step-1/ → /steps/al-anon-step-1-honesty/
 for (const step of STEPS) {
   const oldPath = `step-${step.number}`;
-  const newPath = stepSlug(step.number, step.principle);
+  const newPath = stepRecordSlug(step);
   if (oldPath !== newPath) {
     writeFileSync(join(outDir, 'steps', oldPath, 'index.html'), redirectHtml(`/steps/${newPath}/`), 'utf-8');
   }
