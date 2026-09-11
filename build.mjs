@@ -80,8 +80,8 @@ if (supabaseSteps) {
       if (dbStep.questions && dbStep.questions.length > 0) existing.questions = dbStep.questions;
     }
     // Update global lookup objects
-    if (dbStep.hook) STEP_HOOKS[n] = dbStep.hook;
-    if (dbStep.tagline && n !== 9) STEP_TAGLINES[n] = dbStep.tagline;
+    if (dbStep.hook && !STEP_HOOKS[n]) STEP_HOOKS[n] = dbStep.hook;
+    if (dbStep.tagline && !STEP_TAGLINES[n]) STEP_TAGLINES[n] = dbStep.tagline;
     if (dbStep.pull_quote) PULL_QUOTES[n] = dbStep.pull_quote;
     if (dbStep.tools && dbStep.tools.length > 0) STEP_TOOLS[n] = dbStep.tools;
   }

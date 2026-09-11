@@ -12,16 +12,17 @@ import {
 export const STEPS = [
   {
     number: 1,
+    pathSlug: 'al-anon-step-1-honesty',
     heroImage: 'themes/step-1-hero.jpg',
     heroAlt: 'A seedling rising from cracked earth at sunrise',
     text: 'We admitted we were powerless over alcohol &mdash; that our lives had become unmanageable.',
     month: 'January',
     monthSlug: 'january',
-    principle: 'Honesty',
+    principle: 'Acceptance',
     description: [
       'This Step challenges members to accept the reality of alcoholism as a disease, often summarized by the &ldquo;Three Cs&rdquo;: we didn&rsquo;t cause it, we can&rsquo;t control it, and we can&rsquo;t cure it. It means acknowledging that no amount of force, manipulation, or love can conquer another person&rsquo;s drinking.',
       'For the Al-Anon member, taking this Step brings immense relief and hope. By surrendering the futile battle against the alcoholic&rsquo;s behavior, members are free to redirect their energy toward their own well-being and spiritual growth. It shifts the focus from trying to fix others to healing oneself.',
-      'The primary spiritual principle of Step One is honesty. It requires the honesty to admit that one&rsquo;s life has become chaotic and that self-will is insufficient to solve the problem. Acceptance and humility are also key, as members accept their limitations. This Step is critically important because it lays the foundation for recovery; only by admitting powerlessness can one open the door to the help and sanity offered by the subsequent Steps.',
+      'The primary spiritual principle of Step One is acceptance. It asks us to accept the reality of our powerlessness and the limits of self-will. Honesty and humility support that acceptance as members acknowledge what has become unmanageable. This Step is critically important because it lays the foundation for recovery; only by accepting powerlessness can one open the door to the help and sanity offered by the subsequent Steps.',
     ],
     questions: [
       'In what ways have I tried to control another person&rsquo;s drinking or behavior?',
@@ -33,6 +34,7 @@ export const STEPS = [
   },
   {
     number: 2,
+    pathSlug: 'al-anon-step-2-hope',
     heroImage: 'articles/step-2-hero.jpg',
     heroAlt: 'A kingfisher perched calm and bright',
     text: 'Came to believe that a Power greater than ourselves could restore us to sanity.',
@@ -54,6 +56,7 @@ export const STEPS = [
   },
   {
     number: 3,
+    pathSlug: 'al-anon-step-3-faith',
     text: 'Made a decision to turn our will and our lives over to the care of God <em>as we understood Him</em>.',
     month: 'March',
     monthSlug: 'march',
@@ -73,6 +76,7 @@ export const STEPS = [
   },
   {
     number: 4,
+    pathSlug: 'al-anon-step-4-courage',
     heroImage: 'themes/steps_hero.jpg',
     heroAlt: 'A journal resting on a coastal path',
     text: 'Made a searching and fearless moral inventory of ourselves.',
@@ -95,14 +99,15 @@ export const STEPS = [
   },
   {
     number: 5,
+    pathSlug: 'al-anon-step-5-integrity',
     text: 'Admitted to God, to ourselves, and to another human being the exact nature of our wrongs.',
     month: 'May',
     monthSlug: 'may',
-    principle: 'Integrity',
+    principle: 'Honesty',
     description: [
       'This Step invites members to break their isolation by sharing the insights gained in Step Four. It means bringing secrets and shame into the open, fully acknowledging them before a Higher Power, oneself, and a trusted confidant, such as an Al-Anon sponsor.',
       'For the Al-Anon member, this Step is immensely liberating. Instead of hiding behind walls of fear and assuming they are uniquely flawed or &ldquo;the worst person in the world,&rdquo; members discover that they are unconditionally loved and accepted, even with their imperfections. It means they can finally stop rationalizing their past behavior and take responsibility for their own lives.',
-      'The primary spiritual principles of Step Five are trust, honesty, and courage. It requires immense trust to reveal one&rsquo;s darkest secrets to another person. This Step is vitally important because it relieves the heavy, suffocating burden of guilt and self-hatred. By sharing their humanity, members stop being victims of their past and take a huge stride toward personal freedom and a deeper spiritual connection.',
+      'The primary spiritual principle of Step Five is honesty, supported by trust and courage. It takes honesty to name our part without minimizing or exaggerating it, and immense trust to reveal what we have hidden to another person. This Step is vitally important because it relieves the heavy burden of guilt and self-hatred. By sharing their humanity, members stop being victims of their past and take a huge stride toward personal freedom and a deeper spiritual connection.',
     ],
     questions: [
       'What have I been afraid to say out loud?',
@@ -114,14 +119,15 @@ export const STEPS = [
   },
   {
     number: 6,
+    pathSlug: 'al-anon-step-6-willingness',
     text: 'Were entirely ready to have God remove all these defects of character.',
     month: 'June',
     monthSlug: 'june',
-    principle: 'Willingness',
+    principle: 'Patience',
     description: [
       'This Step involves acknowledging the negative traits identified in our previous inventories and actively preparing to let them go. It means accepting that we are entirely powerless to remove these deeply ingrained shortcomings by our own self-will alone, and we must instead rely completely on the care of a Higher Power.',
       'For the Al-Anon member, working this Step often requires a grieving process. Many of our character defects, such as an intense need for control or a tendency toward denial, were originally developed as essential survival skills to help us cope with the chaos of an alcoholic environment. Members learn to stop fighting, relinquish the temporary &ldquo;payoffs&rdquo; of these defects, and become fully willing to change.',
-      'The core spiritual principles of Step Six are willingness, readiness, and trust. This Step is critically important because it bridges the crucial gap between mere self-awareness and actual transformation. It gracefully shifts the member from holding onto comfortable but destructive habits to embracing the limitless possibilities of profound healing. By consciously doing exactly this, we deliberately clear the path toward a much healthier, more serene, and truly fulfilling life.',
+      'The primary spiritual principle of Step Six is patience, supported by willingness, readiness, and trust. We cannot force inner transformation on demand; we can become ready, remain open, and allow change to unfold in its own time. This Step bridges the crucial gap between self-awareness and transformation, clearing the path toward a healthier, more serene, and fulfilling life.',
     ],
     questions: [
       'Which of my character defects am I most reluctant to give up? Why?',
@@ -133,6 +139,7 @@ export const STEPS = [
   },
   {
     number: 7,
+    pathSlug: 'al-anon-step-7-humility',
     heroImage: 'themes/prayers.jpg',
     heroAlt: 'Stones stacked patiently in balance',
     text: 'Humbly asked Him to remove our shortcomings.',
@@ -154,14 +161,15 @@ export const STEPS = [
   },
   {
     number: 8,
+    pathSlug: 'al-anon-step-8-responsibility',
     text: 'Made a list of all persons we had harmed, and became willing to make amends to them all.',
     month: 'August',
     monthSlug: 'august',
-    principle: 'Responsibility',
+    principle: 'Willingness',
     description: [
       'This Step involves truly reviewing our past to identify people negatively impacted by our actions and actively cultivating the sincere desire to make things right. It means setting aside personal justification and taking absolute responsibility for our behavior, regardless of what others may have done to us.',
       'For the Al-Anon member, this Step often reveals the surprising truth that we have harmed ourselves most of all through neglect or desperate survival efforts, meaning our own name must go at the very top of the list. At this stage, we are not required to take immediate action; we only need to become fully willing.',
-      'The core spiritual principles of Step Eight are willingness, honesty, responsibility, and love. This Step is extremely important because it thoroughly prepares our hearts for deep healing. By simply becoming completely willing to make amends, we deliberately unlock the heavy door to our painful past, gracefully release the toxic weight of lingering resentment, and carefully build the tremendous spiritual strength necessary to move forward freely into a much brighter future.',
+      'The primary spiritual principle of Step Eight is willingness, supported by honesty, responsibility, and love. This Step prepares our hearts for deep healing. By becoming willing to make amends, we unlock the door to our painful past, release the weight of lingering resentment, and build the spiritual strength necessary to move forward freely.',
     ],
     questions: [
       'Who have I harmed through my reactions to someone else&rsquo;s drinking?',
@@ -177,11 +185,11 @@ export const STEPS = [
     text: 'Made direct amends to such people wherever possible, except when to do so would injure them or others.',
     month: 'September',
     monthSlug: 'september',
-    principle: 'Responsibility',
+    principle: 'Brotherly Love',
     description: [
       'This is a crucial action Step where we take concrete measures to right the wrongs identified in our Step Eight list. It means bravely stepping forward to apologize, make restitution, or fundamentally alter our behavior, while using careful judgment to ensure our actions do not cause further harm.',
       'For the Al-Anon member, this Step is a profound commitment to justice, healing, and maturity. It shifts us from merely feeling guilty to actively cleaning up the debris of the past. Members learn that an amend is often different from a simple apology; sometimes the greatest amend we can make to our loved ones and to ourselves is a lasting change in our attitude and behavior.',
-      'The primary spiritual principles of Step Nine are courage, humility, prudence, and justice. This Step is vitally important because it provides immense relief from the suffocating weight of guilt that has heavily burdened us. It completely restores our self-respect, beautifully heals damaged relationships, and finally sets us free to live a rewarding, joyous, and profoundly peaceful life in the reality of the present moment.',
+      'The primary spiritual principle of Step Nine is brotherly love, supported by courage, humility, prudence, and justice. Making amends asks us to consider the well-being of others rather than using them to relieve our own guilt. This Step restores self-respect, helps heal damaged relationships, and sets us free to live more peacefully in the present moment.',
     ],
     questions: [
       'Which amends feel most urgent? Which feel most frightening?',
@@ -193,16 +201,17 @@ export const STEPS = [
   },
   {
     number: 10,
+    pathSlug: 'al-anon-step-10-growth',
     heroImage: 'articles/step-10-hero.jpg',
     heroAlt: 'Reading quietly in a field of tall grass',
     text: 'Continued to take personal inventory and when we were wrong promptly admitted it.',
     month: 'October',
     monthSlug: 'october',
-    principle: 'Growth',
+    principle: 'Integrity',
     description: [
       'This Step transitions the Al-Anon member from the deep clearing of past wreckage into the daily maintenance of continuous spiritual growth. It means consistently applying the self-awareness gained earlier to our everyday lives by taking regular &ldquo;spot checks&rdquo; or daily reviews of our thoughts and actions.',
       'For the Al-Anon member, this practice is essential to avoid slipping back into old, self-destructive survival patterns like controlling, people-pleasing, or reacting to the alcoholic&rsquo;s unpredictable behavior. By promptly admitting our mistakes, we prevent a new buildup of crippling guilt and resentment. Crucially, this Step also requires us to acknowledge our positive choices and successes, teaching us to love our humanness rather than demand perfection.',
-      'The guiding spiritual principles are self-honesty, continuous responsibility, compassion, and forgiveness. Step Ten is vitally important because it keeps our emotional and spiritual slate completely clean. It allows us to continuously resolve inner conflicts in real-time, preventing the heavy accumulation of emotional baggage and ensuring we maintain the profound serenity and balanced relationships we have worked so hard to achieve.',
+      'The primary spiritual principle of Step Ten is integrity, supported by self-honesty, responsibility, compassion, and forgiveness. It asks us to bring our daily conduct into alignment with what we have learned and to correct our course promptly when we fall short. Step Ten keeps our emotional and spiritual slate clean, helping us maintain the serenity and balanced relationships we have worked to achieve.',
     ],
     questions: [
       'Do I regularly check in with myself about my motives and behavior?',
@@ -214,16 +223,17 @@ export const STEPS = [
   },
   {
     number: 11,
+    pathSlug: 'al-anon-step-11-connection',
     heroImage: 'articles/step-11-hero.jpg',
     heroAlt: 'A single candle flame in the dark',
     text: 'Sought through prayer and meditation to improve our conscious contact with God <em>as we understood Him</em>, praying only for knowledge of His will for us and the power to carry that out.',
     month: 'November',
     monthSlug: 'november',
-    principle: 'Connection',
+    principle: 'Spiritual Awareness',
     description: [
       'This Step invites us to consciously maintain and actively deepen the intimate partnership with our Higher Power. It means establishing a disciplined spiritual practice where prayer is the act of talking to God, and meditation is the quiet discipline of listening for His guidance.',
       'For the Al-Anon member, this represents a profound surrender of self-will. We completely stop using frantic prayers to bargain with God or beg Him to cure the alcoholic&rsquo;s disease. Instead, we relinquish our personal agendas and simply ask for the clarity to know our path and the strength to walk it.',
-      'The core spiritual principles are faith, profound surrender, trust, and spiritual awareness. Step Eleven is crucially important because it ensures we are never alone, isolated, or wandering aimlessly. By continually aligning our actions with a loving Higher Power, we tap into an unlimited source of daily strength and comfort, allowing us to navigate life&rsquo;s challenges with immense peace and live a deeply gratifying, unburdened life.',
+      'The primary spiritual principle of Step Eleven is spiritual awareness, supported by faith, surrender, and trust. Through prayer and meditation, we become more attentive to guidance and more conscious of our relationship with a Higher Power. This awareness offers daily strength and comfort, helping us navigate life&rsquo;s challenges with greater peace.',
     ],
     questions: [
       'What does my spiritual practice look like today?',
@@ -235,6 +245,7 @@ export const STEPS = [
   },
   {
     number: 12,
+    pathSlug: 'al-anon-step-12-service',
     text: 'Having had a spiritual awakening as the result of these steps, we tried to carry this message to others, and to practice these principles in all our affairs.',
     month: 'December',
     monthSlug: 'december',
@@ -334,33 +345,33 @@ export const PULL_QUOTES = {
 
 /** Step hooks — one-sentence teasers for the Steps index grid cards */
 export const STEP_HOOKS = {
-  1: 'Admitting powerlessness to reclaim your life.',
-  2: 'Finding a path toward a restored perspective.',
-  3: 'The decision to release the burden of control.',
-  4: 'A fearless look into the mirror of the soul.',
-  5: 'The healing power of radical honesty.',
-  6: 'Preparing the heart for lasting change.',
-  7: 'The humble request for a new way of being.',
-  8: 'Mapping the journey toward reconciliation.',
-  9: 'The courage to make things right.',
-  10: 'The daily practice of self-awareness.',
-  11: 'Seeking conscious contact through stillness.',
-  12: 'Carrying the message; living the principles.',
+  1: 'Accepting what you cannot control.',
+  2: 'Opening to the possibility that help is available.',
+  3: 'Choosing trust over self-will.',
+  4: 'Looking honestly at yourself with courage.',
+  5: 'Telling the truth and releasing what was hidden.',
+  6: 'Allowing change to unfold in its own time.',
+  7: 'Asking humbly for help in changing.',
+  8: 'Becoming willing to make things right.',
+  9: 'Making amends with care, compassion, and love.',
+  10: 'Taking responsibility through daily self-examination.',
+  11: 'Deepening conscious contact through prayer and meditation.',
+  12: 'Carrying recovery forward through service.',
 };
 
 /** Step taglines — hero banner taglines for each step detail page */
 export const STEP_TAGLINES = {
-  1: 'Honesty & the Power of Surrender',
+  1: 'Acceptance & the Freedom to Let Go',
   2: 'Hope & the Willingness to Believe',
   3: 'Faith & the Freedom of Letting Go',
-  4: 'Courage & the Mirror of Self-Discovery',
-  5: 'Integrity & the Liberation of Truth',
-  6: 'Willingness & the Readiness to Change',
+  4: 'Courage & Honest Self-Discovery',
+  5: 'Honesty & the Liberation of Truth',
+  6: 'Patience & the Readiness to Change',
   7: 'Humility & the Strength of Asking',
-  8: 'Responsibility & the Path to Reconciliation',
-  9: 'Responsibility & the Courage to Make Amends',
-  10: 'Growth & the Practice of Awareness',
-  11: 'Connection & the Discipline of Listening',
+  8: 'Willingness & the Path to Reconciliation',
+  9: 'Brotherly Love & the Courage to Make Amends',
+  10: 'Integrity & the Practice of Awareness',
+  11: 'Spiritual Awareness & the Discipline of Listening',
   12: 'Service & the Gift of Giving Back',
 };
 
