@@ -4,7 +4,7 @@ import { dayToIsoDate, dayToMonthIndex, readingSlug, stepSlug, DAYS_IN_MONTH } f
 import { readingStructuredData, breadcrumbStructuredData } from '../helpers/seo.mjs';
 import { bp } from '../helpers/config.mjs';
 import { THEME_TO_TOPIC, TOPICS, TOPIC_RELATED, DEFAULT_RELATED_TOPICS } from '../helpers/theme-data.mjs';
-import { STEPS } from './steps.mjs';
+import { STEPS, STEP_HOOKS } from './steps.mjs';
 import { photoHero, quoteBlock, pill, icon, terminalBand } from './ui.mjs';
 import { reflectionImage } from '../helpers/reflection-images.mjs';
 import { TYPOGRAPHY_REVIEW_PATH } from '../helpers/typography-review.mjs';
@@ -95,6 +95,7 @@ export function renderReadingPage(reading, prevReading, nextReading, allReadings
   const topicData = topicMatch ? TOPICS.find(t => t.slug === topicMatch.slug) : null;
   const stepData = stepNum ? STEPS.find(s => s.number === stepNum) : null;
   const stepPath = stepData ? `/steps/${stepSlug(stepNum, stepData.principle)}/` : null;
+  const monthStepData = STEPS.find(step => step.number === monthIdx + 1);
 
   const pills = [];
   if (topicMatch) {
@@ -129,10 +130,10 @@ export function renderReadingPage(reading, prevReading, nextReading, allReadings
       .replace(/\*(.+?)\*/g, '<em>$1</em>')
     : '';
 
-  // Keep reading — the September 11 trial expands this to six crawlable links:
-  // three from the main topic, two more from the current Step, and one from an
-  // adjacent topic. The remaining 365 pages retain their current three-card
-  // treatment until the trial is approved.
+  // Keep reading — the September 11 trial expands this to six crawlable links
+  // from the current month, ranked by combined positive ratings and favorites.
+  // The remaining 365 pages retain their current three-card treatment until
+  // the trial is approved.
   let keepReadingHtml = '';
   if (topicMatch && allReadings.length > 0) {
     const collection = allReadings.filter(r => {
@@ -151,32 +152,21 @@ export function renderReadingPage(reading, prevReading, nextReading, allReadings
 
     let selections;
     if (isDiscoveryTrial) {
-      selections = [];
-      const selectedDays = new Set(excluded);
-      const addCandidates = (candidates, targetCount, context) => {
-        if (selections.length >= targetCount) return;
-        for (const candidate of rankReadings(candidates)) {
-          if (selectedDays.has(candidate.day_of_year)) continue;
-          selections.push({ reading: candidate, context: typeof context === 'function' ? context(candidate) : context });
-          selectedDays.add(candidate.day_of_year);
-          if (selections.length >= targetCount) break;
-        }
-      };
-
-      addCandidates(collection, 3, candidate => candidate.step_theme === reading.step_theme
-        ? `${topicMatch.name} · Step ${stepWord}`
-        : topicMatch.name);
-      addCandidates(allReadings.filter(candidate => candidate.step_theme === reading.step_theme), 5, `Step ${stepWord}`);
-
-      const adjacentTopicSlugs = TOPIC_RELATED[topicMatch.slug] || DEFAULT_RELATED_TOPICS;
-      addCandidates(allReadings.filter(candidate => {
-        const candidateTopic = candidate.secondary_theme && THEME_TO_TOPIC[candidate.secondary_theme];
-        return candidateTopic && adjacentTopicSlugs.includes(candidateTopic.slug);
-      }), 6, candidate => {
-        const candidateTopic = candidate.secondary_theme && THEME_TO_TOPIC[candidate.secondary_theme];
-        return candidateTopic?.name || 'Related reflection';
-      });
-      addCandidates(allReadings, 6, 'Daily reflection');
+      const monthStart = DAYS_IN_MONTH.slice(0, monthIdx).reduce((sum, days) => sum + days, 0) + 1;
+      const monthEnd = monthStart + DAYS_IN_MONTH[monthIdx] - 1;
+      selections = allReadings
+        .filter(candidate => candidate.day_of_year >= monthStart && candidate.day_of_year <= monthEnd && candidate.day_of_year !== reading.day_of_year)
+        .sort((a, b) => {
+          const aStats = ratingsMap.get(a.day_of_year) || {};
+          const bStats = ratingsMap.get(b.day_of_year) || {};
+          const aScore = (aStats.positive || 0) + (aStats.favorites || 0);
+          const bScore = (bStats.positive || 0) + (bStats.favorites || 0);
+          if (bScore !== aScore) return bScore - aScore;
+          if ((bStats.positive || 0) !== (aStats.positive || 0)) return (bStats.positive || 0) - (aStats.positive || 0);
+          return a.day_of_year - b.day_of_year;
+        })
+        .slice(0, 6)
+        .map(candidate => ({ reading: candidate, context: '' }));
     } else {
       selections = rankReadings(collection).slice(0, 3).map(candidate => ({ reading: candidate, context: '' }));
     }
@@ -194,19 +184,21 @@ export function renderReadingPage(reading, prevReading, nextReading, allReadings
           </a>`;
       }).join('');
 
-      const topicHref = bp(`/topics/${topicMatch.slug}/`);
+      const topicHref = isDiscoveryTrial && monthStepData
+        ? bp(`/months/${monthStepData.monthSlug}/`)
+        : bp(`/topics/${topicMatch.slug}/`);
       const collectionLine = topicData
         ? `${upperFirst(countToWords(collection.length))} readings on ${lowerFirst(stripPeriod(topicData.shortDescription))}.`
         : '';
       keepReadingHtml = `
     <section class="wrap wrap--article section--lg kr-section${isDiscoveryTrial ? ' kr-section--trial' : ''}" aria-labelledby="keep-reading-heading">
       <p class="eyebrow">${isDiscoveryTrial ? 'Related Readings' : 'Keep reading'}</p>
-      <h2 class="section-title" id="keep-reading-heading">${isDiscoveryTrial ? `Additional reflections on ${topicMatch.name.toLowerCase()}` : `More on ${topicMatch.name.toLowerCase()}`}</h2>
-      ${isDiscoveryTrial ? '' : (collectionLine ? `<p class="section-desc">${collectionLine}</p>` : '')}
+      <h2 class="section-title" id="keep-reading-heading">${isDiscoveryTrial && monthStepData ? `Additional reflections on Step ${monthStepData.number} &mdash; ${monthStepData.principle}` : `More on ${topicMatch.name.toLowerCase()}`}</h2>
+      ${isDiscoveryTrial && monthStepData ? `<p class="section-desc">${STEP_HOOKS[monthStepData.number]}</p>` : (collectionLine ? `<p class="section-desc">${collectionLine}</p>` : '')}
       <div class="kr-grid${isDiscoveryTrial ? ' kr-grid--carousel' : ''}">${cards}
       </div>
       <div class="kr-more">
-        <a href="${topicHref}#readings" class="text-link">More readings &rarr;</a>
+        <a href="${topicHref}${isDiscoveryTrial ? '' : '#readings'}" class="text-link">${isDiscoveryTrial && monthStepData ? `More ${monthStepData.month} readings` : 'More readings'} &rarr;</a>
       </div>
     </section>`;
     }
@@ -352,7 +344,7 @@ ${goDeeperHtml}
     noindex: typographyPreview,
     ogType: 'article',
     ogImage: `/${slug}/og.png`,
-    bodyClass: 'page-reading',
+    bodyClass: `page-reading${isDiscoveryTrial ? ' discovery-trial-page' : ''}`,
     navSection: 'reflection',
     hasAppPanel: true,
   });

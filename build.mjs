@@ -116,7 +116,7 @@ if (supabaseThemes) {
 
 // Fetch reading ratings for auto-featured readings on principle pages
 console.log('Fetching reading ratings from Supabase...');
-const ratingsMap = await fetchReadingRatings().catch(err => {
+const ratingsMap = await fetchReadingRatings(readings).catch(err => {
   console.warn('  Ratings fetch failed, featured readings will fall back to manual:', err.message);
   return new Map();
 });

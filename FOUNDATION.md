@@ -101,14 +101,18 @@ the page height a future ad provider will need.
 
 September 11 is the approved review route for the next discovery model; the other
 365 reflections remain unchanged until Neal reviews it. The trial contains six
-crawlable reflection links (topic, current Step, and an adjacent idea), displayed as
-a horizontal rail; a separate 300-by-600-style desktop ad rail that becomes a short
-mobile block; one relevant article and one practical Step guide; and a combined
+crawlable reflection links from the reading’s calendar month, ranked by the combined
+count of positive ratings and app favorites. This keeps every month focused on its
+Step even when an individual reading concerns a Concept or Tradition. The horizontal
+rail is followed by a separate 300-by-600-style desktop ad rail that becomes a short
+mobile block, one relevant article and one practical Step guide, and a combined
 closing app/email invitation. The universal Start Here panel is removed only from
 this trial page. Email remains visibly “coming soon” while `NEWSLETTER_ACTION` is unset.
 The trial’s discovery heading is “Related Readings,” followed by “Additional
-reflections on [topic]” with no descriptive sentence beneath it. The closing app
-CTA uses Neal’s September 9 Daily Paths screen capture.
+reflections on Step [number] — [principle]” and the matching Step hook. Its final link
+opens the calendar-month archive. The closing app CTA uses Neal’s September 9 Daily
+Paths screen capture. Eyebrows on the trial page are smaller and have more separation
+from their headings.
 
 Within the seafoam takeaway panel, the reminder message is the highest-value element:
 the memorable line a reader can carry into the day and receive on their phone. The
