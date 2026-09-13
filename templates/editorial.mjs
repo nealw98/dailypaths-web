@@ -42,7 +42,7 @@ export function renderHomePage(reading) {
 
 export function renderArticlesPage() {
   return wrapInLayout({ title:'Articles — Daily Paths', description:'Thoughtful reading about letting go, relationships, and finding your way back to yourself.', canonicalPath:'/articles/', bodyClass:'page-editorial', navSection:'articles', hasAppPanel:true,
-    bodyContent:`${hubIntro({ eyebrow:'The reading room', title:'Something to sit with.', description:'Thoughts and perspectives for the moments that feel familiar.', id:'articles-title' })}<section class="sd-stories sd-wrap sd-article-library" aria-label="Articles">${ARTICLES.map(articleCard).join('')}</section>${terminalBand()}`});
+    bodyContent:`${hubIntro({ eyebrow:'The reading room', title:'Thoughtful insights in the everyday issues', description:'Thoughts and perspectives for the moments that feel familiar.', id:'articles-title' })}<section class="sd-stories sd-wrap sd-article-library" aria-label="Articles">${ARTICLES.map(articleCard).join('')}</section>${terminalBand()}`});
 }
 
 export function renderGuidesPage() {
