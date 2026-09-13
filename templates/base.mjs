@@ -204,7 +204,7 @@ ${bodyContent}
   </footer>
 `}
 
-  <script src="${bp('/js/main.js')}" defer></script>
+  <script src="${bp('/js/main.js')}?v=home-hero-mirror-1" defer></script>
 ${bodyClass === 'page-reading' ? `  <script src="${bp('/js/calendar.js')}" defer></script>` : ''}
 </body>
 </html>`;

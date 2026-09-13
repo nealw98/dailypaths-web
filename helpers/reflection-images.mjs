@@ -22,10 +22,19 @@ export const SOFT_DAYLIGHT_THEME_IMAGES = {
 
 export const REFLECTION_IMAGES = Object.values(SOFT_DAYLIGHT_THEME_IMAGES);
 
+const BESPOKE_REFLECTION_IMAGES = {
+  254: 'reflections/september-10-habitual-apologies-soft-daylight.webp',
+};
+
 export function reflectionImage(dayOfYear, topicSlug = '') {
   const themed = SOFT_DAYLIGHT_THEME_IMAGES[topicSlug];
   if (themed) return `reflections/${themed}`;
 
   const index = (Math.max(1, Number(dayOfYear) || 1) - 1) % REFLECTION_IMAGES.length;
   return `reflections/${REFLECTION_IMAGES[index]}`;
+}
+
+/** Return the exact hero used by a published reflection, including bespoke days. */
+export function reflectionHeroImage(dayOfYear, topicSlug = '') {
+  return BESPOKE_REFLECTION_IMAGES[Number(dayOfYear)] || reflectionImage(dayOfYear, topicSlug);
 }

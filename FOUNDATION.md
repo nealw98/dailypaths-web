@@ -75,6 +75,11 @@ collection page. `/reflections/favorites/` lists the ten readings with the highe
 year-wide combined score of positive responses plus app favorites, with favorites
 and positive responses used as tie-breakers in that order.
 
+The homepage hero mirrors the current daily reflection’s exact hero asset, including
+bespoke reflection images. The generated manifest updates the image alongside the
+date, title, excerpt, and link without a daily deployment. Homepage cropping and
+the light text scrim remain specific to the homepage composition.
+
 ## Working on content
 
 1. Pick a guide or article and inventory its existing text before drafting.

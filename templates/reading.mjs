@@ -6,7 +6,7 @@ import { bp } from '../helpers/config.mjs';
 import { THEME_TO_TOPIC, TOPICS, TOPIC_RELATED, DEFAULT_RELATED_TOPICS } from '../helpers/theme-data.mjs';
 import { STEPS, STEP_HOOKS } from './steps.mjs';
 import { photoHero, quoteBlock, pill, icon, terminalBand } from './ui.mjs';
-import { reflectionImage } from '../helpers/reflection-images.mjs';
+import { reflectionHeroImage, reflectionImage } from '../helpers/reflection-images.mjs';
 import { TYPOGRAPHY_REVIEW_PATH } from '../helpers/typography-review.mjs';
 import { ARTICLES } from '../helpers/content-catalog.mjs';
 
@@ -62,7 +62,6 @@ function readingTeaser(reading) {
  */
 export function renderReadingPage(reading, prevReading, nextReading, allReadings = [], ratingsMap = new Map(), { typographyPreview = false } = {}) {
   const slug = readingSlug(reading.day_of_year, reading.title);
-  const hasBespokeHero = slug === 'september-10-the-lie-of-habitual-apologies' && !typographyPreview;
   const isDiscoveryTrial = slug === 'september-11-the-trap-of-self-spared-discomfort' && !typographyPreview;
   const isoDate = dayToIsoDate(reading.day_of_year);
   const monthIdx = dayToMonthIndex(reading.day_of_year);
@@ -259,9 +258,9 @@ export function renderReadingPage(reading, prevReading, nextReading, allReadings
 
   const bodyContent = `
 ${photoHero({
-    image: bp(hasBespokeHero
-      ? '/assets/reflections/september-10-habitual-apologies-soft-daylight.webp'
-      : `/assets/${reflectionImage(reading.day_of_year, topicMatch?.slug)}`),
+    image: bp(`/assets/${typographyPreview
+      ? reflectionImage(reading.day_of_year, topicMatch?.slug)
+      : reflectionHeroImage(reading.day_of_year, topicMatch?.slug)}`),
     alt: '',
     eyebrow: `<time datetime="${isoDate}">${heroEyebrow}</time>`,
     title: reading.title,

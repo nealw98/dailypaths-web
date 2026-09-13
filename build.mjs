@@ -28,7 +28,8 @@ import { generateOgImage } from './helpers/og-image.mjs';
 
 import { renderReadingPage } from './templates/reading.mjs';
 import { renderTopicsIndexPage, renderTopicPage, TOPICS } from './templates/topics.mjs';
-import { TOPIC_PULL_QUOTES, TOPIC_TOOLS, TOPIC_THEME_TAGS } from './helpers/theme-data.mjs';
+import { TOPIC_PULL_QUOTES, TOPIC_TOOLS, TOPIC_THEME_TAGS, THEME_TO_TOPIC } from './helpers/theme-data.mjs';
+import { reflectionHeroImage } from './helpers/reflection-images.mjs';
 import { renderPrivacyPage } from './templates/privacy.mjs';
 import { renderSupportPage } from './templates/support.mjs';
 import { renderTermsPage } from './templates/terms.mjs';
@@ -347,6 +348,7 @@ const manifest = readings.map(r => ({
   thought: (r.thought_for_day || '').replace(/\\n/g, ' ').replace(/\*\*(.+?)\*\*/g, '$1').replace(/\*(.+?)\*/g, '$1').slice(0, 120),
   excerpt: (r.opening || r.body || '').replace(/<[^>]*>/g, '').replace(/\\n/g, ' ').replace(/[*_]/g, '').replace(/\s+/g, ' ').trim().slice(0, 205),
   theme: r.secondary_theme || '',
+  hero: `/assets/${reflectionHeroImage(r.day_of_year, THEME_TO_TOPIC[r.secondary_theme]?.slug)}`,
   slug: readingSlug(r.day_of_year, r.title),
 }));
 writeFileSync(join(outDir, 'readings-manifest.json'), JSON.stringify(manifest), 'utf-8');

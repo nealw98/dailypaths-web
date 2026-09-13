@@ -20,6 +20,12 @@
       setText('[data-today-title]', reading.title);
       setText('[data-today-date]', reading.date);
       if (reading.excerpt) setText('[data-today-excerpt]', reading.excerpt.length > 155 ? reading.excerpt.slice(0, 155).replace(/\s+\S*$/, '') + '…' : reading.excerpt);
+      var hero = document.querySelector('[data-today-hero]');
+      if (hero && reading.hero && hero.getAttribute('src') !== reading.hero) {
+        var nextHero = new Image();
+        nextHero.onload = function () { hero.setAttribute('src', reading.hero); };
+        nextHero.src = reading.hero;
+      }
     }).catch(function () { /* Build-time content remains usable offline. */ });
   }
 
