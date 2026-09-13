@@ -403,10 +403,10 @@ h3,
 }
 
 .page-home .site-header {
-  position: absolute;
-  inset: 0 0 auto;
-  background: transparent;
-  border-bottom: 0;
+  position: relative;
+  inset: auto;
+  background: rgba(250, 249, 245, .97);
+  border-bottom: 1px solid var(--rule, #dfdfd3);
 }
 
 .header-inner {
