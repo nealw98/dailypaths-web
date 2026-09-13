@@ -101,7 +101,18 @@ export const LETTING_GO_ARTICLE = {
         'Letting go is rarely a single decision. When fear persuades you to pick the burden up again, you can notice it, ask for support, and place it back in your Higher Power&rsquo;s care.',
       ],
     },
-    { insert: 'letGoLetGod' },
+    {
+      heading: 'Let go and let God',
+      body: [
+        '<em>If I let go, who holds this?</em>',
+        'Letting go can feel like dropping someone into emptiness. Faith changes that movement.',
+        'I am not handing the situation over to fate, nor asking God to produce the outcome I prefer. I am placing what I cannot carry into the care of a Higher Power.',
+        'I have a Higher Power too, and I do not have to face this alone.',
+        'I still tell the truth, protect my safety, set boundaries, and take the actions that belong to me. I do what is mine and place the outcome in God&rsquo;s care.',
+        '<a data-theme="higher-power">Higher Power and Trust</a>',
+      ],
+    },
+    { pullQuote: 'They have a higher power and I&rsquo;m not it.' },
     {
       heading: 'Tonight&rsquo;s next honest action',
       body: [
@@ -168,19 +179,6 @@ export const LETTING_GO_ARTICLE = {
       outsideAbove: ['Their choices', 'Their drinking', 'Their recovery'],
       outsideBelow: ['Whether they accept help', 'Their consequences', 'What they think about my decisions'],
       caption: 'Letting go doesn&rsquo;t leave me with nothing to do. It brings me back to what is actually mine.',
-    },
-
-    letGoLetGod: {
-      heading: 'Let go and let God',
-      question: 'If I let go, who holds this?',
-      body: [
-        'Letting go can feel like dropping someone into emptiness. Faith changes that movement.',
-        'I am not handing the situation over to fate, nor asking God to produce the outcome I prefer. I am placing what I cannot carry into the care of a Higher Power.',
-        'They have a Higher Power, and I am not it. I have a Higher Power too, and I do not have to face this alone.',
-        'I still tell the truth, protect my safety, set boundaries, and take the actions that belong to me. I do what is mine and place the outcome in God&rsquo;s care.',
-      ],
-      quote: 'Faith does not always make letting go easy. It makes letting go possible.',
-      link: { theme: 'higher-power', label: 'Higher Power and Trust' },
     },
 
     nextHonestAction: {

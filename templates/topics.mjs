@@ -134,21 +134,6 @@ function renderWhatReturns(insert) {
       </figure>`;
 }
 
-/** Let Go and Let God — a quiet seafoam text aside; no graphics. */
-function renderLetGoLetGod(insert) {
-  const paras = insert.body.map(p => `<p>${p}</p>`).join('\n          ');
-  return `
-      <section class="lg-spirit">
-        <div class="lg-spirit-inner">
-          <h3>${insert.heading}</h3>
-          <p class="lg-spirit-q">${insert.question}</p>
-          ${paras}
-          <blockquote class="lg-spirit-quote">${insert.quote}</blockquote>
-          <a class="lg-spirit-link" href="${bp(`/topics/${insert.link.theme}/`)}">${insert.link.label}</a>
-        </div>
-      </section>`;
-}
-
 /** Back to My Side of the Street — illustrated practice with full transcript. */
 function renderNextHonestAction(insert) {
   const questions = insert.questions.map(question => `<li>${question}</li>`).join('');
@@ -166,14 +151,13 @@ function renderNextHonestAction(insert) {
 const INSERT_RENDERERS = {
   worryLoop: renderWorryLoop,
   whatReturns: renderWhatReturns,
-  letGoLetGod: renderLetGoLetGod,
   nextHonestAction: renderNextHonestAction,
 };
 
 /**
  * Render the Letting Go topic page — one emotional journey, not a stack of
  * equally weighted boxes: prose sections with authored headings, one
- * extracted pull quote, and four authored inserts placed by the storyboard.
+ * extracted pull quotes, and three authored inserts placed by the storyboard.
  */
 function collectionRail({ href, label, title }) {
   return `<nav class="collection-rail" aria-label="Breadcrumb">

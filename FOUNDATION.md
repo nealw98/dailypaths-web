@@ -175,7 +175,9 @@ The Letting Go article uses three supplied illustrated inserts: the revised
 `the_worry_loop.webp`, `whats_mine_whats_theirs.webp`, and
 `back_to_my_side.webp`. Each image has a complete visually hidden transcript;
 the artwork carries the visible typography while assistive technology receives
-the same questions, distinctions, and takeaway in semantic text.
+the same questions, distinctions, and takeaway in semantic text. “Let go and
+let God” remains in the normal article flow rather than appearing as an insert,
+followed by the pull quote “They have a higher power and I’m not it.”
 
 ## Content hub system
 
