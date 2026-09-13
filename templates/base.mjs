@@ -16,6 +16,7 @@ function brandLockup(wordmarkClass = 'brand-name') {
  */
 function navItems() {
   return [
+    { id: 'start', label: 'Start here', href: bp('/start/') },
     { id: 'reflection', label: 'Reflections', href: bp('/reflections/') },
     { id: 'articles', label: 'Articles', href: bp('/articles/') },
     { id: 'guides', label: 'Guides', href: bp('/guides/') },
@@ -108,9 +109,9 @@ export function wrapInLayout({
   <link rel="apple-touch-icon" sizes="512x512" href="${bp('/assets/favicon.png')}">
 
   <!-- Page structure first, then the shared Daily Paths design system. -->
-  ${isHome ? `<link rel="stylesheet" href="${bp('/css/editorial-home.css')}?v=mobile-story-stack-1">` : `<link rel="stylesheet" href="${bp('/css/style.css')}?v=brand-icon-1"><link rel="stylesheet" href="${bp('/css/soft-daylight.css')}?v=brand-icon-1">`}
+  ${isHome ? `<link rel="stylesheet" href="${bp('/css/editorial-home.css')}?v=start-here-structure-1">` : `<link rel="stylesheet" href="${bp('/css/style.css')}?v=brand-icon-1"><link rel="stylesheet" href="${bp('/css/soft-daylight.css')}?v=brand-icon-1">`}
   <link rel="stylesheet" href="${bp('/css/tokens/fonts.css')}?v=brand-icon-1">
-  <link rel="stylesheet" href="${bp('/css/site-system.css')}?v=footer-cleanup-1">
+  <link rel="stylesheet" href="${bp('/css/site-system.css')}?v=start-here-structure-1">
   <meta name="site-mode" content="${IS_PREVIEW ? 'preview' : 'production'}">
 
   ${structuredData ? (Array.isArray(structuredData) ? structuredData : [structuredData]).map(json => `<!-- Structured Data -->

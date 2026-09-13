@@ -31,7 +31,7 @@ Launch content review remains separate from visual-system approval.
 - The supplied full-page mockup is the visual specification, not loose inspiration. Homepage: bold sans-serif masthead over the full-bleed window photograph, readable upright Lora serif hero, portrait article images beside text, three guides in a compact horizontal row, shallow photographic app invitation, centered compact email signup, and a small publication footer. All six guides remain on the guide index.
 - The homepage has its own `editorial-home.css` and does not load the legacy version-c / soft-daylight stylesheets. Do not revert it to stacked cards, a separate header band, numbered guide lists, or a tall app section. Preserve the compositional reference in `design/approved-homepage-reference.webp`. The September 10 typography reference is `design/approved-upright-typography.webp`: upright Georgia section, article, guide, and email headings, with italic emphasis retained only in the app invitation. The main reflection title uses upright Lora, reduced sizing, and 1.08–1.1 line spacing for readability; this explicitly supersedes the earlier italic hero. The decorative “A moment of your own…” caption has been removed from the homepage hero.
 - Homepage article previews retain their editorial image-and-copy pairing on larger screens, but stack image above copy on phones. Phone images use a consistent 16:10 crop so text never overlaps or becomes compressed beside a narrow image.
-- Six guides: Where to Start, Detachment, Boundaries, Finding Support, One Day at a Time, Finding Yourself.
+- Six guides: Surrender, Detachment, Boundaries, Finding Support, One Day at a Time, Finding Yourself.
 - Letting Go remains a prominent article, linked from the homepage, articles index, and guides index.
 - Photographic app invitation with the actual supplied app screenshot, not a simulated screen.
 - One email invitation on the homepage. Attraction, not promotion: no popups, urgency, repeated subscription prompts, or invented social proof.
@@ -50,7 +50,9 @@ The complete 366-day reflection collection, 12 steps, 12 existing topic pages, l
 
 `helpers/content-catalog.mjs` controls article and guide labels and destinations independently of URLs. New indexes are `/articles/`, `/guides/`, and `/reflections/`. The homepage is now a separate editorial page; dated reflection pages remain the complete readings.
 
-The guide index currently leads to existing source material. These are not six newly commissioned, launch-approved long-form guides. Finding Yourself currently opens Self-Worth & Identity; Finding Support opens the existing Al-Anon introduction. Expand and review each source as the writing progresses. The support guide still needs the agreed coverage of other relevant groups.
+The guide index currently leads to existing source material. These are not six newly commissioned, launch-approved long-form guides. Finding Yourself currently opens Self-Worth & Identity; Finding Support opens the existing Al-Anon introduction. Expand and review each source as the writing progresses. The support guide still needs the agreed coverage of other relevant groups. Surrender is the Step One guide at the stable `/topics/powerlessness/` path and focuses on recognizing powerlessness and unmanageability, the Three C’s, and practical surrender.
+
+`/start/` is not the Surrender guide. It is the newcomer doorway into Al-Anon: a short self-check, what the program and a first meeting are like, a few initial readings, and a meeting link. “Start here” appears as a quiet primary-navigation item on every screen and as one concise homepage invitation immediately after the hero. It does not repeat as a large panel on individual reflection pages.
 
 The approved displayed Step principles are: Acceptance, Hope, Faith, Courage,
 Honesty, Patience, Humility, Willingness, Brotherly Love, Integrity, Spiritual
@@ -126,8 +128,8 @@ balanced lines.
 
 “Keep reading” remains a three-card grid on larger screens and becomes a native,
 single-row scroll-snap carousel on phones. Paid content is never inserted as a card.
-A separate, labelled advertisement slot follows the reading carousel and reserves
-the page height a future ad provider will need.
+Advertising layout is deferred until AdSense approval; no placeholder currently
+reserves space on reflection pages.
 
 September 11 is the approved review route for the next discovery model; the other
 365 reflections remain unchanged until Neal reviews it. The trial contains six
@@ -136,8 +138,9 @@ count of positive ratings and app favorites. This keeps every month focused on i
 Step even when an individual reading concerns a Concept or Tradition. The horizontal
 rail is followed by a separate 300-by-600-style desktop ad rail that becomes a short
 mobile block, one relevant article and one practical Step guide, and a combined
-closing app/email invitation. The universal Start Here panel is removed only from
-this trial page. Email remains visibly “coming soon” while `NEWSLETTER_ACTION` is unset.
+closing app/email invitation. Start Here is handled through the shared navigation
+and homepage invitation, not a repeated reading-page panel. Email remains visibly
+“coming soon” while `NEWSLETTER_ACTION` is unset.
 The trial’s discovery heading is “Related Readings,” followed by “Additional
 reflections on Step [number] — [principle]” and the matching Step hook. Its final link
 opens the calendar-month archive. The closing app CTA uses Neal’s September 9 Daily

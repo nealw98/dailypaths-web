@@ -1508,51 +1508,6 @@ a.card-tinted:hover { background: var(--surface-card); }
 
 .rd-calendar-trigger:hover { text-decoration: underline; }
 
-/* New here — the one loud thing on the page; the whole panel is the link.
-   The privacy line must stay literally true: the quiz saves and sends nothing. */
-.new-here-panel {
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 16px 22px;
-  margin-top: clamp(40px, 6vw, 60px);
-  padding: clamp(22px, 3.4vw, 30px) clamp(22px, 4vw, 34px);
-  border-radius: var(--radius-lg);
-  background: var(--callout-utility);
-  transition: box-shadow var(--dur) var(--ease);
-}
-
-.new-here-panel:hover { box-shadow: var(--shadow-surface); }
-
-.new-here-icon {
-  flex-shrink: 0;
-  align-self: flex-start;
-  margin-top: 6px;
-  color: var(--accent);
-}
-
-.new-here-copy {
-  flex: 1 1 300px;
-  display: grid;
-  gap: 8px;
-}
-
-.new-here-heading {
-  font-family: var(--font-display);
-  font-weight: 600;
-  font-size: clamp(24px, 2.6vw, 30px);
-  line-height: 1.2;
-  color: var(--accent-deep);
-}
-
-.new-here-line {
-  font-size: 16px;
-  line-height: 26px;
-  color: var(--accent-strong);
-}
-
-.new-here-btn { flex-shrink: 0; }
-
 /* Keep reading — sibling readings from this reading's own topic */
 .kr-grid {
   display: grid;

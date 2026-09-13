@@ -5,7 +5,7 @@ import { readingStructuredData, breadcrumbStructuredData } from '../helpers/seo.
 import { bp } from '../helpers/config.mjs';
 import { THEME_TO_TOPIC, TOPICS, TOPIC_RELATED, DEFAULT_RELATED_TOPICS } from '../helpers/theme-data.mjs';
 import { STEPS, STEP_HOOKS } from './steps.mjs';
-import { photoHero, quoteBlock, pill, icon, terminalBand } from './ui.mjs';
+import { photoHero, quoteBlock, pill, terminalBand } from './ui.mjs';
 import { reflectionHeroImage, reflectionImage } from '../helpers/reflection-images.mjs';
 import { TYPOGRAPHY_REVIEW_PATH } from '../helpers/typography-review.mjs';
 import { ARTICLES } from '../helpers/content-catalog.mjs';
@@ -303,16 +303,6 @@ ${photoHero({
       </p>
     </article>
 
-    ${isDiscoveryTrial ? '' : `<div class="wrap wrap--article">
-      <a href="${bp('/start/')}" class="new-here-panel">
-        ${icon('lightOnWater', { size: 28, className: 'new-here-icon' })}
-        <span class="new-here-copy">
-          <span class="new-here-heading">Is someone else&rsquo;s drinking affecting your life?</span>
-          <span class="new-here-line">Five questions, two minutes. Nothing you answer is saved or sent anywhere.</span>
-        </span>
-        <span class="btn new-here-btn">Start here &rarr;</span>
-      </a>
-    </div>`}
 ${keepReadingHtml}
 ${goDeeperHtml}
 

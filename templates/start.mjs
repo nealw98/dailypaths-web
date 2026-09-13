@@ -11,8 +11,8 @@ import { icon, ripple, MEETING_DIRECTORY_URL , terminalBand } from './ui.mjs';
  * find out whether Al-Anon applies to them, without being asked to commit,
  * sign up, or read 366 readings. Four small steps, no sign-up.
  *
- * Deliberately not in the header nav — six items is already the ceiling there.
- * Reached from the home strip, the home teal band, and the footer.
+ * Distinct from the Surrender guide: this is the newcomer doorway into
+ * Al-Anon itself. It is reached from the header and the homepage invitation.
  */
 
 /** The five self-quiz questions, as tappable toggles. */
@@ -115,9 +115,9 @@ export function renderStartPage(readings = [], { typographyPreview = false } = {
     <section class="start-hero">
       ${ripple(620)}
       <div class="start-hero-inner">
-        <p class="eyebrow eyebrow--on-dark">Where to start · A Daily Paths guide</p>
-        <h1 class="start-hero-title">Where to Start When Someone Else’s Drinking Affects You</h1>
-        <p class="start-hero-lede type-lede">If someone else&rsquo;s drinking is affecting your life, you don&rsquo;t have to have it figured out to begin. Five minutes, four small things, no sign-up.</p>
+        <p class="eyebrow eyebrow--on-dark">Start here · About Al-Anon</p>
+        <h1 class="start-hero-title">Could Al-Anon Be for You?</h1>
+        <p class="start-hero-lede type-lede">If someone else&rsquo;s drinking is affecting your life, you don&rsquo;t have to have it figured out to begin. Take a short self-check, learn what Al-Anon is like, and see how to find a meeting.</p>
       </div>
     </section>
 
@@ -192,7 +192,7 @@ export function renderStartPage(readings = [], { typographyPreview = false } = {
     bodyClass: typographyPreview ? 'page-start content-guide' : 'page-start',
     typographyPreview,
     noindex: typographyPreview,
-    navSection: typographyPreview ? 'guides' : '',
+    navSection: typographyPreview ? 'guides' : 'start',
     hasAppPanel: true,
   });
 }

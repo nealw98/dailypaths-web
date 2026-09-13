@@ -29,7 +29,7 @@ export const TOPIC_THEME_TAGS = {
 /** Pull-quotes for each topic — one line that captures the spirit */
 export const TOPIC_PULL_QUOTES = {
   'detachment':            'Detachment is what makes it possible to stay in the room without being destroyed by what\u2019s happening in it.',
-  'powerlessness':         'Surrender isn\u2019t giving up \u2014 it\u2019s giving over.',
+  'powerlessness':         'Surrender is not giving up on the person. It is giving up the illusion that we can control their drinking.',
   'focus-on-yourself':     'Focusing on ourselves is the most radical \u2014 and most difficult \u2014 shift in recovery.',
   'one-day-at-a-time':     'Handle just today, and trust that tomorrow will take care of itself.',
   'boundaries':            'Boundaries aren\u2019t walls. They\u2019re the foundation that makes real love possible.',
@@ -122,21 +122,37 @@ export const TOPICS = [
   },
   {
     slug: 'powerlessness',
-    name: 'Powerlessness & Surrender',
-    shortDescription: 'Accepting what we cannot control and letting go of the rest.',
-    metaDescription: 'Accept what you cannot control and discover the freedom in letting go. Daily Al-Anon reflections on powerlessness and surrender.',
+    name: 'Surrender',
+    shortDescription: 'Recognizing powerlessness, admitting unmanageability, and practicing the Three C’s.',
+    metaDescription: 'A practical Al-Anon guide to Step One, powerlessness, unmanageability, surrender, and the Three C’s.',
     image: 'articles/powerlessness-hero.jpg',
     imageAlt: 'A lone figure on a wide shore as gulls take flight',
+    localEditorialOverride: true,
     body: `
-      <p><strong>Surrendering the Illusion of Control</strong></p>
+      <p><strong>Step One asks us to stop fighting reality.</strong></p>
       <p>
-        Step 1 is often the hardest pill to swallow because it requires us to admit that our best thinking hasn&rsquo;t worked. <em>We admitted we were powerless over alcohol&mdash;and that our lives had become unmanageable.</em> To the newcomer, &ldquo;powerless&rdquo; sounds like weakness. But in 30 years of recovery, I&rsquo;ve seen that Step 1 is actually the ultimate act of courage.
+        <em>We admitted we were powerless over alcohol&mdash;that our lives had become unmanageable.</em> Powerlessness does not mean that we are powerless as people. It means we cannot control another person&rsquo;s drinking, choices, recovery, or consequences. Surrender begins when we stop treating those things as problems we should be able to solve.
       </p>
+      <h2>Recognizing powerlessness</h2>
       <p>
-        Admitting unmanageability means we stop trying to do the impossible. We stop trying to &ldquo;manage&rdquo; the unmanageable disease in another person. The &ldquo;powerlessness&rdquo; isn&rsquo;t about the alcoholic; it&rsquo;s about our own futile attempts to control them. When we stop fighting the reality of the situation, we stop losing the battle.
+        Powerlessness often shows up as repetition: having the same argument, checking for evidence, managing appearances, preventing consequences, or searching for the perfect words that will finally make someone change. The effort may come from love or fear, but the result is the same&mdash;our attention becomes organized around someone else&rsquo;s behavior.
       </p>
+      <h2>Seeing unmanageability</h2>
       <p>
-        The magic of Step 1, however, is found in the very first word: <strong>&ldquo;We.&rdquo;</strong> Recovery doesn&rsquo;t happen in isolation. It happens when we peer through the window and realize that there are others who have felt exactly what we feel. By admitting we can&rsquo;t do it alone, we open the door to a community that can walk the path with us. Powerlessness over the disease is where our power over our own lives finally begins.
+        Unmanageability is not a verdict on our character. It is an honest description of what the struggle has done to our lives. We may be exhausted, isolated, reactive, unable to concentrate, or unsure where the other person ends and we begin. Naming that disruption lets us turn toward the part of life we can care for: our own.
+      </p>
+      <h2>The Three C&rsquo;s</h2>
+      <ul>
+        <li><strong>I didn&rsquo;t cause it.</strong> Another person&rsquo;s alcoholism is not proof that we failed or did not love well enough.</li>
+        <li><strong>I can&rsquo;t control it.</strong> Monitoring, pleading, rescuing, threatening, and explaining cannot produce another person&rsquo;s recovery.</li>
+        <li><strong>I can&rsquo;t cure it.</strong> Recovery belongs to the person with the disease and to the help they choose to accept.</li>
+      </ul>
+      <p>
+        The Three C&rsquo;s do not ask us to stop caring. They help us stop carrying responsibility that was never ours. The energy spent trying to manage someone else can begin returning to our own safety, health, relationships, and spiritual life.
+      </p>
+      <h2>What surrender looks like today</h2>
+      <p>
+        Surrender can be quiet and practical: pausing before reacting, allowing a consequence to belong to the person who created it, calling someone who understands, attending a meeting, or choosing one action that supports our own well-being. It is not approval, passivity, or abandonment. It is accepting the limit of our control so we can use our real power wisely.
       </p>`,
     featuredDays: [11, 15, 16, 153, 357],
   },

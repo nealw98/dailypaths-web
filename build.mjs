@@ -103,13 +103,13 @@ if (supabaseThemes) {
     const slug = dbTheme.slug;
     const existing = TOPICS.find(t => t.slug === slug);
     if (existing) {
-      if (dbTheme.body) existing.body = dbTheme.body;
-      if (dbTheme.short_description) existing.shortDescription = dbTheme.short_description;
-      if (dbTheme.meta_description) existing.metaDescription = dbTheme.meta_description;
+      if (dbTheme.body && !existing.localEditorialOverride) existing.body = dbTheme.body;
+      if (dbTheme.short_description && !existing.localEditorialOverride) existing.shortDescription = dbTheme.short_description;
+      if (dbTheme.meta_description && !existing.localEditorialOverride) existing.metaDescription = dbTheme.meta_description;
       if (dbTheme.featured_days && dbTheme.featured_days.length > 0) existing.featuredDays = dbTheme.featured_days;
     }
     // Update global lookup objects
-    if (dbTheme.pull_quote) TOPIC_PULL_QUOTES[slug] = dbTheme.pull_quote;
+    if (dbTheme.pull_quote && !existing?.localEditorialOverride) TOPIC_PULL_QUOTES[slug] = dbTheme.pull_quote;
     if (dbTheme.tools && dbTheme.tools.length > 0) TOPIC_TOOLS[slug] = dbTheme.tools;
     if (dbTheme.theme_tags && dbTheme.theme_tags.length > 0) TOPIC_THEME_TAGS[slug] = dbTheme.theme_tags;
   }
