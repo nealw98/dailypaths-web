@@ -654,6 +654,42 @@ a[target="_blank"]:not(:has(img)):not(.pillar-card):not(.fellow-card)::after,
 .photo-hero-title { margin-top: var(--space-2); max-width: 18ch; }
 .photo-hero-sub { max-width: 42ch; margin-top: var(--space-3); color: rgba(255,255,255,.9); }
 
+/* Article photography remains true to the source image. The title and deck sit
+   on paper beneath the crop, so readability never depends on darkening the
+   photograph with the shared hero scrim. Guide and reflection heroes retain
+   their intentionally separate treatments. */
+.content-article .photo-hero {
+  display: grid;
+  align-items: stretch;
+  min-height: 0;
+  overflow: visible;
+  background: var(--surface, #faf9f5);
+}
+
+.content-article .photo-hero-img {
+  position: relative;
+  inset: auto;
+  display: block;
+  width: 100%;
+  height: clamp(350px, 32vw, 430px);
+  object-fit: cover;
+  filter: none;
+  opacity: 1;
+}
+
+.content-article .photo-hero-scrim { display: none; }
+
+.content-article .photo-hero-inner {
+  width: min(calc(100% - (2 * var(--gutter-system))), var(--content-wide));
+  max-width: var(--content-wide);
+  margin-inline: auto;
+  padding: var(--space-5) 0 var(--space-6);
+}
+
+.content-article .photo-hero .eyebrow,
+.content-article .photo-hero-title { color: var(--text-primary, #34382e); }
+.content-article .photo-hero-sub { color: var(--text-muted, #66685d); }
+
 /* Reflections keeps its immersive hero, but joins the hub shell and type rhythm.
    These selectors deliberately avoid changing legacy .wrap on reading pages. */
 .page-reflections-index .photo-hero-inner,

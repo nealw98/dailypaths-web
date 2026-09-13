@@ -193,6 +193,9 @@ spacing roles through index-scoped CSS.
 The differences are intentional: Reflections remains the immersive Step library;
 Articles remain an open, photography-led editorial grid; Guides remain numbered,
 ruled reference rows constrained to the existing wide reading measure. Article
-images standardize geometry and cropping without global color treatment. Legacy
+images standardize geometry and cropping without global color treatment. Article
+detail heroes show photography at its natural brightness and color with no scrim,
+filter, opacity reduction, or gradient; their title and deck sit on paper below the
+image instead of relying on an overlaid dark treatment. Legacy
 `.wrap` and Step-card rules remain in place for non-hub templates; the hub
 alignment corrections are deliberately scoped to avoid reading-page regressions.
