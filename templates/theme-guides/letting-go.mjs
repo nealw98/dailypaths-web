@@ -119,7 +119,6 @@ export const LETTING_GO_ARTICLE = {
         'You do not need to solve the whole situation before you can rest. You only need to identify what belongs to you now.',
       ],
     },
-    { insert: 'nextHonestAction' },
     {
       body: [
         'Tomorrow may bring a conversation, a boundary, a request for help, or a difficult truth you need to face. If action is yours to take, you can take it when the time is right.',
@@ -181,24 +180,6 @@ export const LETTING_GO_ARTICLE = {
       caption: 'Letting go doesn&rsquo;t leave me with nothing to do. It brings me back to what is actually mine.',
     },
 
-    nextHonestAction: {
-      image: 'back_to_my_side.webp',
-      width: 778,
-      height: 1046,
-      alt: 'Back to My Side of the Street: seven questions about support, meetings, boundaries, communication, consequences, Higher Power, and the next right thing.',
-      heading: 'Back to My Side of the Street',
-      lede: 'Questions to ask when I&rsquo;m stuck in the night shift.',
-      questions: [
-        'Do I need to call my sponsor?',
-        'Do I need a meeting?',
-        'Is there a boundary I need to keep?',
-        'Is there something I need to say&mdash;or stop saying?',
-        'Am I trying to prevent a consequence that belongs to someone else?',
-        'Is this something I need to turn over to my Higher Power?',
-        'What is the next right thing for me?',
-      ],
-      close: 'Sometimes the next right thing is action. Sometimes it is leaving something alone.',
-    },
   },
 
   readings: {

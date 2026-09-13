@@ -171,13 +171,14 @@ but centered and more direct while its label remains quiet and separate.
 
 `editorial-window.webp`, `editorial-doorway.webp`, and `editorial-phone.webp` reconstruct the photography direction in the supplied reference; `soft-daylight-journal.webp` supports the photographic app invitation. `articles/letting-go-hero.jpg` is Neal's supplied September 13 image of a woman pausing during a phone call at her dining table; it is the shared source for the Letting Go article, Articles hub, and homepage preview. The twelve `soft-daylight-*.jpg` reflection heroes and the bespoke September 10 entryway hero are generated assets. The earlier landscape and app-photo collection is retained but no longer selected by reflection pages. `Screenshots/today-actual.png` is Neal's supplied app screenshot from September 9, 2026. Other assets were already committed to `2.0` and remain available.
 
-The Letting Go article uses three supplied illustrated inserts: the revised
-`the_worry_loop.webp`, `whats_mine_whats_theirs.webp`, and
-`back_to_my_side.webp`. Each image has a complete visually hidden transcript;
-the artwork carries the visible typography while assistive technology receives
-the same questions, distinctions, and takeaway in semantic text. “Let go and
-let God” remains in the normal article flow rather than appearing as an insert,
-followed by the pull quote “They have a higher power and I’m not it.”
+The Letting Go article uses two supplied illustrated inserts: the revised
+`the_worry_loop.webp` and `whats_mine_whats_theirs.webp`. Each image has a
+complete visually hidden transcript; the artwork carries the visible typography
+while assistive technology receives the same distinctions and takeaway in
+semantic text. `back_to_my_side.webp` is retained as an available asset but is
+not part of this article. “Let go and let God” remains in the normal article flow
+rather than appearing as an insert, followed by the pull quote “They have a
+higher power and I’m not it.”
 
 ## Content hub system
 

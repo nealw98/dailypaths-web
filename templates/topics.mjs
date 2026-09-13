@@ -134,30 +134,15 @@ function renderWhatReturns(insert) {
       </figure>`;
 }
 
-/** Back to My Side of the Street — illustrated practice with full transcript. */
-function renderNextHonestAction(insert) {
-  const questions = insert.questions.map(question => `<li>${question}</li>`).join('');
-  return `
-      <figure class="tg-diagram">
-        <img src="${bp(`/assets/themes/${insert.image}`)}" alt="${insert.alt}" width="${insert.width}" height="${insert.height}" loading="lazy">
-        <div class="visually-hidden">
-          <p>${insert.heading}. ${insert.lede}</p>
-          <ol>${questions}</ol>
-          <p>${insert.close}</p>
-        </div>
-      </figure>`;
-}
-
 const INSERT_RENDERERS = {
   worryLoop: renderWorryLoop,
   whatReturns: renderWhatReturns,
-  nextHonestAction: renderNextHonestAction,
 };
 
 /**
  * Render the Letting Go topic page — one emotional journey, not a stack of
  * equally weighted boxes: prose sections with authored headings, one
- * extracted pull quotes, and three authored inserts placed by the storyboard.
+ * extracted pull quotes, and two authored inserts placed by the storyboard.
  */
 function collectionRail({ href, label, title }) {
   return `<nav class="collection-rail" aria-label="Breadcrumb">
