@@ -212,7 +212,7 @@ export const TOPICS = [
     shortDescription: 'Recognizing what isn\'t yours to control and learning to put it down.',
     metaDescription: 'Explore what letting go means in Al-Anon: respecting another person\'s choices, facing the facts, releasing control, and caring without carrying.',
     image: 'articles/letting-go-hero.jpg',
-    imageAlt: 'An open hand releasing into warm light',
+    imageAlt: 'A woman pauses during a phone call at her dining table in warm evening light',
     body: `
       <p>
         Willingness is the &ldquo;key in the lock.&rdquo; It doesn&rsquo;t

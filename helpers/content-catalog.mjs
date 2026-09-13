@@ -10,7 +10,7 @@ export const GUIDES = [
 ];
 
 export const ARTICLES = [
-  { title: 'Letting Go: Caring Without Carrying', path: '/topics/letting-go/', image: 'articles/letting-go-hero.jpg', alt: 'An open hand in warm light', category: 'Letting go', description: 'Recognizing what is yours to handle—and what you can begin to put down.' },
+  { title: 'Letting Go: Caring Without Carrying', path: '/topics/letting-go/', image: 'articles/letting-go-hero.jpg', alt: 'A woman pauses during a phone call at her dining table in warm evening light', category: 'Letting go', description: 'Recognizing what is yours to handle—and what you can begin to put down.' },
   { title: 'Gratitude & Hope', path: '/topics/gratitude-and-hope/', image: 'articles/gratitude-and-hope-hero.jpg', alt: 'A quiet moment of natural light', category: 'Everyday perspective', description: 'Making space for what is still good, even when life feels uncertain.' },
   { title: 'Honesty', path: '/topics/honesty/', image: 'articles/honesty-hero.jpg', alt: 'A moment of quiet reflection', category: 'Knowing yourself', description: 'Beginning with the truth about how things are—and how you feel.' },
 ];

@@ -18,7 +18,7 @@ export const LETTING_GO_ARTICLE = {
   definition: 'Caring without carrying &mdash; releasing the need to manage, fix, or control.',
   hero: {
     image: 'articles/letting-go-hero.jpg',
-    alt: 'An open hand releasing into warm light — letting go in Al-Anon recovery',
+    alt: 'A woman pauses during a phone call at her dining table in warm evening light',
   },
 
   /**

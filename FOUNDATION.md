@@ -169,7 +169,7 @@ but centered and more direct while its label remains quiet and separate.
 
 ## Asset provenance
 
-`editorial-window.webp`, `editorial-doorway.webp`, and `editorial-phone.webp` reconstruct the photography direction in the supplied reference; `soft-daylight-journal.webp` supports the photographic app invitation. The twelve `soft-daylight-*.jpg` reflection heroes and the bespoke September 10 entryway hero are generated assets. The earlier landscape and app-photo collection is retained but no longer selected by reflection pages. `Screenshots/today-actual.png` is Neal's supplied app screenshot from September 9, 2026. Other assets were already committed to `2.0` and remain available.
+`editorial-window.webp`, `editorial-doorway.webp`, and `editorial-phone.webp` reconstruct the photography direction in the supplied reference; `soft-daylight-journal.webp` supports the photographic app invitation. `articles/letting-go-hero.jpg` is Neal's supplied September 13 image of a woman pausing during a phone call at her dining table; it is the shared source for the Letting Go article, Articles hub, and homepage preview. The twelve `soft-daylight-*.jpg` reflection heroes and the bespoke September 10 entryway hero are generated assets. The earlier landscape and app-photo collection is retained but no longer selected by reflection pages. `Screenshots/today-actual.png` is Neal's supplied app screenshot from September 9, 2026. Other assets were already committed to `2.0` and remain available.
 
 ## Content hub system
 
