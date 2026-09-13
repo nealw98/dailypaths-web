@@ -1,5 +1,5 @@
 import { wrapInLayout } from './base.mjs';
-import { terminalBand, APP_STORE_URL, PLAY_STORE_URL } from './ui.mjs';
+import { terminalBand, hubIntro, APP_STORE_URL, PLAY_STORE_URL } from './ui.mjs';
 import { bp } from '../helpers/config.mjs';
 import { readingSlug } from '../helpers/slug-utils.mjs';
 import { GUIDES, ARTICLES } from '../helpers/content-catalog.mjs';
@@ -11,7 +11,7 @@ const esc = value => String(value ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;',
 const plain = value => String(value || '').replace(/<[^>]*>/g, '').replace(/\\n/g, ' ').replace(/[*_]/g, '').replace(/\s+/g, ' ').trim();
 
 function articleCard(article) {
-  return `<article class="sd-story"><a class="sd-story-image" href="${bp(article.path)}" tabindex="-1" aria-hidden="true"><img src="${bp('/assets/' + article.image)}" alt="" width="900" height="600" loading="lazy"></a><p class="sd-kicker">${esc(article.category)}</p><h3><a href="${bp(article.path)}">${esc(article.title)}</a></h3><p>${esc(article.description)}</p><a class="sd-text-link" href="${bp(article.path)}" aria-label="Read ${esc(article.title)}">Read the article</a></article>`;
+  return `<article class="sd-story"><a class="sd-story-image" href="${bp(article.path)}" tabindex="-1" aria-hidden="true"><img src="${bp('/assets/' + article.image)}" alt="" width="960" height="600" loading="lazy"></a><p class="sd-kicker">${esc(article.category)}</p><h3><a href="${bp(article.path)}">${esc(article.title)}</a></h3><p>${esc(article.description)}</p><a class="sd-text-link" href="${bp(article.path)}" aria-label="Read ${esc(article.title)}">Read the article</a></article>`;
 }
 
 function guideRows() {
@@ -42,12 +42,12 @@ export function renderHomePage(reading) {
 
 export function renderArticlesPage() {
   return wrapInLayout({ title:'Articles — Daily Paths', description:'Thoughtful reading about letting go, relationships, and finding your way back to yourself.', canonicalPath:'/articles/', bodyClass:'page-editorial', navSection:'articles', hasAppPanel:true,
-    bodyContent:`<header class="sd-page-heading sd-wrap"><p class="sd-kicker">The reading room</p><h1>Something to sit with.</h1><p>Thoughts and perspectives for the moments that feel familiar.</p></header><section class="sd-stories sd-wrap sd-article-library" aria-label="Articles">${ARTICLES.map(articleCard).join('')}</section>${terminalBand()}`});
+    bodyContent:`${hubIntro({ eyebrow:'The reading room', title:'Something to sit with.', description:'Thoughts and perspectives for the moments that feel familiar.', id:'articles-title' })}<section class="sd-stories sd-wrap sd-article-library" aria-label="Articles">${ARTICLES.map(articleCard).join('')}</section>${terminalBand()}`});
 }
 
 export function renderGuidesPage() {
   return wrapInLayout({ title:'Guides — Daily Paths', description:'Explore detachment, boundaries, support, and other essential ideas for people affected by someone else’s drinking.', canonicalPath:'/guides/', bodyClass:'page-editorial', navSection:'guides', hasAppPanel:true,
-    bodyContent:`<header class="sd-page-heading sd-wrap"><p class="sd-kicker">The guides</p><h1>A place to begin.<br>A place to return.</h1><p>Explore one idea at a time, at your own pace.</p></header><section class="sd-wrap sd-guide-library" aria-label="Guides"><ol class="sd-guide-list">${guideRows()}</ol></section><aside class="sd-wrap sd-related-note"><p class="sd-kicker">A related read</p><h2><a href="${bp('/topics/letting-go/')}">Letting Go: Caring Without Carrying</a></h2><p>On responsibility, control, and putting down what isn’t yours to carry.</p></aside>${terminalBand()}`});
+    bodyContent:`${hubIntro({ eyebrow:'The guides', title:'A place to begin.<br>A place to return.', description:'Explore one idea at a time, at your own pace.', id:'guides-title' })}<section class="hub-reference-measure sd-guide-library" aria-label="Guides"><ol class="sd-guide-list">${guideRows()}</ol></section><aside class="hub-reference-measure sd-related-note"><p class="sd-kicker">A related read</p><h2><a href="${bp('/topics/letting-go/')}">Letting Go: Caring Without Carrying</a></h2><p>On responsibility, control, and putting down what isn’t yours to carry.</p></aside>${terminalBand()}`});
 }
 
 export function renderReflectionsPage(reading) {

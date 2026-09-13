@@ -164,6 +164,20 @@ export function sectionHeader({ heading, description, linkHref, linkLabel }) {
 }
 
 /**
+ * Hub introduction for quiet, text-led collection pages.
+ *
+ * Articles and Guides share this structure. Reflections keeps its photographic
+ * hero while using the same title, deck, measure, and spacing roles in CSS.
+ */
+export function hubIntro({ eyebrow, title, description, id }) {
+  return `<header class="hub-intro sd-wrap" aria-labelledby="${id}">
+          ${eyebrow ? `<p class="hub-eyebrow sd-kicker">${eyebrow}</p>` : ''}
+          <h1 class="hub-title" id="${id}">${title}</h1>
+          ${description ? `<p class="hub-deck">${description}</p>` : ''}
+        </header>`;
+}
+
+/**
  * Prev / next rail above a hero (Step and Theme detail pages).
  */
 export function detailRail({ prevHref, prevLabel, allHref, allLabel, nextHref, nextLabel }) {

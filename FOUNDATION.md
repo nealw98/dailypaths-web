@@ -170,3 +170,19 @@ but centered and more direct while its label remains quiet and separate.
 ## Asset provenance
 
 `editorial-window.webp`, `editorial-doorway.webp`, and `editorial-phone.webp` reconstruct the photography direction in the supplied reference; `soft-daylight-journal.webp` supports the photographic app invitation. The twelve `soft-daylight-*.jpg` reflection heroes and the bespoke September 10 entryway hero are generated assets. The earlier landscape and app-photo collection is retained but no longer selected by reflection pages. `Screenshots/today-actual.png` is Neal's supplied app screenshot from September 9, 2026. Other assets were already committed to `2.0` and remain available.
+
+## Content hub system
+
+The Reflections, Articles, and Guides indexes are three variations of the same
+Soft Daylight system. They share the wide shell, Newsreader page-title and deck
+roles, token-based spacing, restrained link behavior, and responsive rhythm.
+Articles and Guides use the shared `hubIntro` primitive. Reflections retains its
+photographic opening while matching that primitive's title, deck, alignment, and
+spacing roles through index-scoped CSS.
+
+The differences are intentional: Reflections remains the immersive Step library;
+Articles remain an open, photography-led editorial grid; Guides remain numbered,
+ruled reference rows constrained to the existing wide reading measure. Article
+images standardize geometry and cropping without global color treatment. Legacy
+`.wrap` and Step-card rules remain in place for non-hub templates; the hub
+alignment corrections are deliberately scoped to avoid reading-page regressions.
