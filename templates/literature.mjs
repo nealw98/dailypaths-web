@@ -164,7 +164,7 @@ export function renderLiteraturePage(book) {
         <p class="book-description">${book.description}</p>
 
         <a href="${book.purchaseLink}" target="_blank" rel="noopener" class="book-purchase-btn">
-          Purchase from Al-Anon &#x2197;
+          Purchase from Al-Anon
         </a>
 
         <p class="book-also-available">Also available: ${book.alsoAvailable}</p>

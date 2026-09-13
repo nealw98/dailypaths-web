@@ -1,5 +1,4 @@
 import { bp, BASE_URL, IS_PREVIEW } from '../helpers/config.mjs';
-import { icon } from './ui.mjs';
 import { TYPOGRAPHY_REVIEW_PATH, GUIDE_REVIEW_PATH } from '../helpers/typography-review.mjs';
 import { GUIDES } from '../helpers/content-catalog.mjs';
 
@@ -15,9 +14,9 @@ function newsletterInvitation() {
   const action = process.env.NEWSLETTER_ACTION?.trim();
   return `<section class="site-newsletter" aria-labelledby="site-newsletter-heading">
     <div class="site-newsletter-inner">
-      <p class="site-newsletter-eyebrow">Stay connected</p>
-      <h2 id="site-newsletter-heading">A little perspective in your inbox.</h2>
-      <p class="site-newsletter-copy">Daily reflections and new articles from Daily Paths.</p>
+      <p class="site-newsletter-eyebrow">Email updates</p>
+      <h2 id="site-newsletter-heading">A little clarity in your inbox.</h2>
+      <p class="site-newsletter-copy">Daily reflections and new articles to help you come back to yourself.</p>
       <form class="site-newsletter-form" ${action ? `action="${escapeAttr(action)}" method="post"` : 'aria-describedby="site-newsletter-status"'}>
         <label class="sr-only" for="site-newsletter-email">Your email address</label>
         <input id="site-newsletter-email" name="email" type="email" autocomplete="email" placeholder="Your email address" ${action ? 'required' : 'disabled'}>
@@ -90,7 +89,7 @@ export function wrapInLayout({
 
   const mobileNav = nav.map(n => {
     const active = n.id === navSection;
-    return `        <a href="${n.href}" class="mobile-menu-row${active ? ' is-active' : ''}">${n.label}${icon('chevronRight', { size: 16, className: 'mobile-menu-chevron' })}</a>`;
+    return `        <a href="${n.href}" class="mobile-menu-row${active ? ' is-active' : ''}"${active ? ' aria-current="page"' : ''}><span class="mobile-menu-label">${n.label}</span></a>`;
   }).join('\n');
 
   return `<!DOCTYPE html>
@@ -128,7 +127,7 @@ export function wrapInLayout({
   <!-- Page structure first, then the shared Daily Paths design system. -->
   ${isHome ? `<link rel="stylesheet" href="${bp('/css/editorial-home.css')}?v=home-header-band-1">` : `<link rel="stylesheet" href="${bp('/css/style.css')}?v=brand-icon-1"><link rel="stylesheet" href="${bp('/css/soft-daylight.css')}?v=brand-icon-1">`}
   <link rel="stylesheet" href="${bp('/css/tokens/fonts.css')}?v=brand-icon-1">
-  <link rel="stylesheet" href="${bp('/css/site-system.css')}?v=site-email-footer-1">
+  <link rel="stylesheet" href="${bp('/css/site-system.css')}?v=link-nav-refinement-1">
   <meta name="site-mode" content="${IS_PREVIEW ? 'preview' : 'production'}">
 
   ${structuredData ? (Array.isArray(structuredData) ? structuredData : [structuredData]).map(json => `<!-- Structured Data -->
@@ -224,7 +223,7 @@ ${bodyContent}
   </footer>
 `}
 
-  <script src="${bp('/js/main.js')}?v=home-hero-mirror-1" defer></script>
+  <script src="${bp('/js/main.js')}?v=link-nav-refinement-1" defer></script>
 ${bodyClass === 'page-reading' ? `  <script src="${bp('/js/calendar.js')}" defer></script>` : ''}
 </body>
 </html>`;

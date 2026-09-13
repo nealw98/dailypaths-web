@@ -12,7 +12,6 @@
 }
 body {background:var(--surface);}
 ::selection {background:#dce1cb;color:#303629;}
-a:focus-visible,button:focus-visible,input:focus-visible {outline:3px solid #657346;outline-offset:5px;}
 [hidden] {display:none!important;}
 .site-header {position:relative;background:var(--surface);backdrop-filter:none;}
 .header-inner {max-width:1320px;padding:24px 5%;gap:36px;min-height:104px;}
@@ -23,7 +22,6 @@ a:focus-visible,button:focus-visible,input:focus-visible {outline:3px solid #657
 .site-nav {margin-left:auto;gap:29px;}
 .nav-link {font-size:12px;font-weight:500;white-space:nowrap;}
 .header-cta {background:transparent;border:1px solid #92997e;color:#485336;border-radius:2px;font-size:12px;padding:10px 17px;}
-.header-cta:hover {background:#e8ebdf;color:#343e29;}
 .sd-wrap {width:88%;max-width:1120px;margin-left:auto;margin-right:auto;}
 .sd-kicker {font:600 10px/1.6 var(--font-body);letter-spacing:1.8px;text-transform:uppercase;color:#626a52;margin:0 0 17px;}
 .sd-text-link {font:500 12px/1.5 var(--font-body);color:#465133;text-decoration:none;display:inline-flex;gap:18px;align-items:center;padding:8px 0;border-bottom:1px solid #a9ae98;}

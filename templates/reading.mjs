@@ -98,13 +98,13 @@ export function renderReadingPage(reading, prevReading, nextReading, allReadings
 
   const pills = [];
   if (topicMatch) {
-    pills.push(pill(`${topicMatch.name} &rarr;`, { href: bp(`/topics/${topicMatch.slug}/`) }));
+    pills.push(pill(topicMatch.name, { href: bp(`/topics/${topicMatch.slug}/`) }));
   } else if (theme) {
     pills.push(pill(theme));
   }
   if (reading.step_theme) {
     const principleWords = reading.step_theme.replace(/\b(\d+)\b/, m => NUMBER_WORDS[Number(m) - 1] || m);
-    pills.push(stepPath ? pill(`${principleWords} &rarr;`, { href: bp(stepPath) }) : pill(principleWords));
+    pills.push(stepPath ? pill(principleWords, { href: bp(stepPath) }) : pill(principleWords));
   }
 
   // Source quotation
@@ -179,7 +179,7 @@ export function renderReadingPage(reading, prevReading, nextReading, allReadings
             <span class="kr-card-date">${r.display_date}</span>
             <span class="kr-card-title">${r.title}</span>
             ${teaser ? `<span class="kr-card-teaser">${teaser}</span>` : ''}
-            <span class="kr-card-cta">Read &rarr;</span>
+            <span class="kr-card-cta">Read</span>
           </a>`;
       }).join('');
 
@@ -197,7 +197,7 @@ export function renderReadingPage(reading, prevReading, nextReading, allReadings
       <div class="kr-grid${isDiscoveryTrial ? ' kr-grid--carousel' : ''}">${cards}
       </div>
       <div class="kr-more">
-        <a href="${topicHref}${isDiscoveryTrial ? '' : '#readings'}" class="text-link">${isDiscoveryTrial && monthStepData ? `More ${monthStepData.month} readings` : 'More readings'} &rarr;</a>
+        <a href="${topicHref}${isDiscoveryTrial ? '' : '#readings'}" class="text-link">${isDiscoveryTrial && monthStepData ? `More ${monthStepData.month} readings` : 'More readings'}</a>
       </div>
     </section>`;
     }
@@ -216,14 +216,14 @@ export function renderReadingPage(reading, prevReading, nextReading, allReadings
           <a href="${bp(`/topics/${t.slug}/`)}" class="rt-card">
             <span class="rt-card-title">${t.name}</span>
             <span class="rt-card-line">${t.shortDescription}</span>
-            <span class="rt-card-meta">Read &rarr;</span>
+            <span class="rt-card-meta">Read</span>
           </a>`);
   if (stepData) {
     relatedCards.push(`
           <a href="${bp(stepPath)}" class="rt-card">
             <span class="rt-card-title">${stepData.principle}</span>
             <span class="rt-card-line">Step ${stepWord} &mdash; the Step this reading belongs to.</span>
-            <span class="rt-card-meta">Read &rarr;</span>
+            <span class="rt-card-meta">Read</span>
           </a>`);
   }
   const relatedTopicsHtml = `
@@ -245,13 +245,13 @@ export function renderReadingPage(reading, prevReading, nextReading, allReadings
           <span class="deeper-card-type">Relevant article</span>
           <span class="deeper-card-title">${relatedArticle.title}</span>
           <span class="deeper-card-line">${relatedArticle.description}</span>
-          <span class="deeper-card-cta">Read the article &rarr;</span>
+          <span class="deeper-card-cta">Read the article</span>
         </a>` : ''}
         ${stepData ? `<a href="${bp(stepPath)}" class="deeper-card">
           <span class="deeper-card-type">Reflection collection</span>
           <span class="deeper-card-title">Step ${stepWord}: ${stepData.principle}</span>
           <span class="deeper-card-line">${STEP_HOOKS[stepData.number]} Read all ${stepData.month} reflections.</span>
-          <span class="deeper-card-cta">Explore the collection &rarr;</span>
+          <span class="deeper-card-cta">Explore the collection</span>
         </a>` : ''}
       </div>
     </section>` : relatedTopicsHtml;
@@ -299,7 +299,7 @@ ${photoHero({
       </nav>
 
       <p class="rd-calendar-link">
-        <button type="button" class="rd-calendar-trigger" data-calendar-trigger data-reading-month="${monthIdx}" data-reading-day="${dayOfMonth}">Browse the reading calendar &rarr;</button>
+        <button type="button" class="rd-calendar-trigger" data-calendar-trigger data-reading-month="${monthIdx}" data-reading-day="${dayOfMonth}">Browse the reading calendar</button>
       </p>
     </article>
 

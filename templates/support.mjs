@@ -99,7 +99,7 @@ export function renderSupportPage() {
           </p>
           <p>
             <a href="https://al-anon.org" target="_blank" rel="noopener noreferrer" class="external-link">
-              Visit al-anon.org &rarr;
+              Visit al-anon.org
             </a>
           </p>
         </section>

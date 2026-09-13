@@ -19,6 +19,17 @@ footer, and repeated-component edits belong in `css/site-system.css`; page-speci
 geometry remains in the structural stylesheets. Guide/article roles follow
 `helpers/content-catalog.mjs` without changing stable URLs.
 
+Links and navigation follow one quiet editorial interaction system. Inline prose
+links and standalone text links use restrained text-width underlines; navigation
+uses no hover underline and reserves its short olive underline for the current
+page. Most links carry no arrow. A right arrow is reserved for an important forward
+CTA, the diagonal arrow identifies an external text destination, and left/right
+arrows remain for true previous/next or back navigation. Image-based store badges
+need no added arrow. Cards may be a single link only when they have one clear
+destination; editorial previews keep the title as their primary link when future
+secondary interactions may be added. Shared keyboard focus, touch targets, masthead
+states, and mobile-menu behavior are owned by `css/site-system.css` and `js/main.js`.
+
 The two private `/typography-review/` routes remain available for old links but
 now use the same typography as the normal pages. They are excluded from indexing.
 The old local migration stash is superseded; do not apply it over this implementation.

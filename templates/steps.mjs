@@ -275,7 +275,7 @@ export function renderReflectionsIndexPage(todayReading) {
             <span>
               <span class="step-card-keyword">${step.principle}</span>
               <span class="step-card-hook">${STEP_HOOKS[step.number] || ''}</span>
-              <span class="step-card-cta">View reflections &rarr;</span>
+              <span class="step-card-cta">View reflections</span>
             </span>
           </a>`).join('');
 
@@ -292,8 +292,8 @@ ${photoHero({
       <div class="reflection-index-lead">
         <p>Each month follows one Step and one spiritual principle. Choose a collection, or begin with the readings people return to most.</p>
         <div class="reflection-index-actions">
-          <a class="btn" data-today-link href="${bp(`/${readingSlug(todayReading.day_of_year, todayReading.title)}/`)}">Read today&rsquo;s reflection &rarr;</a>
-          <a class="btn btn--ghost" href="${bp('/reflections/favorites/')}">Favorite readings &rarr;</a>
+          <a class="btn" data-today-link href="${bp(`/${readingSlug(todayReading.day_of_year, todayReading.title)}/`)}">Read today&rsquo;s reflection <span aria-hidden="true">&rarr;</span></a>
+          <a class="btn btn--ghost" href="${bp('/reflections/favorites/')}">Favorite readings</a>
         </div>
       </div>
       <div class="step-card-grid step-card-grid--index">${gridCards}

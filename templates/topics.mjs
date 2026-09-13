@@ -22,7 +22,7 @@ export function renderTopicsIndexPage() {
           <a href="${bp(`/topics/${topic.slug}/`)}" class="card-elevated theme-index-card">
             <span class="theme-index-title">${topic.name}</span>
             <span class="theme-index-line">${topic.shortDescription}</span>
-            <span class="theme-index-cta">Explore &rarr;</span>
+            <span class="theme-index-cta">Explore</span>
           </a>`).join('');
 
   const lettingGo = TOPICS.find(topic => topic.slug === 'letting-go');
@@ -45,7 +45,7 @@ ${photoHero({
           <span class="eyebrow">Featured article</span>
           <span class="theme-feature-title">${lettingGo.name}</span>
           <span class="theme-feature-line">${lettingGo.shortDescription}</span>
-          <span class="theme-index-cta">Read the article &rarr;</span>
+          <span class="theme-index-cta">Read the article</span>
         </div>
         <img src="${bp(`/assets/${lettingGo.image}`)}" alt="${lettingGo.imageAlt}" loading="lazy">
       </a>
@@ -145,7 +145,7 @@ function renderLetGoLetGod(insert) {
           <p class="lg-spirit-q">${insert.question}</p>
           ${paras}
           <blockquote class="lg-spirit-quote">${insert.quote}</blockquote>
-          <a class="lg-spirit-link" href="${bp(`/topics/${insert.link.theme}/`)}">${insert.link.label} &rarr;</a>
+          <a class="lg-spirit-link" href="${bp(`/topics/${insert.link.theme}/`)}">${insert.link.label}</a>
         </div>
       </section>`;
 }

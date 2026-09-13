@@ -89,7 +89,7 @@ export function renderStartPage(readings = [], { typographyPreview = false } = {
             <span class="start-week-label">${item.label}</span>
             <span class="start-week-title">${reading.title}</span>
             <span class="start-week-why">${item.why}</span>
-            <span class="start-week-cta">Read it &rarr;</span>
+            <span class="start-week-cta">Read it</span>
           </a>`;
   }).join('');
 
@@ -147,7 +147,7 @@ export function renderStartPage(readings = [], { typographyPreview = false } = {
       <div class="start-step-body" style="margin-top:20px">
         <div class="start-facts">${factRows}
         </div>
-        <p style="margin:16px 0 0"><a href="${bp('/about-alanon/')}" class="text-link">Read more about the program &rarr;</a></p>
+        <p style="margin:16px 0 0"><a href="${bp('/about-alanon/')}" class="text-link">Read more about the program</a></p>
       </div>
     </section>
 
@@ -173,7 +173,7 @@ export function renderStartPage(readings = [], { typographyPreview = false } = {
       <div class="start-step-body" style="margin-top:18px">
         <p class="start-meeting-text">You don&rsquo;t have to speak. Most people say nothing at their first meeting, and no one asks them to. You can join an online meeting from a closed door in your own house and leave whenever you want. If it isn&rsquo;t right, try a different group &mdash; they vary more than you&rsquo;d expect.</p>
         <div class="btn-row">
-          <a href="${MEETING_DIRECTORY_URL}" target="_blank" rel="noopener noreferrer" class="btn">Find a meeting near you &#8599;</a>
+          <a href="${MEETING_DIRECTORY_URL}" target="_blank" rel="noopener noreferrer" class="btn">Find a meeting near you</a>
           <a href="${bp('/essentials/#serenity')}" class="btn btn--ghost">Read the Serenity Prayer</a>
         </div>
       </div>

@@ -146,8 +146,6 @@ a {
   text-decoration: none;
 }
 
-a:hover { color: var(--accent-strong); }
-
 h1, h2, h3, h4 {
   font-family: var(--font-display);
   font-weight: 600;
@@ -157,12 +155,6 @@ h1, h2, h3, h4 {
 p { text-wrap: pretty; }
 
 button { font-family: inherit; }
-
-:focus-visible {
-  outline: 2px solid var(--accent-strong);
-  outline-offset: 2px;
-  border-radius: 4px;
-}
 
 .skip-link {
   position: absolute;
@@ -516,8 +508,6 @@ a.pill:hover {
   white-space: nowrap;
   transition: color var(--dur) var(--ease), border-color var(--dur) var(--ease);
 }
-
-.nav-link:hover { color: var(--accent-strong); }
 
 .nav-link.is-active {
   color: var(--accent-strong);

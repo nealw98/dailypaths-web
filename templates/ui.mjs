@@ -228,7 +228,7 @@ export function terminalBand({
     <img class="sd-app-background" src="${bp('/assets/articles/soft-daylight-journal.webp')}" alt="" width="1672" height="941" loading="lazy">
     <div class="sd-app-inner sd-wrap">
       <div class="sd-phone"><img src="${bp('/assets/Screenshots/today-actual.png')}" alt="The actual Daily Paths app: today’s reflection, journal, and daily tools" width="944" height="2048" loading="lazy"></div>
-      <div class="sd-app-copy"><p class="sd-kicker">Daily Paths, wherever you are</p><h2>${heading}</h2><p>${text}</p>${storeBadges({ context: 'band' })}</div>
+      <div class="sd-app-copy"><p class="sd-kicker">The Daily Paths app</p><h2>${heading}</h2><p>${text}</p>${storeBadges({ context: 'band' })}</div>
     </div>
   </section>`;
 }

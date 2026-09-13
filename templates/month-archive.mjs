@@ -81,7 +81,7 @@ ${readingItems}
         <h1 class="ma-title">Step ${step.number} &mdash; ${step.principle}</h1>
         <p class="ma-subtitle">${STEP_HOOKS[step.number]}</p>
         <p class="ma-step-statement">${step.text}</p>
-        <a class="ma-step-more" href="${bp(`/steps/${stepRecordSlug(step)}/`)}">More about Step ${step.number} &rarr;</a>
+        <a class="ma-step-more" href="${bp(`/steps/${stepRecordSlug(step)}/`)}">More about Step ${step.number}</a>
       </header>
 
       <!-- Weekly Chapters -->

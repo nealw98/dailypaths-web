@@ -30,21 +30,56 @@
   }
 
   // ---------------------------------------------------------------------------
-  // 3. Mobile menu — toggles the dropdown and the Menu ⇄ Close label
+  // 3. Mobile menu — quiet dropdown with complete keyboard behavior
   // ---------------------------------------------------------------------------
   var menuToggle = document.querySelector('[data-menu-toggle]');
   var mobileMenu = document.querySelector('[data-mobile-menu]');
   if (menuToggle && mobileMenu) {
     var menuLabel = menuToggle.querySelector('[data-menu-label]');
-    menuToggle.addEventListener('click', function () {
-      var isOpen = mobileMenu.hasAttribute('hidden');
-      if (isOpen) {
+    var menuLinks = mobileMenu.querySelectorAll('a[href]');
+
+    var openMenu = function () {
+      if (mobileMenu.hasAttribute('hidden')) {
         mobileMenu.removeAttribute('hidden');
-      } else {
-        mobileMenu.setAttribute('hidden', '');
+        menuToggle.setAttribute('aria-expanded', 'true');
+        if (menuLabel) menuLabel.textContent = 'Close';
+        if (menuLinks.length) menuLinks[0].focus();
       }
-      menuToggle.setAttribute('aria-expanded', String(isOpen));
-      if (menuLabel) menuLabel.textContent = isOpen ? 'Close' : 'Menu';
+    };
+
+    var closeMenu = function (returnFocus) {
+      if (!mobileMenu.hasAttribute('hidden')) {
+        mobileMenu.setAttribute('hidden', '');
+        menuToggle.setAttribute('aria-expanded', 'false');
+        if (menuLabel) menuLabel.textContent = 'Menu';
+        if (returnFocus) menuToggle.focus();
+      }
+    };
+
+    menuToggle.addEventListener('click', function () {
+      if (mobileMenu.hasAttribute('hidden')) openMenu();
+      else closeMenu(true);
+    });
+
+    document.addEventListener('keydown', function (event) {
+      if (event.key === 'Escape' && !mobileMenu.hasAttribute('hidden')) {
+        event.preventDefault();
+        closeMenu(true);
+      }
+    });
+
+    document.addEventListener('click', function (event) {
+      if (!mobileMenu.hasAttribute('hidden') && !event.target.closest('.site-header')) {
+        closeMenu(false);
+      }
+    });
+
+    for (var n = 0; n < menuLinks.length; n++) {
+      menuLinks[n].addEventListener('click', function () { closeMenu(false); });
+    }
+
+    window.addEventListener('resize', function () {
+      if (window.innerWidth > 960) closeMenu(false);
     });
   }
 

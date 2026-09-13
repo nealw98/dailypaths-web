@@ -25,7 +25,7 @@ export function renderAboutAlanonPage() {
       iconName: 'stackedStones',
       title: 'The Twelve Steps',
       body: 'A spiritual framework for personal growth. The Steps help members honestly examine their own attitudes and behaviors &mdash; not to fix the alcoholic, but to find freedom for themselves.',
-      link: 'Explore reflections by Step &rarr;',
+      link: 'Explore reflections by Step',
       href: bp('/reflections/'),
       external: false,
     },
@@ -34,7 +34,7 @@ export function renderAboutAlanonPage() {
       iconName: 'leafOnWater',
       title: 'The Fellowship',
       body: 'Regular gatherings &mdash; in person and online &mdash; where members share experience, strength, and hope. The fellowship is where isolation ends and recovery becomes real.',
-      link: 'Find meetings &#8599;',
+      link: 'Find meetings',
       href: 'https://al-anon.org/al-anon-meetings/',
       external: true,
     },
@@ -43,7 +43,7 @@ export function renderAboutAlanonPage() {
       iconName: 'book',
       title: 'The Literature',
       body: 'Conference-Approved books, pamphlets, and daily readers developed by Al-Anon members for Al-Anon members &mdash; the written wisdom of families who walked this path before you.',
-      link: 'Browse literature &rarr;',
+      link: 'Browse literature',
       href: bp('/literature/'),
       external: false,
     },
@@ -52,7 +52,7 @@ export function renderAboutAlanonPage() {
       iconName: 'seedling',
       title: 'Service',
       body: 'Giving back to the fellowship that gave so much to you. Service &mdash; from making coffee to sponsoring newcomers &mdash; is how members keep what they have by giving it away.',
-      link: 'Learn about service &#8599;',
+      link: 'Learn about service',
       href: 'https://al-anon.org/for-members/world-service-office-wso/',
       external: true,
     },
@@ -116,14 +116,14 @@ export function renderAboutAlanonPage() {
           <a href="${f.href}" target="_blank" rel="noopener noreferrer" class="card-elevated fellow-card">
             <span class="fellow-name">${f.name}</span>
             <span class="fellow-line">${f.line}</span>
-            <span class="fellow-cta">Visit &#8599;</span>
+            <span class="fellow-cta">Visit</span>
           </a>`).join('');
 
   const meetingBand = tealBand({
     eyebrow: 'Find a meeting',
     heading: 'Free, confidential, and open to anyone.',
     body: 'Meetings are held in person and online around the world. There are no dues or fees for membership &mdash; you will never be asked to pay, and your attendance is completely anonymous.',
-    actions: `<a href="${MEETING_DIRECTORY_URL}" target="_blank" rel="noopener noreferrer" class="btn btn--secondary">Search the meeting directory &#8599;</a>`,
+    actions: `<a href="${MEETING_DIRECTORY_URL}" target="_blank" rel="noopener noreferrer" class="btn btn--secondary">Search the meeting directory</a>`,
     aside: glassPanel({
       label: 'In crisis?',
       lines: ['Help is available 24/7.', 'Call or text 988 in the USA.'],
@@ -145,7 +145,7 @@ ${photoHero({
         <p>Al-Anon Family Groups are a fellowship of relatives and friends of alcoholics who share their experience, strength, and hope in order to solve their common problems. Al-Anon is not allied with any sect, denomination, political entity, organization, or institution.</p>
         <p>The program is based on the Twelve Steps and Twelve Traditions, adapted from Alcoholics Anonymous. Members discover that they are not alone, and that they can find contentment and even happiness &mdash; whether the alcoholic is still drinking or not.</p>
       </div>
-      <a href="https://al-anon.org/newcomers/what-is-al-anon-alateen/" target="_blank" rel="noopener noreferrer" class="text-link">Learn more at al-anon.org &#8599;</a>
+      <a href="https://al-anon.org/newcomers/what-is-al-anon-alateen/" target="_blank" rel="noopener noreferrer" class="text-link">Learn more at al-anon.org</a>
     </article>
 
     <section class="wrap wrap--article section--md">
@@ -155,7 +155,7 @@ ${photoHero({
         <ul class="quiz-list">${quizItems}
         </ul>
         <p class="quiz-closer">If you answered yes to any of these, you are not alone. Al-Anon can help.</p>
-        <p style="margin:16px 0 0"><a href="https://al-anon.org/newcomers/self-quiz/" target="_blank" rel="noopener noreferrer" class="text-link">Take the full self-quiz at al-anon.org &#8599;</a></p>
+        <p style="margin:16px 0 0"><a href="https://al-anon.org/newcomers/self-quiz/" target="_blank" rel="noopener noreferrer" class="text-link">Take the full self-quiz at al-anon.org</a></p>
       </div>
     </section>
 
@@ -172,7 +172,7 @@ ${meetingBand}
       <h2 class="section-title" style="margin-bottom:20px">Common questions</h2>
       <div class="faq-list">${faqCards}
       </div>
-      <p style="margin:16px 0 0"><a href="https://al-anon.org/newcomers/faq/" target="_blank" rel="noopener noreferrer" class="text-link">More FAQs at al-anon.org &#8599;</a></p>
+      <p style="margin:16px 0 0"><a href="https://al-anon.org/newcomers/faq/" target="_blank" rel="noopener noreferrer" class="text-link">More FAQs at al-anon.org</a></p>
     </section>
 
     <section class="wrap section">
