@@ -178,7 +178,8 @@ while assistive technology receives the same distinctions and takeaway in
 semantic text. `back_to_my_side.webp` is retained as an available asset but is
 not part of this article. “Let go and let God” remains in the normal article flow
 rather than appearing as an insert, followed by the pull quote “They have a
-higher power and I’m not it.”
+higher power and I’m not it.” The bottom of the article links readers onward to
+the One Day at a Time guide.
 
 ## Content hub system
 

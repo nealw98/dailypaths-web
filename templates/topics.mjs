@@ -190,6 +190,8 @@ function renderLettingGoArticle(article, topic, allReadings) {
     tone: 'white',
   })).join('\n');
 
+  const relatedGuide = GUIDES.find(guide => guide.path === article.relatedGuidePath);
+
   const bodyContent = `
 ${collectionRail({ href: '/articles/', label: 'Articles', title: 'Letting Go' })}
 
@@ -211,6 +213,12 @@ ${flow}
       <h2 class="section-title">${article.readings.heading}</h2>
       <div class="featured-grid">${guideCards}</div>
     </section>` : ''}
+
+    ${relatedGuide ? `<aside class="wrap section--md sd-related-note theme-related-guide">
+      <p class="sd-kicker">A related guide</p>
+      <h2><a href="${bp(relatedGuide.path)}">${relatedGuide.title}</a></h2>
+      <p>${relatedGuide.description}</p>
+    </aside>` : ''}
 
     <section class="wrap section--md theme-sources">
       ${article.sources.map(p => `<p>${p}</p>`).join('\n      ')}

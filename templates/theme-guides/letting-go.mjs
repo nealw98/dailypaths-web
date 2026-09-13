@@ -187,6 +187,8 @@ export const LETTING_GO_ARTICLE = {
     days: [355, 71, 43, 70],
   },
 
+  relatedGuidePath: '/topics/one-day-at-a-time/',
+
   sources: [
     'Related Al-Anon principles are explored in <a href="https://ecomm.al-anon.org/ItemDetail?iProductCode=B32" target="_blank" rel="noopener noreferrer"><cite>How Al-Anon Works</cite></a>, <a href="https://ecomm.al-anon.org/ItemDetail?iProductCode=B24" target="_blank" rel="noopener noreferrer"><cite>Paths to Recovery</cite></a>, and <a href="https://ecomm.al-anon.org/ItemDetail?iProductCode=B16" target="_blank" rel="noopener noreferrer"><cite>Courage to Change</cite></a>. The Daily Paths readings linked above explore how those principles apply to letting go.',
     'Daily Paths is an independent project and is not affiliated with Al-Anon Family Group Headquarters, Inc.',
