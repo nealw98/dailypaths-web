@@ -10,6 +10,9 @@ headings and reading prose; Cormorant Garamond italic is reserved for reflection
 titles, prayers, the wordmark, and an occasional thesis quote; Manrope sets interface
 text. The type ladder visibly distinguishes a daily reflection, index or article
 title, guide title, section, chapter, card, lede, reading body, and label.
+Canonical long-form prose uses a dedicated reading-body role at 19px/1.7 on phones
+and 20.5px/1.68 on larger screens. Supporting UI, cards, panels, labels, and
+promotional copy retain their smaller roles.
 
 Every normal route loads the same locally served fonts and the shared system after
 its structural stylesheet. Structural styles are copied intact: do not reintroduce

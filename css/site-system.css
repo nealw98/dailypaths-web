@@ -20,6 +20,7 @@
   --type-chapter: normal 500 clamp(25px, 2.2vw, 30px)/1.2 var(--font-editorial);
   --type-card: normal 500 clamp(20px, 1.7vw, 24px)/1.24 var(--font-editorial);
   --type-lede: normal 400 clamp(19px, 1.55vw, 22px)/1.55 var(--font-editorial);
+  --type-reading-body: normal 400 20.5px/1.68 var(--font-editorial);
   --type-body: normal 400 clamp(17.5px, 1.25vw, 18.5px)/1.68 var(--font-editorial);
   --type-small: normal 400 15px/1.6 var(--font-ui);
   --type-ui: normal 400 16px/1.65 var(--font-ui);
@@ -238,15 +239,19 @@ h3,
   .reflection-index-actions .btn { flex: 1 1 auto; }
 }
 
+/* Sustained reading prose has its own scale so editorial pages can grow
+   without enlarging cards, panels, form copy, or other supporting UI. */
 .prose-reading,
 .prose-reading p,
 .prose-reading li,
 .content-section p,
 .content-section li,
 .ap-section p,
+.book-description,
 .book-description p,
+.step-body-section p { font: var(--type-reading-body); letter-spacing: 0; }
+
 .faq-item p,
-.step-body-section p,
 .questions-text,
 .action-list li,
 .start-meeting-text,
@@ -854,6 +859,7 @@ a[target="_blank"]:not(:has(img)):not(.pillar-card):not(.fellow-card)::after,
     --type-guide: normal 500 clamp(34px, 8.8vw, 42px)/1.12 var(--font-editorial);
     --type-section: normal 500 clamp(29px, 8vw, 34px)/1.14 var(--font-editorial);
     --type-chapter: normal 500 clamp(24px, 6.8vw, 28px)/1.2 var(--font-editorial);
+    --type-reading-body: normal 400 19px/1.7 var(--font-editorial);
     --gutter-system: 20px;
     --space-7: 56px;
     --space-8: 72px;
