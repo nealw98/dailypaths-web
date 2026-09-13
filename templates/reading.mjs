@@ -310,7 +310,7 @@ ${goDeeperHtml}
       <p class="fine-print">Curated by members of the Al-Anon community for Daily Growth, LLC. Grounded in the Twelve Steps and the contemplative tradition of Al-Anon.</p>
     </div>
 
-    ${terminalBand({ showEmailOption: isDiscoveryTrial })}`;
+    ${terminalBand()}`;
 
   return wrapInLayout({
     title: `${reading.title} – Al-Anon Daily Reflection for ${reading.display_date} | Daily Paths`,

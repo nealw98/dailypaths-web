@@ -295,7 +295,6 @@ h3,
 .app-panel-body,
 .sd-app-copy > p:not(.sd-kicker),
 .ed-app-copy > p,
-.ed-email > p,
 .sd-email p:not(.sd-kicker),
 .book-app-text { font: var(--type-small); letter-spacing: 0; }
 
@@ -390,7 +389,7 @@ h3,
 .prevnext-label,
 .ed-photo-caption,
 .ed-app-platforms,
-.ed-email .ed-email-note,
+.site-newsletter-note,
 .theme-sources { font: var(--type-caption); letter-spacing: .15px; }
 
 /* Shared masthead */
@@ -549,32 +548,6 @@ h3,
 .deeper-card-line { font: var(--type-small); color: var(--text-muted, #66685d); }
 .deeper-card-cta { margin-top: auto; padding-top: var(--space-2); font: var(--type-nav); color: var(--accent-strong, #4f5b3d); }
 
-/* The app remains the primary conversion; email is a compact alternative in
-   the same closing band. It stays truthful while the provider is unconnected. */
-.sd-app-email { margin-top: var(--space-4); padding-top: var(--space-4); border-top: 1px solid rgba(79,91,61,.28); }
-.sd-app-email-title { margin: 0; font: normal 500 20px/1.25 var(--font-editorial); color: #3e4532; }
-.sd-app-email-copy { margin: 4px 0 12px; font: normal 400 13px/1.6 var(--font-ui); color: #596047; }
-.sd-app-email-form { display: flex; gap: 8px; max-width: 430px; }
-.sd-app-email-form input {
-  min-width: 0;
-  flex: 1;
-  border: 1px solid #aeb59a;
-  border-radius: 2px;
-  background: #fffef9;
-  padding: 11px 12px;
-  font: normal 400 13px/1.4 var(--font-ui);
-}
-.sd-app-email-form button {
-  border: 0;
-  border-radius: 2px;
-  background: var(--accent-strong, #4f5b3d);
-  color: #fff;
-  padding: 10px 16px;
-  font: var(--type-nav);
-}
-.sd-app-email-form :disabled { cursor: default; opacity: .58; }
-.sd-app-email-note { margin: 8px 0 0; font: var(--type-caption); color: #596047; }
-
 .start-hero-inner { max-width: var(--content-reading); padding-top: var(--space-7); padding-bottom: var(--space-7); }
 .start-hero-title { margin-top: var(--space-2); }
 .start-hero-lede { max-width: 52ch; margin-top: var(--space-4); color: rgba(255,255,255,.9); }
@@ -595,8 +568,6 @@ h3,
 .page-home .ed-app h2,
 .sd-app-copy h2,
 .app-panel-heading { font: normal 500 clamp(30px, 2.7vw, 36px)/1.15 var(--font-editorial); letter-spacing: -.35px; }
-.page-home .ed-email h2 { font: normal 500 clamp(26px, 2.2vw, 30px)/1.16 var(--font-editorial); }
-
 .sd-article-library { padding-bottom: var(--space-7); }
 .sd-guide-library { padding-bottom: var(--space-6); }
 .sd-related-note { padding-top: var(--space-5); padding-bottom: var(--space-7); }
@@ -605,6 +576,66 @@ h3,
 .sd-app { min-height: 360px; }
 .sd-app-inner { min-height: 360px; padding-block: var(--space-6); }
 .sd-app-copy > p:not(.sd-kicker) { max-width: 40ch; }
+
+/* One quiet email invitation closes every public page, directly above the footer. */
+.site-newsletter {
+  background: var(--surface-low, #f3f2eb);
+  border-top: 1px solid var(--rule, #dfdfd3);
+}
+.site-newsletter-inner {
+  width: min(calc(100% - (2 * var(--gutter-system))), 720px);
+  margin-inline: auto;
+  padding: var(--space-5) 0;
+  text-align: center;
+}
+.site-newsletter-eyebrow {
+  margin: 0 0 7px;
+  font: var(--type-label);
+  letter-spacing: 1.1px;
+  text-transform: uppercase;
+  color: var(--accent-strong, #4f5b3d);
+}
+.site-newsletter h2 {
+  margin: 0;
+  font: normal 500 clamp(27px, 2.4vw, 32px)/1.16 var(--font-editorial);
+  letter-spacing: -.3px;
+  color: var(--text-primary, #34382e);
+}
+.site-newsletter-copy {
+  margin: 7px 0 0;
+  font: var(--type-body);
+  color: var(--text-muted, #66685d);
+}
+.site-newsletter-form {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 8px;
+  width: min(100%, 510px);
+  margin: 18px auto 0;
+}
+.site-newsletter-form input {
+  min-width: 0;
+  height: 46px;
+  border: 1px solid #aeb59a;
+  border-radius: 2px;
+  background: #fffef9;
+  color: var(--text-primary, #34382e);
+  padding: 11px 13px;
+  font: normal 400 14px/1.4 var(--font-ui);
+}
+.site-newsletter-button {
+  min-height: 46px;
+  border: 0;
+  border-radius: 2px;
+  background: var(--accent-strong, #4f5b3d);
+  color: #fff;
+  padding: 10px 20px;
+  font: var(--type-nav);
+}
+.site-newsletter-form :disabled { cursor: default; opacity: .58; }
+.site-newsletter-form input:disabled { opacity: 1; color: var(--text-muted, #66685d); }
+.site-newsletter-note { margin: 8px 0 0; color: var(--text-muted, #66685d); }
+.site-newsletter-note a { text-decoration: underline; text-underline-offset: 3px; }
 
 .site-footer { margin-top: 0; background: var(--surface, #faf9f5); border-top: 1px solid var(--rule, #dfdfd3); }
 .footer-inner { width: min(calc(100% - (2 * var(--gutter-system))), var(--content-wide)); padding: var(--space-5) 0 var(--space-4); }
@@ -655,6 +686,9 @@ h3,
   .sd-app { min-height: 560px; }
   .sd-app-inner { min-height: 560px; }
   .site-footer .footer-inner { grid-template-columns: 1fr; gap: var(--space-4); }
+  .site-newsletter-inner { padding-block: var(--space-4); }
+  .site-newsletter-form { grid-template-columns: 1fr; }
+  .site-newsletter-button { width: 100%; }
 }
 
 @media (max-width: 760px) {

@@ -34,7 +34,7 @@ Launch content review remains separate from visual-system approval.
 - Six guides: Surrender, Detachment, Boundaries, Finding Support, One Day at a Time, Finding Yourself.
 - Letting Go remains a prominent article, linked from the homepage, articles index, and guides index.
 - Photographic app invitation with the actual supplied app screenshot, not a simulated screen.
-- One email invitation on the homepage. Attraction, not promotion: no popups, urgency, repeated subscription prompts, or invented social proof.
+- One quiet email invitation closes every public page immediately above the footer. Attraction, not promotion: no popups, urgency, repeated subscription prompts, or invented social proof.
 
 ## Brand lockup
 
@@ -137,10 +137,10 @@ crawlable reflection links from the reading’s calendar month, ranked by the co
 count of positive ratings and app favorites. This keeps every month focused on its
 Step even when an individual reading concerns a Concept or Tradition. The horizontal
 rail is followed by a separate 300-by-600-style desktop ad rail that becomes a short
-mobile block, one relevant article and one practical Step guide, and a combined
-closing app/email invitation. Start Here is handled through the shared navigation
-and homepage invitation, not a repeated reading-page panel. Email remains visibly
-“coming soon” while `NEWSLETTER_ACTION` is unset.
+mobile block, one relevant article and one practical Step guide, and the closing app
+invitation. Start Here is handled through the shared navigation
+and homepage invitation, not a repeated reading-page panel. The site-wide email
+invitation remains visibly “coming soon” while `NEWSLETTER_ACTION` is unset.
 The trial’s discovery heading is “Related Readings,” followed by “Additional
 reflections on Step [number] — [principle]” and the matching Step hook. Its final link
 opens the calendar-month archive. The closing app CTA uses Neal’s September 9 Daily

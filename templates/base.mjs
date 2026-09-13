@@ -11,6 +11,23 @@ function brandLockup(wordmarkClass = 'brand-name') {
   return `${brandIcon()}<span class="${wordmarkClass}">Daily Paths</span>`;
 }
 
+function newsletterInvitation() {
+  const action = process.env.NEWSLETTER_ACTION?.trim();
+  return `<section class="site-newsletter" aria-labelledby="site-newsletter-heading">
+    <div class="site-newsletter-inner">
+      <p class="site-newsletter-eyebrow">Stay connected</p>
+      <h2 id="site-newsletter-heading">A little perspective in your inbox.</h2>
+      <p class="site-newsletter-copy">Daily reflections and new articles from Daily Paths.</p>
+      <form class="site-newsletter-form" ${action ? `action="${escapeAttr(action)}" method="post"` : 'aria-describedby="site-newsletter-status"'}>
+        <label class="sr-only" for="site-newsletter-email">Your email address</label>
+        <input id="site-newsletter-email" name="email" type="email" autocomplete="email" placeholder="Your email address" ${action ? 'required' : 'disabled'}>
+        <button class="site-newsletter-button" type="submit" ${action ? '' : 'disabled'}>Sign me up</button>
+      </form>
+      ${action ? `<p class="site-newsletter-note"><a href="${bp('/privacy/')}">Privacy</a> · Unsubscribe at any time.</p>` : '<p class="site-newsletter-note" id="site-newsletter-status">Email signup is coming soon.</p>'}
+    </div>
+  </section>`;
+}
+
 /**
  * Compact editorial navigation; reflection pages retain their dated URLs.
  */
@@ -111,7 +128,7 @@ export function wrapInLayout({
   <!-- Page structure first, then the shared Daily Paths design system. -->
   ${isHome ? `<link rel="stylesheet" href="${bp('/css/editorial-home.css')}?v=home-header-band-1">` : `<link rel="stylesheet" href="${bp('/css/style.css')}?v=brand-icon-1"><link rel="stylesheet" href="${bp('/css/soft-daylight.css')}?v=brand-icon-1">`}
   <link rel="stylesheet" href="${bp('/css/tokens/fonts.css')}?v=brand-icon-1">
-  <link rel="stylesheet" href="${bp('/css/site-system.css')}?v=home-header-band-1">
+  <link rel="stylesheet" href="${bp('/css/site-system.css')}?v=site-email-footer-1">
   <meta name="site-mode" content="${IS_PREVIEW ? 'preview' : 'production'}">
 
   ${structuredData ? (Array.isArray(structuredData) ? structuredData : [structuredData]).map(json => `<!-- Structured Data -->
@@ -180,6 +197,8 @@ ${mobileNav}
   <main id="main">
 ${bodyContent}
   </main>
+
+  ${newsletterInvitation()}
 
   ${isHome ? `<footer class="ed-footer ed-wrap"><nav aria-label="Footer"><a href="${bp('/about-project/')}">About</a><a href="${bp('/support/')}">Contact us</a><a href="${bp('/privacy/')}">Privacy</a><a href="${bp('/terms/')}">Terms</a></nav></footer>` : `  <footer class="site-footer">
     <div class="footer-inner">
