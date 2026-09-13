@@ -1969,7 +1969,7 @@ a.card-tinted:hover { background: var(--surface-card); }
 /* ─────────────── Letting Go topic article (2.0) ───────────────
    Bespoke structure per design/handoff/topics/letting-go/: prose sections
    with authored headings, one extracted pull quote (.tg-thesis), and four
-   live-text inserts placed by the storyboard. */
+   authored inserts placed by the storyboard. */
 
 .tg-article { padding-bottom: 8px; }
 
@@ -2005,8 +2005,8 @@ a.card-tinted:hover { background: var(--surface-card); }
   color: var(--accent-strong);
 }
 
-/* Diagram figures — final art for the two dark inserts; the full insert
-   text is provided in visually-hidden markup for screen readers. */
+/* Diagram figures — final insert art with complete visually-hidden transcripts
+   for screen readers. Portrait and landscape artwork share the reading measure. */
 .tg-diagram { margin: 26px 0 10px; }
 
 .tg-diagram img {

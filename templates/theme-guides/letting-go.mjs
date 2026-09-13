@@ -5,7 +5,7 @@
  * rewrite. Structure follows STORYBOARD.md's emotional journey and supersedes
  * the fixed four-chapter spine for this page. Reference comps for the inserts
  * live in design/handoff/topics/letting-go/reference-images/; the page renders
- * them as responsive live text, never as embedded images.
+ * them as supplied insert artwork with equivalent accessible transcripts.
  *
  * Inline links use resolver markup rewritten at render time:
  *   <a data-reading="7">Title</a>        → the day-7 reading's URL
@@ -121,7 +121,9 @@ export const LETTING_GO_ARTICLE = {
   inserts: {
     worryLoop: {
       image: 'the_worry_loop.webp',
-      alt: 'The Worry Loop — What if?, If only…, and I should… circle a sleepless center: still awake, still trying to solve it.',
+      width: 1536,
+      height: 1024,
+      alt: 'The Worry Loop: What if, If only, and I should circle the thought &ldquo;Still awake. Still trying to solve it.&rdquo;',
       eyebrow: 'The worry loop',
       lede: 'My body is exhausted, but my mind believes one more thought might prevent the next crisis.',
       stations: [
@@ -146,22 +148,26 @@ export const LETTING_GO_ARTICLE = {
     },
 
     whatReturns: {
-      image: 'returning_responsibility.webp',
-      alt: 'Returning responsibility — what is mine sits inside a lit circle; their choices, recovery, and consequences stay outside on the dark water.',
-      eyebrow: 'Returning responsibility',
+      image: 'whats_mine_whats_theirs.webp',
+      width: 794,
+      height: 884,
+      alt: 'What’s Mine. What’s Theirs: two lists separate my choices, behavior, boundaries, safety, truth, help, and day from their choices, drinking, recovery, help, consequences, and opinions.',
+      eyebrow: 'What&rsquo;s Mine. What&rsquo;s Theirs',
       inside: {
-        title: 'What returns to me',
+        title: 'What&rsquo;s mine',
         items: [
-          'My choices and conduct',
-          'My boundaries and safety',
+          'My choices',
+          'My behavior',
+          'My boundaries',
+          'My safety',
           'The truth I need to face',
-          'The support I can seek',
-          'My own life and well-being',
+          'The help I need to ask for',
+          'What I do with my own day',
         ],
       },
-      outsideAbove: ['Their choices', 'Their recovery'],
-      outsideBelow: ['Whether they accept help', 'Their consequences', 'What they think of my decisions'],
-      caption: 'Letting go does not leave me with nothing. It returns me to the life I can actually live.',
+      outsideAbove: ['Their choices', 'Their drinking', 'Their recovery'],
+      outsideBelow: ['Whether they accept help', 'Their consequences', 'What they think about my decisions'],
+      caption: 'Letting go doesn&rsquo;t leave me with nothing to do. It brings me back to what is actually mine.',
     },
 
     letGoLetGod: {
@@ -178,15 +184,22 @@ export const LETTING_GO_ARTICLE = {
     },
 
     nextHonestAction: {
-      eyebrow: 'A letting-go practice',
+      image: 'back_to_my_side.webp',
+      width: 778,
+      height: 1046,
+      alt: 'Back to My Side of the Street: seven questions about support, meetings, boundaries, communication, consequences, Higher Power, and the next right thing.',
+      heading: 'Back to My Side of the Street',
+      lede: 'Questions to ask when I&rsquo;m stuck in the night shift.',
       questions: [
-        'What is my mind trying to prevent?',
-        'Am I caught in &lsquo;what if,&rsquo; &lsquo;if only,&rsquo; or &lsquo;I should&rsquo;?',
-        'Does anything actually belong to me tonight?',
-        'What one action can I take when the time is right?',
-        'What do I need to place in my Higher Power&rsquo;s care?',
+        'Do I need to call my sponsor?',
+        'Do I need a meeting?',
+        'Is there a boundary I need to keep?',
+        'Is there something I need to say&mdash;or stop saying?',
+        'Am I trying to prevent a consequence that belongs to someone else?',
+        'Is this something I need to turn over to my Higher Power?',
+        'What is the next right thing for me?',
       ],
-      close: 'Rest can be a responsible choice.',
+      close: 'Sometimes the next right thing is action. Sometimes it is leaving something alone.',
     },
   },
 

@@ -99,20 +99,19 @@ function resolveGuideLinks(html, allReadings) {
 
 /* ───────────── Letting Go — bespoke topic article ─────────────
    Structure and copy: design/handoff/topics/letting-go/ (supersedes the fixed
-   four-chapter spine for this page). All inserts are responsive live text;
-   the reference PNGs are visual direction only. */
+   four-chapter spine for this page). Illustrated inserts retain complete
+   visually-hidden transcripts for screen readers. */
 
 /**
- * The two dark diagram figures render the final art from assets/themes/,
- * with the full insert text kept in visually-hidden markup for screen
- * readers (design/handoff/topics/letting-go/IMPLEMENTATION.md).
+ * Diagram figures render final art from assets/themes/, with the full insert
+ * text kept in visually-hidden markup for screen readers.
  */
 function renderWorryLoop(insert) {
   const stations = insert.stations.map((station, i) => `
             <p>${i + 1}. ${station.title} &mdash; ${station.sub}: ${station.lines.join(' ')}</p>`).join('');
   return `
       <figure class="tg-diagram">
-        <img src="${bp(`/assets/themes/${insert.image}`)}" alt="${insert.alt}" width="1536" height="1024" loading="lazy">
+        <img src="${bp(`/assets/themes/${insert.image}`)}" alt="${insert.alt}" width="${insert.width}" height="${insert.height}" loading="lazy">
         <div class="visually-hidden">
           <p>${insert.eyebrow}. ${insert.lede}</p>${stations}
           <p>${insert.center}</p>
@@ -126,10 +125,10 @@ function renderWhatReturns(insert) {
   const outside = [...insert.outsideAbove, ...insert.outsideBelow].join(', ');
   return `
       <figure class="tg-diagram">
-        <img src="${bp(`/assets/themes/${insert.image}`)}" alt="${insert.alt}" width="1536" height="1024" loading="lazy">
+        <img src="${bp(`/assets/themes/${insert.image}`)}" alt="${insert.alt}" width="${insert.width}" height="${insert.height}" loading="lazy">
         <div class="visually-hidden">
           <p>${insert.eyebrow}. ${insert.inside.title}: ${items}.</p>
-          <p>Outside the circle: ${outside}.</p>
+          <p>What&rsquo;s theirs: ${outside}.</p>
           <p>${insert.caption}</p>
         </div>
       </figure>`;
@@ -150,17 +149,18 @@ function renderLetGoLetGod(insert) {
       </section>`;
 }
 
-/** Tonight's Next Honest Action — light, spacious, moving toward rest. */
+/** Back to My Side of the Street — illustrated practice with full transcript. */
 function renderNextHonestAction(insert) {
-  const rows = insert.questions.map((question, i) => `
-          <li><span class="na-n">${i + 1}</span><p>${question}</p></li>`).join('');
+  const questions = insert.questions.map(question => `<li>${question}</li>`).join('');
   return `
-      <section class="na-panel">
-        <p class="na-eyebrow">${insert.eyebrow}</p>
-        <ol>${rows}
-        </ol>
-        <p class="na-close">${insert.close}</p>
-      </section>`;
+      <figure class="tg-diagram">
+        <img src="${bp(`/assets/themes/${insert.image}`)}" alt="${insert.alt}" width="${insert.width}" height="${insert.height}" loading="lazy">
+        <div class="visually-hidden">
+          <p>${insert.heading}. ${insert.lede}</p>
+          <ol>${questions}</ol>
+          <p>${insert.close}</p>
+        </div>
+      </figure>`;
 }
 
 const INSERT_RENDERERS = {
@@ -173,7 +173,7 @@ const INSERT_RENDERERS = {
 /**
  * Render the Letting Go topic page — one emotional journey, not a stack of
  * equally weighted boxes: prose sections with authored headings, one
- * extracted pull quote, and four live-text inserts placed by the storyboard.
+ * extracted pull quote, and four authored inserts placed by the storyboard.
  */
 function collectionRail({ href, label, title }) {
   return `<nav class="collection-rail" aria-label="Breadcrumb">
