@@ -24,3 +24,10 @@
 /* The header owns the brand lockup; keep the homepage footer quiet and useful. */
 .ed-footer{justify-content:flex-end}
 @media(max-width:520px){.ed-footer nav{margin-top:0}}
+
+/* Phone article previews stack so neither the image nor copy is squeezed. */
+@media(max-width:520px){
+  .page-home .ed-story{grid-template-columns:1fr;gap:16px}
+  .page-home .ed-story-image{width:100%;height:auto;min-height:0;aspect-ratio:16/10}
+  .page-home .ed-story-image img{width:100%;height:100%;object-fit:cover}
+}
