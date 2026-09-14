@@ -4,9 +4,9 @@ export const GUIDES = [
   { title: 'Surrender', path: '/topics/powerlessness/', description: 'Recognizing powerlessness, admitting unmanageability, and practicing the Three C’s.' },
   { title: 'Detachment', path: '/topics/detachment/', description: 'What it means to care without getting pulled into someone else’s choices.' },
   { title: 'Boundaries', path: '/topics/boundaries/', description: 'Recognizing your limits and making room for your own needs.' },
-  { title: 'Finding Support', path: '/about-alanon/', description: 'An introduction to Al-Anon and finding people who understand.' },
   { title: 'One Day at a Time', path: '/topics/one-day-at-a-time/', description: 'Meeting today without carrying all of tomorrow.' },
   { title: 'Finding Yourself', path: '/topics/self-worth/', description: 'Reconnecting with the person you are beyond someone else’s drinking.' },
+  { title: 'Finding Support', path: '/about-alanon/', description: 'An introduction to Al-Anon and finding people who understand.' },
 ];
 
 export const ARTICLES = [
