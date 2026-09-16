@@ -133,7 +133,7 @@ export const TOPICS = [
     localEditorialOverride: true,
     body: `
       <section class="surrender-section">
-        <h2>1. Understanding Surrender: Accepting Reality Rather Than Admitting Defeat</h2>
+        <h2>Understanding Surrender: Accepting Reality Rather Than Admitting Defeat</h2>
         <p>Step One of Al-Anon states: &ldquo;We admitted we were powerless over alcohol&mdash;that our lives had become unmanageable.&rdquo;</p>
         <p>For a family member or friend of an alcoholic, &ldquo;surrender&rdquo; can sound like failure, weakness, or giving up on someone we love.</p>
         <p>Surrender isn&rsquo;t giving up. It means accepting that we can&rsquo;t control alcoholism through willpower, nagging, or trying to manage another person.</p>
@@ -149,7 +149,7 @@ export const TOPICS = [
       </section>
 
       <section class="surrender-section">
-        <h2>2. Internalizing the &ldquo;Three Cs&rdquo; to Dispel the Illusion of Control</h2>
+        <h2>Internalizing the &ldquo;Three Cs&rdquo; to Dispel the Illusion of Control</h2>
         <p>One of Al-Anon&rsquo;s simplest tools is the &ldquo;Three Cs&rdquo;:</p>
         <p><strong>I didn&rsquo;t cause it. I can&rsquo;t control it. I can&rsquo;t cure it.</strong></p>
         <p>The Three Cs help us separate another person&rsquo;s alcoholism from our responsibility for it.</p>
@@ -164,7 +164,7 @@ export const TOPICS = [
       </section>
 
       <section class="surrender-section">
-        <h2>3. Identifying Personal and Emotional Unmanageability</h2>
+        <h2>Identifying Personal and Emotional Unmanageability</h2>
         <p>The second half of Step One tells us that &ldquo;our lives had become unmanageable.&rdquo;</p>
         <p>Unmanageability isn&rsquo;t only the chaos around us. Living with alcoholism can distort our emotions and thinking.</p>
         <p>We can become so focused on managing the alcoholic&rsquo;s life that we stop taking care of our own. We may ignore our health, lose sleep, skip meals, or stop seeing friends.</p>
@@ -180,7 +180,7 @@ export const TOPICS = [
       </section>
 
       <section class="surrender-section">
-        <h2>4. Practicing Actionable Surrender by &ldquo;Dropping the Rope&rdquo;</h2>
+        <h2>Practicing Actionable Surrender by &ldquo;Dropping the Rope&rdquo;</h2>
         <p>Surrender is more than acceptance; it requires new behavior.</p>
         <p>Think of it like a tug-of-war: surrender means dropping the rope.</p>
         <p>When you argue back, defend yourself, or try to prove you&rsquo;re right, you keep the struggle going. A tug-of-war ends when one person lets go.</p>
@@ -198,7 +198,7 @@ export const TOPICS = [
       </section>
 
       <section class="surrender-section">
-        <h2>5. Shifting the Focus Back to Yourself and Allowing Natural Consequences</h2>
+        <h2>Shifting the Focus Back to Yourself and Allowing Natural Consequences</h2>
         <p>Surrender means giving up control over the alcoholic&rsquo;s life and bringing the focus back to your own.</p>
         <blockquote class="surrender-pullquote"><p><strong>Surrender means taking your hands off the alcoholic&rsquo;s life and putting your attention back on your own.</strong></p></blockquote>
         <p>When you stop trying to manage another adult, you have more energy to care for yourself.</p>
@@ -216,7 +216,7 @@ export const TOPICS = [
       </section>
 
       <section class="surrender-section">
-        <h2>6. Using Slogans and Program Tools</h2>
+        <h2>Using Slogans and Program Tools</h2>
         <p>Surrender is rarely a one-time event. We may need to practice it again whenever fear or the urge to control returns.</p>
         <p>Al-Anon offers simple tools that help.</p>
         <h3>Key Program Slogans</h3>
