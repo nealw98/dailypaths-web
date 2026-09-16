@@ -217,3 +217,51 @@ and layout. The originals remain available; the article now uses these restyles.
 Final approved Letting Go inserts now use `the_worry_loop_final.webp` (smaller
 center and outer circles) and `whats_mine_whats_theirs_final.webp` (landscape
 removed and closing quote raised). All artwork wording is preserved.
+
+## September 16 Jeff J. personal story
+
+`/articles/the-line-i-kept-moving/` is the member story by Jeff J., edited for
+grammar and clarity from his supplied account of boundaries with his mother.
+It retains his direct voice, dinner example, moving-line image, and recognition
+that the pattern could follow him into another relationship. Neal requested
+its addition to the preview after reviewing the editorial approach.
+
+The approved green reflection insert with brown question rules is preserved
+uncropped in `assets/articles/the-line-i-kept-moving/reflection-insert-editorial.png`.
+Its exact edited text is also available in an expandable HTML transcript for
+reading at larger text sizes and with assistive technology. The insert is
+accompanying editorial content, not a verbatim contributor quotation.
+
+Related readings: April 23 / day 114, June 28 / day 180, December 18 / day 353.
+Live destinations: current Boundaries guide (rewrite still pending), Finding
+Yourself, and Letting Go. Voices from the Grave and The Power of Saying No are
+marked Coming soon. Their proposed paths are recorded in the story module;
+they are not broken hyperlinks or empty published pages. Update status and
+path when the full pieces are ready. Confirm contributor approval and credit
+as part of the existing launch editorial review.
+
+Neal restored discreet 01–04 numbering to the approved green insert while
+retaining the brown left rules beside each question. Earlier insert iterations
+remain in local development history; only the final insert is published.
+
+Final insert revision aligns headings, paragraphs, and question rules on one
+left edge with numbers in the margin. Question two now ends “next time?”;
+the expanded text matches this approved edit.
+
+The latest insert reduces heading and body scale, adds generous whitespace,
+and uses plum questions with matching left rules. Numbering and the shortened
+“next time?” question remain. This replaces the denser green treatment.
+
+The revised insert uses a wider insight column and a contrasting sage question
+column, plum question rules, restrained numbers, and open spacing. It replaces
+the flat single-column treatment without changing the approved wording.
+
+Neal approved syncing the story and insert to GitHub 2.0. The story now uses
+`assets/articles/the-line-i-kept-moving/dinner-table-hero.webp`, a generated
+editorial illustration of the dinner-table moment, in its hero and article preview.
+Article imagery should respond to each story and may differ in style; do not apply
+the Daily Reflections photography grammar to all articles. This illustration is
+not a likeness of Jeff J. or his mother.
+
+The byline is simply “By Jeff J.” Neal will have Jeff review and approve the
+changes; do not add “Edited for clarity” to his byline.

@@ -3739,3 +3739,23 @@ a.card-tinted:hover { background: var(--surface-card); }
   .footer-inner { grid-template-columns: 1fr 1fr; }
   .footer-brand { grid-column: 1 / -1; }
 }
+
+/* Jeff J.’s personal story: shared article typography, local reading connections. */
+.page-personal-story .story-byline { font: 400 15px/1.6 var(--font-ui); margin: 0 0 30px; }
+.page-personal-story .story-byline span { color: var(--text-muted); }
+.page-personal-story .story-reflection-insert { margin-block: 48px 0; }
+.page-personal-story .story-insert-caption { font: 400 14px/1.6 var(--font-ui); margin-top: 12px; color: var(--text-muted); }
+.page-personal-story .story-insert-text { margin-top: 12px; }
+.page-personal-story .story-insert-text summary { cursor: pointer; font: 400 15px/1.6 var(--font-ui); text-decoration: underline; text-underline-offset: 4px; padding-block: 8px; }
+.page-personal-story .story-insert-text section { margin-block: 24px; }
+.page-personal-story .story-insert-text p { font: var(--type-reading-body); }
+.page-personal-story .story-insert-text h3 { font: var(--type-chapter); }
+.page-personal-story .story-connections { max-width: 900px; }
+.page-personal-story .story-connections > h2 { margin-bottom: 28px; }
+.page-personal-story .story-reading-links, .page-personal-story .story-related-links { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 28px; }
+.page-personal-story .story-connections article { border-top: 1px solid #c9cdbe; padding-top: 18px; }
+.page-personal-story .story-connections h3 { font: var(--type-card); margin: 8px 0 12px; }
+.page-personal-story .story-connections article > p:not(.sd-kicker) { font: var(--type-body); color: var(--text-muted); }
+@media (max-width: 700px) {
+ .page-personal-story .story-reading-links, .page-personal-story .story-related-links { grid-template-columns: 1fr; gap: 24px; }
+}
