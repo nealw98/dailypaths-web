@@ -690,6 +690,56 @@ a[target="_blank"]:not(:has(img)):not(.pillar-card):not(.fellow-card)::after,
 .content-article .photo-hero-title { color: var(--text-primary, #34382e); }
 .content-article .photo-hero-sub { color: var(--text-muted, #66685d); }
 
+/* Approved Surrender guide media: responsive source artwork with no crop,
+   frame, shadow, overlay, or other decorative treatment. */
+.surrender-section { margin-top: var(--space-7); }
+.surrender-section:first-child { margin-top: 0; }
+.surrender-section h2 { margin-bottom: var(--space-4); }
+.surrender-section h3 { margin: var(--space-5) 0 var(--space-3); }
+.surrender-section :is(ul, ol) {
+  margin: 0 0 var(--space-5);
+  padding-inline-start: 1.4em;
+  font: var(--type-reading-body);
+}
+.surrender-section li { margin-bottom: var(--space-2); padding-inline-start: .25em; }
+
+.surrender-pullquote {
+  margin: var(--space-5) 0;
+  padding: var(--space-4) 0;
+  border-block: 1px solid var(--rule, #dfdfd3);
+}
+.surrender-pullquote p {
+  max-width: 38ch;
+  margin: 0 auto;
+  font: italic 500 clamp(23px, 2.3vw, 31px)/1.48 var(--font-devotional);
+  text-align: center;
+  color: var(--accent-deep, #334b3d);
+}
+
+.surrender-media {
+  width: min(960px, calc(100vw - (2 * var(--gutter-system))));
+  margin: var(--space-6) 50% var(--space-7);
+  transform: translateX(-50%);
+}
+.surrender-media img { display: block; width: 100%; height: auto; }
+
+.surrender-prayer {
+  margin-top: var(--space-7);
+  padding: var(--space-6) 0 var(--space-4);
+  border-top: 1px solid var(--rule, #dfdfd3);
+  text-align: center;
+}
+.surrender-prayer h3 { margin-top: 0; font: var(--type-chapter); }
+.surrender-prayer > p { max-width: 44ch; margin-inline: auto; }
+.surrender-prayer blockquote {
+  max-width: 32ch;
+  margin: var(--space-5) auto;
+  font: italic 500 clamp(25px, 2.6vw, 34px)/1.48 var(--font-devotional);
+  color: var(--accent-deep, #334b3d);
+}
+.surrender-prayer blockquote p { margin: 0; font: inherit; color: inherit; }
+.surrender-prayer-close { margin-top: var(--space-5); font-style: italic !important; }
+
 /* Reflections keeps its immersive hero, but joins the hub shell and type rhythm.
    These selectors deliberately avoid changing legacy .wrap on reading pages. */
 .page-reflections-index .photo-hero-inner,

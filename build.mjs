@@ -511,6 +511,12 @@ if (existsSync(articlesAssetsDir)) {
   cpSync(articlesAssetsDir, join(outDir, 'assets', 'articles'), { recursive: true });
 }
 
+// Guide media
+const guidesAssetsDir = join(localAssetsDir, 'guides');
+if (existsSync(guidesAssetsDir)) {
+  cpSync(guidesAssetsDir, join(outDir, 'assets', 'guides'), { recursive: true });
+}
+
 // App screenshots — shipped as uploaded; the band renders them unaltered
 cpSync(join(localAssetsDir, 'reflections'), join(outDir, 'assets', 'reflections'), { recursive: true });
 const screenshotsAssetsDir = join(localAssetsDir, 'Screenshots');

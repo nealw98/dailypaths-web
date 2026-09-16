@@ -256,7 +256,7 @@ export function renderTopicPage(topic, featuredReadings, allReadings = [], topic
     return renderLettingGoArticle(LETTING_GO_ARTICLE, topic, allReadings);
   }
 
-  const pullQuote = TOPIC_PULL_QUOTES[topic.slug] || '';
+  const pullQuote = topic.suppressIntroPullQuote ? '' : (TOPIC_PULL_QUOTES[topic.slug] || '');
   const themeTags = TOPIC_THEME_TAGS[topic.slug] || [];
   const insightPrompt = TOPIC_INSIGHT_PROMPTS[topic.slug] || `What is your experience with ${topic.name}?`;
   const formQuestion = TOPIC_FORM_QUESTIONS[topic.slug] || `How has ${topic.name.toLowerCase()} shaped your recovery?`;
@@ -346,8 +346,8 @@ ${photoHero({
     image: bp(`/assets/${topic.image}`),
     alt: topic.imageAlt,
     eyebrow: collection.eyebrow,
-    title: topic.name,
-    subtitle: topic.shortDescription,
+    title: topic.displayTitle || topic.name,
+    subtitle: topic.displaySubtitle || topic.shortDescription,
     size: 'lg',
     titleClass: 'photo-hero-title--theme',
   })}
@@ -416,7 +416,7 @@ ${readingGroups}
   ];
 
   return wrapInLayout({
-    title: `${topic.name} — Al-Anon Recovery Topic | Daily Paths`,
+    title: topic.displayTitle ? `${topic.displayTitle} | Daily Paths` : `${topic.name} — Al-Anon Recovery Topic | Daily Paths`,
     description: (topic.metaDescription || topic.shortDescription) + ' Reflections and curated daily readings from Al-Anon Daily Paths.',
     canonicalPath: `/topics/${topic.slug}/`,
     bodyContent,

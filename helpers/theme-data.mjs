@@ -123,37 +123,120 @@ export const TOPICS = [
   {
     slug: 'powerlessness',
     name: 'Surrender',
+    displayTitle: 'Surrendering the Unwinnable Battle: Taking the first step',
+    displaySubtitle: 'Accepting Powerlessness, Reclaiming Peace, and Finding Recovery for Families Impacted by Alcoholism',
+    suppressIntroPullQuote: true,
     shortDescription: 'Recognizing powerlessness, admitting unmanageability, and practicing the Three C’s.',
     metaDescription: 'A practical Al-Anon guide to Step One, powerlessness, unmanageability, surrender, and the Three C’s.',
     image: 'articles/powerlessness-hero.jpg',
     imageAlt: 'A lone figure on a wide shore as gulls take flight',
     localEditorialOverride: true,
     body: `
-      <p><strong>Step One asks us to stop fighting reality.</strong></p>
-      <p>
-        <em>We admitted we were powerless over alcohol&mdash;that our lives had become unmanageable.</em> Powerlessness does not mean that we are powerless as people. It means we cannot control another person&rsquo;s drinking, choices, recovery, or consequences. Surrender begins when we stop treating those things as problems we should be able to solve.
-      </p>
-      <h2>Recognizing powerlessness</h2>
-      <p>
-        Powerlessness often shows up as repetition: having the same argument, checking for evidence, managing appearances, preventing consequences, or searching for the perfect words that will finally make someone change. The effort may come from love or fear, but the result is the same&mdash;our attention becomes organized around someone else&rsquo;s behavior.
-      </p>
-      <h2>Seeing unmanageability</h2>
-      <p>
-        Unmanageability is not a verdict on our character. It is an honest description of what the struggle has done to our lives. We may be exhausted, isolated, reactive, unable to concentrate, or unsure where the other person ends and we begin. Naming that disruption lets us turn toward the part of life we can care for: our own.
-      </p>
-      <h2>The Three C&rsquo;s</h2>
-      <ul>
-        <li><strong>I didn&rsquo;t cause it.</strong> Another person&rsquo;s alcoholism is not proof that we failed or did not love well enough.</li>
-        <li><strong>I can&rsquo;t control it.</strong> Monitoring, pleading, rescuing, threatening, and explaining cannot produce another person&rsquo;s recovery.</li>
-        <li><strong>I can&rsquo;t cure it.</strong> Recovery belongs to the person with the disease and to the help they choose to accept.</li>
-      </ul>
-      <p>
-        The Three C&rsquo;s do not ask us to stop caring. They help us stop carrying responsibility that was never ours. The energy spent trying to manage someone else can begin returning to our own safety, health, relationships, and spiritual life.
-      </p>
-      <h2>What surrender looks like today</h2>
-      <p>
-        Surrender can be quiet and practical: pausing before reacting, allowing a consequence to belong to the person who created it, calling someone who understands, attending a meeting, or choosing one action that supports our own well-being. It is not approval, passivity, or abandonment. It is accepting the limit of our control so we can use our real power wisely.
-      </p>`,
+      <section class="surrender-section">
+        <h2>1. Understanding Surrender: Accepting Reality Rather Than Admitting Defeat</h2>
+        <p>Step One of Al-Anon states: &ldquo;We admitted we were powerless over alcohol&mdash;that our lives had become unmanageable.&rdquo;</p>
+        <p>For a family member or friend of an alcoholic, &ldquo;surrender&rdquo; can sound like failure, weakness, or giving up on someone we love.</p>
+        <p>Surrender isn&rsquo;t giving up. It means accepting that we can&rsquo;t control alcoholism through willpower, nagging, or trying to manage another person.</p>
+        <p>Living with active alcoholism can mean managing one crisis after another. You may search for hidden bottles, visit local bars, pour liquor down the drain, or monitor phone calls and bank accounts.</p>
+        <p>You may stay awake at night, imagining terrible outcomes and trying to figure out how to prevent them. Over time, this can lead to constant worry, anger, desperation, and exhaustion.</p>
+        <p>Surrender means recognizing that these efforts are chasing a fantasy.</p>
+        <p>Just as willpower can&rsquo;t stop cancer, love and determination can&rsquo;t stop alcoholism.</p>
+        <blockquote class="surrender-pullquote"><p><strong>Surrender begins when you stop fighting what you can&rsquo;t control and put down the weight of trying to fix it.</strong></p></blockquote>
+        <p>The spiritual principles at work here are honesty, acceptance, and humility.</p>
+        <p><strong>Honesty</strong> means looking at what has actually happened. Despite crying, pleading, threatening, or trying harder, the drinking continued.</p>
+        <p><strong>Acceptance</strong> means seeing the situation as it is today, not as we wish it were.</p>
+        <p><strong>Humility</strong> means accepting that you don&rsquo;t have the power to control another person&rsquo;s choices or recovery.</p>
+      </section>
+
+      <section class="surrender-section">
+        <h2>2. Internalizing the &ldquo;Three Cs&rdquo; to Dispel the Illusion of Control</h2>
+        <p>One of Al-Anon&rsquo;s simplest tools is the &ldquo;Three Cs&rdquo;:</p>
+        <p><strong>I didn&rsquo;t cause it. I can&rsquo;t control it. I can&rsquo;t cure it.</strong></p>
+        <p>The Three Cs help us separate another person&rsquo;s alcoholism from our responsibility for it.</p>
+        <p>It&rsquo;s easy to believe that if we were more loving, more patient, or found the right words, the alcoholic might stop drinking. When they drink again, it can feel personal. We may wonder what we did wrong or why our love wasn&rsquo;t enough.</p>
+        <p>But alcoholism isn&rsquo;t caused by a lack of love, and more love can&rsquo;t cure it.</p>
+        <p>The illness belongs to the drinker. We didn&rsquo;t cause it, and we can&rsquo;t control or cure it for them.</p>
+        <p>When the alcoholic breaks a promise, picks a fight, or starts drinking again, pause before reacting and return to the Three Cs. They remind us to put responsibility where it belongs and stop taking on blame that isn&rsquo;t ours.</p>
+        <blockquote class="surrender-pullquote"><p><strong>You didn&rsquo;t cause it, you can&rsquo;t control it, and you can&rsquo;t cure it.</strong></p></blockquote>
+        <figure class="surrender-media">
+          <img src="/assets/guides/surrender/the_three_cs_recovery_reminder.png" alt="The Three C&rsquo;s: I didn&rsquo;t cause it, I can&rsquo;t control it, I can&rsquo;t cure it." width="1672" height="941" loading="lazy">
+        </figure>
+      </section>
+
+      <section class="surrender-section">
+        <h2>3. Identifying Personal and Emotional Unmanageability</h2>
+        <p>The second half of Step One tells us that &ldquo;our lives had become unmanageable.&rdquo;</p>
+        <p>Unmanageability isn&rsquo;t only the chaos around us. Living with alcoholism can distort our emotions and thinking.</p>
+        <p>We can become so focused on managing the alcoholic&rsquo;s life that we stop taking care of our own. We may ignore our health, lose sleep, skip meals, or stop seeing friends.</p>
+        <p>Over time, our mood and behavior can begin to revolve around the alcoholic.</p>
+        <p>We may explode in rage over something small, like dishes in the sink or someone coming home late, because years of fear and resentment are underneath it.</p>
+        <p>We may lie to employers, make excuses to family, or cover up financial problems so everything still looks fine.</p>
+        <blockquote class="surrender-pullquote"><p><strong>Recognizing unmanageability requires examining where your energy goes each day.</strong></p></blockquote>
+        <p>If you say &ldquo;yes&rdquo; when you mean &ldquo;no,&rdquo; neglect your own needs, or spend hours replaying arguments and worrying about what might happen, your life has become unmanageable.</p>
+        <p>Admitting unmanageability isn&rsquo;t a failure. It means seeing that the way you&rsquo;re living isn&rsquo;t working and that you need help.</p>
+        <figure class="surrender-media">
+          <img src="/assets/guides/surrender/when_life_revolves_around_theirs.png" alt="Their life at the center, with four ways my own life becomes unmanageable: warped emotions, distorted thinking, attempts to control, and neglecting myself." width="1448" height="1086" loading="lazy">
+        </figure>
+      </section>
+
+      <section class="surrender-section">
+        <h2>4. Practicing Actionable Surrender by &ldquo;Dropping the Rope&rdquo;</h2>
+        <p>Surrender is more than acceptance; it requires new behavior.</p>
+        <p>Think of it like a tug-of-war: surrender means dropping the rope.</p>
+        <p>When you argue back, defend yourself, or try to prove you&rsquo;re right, you keep the struggle going. A tug-of-war ends when one person lets go.</p>
+        <blockquote class="surrender-pullquote"><p><strong>There can be no tug-of-war if one person lets go of their end of the rope.</strong></p></blockquote>
+        <p>Practicing &ldquo;dropping the rope&rdquo; means changing how you respond.</p>
+        <ul>
+          <li><strong>Refuse to debate accusations:</strong> You don&rsquo;t have to list everything you&rsquo;ve done or prove yourself. Sometimes silence, &ldquo;You might be right,&rdquo; or leaving the room is enough.</li>
+          <li><strong>Stop re-litigating the past:</strong> Old arguments can keep us stuck. When revisiting the past no longer helps solve anything today, let the case stay closed.</li>
+          <li><strong>Disengage from circular arguments:</strong> When a conversation keeps going in circles, you don&rsquo;t have to stay in it. You don&rsquo;t have to accept verbal abuse or keep defending yourself.</li>
+          <li><strong>Practice detachment with love:</strong> Detachment isn&rsquo;t coldness or abandonment. It means stepping back from the disease while still caring about the person.</li>
+        </ul>
+        <figure class="surrender-media">
+          <img src="/assets/guides/surrender/dropping_the_rope_choosing_peace.png" alt="Comparison of what happens when I keep pulling in conflict versus when I drop the rope and choose how to respond." width="1536" height="1024" loading="lazy">
+        </figure>
+      </section>
+
+      <section class="surrender-section">
+        <h2>5. Shifting the Focus Back to Yourself and Allowing Natural Consequences</h2>
+        <p>Surrender means giving up control over the alcoholic&rsquo;s life and bringing the focus back to your own.</p>
+        <blockquote class="surrender-pullquote"><p><strong>Surrender means taking your hands off the alcoholic&rsquo;s life and putting your attention back on your own.</strong></p></blockquote>
+        <p>When you stop trying to manage another adult, you have more energy to care for yourself.</p>
+        <p>Part of this shift is allowing the alcoholic to experience the natural consequences of their choices.</p>
+        <p>Family members often step in to protect the drinker&mdash;paying bounced checks, calling in sick for them, cleaning up messes, or finishing what they left undone.</p>
+        <p>We do this to help, but stepping in can keep the alcoholic from feeling the results of their own choices.</p>
+        <p>Al-Anon compares these growing problems to a mountain of snow. Trying to catch or clean up everything only delays what is coming.</p>
+        <p>Sometimes the most loving action is to step aside and let the consequences land where they belong.</p>
+        <p>To shift the focus back to yourself:</p>
+        <ol>
+          <li><strong>Check your physical state:</strong> Are you Hungry, Angry, Lonely, or Tired (HALT)? Eat, rest, and take care of basic needs.</li>
+          <li><strong>Set personal boundaries:</strong> Decide what you will do to protect your peace. A boundary guides your actions, not someone else&rsquo;s.</li>
+          <li><strong>Reclaim your personal life:</strong> Return to things that matter to you regardless of whether the alcoholic is drinking.</li>
+        </ol>
+      </section>
+
+      <section class="surrender-section">
+        <h2>6. Using Slogans and Program Tools</h2>
+        <p>Surrender is rarely a one-time event. We may need to practice it again whenever fear or the urge to control returns.</p>
+        <p>Al-Anon offers simple tools that help.</p>
+        <h3>Key Program Slogans</h3>
+        <ul>
+          <li><strong>&ldquo;Let Go and Let God&rdquo;:</strong> Turn what you can&rsquo;t control over to a Higher Power.</li>
+          <li><strong>&ldquo;One Day at a Time&rdquo;:</strong> Stay with today instead of worrying about what may happen next.</li>
+          <li><strong>&ldquo;Keep It Simple&rdquo;:</strong> Don&rsquo;t overthink the problem or create complicated plans.</li>
+          <li><strong>&ldquo;Easy Does It&rdquo;:</strong> Slow down when emotions are running high.</li>
+        </ul>
+        <h3>Connecting with Fellowship</h3>
+        <p>Alcoholism often brings secrecy and isolation.</p>
+        <p>Regular meetings, a sponsor, and other members remind us that we&rsquo;re not alone. Sharing with people who understand can bring fear into the open and help us find greater peace and freedom.</p>
+        <section class="surrender-prayer" aria-labelledby="surrender-prayer-heading">
+          <h3 id="surrender-prayer-heading">A prayer for surrender</h3>
+          <p>The Serenity Prayer helps us see the difference between what we can and can&rsquo;t change:</p>
+          <blockquote><p>&ldquo;God grant me the serenity to accept the things I cannot change, courage to change the things I can, and wisdom to know the difference.&rdquo;</p></blockquote>
+          <p>Other people&rsquo;s drinking and choices belong under &ldquo;things I cannot change.&rdquo; Our own actions and responses belong under &ldquo;things I can change.&rdquo;</p>
+          <p class="surrender-prayer-close"><strong>Surrender begins with knowing the difference.</strong></p>
+        </section>
+      </section>`,
     featuredDays: [11, 15, 16, 153, 357],
   },
   {
