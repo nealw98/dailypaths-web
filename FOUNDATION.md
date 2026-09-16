@@ -207,3 +207,9 @@ the worry/control paragraph and impossible-assignment section, for the Soft
 Daylight preview. The night-shift ending is now a pull quote; the two supplied
 illustrations, established URL, and reading/guide links are retained. This copy
 supersedes the earlier Letting Go handoff. Public GitHub main is unchanged.
+
+The September 16 approved insert restyles use `the_worry_loop_blue_gray.webp`
+and `whats_mine_whats_theirs_blue_gray.webp`: blue-gray backgrounds, pale sage
+and cream accents, deep teal text, and subtle paper texture. Generated with the
+built-in image editor from the supplied originals, preserving artwork wording
+and layout. The originals remain available; the article now uses these restyles.
