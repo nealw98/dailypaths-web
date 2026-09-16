@@ -199,3 +199,11 @@ filter, opacity reduction, or gradient; their title and deck sit on paper below 
 image instead of relying on an overlaid dark treatment. Legacy
 `.wrap` and Step-card rules remain in place for non-hub templates; the hub
 alignment corrections are deliberately scoped to avoid reading-page regressions.
+
+## September 16 Letting Go editorial approval
+
+Neal approved the condensed Letting Go canvas copy, including his final edits to
+the worry/control paragraph and impossible-assignment section, for the Soft
+Daylight preview. The night-shift ending is now a pull quote; the two supplied
+illustrations, established URL, and reading/guide links are retained. This copy
+supersedes the earlier Letting Go handoff. Public GitHub main is unchanged.
