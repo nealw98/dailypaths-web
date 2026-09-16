@@ -103,7 +103,7 @@ export const LETTING_GO_ARTICLE = {
 
   inserts: {
     worryLoop: {
-      image: 'the_worry_loop_blue_gray.webp',
+      image: 'the_worry_loop_final.webp',
       width: 1536,
       height: 1024,
       alt: 'The Worry Loop: What if, If only, and I should circle the thought &ldquo;Still awake. Still trying to solve it.&rdquo;',
@@ -131,9 +131,9 @@ export const LETTING_GO_ARTICLE = {
     },
 
     whatReturns: {
-      image: 'whats_mine_whats_theirs_blue_gray.webp',
-      width: 1188,
-      height: 1324,
+      image: 'whats_mine_whats_theirs_final.webp',
+      width: 1189,
+      height: 1323,
       alt: 'What’s Mine. What’s Theirs: two lists separate my choices, behavior, boundaries, safety, truth, help, and day from their choices, drinking, recovery, help, consequences, and opinions.',
       eyebrow: 'What&rsquo;s Mine. What&rsquo;s Theirs',
       inside: {

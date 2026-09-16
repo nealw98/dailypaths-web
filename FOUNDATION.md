@@ -213,3 +213,7 @@ and `whats_mine_whats_theirs_blue_gray.webp`: blue-gray backgrounds, pale sage
 and cream accents, deep teal text, and subtle paper texture. Generated with the
 built-in image editor from the supplied originals, preserving artwork wording
 and layout. The originals remain available; the article now uses these restyles.
+
+Final approved Letting Go inserts now use `the_worry_loop_final.webp` (smaller
+center and outer circles) and `whats_mine_whats_theirs_final.webp` (landscape
+removed and closing quote raised). All artwork wording is preserved.
