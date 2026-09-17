@@ -106,6 +106,11 @@ the light text scrim remain specific to the homepage composition.
 
 ## Building and previewing
 
+September 17 clarification: the Sites sandbox preview is intentionally public
+so Neal can share it with friends for review. Preserve that access when publishing
+preview updates. This is separate from launching the main Daily Paths website;
+preview builds still disable production integrations and search indexing.
+
 Node 20 or newer; install using the lockfile. Supply `SUPABASE_URL` and `SUPABASE_ANON_KEY` in a local ignored `.env` or build environment. `.env.example` names the required values. Use the existing public anonymous key, never a service-role key.
 
 - `npm run build`: builds the private preview into ignored `dist/`.
