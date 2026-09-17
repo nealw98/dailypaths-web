@@ -257,11 +257,13 @@ column, plum question rules, restrained numbers, and open spacing. It replaces
 the flat single-column treatment without changing the approved wording.
 
 Neal approved syncing the story and insert to GitHub 2.0. The story now uses
-`assets/articles/the-line-i-kept-moving/dinner-table-hero.webp`, a generated
-editorial illustration of the dinner-table moment, in its hero and article preview.
-Article imagery should respond to each story and may differ in style; do not apply
-the Daily Reflections photography grammar to all articles. This illustration is
-not a likeness of Jeff J. or his mother.
+`assets/articles/the-line-i-kept-moving/dinner-table-photo.webp`, a generated
+photorealistic dinner scene, in its hero and article preview. The woman sits with
+a plate of food while the man cooks another meal in the kitchen behind her.
+Neal rejected the earlier painterly treatment: keep article heroes photorealistic,
+with subjects and compositions specific to each story rather than applying the
+Daily Reflections photography grammar to all articles. The people pictured are
+not likenesses of Jeff J. or his mother.
 
 The byline is simply “By Jeff J.” Neal will have Jeff review and approve the
 changes; do not add “Edited for clarity” to his byline.

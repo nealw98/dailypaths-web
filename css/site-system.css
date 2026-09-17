@@ -690,7 +690,7 @@ a[target="_blank"]:not(:has(img)):not(.pillar-card):not(.fellow-card)::after,
 .content-article .photo-hero-title { color: var(--text-primary, #34382e); }
 .content-article .photo-hero-sub { color: var(--text-muted, #66685d); }
 
-/* Keep both people and the meal visible in this story's editorial illustration. */
+/* Keep both people and the meal visible in this story's dinner photograph. */
 .page-personal-story .photo-hero-img {
   height: auto;
   aspect-ratio: 2 / 1;
