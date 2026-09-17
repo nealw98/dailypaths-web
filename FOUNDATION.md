@@ -66,7 +66,7 @@ The complete 366-day reflection collection, 12 steps, 12 existing topic pages, l
 
 The guide index currently leads to existing source material. Finding Yourself currently opens Self-Worth & Identity; Finding Support opens the existing Al-Anon introduction. Expand and review each source as the writing progresses. The support guide still needs the agreed coverage of other relevant groups. Surrender is the approved long-form Step One guide at the stable `/topics/powerlessness/` path and focuses on recognizing powerlessness and unmanageability, the Three C’s, practical surrender, and program tools. Its three supplied visual inserts are rendered unaltered and uncropped from `assets/guides/surrender/`; the Serenity Prayer closes the article as an editorial typography treatment rather than a fourth image.
 
-`/start/` is not the Surrender guide. It is the newcomer doorway into Al-Anon: a short self-check, what the program and a first meeting are like, a few initial readings, and a meeting link. “Start here” appears as a quiet primary-navigation item on every screen and as one concise homepage invitation immediately after the hero. It does not repeat as a large panel on individual reflection pages.
+`/start/` is not the Surrender guide. It is the newcomer doorway into Al-Anon: a short self-check, what the program and a first meeting are like, a few initial readings, and a meeting link. Per Neal’s September 16 request, “Start here” is removed from desktop and mobile top-level navigation. The concise homepage invitation immediately after the hero remains. It does not repeat as a large panel on individual reflection pages.
 
 The approved displayed Step principles are: Acceptance, Hope, Faith, Courage,
 Honesty, Patience, Humility, Willingness, Brotherly Love, Integrity, Spiritual
@@ -222,3 +222,53 @@ September 17: the Worry Loop introductory paragraph is now a visible HTML
 caption in the normal reading-body type size. Its artwork is
 `the_worry_loop_captioned.webp`, with that paragraph and its divider removed.
 Other diagram wording and circle sizes are unchanged.
+
+## September 16 Jeff J. personal story
+
+`/articles/the-line-i-kept-moving/` is the member story by Jeff J., edited for
+grammar and clarity from his supplied account of boundaries with his mother.
+It retains his direct voice, dinner example, moving-line image, and recognition
+that the pattern could follow him into another relationship. Neal requested
+its addition to the preview after reviewing the editorial approach.
+
+The approved green reflection insert with brown question rules is preserved
+uncropped in `assets/articles/the-line-i-kept-moving/reflection-insert-editorial.png`.
+Its exact edited text is also available in an expandable HTML transcript for
+reading at larger text sizes and with assistive technology. The insert is
+accompanying editorial content, not a verbatim contributor quotation.
+
+Related readings: April 23 / day 114, June 28 / day 180, December 18 / day 353.
+Live destinations: current Boundaries guide (rewrite still pending), Finding
+Yourself, and Letting Go. Voices from the Grave and The Power of Saying No are
+marked Coming soon. Their proposed paths are recorded in the story module;
+they are not broken hyperlinks or empty published pages. Update status and
+path when the full pieces are ready. Confirm contributor approval and credit
+as part of the existing launch editorial review.
+
+Neal restored discreet 01–04 numbering to the approved green insert while
+retaining the brown left rules beside each question. Earlier insert iterations
+remain in local development history; only the final insert is published.
+
+Final insert revision aligns headings, paragraphs, and question rules on one
+left edge with numbers in the margin. Question two now ends “next time?”;
+the expanded text matches this approved edit.
+
+The latest insert reduces heading and body scale, adds generous whitespace,
+and uses plum questions with matching left rules. Numbering and the shortened
+“next time?” question remain. This replaces the denser green treatment.
+
+The revised insert uses a wider insight column and a contrasting sage question
+column, plum question rules, restrained numbers, and open spacing. It replaces
+the flat single-column treatment without changing the approved wording.
+
+Neal approved syncing the story and insert to GitHub 2.0. The story now uses
+`assets/articles/the-line-i-kept-moving/dinner-table-photo.webp`, a generated
+photorealistic dinner scene, in its hero and article preview. The woman sits with
+a plate of food while the man cooks another meal in the kitchen behind her.
+Neal rejected the earlier painterly treatment: keep article heroes photorealistic,
+with subjects and compositions specific to each story rather than applying the
+Daily Reflections photography grammar to all articles. The people pictured are
+not likenesses of Jeff J. or his mother.
+
+The byline is simply “By Jeff J.” Neal will have Jeff review and approve the
+changes; do not add “Edited for clarity” to his byline.

@@ -32,7 +32,6 @@ function newsletterInvitation() {
  */
 function navItems() {
   return [
-    { id: 'start', label: 'Start here', href: bp('/start/') },
     { id: 'reflection', label: 'Reflections', href: bp('/reflections/') },
     { id: 'articles', label: 'Articles', href: bp('/articles/') },
     { id: 'guides', label: 'Guides', href: bp('/guides/') },

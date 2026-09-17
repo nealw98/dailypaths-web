@@ -44,6 +44,7 @@ import { renderStartPage } from './templates/start.mjs';
 import { renderAdminPage } from './templates/admin.mjs';
 import { wrapInLayout } from './templates/base.mjs';
 import { bp, IS_PREVIEW } from './helpers/config.mjs';
+import { renderLineIKeptMoving, STORY } from './templates/articles/the-line-i-kept-moving.mjs';
 import { renderHomePage, renderArticlesPage, renderGuidesPage, renderReflectionsPage } from './templates/editorial.mjs';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -207,6 +208,10 @@ for (const [path, render] of [['articles', renderArticlesPage], ['guides', rende
   writePage(join(outDir,path,'index.html'), render());
 }
 writePage(join(outDir, 'reflections', 'favorites', 'index.html'), renderFavoriteReadingsPage(readings, ratingsMap));
+
+// Original member story, with related readings resolved from the current collection.
+mkdirSync(join(outDir, STORY.path), { recursive: true });
+writePage(join(outDir, STORY.path, 'index.html'), renderLineIKeptMoving(readings));
 
 // Reading pages
 console.log('Generating 366 reading pages...');
