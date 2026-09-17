@@ -103,31 +103,28 @@ export const LETTING_GO_ARTICLE = {
 
   inserts: {
     worryLoop: {
-      image: 'the_worry_loop_simple.webp',
+      image: 'the_worry_loop_labeled.webp',
       visibleCaption: 'Worry often moves in a loop — between imagining what might happen, replaying what already happened, and feeling responsible for what we can’t control.',
       width: 1254,
       height: 1254,
-      alt: 'The Worry Loop: What if, If only, and I should circle the thought &ldquo;Still awake. Still trying to solve it.&rdquo;',
+      alt: 'The Worry Loop: What if, If only, and I should circle the thought &ldquo;Still awake. Still stuck.&rdquo;',
       eyebrow: 'The worry loop',
       lede: 'My body’s exhausted, but my mind believes one more thought might prevent the next crisis.',
       stations: [
         {
           title: 'What if?',
           sub: 'Scanning the future',
-          lines: ['What might happen tomorrow?', 'What am I missing?', 'How can I stop it?'],
         },
         {
           title: 'If only&hellip;',
           sub: 'Reviewing the past',
-          lines: ['Why didn&rsquo;t I see it sooner?', 'What should I have said?', 'Could I have prevented this?'],
         },
         {
           title: 'I should&hellip;',
           sub: 'Taking responsibility',
-          lines: ['I should know what to do.', 'I should be able to fix this.', 'I should be able to keep everyone safe.'],
         },
       ],
-      center: 'Still awake. Still trying to solve it.',
+      center: 'Still awake. Still stuck.',
       caption: 'The loop promises control. What it produces is vigilance, guilt, and exhaustion.',
     },
 

@@ -277,3 +277,9 @@ The Worry Loop now uses `the_worry_loop_simple.webp`, a square diagram with
 large circle labels and the center message only. Title, subtitle, all question
 lists, sublabels, explanatory caption, and takeaway render as responsive HTML
 using the reading typography, for legibility on phones.
+
+The latest Worry Loop revision supersedes the minimal diagram: it restores
+the title, deck, and three circle subtitles in a square composition with larger
+lettering (`the_worry_loop_labeled.webp`). All question lists and the Patterns
+eyebrow are removed. The center reads “Still awake. Still stuck.” The explanation
+and takeaway remain readable HTML beneath the image.

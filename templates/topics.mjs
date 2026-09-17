@@ -107,23 +107,20 @@ function resolveGuideLinks(html, allReadings) {
  * text kept in visually-hidden markup for screen readers.
  */
 function renderWorryLoop(insert) {
-  const stations = insert.stations.map((station) => `
-          <div class="tg-loop-station">
-            <h3>${station.title}</h3>
-            <p class="tg-loop-sub">${station.sub}</p>
-            <ul>${station.lines.map(line => `<li>${line}</li>`).join('')}</ul>
-          </div>`).join('');
+  const stations = insert.stations.map(station => `<p>${station.title} — ${station.sub}.</p>`).join('');
   return `
-      <section class="tg-loop" aria-labelledby="worry-loop-title">
-        <h2 id="worry-loop-title">The Worry Loop</h2>
-        <p class="tg-loop-intro">A familiar cycle. A heavy cost.</p>
-        <figure class="tg-diagram tg-loop-diagram">
+      <div class="tg-loop">
+        <figure class="tg-diagram">
           <img src="${bp(`/assets/themes/${insert.image}`)}" alt="${insert.alt}" width="${insert.width}" height="${insert.height}" loading="lazy">
+          <div class="visually-hidden">
+            <p>The Worry Loop. A familiar cycle. A heavy cost.</p>
+            ${stations}
+            <p>${insert.center}</p>
+          </div>
           ${insert.visibleCaption ? `<figcaption class="tg-diagram-caption">${insert.visibleCaption}</figcaption>` : ''}
         </figure>
-        <div class="tg-loop-questions">${stations}</div>
         <p class="tg-loop-takeaway">${insert.caption}</p>
-      </section>`;
+      </div>`;
 }
 
 function renderWhatReturns(insert) {

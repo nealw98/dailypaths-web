@@ -1180,14 +1180,6 @@ a[target="_blank"]:not(:has(img)):not(.pillar-card):not(.fellow-card)::after,
   letter-spacing: 0;
 }
 
-/* Diagram labels remain in the artwork; supporting copy reflows as real text. */
+/* Large labeled loop artwork with readable supporting HTML copy. */
 .tg-loop { margin-block: 2.5rem; }
-.tg-loop h2 { font: var(--type-reading-body); font-size: 2rem; }
-.tg-loop-intro, .tg-loop-sub, .tg-loop-questions li, .tg-loop-takeaway {
-  font: var(--type-reading-body);
-}
-.tg-loop-questions { display: grid; gap: 1.5rem; margin-block: 1.5rem; }
-.tg-loop-station h3 { margin: 0 0 .25rem; font: var(--type-reading-body); font-weight: 600; }
-.tg-loop-sub { margin: 0 0 .5rem; font-style: italic; }
-.tg-loop-station ul { margin: 0; padding-left: 1.2em; }
-.tg-loop-takeaway { margin: 1.5rem 0 0; font-style: italic; }
+.tg-loop-takeaway { margin: 1.5rem 0 0; font: var(--type-reading-body); font-style: italic; }
