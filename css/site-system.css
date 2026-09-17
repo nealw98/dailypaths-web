@@ -125,7 +125,7 @@ h2,
 .ed-section-heading h2,
 .sd-section-heading h2,
 .sd-guide-intro h2,
-.sd-archive h2 { font: var(--type-section); letter-spacing: -.45px; }
+.sd-archive h2 { font: var(--type-reading-body); font-size: 2rem; letter-spacing: -.45px; }
 
 .rd-article h2,
 .prose-reading h2,
@@ -865,7 +865,7 @@ a[target="_blank"]:not(:has(img)):not(.pillar-card):not(.fellow-card)::after,
 /* Homepage: the reflection dominates; promotions stay subordinate. */
 .page-home .ed-hero h1 { width: 47%; max-width: 10.5ch; margin-bottom: var(--space-4); }
 .page-home .ed-hero-deck { width: 39%; max-width: 34ch; margin-bottom: var(--space-4); color: var(--text-primary, #34382e); }
-.page-home .ed-section-heading h2 { font: var(--type-section); }
+.page-home .ed-section-heading h2 { font: var(--type-reading-body); font-size: 2rem; }
 .page-home .ed-story h3,
 .page-home .ed-guide-row h3 { font: var(--type-card); }
 .page-home .ed-articles { padding-top: var(--space-6); padding-bottom: var(--space-6); }
@@ -1179,3 +1179,15 @@ a[target="_blank"]:not(:has(img)):not(.pillar-card):not(.fellow-card)::after,
   font: var(--type-reading-body);
   letter-spacing: 0;
 }
+
+/* Diagram labels remain in the artwork; supporting copy reflows as real text. */
+.tg-loop { margin-block: 2.5rem; }
+.tg-loop h2 { font: var(--type-reading-body); font-size: 2rem; }
+.tg-loop-intro, .tg-loop-sub, .tg-loop-questions li, .tg-loop-takeaway {
+  font: var(--type-reading-body);
+}
+.tg-loop-questions { display: grid; gap: 1.5rem; margin-block: 1.5rem; }
+.tg-loop-station h3 { margin: 0 0 .25rem; font: var(--type-reading-body); font-weight: 600; }
+.tg-loop-sub { margin: 0 0 .5rem; font-style: italic; }
+.tg-loop-station ul { margin: 0; padding-left: 1.2em; }
+.tg-loop-takeaway { margin: 1.5rem 0 0; font-style: italic; }

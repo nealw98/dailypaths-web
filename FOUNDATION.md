@@ -272,3 +272,8 @@ not likenesses of Jeff J. or his mother.
 
 The byline is simply “By Jeff J.” Neal will have Jeff review and approve the
 changes; do not add “Edited for clarity” to his byline.
+
+The Worry Loop now uses `the_worry_loop_simple.webp`, a square diagram with
+large circle labels and the center message only. Title, subtitle, all question
+lists, sublabels, explanatory caption, and takeaway render as responsive HTML
+using the reading typography, for legibility on phones.

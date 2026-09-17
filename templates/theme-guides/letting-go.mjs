@@ -103,10 +103,10 @@ export const LETTING_GO_ARTICLE = {
 
   inserts: {
     worryLoop: {
-      image: 'the_worry_loop_captioned.webp',
+      image: 'the_worry_loop_simple.webp',
       visibleCaption: 'Worry often moves in a loop — between imagining what might happen, replaying what already happened, and feeling responsible for what we can’t control.',
-      width: 1536,
-      height: 1024,
+      width: 1254,
+      height: 1254,
       alt: 'The Worry Loop: What if, If only, and I should circle the thought &ldquo;Still awake. Still trying to solve it.&rdquo;',
       eyebrow: 'The worry loop',
       lede: 'My body’s exhausted, but my mind believes one more thought might prevent the next crisis.',
