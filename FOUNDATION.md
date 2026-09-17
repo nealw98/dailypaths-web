@@ -217,3 +217,8 @@ and layout. The originals remain available; the article now uses these restyles.
 Final approved Letting Go inserts now use `the_worry_loop_final.webp` (smaller
 center and outer circles) and `whats_mine_whats_theirs_final.webp` (landscape
 removed and closing quote raised). All artwork wording is preserved.
+
+September 17: the Worry Loop introductory paragraph is now a visible HTML
+caption in the normal reading-body type size. Its artwork is
+`the_worry_loop_captioned.webp`, with that paragraph and its divider removed.
+Other diagram wording and circle sizes are unchanged.

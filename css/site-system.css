@@ -1165,3 +1165,10 @@ a[target="_blank"]:not(:has(img)):not(.pillar-card):not(.fellow-card)::after,
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
 }
+
+/* Readable HTML captions for article insert artwork. */
+.tg-diagram-caption {
+  margin-top: 1rem;
+  font: var(--type-reading-body);
+  letter-spacing: 0;
+}

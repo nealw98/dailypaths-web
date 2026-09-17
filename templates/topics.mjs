@@ -117,6 +117,7 @@ function renderWorryLoop(insert) {
           <p>${insert.center}</p>
           <p>${insert.caption}</p>
         </div>
+        ${insert.visibleCaption ? `<figcaption class="tg-diagram-caption">${insert.visibleCaption}</figcaption>` : ''}
       </figure>`;
 }
 

@@ -103,7 +103,8 @@ export const LETTING_GO_ARTICLE = {
 
   inserts: {
     worryLoop: {
-      image: 'the_worry_loop_final.webp',
+      image: 'the_worry_loop_captioned.webp',
+      visibleCaption: 'Worry often moves in a loop — between imagining what might happen, replaying what already happened, and feeling responsible for what we can’t control.',
       width: 1536,
       height: 1024,
       alt: 'The Worry Loop: What if, If only, and I should circle the thought &ldquo;Still awake. Still trying to solve it.&rdquo;',
