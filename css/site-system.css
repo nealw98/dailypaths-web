@@ -21,6 +21,7 @@
   --type-card: normal 500 clamp(20px, 1.7vw, 24px)/1.24 var(--font-editorial);
   --type-lede: normal 400 clamp(19px, 1.55vw, 22px)/1.55 var(--font-editorial);
   --type-reading-body: normal 400 20.5px/1.68 var(--font-editorial);
+  --type-pull-quote: italic 500 clamp(25px, 2.6vw, 34px)/1.42 var(--font-devotional);
   --type-body: normal 400 clamp(17.5px, 1.25vw, 18.5px)/1.68 var(--font-editorial);
   --type-small: normal 400 15px/1.6 var(--font-ui);
   --type-ui: normal 400 16px/1.65 var(--font-ui);
@@ -271,7 +272,7 @@ h3,
   margin: clamp(32px, 5vw, 48px) auto;
   max-width: 26ch;
   color: var(--accent-strong);
-  font: italic 500 clamp(25px, 2.6vw, 34px)/1.42 var(--font-devotional);
+  font: var(--type-pull-quote);
   letter-spacing: -.25px;
   text-align: center;
 }
@@ -280,8 +281,11 @@ h3,
 .type-thesis-quote p,
 .tg-thesis,
 .tg-thesis p,
-.content-article .pull-quote {
-  font: italic 500 clamp(25px, 2.6vw, 34px)/1.42 var(--font-devotional);
+.pull-quote,
+.lg-spirit-q,
+.lg-spirit-quote,
+.lg-spirit-inner > p.lg-spirit-quote {
+  font: var(--type-pull-quote);
   letter-spacing: -.25px;
   text-align: center;
 }
@@ -290,8 +294,6 @@ h3,
 .takeaway,
 .chapter-takeaway,
 .na-close,
-.lg-spirit-q,
-.lg-spirit-quote,
 .quiz-closer,
 .quiz-response-lead {
   font: italic 400 clamp(17.5px, 1.25vw, 18.5px)/1.68 var(--font-editorial);
@@ -732,7 +734,7 @@ a[target="_blank"]:not(:has(img)):not(.pillar-card):not(.fellow-card)::after,
 .surrender-pullquote p {
   max-width: 38ch;
   margin: 0 auto;
-  font: italic 500 clamp(23px, 2.3vw, 31px)/1.48 var(--font-devotional);
+  font: var(--type-pull-quote);
   text-align: center;
   color: var(--accent-deep, #334b3d);
 }
