@@ -288,3 +288,17 @@ the title, deck, and three circle subtitles in a square composition with larger
 lettering (`the_worry_loop_labeled.webp`). All question lists and the Patterns
 eyebrow are removed. The center reads “Still awake. Still stuck.” The explanation
 and takeaway remain readable HTML beneath the image.
+
+## September 18 Voices from the Grave integration
+
+`/articles/voices-from-the-grave/` uses the supplied website package's complete
+article, retained verbatim in `templates/articles/voices-from-the-grave.md`.
+The three pull quotes remain in place, and the five full action explanations
+are visible article text after the uncropped practical graphic. Both supplied
+WebP images are served from `assets/articles/voices-from-the-grave/`; the telephone
+hero preserves its landscape proportions and is used on the Articles index.
+The former Coming soon teaser in The Line I Kept Moving now links to this article.
+
+The package leaves authorship unspecified. The previous teaser mentioned Jeff J.,
+but the article currently omits a byline pending Neal's confirmation. No new
+attribution or editorial approval beyond the supplied package is inferred.

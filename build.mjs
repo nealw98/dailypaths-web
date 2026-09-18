@@ -44,6 +44,7 @@ import { renderStartPage } from './templates/start.mjs';
 import { renderAdminPage } from './templates/admin.mjs';
 import { wrapInLayout } from './templates/base.mjs';
 import { bp, IS_PREVIEW } from './helpers/config.mjs';
+import { renderVoicesFromTheGrave, VOICES_ARTICLE } from './templates/articles/voices-from-the-grave.mjs';
 import { renderLineIKeptMoving, STORY } from './templates/articles/the-line-i-kept-moving.mjs';
 import { renderHomePage, renderArticlesPage, renderGuidesPage, renderReflectionsPage } from './templates/editorial.mjs';
 
@@ -212,6 +213,8 @@ writePage(join(outDir, 'reflections', 'favorites', 'index.html'), renderFavorite
 // Original member story, with related readings resolved from the current collection.
 mkdirSync(join(outDir, STORY.path), { recursive: true });
 writePage(join(outDir, STORY.path, 'index.html'), renderLineIKeptMoving(readings));
+mkdirSync(join(outDir, VOICES_ARTICLE.path), { recursive: true });
+writePage(join(outDir, VOICES_ARTICLE.path, 'index.html'), renderVoicesFromTheGrave());
 
 // Reading pages
 console.log('Generating 366 reading pages...');

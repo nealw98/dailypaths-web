@@ -706,6 +706,11 @@ a[target="_blank"]:not(:has(img)):not(.pillar-card):not(.fellow-card)::after,
   object-position: 50% 20%;
 }
 
+.page-voices-article .photo-hero-img { height: auto; aspect-ratio: 1672 / 941; object-fit: contain; }
+.page-voices-article .voices-insert img { display: block; width: 100%; height: auto; }
+.page-voices-article .tg-section > h2 { margin-top: var(--space-7); }
+.sd-story-image[href$="/voices-from-the-grave/"] img { object-fit: contain; }
+
 /* Approved Surrender guide media: responsive source artwork with no crop,
    frame, shadow, overlay, or other decorative treatment. */
 .surrender-section { margin-top: var(--space-7); }

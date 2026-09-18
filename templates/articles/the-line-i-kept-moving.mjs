@@ -17,7 +17,7 @@ export const STORY = {
     { title: 'Boundaries', kind: 'Guide', path: '/topics/boundaries/', description: 'Recognizing your limits and making room for your own needs.' },
     { title: 'Finding Yourself', kind: 'Guide', path: '/topics/self-worth/', description: 'Reconnecting with the person you are beyond someone else’s drinking.' },
     { title: 'Letting Go: Caring Without Carrying', kind: 'Article', path: '/topics/letting-go/', description: 'Caring about someone without taking responsibility for every outcome.' },
-    { title: 'Voices from the Grave', kind: 'Personal story', status: 'pending', plannedPath: '/articles/voices-from-the-grave/', description: 'More from Jeff J. on the influence a parent can have long after they’re gone.' },
+    { title: 'Voices from the Grave', kind: 'Article', path: '/articles/voices-from-the-grave/', description: 'Recognizing old family rules, finding your own voice, and living in the present.' },
     { title: 'The Power of Saying No', kind: 'Article', status: 'pending', plannedPath: '/articles/the-power-of-saying-no/', description: 'Saying no, facing guilt, and allowing your answer to stand.' },
   ],
 };
