@@ -278,6 +278,8 @@ h3,
 
 .type-thesis-quote,
 .type-thesis-quote p,
+.tg-thesis,
+.tg-thesis p,
 .content-article .pull-quote {
   font: italic 500 clamp(25px, 2.6vw, 34px)/1.42 var(--font-devotional);
   letter-spacing: -.25px;
@@ -288,8 +290,6 @@ h3,
 .takeaway,
 .chapter-takeaway,
 .na-close,
-.tg-thesis,
-.tg-thesis p,
 .lg-spirit-q,
 .lg-spirit-quote,
 .quiz-closer,
