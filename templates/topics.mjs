@@ -254,6 +254,22 @@ ${flow}
  * @param {Array} [allReadings] - All 366 readings (for theme-tag matching)
  * @param {Array} [topicShares] - Approved member shares
  */
+function addArticlePullQuotes(html, slug) {
+  if (slug !== 'honesty') return html;
+  const quotes = [
+    'It can feel normal not to know our own temperature, only theirs.',
+    'It lets us change without hating ourselves.',
+  ];
+  // Repeat only exact excerpts still present in the current article. The original
+  // paragraphs remain intact; screen readers skip the decorative repetition.
+  return html.replace(/<p\b[^>]*>[\s\S]*?<\/p>/g, paragraph => {
+    const quote = quotes.find(text => paragraph.includes(text));
+    return quote
+      ? `${paragraph}\n<aside class="article-pull-quote" aria-hidden="true">&ldquo;${quote}&rdquo;</aside>`
+      : paragraph;
+  });
+}
+
 export function renderTopicPage(topic, featuredReadings, allReadings = [], topicShares = []) {
   if (topic.slug === 'letting-go') {
     return renderLettingGoArticle(LETTING_GO_ARTICLE, topic, allReadings);
@@ -359,7 +375,7 @@ ${photoHero({
       ${pullQuote ? `<p class="pull-quote">&ldquo;${pullQuote}&rdquo;</p>` : ''}
 
       <div class="prose-lora">
-        ${injectEssentialsLinks(markdownToHtml(topic.body || ''), topic.slug)}
+        ${addArticlePullQuotes(injectEssentialsLinks(markdownToHtml(topic.body || ''), topic.slug), topic.slug)}
       </div>
 
       ${topic.logic ? `<div class="prose-lora">${markdownToHtml(topic.logic)}</div>` : ''}

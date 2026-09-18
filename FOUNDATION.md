@@ -106,6 +106,11 @@ the light text scrim remain specific to the homepage composition.
 
 ## Building and previewing
 
+September 17 clarification: the Sites sandbox preview is intentionally public
+so Neal can share it with friends for review. Preserve that access when publishing
+preview updates. This is separate from launching the main Daily Paths website;
+preview builds still disable production integrations and search indexing.
+
 Node 20 or newer; install using the lockfile. Supply `SUPABASE_URL` and `SUPABASE_ANON_KEY` in a local ignored `.env` or build environment. `.env.example` names the required values. Use the existing public anonymous key, never a service-role key.
 
 - `npm run build`: builds the private preview into ignored `dist/`.
@@ -283,3 +288,13 @@ the title, deck, and three circle subtitles in a square composition with larger
 lettering (`the_worry_loop_labeled.webp`). All question lists and the Patterns
 eyebrow are removed. The center reads “Still awake. Still stuck.” The explanation
 and takeaway remain readable HTML beneath the image.
+
+
+## September 18 Letting Go prose revision
+
+Neal approved publishing the connected-prose revision, preserving his canvas
+edits and the distinction between loving someone and having the power to change
+them. The question about an impossible assignment is removed. The new pull quote
+follows the blame-and-regret paragraph: “No amount of reviewing the past can give
+you control in the present.” The article connects releasing the past and future
+to attention to one's own life today. Existing illustrations and URLs remain.

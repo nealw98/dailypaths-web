@@ -267,6 +267,15 @@ h3,
 .step-body-section,
 .start-meeting-text { max-width: var(--content-copy); }
 
+.article-pull-quote {
+  margin: clamp(32px, 5vw, 48px) auto;
+  max-width: 26ch;
+  color: var(--accent-strong);
+  font: italic 500 clamp(25px, 2.6vw, 34px)/1.42 var(--font-devotional);
+  letter-spacing: -.25px;
+  text-align: center;
+}
+
 .type-thesis-quote,
 .type-thesis-quote p,
 .content-article .pull-quote {
