@@ -302,3 +302,12 @@ The former Coming soon teaser in The Line I Kept Moving now links to this articl
 The package leaves authorship unspecified. The previous teaser mentioned Jeff J.,
 but the article currently omits a byline pending Neal's confirmation. No new
 attribution or editorial approval beyond the supplied package is inferred.
+
+## September 18 Letting Go prose revision
+
+Neal approved publishing the connected-prose revision, preserving his canvas
+edits and the distinction between loving someone and having the power to change
+them. The question about an impossible assignment is removed. The new pull quote
+follows the blame-and-regret paragraph: “No amount of reviewing the past can give
+you control in the present.” The article connects releasing the past and future
+to attention to one's own life today. Existing illustrations and URLs remain.

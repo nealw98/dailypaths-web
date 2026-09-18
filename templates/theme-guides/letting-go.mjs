@@ -1,7 +1,7 @@
 /**
  * Letting Go — topic article content (bespoke structure, Aug 30 2026 handoff).
  *
- * Copy approved in the September 16, 2026 edited review canvas.
+ * Copy revised and approved in the September 18, 2026 editing conversation.
  * This concise revision supersedes the earlier ARTICLE.md handoff.
  * Reference comps for the inserts
  * live in design/handoff/topics/letting-go/reference-images/; the page renders
@@ -31,10 +31,9 @@ export const LETTING_GO_ARTICLE = {
     {
       "heading": "The night shift",
       "body": [
-        "You’re exhausted, but your mind won’t let you sleep.",
-        "Your mind scans tomorrow for trouble. What crisis is coming? What disappointment lies ahead? What could you say, arrange, check, or prevent before things fall apart again?",
-        "Then it turns toward yesterday. Why didn’t you see it sooner? What should you have done differently? If only you’d said the right thing, recognized the danger, or acted before it was too late.",
-        "The mind moves between prediction and regret, reviewing the past as preparation for the future. Every possible situation feels urgent, a problem to be solved. Rest feels irresponsible when there may still be something you can figure out."
+        "You’re exhausted, but your mind won’t let you sleep. Your mind scans tomorrow for trouble. What crisis is coming? What disappointment lies ahead? What could you say, arrange, check, or prevent before things fall apart again?",
+        "Then your mind turns toward yesterday. Why didn’t you see it sooner? What should you have done differently? If only you’d said the right thing, recognized the danger, or acted before it was too late.",
+        "The mind moves between prediction and regret, reviewing the past as preparation for the future. Every possible situation feels urgent, a problem to be solved. Rest eludes you when there may still be something you can figure out. Your mind just won’t turn off."
       ]
     },
     {
@@ -43,9 +42,12 @@ export const LETTING_GO_ARTICLE = {
     {
       "heading": "The promise hidden inside the worry",
       "body": [
-        "Worry can feel like responsibility. It carries an unspoken promise: if you think hard enough, prepare carefully enough, and make the right choices, you can prevent the next crisis.",
-        "When something’s already gone wrong, that promise turns into blame. Blaming yourself reinforces the idea that you had control in the first place. It supports the illusion that you can change the person, their drinking and their consequences if you could just figure out how."
+        "Worry can feel productive. It carries an unspoken promise: if you think hard enough, prepare carefully enough, and make the right choices, you can prevent the next crisis.",
+        "When something’s already gone wrong, that promise turns into blame and regret. Blaming yourself keeps alive the belief that you could have changed their drinking or prevented the consequences—if only you’d found the right words or done something differently. That belief is seductive because it gives you something to keep working on. You review the past again, hoping it will show you how to prevent the next crisis."
       ]
+    },
+    {
+      "pullQuote": "No amount of reviewing the past can give you control in the present."
     },
     {
       "insert": "worryLoop"
@@ -53,21 +55,18 @@ export const LETTING_GO_ARTICLE = {
     {
       "heading": "The impossible assignment",
       "body": [
-        "The night shift doesn’t end in the morning either.",
-        "It continues through checking phones, reading moods, tracking whereabouts, covering mistakes, paying bills, and searching for the words that’ll finally make someone understand. Another person’s life has become more important than your own.",
-        "You may call it helping. Some of it may be. The painful question is whether you’re offering help or trying to guarantee an outcome.",
-        "The January 7 reading, <em><a data-reading=\"7\">Impossible Responsibilities</a></em>, describes the relief of putting down responsibilities that were never ours to carry. That relief begins with an uncomfortable question:",
-        "<em>Have I accepted an assignment that no human being could complete?</em>",
-        "You didn’t create another person’s choices, and you can’t think, plead, plan, or suffer enough to control them. Recognizing this doesn’t mean you no longer love them. It means fear attached an impossible job to that love."
+        "The night shift doesn’t end in the morning either. In the morning, last night’s thinking becomes today’s actions: checking phones, reading moods, tracking whereabouts, covering mistakes, paying bills, and searching for the words that’ll finally make someone understand. Another person’s life has become more important than your own.",
+        "You may call it helping. Some of it may be. <em>After all, if I don’t do these things, who will?</em> The painful question to face is whether you’re offering help or trying to force an outcome. Often, it’s control dressed up as caring.",
+        "The January 7 reading, <em><a data-reading=\"7\">Impossible Responsibilities</a></em>, describes the relief of putting down responsibilities that were never ours to carry.",
+        "You didn’t create another person’s choices, and you can’t think, plead, plan, or suffer enough to change them. Recognizing this doesn’t mean you no longer love them. It means loving them doesn’t give you the power to change them."
       ]
     },
     {
       "heading": "Caring without carrying",
       "body": [
         "Letting go isn’t shutting down, punishing someone with silence, or abandoning a person who needs appropriate help.",
-        "You can listen without taking over. You can tell the truth without forcing someone to accept it. You can offer help without assuming responsibility for what they do next.",
-        "That requires honesty in both directions. You don’t have to give in to guilt or pressure. You also have to recognize when your own rescuing, pleading, or bargaining becomes an attempt to make someone do what you want.",
-        "Letting go respects another person’s dignity—their right to make decisions and live through their own journey. It also leaves you with decisions of your own."
+        "You can listen without taking over. You can tell the truth without forcing someone to accept it. You can offer help without assuming responsibility for what they do next. You don’t have to give in to guilt or pressure. But you also have to recognize when your own rescuing, pleading, or bargaining becomes an attempt to make someone do what you want. Letting go means you don’t have to do either.",
+        "Letting go respects another person’s dignity—their right to make decisions and live through their own journey. But it also leaves you with decisions for your own journey. Letting go of yesterday’s regrets and tomorrow’s possible crises brings your attention back to your own life today: what you need, the choices you can make, and what you do with your day."
       ]
     },
     {
@@ -77,26 +76,25 @@ export const LETTING_GO_ARTICLE = {
       "heading": "Let go and let God",
       "body": [
         "Even when that distinction is clear, you may still want to check one more time, make one more call, or offer one more warning. Stepping back can feel frightening when staying involved has been your way of feeling safe.",
-        "<em>If I let go, who holds this?</em>",
-        "“Let go and let God” offers somewhere to place that fear. I’m not asking God to produce the outcome I prefer. I’m placing someone I love in the care of a Higher Power, without directing what their journey should be."
+        "<em>If I let go, who will take care of them?</em>",
+        "“Let go and let God” offers somewhere to place that fear. I’m not asking God to produce the outcome I prefer. I’m placing someone I love in the care of a Higher Power, without directing what their journey should be. When I see the pain of their consequences, I can trust their life to the care of a Higher Power."
       ]
     },
     {
-      "pullQuote": "They have a higher power and I’m not it."
+      "pullQuote": "They have a Higher Power, and I’m not it."
     },
     {
       "body": [
-        "I have a Higher Power too. I can ask for help with the uncertainty, seek support, and resist the urge to step back in simply to ease my own discomfort. I don’t have to feel calm before I practice letting go.",
+        "If I can come to trust that their Higher Power is guiding their journey, then I must accept that I have a Higher Power too. I can ask for help with the uncertainty, seek support, and resist the urge to step back in simply to ease my own discomfort. I don’t have to feel calm before I practice letting go.",
         "<a data-theme=\"higher-power\">Higher Power and Trust</a>"
       ]
     },
     {
       "heading": "Tonight’s next honest action",
       "body": [
-        "Before you return to the night shift, ask yourself: <em>Is there something I need to do now, or am I trying to think my way into certainty?</em>",
+        "Before you return to the night shift, ask yourself: <em>Is there something I need to do now, or am I trying to think my way out of uncertainty?</em>",
         "There may be a conversation, a boundary, or a request for help that’s yours to make. You can acknowledge it and decide when to act without rehearsing every possible outcome.",
-        "For tonight, letting go may be as simple as allowing the question to remain unanswered.",
-        "The problem may still be here in the morning. You don’t have to solve it in your mind all night."
+        "For tonight, letting go may be as simple as allowing the question to remain unanswered. It can mean recognizing that the past is the past and accepting that the future is still unknown. Any problems may still be here in the morning. You don’t have to solve them in your mind all night."
       ]
     }
   ],
