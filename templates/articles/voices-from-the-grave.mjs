@@ -6,7 +6,7 @@ import { markdownToHtml } from '../../helpers/markdown.mjs';
 import { VOICES_ARTICLE } from '../../helpers/content-catalog.mjs';
 
 export { VOICES_ARTICLE };
-// Markdown preserves the article copy and the September 19 approved short insert.
+// Authoritative revised document copy, with one responsive editorial insert.
 const copy = readFileSync(new URL('./voices-from-the-grave.md', import.meta.url), 'utf8');
 const esc = value => String(value).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 const inline = text => markdownToHtml(esc(text)).replace(/\[([^\]]+)\]\((https:\/\/[^\s)]+)\)/g, '<a href="$2">$1</a>');
@@ -20,6 +20,8 @@ export function renderVoicesFromTheGrave() {
     return `<p>${inline(block)}</p>`;
   }).join('\n');
   const insertBlocks = insert.trim().split(/\n\s*\n/);
+  const insertHeading = inline(insertBlocks[0].replace(/^### /, ''))
+    .replace('to haunt you', '<em>to haunt you</em>');
   const actions = insertBlocks.slice(1, -1).map(block => {
     const match = block.match(/^\*\*(.+?)\*\* (.+)$/);
     if (!match) throw new Error('Invalid Voices action text');
@@ -28,7 +30,7 @@ export function renderVoicesFromTheGrave() {
   const closing = inline(insertBlocks.at(-1)).replace('Practice this one day at a time.', '<em>Practice this one day at a time.</em>');
   const flow = `${renderProse(before)}
     <section class="voices-practice" aria-labelledby="voices-practice-title">
-      <h2 id="voices-practice-title">When the past starts <em>to haunt you.</em></h2>
+      <h2 id="voices-practice-title">${insertHeading}</h2>
       <ol>${actions}</ol>
       <p class="voices-practice-close">${closing}</p>
     </section>

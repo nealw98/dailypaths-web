@@ -378,3 +378,13 @@ moves copy below the fixed image on smaller screens. Text can no longer stretch
 the image container or trigger a different mobile crop. This supersedes older
 mobile crop/fade and variable-height hero instructions. Promotional app bands
 and article cards are separate components and retain their current treatment.
+
+## Voices from the Grave authoritative copy update
+
+The supplied `voices-from-the-grave-revised(2).docx` replaces the article wording,
+including all headings, paragraph breaks, three pull quotes, and the five action
+descriptions. The approved live-text insert appears once, with its closing
+sentence immediately followed by “A loving map of daily living.” The telephone
+hero, URL, existing attribution state (no displayed byline), typography, book
+link, and closing “This is a path to peace.” remain. This request updates GitHub
+`2.0` only; no deployment is requested.
