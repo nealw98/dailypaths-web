@@ -360,3 +360,7 @@ The latest interaction request restores enlarged reading views for both remainin
 Boundaries inserts by clicking the insert itself, without a visible Expand button.
 A keyboard/screen-reader control is present; safety links retain direct navigation,
 text selection does not trigger expansion, and Close/Escape restore reading position.
+
+The Boundaries hero preserves its source photograph’s 1200 × 375 (16:5)
+aspect ratio at every viewport width. It scales proportionally without cropping
+or separate mobile framing; intrinsic dimensions reserve its layout space.

@@ -64,7 +64,7 @@ export function renderBoundariesGuide(topic, readings) {
   const contents = source.slice(source.indexOf('- [Understanding'), source.indexOf('## The Cost')).trim();
   const bodyContent = `
     <nav class="collection-rail" aria-label="Breadcrumb"><div class="collection-rail-inner"><a href="${bp('/guides/')}">&larr; Back to Guides</a><span aria-current="page">Boundaries</span></div></nav>
-    <header class="boundary-hero"><div class="boundary-hero-copy"><p class="eyebrow">Guide</p><h1>${title}</h1><p class="boundary-hero-sub">${subtitle}</p></div><img src="${bp(`/assets/${topic.image}`)}" alt="${escape(topic.imageAlt)}" fetchpriority="high"></header>
+    <header class="boundary-hero"><div class="boundary-hero-copy"><p class="eyebrow">Guide</p><h1>${title}</h1><p class="boundary-hero-sub">${subtitle}</p></div><img src="${bp(`/assets/${topic.image}`)}" alt="${escape(topic.imageAlt)}" width="1200" height="375" fetchpriority="high"></header>
     <article class="rd-article boundaries-guide">
       <nav class="boundary-contents" aria-labelledby="contents-title"><h2 id="contents-title">In this guide</h2><ul>${contents.split('\n').map(line => `<li>${inline(line.slice(2))}</li>`).join('')}</ul></nav>
       <div class="prose-lora boundary-body">${guideBody()}</div>
