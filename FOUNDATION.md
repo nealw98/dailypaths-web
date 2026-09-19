@@ -346,3 +346,7 @@ screen; Close and Escape restore focus and the reader’s scroll position. The
 safety box stays directly readable. The unchanged photograph is shown without
 an overlay, with title and subtitle on paper above it. Approved prose and the
 contents navigation are unchanged.
+
+Neal’s latest September 19 edit removes the “What is a boundary?” definition
+insert. The later boundary-definition pull quote remains, along with the
+preparation checklist, safety box, and contents navigation.

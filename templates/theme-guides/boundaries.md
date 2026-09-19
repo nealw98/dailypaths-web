@@ -22,14 +22,6 @@ Boundaries help you recognize your limits and decide what you will do to protect
 
 ## What Boundaries Are—and What They Are Not
 
----
-
-**What is a boundary?**
-
-A boundary defines what behavior you will and will not accept and what action you will take to protect your well-being.
-
----
-
 Setting a boundary is an act of self-care and self-respect, grounded in the realization that while you are powerless over other people, you have total authority over your own choices.
 
 It is equally important to understand what boundaries are **not**:
