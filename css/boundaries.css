@@ -28,7 +28,7 @@
 .boundary-hero-copy { width: min(calc(100% - 2 * var(--gutter-system)), var(--content-reading)); margin: 0 auto; padding: 3rem 0 2.5rem; }
 .boundary-hero h1 { margin: .75rem 0 1rem; }
 .boundary-hero-sub { font: var(--type-lede); max-width: 48ch; margin: 0; }
-.boundary-hero > img { display: block; width: 100%; height: auto; aspect-ratio: 16 / 5; }
+.boundary-hero > img { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; object-position: center top; }
 
 /* A single tinted editorial insert, distinct from the surrounding prose. */
 .page-boundaries { --boundary-teal: #315f60; --boundary-rule: #aec5c0; }

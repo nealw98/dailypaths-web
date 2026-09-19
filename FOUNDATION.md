@@ -361,6 +361,7 @@ Boundaries inserts by clicking the insert itself, without a visible Expand butto
 A keyboard/screen-reader control is present; safety links retain direct navigation,
 text selection does not trigger expansion, and Close/Escape restore reading position.
 
-The Boundaries hero preserves its source photograph’s 1200 × 375 (16:5)
-aspect ratio at every viewport width. It scales proportionally without cropping
-or separate mobile framing; intrinsic dimensions reserve its layout space.
+The Boundaries hero uses a deliberate 16:9 composition from the fuller
+1200 × 800 `assets/themes/detachment-with-love.jpg` original. The same fixed
+framing scales across all screen sizes. This supersedes the brief 16:5 sizing
+change based on the old banner; that banner is no longer the hero source.
