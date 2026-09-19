@@ -50,15 +50,15 @@ It also helps to have other people you can call. Some people call this their “
 
 ### When the past starts to haunt you
 
-**Recognize the voice.** When you find yourself rescuing, managing, or trying to please, ask: Whose rules am I living by? Whose approval am I still trying to earn?
+**Recognize the voice.** Whose approval am I still trying to earn?
 
-**Put its authority back in the past.** That person’s judgment does not have to rule your life today. Put that authority back in the grave where it belongs.
+**Put its authority back in the past.** That person’s judgment does not have to rule your life today.
 
-**Find your own voice.** Remind yourself: “With God’s help, I am learning to trust my own voice and make my own choices.”
+**Find your own voice.** Learning to trust my own voice.
 
-**Let go and let God.** Turn the hurt, fear, or anger over to the God of your understanding. Ask for direction, and take time to listen.
+**Let go and let God.** Turn the hurt, fear, or anger over to the God of your understanding.
 
-**Reach out.** Talk with your sponsor or someone in your “God squad.” Let the experience and encouragement of others help you find your way.
+**Reach out.** Let the encouragement of others help you find your way.
 
 Practice this one day at a time. Each time you recognize an old voice, you can turn back toward the life you are living today.
 

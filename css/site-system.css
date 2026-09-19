@@ -709,7 +709,47 @@ a[target="_blank"]:not(:has(img)):not(.pillar-card):not(.fellow-card)::after,
 }
 
 .page-voices-article .photo-hero-img { height: auto; aspect-ratio: 1672 / 941; object-fit: contain; }
-.page-voices-article .voices-insert img { display: block; width: 100%; height: auto; }
+.voices-practice {
+  margin-block: var(--space-7);
+  padding-top: var(--space-5);
+  border-top: 1px solid var(--accent-strong);
+  color: var(--accent-strong);
+}
+.voices-practice h2 {
+  margin: 0 0 var(--space-6);
+  font: 500 clamp(34px, 4vw, 48px)/1.12 var(--font-editorial);
+  letter-spacing: -.6px;
+}
+.voices-practice h2 em { display: block; font-weight: 400; }
+.voices-practice ol { list-style: none; counter-reset: practice; margin: 0; padding: 0; }
+.voices-practice li {
+  counter-increment: practice;
+  display: grid;
+  grid-template-columns: 2ch minmax(0, 1fr);
+  gap: clamp(16px, 3vw, 32px);
+  margin: 0 0 var(--space-5);
+  padding: 0;
+}
+.voices-practice li::before {
+  content: counter(practice, decimal-leading-zero);
+  padding-top: .5em;
+  font: 500 13px/1.5 var(--font-ui);
+  letter-spacing: .08em;
+}
+.voices-practice li h3 {
+  margin: 0 0 6px;
+  font: 600 clamp(23px, 2.3vw, 28px)/1.25 var(--font-editorial);
+  color: inherit;
+}
+.voices-practice li p { margin: 0; color: inherit; }
+.voices-practice .voices-practice-close { margin: var(--space-5) 0 0; color: inherit; }
+.voices-practice-close::before {
+  content: '';
+  display: block;
+  width: 112px;
+  margin-bottom: var(--space-4);
+  border-top: 1px solid currentColor;
+}
 .page-voices-article .tg-section > h2 { margin-top: var(--space-7); }
 .sd-story-image[href$="/voices-from-the-grave/"] img { object-fit: contain; }
 

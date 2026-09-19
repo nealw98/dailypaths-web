@@ -6,20 +6,33 @@ import { markdownToHtml } from '../../helpers/markdown.mjs';
 import { VOICES_ARTICLE } from '../../helpers/content-catalog.mjs';
 
 export { VOICES_ARTICLE };
-// The supplied Markdown is the source of truth; integration does not rewrite it.
+// Markdown preserves the article copy and the September 19 approved short insert.
 const copy = readFileSync(new URL('./voices-from-the-grave.md', import.meta.url), 'utf8');
 const esc = value => String(value).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 const inline = text => markdownToHtml(esc(text)).replace(/\[([^\]]+)\]\((https:\/\/[^\s)]+)\)/g, '<a href="$2">$1</a>');
 
 export function renderVoicesFromTheGrave() {
-  const flow = copy.trim().split(/\n\s*\n/).map(block => {
+  const [before, insert, after] = copy.trim().split(/\n---\n/);
+  const renderProse = text => text.trim().split(/\n\s*\n/).map(block => {
     if (block.startsWith('# ') || block === '---') return '';
     if (block.startsWith('> ')) return `<blockquote class="tg-thesis type-thesis-quote"><p>${inline(block.slice(2))}</p></blockquote>`;
-    if (block.startsWith('### ')) return `<h2>${inline(block.slice(4))}</h2>
-      <figure class="tg-diagram voices-insert"><img src="${bp('/assets/articles/voices-from-the-grave/when-the-past-starts-to-haunt-you.webp')}" alt="When the past starts to haunt you: recognize the voice, put its authority back in the past, find your own voice, let go and let God, and reach out. Full explanations follow." width="1254" height="1254" loading="lazy"></figure>`;
     if (block.startsWith('## ')) return `<h2>${inline(block.slice(3))}</h2>`;
     return `<p>${inline(block)}</p>`;
   }).join('\n');
+  const insertBlocks = insert.trim().split(/\n\s*\n/);
+  const actions = insertBlocks.slice(1, -1).map(block => {
+    const match = block.match(/^\*\*(.+?)\*\* (.+)$/);
+    if (!match) throw new Error('Invalid Voices action text');
+    return `<li><div><h3>${inline(match[1])}</h3><p>${inline(match[2])}</p></div></li>`;
+  }).join('\n');
+  const closing = inline(insertBlocks.at(-1)).replace('Practice this one day at a time.', '<em>Practice this one day at a time.</em>');
+  const flow = `${renderProse(before)}
+    <section class="voices-practice" aria-labelledby="voices-practice-title">
+      <h2 id="voices-practice-title">When the past starts <em>to haunt you.</em></h2>
+      <ol>${actions}</ol>
+      <p class="voices-practice-close">${closing}</p>
+    </section>
+    ${renderProse(after)}`;
   return wrapInLayout({
     title: `${VOICES_ARTICLE.title} | Daily Paths`,
     description: VOICES_ARTICLE.description,

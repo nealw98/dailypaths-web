@@ -311,3 +311,13 @@ them. The question about an impossible assignment is removed. The new pull quote
 follows the blame-and-regret paragraph: “No amount of reviewing the past can give
 you control in the present.” The article connects releasing the past and future
 to attention to one's own life today. Existing illustrations and URLs remain.
+
+## September 19 Voices practical insert
+
+Neal's September 19 reference supersedes the ZIP's instruction to show an image
+plus expanded explanations. The practical section is now one selectable HTML
+insert: five short actions, margin numbering, an italic headline ending, fine
+rules, and transparent background. The closing practice text appears once,
+followed immediately by “A loving map of daily living.” The article's other
+prose, three pull quotes, existing attribution state, and telephone hero remain.
+This revision is development-only; no deployment is authorized by this request.
