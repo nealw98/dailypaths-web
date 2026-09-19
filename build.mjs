@@ -437,7 +437,7 @@ if (!existsSync(cssSource)) {
 // owns the final typography cascade; attempting to remove declarations with a
 // regex also removed resets, tokens, and layout rules from complex selectors.
 writeFileSync(join(outDir, 'css', 'style.css'), readFileSync(cssSource, 'utf8'));
-for (const name of ['soft-daylight.css', 'editorial-home.css']) {
+for (const name of ['soft-daylight.css', 'editorial-home.css', 'boundaries.css']) {
   writeFileSync(join(outDir, 'css', name), readFileSync(join(ROOT, 'css', name), 'utf8'));
 }
 cpSync(join(ROOT, 'css', 'site-system.css'), join(outDir, 'css', 'site-system.css'));

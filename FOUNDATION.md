@@ -321,3 +321,19 @@ rules, and transparent background. The closing practice text appears once,
 followed immediately by “A loving map of daily living.” The article's other
 prose, three pull quotes, existing attribution state, and telephone hero remain.
 This revision is development-only; no deployment is authorized by this request.
+
+## September 19 approved Boundaries guide
+
+The approved `boundaries-guide-revised.md` is retained in
+`templates/theme-guides/boundaries.md` and rendered at `/topics/boundaries/`.
+The page uses “Boundaries: Reclaiming Your Life” and the supplied subtitle;
+cards and breadcrumbs retain “Boundaries.” Editorial comments are excluded.
+The responsive live-text definition, preparation questions, and bordered safety
+insert preserve the approved prose, as do all three open pull quotes. Shortened
+headings retain the manuscript anchors for the compact contents navigation.
+
+The closing list links to the existing Detachment guide and three reflections
+selected after reading their current full text: “Seeing Myself as Separate”
+(April 8), “The Risk of Disapproval” (April 23), and “The Boundaries of Happiness”
+(January 23). The boundary-guilt article remains unpublished and is not linked.
+Development publication does not approve inherited Detachment copy for launch.

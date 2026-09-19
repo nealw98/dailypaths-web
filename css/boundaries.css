@@ -1,0 +1,28 @@
+/* Boundaries guide geometry; typography inherits the shared site roles. */
+.boundaries-guide :is(h2, h3) { scroll-margin-top: 7rem; }
+.boundary-contents { border-block: 1px solid var(--border-soft); padding-block: 1.5rem; margin-bottom: 3rem; }
+.boundaries-guide .boundary-contents h2 { font: var(--type-ui); font-weight: 600; margin: 0 0 1rem; }
+.boundary-contents ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: .5rem 1.5rem; }
+.boundary-contents a { display: inline-block; padding-block: .3rem; font: var(--type-ui); text-decoration: underline; text-underline-offset: .2em; }
+.boundary-body > h2 { margin: 3rem 0 1.25rem; }
+.boundary-body > h3 { margin: 2.5rem 0 1rem; }
+.boundary-body > ul { padding-left: 1.35em; }
+.boundary-body li + li { margin-top: 1rem; }
+.boundary-insert { margin: 2.5rem 0; padding: 1.5rem 0 0; border-top: 1px solid var(--text-muted); }
+.boundaries-guide .boundary-insert h3 { font: var(--type-reading-body); font-weight: 600; margin: 0 0 1rem; }
+.boundary-insert p:last-child { margin-bottom: 0; }
+.boundary-insert--definition p { max-width: 49ch; }
+.boundary-insert--preparation ul { list-style: none; padding: 0; margin: 0; }
+.boundary-insert--preparation li { padding-block: .25rem; }
+.boundary-insert--safety { border: 2px solid var(--text-primary); padding: clamp(1.25rem, 4vw, 2rem); }
+.boundaries-guide .boundary-pull { border: 0; background: none; padding: 0; margin: 3rem auto; max-width: 29ch; }
+.boundaries-guide .boundary-pull p { font: var(--type-pull-quote); color: var(--accent-strong); text-align: center; }
+.boundary-related { margin-top: 3.5rem; padding-top: 2rem; border-top: 1px solid var(--text-muted); }
+.boundary-related ul { list-style: none; padding: 0; }
+.boundary-related li { margin: 1.5rem 0; }
+.boundary-related li > a { font-weight: 600; }
+.boundary-related li p { margin: .4rem 0 0; }
+@media (max-width: 600px) {
+  .boundary-contents ul { display: block; }
+  .boundary-contents a { padding-block: .6rem; }
+}
