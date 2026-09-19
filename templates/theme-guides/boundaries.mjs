@@ -1,6 +1,6 @@
 import { readFileSync } from 'node:fs';
 import { wrapInLayout } from '../base.mjs';
-import { photoHero, terminalBand } from '../ui.mjs';
+import { terminalBand } from '../ui.mjs';
 import { bp } from '../../helpers/config.mjs';
 import { readingSlug } from '../../helpers/slug-utils.mjs';
 
@@ -31,13 +31,16 @@ function guideBody() {
   return text.split(/\n\s*\n/).map(block => {
     block = block.trim();
     if (block === '---') {
-      if (insert) { insert = false; return '</aside>'; }
+      if (insert) {
+        const control = insert === 'safety' ? '' : `<button type="button" class="boundary-expand" data-expand-insert aria-haspopup="dialog" aria-controls="boundary-reading-view" hidden>Expand<span class="visually-hidden">: ${insert === 'definition' ? 'What is a boundary?' : 'Before you state your boundary'}</span></button>`;
+        insert = false; return `${control}</aside>`;
+      }
       // The final Markdown rule is only a manuscript separator.
       return '';
     }
     const insertNames = {'**What is a boundary?**': 'definition', '**Before you state your boundary**': 'preparation', '**When safety is at risk**': 'safety'};
     if (insertNames[block]) {
-      insert = true;
+      insert = insertNames[block];
       return `<aside class="boundary-insert boundary-insert--${insertNames[block]}" aria-labelledby="${insertNames[block]}-title"><h3 id="${insertNames[block]}-title">${inline(block.slice(2,-2))}</h3>`;
     }
     const heading = block.match(/^(#{2,3}) (.+)$/);
@@ -45,7 +48,7 @@ function guideBody() {
       const [, marks, original] = heading;
       return `<h${marks.length} id="${anchor(original)}">${inline(headings.get(original) || original)}</h${marks.length}>`;
     }
-    if (block.startsWith('> ')) return `<blockquote class="boundary-pull"><p>${inline(block.slice(2))}</p></blockquote>`;
+    if (block.startsWith('> ')) return `<blockquote class="tg-thesis"><p>&ldquo;${inline(block.slice(2))}&rdquo;</p></blockquote>`;
     if (block.startsWith('- ')) return `<ul>${block.split('\n').map(line => `<li>${inline(line.slice(2))}</li>`).join('')}</ul>`;
     return `<p>${inline(block)}</p>`;
   }).join('\n');
@@ -64,7 +67,7 @@ export function renderBoundariesGuide(topic, readings) {
   const contents = source.slice(source.indexOf('- [Understanding'), source.indexOf('## The Cost')).trim();
   const bodyContent = `
     <nav class="collection-rail" aria-label="Breadcrumb"><div class="collection-rail-inner"><a href="${bp('/guides/')}">&larr; Back to Guides</a><span aria-current="page">Boundaries</span></div></nav>
-    ${photoHero({ image: bp(`/assets/${topic.image}`), alt: topic.imageAlt, eyebrow: 'Guide', title, subtitle, size: 'lg', titleClass: 'photo-hero-title--theme' })}
+    <header class="boundary-hero"><div class="boundary-hero-copy"><p class="eyebrow">Guide</p><h1>${title}</h1><p class="boundary-hero-sub">${subtitle}</p></div><img src="${bp(`/assets/${topic.image}`)}" alt="${escape(topic.imageAlt)}" fetchpriority="high"></header>
     <article class="rd-article boundaries-guide">
       <nav class="boundary-contents" aria-labelledby="contents-title"><h2 id="contents-title">In this guide</h2><ul>${contents.split('\n').map(line => `<li>${inline(line.slice(2))}</li>`).join('')}</ul></nav>
       <div class="prose-lora boundary-body">${guideBody()}</div>
@@ -72,7 +75,10 @@ export function renderBoundariesGuide(topic, readings) {
         <li><a href="${bp('/topics/detachment/')}">Detachment Guide</a><p>Explore caring for someone without taking responsibility for their choices or the outcome.</p></li>
         ${related}
       </ul></section>
-    </article>${terminalBand()}`;
+    </article>
+    <dialog id="boundary-reading-view" class="boundary-dialog" aria-labelledby="boundary-dialog-title"><div class="boundary-dialog-toolbar"><button type="button" class="boundary-close" autofocus>Close</button></div><div class="boundary-dialog-content"></div></dialog>
+    <script src="${bp('/js/boundaries.js')}" defer></script>
+    ${terminalBand()}`;
   return wrapInLayout({title: `${title} | Daily Paths`, description: subtitle, canonicalPath: '/topics/boundaries/', bodyContent, bodyClass: 'page-topic-detail page-boundaries', ogType: 'article', navSection: 'guides', hasAppPanel: true})
     .replace('</head>', `<link rel="stylesheet" href="${bp('/css/boundaries.css')}">\n</head>`);
 }

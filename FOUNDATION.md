@@ -337,3 +337,12 @@ selected after reading their current full text: “Seeing Myself as Separate”
 (April 8), “The Risk of Disapproval” (April 23), and “The Boundaries of Happiness”
 (January 23). The boundary-guilt article remains unpublished and is not linked.
 Development publication does not approve inherited Detachment copy for launch.
+
+The September 19 Boundaries presentation refinement reuses Letting Go’s
+`.tg-thesis` pull quotes, including quotation marks and ruled spacing. Definition
+and preparation inserts use live editorial typography and fine teal rules, with
+optional keyboard-accessible enlarged reading views. The mobile view fills the
+screen; Close and Escape restore focus and the reader’s scroll position. The
+safety box stays directly readable. The unchanged photograph is shown without
+an overlay, with title and subtitle on paper above it. Approved prose and the
+contents navigation are unchanged.

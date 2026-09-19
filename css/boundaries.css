@@ -15,8 +15,6 @@
 .boundary-insert--preparation ul { list-style: none; padding: 0; margin: 0; }
 .boundary-insert--preparation li { padding-block: .25rem; }
 .boundary-insert--safety { border: 2px solid var(--text-primary); padding: clamp(1.25rem, 4vw, 2rem); }
-.boundaries-guide .boundary-pull { border: 0; background: none; padding: 0; margin: 3rem auto; max-width: 29ch; }
-.boundaries-guide .boundary-pull p { font: var(--type-pull-quote); color: var(--accent-strong); text-align: center; }
 .boundary-related { margin-top: 3.5rem; padding-top: 2rem; border-top: 1px solid var(--text-muted); }
 .boundary-related ul { list-style: none; padding: 0; }
 .boundary-related li { margin: 1.5rem 0; }
@@ -25,4 +23,44 @@
 @media (max-width: 600px) {
   .boundary-contents ul { display: block; }
   .boundary-contents a { padding-block: .6rem; }
+}
+
+/* The photograph stays unfiltered; the title reads on the page above it. */
+.boundary-hero-copy { width: min(calc(100% - 2 * var(--gutter-system)), var(--content-reading)); margin: 0 auto; padding: 3rem 0 2.5rem; }
+.boundary-hero h1 { margin: .75rem 0 1rem; }
+.boundary-hero-sub { font: var(--type-lede); max-width: 48ch; margin: 0; }
+.boundary-hero > img { display: block; width: 100%; height: clamp(260px, 36vw, 500px); object-fit: cover; object-position: center 48%; }
+
+/* Informational inserts: one editorial composition, with live text throughout. */
+.page-boundaries { --boundary-teal: #315f60; --boundary-rule: #a8bfbb; }
+.boundary-insert--definition { padding: 2rem 0; border-block: 1px solid var(--boundary-rule); margin-block: 3rem; }
+.boundaries-guide .boundary-insert--definition h3,
+.boundary-dialog .boundary-insert--definition h3 { font: var(--type-ui); font-weight: 600; color: var(--boundary-teal); margin: 0 0 1.5rem; }
+.boundary-insert--definition p { font: var(--type-chapter); line-height: 1.45; max-width: 39ch; margin: 0 0 1.5rem; }
+.boundary-insert--preparation { border-top: 2px solid var(--boundary-teal); padding: 1.75rem 0 0; margin-block: 3rem; }
+.boundaries-guide .boundary-insert--preparation h3,
+.boundary-dialog .boundary-insert--preparation h3 { font: var(--type-chapter); max-width: 22ch; color: var(--boundary-teal); margin: 0 0 1.5rem; }
+.boundary-insert--preparation ul { counter-reset: question; }
+.boundary-insert--preparation li { counter-increment: question; display: grid; grid-template-columns: 1.5rem 1fr; gap: 1rem; padding: 1rem 0; border-top: 1px solid var(--boundary-rule); font: var(--type-reading-body); }
+.boundary-insert--preparation li + li { margin-top: 0; }
+.boundary-insert--preparation li::before { content: counter(question, decimal-leading-zero); font: var(--type-small); color: var(--boundary-teal); padding-top: .15rem; }
+.boundary-expand, .boundary-close { font: var(--type-small); color: var(--boundary-teal); background: transparent; border: 0; cursor: pointer; min-height: 44px; padding: .6rem 0; text-decoration: underline; text-underline-offset: .25em; }
+.boundary-expand { display: block; margin: 1rem 0 0 auto; }
+.boundary-expand[hidden] { display: none; }
+.boundary-expand:focus-visible, .boundary-close:focus-visible { outline: 2px solid var(--boundary-teal); outline-offset: 4px; }
+.boundary-dialog { padding: 0; width: min(900px, calc(100vw - 4rem)); max-width: none; max-height: calc(100dvh - 4rem); border: 1px solid var(--boundary-rule); background: var(--surface, #faf9f5); color: var(--text-primary); margin: auto; overscroll-behavior: contain; }
+.boundary-dialog::backdrop { background: rgb(25 39 37 / .5); }
+.boundary-dialog-toolbar { position: sticky; top: 0; z-index: 1; display: flex; justify-content: flex-end; padding: .5rem clamp(1.5rem, 5vw, 3.5rem); border-bottom: 1px solid var(--border-soft); background: var(--surface, #faf9f5); }
+.boundary-close { padding-inline: .5rem; }
+.boundary-dialog-content { padding: clamp(1.5rem, 5vw, 3.5rem); }
+.boundary-dialog .boundary-insert { margin: 0; }
+.boundary-dialog .boundary-insert--definition p { font-size: clamp(28px, 3vw, 36px); }
+.boundary-dialog .boundary-insert--preparation li { font-size: 24px; line-height: 1.6; padding-block: 1.3rem; }
+@media (max-width: 600px) {
+  .boundary-hero-copy { padding-block: 2rem; }
+  .boundary-hero > img { height: auto; aspect-ratio: 4 / 3; object-position: 65% center; }
+  .boundary-dialog { width: 100%; height: 100dvh; max-height: 100dvh; border: 0; margin: 0; }
+  .boundary-dialog-toolbar { padding-top: max(.5rem, env(safe-area-inset-top)); }
+  .boundary-dialog-content { padding-bottom: max(2rem, env(safe-area-inset-bottom)); }
+  .boundary-dialog .boundary-insert--preparation li { font-size: 22px; }
 }
