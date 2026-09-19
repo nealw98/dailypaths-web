@@ -457,7 +457,6 @@ cpSync(join(__dirname, 'js', 'main.js'), join(outDir, 'js', 'main.js'));
 if (!IS_PREVIEW) cpSync(join(__dirname, 'js', 'admin.js'), join(outDir, 'js', 'admin.js'));
 cpSync(join(__dirname, 'js', 'analytics.js'), join(outDir, 'js', 'analytics.js'));
 cpSync(join(__dirname, 'js', 'calendar.js'), join(outDir, 'js', 'calendar.js'));
-cpSync(join(__dirname, 'js', 'boundaries.js'), join(outDir, 'js', 'boundaries.js'));
 
 // Admin CSS
 cpSync(join(__dirname, 'css', 'admin.css'), join(outDir, 'css', 'admin.css'));

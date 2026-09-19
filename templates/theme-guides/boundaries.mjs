@@ -31,14 +31,11 @@ function guideBody() {
   return text.split(/\n\s*\n/).map(block => {
     block = block.trim();
     if (block === '---') {
-      if (insert) {
-        const control = insert === 'safety' ? '' : `<button type="button" class="boundary-expand" data-expand-insert aria-haspopup="dialog" aria-controls="boundary-reading-view" hidden>Expand<span class="visually-hidden">: ${insert === 'definition' ? 'What is a boundary?' : 'Before you state your boundary'}</span></button>`;
-        insert = false; return `${control}</aside>`;
-      }
+      if (insert) { insert = false; return '</aside>'; }
       // The final Markdown rule is only a manuscript separator.
       return '';
     }
-    const insertNames = {'**What is a boundary?**': 'definition', '**Before you state your boundary**': 'preparation', '**When safety is at risk**': 'safety'};
+    const insertNames = {'**Before you state your boundary**': 'preparation', '**When safety is at risk**': 'safety'};
     if (insertNames[block]) {
       insert = insertNames[block];
       return `<aside class="boundary-insert boundary-insert--${insertNames[block]}" aria-labelledby="${insertNames[block]}-title"><h3 id="${insertNames[block]}-title">${inline(block.slice(2,-2))}</h3>`;
@@ -76,8 +73,6 @@ export function renderBoundariesGuide(topic, readings) {
         ${related}
       </ul></section>
     </article>
-    <dialog id="boundary-reading-view" class="boundary-dialog" aria-labelledby="boundary-dialog-title"><div class="boundary-dialog-toolbar"><button type="button" class="boundary-close" autofocus>Close</button></div><div class="boundary-dialog-content"></div></dialog>
-    <script src="${bp('/js/boundaries.js')}" defer></script>
     ${terminalBand()}`;
   return wrapInLayout({title: `${title} | Daily Paths`, description: subtitle, canonicalPath: '/topics/boundaries/', bodyContent, bodyClass: 'page-topic-detail page-boundaries', ogType: 'article', navSection: 'guides', hasAppPanel: true})
     .replace('</head>', `<link rel="stylesheet" href="${bp('/css/boundaries.css')}">\n</head>`);

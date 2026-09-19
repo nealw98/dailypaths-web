@@ -350,3 +350,8 @@ contents navigation are unchanged.
 Neal’s latest September 19 edit removes the “What is a boundary?” definition
 insert. The later boundary-definition pull quote remains, along with the
 preparation checklist, safety box, and contents navigation.
+
+The preparation checklist now sits on a soft teal background with generous
+inset padding and fine question dividers. Neal’s latest feedback supersedes
+the expandable treatment: the checklist stays fully readable in place, and
+the Expand control and dialog are removed.
