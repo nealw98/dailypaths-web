@@ -67,3 +67,24 @@
   .boundary-hero > img { height: auto; aspect-ratio: 4 / 3; object-position: 65% center; }
   .boundary-insert--preparation li { gap: .65rem; }
 }
+
+/* The insert itself is the click target; keyboard focus outlines that same area. */
+.boundary-insert--expandable { cursor: zoom-in; }
+.boundary-insert--expandable:has(.boundary-open:focus-visible) { outline: 2px solid var(--boundary-teal); outline-offset: 5px; }
+.boundary-dialog { padding: 0; width: min(960px, calc(100vw - 4rem)); max-width: none; max-height: calc(100dvh - 4rem); border: 1px solid var(--boundary-rule); background: var(--surface, #faf9f5); color: var(--text-primary); margin: auto; overscroll-behavior: contain; }
+.boundary-dialog::backdrop { background: rgb(25 39 37 / .5); }
+.boundary-dialog-toolbar { position: sticky; top: 0; z-index: 1; display: flex; justify-content: flex-end; padding: .5rem 1.5rem; border-bottom: 1px solid var(--border-soft); background: var(--surface, #faf9f5); }
+.boundary-close { font: var(--type-small); color: var(--boundary-teal); background: transparent; border: 0; cursor: pointer; min-height: 44px; padding: .6rem .5rem; text-decoration: underline; text-underline-offset: .25em; }
+.boundary-close:focus-visible { outline: 2px solid var(--boundary-teal); outline-offset: 3px; }
+.boundary-dialog-content { padding: clamp(1rem, 4vw, 2.5rem); }
+.boundary-dialog .boundary-insert { margin: 0; }
+.boundary-dialog .boundary-insert h3 { font: var(--type-chapter); margin: 0 0 1.5rem; }
+.boundary-dialog .boundary-insert--preparation h3 { color: var(--boundary-teal); }
+.boundary-dialog .boundary-insert :is(li, p) { font-size: 24px; line-height: 1.6; }
+@media (max-width: 600px) {
+  .boundary-dialog { width: 100%; height: 100dvh; max-height: 100dvh; border: 0; margin: 0; }
+  .boundary-dialog-toolbar { padding-top: max(.5rem, env(safe-area-inset-top)); }
+  .boundary-dialog-content { padding-bottom: max(1rem, env(safe-area-inset-bottom)); }
+  .boundary-dialog .boundary-insert { padding: 1.25rem; }
+  .boundary-dialog .boundary-insert :is(li, p) { font-size: 22px; }
+}

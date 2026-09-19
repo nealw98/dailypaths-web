@@ -355,3 +355,8 @@ The preparation checklist now sits on a soft teal background with generous
 inset padding and fine question dividers. Neal’s latest feedback supersedes
 the expandable treatment: the checklist stays fully readable in place, and
 the Expand control and dialog are removed.
+
+The latest interaction request restores enlarged reading views for both remaining
+Boundaries inserts by clicking the insert itself, without a visible Expand button.
+A keyboard/screen-reader control is present; safety links retain direct navigation,
+text selection does not trigger expansion, and Close/Escape restore reading position.

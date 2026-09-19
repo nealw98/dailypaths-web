@@ -73,6 +73,8 @@ export function renderBoundariesGuide(topic, readings) {
         ${related}
       </ul></section>
     </article>
+    <dialog class="boundary-dialog" id="boundary-reading-view" aria-labelledby="boundary-dialog-title"><div class="boundary-dialog-toolbar"><button type="button" class="boundary-close" autofocus>Close</button></div><div class="boundary-dialog-content prose-lora"></div></dialog>
+    <script src="${bp('/js/boundaries.js')}" defer></script>
     ${terminalBand()}`;
   return wrapInLayout({title: `${title} | Daily Paths`, description: subtitle, canonicalPath: '/topics/boundaries/', bodyContent, bodyClass: 'page-topic-detail page-boundaries', ogType: 'article', navSection: 'guides', hasAppPanel: true})
     .replace('</head>', `<link rel="stylesheet" href="${bp('/css/boundaries.css')}">\n</head>`);
