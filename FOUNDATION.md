@@ -365,3 +365,16 @@ The Boundaries hero uses a deliberate 16:9 composition from the fuller
 1200 × 800 `assets/themes/detachment-with-love.jpg` original. The same fixed
 framing scales across all screen sizes. This supersedes the brief 16:5 sizing
 change based on the old banner; that banner is no longer the hero source.
+
+## Consistent hero framing across the development site
+
+Photographic heroes now keep a fixed 16:9 composition across screen sizes,
+including guides, articles, daily reflections, the reflection index, Step pages,
+About, and the homepage. The already consistent two-person dinner story retains
+its authored 2:1 composition. Fixed subject positions preserve the seedling,
+stacked stones, and journaling subject in wider source photographs. Titles sit
+on paper above detail-page photos; the homepage keeps its desktop overlay and
+moves copy below the fixed image on smaller screens. Text can no longer stretch
+the image container or trigger a different mobile crop. This supersedes older
+mobile crop/fade and variable-height hero instructions. Promotional app bands
+and article cards are separate components and retain their current treatment.
