@@ -425,3 +425,7 @@ Dropping the Rope now scales its entire fixed composition proportionally on smal
 screens, preserving identical text, line breaks, columns, and spacing. It remains
 selectable HTML; the enlarged view retains full reading size with horizontal
 scrolling on phones rather than reflowing or removing content.
+
+The enlarged Dropping the Rope view now scales to the available device width,
+retaining the same composition without horizontal scrolling. This supersedes
+the full-reading-size minimum width on phones.

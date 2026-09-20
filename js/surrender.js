@@ -7,12 +7,20 @@
   let origin, position, bodyStyle, scrollBehavior;
   function fitRope(frame) {
     const insert = frame.querySelector('.surrender-insert--rope');
-    const scale = frame.clientWidth / 720;
-    insert.style.transform = `scale(${scale})`;
+    let scale = frame.clientWidth / 720;
+    if (frame.closest('dialog')) {
+      const padding = getComputedStyle(content);
+      const outerSpace = matchMedia('(max-width: 600px)').matches ? 0 : 64;
+      const availableHeight = innerHeight - outerSpace - dialog.querySelector('.boundary-dialog-toolbar').offsetHeight
+        - parseFloat(padding.paddingTop) - parseFloat(padding.paddingBottom) - 2;
+      scale = Math.min(scale, Math.max(1, availableHeight) / insert.offsetHeight);
+    }
+    insert.style.transform = `translateX(${(frame.clientWidth - 720 * scale) / 2}px) scale(${scale})`;
     frame.style.height = `${insert.offsetHeight * scale}px`;
   }
   const ropeObserver = new ResizeObserver(entries => entries.forEach(({ target }) => fitRope(target)));
   document.querySelectorAll('.rope-frame').forEach(frame => ropeObserver.observe(frame));
+  window.addEventListener('resize', () => document.querySelectorAll('.rope-frame').forEach(fitRope));
   document.fonts.ready.then(() => document.querySelectorAll('.rope-frame').forEach(fitRope));
   document.querySelectorAll('.surrender-guide [data-reading-insert]').forEach(insert => {
     const button = document.createElement('button');
