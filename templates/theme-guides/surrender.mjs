@@ -62,7 +62,7 @@ export function renderSurrenderGuide(topic, featuredReadings, readings) {
       if (name === 'Spiritual Principles of Surrender') body.push(principles);
       else if (name === 'Before You Pick Up the Rope Again') body.push(insert(name, 'questions', `<div class="surrender-questions">${group[1].split('\n').map(q => `<p>${inline(q.slice(2))}</p>`).join('')}</div>`));
       else if (name === 'The Three Cs') body.push(insert(name, 'three-cs', `<dl>${rows('Three Cs').map(([statement, definition]) => `<div><dt>${inline(statement)}</dt><dd>${inline(definition)}</dd></div>`).join('')}</dl>`));
-      else if (name === 'Surrender and Safety') body.push(`<aside class="boundary-insert boundary-insert--safety" aria-labelledby="surrender-safety"><h3 id="surrender-safety">${name}</h3>${group.slice(1).map(prose).join('').replace('<strong>800-799-SAFE (7233)</strong>', '<a href="tel:8007997233"><strong>800-799-SAFE (7233)</strong></a>').replace('<strong>START to 88788</strong>', '<a href="sms:88788"><strong>START to 88788</strong></a>')}</aside>`);
+      else if (name === 'Surrender and Safety') body.push(`<aside class="boundary-insert boundary-insert--safety" aria-labelledby="surrender-safety"><h3 id="surrender-safety">${name}</h3>${prose(group[3])}${prose(group[1])}<div class="surrender-safety-contacts">${prose(group[2]).replace('<strong>800-799-SAFE (7233)</strong>', '<a href="tel:8007997233"><strong>800-799-SAFE (7233)</strong></a>').replace('<strong>START to 88788</strong>', '<a href="sms:88788"><strong>START to 88788</strong></a>')}</div></aside>`);
       else throw new Error(`Unknown manuscript insert: ${name}`);
       i = end;
       continue;

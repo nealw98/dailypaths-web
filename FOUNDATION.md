@@ -410,3 +410,9 @@ visible text disclosure. Enlarged Surrender inserts use an X close control with
 an accessible name. The Three Cs now share the principles insert's ruled, italic
 statement/definition treatment and click/keyboard enlargement; the explanatory
 article paragraphs remain intact.
+
+The supplied Daily Paths Inserts standard supersedes teal for Surrender safety:
+soft clay pink #F3E3DF, plum-brown #513A36, urgent action first, and support
+contacts in a separate area divided by #D8BBB4. The callout is not expandable.
+It uses current serif-heading and sans-serif supporting-text font roles, retaining
+all approved safety wording and contact destinations.

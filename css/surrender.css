@@ -26,9 +26,27 @@
 .surrender-more { border-top: 1px solid var(--border-soft); margin-top: 2rem; padding-top: 1rem; }
 .surrender-more ul { padding-left: 1.2rem; }
 .surrender-more li { padding: .4rem 0; }
-/* Reuse the Boundaries box, reading type and spacing, with its requested teal tint. */
-.page-surrender .boundary-insert--safety { background: #e3eeea; }
-.surrender-guide .boundary-insert--safety h3 { font: var(--type-reading-body); font-weight: 600; }
+/* Daily Paths Inserts: dedicated safety palette and urgent-first layout. */
+.page-surrender .boundary-insert--safety {
+  background: #F3E3DF;
+  color: #513A36;
+  border: 0;
+  padding: clamp(1.5rem, 4vw, 2rem);
+}
+.surrender-guide .boundary-insert--safety h3 {
+  font: var(--type-chapter);
+  color: #513A36;
+  margin: 0 0 1.25rem;
+}
+.page-surrender .boundary-insert--safety p {
+  font-family: var(--font-ui);
+  font-size: 18px;
+  line-height: 1.65;
+  color: #513A36;
+}
+.page-surrender .boundary-insert--safety a { color: #513A36; text-decoration-color: currentColor; }
+.surrender-safety-contacts { margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid #D8BBB4; }
+.surrender-safety-contacts p { margin-bottom: 0; }
 [data-reading-insert].is-expandable { cursor: zoom-in; }
 [data-reading-insert]:has(.surrender-open:focus-visible) { outline: 2px solid var(--boundary-teal); outline-offset: 5px; }
 .surrender-dialog .boundary-dialog-content { max-width: none; }
