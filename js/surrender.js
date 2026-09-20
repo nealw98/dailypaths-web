@@ -5,6 +5,15 @@
   const content = dialog.querySelector('.boundary-dialog-content');
   const close = dialog.querySelector('.boundary-close');
   let origin, position, bodyStyle, scrollBehavior;
+  function fitRope(frame) {
+    const insert = frame.querySelector('.surrender-insert--rope');
+    const scale = frame.clientWidth / 720;
+    insert.style.transform = `scale(${scale})`;
+    frame.style.height = `${insert.offsetHeight * scale}px`;
+  }
+  const ropeObserver = new ResizeObserver(entries => entries.forEach(({ target }) => fitRope(target)));
+  document.querySelectorAll('.rope-frame').forEach(frame => ropeObserver.observe(frame));
+  document.fonts.ready.then(() => document.querySelectorAll('.rope-frame').forEach(fitRope));
   document.querySelectorAll('.surrender-guide [data-reading-insert]').forEach(insert => {
     const button = document.createElement('button');
     button.type = 'button';
@@ -24,7 +33,13 @@
       copy.querySelectorAll('[id], [aria-describedby]').forEach(element => { element.removeAttribute('id'); element.removeAttribute('aria-describedby'); });
       copy.querySelector('h3').id = 'surrender-dialog-title';
       copy.setAttribute('aria-labelledby', 'surrender-dialog-title');
-      content.replaceChildren(copy);
+      if (copy.classList.contains('surrender-insert--rope')) {
+        const frame = document.createElement('div');
+        frame.className = 'rope-frame';
+        frame.append(copy);
+        content.replaceChildren(frame);
+        ropeObserver.observe(frame);
+      } else content.replaceChildren(copy);
       bodyStyle = document.body.getAttribute('style');
       scrollBehavior = document.documentElement.style.scrollBehavior;
       Object.assign(document.body.style, { position: 'fixed', top: `-${position.y}px`, left: `-${position.x}px`, width: '100%' });
@@ -48,6 +63,7 @@
     origin.focus({ preventScroll: true });
     window.scrollTo(position.x, position.y);
     document.documentElement.style.scrollBehavior = scrollBehavior;
+    content.querySelectorAll('.rope-frame').forEach(frame => ropeObserver.unobserve(frame));
     content.replaceChildren();
   });
 })();

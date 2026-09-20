@@ -60,10 +60,11 @@
   .surrender-dialog .surrender-insert :is(p, dd) { font-size: 22px; }
 }
 .surrender-dialog .boundary-close { font: 400 32px/1 var(--font-ui); text-decoration: none; width: 44px; height: 44px; padding: 0; }
-@media (max-width: 600px) {
-  .surrender-insert--rope { padding-inline: 1rem; }
-  .rope-columns { gap: 1rem; }
-  .rope-column-title { font-size: 14px; }
-  .rope-columns h5 { font-size: 24px; }
-  .surrender-insert--rope .rope-columns p { font-size: 17px; line-height: 1.55; }
-}
+/* One fixed composition scales as a whole; mobile never changes its line breaks. */
+.rope-frame { position: relative; width: 100%; margin: 3rem 0; }
+.rope-frame .surrender-insert--rope { box-sizing: border-box; width: 720px; margin: 0; padding: 32px; transform-origin: top left; }
+.rope-frame h3 { font-size: 32px; line-height: 1.2; }
+.rope-frame .surrender-insert--rope p { font-size: 20.5px; line-height: 1.68; }
+.rope-frame .rope-column-title { font-size: 16px; line-height: 1.5; }
+.rope-frame .surrender-insert-footer { font-size: 18px; }
+.surrender-dialog .rope-frame { margin: 0; min-width: 720px; }

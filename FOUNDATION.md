@@ -420,3 +420,8 @@ all approved safety wording and contact destinations.
 Dropping the Rope now uses two independent side-by-side lists. Items flow within
 each list and are not aligned as opposing pairs. This supersedes the original
 paired-row layout and mobile pairing instructions; all wording is preserved.
+
+Dropping the Rope now scales its entire fixed composition proportionally on smaller
+screens, preserving identical text, line breaks, columns, and spacing. It remains
+selectable HTML; the enlarged view retains full reading size with horizontal
+scrolling on phones rather than reflowing or removing content.
