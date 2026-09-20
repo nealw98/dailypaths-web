@@ -437,7 +437,7 @@ if (!existsSync(cssSource)) {
 // owns the final typography cascade; attempting to remove declarations with a
 // regex also removed resets, tokens, and layout rules from complex selectors.
 writeFileSync(join(outDir, 'css', 'style.css'), readFileSync(cssSource, 'utf8'));
-for (const name of ['soft-daylight.css', 'editorial-home.css', 'boundaries.css']) {
+for (const name of ['soft-daylight.css', 'editorial-home.css', 'boundaries.css', 'surrender.css']) {
   writeFileSync(join(outDir, 'css', name), readFileSync(join(ROOT, 'css', name), 'utf8'));
 }
 cpSync(join(ROOT, 'css', 'site-system.css'), join(outDir, 'css', 'site-system.css'));
@@ -458,6 +458,7 @@ if (!IS_PREVIEW) cpSync(join(__dirname, 'js', 'admin.js'), join(outDir, 'js', 'a
 cpSync(join(__dirname, 'js', 'analytics.js'), join(outDir, 'js', 'analytics.js'));
 cpSync(join(__dirname, 'js', 'calendar.js'), join(outDir, 'js', 'calendar.js'));
 cpSync(join(__dirname, 'js', 'boundaries.js'), join(outDir, 'js', 'boundaries.js'));
+cpSync(join(__dirname, 'js', 'surrender.js'), join(outDir, 'js', 'surrender.js'));
 
 // Admin CSS
 cpSync(join(__dirname, 'css', 'admin.css'), join(outDir, 'css', 'admin.css'));

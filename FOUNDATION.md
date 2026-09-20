@@ -388,3 +388,19 @@ sentence immediately followed by “A loving map of daily living.” The telepho
 hero, URL, existing attribution state (no displayed byline), typography, book
 link, and closing “This is a path to peace.” remain. This request updates GitHub
 `2.0` only; no deployment is requested.
+
+## September 20 Surrender handoff implementation
+
+The supplied Surrender handoff manuscript now owns `/topics/powerlessness/` through
+`templates/theme-guides/surrender.mjs` and its exact Markdown source. It replaces
+the older inline guide body for that route. Six contents anchors, five practical
+steps, and three pull quotes retain the approved wording. Principles, the paired
+conflict comparison, and five questions are selectable responsive editorial
+inserts; the simplified orbit illustration includes an optional text transcript.
+All four informational inserts support click/keyboard enlargement, Escape, focus
+containment, and reading-position restoration. Safety remains a non-expandable
+Boundaries-style bordered callout with the requested light teal tint and direct
+telephone/text links. The Three Cs remain article text. The bright existing hero
+and URL are unchanged. The three selected reflections resolve against current
+published content, with the wider reading collection behind a disclosure. This
+supersedes the earlier Surrender artwork/structure notes above.

@@ -9,6 +9,7 @@ import {
 } from '../helpers/theme-data.mjs';
 import { photoHero, readingCard, terminalBand } from './ui.mjs';
 import { LETTING_GO_ARTICLE } from './theme-guides/letting-go.mjs';
+import { renderSurrenderGuide } from './theme-guides/surrender.mjs';
 import { renderBoundariesGuide } from './theme-guides/boundaries.mjs';
 import { GUIDES } from '../helpers/content-catalog.mjs';
 
@@ -272,6 +273,7 @@ function addArticlePullQuotes(html, slug) {
 }
 
 export function renderTopicPage(topic, featuredReadings, allReadings = [], topicShares = []) {
+  if (topic.slug === 'powerlessness') return renderSurrenderGuide(topic, featuredReadings, allReadings);
   if (topic.slug === 'boundaries') return renderBoundariesGuide(topic, allReadings);
   if (topic.slug === 'letting-go') {
     return renderLettingGoArticle(LETTING_GO_ARTICLE, topic, allReadings);
