@@ -416,3 +416,7 @@ soft clay pink #F3E3DF, plum-brown #513A36, urgent action first, and support
 contacts in a separate area divided by #D8BBB4. The callout is not expandable.
 It uses current serif-heading and sans-serif supporting-text font roles, retaining
 all approved safety wording and contact destinations.
+
+Dropping the Rope now uses two independent side-by-side lists. Items flow within
+each list and are not aligned as opposing pairs. This supersedes the original
+paired-row layout and mobile pairing instructions; all wording is preserved.

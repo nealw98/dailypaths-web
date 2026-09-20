@@ -9,11 +9,11 @@
 .surrender-insert dd { margin: 0; font: var(--type-reading-body); }
 :is(.surrender-insert--principles, .surrender-insert--three-cs) dl > div:last-child { padding-bottom: 0; }
 .surrender-insert .surrender-insert-deck { margin: -0.75rem 0 1.75rem; }
-.rope-headings, .rope-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 1.75rem; }
-.rope-headings { font: var(--type-small); font-weight: 600; color: var(--boundary-teal); padding-bottom: .8rem; }
-.rope-pair { border-top: 1px solid var(--boundary-rule); padding: 1.25rem 0; }
-.rope-pair h4 { font: italic 600 28px/1.2 var(--font-devotional); color: var(--boundary-teal); margin: 0 0 .35rem; }
-.rope-side { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+.rope-columns { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 1.75rem; }
+.rope-column-title { font: var(--type-small); font-weight: 600; color: var(--boundary-teal); margin: 0 0 1rem; }
+.rope-columns ul { list-style: none; padding: 0; margin: 0; }
+.rope-columns li, .boundary-body .rope-columns li + li { margin: 0; padding: 1.1rem 0; border-top: 1px solid var(--boundary-rule); }
+.rope-columns h5 { font: italic 600 28px/1.2 var(--font-devotional); color: var(--boundary-teal); margin: 0 0 .35rem; }
 .surrender-insert .surrender-insert-footer { font-size: 18px; margin-top: 1rem; }
 .surrender-insert--questions { display: grid; grid-template-columns: 1fr 1.7fr; gap: 1.75rem; align-items: center; }
 .surrender-insert--questions h3 { color: var(--boundary-teal); margin: 0; }
@@ -54,12 +54,16 @@
 .surrender-dialog .surrender-insert :is(p, dd) { font-size: 24px; }
 .surrender-dialog img { width: 100%; height: auto; display: block; }
 @media (max-width: 600px) {
-  :is(.surrender-insert--principles, .surrender-insert--three-cs) dl > div, .surrender-insert--questions, .rope-pair { grid-template-columns: 1fr; gap: .65rem; }
+  :is(.surrender-insert--principles, .surrender-insert--three-cs) dl > div, .surrender-insert--questions { grid-template-columns: 1fr; gap: .65rem; }
   .surrender-questions { padding-left: 0; border-left: 0; }
   .surrender-insert--questions h3 { margin-bottom: .75rem; }
-  .rope-headings { display: none; }
-  .rope-pair { gap: 1.25rem; }
-  .rope-side { position: static; width: auto; height: auto; clip-path: none; display: block; font: var(--type-small); color: var(--boundary-teal); margin-bottom: .4rem; }
   .surrender-dialog .surrender-insert :is(p, dd) { font-size: 22px; }
 }
 .surrender-dialog .boundary-close { font: 400 32px/1 var(--font-ui); text-decoration: none; width: 44px; height: 44px; padding: 0; }
+@media (max-width: 600px) {
+  .surrender-insert--rope { padding-inline: 1rem; }
+  .rope-columns { gap: 1rem; }
+  .rope-column-title { font-size: 14px; }
+  .rope-columns h5 { font-size: 24px; }
+  .surrender-insert--rope .rope-columns p { font-size: 17px; line-height: 1.55; }
+}
