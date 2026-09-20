@@ -11,15 +11,15 @@ const esc = value => String(value ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;',
 const plain = value => String(value || '').replace(/<[^>]*>/g, '').replace(/\\n/g, ' ').replace(/[*_]/g, '').replace(/\s+/g, ' ').trim();
 
 function articleCard(article) {
-  return `<article class="sd-story"><a class="sd-story-image" href="${bp(article.path)}" tabindex="-1" aria-hidden="true"><img src="${bp('/assets/' + article.image)}" alt="" width="960" height="600" loading="lazy"></a><p class="sd-kicker">${esc(article.category)}</p><h3><a href="${bp(article.path)}">${esc(article.title)}</a></h3><p>${esc(article.description)}</p><a class="sd-text-link" href="${bp(article.path)}" aria-label="Read ${esc(article.title)}">Read the article</a></article>`;
+  return `<article class="sd-story" data-cms-path="${esc(article.path)}"><a class="sd-story-image" href="${bp(article.path)}" tabindex="-1" aria-hidden="true"><img src="${(article.cms?article.image:bp('/assets/' + article.image))}" alt="" width="960" height="600" loading="lazy"></a><p class="sd-kicker">${esc(article.category)}</p><h3><a href="${bp(article.path)}">${esc(article.title)}</a></h3><p class="cms-card-summary">${esc(article.description)}</p><a class="sd-text-link" href="${bp(article.path)}" aria-label="Read ${esc(article.title)}">Read the article</a></article>`;
 }
 
 function guideRows() {
-  return GUIDES.map((g, i) => `<li><a href="${bp(g.path)}"><span class="sd-guide-number" aria-hidden="true">0${i + 1}</span><span><h3>${esc(g.title)}</h3><p>${esc(g.description)}</p></span></a></li>`).join('');
+  return GUIDES.map((g, i) => `<li data-cms-path="${esc(g.path)}"><a href="${bp(g.path)}"><span class="sd-guide-number" aria-hidden="true">0${i + 1}</span><span><h3>${esc(g.title)}</h3><p>${esc(g.description)}</p></span></a></li>`).join('');
 }
 
 function homepageStory(article, image) {
-  return `<article class="ed-story"><a class="ed-story-image" href="${bp(article.path)}" aria-label="${esc(article.title)}"><img src="${bp('/assets/articles/' + image)}" alt="" width="800" height="1000" loading="lazy"></a><div class="ed-story-copy"><p class="ed-label">Articles</p><h3><a href="${bp(article.path)}">${esc(article.title)}</a></h3><p>${esc(article.description)}</p><a class="ed-link" href="${bp(article.path)}">Read the article</a></div></article>`;
+  return `<article class="ed-story" data-cms-path="${esc(article.path)}"><a class="ed-story-image" href="${bp(article.path)}" aria-label="${esc(article.title)}"><img src="${(article.cms&&article.image?article.image:bp('/assets/articles/' + image))}" alt="" width="800" height="1000" loading="lazy"></a><div class="ed-story-copy"><p class="ed-label">Articles</p><h3><a href="${bp(article.path)}">${esc(article.title)}</a></h3><p class="cms-card-summary">${esc(article.description)}</p><a class="ed-link" href="${bp(article.path)}">Read the article</a></div></article>`;
 }
 
 export function renderHomePage(reading) {
