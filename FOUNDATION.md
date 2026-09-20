@@ -404,3 +404,9 @@ telephone/text links. The Three Cs remain article text. The bright existing hero
 and URL are unchanged. The three selected reflections resolve against current
 published content, with the wider reading collection behind a disclosure. This
 supersedes the earlier Surrender artwork/structure notes above.
+
+September 20 follow-up: the orbit transcript is now screen-reader-only, with no
+visible text disclosure. Enlarged Surrender inserts use an X close control with
+an accessible name. The Three Cs now share the principles insert's ruled, italic
+statement/definition treatment and click/keyboard enlargement; the explanatory
+article paragraphs remain intact.

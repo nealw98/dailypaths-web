@@ -18,15 +18,13 @@ Render as three editorial rows rather than a visible table or bullet list. Princ
 
 ## Three Cs
 
-Keep as text within Putting Responsibility Where It Belongs, together with its explanatory prose. No standalone graphic in this preview.
+Render as a live-text editorial callout, with each statement followed by its definition.
 
-**The Three Cs**
-
-**I didn't cause it.**
-
-**I can't control it.**
-
-**I can't cure it.**
+| Statement | Definition |
+| --- | --- |
+| I didn't cause it. | Another person's alcoholism is not caused by something I said or did. |
+| I can't control it. | My efforts cannot make another person stop drinking or choose recovery. |
+| I can't cure it. | I cannot do another person's recovery for them. |
 
 ## When Life Revolves Around Theirs
 

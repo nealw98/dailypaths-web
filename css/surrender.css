@@ -4,10 +4,10 @@
 .surrender-insert h3 { font: var(--type-chapter); margin: 0 0 1.5rem; }
 .surrender-insert p { margin: 0; }
 .surrender-insert dl { margin: 0; }
-.surrender-insert--principles dl > div { display: grid; grid-template-columns: 1fr 1.7fr; gap: 1.5rem; padding: 1.25rem 0; border-top: 1px solid var(--boundary-rule); }
-.surrender-insert--principles dt { font: italic 500 clamp(28px, 2.6vw, 36px)/1.15 var(--font-devotional); color: var(--boundary-teal); }
+:is(.surrender-insert--principles, .surrender-insert--three-cs) dl > div { display: grid; grid-template-columns: 1fr 1.7fr; gap: 1.5rem; padding: 1.25rem 0; border-top: 1px solid var(--boundary-rule); }
+:is(.surrender-insert--principles, .surrender-insert--three-cs) dt { font: italic 500 clamp(28px, 2.6vw, 36px)/1.15 var(--font-devotional); color: var(--boundary-teal); }
 .surrender-insert dd { margin: 0; font: var(--type-reading-body); }
-.surrender-insert--principles dl > div:last-child { padding-bottom: 0; }
+:is(.surrender-insert--principles, .surrender-insert--three-cs) dl > div:last-child { padding-bottom: 0; }
 .surrender-insert .surrender-insert-deck { margin: -0.75rem 0 1.75rem; }
 .rope-headings, .rope-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 1.75rem; }
 .rope-headings { font: var(--type-small); font-weight: 600; color: var(--boundary-teal); padding-bottom: .8rem; }
@@ -20,16 +20,9 @@
 .surrender-questions { border-left: 1px solid var(--boundary-rule); padding-left: 1.75rem; }
 .surrender-questions p { padding: 1rem 0; }
 .surrender-questions p + p { border-top: 1px solid var(--boundary-rule); }
-.surrender-three-cs { margin: 2rem 0; }
-.surrender-three-cs h4 { font: var(--type-reading-body); font-weight: 600; margin: 0 0 1rem; }
-.surrender-three-cs p { margin: .4rem 0; }
 .surrender-orbit { margin: 3rem 0; }
 .surrender-orbit img { display: block; width: 100%; height: auto; }
-.orbit-text { margin-top: 1rem; }
-.orbit-text summary, .surrender-more summary { cursor: pointer; font: var(--type-ui); padding: .6rem 0; text-decoration: underline; text-underline-offset: .2em; }
-.orbit-text dl > div { margin: 1rem 0; }
-.orbit-text dt { font-weight: 600; }
-.orbit-text dd { margin: 0; }
+.surrender-more summary { cursor: pointer; font: var(--type-ui); padding: .6rem 0; text-decoration: underline; text-underline-offset: .2em; }
 .surrender-more { border-top: 1px solid var(--border-soft); margin-top: 2rem; padding-top: 1rem; }
 .surrender-more ul { padding-left: 1.2rem; }
 .surrender-more li { padding: .4rem 0; }
@@ -43,7 +36,7 @@
 .surrender-dialog .surrender-insert :is(p, dd) { font-size: 24px; }
 .surrender-dialog img { width: 100%; height: auto; display: block; }
 @media (max-width: 600px) {
-  .surrender-insert--principles dl > div, .surrender-insert--questions, .rope-pair { grid-template-columns: 1fr; gap: .65rem; }
+  :is(.surrender-insert--principles, .surrender-insert--three-cs) dl > div, .surrender-insert--questions, .rope-pair { grid-template-columns: 1fr; gap: .65rem; }
   .surrender-questions { padding-left: 0; border-left: 0; }
   .surrender-insert--questions h3 { margin-bottom: .75rem; }
   .rope-headings { display: none; }
@@ -51,3 +44,4 @@
   .rope-side { position: static; width: auto; height: auto; clip-path: none; display: block; font: var(--type-small); color: var(--boundary-teal); margin-bottom: .4rem; }
   .surrender-dialog .surrender-insert :is(p, dd) { font-size: 22px; }
 }
+.surrender-dialog .boundary-close { font: 400 32px/1 var(--font-ui); text-decoration: none; width: 44px; height: 44px; padding: 0; }
