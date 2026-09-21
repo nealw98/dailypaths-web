@@ -28,7 +28,7 @@
   --type-label: normal 600 12px/1.5 var(--font-ui);
   --type-nav: normal 500 15px/1.4 var(--font-ui);
   --type-caption: normal 400 12px/1.5 var(--font-ui);
-  --type-wordmark: italic 600 30px/1 var(--font-devotional);
+  --type-wordmark: italic 600 30px/1 "Daily Paths Wordmark", var(--font-devotional);
 
   --content-wide: 1160px;
   --content-reading: 760px;

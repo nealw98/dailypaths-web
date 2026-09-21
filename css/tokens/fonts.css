@@ -1,5 +1,15 @@
 /* Locally served variable fonts; Latin and Latin extended, OFL licenses in assets/fonts. */
 
+/* Keep the masthead from briefly painting a heavier fallback on navigation.
+   This uses the preloaded Latin font without changing prose font loading. */
+@font-face {
+  font-family: 'Daily Paths Wordmark';
+  font-style: italic;
+  font-weight: 600;
+  font-display: block;
+  src: url(../../assets/fonts/cormorant-garamond-italic-latin.woff2) format('woff2');
+}
+
 @font-face {
   font-family: 'Cormorant Garamond';
   font-style: italic;
