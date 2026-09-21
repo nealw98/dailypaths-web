@@ -1,5 +1,29 @@
 # Daily Paths website foundation
 
+## Story Room content management — September 20, 2026
+
+Neal authorized managing existing stories and publishing edits from Story Room.
+Approved article/guide snapshots now live in the Story Room CMS. Drafts remain
+private; only an editor's Publish action replaces the approved snapshot. Eleven
+existing 2.0 pages are imported without changing their URLs or editorial approval
+for launch. Authors cannot publish.
+
+The existing static generator remains. `npm run build` generates the preview,
+reads approved CMS content, then packages a small Worker for article/guide routes
+and their indexes. Those routes read approved snapshots at request time, so edits
+and new pages appear without a manual deployment. Other pages and assets remain
+static. Source templates continue to own shared navigation, styling and layout;
+the CMS owns approved editorial content. A CMS outage falls back to the last build.
+
+Production builds (`SITE_ENV=production node build.mjs`) embed approved snapshots
+as static HTML and update article/guide indexes and sitemap. They fail if the CMS
+feed cannot be read, preventing a daily rebuild from silently restoring old text.
+GitHub main and its current public deployment remain untouched. Connecting the
+production launch and deciding its publication timing remain launch tasks.
+
+The Sites hosting manifest now selects Worker output rather than static-only
+output. `scripts/package-cms-preview.mjs` preserves all non-CMS static routes.
+
 This is the active website work, continuing the existing `2.0` branch. The public website remains on `main`. The September 9, 2026 Soft Daylight decisions below supersede older visual proposals in `design/handoff/`; those files remain useful source material.
 
 ## Shared visual system implemented site-wide

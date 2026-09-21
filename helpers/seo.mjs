@@ -1,4 +1,4 @@
-import { ARTICLES } from './content-catalog.mjs';
+import { ARTICLES, GUIDES } from './content-catalog.mjs';
 import { readingSlug, stepRecordSlug } from './slug-utils.mjs';
 import { BASE_URL, IS_PREVIEW } from './config.mjs';
 
@@ -17,7 +17,7 @@ export function generateSitemap(readings, topics, books = [], steps = []) {
   urls.push({ loc: BASE_URL + '/reflections/favorites/', priority: '0.7', changefreq: 'weekly' });
 
   // Standalone articles; established topic articles are included below.
-  for (const article of ARTICLES.filter(a => a.path.startsWith('/articles/'))) {
+  for (const article of [...ARTICLES,...GUIDES].filter(a => /^\/(articles|guides)\//.test(a.path))) {
     urls.push({ loc: BASE_URL + article.path, priority: '0.6', changefreq: 'monthly' });
   }
 

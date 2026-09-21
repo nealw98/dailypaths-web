@@ -43,7 +43,9 @@ import { renderFavoriteReadingsPage } from './templates/favorite-readings.mjs';
 import { renderStartPage } from './templates/start.mjs';
 import { renderAdminPage } from './templates/admin.mjs';
 import { wrapInLayout } from './templates/base.mjs';
-import { bp, IS_PREVIEW } from './helpers/config.mjs';
+import {getPublished,syncCatalog,applyPublished} from './helpers/story-room.mjs';
+import {ARTICLES,GUIDES} from './helpers/content-catalog.mjs';
+import { bp, IS_PREVIEW, BASE_URL } from './helpers/config.mjs';
 import { renderVoicesFromTheGrave, VOICES_ARTICLE } from './templates/articles/voices-from-the-grave.mjs';
 import { renderLineIKeptMoving, STORY } from './templates/articles/the-line-i-kept-moving.mjs';
 import { renderHomePage, renderArticlesPage, renderGuidesPage, renderReflectionsPage } from './templates/editorial.mjs';
@@ -62,6 +64,8 @@ console.log(`  CSS version: ${cssVersion}`);
 console.log(`  Output: ${outDir}\n`);
 
 const start = Date.now();
+const cmsItems=await getPublished();
+syncCatalog(cmsItems,ARTICLES,GUIDES);
 
 // --- Step 1: Fetch readings, steps, themes ---
 console.log('Fetching readings from Supabase...');
@@ -377,13 +381,14 @@ const ogElapsed = ((Date.now() - ogStart) / 1000).toFixed(1);
 console.log(`  OG images generated in ${ogElapsed}s`);
 
 // --- Step 5: Generate SEO artifacts ---
+await applyPublished(outDir,{production:!IS_PREVIEW,origin:BASE_URL,items:cmsItems});
 console.log('Generating sitemap and robots.txt...');
 writeFileSync(join(outDir, 'sitemap.xml'), generateSitemap(readings, TOPICS, BOOKS, STEPS), 'utf-8');
 writeFileSync(join(outDir, 'robots.txt'), generateRobotsTxt(), 'utf-8');
 
 // --- Step 5b: Generate redirect pages for old slugs ---
 console.log('Generating redirect pages for old slugs...');
-import { BASE_URL } from './helpers/config.mjs';
+
 
 function redirectHtml(newPath) {
   const canonicalUrl = `${BASE_URL}${newPath}`;
