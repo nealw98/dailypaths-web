@@ -491,3 +491,11 @@ Do not silently remove review labels or infer approval from deployment.
 Detachment, Finding Help, and Your First Al-Anon Meeting contain placeholder
 content, not editorial drafts awaiting approval. Neal still needs to write these
 articles/guides. Page notices and listing labels identify them as placeholders.
+
+## First Meeting contributor connection — September 21, 2026
+
+Lance W.'s Story Room draft de45655f-f3a2-46a4-a2a7-a52a7174ed98 now contains
+the website placeholder text as his editable starting point. It remains a private
+draft. The website maps that stable story ID to /articles/your-first-al-anon-meeting/
+regardless of the CMS publication slug. Only published snapshots replace the page;
+unpublished edits remain private. The placeholder remains until the first publication.

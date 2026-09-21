@@ -1,3 +1,4 @@
+import {LAUNCH_REVIEW} from './launch-review.mjs';
 import {writeFileSync,readFileSync,mkdirSync,existsSync} from 'node:fs';
 import {join,dirname} from 'node:path';
 export const CMS_ORIGIN='https://daily-paths-story-room.nealw98.chatgpt.site';
@@ -18,14 +19,15 @@ export function composePage(base,approved){
 }
 export async function getPublished(){
  const r=await fetch(CMS_ORIGIN+'/api/room/published',{signal:AbortSignal.timeout(20000)});if(!r.ok)throw new Error('Story Room publication feed unavailable; stopping to preserve approved content.');
- const data=await r.json();if(!Array.isArray(data.items))throw new Error('Invalid Story Room publication feed.');return data.items.filter(x=>validPath(x.path));
+ const data=await r.json();if(!Array.isArray(data.items))throw new Error('Invalid Story Room publication feed.');return data.items.filter(x=>validPath(x.path)).map(item=>({...item,cmsPath:item.path,path:LAUNCH_REVIEW.linkedStories[item.id]||item.path}));
 }
 export function syncCatalog(items,articles,guides){
  for(const item of items){const wanted=item.content_type==='guide'?guides:articles,other=item.content_type==='guide'?articles:guides;const old=other.findIndex(x=>x.path===item.path);if(old>=0)other.splice(old,1);const data={title:item.card_title||item.title,path:item.path,description:item.summary,image:item.hero_url,alt:item.hero_alt,category:'Article',author:item.author,cms:true};const existing=wanted.find(x=>x.path===item.path);if(existing){data.category=existing.category;Object.assign(existing,data);}else wanted.push(data);}
 }
 export async function applyPublished(outDir,{production=false,origin=PREVIEW_ORIGIN,items}={}){
  items??=await getPublished();
- for(const item of items){const r=await fetch(CMS_ORIGIN+'/api/room/published?path='+encodeURIComponent(item.path),{signal:AbortSignal.timeout(20000)});if(!r.ok)throw new Error('Could not retrieve approved page '+item.path);const page=await r.json();const dest=join(outDir,item.path,'index.html');let html=composePage(existsSync(dest)?readFileSync(dest,'utf8'):null,page.html);
+ for(const item of items){const r=await fetch(CMS_ORIGIN+'/api/room/published?path='+encodeURIComponent(item.cmsPath||item.path),{signal:AbortSignal.timeout(20000)});if(!r.ok)throw new Error('Could not retrieve approved page '+item.path);const page=await r.json();const dest=join(outDir,item.path,'index.html');let html=composePage(existsSync(dest)?readFileSync(dest,'utf8'):null,page.html);
+  if(item.cmsPath&&item.cmsPath!==item.path)html=html.replaceAll(item.cmsPath,item.path);
   html=html.replaceAll(PREVIEW_ORIGIN,origin);if(production)html=html.replace(/<meta\b(?=[^>]*name=["']robots["'])[^>]*>/gi,'');mkdirSync(dirname(dest),{recursive:true});writeFileSync(dest,html);
  }
  return items;

@@ -12,20 +12,30 @@ export function createCmsWorker(fallback,knownPaths,composePage,launchPolicy={},
   if(!eligible)return new Response('Page not found',{status:404});
   // These three manuscripts are explicitly awaiting review. Keep approved CMS
   // snapshots intact while the development site renders the review version.
-  if(launchPolicy.drafts?.includes(path)&&fallback[path])return new Response(request.method==='HEAD'?null:fallback[path],{headers:{'Content-Type':'text/html; charset=utf-8','Cache-Control':'no-store','X-Robots-Tag':'noindex, nofollow'}});
+  if(launchPolicy.drafts?.includes(path)&&!launchPolicy.cmsManaged?.includes(path)&&fallback[path])return new Response(request.method==='HEAD'?null:fallback[path],{headers:{'Content-Type':'text/html; charset=utf-8','Cache-Control':'no-store','X-Robots-Tag':'noindex, nofollow'}});
   let html=fallback[path],revision='';
   try{
-   const r=await fetch(origin+'/api/room/published'+(isIndex?'':'?path='+encodeURIComponent(path)),{signal:AbortSignal.timeout(10000)});
+   let cmsPath=path;
+   const linkedId=Object.keys(launchPolicy.linkedStories||{}).find(id=>launchPolicy.linkedStories[id]===path);
+   if(linkedId){
+    const catalogResponse=await fetch(origin+'/api/room/published',{signal:AbortSignal.timeout(10000)});
+    if(!catalogResponse.ok)throw Error('CMS unavailable');
+    const catalog=await catalogResponse.json();const published=(catalog.items||[]).find(item=>item.id===linkedId);
+    if(!published)throw Error('Story not published yet');
+    cmsPath=published.path;
+   }
+   const r=await fetch(origin+'/api/room/published'+(isIndex?'':'?path='+encodeURIComponent(cmsPath)),{signal:AbortSignal.timeout(10000)});
    if(r.ok){const data=await r.json();
-    if(!isIndex){html=composePage(html,data.html);revision=data.revision;}
+    if(!isIndex){html=composePage(html,cmsPath===path?data.html:data.html.replaceAll(cmsPath,path));revision=data.revision;}
     else{
-     const items=(data.items||[]).filter(item=>!launchPolicy.deferred?.includes(item.path)).map(item=>{const override=launchPolicy.metadata?.[item.path];return override?{...item,card_title:override.title||item.card_title,summary:(override.description||item.summary)+(launchPolicy.drafts?.includes(item.path)?' Placeholder':'')}:item;});
+     const items=(data.items||[]).map(item=>({...item,path:launchPolicy.linkedStories?.[item.id]||item.path})).filter(item=>!launchPolicy.deferred?.includes(item.path)).map(item=>{const override=launchPolicy.metadata?.[item.path];return override?{...item,card_title:override.title||item.card_title,summary:(override.description||item.summary)+(launchPolicy.drafts?.includes(item.path)?' Placeholder':'')}:item;});
      // Keep the established index composition. Add newly published pages in the same lists.
      let response=new Response(html,{headers:{'Content-Type':'text/html'}});
      let rewriter=new HTMLRewriter();
      for(const item of items){
       if(!/^\/[a-z0-9/-]+\/$/.test(item.path))continue;
       const selector=`a[href="${item.path}"]`;
+      if(launchPolicy.cmsManaged?.includes(item.path))rewriter=rewriter.on(`[data-cms-path="${item.path}"] .sd-kicker`,{element(el){el.setInnerContent('Article'+(item.author?' · '+item.author:''));}});
       rewriter=rewriter.on(`h3 ${selector},h2 ${selector}`,{element(el){el.setInnerContent(item.card_title||item.title);}});
       rewriter=rewriter.on(`.sd-guide-list ${selector} h3`,{element(el){el.setInnerContent(item.card_title||item.title);}});
       rewriter=rewriter.on(`.sd-guide-list ${selector} p`,{element(el){el.setInnerContent(item.summary);}});

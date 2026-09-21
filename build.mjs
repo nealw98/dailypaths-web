@@ -46,7 +46,7 @@ import { wrapInLayout } from './templates/base.mjs';
 import {getPublished,syncCatalog,applyPublished} from './helpers/story-room.mjs';
 import {ARTICLES,GUIDES} from './helpers/content-catalog.mjs';
 import {renderLaunchDrafts} from './templates/launch-drafts.mjs';
-import {transformLaunchPreview} from './helpers/launch-review.mjs';
+import {LAUNCH_REVIEW,transformLaunchPreview} from './helpers/launch-review.mjs';
 import { bp, IS_PREVIEW, BASE_URL } from './helpers/config.mjs';
 import { renderVoicesFromTheGrave, VOICES_ARTICLE } from './templates/articles/voices-from-the-grave.mjs';
 import { renderLineIKeptMoving, STORY } from './templates/articles/the-line-i-kept-moving.mjs';
@@ -387,6 +387,7 @@ await applyPublished(outDir,{production:!IS_PREVIEW,origin:BASE_URL,items:cmsIte
 // Review drafts replace only the development rendering, never CMS approval.
 if (IS_PREVIEW) {
   for (const draft of renderLaunchDrafts()) {
+    if (LAUNCH_REVIEW.cmsManaged.includes(draft.path) && cmsItems.some(item => item.path === draft.path)) continue;
     mkdirSync(join(outDir, draft.path), {recursive:true});
     writePage(join(outDir, draft.path, 'index.html'), draft.html);
   }

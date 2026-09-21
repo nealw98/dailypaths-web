@@ -2,6 +2,8 @@
 // change the production catalog, or imply approval of a CMS publication.
 export const LAUNCH_REVIEW = {
   deferred: ['/topics/one-day-at-a-time/', '/topics/self-worth/', '/topics/gratitude-and-hope/', '/topics/honesty/'],
+  linkedStories: { 'de45655f-f3a2-46a4-a2a7-a52a7174ed98': '/articles/your-first-al-anon-meeting/' },
+  cmsManaged: ['/articles/your-first-al-anon-meeting/'],
   drafts: ['/topics/detachment/', '/about-alanon/', '/articles/your-first-al-anon-meeting/'],
   metadata: {
     '/about-alanon/': { title: 'Finding Help', description: 'An introduction to Al-Anon, what a first meeting can be like, and ways to find support.' },
@@ -17,7 +19,7 @@ export const FIRST_MEETING = {
 };
 export function launchItems(items, preview) {
   if (!preview) return items;
-  return items.filter(item => !LAUNCH_REVIEW.deferred.includes(item.path)).map(item => ({...item, ...LAUNCH_REVIEW.metadata[item.path], reviewDraft: LAUNCH_REVIEW.drafts.includes(item.path)}));
+  return items.filter(item => !LAUNCH_REVIEW.deferred.includes(item.path)).map(item => ({...item, ...LAUNCH_REVIEW.metadata[item.path], reviewDraft: LAUNCH_REVIEW.drafts.includes(item.path) && !(item.cms && LAUNCH_REVIEW.cmsManaged.includes(item.path))}));
 }
 
 // Also applied to approved CMS HTML at request time: remove promotional blocks

@@ -42,19 +42,27 @@ assert.equal(launchItems([{path:LAUNCH_REVIEW.deferred[0]}],false).length,1,'Pro
 const originalFetch=globalThis.fetch,originalRewriter=globalThis.HTMLRewriter;
 let cmsRequests=0;const selectors=[];
 globalThis.fetch=async url=>{cmsRequests++;const u=new URL(url);if(u.searchParams.has('path'))return Response.json({html:'<main><div class="story-related-links"><article><p class="sd-kicker">Article · Coming soon</p><h3>Unwritten</h3></article></div><p>Approved body stays here.</p><aside class="theme-related-guide"><a href="/topics/one-day-at-a-time/">Deferred</a></aside></main>',revision:'test-approved'});
- return Response.json({items:[...LAUNCH_REVIEW.deferred.map(path=>({path,title:'Deferred',content_type:'article'})),{path:'/about-alanon/',card_title:'Finding Support',content_type:'guide'}]});};
+ return Response.json({items:[{id:'de45655f-f3a2-46a4-a2a7-a52a7174ed98',path:'/articles/lances-new-title/',title:'First Meeting',content_type:'article'},...LAUNCH_REVIEW.deferred.map(path=>({path,title:'Deferred',content_type:'article'})),{path:'/about-alanon/',card_title:'Finding Support',content_type:'guide'}]});};
 globalThis.HTMLRewriter=class{on(selector){selectors.push(selector);return this;}transform(response){return response;}};
 try{
  const worker=createCmsWorker(fallback,paths.map(path=>({path})),composePage,LAUNCH_REVIEW,transformLaunchPreview);
- for(const route of LAUNCH_REVIEW.drafts){const response=await worker.fetch(new Request('https://review.test'+route));assert.equal(response.status,200);assert.match(await response.text(),/Placeholder content/);}
+ for(const route of LAUNCH_REVIEW.drafts.filter(path=>!LAUNCH_REVIEW.cmsManaged.includes(path))){const response=await worker.fetch(new Request('https://review.test'+route));assert.equal(response.status,200);assert.match(await response.text(),/Placeholder content/);}
  assert.equal(cmsRequests,0,'Draft review pages must not request an approved replacement');
+ const meeting=await worker.fetch(new Request('https://review.test/articles/your-first-al-anon-meeting/'));
+ const meetingHtml=await meeting.text();assert.match(meetingHtml,/Approved body stays here/);assert.doesNotMatch(meetingHtml,/Placeholder content/);
+ assert.equal(meeting.headers.get('X-Story-Room-Revision'),'test-approved');
  const response=await worker.fetch(new Request('https://review.test/topics/letting-go/'));const html=await response.text();
  assert.match(html,/Approved body stays here/);assert.doesNotMatch(html,/Coming soon|href="\/topics\/one-day-at-a-time\//);assert.equal(response.headers.get('X-Story-Room-Revision'),'test-approved');
  await worker.fetch(new Request('https://review.test/guides/'));
  assert.ok(selectors.some(s=>s.includes('/about-alanon/')));
  for(const deferred of LAUNCH_REVIEW.deferred)assert.ok(!selectors.some(s=>s.includes(deferred)),`CMS tries to reintroduce ${deferred}`);
  const head=await worker.fetch(new Request('https://review.test/about-alanon/',{method:'HEAD'}));assert.equal(await head.text(),'');
+ globalThis.fetch=async()=>Response.json({items:[]});
+ const notPublished=await worker.fetch(new Request('https://review.test/articles/your-first-al-anon-meeting/'));
+ assert.match(await notPublished.text(),/Placeholder content/);
  globalThis.fetch=async()=>{throw Error('Simulated CMS outage');};
+ const unpublished=await worker.fetch(new Request('https://review.test/articles/your-first-al-anon-meeting/'));
+ assert.match(await unpublished.text(),/Placeholder content/);
  const offline=await worker.fetch(new Request('https://review.test/guides/'));assert.equal(offline.status,200);assert.match(await offline.text(),/Finding Help/);
 } finally {globalThis.fetch=originalFetch;globalThis.HTMLRewriter=originalRewriter;}
 console.log('Launch review checks passed: retained routes, four guides/four articles, draft isolation, CMS filtering/outage fallback, canonical preservation, and 366 reflections.');
