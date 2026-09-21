@@ -25,6 +25,9 @@ export function launchItems(items, preview) {
 // Self-contained for inclusion in the preview Worker.
 export function transformLaunchPreview(html, pathname, policy = LAUNCH_REVIEW) {
   if (!html) return html;
+  // Apply the September 21 hero replacement to older CMS snapshots as well.
+  html = html.replace(/<img\b[^>]*letting-go-hero\.jpg[^>]*>/gi, tag => tag.replace(/\balt=["'][^"']*["']/i, 'alt="A tightrope walker balances above a circus ring, viewed from overhead"'));
+  html = html.replaceAll('letting-go-hero.jpg', 'letting-go-tightrope.webp');
   const deferredHref = href => {
     try { const url = new URL(href, 'https://daily-paths-soft-daylight.nealw98.chatgpt.site');
       return ['daily-paths-soft-daylight.nealw98.chatgpt.site', 'dailypaths.org'].includes(url.hostname) && policy.deferred.includes(url.pathname);

@@ -17,8 +17,8 @@ export const LETTING_GO_ARTICLE = {
   title: 'Letting Go',
   definition: 'Caring without carrying &mdash; releasing the need to manage, fix, or control.',
   hero: {
-    image: 'articles/letting-go-hero.jpg',
-    alt: 'A woman pauses during a phone call at her dining table in warm evening light',
+    image: 'articles/letting-go-tightrope.webp',
+    alt: 'A tightrope walker balances above a circus ring, viewed from overhead',
   },
 
   /**
