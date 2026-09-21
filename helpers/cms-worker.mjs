@@ -1,6 +1,6 @@
 // This small HTTP layer serves only CMS-managed routes. The existing static
 // generator and its assets continue to serve reflections and the rest of the site.
-export function createCmsWorker(fallback,knownPaths,composePage){
+export function createCmsWorker(fallback,knownPaths,composePage,launchPolicy={},transformPreview=html=>html){
  const origin='https://daily-paths-story-room.nealw98.chatgpt.site';
  const esc=s=>String(s||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
  return {async fetch(request){
@@ -10,13 +10,16 @@ export function createCmsWorker(fallback,knownPaths,composePage){
   const isIndex=['/','/articles/','/guides/'].includes(path);
   const eligible=isIndex||/^\/(articles|guides|topics)\/[a-z0-9-]+\/$/.test(path)||path==='/about-alanon/';
   if(!eligible)return new Response('Page not found',{status:404});
+  // These three manuscripts are explicitly awaiting review. Keep approved CMS
+  // snapshots intact while the development site renders the review version.
+  if(launchPolicy.drafts?.includes(path)&&fallback[path])return new Response(request.method==='HEAD'?null:fallback[path],{headers:{'Content-Type':'text/html; charset=utf-8','Cache-Control':'no-store','X-Robots-Tag':'noindex, nofollow'}});
   let html=fallback[path],revision='';
   try{
    const r=await fetch(origin+'/api/room/published'+(isIndex?'':'?path='+encodeURIComponent(path)),{signal:AbortSignal.timeout(10000)});
    if(r.ok){const data=await r.json();
     if(!isIndex){html=composePage(html,data.html);revision=data.revision;}
     else{
-     const items=data.items||[];
+     const items=(data.items||[]).filter(item=>!launchPolicy.deferred?.includes(item.path)).map(item=>{const override=launchPolicy.metadata?.[item.path];return override?{...item,card_title:override.title||item.card_title,summary:(override.description||item.summary)+(launchPolicy.drafts?.includes(item.path)?' Draft for review':'')}:item;});
      // Keep the established index composition. Add newly published pages in the same lists.
      let response=new Response(html,{headers:{'Content-Type':'text/html'}});
      let rewriter=new HTMLRewriter();
@@ -39,6 +42,7 @@ export function createCmsWorker(fallback,knownPaths,composePage){
    }
   }catch{ /* Existing generated pages remain available during a transient CMS outage. */ }
   if(!html)return new Response('Page not found',{status:404});
+  html=transformPreview(html,path,launchPolicy);
   return new Response(request.method==='HEAD'?null:html,{headers:{'Content-Type':'text/html; charset=utf-8','Cache-Control':'no-store','X-Robots-Tag':'noindex, nofollow',...(revision?{'X-Story-Room-Revision':revision}:{})}});
  }};
 }

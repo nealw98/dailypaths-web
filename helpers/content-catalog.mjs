@@ -1,3 +1,5 @@
+import { IS_PREVIEW } from './config.mjs';
+import { FIRST_MEETING } from './launch-review.mjs';
 // Navigation and presentation are independent of the established content URLs.
 // These are existing source pages; editorial expansion is tracked in FOUNDATION.md.
 export const GUIDES = [
@@ -25,3 +27,5 @@ export const ARTICLES = [
   { title: 'The Line I Kept Moving', path: '/articles/the-line-i-kept-moving/', image: 'articles/the-line-i-kept-moving/dinner-table-photo.webp', alt: 'A woman with dinner at the table while her adult son prepares another meal in the kitchen', category: 'Personal story · Jeff J.', description: 'Learning to set boundaries with my mother—and to stop disappearing in the effort to earn her love.' },
   VOICES_ARTICLE,
 ];
+
+if (IS_PREVIEW) ARTICLES.push(FIRST_MEETING);

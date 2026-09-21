@@ -13,7 +13,7 @@ import { TYPOGRAPHY_REVIEW_DAY, TYPOGRAPHY_REVIEW_PATH, GUIDE_REVIEW_PATH } from
  */
 
 import 'dotenv/config';
-import { mkdirSync, writeFileSync, readFileSync, cpSync, rmSync, existsSync } from 'node:fs';
+import { mkdirSync, writeFileSync, readFileSync, cpSync, rmSync, existsSync, readdirSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -45,6 +45,8 @@ import { renderAdminPage } from './templates/admin.mjs';
 import { wrapInLayout } from './templates/base.mjs';
 import {getPublished,syncCatalog,applyPublished} from './helpers/story-room.mjs';
 import {ARTICLES,GUIDES} from './helpers/content-catalog.mjs';
+import {renderLaunchDrafts} from './templates/launch-drafts.mjs';
+import {transformLaunchPreview} from './helpers/launch-review.mjs';
 import { bp, IS_PREVIEW, BASE_URL } from './helpers/config.mjs';
 import { renderVoicesFromTheGrave, VOICES_ARTICLE } from './templates/articles/voices-from-the-grave.mjs';
 import { renderLineIKeptMoving, STORY } from './templates/articles/the-line-i-kept-moving.mjs';
@@ -382,6 +384,25 @@ console.log(`  OG images generated in ${ogElapsed}s`);
 
 // --- Step 5: Generate SEO artifacts ---
 await applyPublished(outDir,{production:!IS_PREVIEW,origin:BASE_URL,items:cmsItems});
+// Review drafts replace only the development rendering, never CMS approval.
+if (IS_PREVIEW) {
+  for (const draft of renderLaunchDrafts()) {
+    mkdirSync(join(outDir, draft.path), {recursive:true});
+    writePage(join(outDir, draft.path, 'index.html'), draft.html);
+  }
+  function prepareLaunchDirectory(directory) {
+    for (const entry of readdirSync(directory, {withFileTypes:true})) {
+      const filename=join(directory,entry.name);
+      if(entry.isDirectory()) prepareLaunchDirectory(filename);
+      else if(entry.name.endsWith('.html')) {
+        const original=readFileSync(filename,'utf8');
+        const prepared=transformLaunchPreview(original);
+        if(prepared!==original) writeFileSync(filename,prepared);
+      }
+    }
+  }
+  prepareLaunchDirectory(outDir);
+}
 console.log('Generating sitemap and robots.txt...');
 writeFileSync(join(outDir, 'sitemap.xml'), generateSitemap(readings, TOPICS, BOOKS, STEPS), 'utf-8');
 writeFileSync(join(outDir, 'robots.txt'), generateRobotsTxt(), 'utf-8');
@@ -442,7 +463,7 @@ if (!existsSync(cssSource)) {
 // owns the final typography cascade; attempting to remove declarations with a
 // regex also removed resets, tokens, and layout rules from complex selectors.
 writeFileSync(join(outDir, 'css', 'style.css'), readFileSync(cssSource, 'utf8'));
-for (const name of ['soft-daylight.css', 'editorial-home.css', 'boundaries.css', 'surrender.css']) {
+for (const name of ['soft-daylight.css', 'editorial-home.css', 'boundaries.css', 'surrender.css', 'launch-review.css']) {
   writeFileSync(join(outDir, 'css', name), readFileSync(join(ROOT, 'css', name), 'utf8'));
 }
 cpSync(join(ROOT, 'css', 'site-system.css'), join(outDir, 'css', 'site-system.css'));

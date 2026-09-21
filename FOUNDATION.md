@@ -453,3 +453,35 @@ scrolling on phones rather than reflowing or removing content.
 The enlarged Dropping the Rope view now scales to the available device width,
 retaining the same composition without horizontal scrolling. This supersedes
 the full-reading-size minimum width on phones.
+
+## September 21 content launch preparation — awaiting review
+
+The launch-facing development collection is now four core guides: Boundaries,
+Surrender, Detachment, and Finding Help. Finding Help reuses `/about-alanon/`.
+This supersedes earlier six-guide promotion plans without deleting One Day at a
+Time or Finding Yourself. Gratitude & Hope is one combined inherited article;
+it and Honesty & Self-Awareness are deferred from development promotion as well.
+All four deferred routes and their content remain for migration review.
+
+New review manuscripts for Detachment, Finding Help, and Your First Al-Anon
+Meeting are in `editorial/launch-review/`. They render with a visible editorial
+review notice in the preview; none is approved launch copy. The first-meeting
+article fills the missing orientation and has no personal attribution. The
+inventory and review notes record sources, readiness, missing drafts, contributor
+approvals, and deferred search/SEO questions. Incoming: two planned articles and
+one written personal story with its author for a final review, not yet supplied.
+
+Boundaries, Surrender, Letting Go, Voices from the Grave, and Jeff J.'s existing
+story retain their authoritative prose and art. Deferred recommendations and the
+unwritten Power of Saying No card are suppressed; personal stories remain within
+Articles. Voices attribution is still inconsistent between the earlier foundation
+record and CMS metadata, so the existing page byline state is preserved pending
+confirmation. Contributor approval for The Line I Kept Moving remains separate.
+
+`helpers/launch-review.mjs` is a preview presentation policy, not a CMS approval
+record. The three review paths temporarily use their GitHub manuscripts in the
+preview Worker while approved Story Room snapshots remain untouched. Other
+approved pages remain live through Story Room, with the same deferred-link policy
+at build and request time. After Neal approves the manuscripts, reconcile them
+with Story Room and retire the corresponding review overrides explicitly.
+Do not silently remove review labels or infer approval from deployment.

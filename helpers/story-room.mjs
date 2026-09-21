@@ -21,7 +21,7 @@ export async function getPublished(){
  const data=await r.json();if(!Array.isArray(data.items))throw new Error('Invalid Story Room publication feed.');return data.items.filter(x=>validPath(x.path));
 }
 export function syncCatalog(items,articles,guides){
- for(const item of items){const wanted=item.content_type==='guide'?guides:articles,other=item.content_type==='guide'?articles:guides;const old=other.findIndex(x=>x.path===item.path);if(old>=0)other.splice(old,1);const data={title:item.card_title||item.title,path:item.path,description:item.summary,image:item.hero_url,alt:item.hero_alt,category:item.author?'Personal story · '+item.author:'Article',cms:true};const existing=wanted.find(x=>x.path===item.path);if(existing)Object.assign(existing,data);else wanted.push(data);}
+ for(const item of items){const wanted=item.content_type==='guide'?guides:articles,other=item.content_type==='guide'?articles:guides;const old=other.findIndex(x=>x.path===item.path);if(old>=0)other.splice(old,1);const data={title:item.card_title||item.title,path:item.path,description:item.summary,image:item.hero_url,alt:item.hero_alt,category:'Article',author:item.author,cms:true};const existing=wanted.find(x=>x.path===item.path);if(existing){data.category=existing.category;Object.assign(existing,data);}else wanted.push(data);}
 }
 export async function applyPublished(outDir,{production=false,origin=PREVIEW_ORIGIN,items}={}){
  items??=await getPublished();
