@@ -485,3 +485,9 @@ approved pages remain live through Story Room, with the same deferred-link polic
 at build and request time. After Neal approves the manuscripts, reconcile them
 with Story Room and retire the corresponding review overrides explicitly.
 Do not silently remove review labels or infer approval from deployment.
+
+## Placeholder status — September 21, 2026
+
+Detachment, Finding Help, and Your First Al-Anon Meeting contain placeholder
+content, not editorial drafts awaiting approval. Neal still needs to write these
+articles/guides. Page notices and listing labels identify them as placeholders.

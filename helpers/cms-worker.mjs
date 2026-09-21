@@ -19,7 +19,7 @@ export function createCmsWorker(fallback,knownPaths,composePage,launchPolicy={},
    if(r.ok){const data=await r.json();
     if(!isIndex){html=composePage(html,data.html);revision=data.revision;}
     else{
-     const items=(data.items||[]).filter(item=>!launchPolicy.deferred?.includes(item.path)).map(item=>{const override=launchPolicy.metadata?.[item.path];return override?{...item,card_title:override.title||item.card_title,summary:(override.description||item.summary)+(launchPolicy.drafts?.includes(item.path)?' Draft for review':'')}:item;});
+     const items=(data.items||[]).filter(item=>!launchPolicy.deferred?.includes(item.path)).map(item=>{const override=launchPolicy.metadata?.[item.path];return override?{...item,card_title:override.title||item.card_title,summary:(override.description||item.summary)+(launchPolicy.drafts?.includes(item.path)?' Placeholder':'')}:item;});
      // Keep the established index composition. Add newly published pages in the same lists.
      let response=new Response(html,{headers:{'Content-Type':'text/html'}});
      let rewriter=new HTMLRewriter();

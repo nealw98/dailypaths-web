@@ -10,7 +10,7 @@ const source=fs.readFileSync(path.join(root,'server/index.js'),'utf8');
 const fallback=JSON.parse(source.split('\n')[0].slice('const fallback='.length,-1));
 const paths=Object.keys(fallback);
 for(const route of LAUNCH_REVIEW.deferred) assert.ok(fallback[route],`Retain ${route}`);
-for(const route of LAUNCH_REVIEW.drafts) assert.match(fallback[route],/Editorial draft for review/);
+for(const route of LAUNCH_REVIEW.drafts) assert.match(fallback[route],/Placeholder content/);
 for(const route of ['/','/guides/','/articles/']){
  for(const deferred of LAUNCH_REVIEW.deferred) assert.ok(!fallback[route].includes(`href="${deferred}"`),`${route} promotes ${deferred}`);
 }
@@ -46,7 +46,7 @@ globalThis.fetch=async url=>{cmsRequests++;const u=new URL(url);if(u.searchParam
 globalThis.HTMLRewriter=class{on(selector){selectors.push(selector);return this;}transform(response){return response;}};
 try{
  const worker=createCmsWorker(fallback,paths.map(path=>({path})),composePage,LAUNCH_REVIEW,transformLaunchPreview);
- for(const route of LAUNCH_REVIEW.drafts){const response=await worker.fetch(new Request('https://review.test'+route));assert.equal(response.status,200);assert.match(await response.text(),/Editorial draft for review/);}
+ for(const route of LAUNCH_REVIEW.drafts){const response=await worker.fetch(new Request('https://review.test'+route));assert.equal(response.status,200);assert.match(await response.text(),/Placeholder content/);}
  assert.equal(cmsRequests,0,'Draft review pages must not request an approved replacement');
  const response=await worker.fetch(new Request('https://review.test/topics/letting-go/'));const html=await response.text();
  assert.match(html,/Approved body stays here/);assert.doesNotMatch(html,/Coming soon|href="\/topics\/one-day-at-a-time\//);assert.equal(response.headers.get('X-Story-Room-Revision'),'test-approved');
