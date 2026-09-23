@@ -1,9 +1,10 @@
 // Development editorial review only. These choices do not delete legacy routes,
 // change the production catalog, or imply approval of a CMS publication.
 export const LAUNCH_REVIEW = {
+  retired: ['/articles/detachment/'],
   deferred: ['/topics/one-day-at-a-time/', '/topics/self-worth/', '/topics/gratitude-and-hope/', '/topics/honesty/'],
-  linkedStories: { 'de45655f-f3a2-46a4-a2a7-a52a7174ed98': '/articles/your-first-al-anon-meeting/' },
-  cmsManaged: ['/articles/your-first-al-anon-meeting/'],
+  linkedStories: { 'cms-detachment': '/articles/detachment/', '051e6f44-9d55-4a16-ba92-61a7a06f642e': '/topics/detachment/', 'de45655f-f3a2-46a4-a2a7-a52a7174ed98': '/articles/your-first-al-anon-meeting/' },
+  cmsManaged: ['/topics/detachment/', '/articles/your-first-al-anon-meeting/'],
   drafts: ['/topics/detachment/', '/about-alanon/', '/articles/your-first-al-anon-meeting/'],
   metadata: {
     '/about-alanon/': { title: 'Finding Help', description: 'An introduction to Al-Anon, what a first meeting can be like, and ways to find support.' },
@@ -19,7 +20,7 @@ export const FIRST_MEETING = {
 };
 export function launchItems(items, preview) {
   if (!preview) return items;
-  return items.filter(item => !LAUNCH_REVIEW.deferred.includes(item.path)).map(item => ({...item, ...LAUNCH_REVIEW.metadata[item.path], reviewDraft: LAUNCH_REVIEW.drafts.includes(item.path) && !(item.cms && LAUNCH_REVIEW.cmsManaged.includes(item.path))}));
+  return items.filter(item => !LAUNCH_REVIEW.deferred.includes(item.path) && !LAUNCH_REVIEW.retired.includes(item.path)).map(item => ({...item, ...LAUNCH_REVIEW.metadata[item.path], reviewDraft: LAUNCH_REVIEW.drafts.includes(item.path) && !(item.cms && LAUNCH_REVIEW.cmsManaged.includes(item.path))}));
 }
 
 // Also applied to approved CMS HTML at request time: remove promotional blocks
@@ -27,6 +28,14 @@ export function launchItems(items, preview) {
 // Self-contained for inclusion in the preview Worker.
 export function transformLaunchPreview(html, pathname, policy = LAUNCH_REVIEW) {
   if (!html) return html;
+  // Remove the retired article's cards, including cached CMS fallback listings.
+  const retiredHref = href => {
+    try { const u = new URL(href, 'https://daily-paths-soft-daylight.nealw98.chatgpt.site');
+      return ['daily-paths-soft-daylight.nealw98.chatgpt.site', 'dailypaths.org'].includes(u.hostname) && (policy.retired || []).includes(u.pathname);
+    } catch { return false; }
+  };
+  html = html.replace(/<article\b[^>]*>[\s\S]*?<\/article>/gi, block => [...block.matchAll(/<a\b[^>]*\bhref=["']([^"']+)["']/gi)].some(m => retiredHref(m[1])) && /class=["'][^"']*\bsd-story\b/.test(block.slice(0, block.indexOf('>') + 1)) ? '' : block);
+  html = html.replace(/<a\b[^>]*\bhref=["']([^"']+)["'][^>]*>([\s\S]*?)<\/a>/gi, (whole, href, label) => retiredHref(href) ? label : whole);
   // Apply the September 21 hero replacement to older CMS snapshots as well.
   html = html.replace(/<img\b[^>]*letting-go-hero\.jpg[^>]*>/gi, tag => tag.replace(/\balt=["'][^"']*["']/i, 'alt="A tightrope walker balances above a circus ring, viewed from overhead"'));
   html = html.replaceAll('letting-go-hero.jpg', 'letting-go-tightrope.webp');
