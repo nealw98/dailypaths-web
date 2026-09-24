@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import {applyEditorialPolicy} from './helpers/editorial-policy.mjs';
 import { TYPOGRAPHY_REVIEW_DAY, TYPOGRAPHY_REVIEW_PATH, GUIDE_REVIEW_PATH } from './helpers/typography-review.mjs';
 
 /**
@@ -192,7 +193,7 @@ let pageCount = 0;
 
 function writePage(filePath, html) {
   if (IS_PREVIEW) html = html.replace(/<form\b[^>]*data-share-form[\s\S]*?<\/form>/g, '<p class="sd-small">Contributions are available on the live site.</p>');
-  writeFileSync(filePath, html, 'utf-8');
+  writeFileSync(filePath, applyEditorialPolicy(html), 'utf-8');
   pageCount++;
 }
 
@@ -430,6 +431,11 @@ function redirectHtml(newPath) {
 </head><body><a href="${newPath}">Continue</a></body></html>`;
 }
 
+for (const [oldPath,newPath] of Object.entries({'september-25-vision-and-improvement':'/september-25/','october-31-the-intimacy-of-transparency':'/october-31/','guides/detachment-with-love':'/topics/detachment/'})) {
+ mkdirSync(join(outDir,oldPath),{recursive:true});
+ writeFileSync(join(outDir,oldPath,'index.html'),redirectHtml(newPath));
+}
+
 // Reading redirects: /january-1/ → /january-1-new-title-slug/
 for (const reading of readings) {
   const oldSlug = dayToSlug(reading.day_of_year);
@@ -492,6 +498,7 @@ if (!IS_PREVIEW) cpSync(join(__dirname, 'js', 'admin.js'), join(outDir, 'js', 'a
 cpSync(join(__dirname, 'js', 'analytics.js'), join(outDir, 'js', 'analytics.js'));
 cpSync(join(__dirname, 'js', 'calendar.js'), join(outDir, 'js', 'calendar.js'));
 cpSync(join(__dirname, 'js', 'boundaries.js'), join(outDir, 'js', 'boundaries.js'));
+cpSync(join(__dirname, 'js', 'inserts.js'), join(outDir, 'js', 'inserts.js'));
 cpSync(join(__dirname, 'js', 'surrender.js'), join(outDir, 'js', 'surrender.js'));
 
 // Admin CSS

@@ -2,7 +2,7 @@ import { wrapInLayout } from './base.mjs';
 import { bp } from '../helpers/config.mjs';
 import { bookStructuredData } from '../helpers/seo.mjs';
 
-const APP_STORE_URL = 'https://apps.apple.com/app/daily-paths/id6738370285';
+const APP_STORE_URL = 'https://apps.apple.com/app/id6755981862';
 
 export const BOOKS = [
   {

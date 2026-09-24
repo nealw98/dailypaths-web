@@ -1,0 +1,23 @@
+/* Artwork scales as a single composition. Transcripts stay in the reading order. */
+.story-insert img,.tg-diagram img{display:block;width:100%;height:auto}
+.insert-open{display:block;width:100%;padding:0;border:0;background:none;cursor:zoom-in}
+.insert-open:focus-visible{outline:3px solid #345b50;outline-offset:5px}
+.story-insert-transcript,.story-insert-transcript *{pointer-events:none}
+.story-insert-transcript{position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip:rect(0,0,0,0)!important;white-space:normal!important;border:0!important}
+.insert-view{width:min(1200px,96vw);max-width:96vw;max-height:94dvh;padding:0;border:1px solid #d5d6ca;background:#faf8f1;color:#23443e;overflow:hidden}
+.insert-view::backdrop{background:#14251ddd}
+.insert-toolbar{display:flex;align-items:center;gap:10px;padding:12px;border-bottom:1px solid #d5d6ca}
+.insert-toolbar button{font:inherit;min-height:44px;min-width:44px;padding:7px 12px;border:1px solid #799087;color:inherit;background:transparent;cursor:pointer}
+.insert-toolbar button:focus-visible{outline:3px solid #345b50;outline-offset:2px}
+.insert-zoom-status{font:14px sans-serif;margin-left:auto}
+.insert-viewport{overflow:auto;height:min(76dvh,1000px);overscroll-behavior:contain;touch-action:pan-x pan-y pinch-zoom;padding:12px}
+.insert-canvas{position:relative;min-width:100%;margin:0 auto}
+.insert-canvas img{max-width:none!important;user-select:none;-webkit-user-drag:none}
+.insert-safety-frame{width:100%;margin:36px 0 0}
+.insert-safety,.insert-safety-copy{box-sizing:border-box!important;width:720px!important;max-width:none!important;margin:0!important;padding:36px!important;transform-origin:top left;background:#f3e3df!important;color:#513a36!important;border:1px solid #d8bbb4!important;font:20px/1.7 Inter,Arial,sans-serif!important}
+.insert-safety :is(h2,h3,h4),.insert-safety-copy :is(h2,h3,h4){font:600 30px/1.25 Georgia,serif!important;color:#513a36!important;margin:0 0 22px!important}
+.insert-safety :is(p,li,a,strong),.insert-safety-copy :is(p,li,a,strong){font-size:20px!important;line-height:1.7!important;color:inherit!important}
+.insert-safety a,.insert-safety-copy a{text-decoration:underline!important}
+.insert-safety-enlarge{font:14px/1.5 Inter,Arial,sans-serif;border:0;background:none;color:#513a36;text-decoration:underline;cursor:pointer;padding:8px 0;margin-bottom:24px}
+@media print{.insert-open{border:0}.insert-safety-frame{height:auto!important}.insert-safety{width:100%!important;transform:none!important}.insert-safety-enlarge,.insert-view{display:none}}
+.insert-safety-frame{overflow:hidden}

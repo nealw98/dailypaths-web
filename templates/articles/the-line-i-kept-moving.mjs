@@ -6,7 +6,7 @@ import { readingSlug } from '../../helpers/slug-utils.mjs';
 export const STORY = {
   title: 'The Line I Kept Moving',
   path: '/articles/the-line-i-kept-moving/',
-  author: 'Jeff J.',
+  author: 'Lance W',
   description: 'I thought boundaries meant cutting my mother out of my life. In Al-Anon, I began learning where she stopped and I began.',
   readings: [
     { day: 114, reason: 'Letting someone be disappointed without giving up your own needs.' },
@@ -22,7 +22,7 @@ export const STORY = {
   ],
 };
 
-// Contributor narrative is edited from Jeff J.’s supplied submission. The
+// Contributor narrative is edited from Lance W’s supplied submission. The
 // reflection insert is accompanying editorial copy approved separately by Neal.
 const sections = [
   { body: [
@@ -71,13 +71,13 @@ export function renderLineIKeptMoving(allReadings) {
     : `<section class="tg-section">${section.heading ? `<h2>${esc(section.heading)}</h2>` : ''}<div class="prose-lora">${section.body.map(p => `<p>${esc(p)}</p>`).join('')}</div></section>`).join('');
   const readings = STORY.readings.map(item => {
     const reading = allReadings.find(r => r.day_of_year === item.day);
-    if (!reading) throw new Error(`Jeff J. article: missing related reading ${item.day}`);
+    if (!reading) throw new Error(`Lance W article: missing related reading ${item.day}`);
     return `<article><p class="sd-kicker">${esc(reading.display_date)}</p><h3><a href="${bp('/' + readingSlug(reading.day_of_year, reading.title) + '/')}">${esc(reading.title)}</a></h3><p>${esc(item.reason)}</p></article>`;
   }).join('');
   const transcript = TAKEAWAYS.map((item, index) => `<section><h3>${index + 1}. ${esc(item.title)}</h3><p>${esc(item.body)}</p><p><em>${esc(item.question)}</em></p></section>`).join('');
   const related = STORY.related.map(item => `<article><p class="sd-kicker">${esc(item.kind)}${item.status === 'pending' ? ' · Coming soon' : ''}</p><h3>${item.path ? `<a href="${bp(item.path)}">${esc(item.title)}</a>` : esc(item.title)}</h3><p>${esc(item.description)}</p></article>`).join('');
   return wrapInLayout({
-    title: `${STORY.title} — A Personal Story by Jeff J. | Daily Paths`,
+    title: `${STORY.title} — A Personal Story by Lance W | Daily Paths`,
     description: STORY.description, canonicalPath: STORY.path,
     bodyClass: 'page-topic-detail page-personal-story', navSection: 'articles', ogType: 'article', hasAppPanel: true,
     structuredData: JSON.stringify({
@@ -88,8 +88,8 @@ export function renderLineIKeptMoving(allReadings) {
     }),
     bodyContent: `<nav class="collection-rail" aria-label="Breadcrumb"><div class="collection-rail-inner"><a href="${bp('/articles/')}">&larr; Back to Articles</a><span aria-current="page">${STORY.title}</span></div></nav>
 ${photoHero({ image: bp('/assets/articles/the-line-i-kept-moving/dinner-table-photo.webp'), alt: 'A woman seated at the dinner table with a plate of food while her adult son cooks another meal in the kitchen behind her.', eyebrow: 'Personal story · Boundaries', title: STORY.title, subtitle: STORY.description, size: 'lg', titleClass: 'photo-hero-title--theme' })}
-<article class="rd-article tg-article"><p class="story-byline">By Jeff J.</p>${flow}
-<figure class="tg-diagram story-reflection-insert"><img src="${bp('/assets/articles/the-line-i-kept-moving/reflection-insert-editorial.png')}" alt="Four reflections on boundaries and self-worth. Complete text follows." width="1086" height="1448" loading="lazy"><figcaption class="story-insert-caption">Questions to consider alongside Jeff’s story.</figcaption><details class="story-insert-text"><summary>Read the reflection text</summary><h2>A moment to reflect</h2>${transcript}</details></figure></article>
+<article class="rd-article tg-article"><p class="story-byline">By Lance W</p>${flow}
+<figure class="tg-diagram story-reflection-insert"><img src="${bp('/assets/articles/the-line-i-kept-moving/reflection-insert-editorial.png')}" alt="Four reflections on boundaries and self-worth. Complete text follows." width="1086" height="1448" loading="lazy"><figcaption class="story-insert-caption">Questions to consider alongside Lance’s story.</figcaption><details class="story-insert-text"><summary>Read the reflection text</summary><h2>A moment to reflect</h2>${transcript}</details></figure></article>
 <section class="wrap section--lg story-connections" aria-labelledby="story-readings"><h2 id="story-readings">Related daily readings</h2><div class="story-reading-links">${readings}</div></section>
 <section class="wrap section--md story-connections" aria-labelledby="story-related"><h2 id="story-related">Keep exploring</h2><div class="story-related-links">${related}</div></section>
 ${terminalBand()}`,

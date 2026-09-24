@@ -1,3 +1,9 @@
+## September 24 launch review corrections
+
+Neal confirmed Lance W as the author of Voices from the Grave and The Line I Kept Moving; both have contributor approval. These author fields and the concise Finding Help summary were also saved and published in Story Room. Preserve the blanket story and the deliberately strong Boundaries wording.
+
+Editorial artwork uses one shared enlarge/zoom viewer with hidden structured text alternatives. The three converted text compositions are in assets/inserts; their exact source text and generation recipe are retained in helpers/editorial-inserts.json and scripts/render-editorial-inserts.mjs. Safety references keep working links and a consistent clay-pink treatment. The first-meeting draft remains Neal’s work to finish.
+
 # Daily Paths website foundation
 
 ## Social sharing images — September 24, 2026

@@ -197,7 +197,7 @@ export function renderReadingPage(reading, prevReading, nextReading, allReadings
       <div class="kr-grid${isDiscoveryTrial ? ' kr-grid--carousel' : ''}">${cards}
       </div>
       <div class="kr-more">
-        <a href="${topicHref}${isDiscoveryTrial ? '' : '#readings'}" class="text-link">${isDiscoveryTrial && monthStepData ? `More ${monthStepData.month} readings` : 'More readings'}</a>
+        <a href="${!isDiscoveryTrial && ['powerlessness','boundaries','detachment'].includes(topicMatch.slug) ? bp('/reflections/') : topicHref + (isDiscoveryTrial ? '' : '#readings')}" class="text-link">${isDiscoveryTrial && monthStepData ? `More ${monthStepData.month} readings` : 'More readings'}</a>
       </div>
     </section>`;
     }

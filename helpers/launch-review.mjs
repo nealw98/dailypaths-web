@@ -10,8 +10,8 @@ export const LAUNCH_REVIEW = {
   metadata: {
     '/guides/finding-help/': { description: 'Finding help when someone else’s drinking is affecting your life.' },
     '/topics/detachment/': { title: 'Detachment', description: 'Practical ways to step out of monitoring, rescuing, and managing another adult.' },
-    '/articles/the-line-i-kept-moving/': { category: 'Personal Story', author: 'Jeff J.' },
-    '/articles/voices-from-the-grave/': { category: 'Finding your voice' },
+    '/articles/the-line-i-kept-moving/': { category: 'Personal Story', author: 'Lance W' },
+    '/articles/voices-from-the-grave/': { category: 'Finding your voice', author: 'Lance W' },
   },
 };
 export const FIRST_MEETING = {
