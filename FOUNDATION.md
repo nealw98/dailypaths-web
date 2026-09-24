@@ -1,5 +1,14 @@
 # Daily Paths website foundation
 
+## Social sharing images — September 24, 2026
+
+The shared layout and Story Room page composition derive Open Graph and X images
+from the rendered page hero, including daily reflections and the homepage. Hero
+pages use large image cards and image descriptions, without inherited 1200×630
+dimensions. CMS publications apply the same rule at request time and during
+production builds. Pages without heroes retain their existing sharing fallback.
+No editorial content or production publishing settings were changed.
+
 ## Reserved article address — September 24, 2026
 
 `/articles/what-happens-after-the-drinking-stops/` has a short coming-soon

@@ -4,6 +4,7 @@ import {ARTICLES,GUIDES} from '../helpers/content-catalog.mjs';
 import {createCmsWorker} from '../helpers/cms-worker.mjs';
 import {LAUNCH_REVIEW,transformLaunchPreview} from '../helpers/launch-review.mjs';
 import {composePage} from '../helpers/story-room.mjs';
+import {syncHeroSocialImage} from '../helpers/social-image.mjs';
 import {ARTICLE_PLACEHOLDERS} from '../templates/article-placeholders.mjs';
 const root=path.resolve(new URL('..',import.meta.url).pathname),dist=path.join(root,'dist');
 if(fs.existsSync(path.join(dist,'server')))throw new Error('Build the static website before packaging its CMS routes.');
@@ -16,7 +17,7 @@ fs.rmSync(path.join(dist,'client','about-alanon','index.html'),{force:true});
 // Static HTML for these routes must not preempt the CMS request handler.
 for(const p of Object.keys(fallback))fs.rmSync(path.join(dist,'client',p,'index.html'));
 fs.mkdirSync(path.join(dist,'server'));fs.mkdirSync(path.join(dist,'.openai'),{recursive:true});
-fs.writeFileSync(path.join(dist,'server','index.js'),`const fallback=${JSON.stringify(fallback)};\nconst knownPaths=${JSON.stringify(catalog)};\n${composePage.toString()}\n${createCmsWorker.toString()}\nconst LAUNCH_REVIEW=${JSON.stringify(LAUNCH_REVIEW)};\n${transformLaunchPreview.toString()}\nexport default createCmsWorker(fallback,knownPaths,composePage,LAUNCH_REVIEW,transformLaunchPreview);\n`);
+fs.writeFileSync(path.join(dist,'server','index.js'),`const fallback=${JSON.stringify(fallback)};\nconst knownPaths=${JSON.stringify(catalog)};\n${syncHeroSocialImage.toString()}\n${composePage.toString()}\n${createCmsWorker.toString()}\nconst LAUNCH_REVIEW=${JSON.stringify(LAUNCH_REVIEW)};\n${transformLaunchPreview.toString()}\nexport default createCmsWorker(fallback,knownPaths,composePage,LAUNCH_REVIEW,transformLaunchPreview);\n`);
 fs.writeFileSync(path.join(dist,'server','wrangler.json'),JSON.stringify({name:'daily-paths-cms-preview',main:'index.js',compatibility_date:'2026-05-15',assets:{directory:'../client'}}));
 fs.copyFileSync(path.join(root,'.openai/hosting.json'),path.join(dist,'.openai/hosting.json'));
 console.log('Prepared CMS publishing for '+paths.length+' existing pages and future articles/guides.');

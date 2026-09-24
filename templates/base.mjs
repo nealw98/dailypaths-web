@@ -1,6 +1,7 @@
 import { bp, BASE_URL, IS_PREVIEW } from '../helpers/config.mjs';
 import { TYPOGRAPHY_REVIEW_PATH, GUIDE_REVIEW_PATH } from '../helpers/typography-review.mjs';
 import { GUIDES } from '../helpers/content-catalog.mjs';
+import { syncHeroSocialImage } from '../helpers/social-image.mjs';
 
 function brandIcon() {
   return `<img class="brand-mark-icon" src="${bp('/assets/favicon-48.png')}" srcset="${bp('/assets/favicon-48.png')} 48w, ${bp('/assets/app-icon.png')} 192w" sizes="42px" width="42" height="42" alt="">`;
@@ -75,7 +76,7 @@ export function wrapInLayout({
   bodyContent = bodyContent.replaceAll('prose-lora', 'prose-reading');
   if (isArticle) bodyContent = bodyContent.replace('class="tg-thesis"', 'class="tg-thesis type-thesis-quote"');
   const canonicalUrl = BASE_URL + canonicalPath;
-  const ogImageUrl = ogImage ? BASE_URL + ogImage : `${BASE_URL}/assets/og-image.png`;
+  const ogImageUrl = new URL(ogImage || '/assets/og-image.png', BASE_URL).href;
   const twitterCard = ogImage ? 'summary_large_image' : 'summary';
   const appHref = hasAppPanel ? '#get-the-app' : bp('/#get-the-app');
 
@@ -91,7 +92,7 @@ export function wrapInLayout({
     return `        <a href="${n.href}" class="mobile-menu-row${active ? ' is-active' : ''}"${active ? ' aria-current="page"' : ''}><span class="mobile-menu-label">${n.label}</span></a>`;
   }).join('\n');
 
-  return `<!DOCTYPE html>
+  return syncHeroSocialImage(`<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -227,7 +228,7 @@ ${bodyContent}
   <script src="${bp('/js/main.js')}?v=link-nav-refinement-1" defer></script>
 ${bodyClass === 'page-reading' ? `  <script src="${bp('/js/calendar.js')}" defer></script>` : ''}
 </body>
-</html>`;
+</html>`, BASE_URL);
 }
 
 function escapeHtml(text) {

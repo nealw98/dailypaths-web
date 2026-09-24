@@ -1,4 +1,5 @@
 import {LAUNCH_REVIEW} from './launch-review.mjs';
+import {syncHeroSocialImage} from './social-image.mjs';
 import {writeFileSync,readFileSync,mkdirSync,existsSync} from 'node:fs';
 import {join,dirname} from 'node:path';
 export const CMS_ORIGIN='https://daily-paths-story-room.nealw98.chatgpt.site';
@@ -6,7 +7,7 @@ export const PREVIEW_ORIGIN='https://daily-paths-soft-daylight.nealw98.chatgpt.s
 export const validPath=p=>/^\/(?:articles|guides|topics)\/[a-z0-9]+(?:-[a-z0-9]+)*\/$/.test(p)||p==='/about-alanon/';
 export const escape=s=>String(s||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 export function composePage(base,approved){
- if(!base)return approved;
+ if(!base)return syncHeroSocialImage(approved,'https://daily-paths-soft-daylight.nealw98.chatgpt.site');
  let html=base;
  for(const re of [/<main\b[\s\S]*?<\/main>/i,/<title>[\s\S]*?<\/title>/i]){const value=approved.match(re)?.[0];if(value)html=html.replace(re,()=>value);}
  for(const name of ['description','og:title','og:description','og:image','og:url','twitter:title','twitter:description','twitter:image']){
@@ -15,7 +16,7 @@ export function composePage(base,approved){
  // Editorial structured data belongs to the approved article; site navigation stays current.
  const data=[...approved.matchAll(/<script\b[^>]*type=["']application\/ld\+json["'][^>]*>[\s\S]*?<\/script>/gi)].map(m=>m[0]).join('\n');
  if(data)html=html.replace(/<script\b[^>]*type=["']application\/ld\+json["'][^>]*>[\s\S]*?<\/script>/gi,'').replace('</head>',()=>data+'\n</head>');
- return html;
+ return syncHeroSocialImage(html,'https://daily-paths-soft-daylight.nealw98.chatgpt.site');
 }
 export async function getPublished(){
  const r=await fetch(CMS_ORIGIN+'/api/room/published',{signal:AbortSignal.timeout(20000)});if(!r.ok)throw new Error('Story Room publication feed unavailable; stopping to preserve approved content.');
