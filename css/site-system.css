@@ -1330,3 +1330,13 @@ a[target="_blank"]:not(:has(img)):not(.pillar-card):not(.fellow-card)::after,
     body.page-home .ed-keep-reading { max-width: none; }
   }
 }
+
+/* Shared Surrender pull quotes and Story Room inserts. */
+
+.rd-article :is(.tg-thesis,.article-pull-quote,.surrender-pullquote,.pull-quote),.rd-article .prose-reading blockquote,.story-preview blockquote{
+ margin:clamp(40px,6vw,60px) 0;padding:clamp(26px,4vw,38px) 0;border:0;border-block:1px solid var(--accent-strong,#52654b);border-radius:0;background:none;max-width:none;
+ font:italic 500 clamp(25px,2.6vw,34px)/1.42 "Cormorant Garamond",Georgia,serif;letter-spacing:-.25px;text-align:center;color:var(--accent-strong,#52654b);
+}
+.rd-article :is(.tg-thesis,.article-pull-quote,.surrender-pullquote,.pull-quote) p,.rd-article .prose-reading blockquote p,.story-preview blockquote p{max-width:36ch;margin:0 auto;font:inherit;letter-spacing:inherit;color:inherit;text-align:center;}
+.story-insert{margin:32px 0;width:100%;}.story-insert img{display:block;width:100%;height:auto;}.story-insert button{display:block;width:100%;padding:0;border:0;background:none;cursor:zoom-in;}.story-insert button:focus-visible{outline:2px solid #52654b;outline-offset:4px;}.story-insert-transcript{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip-path:inset(50%);white-space:pre-wrap;border:0;}
+.story-insert-dialog{border:0;padding:20px;width:min(1100px,94vw);max-height:94vh;overflow:auto;background:#fff;}.story-insert-dialog::backdrop{background:#0009;}.story-insert-dialog img{width:100%;height:auto;}.story-insert-dialog button{display:block;margin:0 0 16px auto;padding:8px 16px;cursor:pointer;}
