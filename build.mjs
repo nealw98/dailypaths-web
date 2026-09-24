@@ -410,6 +410,8 @@ writeFileSync(join(outDir, 'robots.txt'), generateRobotsTxt(), 'utf-8');
 
 // --- Step 5b: Generate redirect pages for old slugs ---
 console.log('Generating redirect pages for old slugs...');
+writePage(join(outDir, 'about-alanon', 'index.html'), redirectHtml('/guides/finding-help/'));
+writeFileSync(join(outDir, '_redirects'), '/about-alanon /guides/finding-help/ 301\n/about-alanon/ /guides/finding-help/ 301\n/about-alanon/index.html /guides/finding-help/ 301\n');
 
 
 function redirectHtml(newPath) {

@@ -10,6 +10,8 @@ const catalog=[...ARTICLES.map(x=>({path:x.path,content_type:'article'})),...GUI
 for(const p of ['/','/articles/','/guides/',...paths]){const filename=path.join(dist,p,'index.html');if(fs.existsSync(filename))fallback[p]=fs.readFileSync(filename,'utf8');}
 const entries=fs.readdirSync(dist);fs.mkdirSync(path.join(dist,'client'));
 for(const entry of entries){if(entry==='.openai')continue;fs.renameSync(path.join(dist,entry),path.join(dist,'client',entry));}
+// Let the Worker return a real HTTP redirect for the retired guide.
+fs.rmSync(path.join(dist,'client','about-alanon','index.html'),{force:true});
 // Static HTML for these routes must not preempt the CMS request handler.
 for(const p of Object.keys(fallback))fs.rmSync(path.join(dist,'client',p,'index.html'));
 fs.mkdirSync(path.join(dist,'server'));fs.mkdirSync(path.join(dist,'.openai'),{recursive:true});

@@ -147,7 +147,7 @@ export function renderStartPage(readings = [], { typographyPreview = false } = {
       <div class="start-step-body" style="margin-top:20px">
         <div class="start-facts">${factRows}
         </div>
-        <p style="margin:16px 0 0"><a href="${bp('/about-alanon/')}" class="text-link">Read more about the program</a></p>
+        <p style="margin:16px 0 0"><a href="${bp('/guides/finding-help/')}" class="text-link">Read more about the program</a></p>
       </div>
     </section>
 

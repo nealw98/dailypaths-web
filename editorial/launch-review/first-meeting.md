@@ -42,6 +42,6 @@ Give yourself a moment before judging the whole experience. You may feel relieve
 
 Consider attending again or trying another group. You are looking for support you can use, not an experience you have to describe as perfect. A different time, format, or group may fit you better.
 
-For a broader introduction and ways to make contact, return to [Finding Help Through Al-Anon](/about-alanon/). You can also read a [Daily Reflection](/reflections/) between meetings. You do not need to solve everything before taking another small step toward support.
+For a broader introduction and ways to make contact, return to [Finding Help Through Al-Anon](/guides/finding-help/). You can also read a [Daily Reflection](/reflections/) between meetings. You do not need to solve everything before taking another small step toward support.
 
 Daily Paths is independent of Al-Anon Family Group Headquarters, Inc. This is an editorial orientation, not a contributor's personal account or official Al-Anon literature.

@@ -188,7 +188,7 @@ ${meetingBand}
   return wrapInLayout({
     title: 'The Al-Anon Program — Steps, Fellowship, Literature & Service | Al-Anon Daily Paths',
     description: 'Explore the Al-Anon program — the Twelve Steps, fellowship meetings, Conference-Approved literature, and service. A spiritual path for families and friends affected by someone else’s drinking.',
-    canonicalPath: '/about-alanon/',
+    canonicalPath: '/guides/finding-help/',
     bodyContent,
     bodyClass: 'page-about-alanon',
     navSection: 'alanon',

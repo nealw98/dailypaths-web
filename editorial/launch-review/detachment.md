@@ -110,4 +110,4 @@ Choose one ordinary thing to return to: the meal in front of you, a conversation
 
 At the end of the day, look at your own actions. Did you tell the truth? Keep an agreement? Ask for help? Allow another adult to handle something they could do? Their mood may not have improved. Your practice can still have been worthwhile.
 
-For help finding people to practice with, begin with [Finding Help Through Al-Anon](/about-alanon/). [Surrender](/topics/powerlessness/) explores the larger struggle to change someone else, while [Daily Reflections](/reflections/) offers a place to pause and return to your own day.
+For help finding people to practice with, begin with [Finding Help Through Al-Anon](/guides/finding-help/). [Surrender](/topics/powerlessness/) explores the larger struggle to change someone else, while [Daily Reflections](/reflections/) offers a place to pause and return to your own day.

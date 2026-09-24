@@ -499,3 +499,13 @@ the website placeholder text as his editable starting point. It remains a privat
 draft. The website maps that stable story ID to /articles/your-first-al-anon-meeting/
 regardless of the CMS publication slug. Only published snapshots replace the page;
 unpublished edits remain private. The placeholder remains until the first publication.
+
+## September 24 Finding Help address
+
+Finding Help now uses `/guides/finding-help/`; `/about-alanon/` redirects there.
+Story Room's published guide `012aaa8a-e94a-4ff2-8730-87a663205057` already owns
+the new address. Its published content, hero, formatting, and publication status
+are preserved. The website follows that stable ID for future publications and
+excludes the retired `cms-about-alanon` import from its catalog. Finding Help is
+no longer overridden by the old website placeholder. Story Room's existing
+View published page link uses the new address, which is fixed after publication.

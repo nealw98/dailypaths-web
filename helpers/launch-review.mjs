@@ -2,11 +2,11 @@
 // change the production catalog, or imply approval of a CMS publication.
 export const LAUNCH_REVIEW = {
   deferred: ['/topics/one-day-at-a-time/', '/topics/self-worth/', '/topics/gratitude-and-hope/', '/topics/honesty/'],
-  linkedStories: { 'de45655f-f3a2-46a4-a2a7-a52a7174ed98': '/articles/your-first-al-anon-meeting/' },
-  cmsManaged: ['/articles/your-first-al-anon-meeting/'],
-  drafts: ['/topics/detachment/', '/about-alanon/', '/articles/your-first-al-anon-meeting/'],
+  retiredPaths: ['/about-alanon/'],
+  linkedStories: { '012aaa8a-e94a-4ff2-8730-87a663205057': '/guides/finding-help/', 'de45655f-f3a2-46a4-a2a7-a52a7174ed98': '/articles/your-first-al-anon-meeting/' },
+  cmsManaged: ['/guides/finding-help/','/articles/your-first-al-anon-meeting/'],
+  drafts: ['/topics/detachment/', '/articles/your-first-al-anon-meeting/'],
   metadata: {
-    '/about-alanon/': { title: 'Finding Help', description: 'An introduction to Al-Anon, what a first meeting can be like, and ways to find support.' },
     '/topics/detachment/': { title: 'Detachment', description: 'Practical ways to step out of monitoring, rescuing, and managing another adult.' },
     '/articles/the-line-i-kept-moving/': { category: 'Personal Story', author: 'Jeff J.' },
     '/articles/voices-from-the-grave/': { category: 'Finding your voice' },
@@ -27,6 +27,7 @@ export function launchItems(items, preview) {
 // Self-contained for inclusion in the preview Worker.
 export function transformLaunchPreview(html, pathname, policy = LAUNCH_REVIEW) {
   if (!html) return html;
+  html = html.replaceAll('/about-alanon/', '/guides/finding-help/');
   // Apply the September 21 hero replacement to older CMS snapshots as well.
   html = html.replace(/<img\b[^>]*letting-go-hero\.jpg[^>]*>/gi, tag => tag.replace(/\balt=["'][^"']*["']/i, 'alt="A tightrope walker balances above a circus ring, viewed from overhead"'));
   html = html.replaceAll('letting-go-hero.jpg', 'letting-go-tightrope.webp');

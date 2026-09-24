@@ -7,6 +7,7 @@ export function createCmsWorker(fallback,knownPaths,composePage,launchPolicy={},
   const u=new URL(request.url);let path=u.pathname.replace(/\/index\.html$/,'/');
   if(request.method!=='GET'&&request.method!=='HEAD')return new Response('Method not allowed',{status:405,headers:{Allow:'GET, HEAD'}});
   if(!path.endsWith('/')&&!path.split('/').at(-1).includes('.'))return Response.redirect(u.origin+path+'/',308);
+  if(path==='/about-alanon/')return Response.redirect(u.origin+'/guides/finding-help/'+u.search,301);
   const isIndex=['/','/articles/','/guides/'].includes(path);
   const eligible=isIndex||/^\/(articles|guides|topics)\/[a-z0-9-]+\/$/.test(path)||path==='/about-alanon/';
   if(!eligible)return new Response('Page not found',{status:404});
@@ -28,7 +29,7 @@ export function createCmsWorker(fallback,knownPaths,composePage,launchPolicy={},
    if(r.ok){const data=await r.json();
     if(!isIndex){html=composePage(html,cmsPath===path?data.html:data.html.replaceAll(cmsPath,path));revision=data.revision;}
     else{
-     const items=(data.items||[]).map(item=>({...item,path:launchPolicy.linkedStories?.[item.id]||item.path})).filter(item=>!launchPolicy.deferred?.includes(item.path)).map(item=>{const override=launchPolicy.metadata?.[item.path];return override?{...item,card_title:override.title||item.card_title,summary:(override.description||item.summary)+(launchPolicy.drafts?.includes(item.path)?' Placeholder':'')}:item;});
+     const items=(data.items||[]).map(item=>({...item,path:launchPolicy.linkedStories?.[item.id]||item.path})).filter(item=>!launchPolicy.retiredPaths?.includes(item.path)&&!launchPolicy.deferred?.includes(item.path)).map(item=>{const override=launchPolicy.metadata?.[item.path];return override?{...item,card_title:override.title||item.card_title,summary:(override.description||item.summary)+(launchPolicy.drafts?.includes(item.path)?' Placeholder':'')}:item;});
      // Keep the established index composition. Add newly published pages in the same lists.
      let response=new Response(html,{headers:{'Content-Type':'text/html'}});
      let rewriter=new HTMLRewriter();

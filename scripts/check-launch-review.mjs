@@ -54,7 +54,7 @@ try{
  const response=await worker.fetch(new Request('https://review.test/topics/letting-go/'));const html=await response.text();
  assert.match(html,/Approved body stays here/);assert.doesNotMatch(html,/Coming soon|href="\/topics\/one-day-at-a-time\//);assert.equal(response.headers.get('X-Story-Room-Revision'),'test-approved');
  await worker.fetch(new Request('https://review.test/guides/'));
- assert.ok(selectors.some(s=>s.includes('/about-alanon/')));
+ assert.ok(!selectors.some(s=>s.includes('/about-alanon/')));
  for(const deferred of LAUNCH_REVIEW.deferred)assert.ok(!selectors.some(s=>s.includes(deferred)),`CMS tries to reintroduce ${deferred}`);
  const head=await worker.fetch(new Request('https://review.test/about-alanon/',{method:'HEAD'}));assert.equal(await head.text(),'');
  globalThis.fetch=async()=>Response.json({items:[]});

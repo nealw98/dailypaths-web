@@ -12,7 +12,7 @@ function inline(value) {
 }
 const drafts = [
   {file:'detachment',path:'/topics/detachment/',label:'Detachment',kind:'Guide',image:'articles/detachment-hero.jpg',alt:'A roe deer watching from the edge of a forest'},
-  {file:'finding-help',path:'/about-alanon/',label:'Finding Help',kind:'Guide',image:'hero-image.jpg',alt:'A sunlit path through a meadow'},
+  {file:'finding-help',path:'/guides/finding-help/',label:'Finding Help',kind:'Guide',image:'hero-image.jpg',alt:'A sunlit path through a meadow'},
   {file:'first-meeting',path:FIRST_MEETING.path,label:FIRST_MEETING.title,kind:'Article',image:FIRST_MEETING.image,alt:FIRST_MEETING.alt},
 ];
 export function renderLaunchDrafts() {
