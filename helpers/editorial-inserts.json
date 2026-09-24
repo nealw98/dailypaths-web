@@ -30,7 +30,9 @@
         "type": "li",
         "text": "Who can support me when following through gets difficult?"
       }
-    ]
+    ],
+    "width": 800,
+    "height": 512
   },
   {
     "key": "When the past starts to haunt you Recognize the voice. Whose approval am I still trying to earn? Put its authority back in the past. That person’s judgment does not have to rule your life today. Find your own voice. Learning to trust my own voice. Let go and let God. Ask the God of your understanding for direction, and take time to listen. Reach out. Let the encouragement of someone you trust help you find your way. Practice this one day at a time. Each time you recognize an old haunting, you can turn back toward the life you are living today.",
@@ -67,7 +69,9 @@
         "type": "p",
         "text": "Practice this one day at a time. Each time you recognize an old haunting, you can turn back toward the life you are living today."
       }
-    ]
+    ],
+    "width": 800,
+    "height": 697
   },
   {
     "key": "Before your first meeting In person Check the address, meeting room, entrance, and any parking instructions. Allow a few extra minutes to find the room. Ask the group contact about accessibility or language needs beforehand. When you arrive, you can say, “This is my first meeting. Am I in the right place?” Online Check the time zone, meeting link, passcode, and whether you need an app. Choose somewhere you can listen privately, and try your sound beforehand. Headphones can help protect others’ privacy. Read the group’s joining instructions and ask about camera use, muting, or how to indicate you would like to speak. For either type You can begin by listening. There is no need to prepare a speech or explain your whole situation. If something is unclear, ask the group contact or a member before or after the meeting. For a hybrid meeting, follow the preparation that matches how you’ll attend. For a telephone meeting, save the dial-in number and access code, check the time zone, and find a private place to listen.",
@@ -124,6 +128,8 @@
         "type": "p",
         "text": "For a hybrid meeting, follow the preparation that matches how you’ll attend. For a telephone meeting, save the dial-in number and access code, check the time zone, and find a private place to listen."
       }
-    ]
+    ],
+    "width": 800,
+    "height": 1210
   }
 ]

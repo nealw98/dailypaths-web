@@ -21,3 +21,5 @@
 .insert-safety-enlarge{font:14px/1.5 Inter,Arial,sans-serif;border:0;background:none;color:#513a36;text-decoration:underline;cursor:pointer;padding:8px 0;margin-bottom:24px}
 @media print{.insert-open{border:0}.insert-safety-frame{height:auto!important}.insert-safety{width:100%!important;transform:none!important}.insert-safety-enlarge,.insert-view{display:none}}
 .insert-safety-frame{overflow:hidden}
+
+.insert-open img{min-height:1px}

@@ -24,7 +24,7 @@ export function applyEditorialPolicy(html, pathname, records = inserts) {
  html=html.replace(/<(aside|section)\b[^>]*class="[^"]*(?:boundary-insert--preparation|voices-practice|dp-text-panel--story)[^"]*"[^>]*>[\s\S]*?<\/\1>/gi,block=>{
   const item=records.find(item=>item.key===plain(block));if(!item)return block;
   const alt=item.alt.replaceAll('&','&amp;').replaceAll('"','&quot;');
-  return `<figure class="story-insert editorial-vector"><button type="button" data-story-insert aria-label="Enlarge ${alt}"><img src="/assets/inserts/${item.name}.svg" alt="${alt}" loading="lazy"></button><div class="story-insert-transcript">${block}</div></figure>`;
+  return `<figure class="story-insert editorial-vector"><button type="button" data-story-insert aria-label="Enlarge ${alt}"><img src="/assets/inserts/${item.name}.svg" alt="${alt}" width="${item.width}" height="${item.height}" loading="lazy"></button><div class="story-insert-transcript">${block}</div></figure>`;
  });
  html=html.replace(/<details\b[^>]*class="story-insert-text"[^>]*>[\s\S]*?<\/details>/gi,block=>block.replace(/<details[^>]*>/,'<div class="story-insert-transcript">').replace(/<summary>[\s\S]*?<\/summary>/,'').replace('</details>','</div>'));
  html=html.replaceAll('Four reflections on boundaries and self-worth. Complete text follows.','Four reflections on boundaries and self-worth.');
