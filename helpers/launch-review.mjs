@@ -8,6 +8,7 @@ export const LAUNCH_REVIEW = {
   cmsManaged: ['/guides/finding-help/', '/topics/detachment/', '/articles/your-first-al-anon-meeting/'],
   drafts: ['/topics/detachment/', '/articles/your-first-al-anon-meeting/'],
   metadata: {
+    '/guides/finding-help/': { description: 'Recognizing when someone else’s drinking is affecting you and finding support through Al-Anon.' },
     '/topics/detachment/': { title: 'Detachment', description: 'Practical ways to step out of monitoring, rescuing, and managing another adult.' },
     '/articles/the-line-i-kept-moving/': { category: 'Personal Story', author: 'Jeff J.' },
     '/articles/voices-from-the-grave/': { category: 'Finding your voice' },
