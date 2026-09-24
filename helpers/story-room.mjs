@@ -19,7 +19,7 @@ export function composePage(base,approved){
 }
 export async function getPublished(){
  const r=await fetch(CMS_ORIGIN+'/api/room/published',{signal:AbortSignal.timeout(20000)});if(!r.ok)throw new Error('Story Room publication feed unavailable; stopping to preserve approved content.');
- const data=await r.json();if(!Array.isArray(data.items))throw new Error('Invalid Story Room publication feed.');return data.items.filter(x=>validPath(x.path)&&!LAUNCH_REVIEW.retiredPaths.includes(x.path)).map(item=>({...item,cmsPath:item.path,path:LAUNCH_REVIEW.linkedStories[item.id]||item.path}));
+ const data=await r.json();if(!Array.isArray(data.items))throw new Error('Invalid Story Room publication feed.');return data.items.filter(x=>validPath(x.path)&&!LAUNCH_REVIEW.retiredPaths.includes(x.path)).map(item=>({...item,cmsPath:item.path,path:LAUNCH_REVIEW.linkedStories[item.id]||item.path})).filter(item=>!LAUNCH_REVIEW.retired.includes(item.path));
 }
 export function syncCatalog(items,articles,guides){
  for(const item of items){const wanted=item.content_type==='guide'?guides:articles,other=item.content_type==='guide'?articles:guides;const old=other.findIndex(x=>x.path===item.path);if(old>=0)other.splice(old,1);const data={title:item.card_title||item.title,path:item.path,description:item.summary,image:item.hero_url,alt:item.hero_alt,category:'Article',author:item.author,cms:true};const existing=wanted.find(x=>x.path===item.path);if(existing){data.category=existing.category;Object.assign(existing,data);}else wanted.push(data);}
