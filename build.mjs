@@ -385,6 +385,7 @@ console.log(`  OG images generated in ${ogElapsed}s`);
 
 // --- Step 5: Generate SEO artifacts ---
 if (IS_PREVIEW) for (const article of ARTICLE_PLACEHOLDERS) {
+  mkdirSync(join(outDir,article.path),{recursive:true});
   writePage(join(outDir,article.path,'index.html'),renderArticlePlaceholder(article));
 }
 await applyPublished(outDir,{production:!IS_PREVIEW,origin:BASE_URL,items:cmsItems});
