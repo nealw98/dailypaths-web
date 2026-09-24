@@ -12,18 +12,24 @@ function brandLockup(wordmarkClass = 'brand-name') {
 }
 
 function newsletterInvitation() {
-  const action = process.env.NEWSLETTER_ACTION?.trim();
+  const endpoint = (process.env.SUPABASE_URL || '').replace(/\/$/, '') + '/functions/v1/newsletter-signup';
+  const key = process.env.SUPABASE_ANON_KEY || '';
+  if (!key || !process.env.SUPABASE_URL) throw new Error('Newsletter requires the public Supabase URL and anon key.');
   return `<section class="site-newsletter" aria-labelledby="site-newsletter-heading">
     <div class="site-newsletter-inner">
       <p class="site-newsletter-eyebrow">Email updates</p>
       <h2 id="site-newsletter-heading">A little clarity in your inbox.</h2>
-      <p class="site-newsletter-copy">Daily reflections and new articles to help you come back to yourself.</p>
-      <form class="site-newsletter-form" ${action ? `action="${escapeAttr(action)}" method="post"` : 'aria-describedby="site-newsletter-status"'}>
+      <p class="site-newsletter-copy">A short introduction to a daily reflection or new article, with a link to read it here.</p>
+      <form class="site-newsletter-form" data-newsletter-form data-endpoint="${escapeAttr(endpoint)}" data-key="${escapeAttr(key)}">
         <label class="sr-only" for="site-newsletter-email">Your email address</label>
-        <input id="site-newsletter-email" name="email" type="email" autocomplete="email" placeholder="Your email address" ${action ? 'required' : 'disabled'}>
-        <button class="site-newsletter-button" type="submit" ${action ? '' : 'disabled'}>Sign me up</button>
+        <input id="site-newsletter-email" name="email" type="email" maxlength="254" autocomplete="email" placeholder="Your email address" required>
+        <button class="site-newsletter-button" type="submit">Sign me up</button>
+        <div class="newsletter-trap" aria-hidden="true"><label>Website<input name="website" type="text" tabindex="-1" autocomplete="off"></label></div>
+        <label class="newsletter-consent"><input name="consent" type="checkbox" required> <span>Yes, send me Daily Paths reflections and article updates.</span></label>
+        <p class="site-newsletter-note newsletter-status" role="status" aria-live="polite"></p>
       </form>
-      ${action ? `<p class="site-newsletter-note"><a href="${bp('/privacy/')}">Privacy</a> · Unsubscribe at any time.</p>` : '<p class="site-newsletter-note" id="site-newsletter-status">Email signup is coming soon.</p>'}
+      <p class="site-newsletter-note">Email updates are coming soon. <a href="${bp('/privacy/')}">Privacy</a> · Unsubscribe at any time once emails begin.</p>
+      <noscript><p>Please enable JavaScript to join the email list.</p></noscript>
     </div>
   </section>`;
 }
@@ -225,6 +231,7 @@ ${bodyContent}
   </footer>
 `}
 
+  <script src="${bp('/js/newsletter.js')}?v=20260924" defer></script>
   <script src="${bp('/js/main.js')}?v=link-nav-refinement-1" defer></script>
 ${bodyClass === 'page-reading' ? `  <script src="${bp('/js/calendar.js')}" defer></script>` : ''}
 </body>

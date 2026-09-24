@@ -1,7 +1,8 @@
 import { wrapInLayout } from './base.mjs';
 import { bp } from '../helpers/config.mjs';
-import { readingSlug, stepRecordSlug, MONTHS, DAYS_IN_MONTH } from '../helpers/slug-utils.mjs';
+import { readingSlug, MONTHS, DAYS_IN_MONTH } from '../helpers/slug-utils.mjs';
 import { STEPS, STEP_HOOKS } from './steps.mjs';
+import { MONTH_GUIDANCE } from '../helpers/month-guidance.mjs';
 
 /**
  * Weekly chapter labels for grouping daily readings.
@@ -25,6 +26,9 @@ export function renderMonthArchivePage(monthIndex, readings) {
   const monthDisplay = monthName.charAt(0).toUpperCase() + monthName.slice(1);
   const step = STEPS[monthIndex];
   const daysInMonth = DAYS_IN_MONTH[monthIndex];
+  const guidance = MONTH_GUIDANCE[monthIndex];
+  const previous = MONTHS[(monthIndex + 11) % 12];
+  const next = MONTHS[(monthIndex + 1) % 12];
 
   // Get the starting day_of_year for this month
   let startDay = 1;
@@ -61,7 +65,7 @@ export function renderMonthArchivePage(monthIndex, readings) {
 
     return `
           <div class="ma-week">
-            <h3 class="ma-week-heading">${chapter.label}</h3>
+            <h2 class="ma-week-heading">${chapter.label}<span>${monthDisplay} ${chapter.days[0]}–${Math.min(chapter.days[1],daysInMonth)}</span></h2>
             <ul class="ma-week-list">
 ${readingItems}
             </ul>
@@ -78,17 +82,21 @@ ${readingItems}
       <!-- Page Header -->
       <header class="ma-header">
         <p class="eyebrow ma-collection-eyebrow">${monthDisplay} &middot; ${monthReadings.length} reflections</p>
-        <h1 class="ma-title">Step ${step.number} &mdash; ${step.principle}</h1>
+        <h1 class="ma-title">${monthDisplay}: ${step.principle}</h1>
         <p class="ma-subtitle">${STEP_HOOKS[step.number]}</p>
-        <p class="ma-step-statement">${step.text}</p>
-        <a class="ma-step-more" href="${bp(`/steps/${stepRecordSlug(step)}/`)}">More about Step ${step.number}</a>
+        <div class="ma-orientation">
+          <div class="ma-introduction"><p>${guidance.intro}</p><p class="ma-practice"><strong>A small practice</strong> ${guidance.practice}</p></div>
+          <aside class="ma-month-note" aria-label="This month’s focus"><p class="eyebrow">Step ${step.number}</p><p class="ma-step-statement">${step.text}</p><p class="ma-question-label">A question to carry</p><p class="ma-question">${guidance.question}</p></aside>
+        </div>
       </header>
 
+      <div class="ma-reading-intro"><h2>The daily readings</h2><p>Read with the calendar, or begin with a title that speaks to what you are living today.</p></div>
       <!-- Weekly Chapters -->
       <div class="ma-chapters">
 ${weekSections}
       </div>
 
+      <nav class="ma-month-nav" aria-label="Other months"><a href="${bp('/months/'+previous+'/')}">← ${previous[0].toUpperCase()+previous.slice(1)}</a><a href="${bp('/reflections/')}">All months</a><a href="${bp('/months/'+next+'/')}">${next[0].toUpperCase()+next.slice(1)} →</a></nav>
       <!-- Engine CTA -->
       <section class="ma-engine-cta bg-navy">
         <div class="ma-engine-cta-inner">

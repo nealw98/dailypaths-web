@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import {emailFeed} from './helpers/email-feed.mjs';
 import {applyEditorialPolicy} from './helpers/editorial-policy.mjs';
 import { TYPOGRAPHY_REVIEW_DAY, TYPOGRAPHY_REVIEW_PATH, GUIDE_REVIEW_PATH } from './helpers/typography-review.mjs';
 
@@ -410,6 +411,7 @@ if (IS_PREVIEW) {
   }
   prepareLaunchDirectory(outDir);
 }
+writeFileSync(join(outDir, 'reflections.xml'), emailFeed(readings, BASE_URL, now), 'utf-8');
 console.log('Generating sitemap and robots.txt...');
 writeFileSync(join(outDir, 'sitemap.xml'), generateSitemap(readings, TOPICS, BOOKS, STEPS), 'utf-8');
 writeFileSync(join(outDir, 'robots.txt'), generateRobotsTxt(), 'utf-8');
@@ -493,6 +495,7 @@ if (IS_PREVIEW) {
 
 
 // JS
+cpSync(join(__dirname, 'js', 'newsletter.js'), join(outDir, 'js', 'newsletter.js'));
 cpSync(join(__dirname, 'js', 'main.js'), join(outDir, 'js', 'main.js'));
 if (!IS_PREVIEW) cpSync(join(__dirname, 'js', 'admin.js'), join(outDir, 'js', 'admin.js'));
 cpSync(join(__dirname, 'js', 'analytics.js'), join(outDir, 'js', 'analytics.js'));

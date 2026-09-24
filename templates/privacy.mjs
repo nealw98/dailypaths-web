@@ -6,7 +6,7 @@ export function renderPrivacyPage() {
     <div class="content-page">
       <div class="content-container">
         <h1 class="page-title">Privacy Policy</h1>
-        <p class="page-meta">Last updated: August 25, 2026</p>
+        <p class="page-meta">Last updated: September 24, 2026</p>
 
         <section class="content-section">
           <h2>Overview</h2>
@@ -38,6 +38,11 @@ export function renderPrivacyPage() {
           </ul>
         </section>
 
+        <section class="content-section">
+          <h2>Email Updates</h2>
+          <p>If you join our email list, we store your email address, the date and version of your consent, and whether you signed up on our development or public website. We use this information for the reflections and article updates you requested. We do not sell the list.</p>
+          <p>Addresses are stored in Supabase. Email delivery is not active yet. When delivery begins, messages will include an unsubscribe link. You can also contact us through the <a href="${bp('/support/')}">Support</a> page to request removal. Signup protection uses a temporary hash of your network address; we do not store the raw address in the subscriber list.</p>
+        </section>
         <section class="content-section">
           <h2>Data Stored on Your Device</h2>
           <p>
@@ -206,7 +211,7 @@ export function renderPrivacyPage() {
 
   return wrapInLayout({
     title: 'Privacy Policy | Al-Anon Daily Paths',
-    description: 'Al-Anon Daily Paths privacy policy. Learn how we protect your privacy with anonymous-only data collection.',
+    description: 'Al-Anon Daily Paths privacy policy. Learn how we handle app data and optional website email subscriptions.',
     canonicalPath: '/privacy/',
     bodyContent,
     bodyClass: 'page-privacy',

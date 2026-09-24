@@ -8,3 +8,6 @@ verify_jwt = false
 
 [functions.share-reading]
 verify_jwt = false
+
+[functions.newsletter-signup]
+verify_jwt = true
