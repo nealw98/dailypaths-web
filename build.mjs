@@ -46,6 +46,7 @@ import { wrapInLayout } from './templates/base.mjs';
 import {getPublished,syncCatalog,applyPublished} from './helpers/story-room.mjs';
 import {ARTICLES,GUIDES} from './helpers/content-catalog.mjs';
 import {renderLaunchDrafts} from './templates/launch-drafts.mjs';
+import {ARTICLE_PLACEHOLDERS,renderArticlePlaceholder} from './templates/article-placeholders.mjs';
 import {LAUNCH_REVIEW,transformLaunchPreview} from './helpers/launch-review.mjs';
 import { bp, IS_PREVIEW, BASE_URL } from './helpers/config.mjs';
 import { renderVoicesFromTheGrave, VOICES_ARTICLE } from './templates/articles/voices-from-the-grave.mjs';
@@ -383,6 +384,9 @@ const ogElapsed = ((Date.now() - ogStart) / 1000).toFixed(1);
 console.log(`  OG images generated in ${ogElapsed}s`);
 
 // --- Step 5: Generate SEO artifacts ---
+if (IS_PREVIEW) for (const article of ARTICLE_PLACEHOLDERS) {
+  writePage(join(outDir,article.path,'index.html'),renderArticlePlaceholder(article));
+}
 await applyPublished(outDir,{production:!IS_PREVIEW,origin:BASE_URL,items:cmsItems});
 // Review drafts replace only the development rendering, never CMS approval.
 if (IS_PREVIEW) {

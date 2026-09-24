@@ -1,5 +1,14 @@
 # Daily Paths website foundation
 
+## Reserved article address — September 24, 2026
+
+`/articles/what-happens-after-the-drinking-stops/` has a short coming-soon
+placeholder in the development site. Neal will create and write its Story Room
+article using that page address. It is not promoted on the Articles index until
+published. The normal CMS route replaces the placeholder with the published
+snapshot; private drafts do not appear. No story ID mapping is needed when the
+Story Room page address matches this reserved URL.
+
 ## Story Room content management — September 20, 2026
 
 Neal authorized managing existing stories and publishing edits from Story Room.
