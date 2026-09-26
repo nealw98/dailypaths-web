@@ -27,6 +27,7 @@ import { fetchApprovedShares } from './helpers/fetch-shares.mjs';
 import { dayToSlug, readingSlug, stepRecordSlug } from './helpers/slug-utils.mjs';
 import { generateSitemap, generateRobotsTxt } from './helpers/seo.mjs';
 import { createLastmodIndex } from './helpers/lastmod.mjs';
+import { loadFavoritesSnapshot, saveFavoritesSnapshot } from './helpers/favorites-snapshot.mjs';
 import { generateOgImage } from './helpers/og-image.mjs';
 
 import { renderReadingPage } from './templates/reading.mjs';
@@ -128,12 +129,26 @@ if (supabaseThemes) {
   console.log(`  Merged ${supabaseThemes.length} themes from Supabase`);
 }
 
-// Fetch reading ratings for auto-featured readings on principle pages
-console.log('Fetching reading ratings from Supabase...');
-const ratingsMap = await fetchReadingRatings(readings).catch(err => {
-  console.warn('  Ratings fetch failed, featured readings will fall back to manual:', err.message);
-  return new Map();
-});
+// Reader favorites decide card ordering and the featured readings. They are
+// captured on a schedule (scripts/capture-favorites.mjs) so a nightly rebuild
+// cannot reshuffle pages on its own, and an unreachable Supabase cannot publish
+// a site with the favorites missing.
+console.log('Reading captured reader favorites...');
+const favoritesPath = join(ROOT, 'data', 'favorites-snapshot.json');
+const favorites = loadFavoritesSnapshot(favoritesPath);
+let ratingsMap;
+if (favorites) {
+  ratingsMap = favorites.ratings;
+  console.log(`  Captured ${favorites.capturedAt} — ${ratingsMap.size} days`);
+} else {
+  // First build only. A failure here stops the build rather than quietly
+  // publishing pages with no favorites.
+  console.log('  No snapshot yet; capturing one now');
+  ratingsMap = await fetchReadingRatings(readings);
+  if (ratingsMap.size === 0) throw new Error('Supabase returned no reader favorites; refusing to publish without them.');
+  saveFavoritesSnapshot(favoritesPath, ratingsMap, new Date().toISOString().split('T')[0]);
+  console.log(`  Captured ${ratingsMap.size} days`);
+}
 
 // Fetch approved member shares for principle pages
 console.log('Fetching member shares from Supabase...');
