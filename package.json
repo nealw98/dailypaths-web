@@ -8,7 +8,8 @@
     "build:a": "node build.mjs --version=a",
     "build:b": "node build.mjs --version=b",
     "build:c": "node build.mjs --version=c",
-    "preview": "python3 -m http.server 8788 --directory docs"
+    "preview": "python3 -m http.server 8788 --directory docs",
+    "check:sitemap": "node scripts/check-sitemap.mjs"
   },
   "dependencies": {
     "dotenv": "^16.4.7",

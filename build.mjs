@@ -26,6 +26,7 @@ import { fetchReadingRatings } from './helpers/fetch-ratings.mjs';
 import { fetchApprovedShares } from './helpers/fetch-shares.mjs';
 import { dayToSlug, readingSlug, stepRecordSlug } from './helpers/slug-utils.mjs';
 import { generateSitemap, generateRobotsTxt } from './helpers/seo.mjs';
+import { createLastmodIndex } from './helpers/lastmod.mjs';
 import { generateOgImage } from './helpers/og-image.mjs';
 
 import { renderReadingPage } from './templates/reading.mjs';
@@ -413,7 +414,19 @@ if (IS_PREVIEW) {
 }
 writeFileSync(join(outDir, 'reflections.xml'), emailFeed(readings, BASE_URL, now), 'utf-8');
 console.log('Generating sitemap and robots.txt...');
-writeFileSync(join(outDir, 'sitemap.xml'), generateSitemap(readings, TOPICS, BOOKS, STEPS), 'utf-8');
+// The private preview is disallowed to crawlers outright, so it keeps no date
+// history; production tracks real per-page dates in a committed manifest.
+const lastmodIndex = IS_PREVIEW ? null : createLastmodIndex({
+  manifestPath: join(ROOT, 'seo-lastmod.json'),
+  outDir,
+  today: new Date().toISOString().split('T')[0],
+});
+writeFileSync(
+  join(outDir, 'sitemap.xml'),
+  generateSitemap(readings, TOPICS, BOOKS, STEPS, lastmodIndex?.lastmodFor),
+  'utf-8'
+);
+lastmodIndex?.save();
 writeFileSync(join(outDir, 'robots.txt'), generateRobotsTxt(), 'utf-8');
 
 // --- Step 5b: Generate redirect pages for old slugs ---
@@ -433,9 +446,24 @@ function redirectHtml(newPath) {
 </head><body><a href="${newPath}">Continue</a></body></html>`;
 }
 
+// A retired path that points at a bare date slug has to follow that slug's own
+// redirect, or the reader arrives at a page that sends them straight back. Keep
+// the live reading paths on hand so a retired entry can never overwrite one.
+const liveReadingPaths = new Set(readings.map(r => `/${readingSlug(r.day_of_year, r.title)}/`));
+
+function resolveRedirect(target) {
+  const bare = target.replace(/^\/+|\/+$/g, '');
+  const reading = readings.find(r => dayToSlug(r.day_of_year) === bare);
+  return reading ? `/${readingSlug(reading.day_of_year, reading.title)}/` : target;
+}
+
 for (const [oldPath,newPath] of Object.entries({'september-25-vision-and-improvement':'/september-25/','october-31-the-intimacy-of-transparency':'/october-31/','guides/detachment-with-love':'/topics/detachment/'})) {
+ if (liveReadingPaths.has(`/${oldPath}/`)) {
+  console.warn(`  Retired path /${oldPath}/ is the current reading path; leaving the reflection in place`);
+  continue;
+ }
  mkdirSync(join(outDir,oldPath),{recursive:true});
- writeFileSync(join(outDir,oldPath,'index.html'),redirectHtml(newPath));
+ writeFileSync(join(outDir,oldPath,'index.html'),redirectHtml(resolveRedirect(newPath)));
 }
 
 // Reading redirects: /january-1/ → /january-1-new-title-slug/

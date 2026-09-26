@@ -28,11 +28,16 @@ jobs:
           SITE_ENV: production
         run: node build.mjs
 
+      # A broken site index is worse than a stale one, so a bad build stops here
+      # rather than being published to dailypaths.org.
+      - name: Verify the site index
+        run: node scripts/check-sitemap.mjs docs
+
       - name: Commit and push if changed
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add docs/
+          git add docs/ seo-lastmod.json
           if git diff --staged --quiet; then
             echo "No changes to deploy"
           else

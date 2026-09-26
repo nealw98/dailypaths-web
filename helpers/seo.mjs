@@ -5,71 +5,73 @@ import { BASE_URL, IS_PREVIEW } from './config.mjs';
 /**
  * Generate sitemap.xml content for all pages
  */
-export function generateSitemap(readings, topics, books = [], steps = []) {
-  const today = new Date().toISOString().split('T')[0];
-
+export function generateSitemap(readings, topics, books = [], steps = [], lastmodFor = () => null) {
   let urls = [];
 
   // Homepage
-  urls.push({ loc: BASE_URL + '/', priority: '1.0', changefreq: 'daily' });
+  urls.push({ path: '/', priority: '1.0', changefreq: 'daily' });
 
-  for (const path of ['/articles/', '/guides/', '/reflections/']) urls.push({loc:BASE_URL + path, priority:'0.8', changefreq:'weekly'});
-  urls.push({ loc: BASE_URL + '/reflections/favorites/', priority: '0.7', changefreq: 'weekly' });
+  for (const path of ['/articles/', '/guides/', '/reflections/']) urls.push({path, priority:'0.8', changefreq:'weekly'});
+  urls.push({ path: '/reflections/favorites/', priority: '0.7', changefreq: 'weekly' });
 
   // Standalone articles; established topic articles are included below.
   for (const article of [...ARTICLES,...GUIDES].filter(a => /^\/(articles|guides)\//.test(a.path))) {
-    urls.push({ loc: BASE_URL + article.path, priority: '0.6', changefreq: 'monthly' });
+    urls.push({ path: article.path, priority: '0.6', changefreq: 'monthly' });
   }
 
   // Reading pages
   for (const reading of readings) {
     const slug = readingSlug(reading.day_of_year, reading.title);
-    urls.push({ loc: `${BASE_URL}/${slug}/`, priority: '0.8', changefreq: 'weekly' });
+    urls.push({ path: `/${slug}/`, priority: '0.8', changefreq: 'weekly' });
   }
 
   // Principles index
-  urls.push({ loc: BASE_URL + '/topics/', priority: '0.7', changefreq: 'weekly' });
+  urls.push({ path: '/topics/', priority: '0.7', changefreq: 'weekly' });
 
   // Individual principle (topic) pages
   for (const topic of topics) {
-    urls.push({ loc: `${BASE_URL}/topics/${topic.slug}/`, priority: '0.6', changefreq: 'monthly' });
+    urls.push({ path: `/topics/${topic.slug}/`, priority: '0.6', changefreq: 'monthly' });
   }
 
   // Supporting Step articles. The retired /steps/ index is a redirect and is
   // intentionally omitted; Step navigation now begins at /reflections/.
   for (const step of steps) {
-    urls.push({ loc: `${BASE_URL}/steps/${stepRecordSlug(step)}/`, priority: '0.6', changefreq: 'monthly' });
+    urls.push({ path: `/steps/${stepRecordSlug(step)}/`, priority: '0.6', changefreq: 'monthly' });
   }
 
   // Literature
   if (books.length > 0) {
-    urls.push({ loc: BASE_URL + '/literature/', priority: '0.7', changefreq: 'monthly' });
+    urls.push({ path: '/literature/', priority: '0.7', changefreq: 'monthly' });
     for (const book of books) {
-      urls.push({ loc: `${BASE_URL}/literature/${book.slug}/`, priority: '0.6', changefreq: 'monthly' });
+      urls.push({ path: `/literature/${book.slug}/`, priority: '0.6', changefreq: 'monthly' });
     }
   }
 
   // Month archives
   const months = ['january','february','march','april','may','june','july','august','september','october','november','december'];
   for (const month of months) {
-    urls.push({ loc: `${BASE_URL}/months/${month}/`, priority: '0.5', changefreq: 'monthly' });
+    urls.push({ path: `/months/${month}/`, priority: '0.5', changefreq: 'monthly' });
   }
 
   // Static pages
-  urls.push({ loc: BASE_URL + '/essentials/', priority: '0.6', changefreq: 'monthly' });
-  urls.push({ loc: BASE_URL + '/start/', priority: '0.8', changefreq: 'monthly' });
-  urls.push({ loc: BASE_URL + '/guides/finding-help/', priority: '0.6', changefreq: 'monthly' });
-  urls.push({ loc: BASE_URL + '/about-project/', priority: '0.5', changefreq: 'monthly' });
-  urls.push({ loc: BASE_URL + '/privacy/', priority: '0.3', changefreq: 'monthly' });
-  urls.push({ loc: BASE_URL + '/support/', priority: '0.3', changefreq: 'monthly' });
-  urls.push({ loc: BASE_URL + '/terms/', priority: '0.3', changefreq: 'monthly' });
+  urls.push({ path: '/essentials/', priority: '0.6', changefreq: 'monthly' });
+  urls.push({ path: '/start/', priority: '0.8', changefreq: 'monthly' });
+  urls.push({ path: '/guides/finding-help/', priority: '0.6', changefreq: 'monthly' });
+  urls.push({ path: '/about-project/', priority: '0.5', changefreq: 'monthly' });
+  urls.push({ path: '/privacy/', priority: '0.3', changefreq: 'monthly' });
+  urls.push({ path: '/support/', priority: '0.3', changefreq: 'monthly' });
+  urls.push({ path: '/terms/', priority: '0.3', changefreq: 'monthly' });
 
-  const urlEntries = urls.map(u => `  <url>
-    <loc>${u.loc}</loc>
-    <lastmod>${today}</lastmod>
+  // lastmod is omitted rather than guessed. A date that moves on every rebuild
+  // teaches search engines to ignore the signal for the whole site.
+  const urlEntries = urls.map(u => {
+    const lastmod = lastmodFor(u.path);
+    return `  <url>
+    <loc>${BASE_URL}${u.path}</loc>${lastmod ? `\n    <lastmod>${lastmod}</lastmod>` : ''}
     <changefreq>${u.changefreq}</changefreq>
     <priority>${u.priority}</priority>
-  </url>`).join('\n');
+  </url>`;
+  }).join('\n');
 
   return `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
@@ -85,6 +87,7 @@ export function generateRobotsTxt() {
   return `User-agent: *
 Allow: /
 Disallow: /auth
+Disallow: /admin
 
 Sitemap: ${BASE_URL}/sitemap.xml
 `;
