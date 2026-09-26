@@ -10,7 +10,8 @@
     "build:c": "node build.mjs --version=c",
     "preview": "python3 -m http.server 8788 --directory docs",
     "check:sitemap": "node scripts/check-sitemap.mjs",
-    "capture:favorites": "node scripts/capture-favorites.mjs"
+    "capture:favorites": "node scripts/capture-favorites.mjs",
+    "check:launch-urls": "node scripts/check-launch-urls.mjs"
   },
   "dependencies": {
     "dotenv": "^16.4.7",
