@@ -3,7 +3,7 @@
 export const LAUNCH_REVIEW = {
   retired: ['/articles/detachment/'],
   deferred: ['/topics/one-day-at-a-time/', '/topics/self-worth/', '/topics/gratitude-and-hope/', '/topics/honesty/'],
-  retiredPaths: ['/about-alanon/'],
+  retiredPaths: [],
   linkedStories: { '012aaa8a-e94a-4ff2-8730-87a663205057': '/guides/finding-help/', 'cms-detachment': '/articles/detachment/', '051e6f44-9d55-4a16-ba92-61a7a06f642e': '/topics/detachment/', 'de45655f-f3a2-46a4-a2a7-a52a7174ed98': '/articles/your-first-al-anon-meeting/' },
   cmsManaged: ['/guides/finding-help/', '/topics/detachment/', '/articles/your-first-al-anon-meeting/'],
   drafts: ['/topics/detachment/', '/articles/your-first-al-anon-meeting/'],
@@ -29,7 +29,7 @@ export function launchItems(items, preview) {
 // Self-contained for inclusion in the preview Worker.
 export function transformLaunchPreview(html, pathname, policy = LAUNCH_REVIEW) {
   if (!html) return html;
-  html = html.replaceAll('/about-alanon/', '/guides/finding-help/');
+  html = html.replaceAll('/about-alanon/', '/guides/about-alanon/');
   // Remove the retired article's cards, including cached CMS fallback listings.
   const retiredHref = href => {
     try { const u = new URL(href, 'https://daily-paths-soft-daylight.nealw98.chatgpt.site');

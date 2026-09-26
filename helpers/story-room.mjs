@@ -5,7 +5,9 @@ import {writeFileSync,readFileSync,mkdirSync,existsSync} from 'node:fs';
 import {join,dirname} from 'node:path';
 export const CMS_ORIGIN='https://daily-paths-story-room.nealw98.chatgpt.site';
 export const PREVIEW_ORIGIN='https://daily-paths-soft-daylight.nealw98.chatgpt.site';
-export const validPath=p=>/^\/(?:articles|guides|topics)\/[a-z0-9]+(?:-[a-z0-9]+)*\/$/.test(p)||p==='/about-alanon/';
+// About Al-Anon is published at /guides/about-alanon/; its original root-level
+// path only forwards there, so it is no longer a place CMS content can land.
+export const validPath=p=>/^\/(?:articles|guides|topics)\/[a-z0-9]+(?:-[a-z0-9]+)*\/$/.test(p);
 export const escape=s=>String(s||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 export function composePage(base,approved){
  if(!base)return syncHeroSocialImage(approved,'https://daily-paths-soft-daylight.nealw98.chatgpt.site');

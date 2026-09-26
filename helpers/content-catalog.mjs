@@ -8,6 +8,7 @@ export const GUIDES = [
   { title: 'Boundaries', path: '/topics/boundaries/', description: 'Recognizing your limits and making room for your own needs.' },
   { title: 'One Day at a Time', path: '/topics/one-day-at-a-time/', description: 'Meeting today without carrying all of tomorrow.' },
   { title: 'Finding Yourself', path: '/topics/self-worth/', description: 'Reconnecting with the person you are beyond someone else’s drinking.' },
+  { title: 'About Al-Anon', path: '/guides/about-alanon/', description: 'What Al-Anon is, how the program works, and whether it might be for you.' },
   { title: 'Finding Support', path: '/guides/finding-help/', description: 'An introduction to Al-Anon and finding people who understand.' },
 ];
 

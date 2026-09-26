@@ -176,6 +176,7 @@ const dirs = [
   join(outDir, 'start'),
   join(outDir, 'about-project'),
   join(outDir, 'about-alanon'),
+  join(outDir, 'guides', 'about-alanon'),
   join(outDir, 'steps'),
   ...STEPS.map(s => join(outDir, 'steps', stepRecordSlug(s))),
   // Old step slugs (for redirects)
@@ -319,7 +320,7 @@ writePage(join(outDir, 'terms', 'index.html'), renderTermsPage());
 writePage(join(outDir, 'essentials', 'index.html'), renderEssentialsPage());
 writePage(join(outDir, 'start', 'index.html'), renderStartPage(readings));
 writePage(join(outDir, 'about-project', 'index.html'), renderAboutProjectPage());
-writePage(join(outDir, 'about-alanon', 'index.html'), renderAboutAlanonPage());
+writePage(join(outDir, 'guides', 'about-alanon', 'index.html'), renderAboutAlanonPage());
 // Admin page
 console.log('Generating admin page...');
 if (!IS_PREVIEW) writePage(join(outDir, 'admin', 'index.html'), renderAdminPage());
@@ -446,8 +447,10 @@ writeFileSync(join(outDir, 'robots.txt'), generateRobotsTxt(), 'utf-8');
 
 // --- Step 5b: Generate redirect pages for old slugs ---
 console.log('Generating redirect pages for old slugs...');
-writePage(join(outDir, 'about-alanon', 'index.html'), redirectHtml('/guides/finding-help/'));
-writeFileSync(join(outDir, '_redirects'), '/about-alanon /guides/finding-help/ 301\n/about-alanon/ /guides/finding-help/ 301\n/about-alanon/index.html /guides/finding-help/ 301\n');
+// About Al-Anon is a guide again, alongside Finding Support. Its original
+// root-level path forwards to the new one rather than to Finding Support.
+writePage(join(outDir, 'about-alanon', 'index.html'), redirectHtml('/guides/about-alanon/'));
+writeFileSync(join(outDir, '_redirects'), '/about-alanon /guides/about-alanon/ 301\n/about-alanon/ /guides/about-alanon/ 301\n/about-alanon/index.html /guides/about-alanon/ 301\n');
 
 
 function redirectHtml(newPath) {
