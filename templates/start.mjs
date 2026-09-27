@@ -174,7 +174,6 @@ export function renderStartPage(readings = [], { typographyPreview = false } = {
         <p class="start-meeting-text">You don&rsquo;t have to speak. Most people say nothing at their first meeting, and no one asks them to. You can join an online meeting from a closed door in your own house and leave whenever you want. If it isn&rsquo;t right, try a different group &mdash; they vary more than you&rsquo;d expect.</p>
         <div class="btn-row">
           <a href="${MEETING_DIRECTORY_URL}" target="_blank" rel="noopener noreferrer" class="btn">Find a meeting near you</a>
-          <a href="${bp('/essentials/#serenity')}" class="btn btn--ghost">Read the Serenity Prayer</a>
         </div>
       </div>
     </section>

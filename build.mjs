@@ -38,7 +38,6 @@ import { reflectionHeroImage } from './helpers/reflection-images.mjs';
 import { renderPrivacyPage } from './templates/privacy.mjs';
 import { renderSupportPage } from './templates/support.mjs';
 import { renderTermsPage } from './templates/terms.mjs';
-import { renderEssentialsPage } from './templates/essentials.mjs';
 import { renderAboutProjectPage } from './templates/about-project.mjs';
 import { renderAboutAlanonPage } from './templates/about-alanon.mjs';
 import { renderStepPage, STEPS, STEP_TOOLS, STEP_HOOKS, STEP_TAGLINES, PULL_QUOTES } from './templates/steps.mjs';
@@ -181,7 +180,6 @@ const dirs = [
   join(outDir, 'privacy'),
   join(outDir, 'support'),
   join(outDir, 'terms'),
-  join(outDir, 'essentials'),
   join(outDir, 'start'),
   join(outDir, 'about-project'),
   join(outDir, 'about-alanon'),
@@ -326,7 +324,6 @@ console.log('Generating static pages...');
 writePage(join(outDir, 'privacy', 'index.html'), renderPrivacyPage());
 writePage(join(outDir, 'support', 'index.html'), renderSupportPage());
 writePage(join(outDir, 'terms', 'index.html'), renderTermsPage());
-writePage(join(outDir, 'essentials', 'index.html'), renderEssentialsPage());
 writePage(join(outDir, 'start', 'index.html'), renderStartPage(readings));
 writePage(join(outDir, 'about-project', 'index.html'), renderAboutProjectPage());
 writePage(join(outDir, 'guides', 'about-alanon', 'index.html'), renderAboutAlanonPage());
@@ -492,7 +489,7 @@ for (const [oldSlug, currentSlug] of slugResolver.retiredSlugs) {
   writeFileSync(join(outDir, oldSlug, 'index.html'), redirectHtml(`/${currentSlug}/`), 'utf-8');
 }
 
-for (const [oldPath,newPath] of Object.entries({'guides/detachment-with-love':'/topics/detachment/','prayers':'/essentials/'})) {
+for (const [oldPath,newPath] of Object.entries({'guides/detachment-with-love':'/topics/detachment/','essentials':'/reflections/','prayers':'/reflections/'})) {
  if (liveReadingPaths.has(`/${oldPath}/`)) {
   console.warn(`  Retired path /${oldPath}/ is the current reading path; leaving the reflection in place`);
   continue;

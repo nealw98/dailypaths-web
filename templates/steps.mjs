@@ -420,12 +420,14 @@ export function renderStepPage(step, readings = []) {
   // Body sections. A description paragraph that is entirely bold is a section
   // heading in the source data — the design sets those as Cormorant H2s over
   // the Lora paragraphs that follow, so promote them rather than emitting a
-  // bold paragraph. "Let Go and Let God" links through to Essentials.
+  // bold paragraph. "Let Go and Let God" links through to the Letting Go article.
   const sections = [];
   for (const paragraph of step.description || []) {
+    // The slogan points at our own Letting Go article rather than a page of
+    // copied text. This Step prose carries over to the reflections hub.
     const linked = paragraph.replace(
       /Let Go and Let God/g,
-      `<a href="${bp('/essentials/#let-go')}">Let Go and Let God</a>`
+      `<a href="${bp('/topics/letting-go/')}">Let Go and Let God</a>`
     );
     const headingMatch = linked.match(/^\s*\*\*(.+?)\*\*\s*$/);
     if (headingMatch) {

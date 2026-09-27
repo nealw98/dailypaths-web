@@ -54,7 +54,6 @@ export function generateSitemap(readings, topics, books = [], steps = [], lastmo
   }
 
   // Static pages
-  urls.push({ path: '/essentials/', priority: '0.6', changefreq: 'monthly' });
   urls.push({ path: '/start/', priority: '0.8', changefreq: 'monthly' });
   urls.push({ path: '/about-project/', priority: '0.5', changefreq: 'monthly' });
   urls.push({ path: '/privacy/', priority: '0.3', changefreq: 'monthly' });

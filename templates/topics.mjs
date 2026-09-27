@@ -71,12 +71,12 @@ ${photoHero({
 }
 
 /**
- * Inject a strategic link to the Essentials "Letting Go" entry.
- * Only links the term on pages other than the detachment page itself.
+ * Link the first mention of detachment to our own Detachment guide.
+ * Skipped on the detachment page itself, which would be linking to itself.
  */
-function injectEssentialsLinks(body, currentSlug) {
+function injectDetachmentLink(body, currentSlug) {
   if (currentSlug === 'detachment') return body;
-  return body.replace(/\bdetachment\b/i, `<a href="${bp('/essentials/#let-go')}">$&</a>`);
+  return body.replace(/\bdetachment\b/i, `<a href="${bp('/topics/detachment/')}">$&</a>`);
 }
 
 const PRINCIPLE_WORDS = ['One', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine', 'Ten', 'Eleven', 'Twelve'];
@@ -379,7 +379,7 @@ ${photoHero({
       ${pullQuote ? `<p class="pull-quote">&ldquo;${pullQuote}&rdquo;</p>` : ''}
 
       <div class="prose-lora">
-        ${addArticlePullQuotes(injectEssentialsLinks(markdownToHtml(topic.body || ''), topic.slug), topic.slug)}
+        ${addArticlePullQuotes(injectDetachmentLink(markdownToHtml(topic.body || ''), topic.slug), topic.slug)}
       </div>
 
       ${topic.logic ? `<div class="prose-lora">${markdownToHtml(topic.logic)}</div>` : ''}
