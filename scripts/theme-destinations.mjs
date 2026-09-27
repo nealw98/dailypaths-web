@@ -138,7 +138,11 @@ function main() {
     }
 
     const list = [...themes.values()]
-      .map(t => ({ ...t, today: inherited[t.name] || '' }))
+      .map(t => ({
+        ...t,
+        today: APPROVED_DESTINATIONS[t.name] || inherited[t.name] || '',
+        settled: Boolean(APPROVED_DESTINATIONS[t.name]),
+      }))
       .sort((a, b) => b.days.length - a.days.length || a.name.localeCompare(b.name));
 
     const header = ['theme', 'reflections', 'points_to_today', 'new_destination', 'status', 'sample_1', 'sample_2', 'sample_3'];
@@ -147,7 +151,8 @@ function main() {
       const samples = t.days.slice(0, 3).map(d => d.title);
       lines.push([
         t.name, t.days.length, t.today, t.today,
-        t.today ? 'carried over — change if you disagree' : 'NEEDS A DESTINATION',
+        t.settled ? 'settled — the theme names this Step’s principle'
+          : t.today ? 'carried over — change if you disagree' : 'NEEDS A DESTINATION',
         samples[0] || '', samples[1] || '', samples[2] || '',
       ].map(csvCell).join(','));
     }

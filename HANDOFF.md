@@ -195,7 +195,13 @@ node scripts/theme-destinations.mjs --sql    # the November repairs, as UPDATEs
 
 That writes `editorial/theme-destinations.csv` and `.md`, listing every theme, how
 many reflections carry it, where it points today, and the destinations available.
-74 themes have no destination yet.
+71 themes have no destination yet.
+
+**Seed the Reading Room's table from `data/theme-destinations.json`, not from the
+CSV.** That file is what the build reads and it is authoritative: 64 themes,
+including three settled by name (Humility → Step 7, Service → Step 12, Courage →
+Step 4). Once the table exists it becomes the source and a capture overwrites
+that file, so anything not carried into the table is lost.
 
 ### Destinations are wider than the articles and guides
 

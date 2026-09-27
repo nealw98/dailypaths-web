@@ -5,8 +5,8 @@ blank destinations in `editorial/theme-destinations.csv`, which opens in any
 spreadsheet. Proposals are proposals: change anything you disagree with.
 
 - **135 themes** in use across 366 reflections
-- **61** already have a destination, carried over from the inherited topic groups
-- **74** need one — these are the rows to work through
+- **64** already have a destination, carried over from the inherited topic groups
+- **71** need one — these are the rows to work through
 - **30** November reflections are shown under their proposed theme, not the step number now in the column
 
 ## Destinations to choose from
@@ -51,9 +51,6 @@ spreadsheet. Proposals are proposals: change anything you disagree with.
 
 | Theme | Reflections | Sample titles |
 |---|---|---|
-| Humility | 13 | The Martyr Role · Humbled by Frailty · Advising Is Not Al-Anon |
-| Service | 7 | Resigning as General Manager · Many Forms · The Illusion of Control in Service |
-| Courage | 6 | Courage to Change · The Gap Between Deciding and Doing · The Courage to See |
 | Balance | 5 | Freedom and Belonging · Power Needs Accountability · The First Word |
 | Fear | 5 | Addicted to Chaos · The Gift of Honesty · Cleaning the House |
 | Accountability | 4 | No Longer Acceptable · Cross-Checks and Balance · The Immediate Stop |
@@ -133,6 +130,7 @@ spreadsheet. Proposals are proposals: change anything you disagree with.
 | Trust | 19 | `/topics/higher-power/` |
 | Honesty | 16 | `/articles/the-stories-we-tell-ourselves/` |
 | Faith | 14 | `/topics/higher-power/` |
+| Humility | 13 | `/steps/al-anon-step-7-humility/` |
 | Boundaries | 10 | `/guides/boundaries/` |
 | Connection | 10 | `/topics/fellowship/` |
 | Freedom | 10 | `/guides/detachment-with-love/` |
@@ -141,6 +139,8 @@ spreadsheet. Proposals are proposals: change anything you disagree with.
 | Detachment | 9 | `/guides/detachment-with-love/` |
 | Patience | 8 | `/topics/one-day-at-a-time/` |
 | Relief | 7 | `/guides/surrender/` |
+| Service | 7 | `/steps/al-anon-step-12-service/` |
+| Courage | 6 | `/steps/al-anon-step-4-courage/` |
 | Identity | 6 | `/topics/self-worth/` |
 | Willingness | 6 | `/articles/letting-go/` |
 | Awareness | 5 | `/articles/the-stories-we-tell-ourselves/` |
