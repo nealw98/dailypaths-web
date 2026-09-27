@@ -5,7 +5,9 @@ import { BASE_URL } from './config.mjs';
  * Generate sitemap.xml content for all pages
  */
 export function generateSitemap(readings, topics, books = [], steps = []) {
-  const today = new Date().toISOString().split('T')[0];
+  // No <lastmod>: stamping every URL with the build date told search engines
+  // all 417 pages changed daily. Omitting it is honest; a real per-page date
+  // comes with 2.0.
 
   let urls = [];
 
@@ -58,7 +60,6 @@ export function generateSitemap(readings, topics, books = [], steps = []) {
 
   const urlEntries = urls.map(u => `  <url>
     <loc>${u.loc}</loc>
-    <lastmod>${today}</lastmod>
     <changefreq>${u.changefreq}</changefreq>
     <priority>${u.priority}</priority>
   </url>`).join('\n');
