@@ -202,7 +202,7 @@ export function renderReadingPage(reading, prevReading, nextReading, allReadings
     }
     : collectionPage
       ? {
-        label: 'Reflections', title: `${collectionPage.stepTag} ${collectionMatch[2]}`,
+        label: 'Reflections', title: `${collectionPage.stepTag} ${NUMBER_WORDS[Number(collectionMatch[2]) - 1] || collectionMatch[2]}`,
         description: `Part of ${collectionPage.title}. Read the reflections written alongside it.`,
         cta: 'Explore the collection', path: programPath,
       }
