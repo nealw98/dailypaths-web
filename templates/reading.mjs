@@ -3,12 +3,13 @@ import { textToHtmlParagraphs, parseQuote, stripForMeta } from '../helpers/markd
 import { dayToIsoDate, dayToMonthIndex, readingSlug, DAYS_IN_MONTH } from '../helpers/slug-utils.mjs';
 import { readingStructuredData, breadcrumbStructuredData } from '../helpers/seo.mjs';
 import { bp } from '../helpers/config.mjs';
-import { THEME_TO_TOPIC, TOPICS, TOPIC_RELATED, DEFAULT_RELATED_TOPICS } from '../helpers/theme-data.mjs';
+import { THEME_TO_TOPIC, TOPICS } from '../helpers/theme-data.mjs';
+import { themeDestination, pickSiblings, siblingReflections } from '../helpers/theme-destinations.mjs';
+import { destinationMeta } from '../helpers/destination-catalog.mjs';
 import { STEPS, STEP_HOOKS } from './steps.mjs';
 import { photoHero, quoteBlock, pill, terminalBand } from './ui.mjs';
 import { reflectionHeroImage, reflectionImage } from '../helpers/reflection-images.mjs';
 import { TYPOGRAPHY_REVIEW_PATH } from '../helpers/typography-review.mjs';
-import { ARTICLES } from '../helpers/content-catalog.mjs';
 import { themePath } from '../helpers/theme-pages.mjs';
 import { COLLECTION_PAGES } from '../helpers/collection-pages.mjs';
 
@@ -29,9 +30,7 @@ function countToWords(n) {
   return String(n);
 }
 
-function lowerFirst(text) { return text ? text.charAt(0).toLowerCase() + text.slice(1) : text; }
 function upperFirst(text) { return text ? text.charAt(0).toUpperCase() + text.slice(1) : text; }
-function stripPeriod(text) { return text ? text.replace(/\.\s*$/, '') : text; }
 
 /**
  * Card teaser: the reading's own reminder line, used only when it fits on
@@ -64,7 +63,6 @@ function readingTeaser(reading) {
  */
 export function renderReadingPage(reading, prevReading, nextReading, allReadings = [], ratingsMap = new Map(), { typographyPreview = false } = {}) {
   const slug = readingSlug(reading.day_of_year, reading.title);
-  const isDiscoveryTrial = slug === 'september-11-the-trap-of-self-spared-discomfort' && !typographyPreview;
   const isoDate = dayToIsoDate(reading.day_of_year);
   const monthIdx = dayToMonthIndex(reading.day_of_year);
   let dayOfMonth = reading.day_of_year;
@@ -93,10 +91,8 @@ export function renderReadingPage(reading, prevReading, nextReading, allReadings
   // intentional duplication at two different moments.
   const theme = reading.secondary_theme;
   const topicMatch = theme ? THEME_TO_TOPIC[theme] : null;
-  const topicData = topicMatch ? TOPICS.find(t => t.slug === topicMatch.slug) : null;
   const stepData = stepNum ? STEPS.find(s => s.number === stepNum) : null;
   const stepPath = stepData ? `/months/${stepData.monthSlug}/` : null;
-  const monthStepData = STEPS.find(step => step.number === monthIdx + 1);
 
   // 63 reflections are tagged to a Tradition or a Concept rather than a Step, and
   // their pill rendered as dead text for want of a page to point at. Each now
@@ -141,50 +137,24 @@ export function renderReadingPage(reading, prevReading, nextReading, allReadings
       .replace(/\*(.+?)\*/g, '<em>$1</em>')
     : '';
 
-  // Keep reading — the September 11 trial expands this to six crawlable links
-  // from the current month, ranked by combined positive ratings and favorites.
-  // The remaining 365 pages retain their current three-card treatment until
-  // the trial is approved.
+  // Related reflections — the others whose theme sends the reader to the same
+  // place. Each card carries its own theme word, because the variety is the
+  // point: three different words on one destination read as three angles on an
+  // idea, where three copies of "Trust" would read as a list of duplicates.
+  const destinationPath = themeDestination(reading.secondary_theme);
+  const destination = destinationMeta(destinationPath);
   let keepReadingHtml = '';
-  if (topicMatch && allReadings.length > 0) {
-    const collection = allReadings.filter(r => {
-      const t = r.secondary_theme && THEME_TO_TOPIC[r.secondary_theme];
-      return t && t.slug === topicMatch.slug;
+  if (destinationPath && allReadings.length > 0) {
+    const siblings = pickSiblings(reading, allReadings, {
+      limit: 3,
+      exclude: [prevReading.day_of_year, nextReading.day_of_year],
+      ratingsMap,
     });
-    const excluded = new Set([reading.day_of_year, prevReading.day_of_year, nextReading.day_of_year]);
-    const rankReadings = candidates => candidates
-      .filter(r => !excluded.has(r.day_of_year))
-      .sort((a, b) => {
-        const ra = (ratingsMap.get(a.day_of_year) || {}).positive || 0;
-        const rb = (ratingsMap.get(b.day_of_year) || {}).positive || 0;
-        if (rb !== ra) return rb - ra;
-        return a.day_of_year - b.day_of_year;
-      });
 
-    let selections;
-    if (isDiscoveryTrial) {
-      const monthStart = DAYS_IN_MONTH.slice(0, monthIdx).reduce((sum, days) => sum + days, 0) + 1;
-      const monthEnd = monthStart + DAYS_IN_MONTH[monthIdx] - 1;
-      selections = allReadings
-        .filter(candidate => candidate.day_of_year >= monthStart && candidate.day_of_year <= monthEnd && candidate.day_of_year !== reading.day_of_year)
-        .sort((a, b) => {
-          const aStats = ratingsMap.get(a.day_of_year) || {};
-          const bStats = ratingsMap.get(b.day_of_year) || {};
-          const aScore = (aStats.positive || 0) + (aStats.favorites || 0);
-          const bScore = (bStats.positive || 0) + (bStats.favorites || 0);
-          if (bScore !== aScore) return bScore - aScore;
-          if ((bStats.positive || 0) !== (aStats.positive || 0)) return (bStats.positive || 0) - (aStats.positive || 0);
-          return a.day_of_year - b.day_of_year;
-        })
-        .slice(0, 6)
-        .map(candidate => ({ reading: candidate, context: '' }));
-    } else {
-      selections = rankReadings(collection).slice(0, 3).map(candidate => ({ reading: candidate, context: '' }));
-    }
-
-    if (selections.length > 0) {
-      const cards = selections.map(({ reading: r, context }) => {
+    if (siblings.length > 0) {
+      const cards = siblings.map(r => {
         const teaser = readingTeaser(r);
+        const context = (r.secondary_theme || '').trim();
         return `
           <a href="${bp(`/${readingSlug(r.day_of_year, r.title)}/`)}" class="kr-card">
             ${context ? `<span class="kr-card-context">${context}</span>` : ''}
@@ -195,78 +165,57 @@ export function renderReadingPage(reading, prevReading, nextReading, allReadings
           </a>`;
       }).join('');
 
-      const topicHref = isDiscoveryTrial && monthStepData
-        ? bp(`/months/${monthStepData.monthSlug}/`)
-        : bp(themePath(topicMatch.slug));
-      const collectionLine = topicData
-        ? `${upperFirst(countToWords(collection.length))} readings on ${lowerFirst(stripPeriod(topicData.shortDescription))}.`
+      const total = siblingReflections(reading, allReadings, { ratingsMap }).length + 1;
+      const collectionLine = destination
+        ? `${upperFirst(countToWords(total))} reflections lead to ${destination.title}.`
         : '';
       keepReadingHtml = `
-    <section class="wrap wrap--article section--lg kr-section${isDiscoveryTrial ? ' kr-section--trial' : ''}" aria-labelledby="keep-reading-heading">
-      <p class="eyebrow">${isDiscoveryTrial ? 'Related Readings' : 'Keep reading'}</p>
-      <h2 class="section-title" id="keep-reading-heading">${isDiscoveryTrial && monthStepData ? `Additional reflections on Step ${monthStepData.number} &mdash; ${monthStepData.principle}` : `More on ${topicMatch.name.toLowerCase()}`}</h2>
-      ${isDiscoveryTrial && monthStepData ? `<p class="section-desc">${STEP_HOOKS[monthStepData.number]}</p>` : (collectionLine ? `<p class="section-desc">${collectionLine}</p>` : '')}
-      <div class="kr-grid${isDiscoveryTrial ? ' kr-grid--carousel' : ''}">${cards}
-      </div>
-      <div class="kr-more">
-        <a href="${!isDiscoveryTrial && ['powerlessness','boundaries','detachment'].includes(topicMatch.slug) ? bp('/reflections/') : topicHref + (isDiscoveryTrial ? '' : '#readings')}" class="text-link">${isDiscoveryTrial && monthStepData ? `More ${monthStepData.month} readings` : 'More readings'}</a>
+    <section class="wrap wrap--article section--lg kr-section" aria-labelledby="keep-reading-heading">
+      <p class="eyebrow">Related reflections</p>
+      <h2 class="section-title" id="keep-reading-heading">More on ${(theme || 'this').toLowerCase()}</h2>
+      ${collectionLine ? `<p class="section-desc">${collectionLine}</p>` : ''}
+      <div class="kr-grid">${cards}
       </div>
     </section>`;
     }
   }
 
-  // Related topics — scaffolding on every reading page: two topic cards from
-  // the topic-adjacency map (per-reading secondary topics replace this when
-  // topics-v2 tagging lands), then the reading's Step, worded to explain
-  // itself to a newcomer. Untagged readings fall back to the default pair.
-  const relatedSlugs = (topicMatch && TOPIC_RELATED[topicMatch.slug]) || DEFAULT_RELATED_TOPICS;
-  const relatedCards = relatedSlugs
-    .map(slug => TOPICS.find(t => t.slug === slug))
-    .filter(t => t && (!topicMatch || t.slug !== topicMatch.slug))
-    .slice(0, 2)
-    .map(t => `
-          <a href="${bp(themePath(t.slug))}" class="rt-card">
-            <span class="rt-card-title">${t.name}</span>
-            <span class="rt-card-line">${t.shortDescription}</span>
-            <span class="rt-card-meta">Read</span>
-          </a>`);
-  if (stepData) {
-    relatedCards.push(`
-          <a href="${bp(stepPath)}" class="rt-card">
-            <span class="rt-card-title">${stepData.principle}</span>
-            <span class="rt-card-line">Step ${stepWord} &mdash; the Step this reading belongs to.</span>
-            <span class="rt-card-meta">Read</span>
-          </a>`);
-  }
-  const relatedTopicsHtml = `
-    <section class="wrap wrap--article rt-section">
-      <p class="eyebrow">Related topics</p>
-      <div class="rt-grid">${relatedCards.join('')}
-      </div>
-    </section>`;
+  // Go deeper — the piece this reflection's theme points at, labelled by what it
+  // is, beside the collection the reflection belongs to. This replaces the
+  // related-topics scaffolding, which offered two cards from a topic-adjacency
+  // map and fell back to the same generic pair on every untagged reading.
+  const programCard = stepData
+    ? {
+      label: 'Reflections', title: `Step ${stepWord}: ${stepData.principle}`,
+      description: `${STEP_HOOKS[stepData.number]} Read every ${stepData.month} reflection on this Step.`,
+      cta: 'Explore the collection', path: stepPath,
+    }
+    : collectionPage
+      ? {
+        label: 'Reflections', title: `${collectionPage.stepTag} ${collectionMatch[2]}`,
+        description: `Part of ${collectionPage.title}. Read the reflections written alongside it.`,
+        cta: 'Explore the collection', path: programPath,
+      }
+      : null;
 
-  const relatedArticle = isDiscoveryTrial
-    ? ARTICLES.find(article => article.path === themePath(topicMatch.slug))
-    : null;
-  const goDeeperHtml = isDiscoveryTrial ? `
+  const deeperCards = [];
+  if (destination && destinationPath) deeperCards.push({ ...destination, path: destinationPath });
+  // A theme pointing at the reflection's own collection would repeat the card.
+  if (programCard && !deeperCards.some(card => card.path === programCard.path)) deeperCards.push(programCard);
+
+  const goDeeperHtml = deeperCards.length ? `
     <section class="wrap wrap--article deeper-section" aria-labelledby="go-deeper-heading">
       <p class="eyebrow">Go deeper</p>
       <h2 class="section-title" id="go-deeper-heading">Understand it. Put it into practice.</h2>
       <div class="deeper-grid">
-        ${relatedArticle ? `<a href="${bp(relatedArticle.path)}" class="deeper-card">
-          <span class="deeper-card-type">Relevant article</span>
-          <span class="deeper-card-title">${relatedArticle.title}</span>
-          <span class="deeper-card-line">${relatedArticle.description}</span>
-          <span class="deeper-card-cta">Read the article</span>
-        </a>` : ''}
-        ${stepData ? `<a href="${bp(stepPath)}" class="deeper-card">
-          <span class="deeper-card-type">Reflection collection</span>
-          <span class="deeper-card-title">Step ${stepWord}: ${stepData.principle}</span>
-          <span class="deeper-card-line">${STEP_HOOKS[stepData.number]} Read all ${stepData.month} reflections.</span>
-          <span class="deeper-card-cta">Explore the collection</span>
-        </a>` : ''}
+        ${deeperCards.map(card => `<a href="${bp(card.path)}" class="deeper-card">
+          <span class="deeper-card-type">${card.label}</span>
+          <span class="deeper-card-title">${card.title}</span>
+          <span class="deeper-card-line">${card.description}</span>
+          <span class="deeper-card-cta">${card.cta}</span>
+        </a>`).join('\n        ')}
       </div>
-    </section>` : relatedTopicsHtml;
+    </section>` : '';
 
   const bodyContent = `
 ${photoHero({
@@ -334,7 +283,7 @@ ${goDeeperHtml}
     noindex: typographyPreview,
     ogType: 'article',
     ogImage: `/${slug}/og.png`,
-    bodyClass: `page-reading${isDiscoveryTrial ? ' discovery-trial-page' : ''}`,
+    bodyClass: 'page-reading',
     navSection: 'reflection',
     hasAppPanel: true,
   });

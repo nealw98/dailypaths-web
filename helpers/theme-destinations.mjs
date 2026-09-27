@@ -74,18 +74,52 @@ export function themeDestination(theme) {
 }
 
 /**
- * Reflections that share a destination, nearest first by day so the three shown
- * are not always the same three. The reflection itself, and its immediate
- * neighbours — already linked as previous and next — are left out.
+ * Every reflection sharing this one's destination, best first.
+ *
+ * Ordered by how many readers marked it positively, then by nearness in the year.
+ * The reflection itself and its immediate neighbours — already linked as previous
+ * and next — are left out.
  */
-export function siblingReflections(reading, allReadings, exclude = []) {
+export function siblingReflections(reading, allReadings, { exclude = [], ratingsMap } = {}) {
   const destination = themeDestination(reading.secondary_theme);
   if (!destination) return [];
   const skip = new Set([reading.day_of_year, ...exclude]);
+  const score = other => (ratingsMap?.get(other.day_of_year) || {}).positive || 0;
   return allReadings
     .filter(other => !skip.has(other.day_of_year) && themeDestination(other.secondary_theme) === destination)
     .sort((a, b) => {
-      const distance = Math.abs(a.day_of_year - reading.day_of_year) - Math.abs(b.day_of_year - reading.day_of_year);
-      return distance || a.day_of_year - b.day_of_year;
+      const byScore = score(b) - score(a);
+      if (byScore) return byScore;
+      const byDistance = Math.abs(a.day_of_year - reading.day_of_year) - Math.abs(b.day_of_year - reading.day_of_year);
+      return byDistance || a.day_of_year - b.day_of_year;
     });
+}
+
+/**
+ * The handful to show, chosen so their theme words differ.
+ *
+ * Grouping by destination is what makes variety possible; spending it is a
+ * separate step. Sixteen reflections point at Surrender through the word "Trust",
+ * and showing three of those would read as one idea repeated. So each pick
+ * prefers a theme word not already on display, and one unlike the reading's own.
+ * Once every word is spoken for the remaining slots fill by rank, because three
+ * good reflections beat two and a gap.
+ */
+export function pickSiblings(reading, allReadings, { limit = 3, exclude = [], ratingsMap } = {}) {
+  const candidates = siblingReflections(reading, allReadings, { exclude, ratingsMap });
+  const chosen = [];
+  const spoken = new Set([(reading.secondary_theme || '').trim()]);
+  for (const candidate of candidates) {
+    if (chosen.length === limit) break;
+    const theme = (candidate.secondary_theme || '').trim();
+    if (!spoken.has(theme)) {
+      chosen.push(candidate);
+      spoken.add(theme);
+    }
+  }
+  for (const candidate of candidates) {
+    if (chosen.length === limit) break;
+    if (!chosen.includes(candidate)) chosen.push(candidate);
+  }
+  return chosen;
 }
