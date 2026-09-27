@@ -203,6 +203,22 @@ including three settled by name (Humility → Step 7, Service → Step 12, Coura
 Step 4). Once the table exists it becomes the source and a capture overwrites
 that file, so anything not carried into the table is lost.
 
+### Assigning themes belongs to writing the piece
+
+71 themes have no destination, covering 112 reflections — 30% of them. Those pages
+are not broken: they group by their Step and their Go deeper card names their
+collection. What they lack is a link to an article or guide, and for most of them
+the reason is that the article has not been written yet.
+
+So the last step of publishing an article or guide is to point the themes that
+belong to it at its address. `editorial/theme-destinations.csv` lists which themes
+are still unassigned and how many reflections each carries. Twelve of them are
+used three or more times — Balance, Fear, Accountability, Choice, Discernment,
+Empowerment, Growth, Forgiveness, Perspective, Practice, Progress,
+Responsibility — and between them cover 45 reflections, taking coverage from 70%
+to 82%. The remaining 51 are used by a single reflection each and are not worth a
+decision until one of them bothers somebody.
+
 ### Destinations are wider than the articles and guides
 
 Sixteen reflections carry principle vocabulary — *Proportionality, Democracy,
