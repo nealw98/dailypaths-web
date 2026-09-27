@@ -1,0 +1,1701 @@
+{
+  "version": 1,
+  "pages": {
+    "/": {
+      "hash": "5ae85a44808d31d4",
+      "lastmod": "2026-09-27"
+    },
+    "/articles/": {
+      "hash": "ca42fee0baf38147",
+      "lastmod": "2026-09-27"
+    },
+    "/guides/": {
+      "hash": "23618fc3f19df0ea",
+      "lastmod": "2026-09-27"
+    },
+    "/reflections/": {
+      "hash": "8607f649e41bb586",
+      "lastmod": "2026-09-27"
+    },
+    "/reflections/favorites/": {
+      "hash": "fbb2a34f9415c2e0",
+      "lastmod": "2026-09-27"
+    },
+    "/articles/the-line-i-kept-moving/": {
+      "hash": "0b0bb84541033557",
+      "lastmod": "2026-09-27"
+    },
+    "/articles/voices-from-the-grave/": {
+      "hash": "9fa9c1c403a25efb",
+      "lastmod": "2026-09-27"
+    },
+    "/articles/your-first-al-anon-meeting/": {
+      "hash": "49c2c16e5e892428",
+      "lastmod": "2026-09-27"
+    },
+    "/guides/about-alanon/": {
+      "hash": "03c454fec3ebb7fa",
+      "lastmod": "2026-09-27"
+    },
+    "/guides/finding-help/": {
+      "hash": "5a692c023989045e",
+      "lastmod": "2026-09-27"
+    },
+    "/january-1-the-power-of-we/": {
+      "hash": "fcb66124c19d47d8",
+      "lastmod": "2026-09-27"
+    },
+    "/january-2-coming-for-relief/": {
+      "hash": "dba088f9bfe00b4d",
+      "lastmod": "2026-09-27"
+    },
+    "/january-3-the-convincing-game/": {
+      "hash": "de28c1a2b1e87b25",
+      "lastmod": "2026-09-27"
+    },
+    "/january-4-taking-things-into-our-own-hands/": {
+      "hash": "3d29579cbb282b0c",
+      "lastmod": "2026-09-27"
+    },
+    "/january-5-a-family-disease/": {
+      "hash": "abb1767c12f19f18",
+      "lastmod": "2026-09-27"
+    },
+    "/january-6-shifting-the-focus/": {
+      "hash": "a249fb5afd93a9ff",
+      "lastmod": "2026-09-27"
+    },
+    "/january-7-impossible-responsibilities/": {
+      "hash": "0dded63f3d41fee3",
+      "lastmod": "2026-09-27"
+    },
+    "/january-8-fixing-someone-elses-disease/": {
+      "hash": "768efadeb209de2d",
+      "lastmod": "2026-09-27"
+    },
+    "/january-9-our-proper-relationship/": {
+      "hash": "96f5af1e98e34703",
+      "lastmod": "2026-09-27"
+    },
+    "/january-10-well-meaning-efforts/": {
+      "hash": "3d9a6b0249baba5b",
+      "lastmod": "2026-09-27"
+    },
+    "/january-11-nothing-we-do-or-dont-do/": {
+      "hash": "d214aa3180e48e87",
+      "lastmod": "2026-09-27"
+    },
+    "/january-12-paths-to-recovery/": {
+      "hash": "a92d12705af21a3a",
+      "lastmod": "2026-09-27"
+    },
+    "/january-13-my-actions-have-no-power/": {
+      "hash": "6251ae5ee2c71a05",
+      "lastmod": "2026-09-27"
+    },
+    "/january-14-accepting-the-truth/": {
+      "hash": "3221cc71b6279ce6",
+      "lastmod": "2026-09-27"
+    },
+    "/january-15-the-hardest-thing/": {
+      "hash": "b223395d480667e2",
+      "lastmod": "2026-09-27"
+    },
+    "/january-16-putting-down-the-rock/": {
+      "hash": "1935974b73476c12",
+      "lastmod": "2026-09-27"
+    },
+    "/january-17-what-can-be-changed/": {
+      "hash": "1cecdb289729c347",
+      "lastmod": "2026-09-27"
+    },
+    "/january-18-the-burden-lifted/": {
+      "hash": "773b0667deee8b1a",
+      "lastmod": "2026-09-27"
+    },
+    "/january-19-freeing-my-mind/": {
+      "hash": "905370a8a4f13fc5",
+      "lastmod": "2026-09-27"
+    },
+    "/january-20-the-martyr-role/": {
+      "hash": "96bdedd9cd99d4ce",
+      "lastmod": "2026-09-27"
+    },
+    "/january-21-discovering-what-im-not-powerless-over/": {
+      "hash": "cce0de3ff0738145",
+      "lastmod": "2026-09-27"
+    },
+    "/january-22-responsible-for-me/": {
+      "hash": "15909e1876feb05c",
+      "lastmod": "2026-09-27"
+    },
+    "/january-23-the-boundaries-of-happiness/": {
+      "hash": "78bbf13b716c80b3",
+      "lastmod": "2026-09-27"
+    },
+    "/january-24-my-emotions-are-my-own/": {
+      "hash": "ea52642e80f6c8e9",
+      "lastmod": "2026-09-27"
+    },
+    "/january-25-conscious-choices/": {
+      "hash": "77b2f136e305760e",
+      "lastmod": "2026-09-27"
+    },
+    "/january-26-traditions-at-home/": {
+      "hash": "e23e28db5e9aa209",
+      "lastmod": "2026-09-27"
+    },
+    "/january-27-equal-in-importance/": {
+      "hash": "36abac282a71701d",
+      "lastmod": "2026-09-27"
+    },
+    "/january-28-the-warm-bath-of-victimhood/": {
+      "hash": "bc3a140ae1cbdde6",
+      "lastmod": "2026-09-27"
+    },
+    "/january-29-ultimate-responsibility/": {
+      "hash": "ae8cd9b0ceeeecee",
+      "lastmod": "2026-09-27"
+    },
+    "/january-30-a-tool-for-my-recovery/": {
+      "hash": "8b45071443c13cbd",
+      "lastmod": "2026-09-27"
+    },
+    "/january-31-the-knot-in-my-stomach/": {
+      "hash": "74be78e5c7ded54f",
+      "lastmod": "2026-09-27"
+    },
+    "/february-1-not-helpless/": {
+      "hash": "5c5502ff8c59bd6f",
+      "lastmod": "2026-09-27"
+    },
+    "/february-2-the-past-tense-of-belief/": {
+      "hash": "dabcc5ddf919c24a",
+      "lastmod": "2026-09-27"
+    },
+    "/february-3-growing-encouragement/": {
+      "hash": "1d753b1558c077d8",
+      "lastmod": "2026-09-27"
+    },
+    "/february-4-seeking-a-power-greater/": {
+      "hash": "69da46cd4d1b7ed5",
+      "lastmod": "2026-09-27"
+    },
+    "/february-5-the-group-as-higher-power/": {
+      "hash": "f2542e703fe7b00c",
+      "lastmod": "2026-09-27"
+    },
+    "/february-6-desiring-sanity/": {
+      "hash": "988d5edb59cdd259",
+      "lastmod": "2026-09-27"
+    },
+    "/february-7-defining-sanity/": {
+      "hash": "85b450afa6b2641a",
+      "lastmod": "2026-09-27"
+    },
+    "/february-8-acting-as-if/": {
+      "hash": "e6a037280ddfc3ea",
+      "lastmod": "2026-09-27"
+    },
+    "/february-9-faith-in-daily-living/": {
+      "hash": "4f08a212e5d747c3",
+      "lastmod": "2026-09-27"
+    },
+    "/february-10-new-found-hope/": {
+      "hash": "9420b2fb48987cff",
+      "lastmod": "2026-09-27"
+    },
+    "/february-11-humbled-by-frailty/": {
+      "hash": "b29b476fb37f0a61",
+      "lastmod": "2026-09-27"
+    },
+    "/february-12-let-go-and-let-god/": {
+      "hash": "d3b6f0694192e717",
+      "lastmod": "2026-09-27"
+    },
+    "/february-13-courage-to-change/": {
+      "hash": "c53f1519f3798672",
+      "lastmod": "2026-09-27"
+    },
+    "/february-14-restored-to-sanity/": {
+      "hash": "b9c8127e1166c820",
+      "lastmod": "2026-09-27"
+    },
+    "/february-15-the-moment-i-came-to-believe/": {
+      "hash": "b369b218e90df22c",
+      "lastmod": "2026-09-27"
+    },
+    "/february-16-meaning-takes-time/": {
+      "hash": "b19e614eb8998585",
+      "lastmod": "2026-09-27"
+    },
+    "/february-17-consistency-i-never-found/": {
+      "hash": "21756013d616be27",
+      "lastmod": "2026-09-27"
+    },
+    "/february-18-learning-to-trust/": {
+      "hash": "8b0931fd6309482b",
+      "lastmod": "2026-09-27"
+    },
+    "/february-19-breaking-denial/": {
+      "hash": "6f4a7e4eb08ab170",
+      "lastmod": "2026-09-27"
+    },
+    "/february-20-not-instantly-sane/": {
+      "hash": "f507c307b0bca4e4",
+      "lastmod": "2026-09-27"
+    },
+    "/february-21-turning-to-my-higher-power/": {
+      "hash": "747e409143ca18e7",
+      "lastmod": "2026-09-27"
+    },
+    "/february-22-praying-for-restoration/": {
+      "hash": "80d5f2fdea44535b",
+      "lastmod": "2026-09-27"
+    },
+    "/february-23-resigning-as-general-manager/": {
+      "hash": "2f199ee52f7f0228",
+      "lastmod": "2026-09-27"
+    },
+    "/february-24-listening-with-respect/": {
+      "hash": "c402371d223299ea",
+      "lastmod": "2026-09-27"
+    },
+    "/february-25-obedience-to-the-unenforceable/": {
+      "hash": "61dd29c78b4f060c",
+      "lastmod": "2026-09-27"
+    },
+    "/february-26-advising-is-not-al-anon/": {
+      "hash": "c3df1914b64aa03d",
+      "lastmod": "2026-09-27"
+    },
+    "/february-27-i-cannot-do-everything/": {
+      "hash": "181ccc916149514c",
+      "lastmod": "2026-09-27"
+    },
+    "/february-28-relying-on-others/": {
+      "hash": "81b67050e6afe94d",
+      "lastmod": "2026-09-27"
+    },
+    "/february-29-one-day-at-a-time/": {
+      "hash": "f52360d9f3f92452",
+      "lastmod": "2026-09-27"
+    },
+    "/march-1-the-power-of-choice/": {
+      "hash": "aa7482d7bc90f14d",
+      "lastmod": "2026-09-27"
+    },
+    "/march-2-the-nature-of-willingness/": {
+      "hash": "596a66d3fc2be161",
+      "lastmod": "2026-09-27"
+    },
+    "/march-3-the-solid-misery-of-the-lily-pad/": {
+      "hash": "ed6439892f1d0f8a",
+      "lastmod": "2026-09-27"
+    },
+    "/march-4-one-at-a-time/": {
+      "hash": "a073636217624189",
+      "lastmod": "2026-09-27"
+    },
+    "/march-5-the-geography-of-relief/": {
+      "hash": "5f3f3c9cfac7aa49",
+      "lastmod": "2026-09-27"
+    },
+    "/march-6-the-hardest-admission/": {
+      "hash": "ae9cafbc7fe5169c",
+      "lastmod": "2026-09-27"
+    },
+    "/march-7-freedom-to-define/": {
+      "hash": "ce93894e111203c8",
+      "lastmod": "2026-09-27"
+    },
+    "/march-8-setting-aside-willfulness/": {
+      "hash": "fe4c05cb1fc00b64",
+      "lastmod": "2026-09-27"
+    },
+    "/march-9-outcomes-in-gods-hands/": {
+      "hash": "f65030f06761ad43",
+      "lastmod": "2026-09-27"
+    },
+    "/march-10-the-practice-of-release/": {
+      "hash": "a74ede78a25fba16",
+      "lastmod": "2026-09-27"
+    },
+    "/march-11-taking-responsibility-off-my-shoulders/": {
+      "hash": "152c1b3117b64e87",
+      "lastmod": "2026-09-27"
+    },
+    "/march-12-the-limits-of-control/": {
+      "hash": "db01977712da11e8",
+      "lastmod": "2026-09-27"
+    },
+    "/march-13-my-way/": {
+      "hash": "1c8e9e8f82b378ee",
+      "lastmod": "2026-09-27"
+    },
+    "/march-14-examining-my-beliefs/": {
+      "hash": "10c66e36abd3d8a4",
+      "lastmod": "2026-09-27"
+    },
+    "/march-15-personal-relationship/": {
+      "hash": "f0098ccac604f3a1",
+      "lastmod": "2026-09-27"
+    },
+    "/march-16-much-different-today/": {
+      "hash": "9470a27cb45fbe5e",
+      "lastmod": "2026-09-27"
+    },
+    "/march-17-the-privilege-of-choice/": {
+      "hash": "5877af0adb56c903",
+      "lastmod": "2026-09-27"
+    },
+    "/march-18-patient-with-mistakes/": {
+      "hash": "f7cec86e414f8942",
+      "lastmod": "2026-09-27"
+    },
+    "/march-19-things-i-never-thought-i-could/": {
+      "hash": "d7eca5032c99d3a9",
+      "lastmod": "2026-09-27"
+    },
+    "/march-20-comfortable-turning-over/": {
+      "hash": "0a7186d1bfa51433",
+      "lastmod": "2026-09-27"
+    },
+    "/march-21-the-principle-of-faith/": {
+      "hash": "8e6add35581e72be",
+      "lastmod": "2026-09-27"
+    },
+    "/march-22-belief-in-help/": {
+      "hash": "1c7dc1d88232ab43",
+      "lastmod": "2026-09-27"
+    },
+    "/march-23-the-acceptance-steps/": {
+      "hash": "ea0bb688aadb52d5",
+      "lastmod": "2026-09-27"
+    },
+    "/march-24-any-concept-i-wanted/": {
+      "hash": "c9feb587c187ddb8",
+      "lastmod": "2026-09-27"
+    },
+    "/march-25-a-friend-always-there/": {
+      "hash": "8b260c53c5073701",
+      "lastmod": "2026-09-27"
+    },
+    "/march-26-understanding-made-it-easy/": {
+      "hash": "1a0d854cc10bf476",
+      "lastmod": "2026-09-27"
+    },
+    "/march-27-similarities-outweigh-differences/": {
+      "hash": "f825379100ce3403",
+      "lastmod": "2026-09-27"
+    },
+    "/march-28-accepting-al-anon-as-it-is/": {
+      "hash": "3233f8c91e6d627a",
+      "lastmod": "2026-09-27"
+    },
+    "/march-29-faith-in-a-power-greater/": {
+      "hash": "dcb8d9cc0c883bc3",
+      "lastmod": "2026-09-27"
+    },
+    "/march-30-supporting-competence-and-dignity/": {
+      "hash": "0c6a1d42e4685dae",
+      "lastmod": "2026-09-27"
+    },
+    "/march-31-three-trusts/": {
+      "hash": "e5763c6bff8d720a",
+      "lastmod": "2026-09-27"
+    },
+    "/april-1-both-sides-of-myself/": {
+      "hash": "4e2174e3f037214d",
+      "lastmod": "2026-09-27"
+    },
+    "/april-2-the-gap-between-deciding-and-doing/": {
+      "hash": "c00840644dd5702b",
+      "lastmod": "2026-09-27"
+    },
+    "/april-3-addicted-to-chaos/": {
+      "hash": "ab4efc454f0dacdd",
+      "lastmod": "2026-09-27"
+    },
+    "/april-4-not-perfect-just-done/": {
+      "hash": "bf351768554727f9",
+      "lastmod": "2026-09-27"
+    },
+    "/april-5-the-door-opens/": {
+      "hash": "ccd467b7cebb7230",
+      "lastmod": "2026-09-27"
+    },
+    "/april-6-the-structure-that-set-me-free/": {
+      "hash": "ed3fd99c88fdfb95",
+      "lastmod": "2026-09-27"
+    },
+    "/april-7-the-right-to-be-wrong/": {
+      "hash": "cb5a44f5e67c3680",
+      "lastmod": "2026-09-27"
+    },
+    "/april-8-seeing-myself-as-separate/": {
+      "hash": "c2c559fe9130ff5a",
+      "lastmod": "2026-09-27"
+    },
+    "/april-9-the-need-i-didnt-know-i-had/": {
+      "hash": "db5f672dd7edc6f3",
+      "lastmod": "2026-09-27"
+    },
+    "/april-10-respect-makes-harmony/": {
+      "hash": "25db7d0f643e6147",
+      "lastmod": "2026-09-27"
+    },
+    "/april-11-a-change-in-perspective/": {
+      "hash": "fd09bc587c3dcfc1",
+      "lastmod": "2026-09-27"
+    },
+    "/april-12-what-alcoholism-destroyed/": {
+      "hash": "a205e3095456444c",
+      "lastmod": "2026-09-27"
+    },
+    "/april-13-best-friends-and-worst-enemies/": {
+      "hash": "686110fe9898bd1d",
+      "lastmod": "2026-09-27"
+    },
+    "/april-14-blaming-and-excusing/": {
+      "hash": "b2a19d4fa88da7c0",
+      "lastmod": "2026-09-27"
+    },
+    "/april-15-no-longer-acceptable/": {
+      "hash": "041f3db76e0df27c",
+      "lastmod": "2026-09-27"
+    },
+    "/april-16-new-horizons-opening/": {
+      "hash": "b2676badc1673e99",
+      "lastmod": "2026-09-27"
+    },
+    "/april-17-guidance-and-encouragement/": {
+      "hash": "9c33320d25402752",
+      "lastmod": "2026-09-27"
+    },
+    "/april-18-honest-open-willing/": {
+      "hash": "21203ac58d9a6d5d",
+      "lastmod": "2026-09-27"
+    },
+    "/april-19-the-balance-of-honesty/": {
+      "hash": "bcf2c064c7279e2c",
+      "lastmod": "2026-09-27"
+    },
+    "/april-20-true-perspective/": {
+      "hash": "453d644c8e714ae8",
+      "lastmod": "2026-09-27"
+    },
+    "/april-21-facing-what-haunts-me/": {
+      "hash": "9f34e7de849ec4dc",
+      "lastmod": "2026-09-27"
+    },
+    "/april-22-taking-back-power/": {
+      "hash": "def416cb5df219fb",
+      "lastmod": "2026-09-27"
+    },
+    "/april-23-the-risk-of-disapproval/": {
+      "hash": "ff1acd05eafbb0bd",
+      "lastmod": "2026-09-27"
+    },
+    "/april-24-honest-equals-improved/": {
+      "hash": "910b98d079b6e1b8",
+      "lastmod": "2026-09-27"
+    },
+    "/april-25-candles-in-darkness/": {
+      "hash": "4837df8d35a632c9",
+      "lastmod": "2026-09-27"
+    },
+    "/april-26-the-starting-point/": {
+      "hash": "5c780bcebbf6acab",
+      "lastmod": "2026-09-27"
+    },
+    "/april-27-the-courage-to-see/": {
+      "hash": "81b5061756c01457",
+      "lastmod": "2026-09-27"
+    },
+    "/april-28-inventorying-beliefs/": {
+      "hash": "90578153afa90c49",
+      "lastmod": "2026-09-27"
+    },
+    "/april-29-acting-on-beliefs/": {
+      "hash": "1c5464f08d48a783",
+      "lastmod": "2026-09-27"
+    },
+    "/april-30-the-inventory-grows-with-me/": {
+      "hash": "9206bc7e5f47f455",
+      "lastmod": "2026-09-27"
+    },
+    "/may-1-beginning-to-unburden/": {
+      "hash": "b97988f450a408c2",
+      "lastmod": "2026-09-27"
+    },
+    "/may-2-no-more-martyrdom/": {
+      "hash": "851705c8ab0ac20b",
+      "lastmod": "2026-09-27"
+    },
+    "/may-3-the-humiliation-of-needing-help/": {
+      "hash": "49dea597c316a8a9",
+      "lastmod": "2026-09-27"
+    },
+    "/may-4-acceptance-despite-wrongs/": {
+      "hash": "65a1dee55b526f26",
+      "lastmod": "2026-09-27"
+    },
+    "/may-5-stripping-away-excuses/": {
+      "hash": "626a86974739ca56",
+      "lastmod": "2026-09-27"
+    },
+    "/may-6-breaking-isolation/": {
+      "hash": "3b26c56f1020bfc8",
+      "lastmod": "2026-09-27"
+    },
+    "/may-7-the-gift-of-honesty/": {
+      "hash": "28a309105dd33ae8",
+      "lastmod": "2026-09-27"
+    },
+    "/may-8-the-architecture-of-trust/": {
+      "hash": "c0b96ea4654a2f97",
+      "lastmod": "2026-09-27"
+    },
+    "/may-9-lovingly-received/": {
+      "hash": "819d3d24062ede99",
+      "lastmod": "2026-09-27"
+    },
+    "/may-10-faith-in-necessity/": {
+      "hash": "c522ec2e5a162fa3",
+      "lastmod": "2026-09-27"
+    },
+    "/may-11-the-verdict-you-are-seen/": {
+      "hash": "0662c37f1f79f791",
+      "lastmod": "2026-09-27"
+    },
+    "/may-12-defenses-that-no-longer-serve/": {
+      "hash": "7b81c27221928d9f",
+      "lastmod": "2026-09-27"
+    },
+    "/may-13-not-the-worst/": {
+      "hash": "ddf898f83da72cb3",
+      "lastmod": "2026-09-27"
+    },
+    "/may-14-closer-to-god-and-people/": {
+      "hash": "dfda76b885e41865",
+      "lastmod": "2026-09-27"
+    },
+    "/may-15-the-truth-sets-me-free/": {
+      "hash": "419e871cbef33450",
+      "lastmod": "2026-09-27"
+    },
+    "/may-16-the-pattern-beneath-the-pain/": {
+      "hash": "7b0dd0ea6a3bd927",
+      "lastmod": "2026-09-27"
+    },
+    "/may-17-the-strength-of-a-phone-call/": {
+      "hash": "d567c48940d50ad5",
+      "lastmod": "2026-09-27"
+    },
+    "/may-18-never-alone-again/": {
+      "hash": "c2c64118ad29ded5",
+      "lastmod": "2026-09-27"
+    },
+    "/may-19-healing-the-hidden-self/": {
+      "hash": "72aba0a974fb00d0",
+      "lastmod": "2026-09-27"
+    },
+    "/may-20-reasoning-together/": {
+      "hash": "d2320e3a07f1f499",
+      "lastmod": "2026-09-27"
+    },
+    "/may-21-not-all-by-myself/": {
+      "hash": "dc99da78a8507025",
+      "lastmod": "2026-09-27"
+    },
+    "/may-22-nothing-hidden-from-god/": {
+      "hash": "391b7c88d0141320",
+      "lastmod": "2026-09-27"
+    },
+    "/may-23-cleaning-the-house/": {
+      "hash": "946d497cae1989ae",
+      "lastmod": "2026-09-27"
+    },
+    "/may-24-feeling-free/": {
+      "hash": "154e070d65c77c24",
+      "lastmod": "2026-09-27"
+    },
+    "/may-25-burden-lifted/": {
+      "hash": "99ca3acce63abf82",
+      "lastmod": "2026-09-27"
+    },
+    "/may-26-the-discipline-of-one-thing/": {
+      "hash": "57e0355d9a2c7ba6",
+      "lastmod": "2026-09-27"
+    },
+    "/may-27-the-most-difficult-part/": {
+      "hash": "fe41b477d47b87bd",
+      "lastmod": "2026-09-27"
+    },
+    "/may-28-growing-compassion/": {
+      "hash": "4e8b27f23d6bb1e0",
+      "lastmod": "2026-09-27"
+    },
+    "/may-29-freedom-and-belonging/": {
+      "hash": "e277e73c83af9509",
+      "lastmod": "2026-09-27"
+    },
+    "/may-30-minority-voices/": {
+      "hash": "dc537692c887ddb0",
+      "lastmod": "2026-09-27"
+    },
+    "/may-31-helped-and-helping/": {
+      "hash": "b4469521da930501",
+      "lastmod": "2026-09-27"
+    },
+    "/june-1-readiness-not-control/": {
+      "hash": "3753a369764842cb",
+      "lastmod": "2026-09-27"
+    },
+    "/june-2-the-key-principle/": {
+      "hash": "b24838c066b72f3e",
+      "lastmod": "2026-09-27"
+    },
+    "/june-3-unconditional-acceptance/": {
+      "hash": "4da274780a06c74a",
+      "lastmod": "2026-09-27"
+    },
+    "/june-4-saying-versus-being/": {
+      "hash": "4addd58c33603e5e",
+      "lastmod": "2026-09-27"
+    },
+    "/june-5-becoming-entirely-ready/": {
+      "hash": "9e924c15e44fce72",
+      "lastmod": "2026-09-27"
+    },
+    "/june-6-the-defect-that-feels-like-me/": {
+      "hash": "6d6c369d4afd8d89",
+      "lastmod": "2026-09-27"
+    },
+    "/june-7-making-conscious-decisions/": {
+      "hash": "993e7c4b2947a6fb",
+      "lastmod": "2026-09-27"
+    },
+    "/june-8-the-defect-that-protects-me/": {
+      "hash": "e33f4652a0dc6179",
+      "lastmod": "2026-09-27"
+    },
+    "/june-9-not-our-friends/": {
+      "hash": "5b2c25c5e0c5963c",
+      "lastmod": "2026-09-27"
+    },
+    "/june-10-unconditional-faith/": {
+      "hash": "8b8df3b0cfa27ca0",
+      "lastmod": "2026-09-27"
+    },
+    "/june-11-no-reason-to-doubt/": {
+      "hash": "1125e91eae931468",
+      "lastmod": "2026-09-27"
+    },
+    "/june-12-ready-and-knowing/": {
+      "hash": "ed546d69551c208c",
+      "lastmod": "2026-09-27"
+    },
+    "/june-13-the-ones-i-need/": {
+      "hash": "89a26b0497b55f21",
+      "lastmod": "2026-09-27"
+    },
+    "/june-14-the-silence-after-surrender/": {
+      "hash": "a7ba09895e8544c3",
+      "lastmod": "2026-09-27"
+    },
+    "/june-15-not-giving-up/": {
+      "hash": "2eff54a161616a2e",
+      "lastmod": "2026-09-27"
+    },
+    "/june-16-giving-up-self-will/": {
+      "hash": "baf626651b60b111",
+      "lastmod": "2026-09-27"
+    },
+    "/june-17-too-tired-to-hold-on/": {
+      "hash": "e08ddb0cb9f291b3",
+      "lastmod": "2026-09-27"
+    },
+    "/june-18-the-stranger-in-the-mirror/": {
+      "hash": "43009ea904c1756f",
+      "lastmod": "2026-09-27"
+    },
+    "/june-19-pray-for-openness/": {
+      "hash": "3f8f3f33122e33af",
+      "lastmod": "2026-09-27"
+    },
+    "/june-20-gods-timing/": {
+      "hash": "7b33e70bbf7f5240",
+      "lastmod": "2026-09-27"
+    },
+    "/june-21-a-grief-process/": {
+      "hash": "46b168e8c8172d05",
+      "lastmod": "2026-09-27"
+    },
+    "/june-22-always-filled-with-something/": {
+      "hash": "86acee9ea3a5b6b7",
+      "lastmod": "2026-09-27"
+    },
+    "/june-23-i-am-not-god/": {
+      "hash": "22fe87de7a1ff3b7",
+      "lastmod": "2026-09-27"
+    },
+    "/june-24-when-pain-exceeds-fear/": {
+      "hash": "a0e470728524f2f3",
+      "lastmod": "2026-09-27"
+    },
+    "/june-25-already-turned-over/": {
+      "hash": "18cedf3c2211742b",
+      "lastmod": "2026-09-27"
+    },
+    "/june-26-my-name-is-not-their-reputation/": {
+      "hash": "c007e18a81e6a0a5",
+      "lastmod": "2026-09-27"
+    },
+    "/june-27-preserve-integrity-and-identity/": {
+      "hash": "8fd5c3926a511371",
+      "lastmod": "2026-09-27"
+    },
+    "/june-28-no-longer-overly-supportive/": {
+      "hash": "4c75ee931c4f9601",
+      "lastmod": "2026-09-27"
+    },
+    "/june-29-responsibility-needs-power/": {
+      "hash": "b0e713a1f9dc5244",
+      "lastmod": "2026-09-27"
+    },
+    "/june-30-power-needs-accountability/": {
+      "hash": "f1c4eafd7a19cdeb",
+      "lastmod": "2026-09-27"
+    },
+    "/july-1-the-gap-between-ready-and-asking/": {
+      "hash": "9acc76e16bae1204",
+      "lastmod": "2026-09-27"
+    },
+    "/july-2-the-strength-i-misunderstood/": {
+      "hash": "c761f0f56e44191c",
+      "lastmod": "2026-09-27"
+    },
+    "/july-3-totally-willing/": {
+      "hash": "46645f2a76c46fdf",
+      "lastmod": "2026-09-27"
+    },
+    "/july-4-the-self-esteem-that-survives-defects/": {
+      "hash": "5fbca588624e2442",
+      "lastmod": "2026-09-27"
+    },
+    "/july-5-learning-from-the-humble/": {
+      "hash": "a9df5b9bbac654ac",
+      "lastmod": "2026-09-27"
+    },
+    "/july-6-the-passenger-seat/": {
+      "hash": "433e3beeccfd8dce",
+      "lastmod": "2026-09-27"
+    },
+    "/july-7-gods-way-and-pace/": {
+      "hash": "7b2d393684a35eb5",
+      "lastmod": "2026-09-27"
+    },
+    "/july-8-however-i-choose-to-ask/": {
+      "hash": "25ed2debe08c7207",
+      "lastmod": "2026-09-27"
+    },
+    "/july-9-the-release-of-turning-over/": {
+      "hash": "a878d69fb2179250",
+      "lastmod": "2026-09-27"
+    },
+    "/july-10-probably-not-immediately/": {
+      "hash": "ea06781f15e0f31f",
+      "lastmod": "2026-09-27"
+    },
+    "/july-11-old-behaviors-stay/": {
+      "hash": "c2a6ce4b8a946545",
+      "lastmod": "2026-09-27"
+    },
+    "/july-12-again-and-again/": {
+      "hash": "cb630be03afe9ca7",
+      "lastmod": "2026-09-27"
+    },
+    "/july-13-stubborn-shortcomings/": {
+      "hash": "435681f4dd0e338f",
+      "lastmod": "2026-09-27"
+    },
+    "/july-14-not-sitting-back/": {
+      "hash": "c75f0d8424a07d65",
+      "lastmod": "2026-09-27"
+    },
+    "/july-15-the-holy-pause/": {
+      "hash": "49f419d509b56c96",
+      "lastmod": "2026-09-27"
+    },
+    "/july-16-alternative-ways-to-act/": {
+      "hash": "41551a292ff909ee",
+      "lastmod": "2026-09-27"
+    },
+    "/july-17-detoxing-from-urgency/": {
+      "hash": "fcf62bdfc3e4ce38",
+      "lastmod": "2026-09-27"
+    },
+    "/july-18-catching-myself/": {
+      "hash": "0ed9d241822be14e",
+      "lastmod": "2026-09-27"
+    },
+    "/july-19-peeling-layers/": {
+      "hash": "2033aa3de9d9ad57",
+      "lastmod": "2026-09-27"
+    },
+    "/july-20-assets-hidden-in-faults/": {
+      "hash": "23d742c5cdc38140",
+      "lastmod": "2026-09-27"
+    },
+    "/july-21-judgments-two-faces/": {
+      "hash": "42c8a17a8defdb33",
+      "lastmod": "2026-09-27"
+    },
+    "/july-22-fear-as-stumbling-block/": {
+      "hash": "4421a01f24abf3c2",
+      "lastmod": "2026-09-27"
+    },
+    "/july-23-trust-that-grows/": {
+      "hash": "e6dffafa1d93daa7",
+      "lastmod": "2026-09-27"
+    },
+    "/july-24-cooperate-then-move-on/": {
+      "hash": "baef347150658008",
+      "lastmod": "2026-09-27"
+    },
+    "/july-25-spiritual-muscles/": {
+      "hash": "549d7a1b20f27f8a",
+      "lastmod": "2026-09-27"
+    },
+    "/july-26-courage-to-change/": {
+      "hash": "3c663f5046b49999",
+      "lastmod": "2026-09-27"
+    },
+    "/july-27-paying-my-own-emotional-rent/": {
+      "hash": "15ede5b857168fbb",
+      "lastmod": "2026-09-27"
+    },
+    "/july-28-when-others-support-us/": {
+      "hash": "c65ef1cd3da31b54",
+      "lastmod": "2026-09-27"
+    },
+    "/july-29-not-adopting-others-moods/": {
+      "hash": "ba77d1bb332e7c15",
+      "lastmod": "2026-09-27"
+    },
+    "/july-30-the-first-word/": {
+      "hash": "60a328a876422c49",
+      "lastmod": "2026-09-27"
+    },
+    "/july-31-cross-checks-and-balance/": {
+      "hash": "3bed206bbc1c9331",
+      "lastmod": "2026-09-27"
+    },
+    "/august-1-from-indictment-to-invitation/": {
+      "hash": "61d0d22f35eb7b7c",
+      "lastmod": "2026-09-27"
+    },
+    "/august-2-the-fresh-starting-point/": {
+      "hash": "520e47ce0321274b",
+      "lastmod": "2026-09-27"
+    },
+    "/august-3-already-have-a-list/": {
+      "hash": "9c3419d7c093038a",
+      "lastmod": "2026-09-27"
+    },
+    "/august-4-best-served-by-forgiving/": {
+      "hash": "7317e62d8a2dc546",
+      "lastmod": "2026-09-27"
+    },
+    "/august-5-the-endless-list/": {
+      "hash": "985c4e58e4c070f0",
+      "lastmod": "2026-09-27"
+    },
+    "/august-6-the-second-part/": {
+      "hash": "e472b6b88546fb3d",
+      "lastmod": "2026-09-27"
+    },
+    "/august-7-take-action-and-try/": {
+      "hash": "974f196cc21ac623",
+      "lastmod": "2026-09-27"
+    },
+    "/august-8-how-do-we-acquire-willingness/": {
+      "hash": "f45279258d602dfb",
+      "lastmod": "2026-09-27"
+    },
+    "/august-9-let-go-and-let-god/": {
+      "hash": "e0fe42b9c8bc5ac0",
+      "lastmod": "2026-09-27"
+    },
+    "/august-10-without-dumping-the-garbage/": {
+      "hash": "5a16908e30d56afb",
+      "lastmod": "2026-09-27"
+    },
+    "/august-11-dumping-the-garbage/": {
+      "hash": "6d7a0fb5147bd10b",
+      "lastmod": "2026-09-27"
+    },
+    "/august-12-building-belief/": {
+      "hash": "10a016ba909a19b3",
+      "lastmod": "2026-09-27"
+    },
+    "/august-13-the-yes-category/": {
+      "hash": "104bb516c266f676",
+      "lastmod": "2026-09-27"
+    },
+    "/august-14-only-i-can-unlock/": {
+      "hash": "42d98567011aa14e",
+      "lastmod": "2026-09-27"
+    },
+    "/august-15-help-to-move-on/": {
+      "hash": "d5e9bc7cac629555",
+      "lastmod": "2026-09-27"
+    },
+    "/august-16-justified-but-harmful/": {
+      "hash": "c17b6694775c9809",
+      "lastmod": "2026-09-27"
+    },
+    "/august-17-expecting-too-much/": {
+      "hash": "86de0e4493d1b0d7",
+      "lastmod": "2026-09-27"
+    },
+    "/august-18-not-their-inventory/": {
+      "hash": "0d26326e5a270881",
+      "lastmod": "2026-09-27"
+    },
+    "/august-19-taking-responsibility-gradually/": {
+      "hash": "674514e683479bf9",
+      "lastmod": "2026-09-27"
+    },
+    "/august-20-equal-height-steps/": {
+      "hash": "62db39c047e3bdf4",
+      "lastmod": "2026-09-27"
+    },
+    "/august-21-look-before-you-leap/": {
+      "hash": "d3a70ffca649a331",
+      "lastmod": "2026-09-27"
+    },
+    "/august-22-think-instead-of-leap/": {
+      "hash": "a770cf94c3e9d4d0",
+      "lastmod": "2026-09-27"
+    },
+    "/august-23-freedom-to-acknowledge/": {
+      "hash": "633036a39cf06445",
+      "lastmod": "2026-09-27"
+    },
+    "/august-24-i-had-harmed-myself/": {
+      "hash": "c6f1e0a962f82095",
+      "lastmod": "2026-09-27"
+    },
+    "/august-25-god-on-the-list/": {
+      "hash": "7bff83fd51af8ea0",
+      "lastmod": "2026-09-27"
+    },
+    "/august-26-i-will-reap-benefits/": {
+      "hash": "aa0e0999d72ecb69",
+      "lastmod": "2026-09-27"
+    },
+    "/august-27-the-intimacy-of-being-peers/": {
+      "hash": "5c19e562a715b263",
+      "lastmod": "2026-09-27"
+    },
+    "/august-28-many-forms/": {
+      "hash": "f34ab6106cdc6b46",
+      "lastmod": "2026-09-27"
+    },
+    "/august-29-nonprofessional-strength/": {
+      "hash": "c46b02bf4a960b29",
+      "lastmod": "2026-09-27"
+    },
+    "/august-30-growth-requires-delegation/": {
+      "hash": "d62a7ab1734070ee",
+      "lastmod": "2026-09-27"
+    },
+    "/august-31-choose-and-allow/": {
+      "hash": "0c8843b2db701e35",
+      "lastmod": "2026-09-27"
+    },
+    "/september-1-the-terror-of-action/": {
+      "hash": "d56b0066a546c00c",
+      "lastmod": "2026-09-27"
+    },
+    "/september-2-character-through-thoroughness/": {
+      "hash": "207690295fe23cc4",
+      "lastmod": "2026-09-27"
+    },
+    "/september-3-mitigating-not-undoing/": {
+      "hash": "73e3ca133bd7cb06",
+      "lastmod": "2026-09-27"
+    },
+    "/september-4-one-at-a-time/": {
+      "hash": "88a504332f5934e8",
+      "lastmod": "2026-09-27"
+    },
+    "/september-5-simple-plans/": {
+      "hash": "edb07c7c625091f7",
+      "lastmod": "2026-09-27"
+    },
+    "/september-6-more-than-sorry/": {
+      "hash": "5f3958ebb2a72882",
+      "lastmod": "2026-09-27"
+    },
+    "/september-7-the-sound-of-changed-behavior/": {
+      "hash": "1afe8fbcc3609823",
+      "lastmod": "2026-09-27"
+    },
+    "/september-8-letting-go-of-the-result/": {
+      "hash": "53c0662a04e0e314",
+      "lastmod": "2026-09-27"
+    },
+    "/september-9-immediate-attention/": {
+      "hash": "2b655199242cd688",
+      "lastmod": "2026-09-27"
+    },
+    "/september-10-the-lie-of-habitual-apologies/": {
+      "hash": "bdf1738c933cbb6c",
+      "lastmod": "2026-09-27"
+    },
+    "/september-11-the-trap-of-self-spared-discomfort/": {
+      "hash": "bd6f1be911e44c5a",
+      "lastmod": "2026-09-27"
+    },
+    "/september-12-praying-for-guidance-not-a-script/": {
+      "hash": "c20a91872d2e85c0",
+      "lastmod": "2026-09-27"
+    },
+    "/september-13-courteous-accepting-respectful/": {
+      "hash": "9268e71094847cd7",
+      "lastmod": "2026-09-27"
+    },
+    "/september-14-the-softening-of-resentment/": {
+      "hash": "dfdae3c93a0c7a98",
+      "lastmod": "2026-09-27"
+    },
+    "/september-15-amends-to-those-closest/": {
+      "hash": "fb159e1f7672dade",
+      "lastmod": "2026-09-27"
+    },
+    "/september-16-loving-in-the-present/": {
+      "hash": "2ab65ac9b3f347a9",
+      "lastmod": "2026-09-27"
+    },
+    "/september-17-fitting-the-amends/": {
+      "hash": "af25036471e8e953",
+      "lastmod": "2026-09-27"
+    },
+    "/september-18-courtesy-as-amends/": {
+      "hash": "5c040d328887f0d3",
+      "lastmod": "2026-09-27"
+    },
+    "/september-19-free-to-continue-the-journey/": {
+      "hash": "f1619ab94633dc0d",
+      "lastmod": "2026-09-27"
+    },
+    "/september-20-kindness-as-amends/": {
+      "hash": "e6aeefaa2a76f57b",
+      "lastmod": "2026-09-27"
+    },
+    "/september-21-the-illusion-of-control-in-service/": {
+      "hash": "8880646a9e0048b2",
+      "lastmod": "2026-09-27"
+    },
+    "/september-22-control-disguised-as-love/": {
+      "hash": "79950feac862d89b",
+      "lastmod": "2026-09-27"
+    },
+    "/september-23-balancing-responsibility/": {
+      "hash": "5df8b95f8bfb428b",
+      "lastmod": "2026-09-27"
+    },
+    "/september-24-the-necessity-of-good-leadership/": {
+      "hash": "ddface705d54ebcb",
+      "lastmod": "2026-09-27"
+    },
+    "/september-25-improving-the-fellowship/": {
+      "hash": "9065446b6b8bb2cc",
+      "lastmod": "2026-09-27"
+    },
+    "/september-26-amends-for-damage-to-self/": {
+      "hash": "7794f25f6775fe10",
+      "lastmod": "2026-09-27"
+    },
+    "/september-27-the-many-forms-of-amends/": {
+      "hash": "bb91947959ba74ef",
+      "lastmod": "2026-09-27"
+    },
+    "/september-28-acceptance-in-gods-time/": {
+      "hash": "3e66fa935179f879",
+      "lastmod": "2026-09-27"
+    },
+    "/september-29-the-purpose-of-cleansing/": {
+      "hash": "90718aef40871419",
+      "lastmod": "2026-09-27"
+    },
+    "/september-30-the-hardest-amends/": {
+      "hash": "890b73f489f2a1de",
+      "lastmod": "2026-09-27"
+    },
+    "/october-1-the-maintenance-phase/": {
+      "hash": "22c89374594291c0",
+      "lastmod": "2026-09-27"
+    },
+    "/october-2-daily-serenity-continued-growth/": {
+      "hash": "e8e0a09e71912a4f",
+      "lastmod": "2026-09-27"
+    },
+    "/october-3-effort-vs-perfection/": {
+      "hash": "ee31703d3afbee6f",
+      "lastmod": "2026-09-27"
+    },
+    "/october-4-keeping-the-slate-clean/": {
+      "hash": "361795f577d3179f",
+      "lastmod": "2026-09-27"
+    },
+    "/october-5-imperfection-and-recovery/": {
+      "hash": "122244dae4755f88",
+      "lastmod": "2026-09-27"
+    },
+    "/october-6-the-tool-box-of-growth/": {
+      "hash": "6433cc9fbd1285b9",
+      "lastmod": "2026-09-27"
+    },
+    "/october-7-the-emergency-brake/": {
+      "hash": "739f2c59a5762f31",
+      "lastmod": "2026-09-27"
+    },
+    "/october-8-the-immediate-stop/": {
+      "hash": "b4d7f840b8ad3f97",
+      "lastmod": "2026-09-27"
+    },
+    "/october-9-adept-at-correction/": {
+      "hash": "e29f07c36ab76fcd",
+      "lastmod": "2026-09-27"
+    },
+    "/october-10-a-clear-conscience/": {
+      "hash": "4fe2ed43ee0470fe",
+      "lastmod": "2026-09-27"
+    },
+    "/october-11-the-balance-of-the-positive/": {
+      "hash": "1bc590b1acad29b0",
+      "lastmod": "2026-09-27"
+    },
+    "/october-12-humble-and-accepting/": {
+      "hash": "1b5d24809bea9770",
+      "lastmod": "2026-09-27"
+    },
+    "/october-13-the-spiritual-expansion-of-forgiveness/": {
+      "hash": "d29a46cf8931c327",
+      "lastmod": "2026-09-27"
+    },
+    "/october-14-the-relief-of-not-being-right/": {
+      "hash": "813a59406a00fc5d",
+      "lastmod": "2026-09-27"
+    },
+    "/october-15-allowing-consequences/": {
+      "hash": "3cc724996767c151",
+      "lastmod": "2026-09-27"
+    },
+    "/october-16-comfort-in-self/": {
+      "hash": "e316d897603bfc1c",
+      "lastmod": "2026-09-27"
+    },
+    "/october-17-avoiding-the-pain-of-shortcomings/": {
+      "hash": "56d562f1f2c7687f",
+      "lastmod": "2026-09-27"
+    },
+    "/october-18-serenity-is-not-the-end-goal/": {
+      "hash": "a3ed3b1a4dcbf33b",
+      "lastmod": "2026-09-27"
+    },
+    "/october-19-fewer-and-farther-between/": {
+      "hash": "8150f43d4a25a3dc",
+      "lastmod": "2026-09-27"
+    },
+    "/october-20-daily-health-maintenance/": {
+      "hash": "5927458366aabb45",
+      "lastmod": "2026-09-27"
+    },
+    "/october-21-the-end-of-justification/": {
+      "hash": "cd9fe806743dee7a",
+      "lastmod": "2026-09-27"
+    },
+    "/october-22-saved-from-resentment/": {
+      "hash": "0c8af3f98c022d34",
+      "lastmod": "2026-09-27"
+    },
+    "/october-23-the-foundation-of-experience/": {
+      "hash": "9f7786c2d4c3b1ee",
+      "lastmod": "2026-09-27"
+    },
+    "/october-24-powerlessness-over-others/": {
+      "hash": "4a5c1f0e25af754f",
+      "lastmod": "2026-09-27"
+    },
+    "/october-25-higher-powers-care/": {
+      "hash": "22f803992efd6b8f",
+      "lastmod": "2026-09-27"
+    },
+    "/october-26-the-growth-cycle/": {
+      "hash": "df012971e70f01b9",
+      "lastmod": "2026-09-27"
+    },
+    "/october-27-declining-every-invitation-to-argue/": {
+      "hash": "d7f5b780f86387b9",
+      "lastmod": "2026-09-27"
+    },
+    "/october-28-unity-through-focus/": {
+      "hash": "ee6b49acd3482b2e",
+      "lastmod": "2026-09-27"
+    },
+    "/october-29-maintaining-group-focus/": {
+      "hash": "6c0ebd01c963095a",
+      "lastmod": "2026-09-27"
+    },
+    "/october-30-the-authority-to-crash/": {
+      "hash": "3639739950067133",
+      "lastmod": "2026-09-27"
+    },
+    "/october-31-afraid-i-did-it-wrong/": {
+      "hash": "e1a894fd4d7ae906",
+      "lastmod": "2026-09-27"
+    },
+    "/november-1-the-evolution-of-trust/": {
+      "hash": "fda6e6856b686d6e",
+      "lastmod": "2026-09-27"
+    },
+    "/november-2-two-way-communication/": {
+      "hash": "c5820789381bd6e3",
+      "lastmod": "2026-09-27"
+    },
+    "/november-3-keeping-it-simple/": {
+      "hash": "9c76e1f10fbc0760",
+      "lastmod": "2026-09-27"
+    },
+    "/november-4-active-waiting/": {
+      "hash": "449649562a0afcb3",
+      "lastmod": "2026-09-27"
+    },
+    "/november-5-the-busyness-defense/": {
+      "hash": "2ecbaa898695c97d",
+      "lastmod": "2026-09-27"
+    },
+    "/november-6-redefining-meditation/": {
+      "hash": "a9a49c73d7299167",
+      "lastmod": "2026-09-27"
+    },
+    "/november-7-detaching-from-thoughts/": {
+      "hash": "532416850f433fdb",
+      "lastmod": "2026-09-27"
+    },
+    "/november-8-listening-is-action/": {
+      "hash": "4f45f108ab47b4de",
+      "lastmod": "2026-09-27"
+    },
+    "/november-9-spiritual-dry-spells/": {
+      "hash": "6a92f707cb5c754d",
+      "lastmod": "2026-09-27"
+    },
+    "/november-10-the-terror-of-surrender/": {
+      "hash": "f1e57e0f27715ba0",
+      "lastmod": "2026-09-27"
+    },
+    "/november-11-doormat-or-disciple/": {
+      "hash": "055180e85f7b5c6a",
+      "lastmod": "2026-09-27"
+    },
+    "/november-12-the-mask-of-ego/": {
+      "hash": "0c8c1dd9da4a2817",
+      "lastmod": "2026-09-27"
+    },
+    "/november-13-paralysis-by-analysis/": {
+      "hash": "d0b247117b3cc784",
+      "lastmod": "2026-09-27"
+    },
+    "/november-14-the-power-inside/": {
+      "hash": "1f19798d65cae679",
+      "lastmod": "2026-09-27"
+    },
+    "/november-15-backseat-driving/": {
+      "hash": "a9e2dd655d05153a",
+      "lastmod": "2026-09-27"
+    },
+    "/november-16-attraction-not-promotion/": {
+      "hash": "2c053e3b8a0ad61c",
+      "lastmod": "2026-09-27"
+    },
+    "/november-17-the-safety-of-anonymity/": {
+      "hash": "fc75b5ceef6ddb64",
+      "lastmod": "2026-09-27"
+    },
+    "/november-18-reluctant-leadership/": {
+      "hash": "41e17e94da9bde7e",
+      "lastmod": "2026-09-27"
+    },
+    "/november-19-reclaiming-prayer/": {
+      "hash": "34b8873ca85b6a83",
+      "lastmod": "2026-09-27"
+    },
+    "/november-20-learning-by-osmosis/": {
+      "hash": "6ae8ffd03ba3914f",
+      "lastmod": "2026-09-27"
+    },
+    "/november-21-the-all-or-nothing-trap/": {
+      "hash": "631e76e2a2c658ed",
+      "lastmod": "2026-09-27"
+    },
+    "/november-22-spiritualizing-the-mundane/": {
+      "hash": "ebfedd25c240b22a",
+      "lastmod": "2026-09-27"
+    },
+    "/november-23-gentle-returns/": {
+      "hash": "52e32e44f40e373a",
+      "lastmod": "2026-09-27"
+    },
+    "/november-24-opening-the-heart/": {
+      "hash": "823f52d17a34243d",
+      "lastmod": "2026-09-27"
+    },
+    "/november-25-the-spiritual-yo-yo/": {
+      "hash": "5c1bfb35347eebaf",
+      "lastmod": "2026-09-27"
+    },
+    "/november-26-god-is-patient/": {
+      "hash": "5619173824e0d05e",
+      "lastmod": "2026-09-27"
+    },
+    "/november-27-praying-for-desire/": {
+      "hash": "b477ced6eff81117",
+      "lastmod": "2026-09-27"
+    },
+    "/november-28-measuring-success/": {
+      "hash": "b243276dfa70aa0e",
+      "lastmod": "2026-09-27"
+    },
+    "/november-29-the-gifts-of-step-eleven/": {
+      "hash": "53b9bf185e5b7bc9",
+      "lastmod": "2026-09-27"
+    },
+    "/november-30-equality-in-need/": {
+      "hash": "22ae730c5dde2315",
+      "lastmod": "2026-09-27"
+    },
+    "/december-1-the-program-summed-up/": {
+      "hash": "58fe832b563754e2",
+      "lastmod": "2026-09-27"
+    },
+    "/december-2-the-crash-that-woke-me/": {
+      "hash": "ad1337ecc6c6fe28",
+      "lastmod": "2026-09-27"
+    },
+    "/december-3-keeping-by-giving/": {
+      "hash": "427fb11f8f577c5e",
+      "lastmod": "2026-09-27"
+    },
+    "/december-4-the-flower-opening/": {
+      "hash": "90160adbe337d288",
+      "lastmod": "2026-09-27"
+    },
+    "/december-5-what-i-almost-missed/": {
+      "hash": "50de3c7a99b7c40f",
+      "lastmod": "2026-09-27"
+    },
+    "/december-6-from-obsession-to-peace/": {
+      "hash": "e41c83fbcb936c69",
+      "lastmod": "2026-09-27"
+    },
+    "/december-7-the-satisfaction-of-sharing/": {
+      "hash": "6fc9f399a5cbe088",
+      "lastmod": "2026-09-27"
+    },
+    "/december-8-supporting-my-own-recovery/": {
+      "hash": "56df74a3ad8cd7fa",
+      "lastmod": "2026-09-27"
+    },
+    "/december-9-challenged-to-continue/": {
+      "hash": "fca2a4780a604e31",
+      "lastmod": "2026-09-27"
+    },
+    "/december-10-the-balance-of-service/": {
+      "hash": "3d8af97784860143",
+      "lastmod": "2026-09-27"
+    },
+    "/december-11-share-and-let-go/": {
+      "hash": "cbfca9b70ff28e8b",
+      "lastmod": "2026-09-27"
+    },
+    "/december-12-being-the-message/": {
+      "hash": "97bfec31fb56eacc",
+      "lastmod": "2026-09-27"
+    },
+    "/december-13-beyond-the-meetings/": {
+      "hash": "5816f580ca57dbd4",
+      "lastmod": "2026-09-27"
+    },
+    "/december-14-life-still-happens/": {
+      "hash": "5280ff59c3e6406a",
+      "lastmod": "2026-09-27"
+    },
+    "/december-15-a-way-of-life-like-no-other/": {
+      "hash": "0aa879b00ac4fad9",
+      "lastmod": "2026-09-27"
+    },
+    "/december-16-becoming-aware/": {
+      "hash": "f21b0f0b8a04ce0a",
+      "lastmod": "2026-09-27"
+    },
+    "/december-17-learning-to-trust/": {
+      "hash": "be13c9d22b12b069",
+      "lastmod": "2026-09-27"
+    },
+    "/december-18-the-order-of-love/": {
+      "hash": "edea8ec708d65f85",
+      "lastmod": "2026-09-27"
+    },
+    "/december-19-the-question-that-changed-everything/": {
+      "hash": "8d3847de3771bdf6",
+      "lastmod": "2026-09-27"
+    },
+    "/december-20-the-miracle-of-letting-go/": {
+      "hash": "b15a90016abeb530",
+      "lastmod": "2026-09-27"
+    },
+    "/december-21-the-trap-of-hyped-up/": {
+      "hash": "7f3eb392ef537ca6",
+      "lastmod": "2026-09-27"
+    },
+    "/december-22-the-door-to-miracles/": {
+      "hash": "f4217a303029ddcd",
+      "lastmod": "2026-09-27"
+    },
+    "/december-23-studying-my-reactions/": {
+      "hash": "22ac75078fdc6874",
+      "lastmod": "2026-09-27"
+    },
+    "/december-24-their-truth-my-truth/": {
+      "hash": "67866ed88032eb01",
+      "lastmod": "2026-09-27"
+    },
+    "/december-25-the-joy-of-giving/": {
+      "hash": "4bc5b2d66d1704f3",
+      "lastmod": "2026-09-27"
+    },
+    "/december-26-the-spiritual-foundation/": {
+      "hash": "56c83d871065a85a",
+      "lastmod": "2026-09-27"
+    },
+    "/december-27-a-thousand-small-fears/": {
+      "hash": "159d4a15010fa57f",
+      "lastmod": "2026-09-27"
+    },
+    "/december-28-principles-above-personalities/": {
+      "hash": "051c611529bc847a",
+      "lastmod": "2026-09-27"
+    },
+    "/december-29-the-spirit-of-the-traditions/": {
+      "hash": "f7520ca9d168e4f2",
+      "lastmod": "2026-09-27"
+    },
+    "/december-30-the-rush-to-certainty/": {
+      "hash": "5f319c67c8bef284",
+      "lastmod": "2026-09-27"
+    },
+    "/december-31-the-weight-of-yes/": {
+      "hash": "3e833e1a07ca018b",
+      "lastmod": "2026-09-27"
+    },
+    "/topics/": {
+      "hash": "6ad357ccf012b18c",
+      "lastmod": "2026-09-27"
+    },
+    "/topics/detachment/": {
+      "hash": "d3d11db37e84cf2a",
+      "lastmod": "2026-09-27"
+    },
+    "/topics/powerlessness/": {
+      "hash": "df10516f70f70eba",
+      "lastmod": "2026-09-27"
+    },
+    "/topics/focus-on-yourself/": {
+      "hash": "e9eca40af7499c99",
+      "lastmod": "2026-09-27"
+    },
+    "/topics/one-day-at-a-time/": {
+      "hash": "874b81eedd3009a6",
+      "lastmod": "2026-09-27"
+    },
+    "/topics/boundaries/": {
+      "hash": "3fd4f0322df9e266",
+      "lastmod": "2026-09-27"
+    },
+    "/topics/letting-go/": {
+      "hash": "f0a73025e8d7422c",
+      "lastmod": "2026-09-27"
+    },
+    "/topics/self-worth/": {
+      "hash": "ff817c4e58bfe5a2",
+      "lastmod": "2026-09-27"
+    },
+    "/topics/higher-power/": {
+      "hash": "7f18865bf4f042cb",
+      "lastmod": "2026-09-27"
+    },
+    "/topics/honesty/": {
+      "hash": "decdb94d12a0580e",
+      "lastmod": "2026-09-27"
+    },
+    "/topics/gratitude-and-hope/": {
+      "hash": "b98735a5a3a0e896",
+      "lastmod": "2026-09-27"
+    },
+    "/topics/the-disease/": {
+      "hash": "9f0664e96507b07c",
+      "lastmod": "2026-09-27"
+    },
+    "/topics/fellowship/": {
+      "hash": "2be9b04e7dc713e8",
+      "lastmod": "2026-09-27"
+    },
+    "/steps/al-anon-step-1-honesty/": {
+      "hash": "d511ace51e6d2e2a",
+      "lastmod": "2026-09-27"
+    },
+    "/steps/al-anon-step-2-hope/": {
+      "hash": "c4afe54f3043e9dd",
+      "lastmod": "2026-09-27"
+    },
+    "/steps/al-anon-step-3-faith/": {
+      "hash": "c413684cb621ff40",
+      "lastmod": "2026-09-27"
+    },
+    "/steps/al-anon-step-4-courage/": {
+      "hash": "bc9d8c82558a0f08",
+      "lastmod": "2026-09-27"
+    },
+    "/steps/al-anon-step-5-integrity/": {
+      "hash": "587eef6d99ac205a",
+      "lastmod": "2026-09-27"
+    },
+    "/steps/al-anon-step-6-willingness/": {
+      "hash": "f221e5baf3f19137",
+      "lastmod": "2026-09-27"
+    },
+    "/steps/al-anon-step-7-humility/": {
+      "hash": "2ec4f7fb1a17fc23",
+      "lastmod": "2026-09-27"
+    },
+    "/steps/al-anon-step-8-responsibility/": {
+      "hash": "8fa9f7c58750c430",
+      "lastmod": "2026-09-27"
+    },
+    "/steps/al-anon-step-9-repair/": {
+      "hash": "7aae4186ae757eaf",
+      "lastmod": "2026-09-27"
+    },
+    "/steps/al-anon-step-10-growth/": {
+      "hash": "ee994871dab85645",
+      "lastmod": "2026-09-27"
+    },
+    "/steps/al-anon-step-11-connection/": {
+      "hash": "6e5686f5fc068f16",
+      "lastmod": "2026-09-27"
+    },
+    "/steps/al-anon-step-12-service/": {
+      "hash": "c47ed8e3222e978e",
+      "lastmod": "2026-09-27"
+    },
+    "/literature/": {
+      "hash": "f5b5d32f97b6dc3f",
+      "lastmod": "2026-09-27"
+    },
+    "/literature/courage-to-change/": {
+      "hash": "b70e982ddb16b830",
+      "lastmod": "2026-09-27"
+    },
+    "/literature/paths-to-recovery/": {
+      "hash": "c6ec40369f3ee4e1",
+      "lastmod": "2026-09-27"
+    },
+    "/literature/one-day-at-a-time/": {
+      "hash": "bf812a9e2167be5d",
+      "lastmod": "2026-09-27"
+    },
+    "/literature/how-al-anon-works/": {
+      "hash": "7d3e4cbdeb0a2f98",
+      "lastmod": "2026-09-27"
+    },
+    "/months/january/": {
+      "hash": "c7843f1ab0e025db",
+      "lastmod": "2026-09-27"
+    },
+    "/months/february/": {
+      "hash": "6250a54418f269fb",
+      "lastmod": "2026-09-27"
+    },
+    "/months/march/": {
+      "hash": "0908bd06cbf40731",
+      "lastmod": "2026-09-27"
+    },
+    "/months/april/": {
+      "hash": "6cdabba50bd0b8d0",
+      "lastmod": "2026-09-27"
+    },
+    "/months/may/": {
+      "hash": "d16747ff400e71ec",
+      "lastmod": "2026-09-27"
+    },
+    "/months/june/": {
+      "hash": "c9a2e49dce8cf882",
+      "lastmod": "2026-09-27"
+    },
+    "/months/july/": {
+      "hash": "cfcb0d82bd1d3b45",
+      "lastmod": "2026-09-27"
+    },
+    "/months/august/": {
+      "hash": "394a6f9a7f53fbce",
+      "lastmod": "2026-09-27"
+    },
+    "/months/september/": {
+      "hash": "f3cca1ab217861f6",
+      "lastmod": "2026-09-27"
+    },
+    "/months/october/": {
+      "hash": "bf8b487164a8a464",
+      "lastmod": "2026-09-27"
+    },
+    "/months/november/": {
+      "hash": "329a3906a22db86f",
+      "lastmod": "2026-09-27"
+    },
+    "/months/december/": {
+      "hash": "f1327000a4d57cfb",
+      "lastmod": "2026-09-27"
+    },
+    "/essentials/": {
+      "hash": "3cf4e222101d2a98",
+      "lastmod": "2026-09-27"
+    },
+    "/start/": {
+      "hash": "d150d5b3d6ed5255",
+      "lastmod": "2026-09-27"
+    },
+    "/about-project/": {
+      "hash": "f4cc34b89933946f",
+      "lastmod": "2026-09-27"
+    },
+    "/privacy/": {
+      "hash": "cbb82b622cb5b9c4",
+      "lastmod": "2026-09-27"
+    },
+    "/support/": {
+      "hash": "f244b613d08b850b",
+      "lastmod": "2026-09-27"
+    },
+    "/terms/": {
+      "hash": "889113089bf8582e",
+      "lastmod": "2026-09-27"
+    }
+  }
+}

@@ -1,0 +1,1377 @@
+/*
+ * Daily Paths shared visual system.
+ *
+ * Page-specific styles provide structure. This file loads last and owns the
+ * cross-site hierarchy: type roles, measures, spacing, masthead, footer, and
+ * repeated editorial components. Keep page-level one-offs out of this file.
+ */
+
+:root {
+  --font-editorial: "Newsreader", Georgia, serif;
+  --font-devotional: "Cormorant Garamond", Georgia, serif;
+  --font-ui: "Manrope", system-ui, -apple-system, "Segoe UI", sans-serif;
+
+  /* A compact, visibly stepped hierarchy. */
+  --type-reflection: italic 500 clamp(44px, 5.2vw, 68px)/1.04 var(--font-devotional);
+  --type-page: normal 500 clamp(42px, 4.2vw, 58px)/1.08 var(--font-editorial);
+  --type-article: normal 500 clamp(42px, 4.2vw, 58px)/1.08 var(--font-editorial);
+  --type-guide: normal 500 clamp(36px, 3.5vw, 48px)/1.12 var(--font-editorial);
+  --type-section: normal 500 clamp(30px, 2.8vw, 38px)/1.14 var(--font-editorial);
+  --type-chapter: normal 500 clamp(25px, 2.2vw, 30px)/1.2 var(--font-editorial);
+  --type-card: normal 500 clamp(20px, 1.7vw, 24px)/1.24 var(--font-editorial);
+  --type-lede: normal 400 clamp(19px, 1.55vw, 22px)/1.55 var(--font-editorial);
+  --type-reading-body: normal 400 20.5px/1.68 var(--font-editorial);
+  --type-pull-quote: italic 500 clamp(25px, 2.6vw, 34px)/1.42 var(--font-devotional);
+  --type-body: normal 400 clamp(17.5px, 1.25vw, 18.5px)/1.68 var(--font-editorial);
+  --type-small: normal 400 15px/1.6 var(--font-ui);
+  --type-ui: normal 400 16px/1.65 var(--font-ui);
+  --type-label: normal 600 12px/1.5 var(--font-ui);
+  --type-nav: normal 500 15px/1.4 var(--font-ui);
+  --type-caption: normal 400 12px/1.5 var(--font-ui);
+  --type-wordmark: italic 600 30px/1 "Daily Paths Wordmark", var(--font-devotional);
+
+  --content-wide: 1160px;
+  --content-reading: 760px;
+  --content-copy: 68ch;
+  --gutter-system: clamp(20px, 5vw, 64px);
+
+  --space-1: 8px;
+  --space-2: 12px;
+  --space-3: 16px;
+  --space-4: 24px;
+  --space-5: 32px;
+  --space-6: 48px;
+  --space-7: 72px;
+  --space-8: 96px;
+
+  /* Legacy aliases used by structural styles. */
+  --font-body: var(--font-ui);
+  --font-display: var(--font-editorial);
+  --font-reading: var(--font-editorial);
+  --display: var(--font-editorial);
+  --hero: var(--font-devotional);
+  --reading: var(--font-editorial);
+  --ui: var(--font-ui);
+  --page-max: var(--content-wide);
+  --measure: var(--content-reading);
+  --measure-wide: 900px;
+  --rhythm: var(--space-7);
+
+  --link-rest: var(--accent-strong, #4f5939);
+  --link-hover: var(--accent-deep, #303b27);
+  --link-rule: rgba(79, 89, 57, .42);
+  --focus-ring: var(--accent, #657346);
+}
+
+html {
+  font-optical-sizing: auto;
+  font-synthesis: none;
+}
+
+body {
+  margin: 0;
+  background: var(--surface, #faf9f5);
+  color: var(--text-primary, #34382e);
+  font: var(--type-ui);
+  letter-spacing: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+button,
+input,
+textarea,
+select { font: var(--type-ui); }
+
+strong,
+b { font-weight: 600; }
+
+/* One visible, predictable keyboard-focus treatment across every page type. */
+:where(a, button, input, textarea, select, summary):focus-visible {
+  outline: 3px solid var(--focus-ring);
+  outline-offset: 3px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin-block-start: 0;
+  font-family: var(--font-editorial);
+  font-style: normal;
+  font-weight: 500;
+  text-wrap: pretty;
+  overflow-wrap: anywhere;
+}
+
+/* Page-level hierarchy */
+h1,
+.type-page-title,
+.page-editorial .sd-page-heading h1 { font: var(--type-page); letter-spacing: -.7px; }
+
+.page-home .ed-hero h1,
+.page-reading .photo-hero-title { font: var(--type-reflection); letter-spacing: -.4px; }
+
+.content-article h1,
+.content-article .photo-hero-title { font: var(--type-article); letter-spacing: -.7px; }
+
+.content-guide h1,
+.content-guide .photo-hero-title,
+.content-guide .start-hero-title { font: var(--type-guide); letter-spacing: -.5px; max-width: 22ch; }
+
+h2,
+.section-title,
+.ed-section-heading h2,
+.sd-section-heading h2,
+.sd-guide-intro h2,
+.sd-archive h2 { font: var(--type-reading-body); font-size: 2rem; letter-spacing: -.45px; }
+
+.rd-article h2,
+.prose-reading h2,
+.content-section h2,
+.ap-section h2,
+.tg-section h2,
+.step-body-heading,
+.questions-heading,
+.action-panel-heading,
+.start-step-title,
+.aa-heading,
+.quiz-card-heading,
+.share-heading { font: var(--type-chapter); letter-spacing: -.3px; }
+
+h3,
+.ed-story h3,
+.ed-guide-row h3,
+.sd-story h3,
+.sd-guide-list h3,
+.reading-card-title,
+.featured-card-title,
+.kr-card-title,
+.rt-card-title,
+.prevnext-title,
+.theme-index-title,
+.theme-preview-title,
+.theme-feature-title,
+.step-card-keyword,
+.ess-card-title,
+.pillar-title,
+.start-week-title,
+.book-card-title,
+.theme-name,
+.ma-reading-title,
+.cal-preview-title { font: var(--type-card); letter-spacing: -.2px; }
+
+.type-lede,
+.lede,
+.ed-hero-deck,
+.photo-hero-sub,
+.start-hero-lede,
+.ma-subtitle,
+.book-subtitle,
+.ap-hero-desc { font: var(--type-lede); letter-spacing: 0; }
+
+.ma-collection-eyebrow { margin-bottom: 12px; }
+
+.ma-step-statement {
+  max-width: 760px;
+  margin: clamp(18px, 2.2vw, 28px) 0 0;
+  padding-top: clamp(16px, 2vw, 22px);
+  border-top: 1px solid var(--rule);
+  font-family: var(--font-reading);
+  font-size: clamp(17px, 1.8vw, 21px);
+  line-height: 1.65;
+  color: var(--text-primary);
+}
+
+.ma-step-more {
+  display: inline-flex;
+  margin-top: 16px;
+  font: 600 14px/1.4 var(--font-ui);
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.ma-step-more:hover { text-decoration: underline; }
+
+.favorite-reading-list {
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+}
+
+.favorite-reading-rank {
+  display: block;
+  margin-bottom: 8px;
+  font: var(--type-label);
+  letter-spacing: 1.25px;
+  color: var(--accent-soft);
+}
+
+.reflection-index-lead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 28px;
+  margin-bottom: clamp(26px, 3vw, 38px);
+}
+
+.reflection-index-lead p {
+  max-width: 610px;
+  margin: 0;
+  font: var(--type-lede);
+  color: var(--text-muted);
+}
+
+.reflection-index-actions {
+  display: flex;
+  flex: 0 0 auto;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+@media (max-width: 640px) {
+  .reflection-index-lead {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 18px;
+  }
+
+  .reflection-index-actions { width: 100%; }
+  .reflection-index-actions .btn { flex: 1 1 auto; }
+}
+
+/* Sustained reading prose has its own scale so editorial pages can grow
+   without enlarging cards, panels, form copy, or other supporting UI. */
+.prose-reading,
+.prose-reading p,
+.prose-reading li,
+.content-section p,
+.content-section li,
+.ap-section p,
+.book-description,
+.book-description p,
+.step-body-section p { font: var(--type-reading-body); letter-spacing: 0; }
+
+.faq-item p,
+.questions-text,
+.action-list li,
+.start-meeting-text,
+.quote-block-text,
+.quote-block-text p,
+.reminder-text,
+.alert-safety p { font: var(--type-body); letter-spacing: 0; }
+
+.prose-reading,
+.content-section,
+.ap-section,
+.book-description,
+.step-body-section,
+.start-meeting-text { max-width: var(--content-copy); }
+
+.article-pull-quote {
+  margin: clamp(32px, 5vw, 48px) auto;
+  max-width: 26ch;
+  color: var(--accent-strong);
+  font: var(--type-pull-quote);
+  letter-spacing: -.25px;
+  text-align: center;
+}
+
+.type-thesis-quote,
+.type-thesis-quote p,
+.tg-thesis,
+.tg-thesis p,
+.pull-quote,
+.lg-spirit-q,
+.lg-spirit-quote,
+.lg-spirit-inner > p.lg-spirit-quote {
+  font: var(--type-pull-quote);
+  letter-spacing: -.25px;
+  text-align: center;
+}
+
+.type-takeaway,
+.takeaway,
+.chapter-takeaway,
+.na-close,
+.quiz-closer,
+.quiz-response-lead {
+  font: italic 400 clamp(17.5px, 1.25vw, 18.5px)/1.68 var(--font-editorial);
+  letter-spacing: 0;
+}
+
+.type-prayer,
+.prayer-card-body,
+.prayer-card-body p,
+.prayer { font: italic 500 19px/1.7 var(--font-devotional); text-align: center; }
+
+/* Supporting copy and controls */
+.section-desc,
+.sd-story > p:not(.sd-kicker),
+.ed-story-copy > p:not(.ed-label),
+.sd-guide-list p,
+.ed-guide-row p,
+.theme-index-line,
+.theme-preview-line,
+.step-card-hook,
+.kr-card-teaser,
+.rt-card-line,
+.pillar-body,
+.start-fact-body,
+.start-step-intro,
+.app-panel-body,
+.sd-app-copy > p:not(.sd-kicker),
+.ed-app-copy > p,
+.sd-email p:not(.sd-kicker),
+.book-app-text { font: var(--type-small); letter-spacing: 0; }
+
+/* Give the daily takeaway its own editorial emphasis without repeating the
+   olive quotation rule used earlier in the reading. */
+.reminder-panel {
+  padding: clamp(26px, 3.2vw, 38px);
+  border: 0;
+}
+
+.reminder-text {
+  max-width: 32ch;
+  margin-top: 12px;
+  margin-inline: auto;
+  font: italic 400 clamp(23px, 2.2vw, 28px)/1.5 var(--font-editorial);
+  letter-spacing: 0;
+  color: #4a5046;
+  text-align: center;
+  text-wrap: pretty;
+}
+
+/* Previous and next links should orient the reader, not compete with the page. */
+.prevnext-title {
+  font: normal 400 clamp(17px, 1.25vw, 19px)/1.4 var(--font-editorial);
+  letter-spacing: 0;
+}
+
+.eyebrow,
+.ed-label,
+.sd-kicker,
+.na-eyebrow,
+.reminder-label,
+.footer-col-title,
+.group-head-label,
+.terminal-band-eyebrow,
+.start-week-label,
+.book-card-category,
+.book-category,
+.prayer-card-title,
+.sd-guide-number,
+.start-step-numeral,
+.step-card-numeral,
+.na-n {
+  font: var(--type-label);
+  letter-spacing: 1.25px;
+  text-transform: uppercase;
+}
+
+/* This is only a locator. The message beneath it is the memorable, portable
+   takeaway and must remain the dominant voice in the panel. */
+.reminder-label {
+  font: normal 500 10px/1.4 var(--font-ui);
+  letter-spacing: 1.45px;
+  color: var(--text-muted, #66685d);
+  opacity: .72;
+}
+
+/* Shared editorial link roles. Arrows belong to meaning, not decoration:
+   most links have none, → marks an important progression, ↗ is external,
+   and ←/→ are retained for true previous/next navigation. */
+:where(.prose-reading, .prose-lora, .content-section, .ap-section, .tg-section) a:not([class]) {
+  color: inherit;
+  text-decoration-line: underline;
+  text-decoration-thickness: 1px;
+  text-decoration-color: var(--link-rule);
+  text-underline-offset: .16em;
+  transition: color 170ms ease, text-decoration-color 170ms ease;
+}
+
+:where(.prose-reading, .prose-lora, .content-section, .ap-section, .tg-section) a:not([class]):hover {
+  color: var(--link-hover);
+  text-decoration-color: currentColor;
+}
+
+:is(.text-link, .sd-text-link, .ed-link, .ma-step-more, .ma-back-link, .external-link, .contact-link, .lg-spirit-link) {
+  display: inline-flex;
+  align-items: baseline;
+  gap: .35em;
+  padding: 3px 0;
+  border-bottom: 0;
+  color: var(--link-rest);
+  font: var(--type-nav);
+  text-decoration-line: underline;
+  text-decoration-thickness: 1px;
+  text-decoration-color: var(--link-rule);
+  text-underline-offset: .22em;
+  transition: color 170ms ease, text-decoration-color 170ms ease;
+}
+
+:is(.text-link, .sd-text-link, .ed-link, .ma-step-more, .ma-back-link, .external-link, .contact-link, .lg-spirit-link):hover {
+  color: var(--link-hover);
+  text-decoration-color: currentColor;
+}
+
+:is(.btn, .sd-button, .ed-button, .header-cta, .mobile-menu-cta) {
+  min-height: 44px;
+  text-decoration: none;
+}
+
+/* External text destinations receive the only non-directional arrow. Image
+   badges already communicate their destination and remain visually clean. */
+a[target="_blank"]:not(:has(img)):not(.pillar-card):not(.fellow-card)::after,
+.pillar-card[target="_blank"] .pillar-link::after,
+.fellow-card[target="_blank"] .fellow-cta::after {
+  content: "↗";
+  display: inline-block;
+  margin-inline-start: .35em;
+  font-family: var(--font-ui);
+  font-size: .88em;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1;
+}
+
+:is(a.kr-card, a.rt-card, a.deeper-card, a.step-card, a.start-week-card,
+       a.theme-index-card, a.theme-feature, a.pillar-card, a.fellow-card,
+       a.reading-card, a.ma-reading-link) {
+  color: inherit;
+  text-decoration: none;
+  transition: background-color 170ms ease, border-color 170ms ease,
+              box-shadow 170ms ease, color 170ms ease;
+}
+
+:is(a.kr-card, a.rt-card, a.deeper-card, a.step-card, a.start-week-card,
+       a.theme-index-card, a.theme-feature, a.pillar-card, a.fellow-card,
+       a.reading-card, a.ma-reading-link):hover {
+  color: inherit;
+}
+
+/* Editorial previews keep their title as the primary link so future
+   secondary interactions can be added without changing the card contract. */
+:is(.sd-story, .ed-story, .ed-guide-row article) h3 a {
+  color: inherit;
+  text-decoration-line: underline;
+  text-decoration-thickness: 1px;
+  text-decoration-color: transparent;
+  text-underline-offset: .18em;
+  transition: color 170ms ease, text-decoration-color 170ms ease;
+}
+
+:is(.sd-story, .ed-story, .ed-guide-row article) h3 a:hover {
+  color: var(--link-hover);
+  text-decoration-color: var(--link-rule);
+}
+
+.nav-link,
+.header-cta,
+.mobile-menu-row,
+.mobile-menu-cta,
+.menu-toggle,
+.text-link,
+.sd-text-link,
+.ed-link,
+.collection-rail,
+.newcomer-strip-cta,
+.pill,
+.theme-index-cta,
+.reading-card-cta,
+.kr-card-cta,
+.rt-card-meta,
+.footer-links a,
+.ed-footer nav,
+.ed-keep-reading { font: var(--type-nav); letter-spacing: 0; }
+
+.btn,
+.btn--sm,
+.btn-primary,
+.sd-button,
+.ed-button,
+.book-purchase-btn,
+.rd-calendar-trigger { font: var(--type-nav); letter-spacing: 0; }
+
+.footer-bar,
+.fine-print,
+.reading-card-date,
+.featured-card-meta,
+.kr-card-date,
+.quote-block-attr,
+.ed-reflection-meta > p:last-child,
+.prevnext-label,
+.ed-photo-caption,
+.ed-app-platforms,
+.site-newsletter-note,
+.theme-sources { font: var(--type-caption); letter-spacing: .15px; }
+
+/* Shared masthead */
+.site-header {
+  position: relative;
+  z-index: 20;
+  background: rgba(250, 249, 245, .97);
+  border-bottom: 1px solid var(--rule, #dfdfd3);
+  backdrop-filter: none;
+}
+
+.page-home .site-header {
+  position: relative;
+  inset: auto;
+  background: rgba(250, 249, 245, .97);
+  border-bottom: 1px solid var(--rule, #dfdfd3);
+}
+
+.header-inner {
+  width: min(calc(100% - (2 * var(--gutter-system))), var(--content-wide));
+  max-width: var(--content-wide);
+  min-height: 88px;
+  margin-inline: auto;
+  padding: 16px 0;
+  display: flex;
+  align-items: center;
+  gap: var(--space-5);
+}
+
+.brand,
+.ed-footer-brand,
+.footer-brand-lockup {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 11px;
+  min-width: 0;
+  text-decoration: none;
+}
+
+.brand { flex-shrink: 0; }
+.brand-mark-icon { display: block; width: 42px; height: 42px; flex: 0 0 42px; object-fit: contain; border-radius: 9px; }
+.brand-name,
+.footer-wordmark,
+.ed-footer-brand strong { font: var(--type-wordmark); font-size: 31px; letter-spacing: -.35px; color: var(--accent-strong, #444e34); white-space: nowrap; }
+.header-divider { display: none; }
+.site-nav { display: flex; align-items: center; gap: 26px; margin-left: auto; padding: 0; }
+.nav-link {
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
+  padding: 10px 0 8px;
+  border-bottom: 2px solid transparent;
+  color: var(--text-muted, #66685d);
+  font: var(--type-nav);
+  text-decoration: none;
+  transition: color 170ms ease;
+}
+.nav-link:hover { color: var(--text-primary, #34382e); text-decoration: none; }
+.nav-link.is-active { color: var(--accent-strong, #444e34); border-bottom-color: #8c9574; }
+.header-cta {
+  min-height: 44px;
+  padding: 10px 17px;
+  border: 1px solid #9ca28e;
+  border-radius: 2px;
+  color: var(--accent-strong, #444e34);
+  background: transparent;
+  transition: color 170ms ease, border-color 170ms ease, background-color 170ms ease;
+}
+.header-cta:hover { color: var(--link-hover); border-color: #7f886d; background: rgba(98,108,75,.06); text-decoration: none; }
+.menu-toggle { display: none; }
+
+.menu-glyph {
+  display: flex;
+  flex-direction: column;
+  flex: 0 0 auto;
+  gap: 3.5px;
+}
+.menu-glyph span {
+  display: block;
+  width: 16px;
+  height: 1.6px;
+  border-radius: 2px;
+  background: currentColor;
+  transition: transform 170ms ease, opacity 170ms ease;
+}
+.menu-toggle[aria-expanded="true"] .menu-glyph span:first-child { transform: translateY(5.1px) rotate(45deg); }
+.menu-toggle[aria-expanded="true"] .menu-glyph span:nth-child(2) { opacity: 0; }
+.menu-toggle[aria-expanded="true"] .menu-glyph span:last-child { transform: translateY(-5.1px) rotate(-45deg); }
+
+.mobile-menu {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  left: 0;
+  background: var(--surface-lowest, #fffef9);
+}
+.mobile-menu-row {
+  min-height: 52px;
+  justify-content: flex-start;
+  padding-block: 12px;
+  color: var(--text-muted, #66685d);
+  font: var(--type-nav);
+  text-decoration: none;
+  transition: color 170ms ease;
+}
+.mobile-menu-row:hover { color: var(--text-primary, #34382e); text-decoration: none; }
+.mobile-menu-label { display: inline-block; padding-bottom: 2px; border-bottom: 2px solid transparent; }
+.mobile-menu-row.is-active { color: var(--accent-strong, #444e34); }
+.mobile-menu-row.is-active .mobile-menu-label { border-bottom-color: #8c9574; }
+.mobile-menu-cta {
+  min-height: 44px;
+  border: 1px solid #9ca28e;
+  background: transparent;
+  color: var(--accent-strong, #444e34);
+}
+.mobile-menu-cta:hover { border-color: #7f886d; background: rgba(98,108,75,.06); color: var(--link-hover); }
+
+/* Consistent measures and vertical rhythm */
+.ed-wrap,
+.sd-wrap,
+.footer-inner,
+.footer-bar,
+.photo-hero-inner { max-width: var(--content-wide); }
+
+.sd-wrap,
+.ed-wrap { width: min(calc(100% - (2 * var(--gutter-system))), var(--content-wide)); margin-inline: auto; }
+.rd-article,
+.wrap--article { max-width: var(--content-reading); }
+.rd-article { padding-top: var(--space-6); }
+.section--lg { padding-top: var(--space-7); }
+.section--md { padding-top: var(--space-6); }
+
+/* Hub collection pages: one introduction rhythm, three distinct content rooms. */
+.hub-intro { padding: var(--space-7) 0 var(--space-6); }
+.hub-intro .hub-eyebrow { margin: 0 0 var(--space-3); }
+.hub-intro .hub-title {
+  max-width: 18ch;
+  margin: 0 0 var(--space-4);
+  font: var(--type-page);
+  letter-spacing: -.7px;
+}
+.hub-intro .hub-deck {
+  max-width: 44ch;
+  margin: 0;
+  font: var(--type-lede);
+  letter-spacing: 0;
+  color: var(--text-muted, #66685d);
+}
+
+.sd-page-heading { padding: var(--space-7) 0 var(--space-6); }
+.sd-page-heading .sd-kicker { margin-bottom: var(--space-3); }
+.sd-page-heading h1 { max-width: 18ch; margin: 0 0 var(--space-4); }
+.sd-page-heading > p:not(.sd-kicker) { max-width: 44ch; margin: 0; font: var(--type-lede); color: var(--text-muted, #66685d); }
+
+.photo-hero { min-height: clamp(350px, 32vw, 430px); }
+.photo-hero-inner { padding-bottom: var(--space-6); }
+.photo-hero-title { margin-top: var(--space-2); max-width: 18ch; }
+.photo-hero-sub { max-width: 42ch; margin-top: var(--space-3); color: rgba(255,255,255,.9); }
+
+/* Article photography remains true to the source image. The title and deck sit
+   on paper beneath the crop, so readability never depends on darkening the
+   photograph with the shared hero scrim. Guide and reflection heroes retain
+   their intentionally separate treatments. */
+.content-article .photo-hero {
+  display: grid;
+  align-items: stretch;
+  min-height: 0;
+  overflow: visible;
+  background: var(--surface, #faf9f5);
+}
+
+.content-article .photo-hero-img {
+  position: relative;
+  inset: auto;
+  display: block;
+  width: 100%;
+  height: clamp(350px, 32vw, 430px);
+  object-fit: cover;
+  filter: none;
+  opacity: 1;
+}
+
+.content-article .photo-hero-scrim { display: none; }
+
+.content-article .photo-hero-inner {
+  width: min(calc(100% - (2 * var(--gutter-system))), var(--content-wide));
+  max-width: var(--content-wide);
+  margin-inline: auto;
+  padding: var(--space-5) 0 var(--space-6);
+}
+
+.content-article .photo-hero .eyebrow,
+.content-article .photo-hero-title { color: var(--text-primary, #34382e); }
+.content-article .photo-hero-sub { color: var(--text-muted, #66685d); }
+
+/* Keep both people and the meal visible in this story's dinner photograph. */
+.page-personal-story .photo-hero-img {
+  height: auto;
+  aspect-ratio: 2 / 1;
+  object-position: 50% 20%;
+}
+
+.page-voices-article .photo-hero-img { height: auto; aspect-ratio: 1672 / 941; object-fit: contain; }
+.voices-practice {
+  margin-block: var(--space-7);
+  padding-top: var(--space-5);
+  border-top: 1px solid var(--accent-strong);
+  color: var(--accent-strong);
+}
+.voices-practice h2 {
+  margin: 0 0 var(--space-6);
+  font: 500 clamp(34px, 4vw, 48px)/1.12 var(--font-editorial);
+  letter-spacing: -.6px;
+}
+.voices-practice h2 em { display: block; font-weight: 400; }
+.voices-practice ol { list-style: none; counter-reset: practice; margin: 0; padding: 0; }
+.voices-practice li {
+  counter-increment: practice;
+  display: grid;
+  grid-template-columns: 2ch minmax(0, 1fr);
+  gap: clamp(16px, 3vw, 32px);
+  margin: 0 0 var(--space-5);
+  padding: 0;
+}
+.voices-practice li::before {
+  content: counter(practice, decimal-leading-zero);
+  padding-top: .5em;
+  font: 500 13px/1.5 var(--font-ui);
+  letter-spacing: .08em;
+}
+.voices-practice li h3 {
+  margin: 0 0 6px;
+  font: 600 clamp(23px, 2.3vw, 28px)/1.25 var(--font-editorial);
+  color: inherit;
+}
+.voices-practice li p { margin: 0; color: inherit; }
+.voices-practice .voices-practice-close { margin: var(--space-5) 0 0; color: inherit; }
+.voices-practice-close::before {
+  content: '';
+  display: block;
+  width: 112px;
+  margin-bottom: var(--space-4);
+  border-top: 1px solid currentColor;
+}
+.page-voices-article .tg-section > h2 { margin-top: var(--space-7); }
+.sd-story-image[href$="/voices-from-the-grave/"] img { object-fit: contain; }
+
+/* Approved Surrender guide media: responsive source artwork with no crop,
+   frame, shadow, overlay, or other decorative treatment. */
+.surrender-section { margin-top: var(--space-7); }
+.surrender-section:first-child { margin-top: 0; }
+.surrender-section h2 { margin-bottom: var(--space-4); }
+.surrender-section h3 { margin: var(--space-5) 0 var(--space-3); }
+.surrender-section :is(ul, ol) {
+  margin: 0 0 var(--space-5);
+  padding-inline-start: 1.4em;
+  font: var(--type-reading-body);
+}
+.surrender-section li { margin-bottom: var(--space-2); padding-inline-start: .25em; }
+
+.surrender-pullquote {
+  margin: var(--space-5) 0;
+  padding: var(--space-4) 0;
+  border-block: 1px solid var(--rule, #dfdfd3);
+}
+.surrender-pullquote p {
+  max-width: 38ch;
+  margin: 0 auto;
+  font: var(--type-pull-quote);
+  text-align: center;
+  color: var(--accent-deep, #334b3d);
+}
+
+.surrender-media {
+  width: min(960px, calc(100vw - (2 * var(--gutter-system))));
+  margin: var(--space-6) 50% var(--space-7);
+  transform: translateX(-50%);
+}
+.surrender-media img { display: block; width: 100%; height: auto; }
+
+.surrender-prayer {
+  margin-top: var(--space-7);
+  padding: var(--space-6) 0 var(--space-4);
+  border-top: 1px solid var(--rule, #dfdfd3);
+  text-align: center;
+}
+.surrender-prayer h3 { margin-top: 0; font: var(--type-chapter); }
+.surrender-prayer > p { max-width: 44ch; margin-inline: auto; }
+.surrender-prayer blockquote {
+  max-width: 32ch;
+  margin: var(--space-5) auto;
+  font: italic 500 clamp(25px, 2.6vw, 34px)/1.48 var(--font-devotional);
+  color: var(--accent-deep, #334b3d);
+}
+.surrender-prayer blockquote p { margin: 0; font: inherit; color: inherit; }
+.surrender-prayer-close { margin-top: var(--space-5); font-style: italic !important; }
+
+/* Reflections keeps its immersive hero, but joins the hub shell and type rhythm.
+   These selectors deliberately avoid changing legacy .wrap on reading pages. */
+.page-reflections-index .photo-hero-inner,
+.page-reflections-index main > .wrap.section--md {
+  width: min(calc(100% - (2 * var(--gutter-system))), var(--content-wide));
+  max-width: var(--content-wide);
+  margin-inline: auto;
+  padding-inline: 0;
+}
+.page-reflections-index .photo-hero-title {
+  max-width: 18ch;
+  font: var(--type-page);
+  letter-spacing: -.7px;
+}
+.page-reflections-index .photo-hero-sub {
+  max-width: 44ch;
+  font: var(--type-lede);
+  letter-spacing: 0;
+}
+.page-reflections-index .reflection-index-lead { margin-bottom: var(--space-6); }
+.page-reflections-index .step-card-grid--index {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-3);
+}
+
+/* The homepage's Soft Daylight grammar, carried across every reflection. */
+.page-reading .photo-hero--soft-daylight {
+  min-height: clamp(520px, 48vw, 640px);
+  align-items: center;
+  background: #f4f1e9;
+  isolation: isolate;
+}
+
+.photo-hero--soft-daylight .photo-hero-img { object-position: center center; }
+.photo-hero--soft-daylight .photo-hero-scrim {
+  background:
+    linear-gradient(90deg,
+      rgba(250,249,245,.99) 0%,
+      rgba(250,249,245,.95) 30%,
+      rgba(250,249,245,.78) 43%,
+      rgba(250,249,245,.28) 56%,
+      rgba(250,249,245,0) 70%),
+    linear-gradient(180deg, rgba(35,49,45,.04), transparent 45%, rgba(35,49,45,.08));
+}
+.photo-hero--soft-daylight .photo-hero-inner {
+  width: min(calc(100% - (2 * var(--gutter-system))), var(--content-wide));
+  padding: var(--space-7) 0;
+}
+.photo-hero--soft-daylight .eyebrow,
+.photo-hero--soft-daylight .photo-hero-title { color: var(--text-primary, #34382e) !important; }
+.photo-hero--soft-daylight .eyebrow { letter-spacing: 1.25px; }
+.page-reading .photo-hero--soft-daylight .photo-hero-title {
+  max-width: 9.5ch;
+  text-shadow: none;
+  text-wrap: balance;
+}
+
+/* September 11 discovery trial. Six links remain in the HTML while the
+   horizontal rail protects the page's vertical rhythm. */
+.kr-section--trial { overflow: hidden; }
+.discovery-trial-page .eyebrow {
+  font: normal 600 10px/1.4 var(--font-ui);
+  letter-spacing: 1px;
+}
+.discovery-trial-page .kr-section > .eyebrow,
+.discovery-trial-page .deeper-section > .eyebrow { margin-bottom: var(--space-3); }
+.discovery-trial-page .photo-hero-inner .eyebrow + .photo-hero-title { margin-top: 18px; }
+.kr-grid--carousel {
+  grid-template-columns: none;
+  grid-auto-flow: column;
+  grid-auto-columns: calc(33.333% - 9.34px);
+  overflow-x: auto;
+  overscroll-behavior-inline: contain;
+  scroll-snap-type: inline mandatory;
+  padding: 2px 2px 16px;
+  scrollbar-width: thin;
+}
+.kr-grid--carousel .kr-card { min-width: 0; min-height: 250px; scroll-snap-align: start; }
+.deeper-section {
+  padding: var(--space-6) 0 var(--space-7);
+  border-top: 1px solid var(--rule, #dfdfd3);
+}
+.deeper-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: var(--space-4); }
+.deeper-card {
+  display: flex;
+  min-width: 0;
+  min-height: 230px;
+  flex-direction: column;
+  gap: 9px;
+  padding: var(--space-4);
+  border: 1px solid var(--border-card, #d7d7cc);
+  border-radius: var(--radius-tinted, 4px);
+  background: var(--surface-lowest, #fffef9);
+  box-shadow: var(--shadow-card);
+}
+.deeper-card:hover { box-shadow: var(--shadow-surface); }
+.deeper-card-type {
+  font: var(--type-label);
+  letter-spacing: 1.1px;
+  text-transform: uppercase;
+  color: var(--accent-strong, #4f5b3d);
+}
+.deeper-card-title { font: var(--type-card); color: var(--text-primary, #34382e); }
+.deeper-card-line { font: var(--type-small); color: var(--text-muted, #66685d); }
+.deeper-card-cta { margin-top: auto; padding-top: var(--space-2); font: var(--type-nav); color: var(--accent-strong, #4f5b3d); }
+
+.start-hero-inner { max-width: var(--content-reading); padding-top: var(--space-7); padding-bottom: var(--space-7); }
+.start-hero-title { margin-top: var(--space-2); }
+.start-hero-lede { max-width: 52ch; margin-top: var(--space-4); color: rgba(255,255,255,.9); }
+
+.collection-rail { background: var(--surface-low, #f3f2eb); border-bottom: 1px solid var(--rule, #dfdfd3); }
+.collection-rail-inner { width: min(calc(100% - (2 * var(--gutter-system))), var(--content-wide)); margin-inline: auto; min-height: 44px; display: flex; align-items: center; justify-content: space-between; gap: var(--space-4); }
+.collection-rail a { color: var(--accent-strong, #444e34); }
+.collection-rail span { color: var(--text-muted, #66685d); }
+
+/* Homepage: the reflection dominates; promotions stay subordinate. */
+.page-home .ed-hero h1 { width: 47%; max-width: 10.5ch; margin-bottom: var(--space-4); }
+.page-home .ed-hero-deck { width: 39%; max-width: 34ch; margin-bottom: var(--space-4); color: var(--text-primary, #34382e); }
+.page-home .ed-section-heading h2 { font: var(--type-reading-body); font-size: 2rem; }
+.page-home .ed-story h3,
+.page-home .ed-guide-row h3 { font: var(--type-card); }
+.page-home .ed-articles { padding-top: var(--space-6); padding-bottom: var(--space-6); }
+.page-home .ed-guides { padding-top: var(--space-5); padding-bottom: var(--space-6); }
+.page-home .ed-app h2,
+.sd-app-copy h2,
+.app-panel-heading { font: normal 500 clamp(30px, 2.7vw, 36px)/1.15 var(--font-editorial); letter-spacing: -.35px; }
+.sd-article-library {
+  column-gap: var(--space-5);
+  row-gap: var(--space-7);
+  padding-bottom: var(--space-7);
+}
+.page-editorial .sd-article-library .sd-story-image {
+  aspect-ratio: 16 / 10;
+  margin-bottom: var(--space-4);
+  border-radius: var(--radius-card);
+  background: var(--surface-low, #f3f2eb);
+}
+.page-editorial .sd-article-library .sd-story-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+.page-editorial .sd-story:hover h3 a,
+.page-editorial .sd-story:focus-within h3 a {
+  color: var(--link-hover);
+  text-decoration-color: var(--link-rule);
+}
+.page-editorial .sd-story:focus-within .sd-story-image img { transform: scale(1.025); }
+
+/* Guides use the existing wide reading measure instead of stretching to the
+   full hub shell. The left edge stays aligned with the shared introduction. */
+.hub-reference-measure {
+  width: min(calc(100% - (2 * var(--gutter-system))), var(--measure-wide));
+  max-width: var(--measure-wide);
+  margin-left: max(var(--gutter-system), calc((100% - var(--content-wide)) / 2));
+  margin-right: auto;
+}
+.sd-guide-library { padding-bottom: var(--space-6); }
+.hub-reference-measure .sd-guide-list li > a {
+  padding-block: var(--space-4);
+  transition: background-color 170ms ease;
+}
+.hub-reference-measure .sd-guide-list li > a:hover,
+.hub-reference-measure .sd-guide-list li > a:focus-visible {
+  background: var(--surface-low, #f3f2eb);
+}
+.hub-reference-measure .sd-guide-list li > a:focus-visible h3 {
+  color: var(--link-hover);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 5px;
+}
+.sd-related-note { padding-top: var(--space-5); padding-bottom: var(--space-7); }
+.sd-related-note h2 { font: var(--type-chapter); }
+
+.sd-app { min-height: 360px; }
+.sd-app-inner { min-height: 360px; padding-block: var(--space-6); }
+.sd-app-copy > p:not(.sd-kicker) { max-width: 40ch; }
+
+/* One quiet email invitation closes every public page, directly above the footer. */
+.site-newsletter {
+  background: var(--surface-low, #f3f2eb);
+  border-top: 1px solid var(--rule, #dfdfd3);
+}
+.site-newsletter-inner {
+  width: min(calc(100% - (2 * var(--gutter-system))), 720px);
+  margin-inline: auto;
+  padding: var(--space-5) 0;
+  text-align: center;
+}
+.site-newsletter-eyebrow {
+  margin: 0 0 7px;
+  font: var(--type-label);
+  letter-spacing: 1.1px;
+  text-transform: uppercase;
+  color: var(--accent-strong, #4f5b3d);
+}
+.site-newsletter h2 {
+  margin: 0;
+  font: normal 500 clamp(27px, 2.4vw, 32px)/1.16 var(--font-editorial);
+  letter-spacing: -.3px;
+  color: var(--text-primary, #34382e);
+}
+.site-newsletter-copy {
+  margin: 7px 0 0;
+  font: var(--type-body);
+  color: var(--text-muted, #66685d);
+}
+.site-newsletter-form {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 8px;
+  width: min(100%, 510px);
+  margin: 18px auto 0;
+}
+/* Keep the accessible label out of the signup grid on every page layout. */
+.site-newsletter-form > .sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+.site-newsletter-form input,
+.site-newsletter-form button { box-sizing: border-box; }
+.site-newsletter-form input {
+  min-width: 0;
+  height: 46px;
+  border: 1px solid #aeb59a;
+  border-radius: 2px;
+  background: #fffef9;
+  color: var(--text-primary, #34382e);
+  padding: 11px 13px;
+  font: normal 400 14px/1.4 var(--font-ui);
+}
+.site-newsletter-button {
+  min-height: 46px;
+  border: 0;
+  border-radius: 2px;
+  background: var(--accent-strong, #4f5b3d);
+  color: #fff;
+  padding: 10px 20px;
+  font: var(--type-nav);
+}
+.site-newsletter-form :disabled { cursor: default; opacity: .58; }
+.site-newsletter-form input:disabled { opacity: 1; color: var(--text-muted, #66685d); }
+.site-newsletter-note { margin: 8px 0 0; color: var(--text-muted, #66685d); }
+.site-newsletter-note a { color: inherit; text-decoration: underline; text-decoration-color: var(--link-rule); text-underline-offset: 3px; }
+
+.site-footer { margin-top: 0; background: var(--surface, #faf9f5); border-top: 1px solid var(--rule, #dfdfd3); }
+.footer-inner { width: min(calc(100% - (2 * var(--gutter-system))), var(--content-wide)); padding: var(--space-5) 0 var(--space-4); }
+.site-footer .footer-inner { max-width: 720px; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.footer-bar { width: min(calc(100% - (2 * var(--gutter-system))), var(--content-wide)); padding: var(--space-2) 0; }
+.footer-links a,
+.ed-footer nav a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 32px;
+  color: var(--text-muted, #66685d);
+  font: normal 400 14px/1.4 var(--font-ui);
+  text-decoration: none;
+  transition: color 170ms ease, text-decoration-color 170ms ease;
+}
+.footer-links a:hover,
+.ed-footer nav a:hover {
+  color: var(--text-primary, #34382e);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: .2em;
+}
+
+.sd-guide-list li > a { grid-template-columns: 28px minmax(0, 1fr); }
+
+@media (max-width: 960px) {
+  .site-nav,
+  .header-cta { display: none; }
+  .menu-toggle {
+    display: inline-flex;
+    min-height: 44px;
+    align-items: center;
+    gap: 8px;
+    margin-left: auto;
+    padding: 9px 2px;
+    border: 0;
+    border-radius: 2px;
+    background: transparent;
+    color: var(--text-primary, #34382e);
+    font: var(--type-nav);
+    cursor: pointer;
+  }
+  .menu-toggle:hover { color: var(--accent-strong, #444e34); }
+}
+
+@media (max-width: 620px) {
+  :root {
+    --type-reflection: italic 500 clamp(40px, 11vw, 48px)/1.06 var(--font-devotional);
+    --type-page: normal 500 clamp(38px, 10vw, 46px)/1.08 var(--font-editorial);
+    --type-article: normal 500 clamp(38px, 10vw, 46px)/1.08 var(--font-editorial);
+    --type-guide: normal 500 clamp(34px, 8.8vw, 42px)/1.12 var(--font-editorial);
+    --type-section: normal 500 clamp(29px, 8vw, 34px)/1.14 var(--font-editorial);
+    --type-chapter: normal 500 clamp(24px, 6.8vw, 28px)/1.2 var(--font-editorial);
+    --type-reading-body: normal 400 19px/1.7 var(--font-editorial);
+    --gutter-system: 20px;
+    --space-7: 56px;
+    --space-8: 72px;
+  }
+
+  .header-inner { min-height: 78px; padding-block: 13px; }
+  .brand-mark-icon { width: 38px; height: 38px; flex-basis: 38px; }
+  .brand-name { font-size: 28px; }
+  .menu-toggle { min-height: 44px; padding: 9px 2px; border: 0; border-radius: 2px; background: transparent; }
+  .mobile-menu { top: 100%; padding-inline: var(--gutter-system); }
+
+  .page-home .ed-hero-photo { height: 420px; }
+  .page-home .ed-hero-content { padding-top: 310px; }
+  .page-home .ed-hero h1,
+  .page-home .ed-hero-deck { width: 100%; max-width: none; }
+  .page-home .ed-section-heading { display: block; }
+  .page-home .ed-section-heading > .ed-link { margin-top: var(--space-2); }
+
+  .hub-intro,
+  .sd-page-heading { padding-block: var(--space-6); }
+  .photo-hero { min-height: 340px; }
+  .photo-hero-inner { padding-bottom: var(--space-5); }
+  .rd-article { padding-top: var(--space-5); }
+  .start-hero-inner { padding-block: var(--space-6); }
+
+  .page-reflections-index .reflection-index-lead { margin-bottom: var(--space-5); }
+  .page-reflections-index .step-card-grid--index { grid-template-columns: 1fr; }
+  .sd-article-library { row-gap: var(--space-6); }
+
+  .collection-rail-inner { min-height: 42px; }
+  .collection-rail span { display: none; }
+
+  .sd-app { min-height: 560px; }
+  .sd-app-inner { min-height: 560px; }
+  .site-footer .footer-inner { grid-template-columns: 1fr; gap: var(--space-4); }
+  .site-newsletter-inner { padding-block: var(--space-4); }
+  .site-newsletter-form { grid-template-columns: 1fr; }
+  .site-newsletter-button { width: 100%; }
+}
+
+@media (min-width: 621px) and (max-width: 960px) {
+  .page-reflections-index .step-card-grid--index {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 760px) {
+  .deeper-section { padding-top: var(--space-6); }
+  .deeper-grid { grid-template-columns: 1fr; }
+  .kr-grid--carousel {
+    grid-auto-columns: min(82vw, 320px);
+    margin-inline: calc(var(--gutter-system) * -1);
+    padding-inline: var(--gutter-system);
+    scrollbar-width: none;
+  }
+  .kr-grid--carousel::-webkit-scrollbar { display: none; }
+  .kr-grid--carousel .kr-card { min-height: 218px; }
+  .sd-app-email-form { max-width: 100%; }
+
+  .page-reading .photo-hero--soft-daylight {
+    min-height: clamp(410px, 112vw, 480px);
+    display: flex;
+    align-items: flex-end;
+    padding-top: 0;
+    background: var(--surface, #faf9f5);
+  }
+  .photo-hero--soft-daylight .photo-hero-img {
+    inset: 0;
+    height: 100%;
+    object-position: 68% center;
+  }
+  .photo-hero--soft-daylight .photo-hero-scrim {
+    inset: 0;
+    height: 100%;
+    background:
+      linear-gradient(180deg,
+        rgba(250,249,245,.02) 0%,
+        rgba(250,249,245,.05) 38%,
+        rgba(250,249,245,.58) 61%,
+        rgba(250,249,245,.93) 78%,
+        var(--surface, #faf9f5) 100%),
+      linear-gradient(90deg, rgba(250,249,245,.42), rgba(250,249,245,.08) 72%);
+  }
+  .photo-hero--soft-daylight .photo-hero-inner {
+    width: 100%;
+    padding: 0 var(--gutter-system) 24px;
+  }
+  .page-reading .photo-hero--soft-daylight .photo-hero-title {
+    max-width: 11ch;
+    margin-top: var(--space-1);
+    font-size: clamp(37px, 10.2vw, 44px);
+    line-height: 1.02;
+  }
+  .photo-hero--soft-daylight + .rd-article { padding-top: var(--space-3); }
+
+  .prevnext {
+    flex-wrap: nowrap;
+    align-items: stretch;
+  }
+  .prevnext-card {
+    min-width: 0;
+    flex-basis: 50%;
+    padding: 14px;
+  }
+
+  .kr-section { overflow: hidden; }
+  .kr-grid {
+    grid-template-columns: none;
+    grid-auto-flow: column;
+    grid-auto-columns: min(82vw, 320px);
+    gap: 12px;
+    overflow-x: auto;
+    overscroll-behavior-inline: contain;
+    scroll-snap-type: inline mandatory;
+    scroll-padding-inline: var(--gutter-system);
+    margin-inline: calc(var(--gutter-system) * -1);
+    padding: 2px var(--gutter-system) 14px;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+  .kr-grid::-webkit-scrollbar { display: none; }
+  .kr-card {
+    min-height: 218px;
+    scroll-snap-align: start;
+  }
+  .kr-more { margin-top: var(--space-2); }
+
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}
+
+/* Readable HTML captions for article insert artwork. */
+.tg-diagram-caption {
+  margin-top: 1rem;
+  font: var(--type-reading-body);
+  letter-spacing: 0;
+}
+
+/* Large labeled loop artwork with readable supporting HTML copy. */
+.tg-loop { margin-block: 2.5rem; }
+.tg-loop-takeaway { margin: 1.5rem 0 0; font: var(--type-reading-body); font-style: italic; }
+
+/* Consistent photographic compositions: responsive size never changes framing.
+   Titles sit on paper so their length cannot determine the image's geometry. */
+@media screen {
+  body .photo-hero.photo-hero,
+  body .ap-hero {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    min-height: 0;
+    height: auto;
+    padding: 0;
+    overflow: visible;
+    background: var(--surface, #faf9f5);
+  }
+  body .photo-hero.photo-hero .photo-hero-img,
+  body .ap-hero-image img {
+    position: relative;
+    inset: auto;
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: var(--hero-ratio, 16 / 9);
+    object-fit: cover;
+    object-position: var(--hero-position, center center);
+    filter: none;
+    opacity: 1;
+  }
+  body .photo-hero.photo-hero .photo-hero-scrim,
+  body .ap-hero-overlay { display: none; }
+  body .photo-hero.photo-hero .photo-hero-inner,
+  body .ap-hero-content {
+    order: -1;
+    position: relative;
+    width: min(calc(100% - 2 * var(--gutter-system)), var(--content-reading));
+    max-width: var(--content-reading);
+    margin-inline: auto;
+    padding: clamp(2rem, 4vw, 3rem) 0;
+  }
+  body .photo-hero .photo-hero-inner :is(.photo-hero-title, .eyebrow),
+  body .ap-hero-content .ap-hero-title { color: var(--text-primary, #34382e); text-shadow: none; }
+  body .photo-hero .photo-hero-inner .photo-hero-title { max-width: 22ch; }
+  body .photo-hero .photo-hero-inner .photo-hero-sub,
+  body .ap-hero-content .ap-hero-desc { color: var(--text-muted, #66685d); }
+  body .ap-hero-image { position: relative; inset: auto; }
+
+  /* This authored two-person dinner scene already has stable 2:1 framing. */
+  .page-personal-story { --hero-ratio: 2 / 1; --hero-position: center center; }
+  .photo-hero:has(img[src$="step-1-hero.jpg"]) { --hero-position: 28% center; }
+  .photo-hero:has(img[src$="prayers.jpg"]) { --hero-position: 65% center; }
+  .photo-hero:has(img[src$="daily-reflections-hero.webp"]) { --hero-position: 65% center; }
+
+  /* Keep the homepage's desktop overlay while fixing the photograph's frame. */
+  body.page-home .ed-hero { display: grid; min-height: 0; height: auto; overflow: visible; }
+  body.page-home .ed-hero-photo {
+    position: relative;
+    inset: auto;
+    grid-area: 1 / 1;
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    object-position: center center;
+  }
+  body.page-home .ed-hero-content { grid-area: 1 / 1; align-self: center; padding-block: 2rem; }
+  body.page-home .ed-hero::after { grid-area: 1 / 1; }
+  @media (max-width: 1000px) {
+    body.page-home .ed-hero-content { grid-area: 2 / 1; padding-block: 2rem; }
+    body.page-home .ed-hero::after { display: none; }
+    body.page-home .ed-hero h1,
+    body.page-home .ed-hero-deck { width: 100%; max-width: 22ch; }
+    body.page-home .ed-hero-deck { max-width: 44ch; }
+    body.page-home .ed-keep-reading { max-width: none; }
+  }
+}
+
+/* Shared Surrender pull quotes and Story Room inserts. */
+
+.rd-article :is(.tg-thesis,.article-pull-quote,.surrender-pullquote,.pull-quote),.rd-article .prose-reading blockquote,.story-preview blockquote{
+ margin:clamp(40px,6vw,60px) 0;padding:clamp(26px,4vw,38px) 0;border:0;border-block:1px solid var(--accent-strong,#52654b);border-radius:0;background:none;max-width:none;
+ font:italic 500 clamp(25px,2.6vw,34px)/1.42 "Cormorant Garamond",Georgia,serif;letter-spacing:-.25px;text-align:center;color:var(--accent-strong,#52654b);
+}
+.rd-article :is(.tg-thesis,.article-pull-quote,.surrender-pullquote,.pull-quote) p,.rd-article .prose-reading blockquote p,.story-preview blockquote p{max-width:36ch;margin:0 auto;font:inherit;letter-spacing:inherit;color:inherit;text-align:center;}
+.story-insert{margin:32px 0;width:100%;}.story-insert img{display:block;width:100%;height:auto;}.story-insert button{display:block;width:100%;padding:0;border:0;background:none;cursor:zoom-in;}.story-insert button:focus-visible{outline:2px solid #52654b;outline-offset:4px;}.story-insert-transcript{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip-path:inset(50%);white-space:pre-wrap;border:0;}
+.story-insert-dialog{border:0;padding:20px;width:min(1100px,94vw);max-height:94vh;overflow:auto;background:#fff;}.story-insert-dialog::backdrop{background:#0009;}.story-insert-dialog img{width:100%;height:auto;}.story-insert-dialog button{display:block;margin:0 0 16px auto;padding:8px 16px;cursor:pointer;}
+/* Email collection: a single invitation, explicit consent, and an inline result. */
+.site-newsletter-form{position:relative}
+.site-newsletter-form .newsletter-consent{grid-column:1 / -1;display:flex;flex:0 0 100%;align-items:flex-start;gap:10px;text-align:left;font:14px/1.5 var(--font-ui);color:var(--text-secondary);margin-top:12px}
+.site-newsletter-form .newsletter-consent input{flex:0 0 18px;width:18px;height:18px;min-width:18px;margin:2px 0;padding:0;accent-color:var(--accent)}
+.site-newsletter-form .newsletter-status{grid-column:1 / -1;flex:0 0 100%;margin:6px 0 0;text-align:left}
+.newsletter-trap{position:absolute;left:-10000px;width:1px;height:1px;overflow:hidden}
+/* Monthly collections: a reading-room introduction and compact weekly indexes. */
+.page-month-archive .wrap{max-width:1100px}
+.page-month-archive .ma-header{margin:0 0 40px}
+.page-month-archive .ma-title{font-size:clamp(34px,4vw,52px);line-height:1.1;margin:0 0 16px}
+.page-month-archive .ma-subtitle{font-size:21px;max-width:760px}
+.ma-orientation{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:54px;margin-top:32px;padding-top:28px;border-top:1px solid var(--rule)}
+.ma-introduction p{font:19px/1.7 var(--font-reading);margin:0 0 20px;max-width:620px}
+.ma-introduction .ma-practice{font-size:17px;line-height:1.65;color:var(--text-secondary)}
+.ma-practice strong{display:block;font:600 12px/1.5 var(--font-ui);text-transform:uppercase;letter-spacing:1px;color:var(--accent);margin-bottom:7px}
+.ma-month-note{padding-left:28px;border-left:1px solid var(--rule)}
+.ma-month-note .ma-step-statement{border:0;padding:0;margin:8px 0 24px;font-size:18px;line-height:1.55}
+.ma-question-label{font:600 12px/1.5 var(--font-ui);letter-spacing:1px;text-transform:uppercase;margin:0 0 8px;color:var(--accent)}
+.ma-month-note .ma-question{font:italic 21px/1.45 var(--font-reading);margin:0}
+.ma-reading-intro{border-top:1px solid var(--rule);padding-top:28px;margin-bottom:16px}
+.ma-reading-intro h2{font-size:27px;margin:0 0 8px}
+.ma-reading-intro p{font:15px/1.6 var(--font-ui);color:var(--text-secondary);margin:0}
+.page-month-archive .ma-chapters{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px 56px;align-items:start}
+.page-month-archive .ma-week{margin:20px 0 0}
+.page-month-archive .ma-week-heading{font:500 24px/1.3 var(--font-editorial);margin:0 0 12px}
+.ma-week-heading span{display:block;font:12px/1.5 var(--font-ui);letter-spacing:.3px;color:var(--text-muted);margin-top:5px}
+.page-month-archive .ma-week-list{display:block;padding:0;margin:0;list-style:none}
+.page-month-archive .ma-reading-link{display:grid;grid-template-columns:88px minmax(0,1fr);align-items:baseline;gap:12px;background:transparent;border-radius:0;border-bottom:1px solid var(--rule);padding:14px 0;min-height:52px}
+.page-month-archive .ma-reading-link:hover{background:transparent;color:var(--accent)}
+.page-month-archive .ma-reading-title{font:500 18px/1.4 var(--font-editorial);letter-spacing:0;margin:0}
+.page-month-archive .ma-reading-link:hover .ma-reading-title{text-decoration:underline;text-underline-offset:4px}
+.page-month-archive .ma-reading-day{font:11px/1.6 var(--font-ui);letter-spacing:.25px;margin:0;white-space:nowrap}
+.ma-month-nav{display:flex;justify-content:space-between;gap:16px;margin:40px 0;font:14px/1.5 var(--font-ui)}
+.ma-month-nav a{text-decoration:underline;text-underline-offset:4px;color:var(--accent)}
+@media(max-width:700px){.ma-orientation{grid-template-columns:1fr;gap:20px}.ma-month-note{border-left:0;border-top:1px solid var(--rule);padding:22px 0 0}.page-month-archive .ma-chapters{grid-template-columns:1fr;gap:12px}.page-month-archive .ma-reading-title{font-size:17px}.ma-introduction p{font-size:18px}.page-month-archive .ma-reading-link{grid-template-columns:80px minmax(0,1fr);gap:10px}}

@@ -1,0 +1,70 @@
+/* Approved Surrender inserts: live type, fine rules, and paired reading order. */
+.page-surrender { --boundary-teal: #315f60; --boundary-rule: #aec5c0; }
+.surrender-insert { margin: 3rem 0; padding: clamp(1.25rem, 3vw, 2rem); background: #f4f1ea; border-block: 1px solid var(--boundary-rule); color: var(--text-primary); }
+.surrender-insert h3 { font: var(--type-chapter); margin: 0 0 1.5rem; }
+.surrender-insert p { margin: 0; }
+.surrender-insert dl { margin: 0; }
+:is(.surrender-insert--principles, .surrender-insert--three-cs) dl > div { display: grid; grid-template-columns: 1fr 1.7fr; gap: 1.5rem; padding: 1.25rem 0; border-top: 1px solid var(--boundary-rule); }
+:is(.surrender-insert--principles, .surrender-insert--three-cs) dt { font: italic 500 clamp(28px, 2.6vw, 36px)/1.15 var(--font-devotional); color: var(--boundary-teal); }
+.surrender-insert dd { margin: 0; font: var(--type-reading-body); }
+:is(.surrender-insert--principles, .surrender-insert--three-cs) dl > div:last-child { padding-bottom: 0; }
+.surrender-insert .surrender-insert-deck { margin: -0.75rem 0 1.75rem; }
+.rope-columns { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 1.75rem; }
+.rope-column-title { font: var(--type-small); font-weight: 600; color: var(--boundary-teal); margin: 0 0 1rem; }
+.rope-columns ul { list-style: none; padding: 0; margin: 0; }
+.rope-columns li, .boundary-body .rope-columns li + li { margin: 0; padding: 1.1rem 0; border-top: 1px solid var(--boundary-rule); }
+.rope-columns h5 { font: italic 600 28px/1.2 var(--font-devotional); color: var(--boundary-teal); margin: 0 0 .35rem; }
+.surrender-insert .surrender-insert-footer { font-size: 18px; margin-top: 1rem; }
+.surrender-insert--questions { display: grid; grid-template-columns: 1fr 1.7fr; gap: 1.75rem; align-items: center; }
+.surrender-insert--questions h3 { color: var(--boundary-teal); margin: 0; }
+.surrender-questions { border-left: 1px solid var(--boundary-rule); padding-left: 1.75rem; }
+.surrender-questions p { padding: 1rem 0; }
+.surrender-questions p + p { border-top: 1px solid var(--boundary-rule); }
+.surrender-orbit { margin: 3rem 0; }
+.surrender-orbit img { display: block; width: 100%; height: auto; }
+.surrender-more summary { cursor: pointer; font: var(--type-ui); padding: .6rem 0; text-decoration: underline; text-underline-offset: .2em; }
+.surrender-more { border-top: 1px solid var(--border-soft); margin-top: 2rem; padding-top: 1rem; }
+.surrender-more ul { padding-left: 1.2rem; }
+.surrender-more li { padding: .4rem 0; }
+/* Daily Paths Inserts: dedicated safety palette and urgent-first layout. */
+.page-surrender .boundary-insert--safety {
+  background: #F3E3DF;
+  color: #513A36;
+  border: 0;
+  padding: clamp(1.5rem, 4vw, 2rem);
+}
+.surrender-guide .boundary-insert--safety h3 {
+  font: var(--type-chapter);
+  color: #513A36;
+  margin: 0 0 1.25rem;
+}
+.page-surrender .boundary-insert--safety p {
+  font-family: var(--font-ui);
+  font-size: 18px;
+  line-height: 1.65;
+  color: #513A36;
+}
+.page-surrender .boundary-insert--safety a { color: #513A36; text-decoration-color: currentColor; }
+.surrender-safety-contacts { margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid #D8BBB4; }
+.surrender-safety-contacts p { margin-bottom: 0; }
+[data-reading-insert].is-expandable { cursor: zoom-in; }
+[data-reading-insert]:has(.surrender-open:focus-visible) { outline: 2px solid var(--boundary-teal); outline-offset: 5px; }
+.surrender-dialog .boundary-dialog-content { max-width: none; }
+.surrender-dialog .surrender-insert { margin: 0; }
+.surrender-dialog .surrender-insert :is(p, dd) { font-size: 24px; }
+.surrender-dialog img { width: 100%; height: auto; display: block; }
+@media (max-width: 600px) {
+  :is(.surrender-insert--principles, .surrender-insert--three-cs) dl > div, .surrender-insert--questions { grid-template-columns: 1fr; gap: .65rem; }
+  .surrender-questions { padding-left: 0; border-left: 0; }
+  .surrender-insert--questions h3 { margin-bottom: .75rem; }
+  .surrender-dialog .surrender-insert :is(p, dd) { font-size: 22px; }
+}
+.surrender-dialog .boundary-close { font: 400 32px/1 var(--font-ui); text-decoration: none; width: 44px; height: 44px; padding: 0; }
+/* One fixed composition scales as a whole; mobile never changes its line breaks. */
+.rope-frame { position: relative; width: 100%; margin: 3rem 0; }
+.rope-frame .surrender-insert--rope { box-sizing: border-box; width: 720px; margin: 0; padding: 32px; transform-origin: top left; }
+.rope-frame h3 { font-size: 32px; line-height: 1.2; }
+.rope-frame .surrender-insert--rope p { font-size: 20.5px; line-height: 1.68; }
+.rope-frame .rope-column-title { font-size: 16px; line-height: 1.5; }
+.rope-frame .surrender-insert-footer { font-size: 18px; }
+.surrender-dialog .rope-frame { margin: 0; }
