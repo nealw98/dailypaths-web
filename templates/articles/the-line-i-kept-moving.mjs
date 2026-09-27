@@ -1,3 +1,4 @@
+import { themePath } from '../../helpers/theme-pages.mjs';
 import { wrapInLayout } from '../base.mjs';
 import { photoHero, terminalBand } from '../ui.mjs';
 import { bp, BASE_URL } from '../../helpers/config.mjs';
@@ -14,9 +15,9 @@ export const STORY = {
     { day: 353, reason: 'Learning to include yourself in the care you give.' },
   ],
   related: [
-    { title: 'Boundaries', kind: 'Guide', path: '/topics/boundaries/', description: 'Recognizing your limits and making room for your own needs.' },
+    { title: 'Boundaries', kind: 'Guide', path: themePath('boundaries'), description: 'Recognizing your limits and making room for your own needs.' },
     { title: 'Finding Yourself', kind: 'Guide', path: '/topics/self-worth/', description: 'Reconnecting with the person you are beyond someone else’s drinking.' },
-    { title: 'Letting Go: Caring Without Carrying', kind: 'Article', path: '/topics/letting-go/', description: 'Caring about someone without taking responsibility for every outcome.' },
+    { title: 'Letting Go: Caring Without Carrying', kind: 'Article', path: themePath('letting-go'), description: 'Caring about someone without taking responsibility for every outcome.' },
     { title: 'Voices from the Grave', kind: 'Article', path: '/articles/voices-from-the-grave/', description: 'Recognizing old family rules, finding your own voice, and living in the present.' },
     { title: 'The Power of Saying No', kind: 'Article', status: 'pending', plannedPath: '/articles/the-power-of-saying-no/', description: 'Saying no, facing guilt, and allowing your answer to stand.' },
   ],

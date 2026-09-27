@@ -8,7 +8,6 @@ export function createCmsWorker(fallback,knownPaths,composePage,launchPolicy={},
   if(request.method!=='GET'&&request.method!=='HEAD')return new Response('Method not allowed',{status:405,headers:{Allow:'GET, HEAD'}});
   if(!path.endsWith('/')&&!path.split('/').at(-1).includes('.'))return Response.redirect(u.origin+path+'/',308);
   if(launchPolicy.retired?.includes(path))return new Response(request.method==='HEAD'?null:'This article has been removed.',{status:410,headers:{'Cache-Control':'no-store','X-Robots-Tag':'noindex, nofollow'}});
-  if(path==='/guides/detachment-with-love/')return Response.redirect(u.origin+'/topics/detachment/'+u.search,301);
   if(path==='/about-alanon/')return Response.redirect(u.origin+'/guides/about-alanon/'+u.search,301);
   const isIndex=['/','/articles/','/guides/'].includes(path);
   const eligible=isIndex||/^\/(articles|guides|topics)\/[a-z0-9-]+\/$/.test(path);

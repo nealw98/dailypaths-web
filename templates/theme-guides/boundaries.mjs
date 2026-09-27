@@ -1,3 +1,4 @@
+import { themePath } from '../../helpers/theme-pages.mjs';
 import { readFileSync } from 'node:fs';
 import { wrapInLayout } from '../base.mjs';
 import { terminalBand } from '../ui.mjs';
@@ -69,13 +70,13 @@ export function renderBoundariesGuide(topic, readings) {
       <nav class="boundary-contents" aria-labelledby="contents-title"><h2 id="contents-title">In this guide</h2><ul>${contents.split('\n').map(line => `<li>${inline(line.slice(2))}</li>`).join('')}</ul></nav>
       <div class="prose-lora boundary-body">${guideBody()}</div>
       <section class="boundary-related prose-lora" aria-labelledby="related-title"><h2 id="related-title">Keep Reading</h2><ul>
-        <li><a href="${bp('/topics/detachment/')}">Detachment Guide</a><p>Explore caring for someone without taking responsibility for their choices or the outcome.</p></li>
+        <li><a href="${bp(themePath('detachment'))}">Detachment Guide</a><p>Explore caring for someone without taking responsibility for their choices or the outcome.</p></li>
         ${related}
       </ul></section>
     </article>
     <dialog class="boundary-dialog" id="boundary-reading-view" aria-labelledby="boundary-dialog-title"><div class="boundary-dialog-toolbar"><button type="button" class="boundary-close" autofocus>Close</button></div><div class="boundary-dialog-content prose-lora"></div></dialog>
     <script src="${bp('/js/boundaries.js')}" defer></script>
     ${terminalBand()}`;
-  return wrapInLayout({title: `${title} | Daily Paths`, description: subtitle, canonicalPath: '/topics/boundaries/', bodyContent, bodyClass: 'page-topic-detail page-boundaries', ogType: 'article', navSection: 'guides', hasAppPanel: true})
+  return wrapInLayout({title: `${title} | Daily Paths`, description: subtitle, canonicalPath: themePath('boundaries'), bodyContent, bodyClass: 'page-topic-detail page-boundaries', ogType: 'article', navSection: 'guides', hasAppPanel: true})
     .replace('</head>', `<link rel="stylesheet" href="${bp('/css/boundaries.css')}">\n</head>`);
 }

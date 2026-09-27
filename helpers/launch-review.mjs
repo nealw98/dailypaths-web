@@ -2,14 +2,17 @@
 // change the production catalog, or imply approval of a CMS publication.
 export const LAUNCH_REVIEW = {
   retired: ['/articles/detachment/'],
-  deferred: ['/topics/one-day-at-a-time/', '/topics/self-worth/', '/topics/gratitude-and-hope/', '/topics/honesty/'],
+  deferred: ['/topics/one-day-at-a-time/', '/topics/self-worth/', '/topics/gratitude-and-hope/', '/articles/the-stories-we-tell-ourselves/'],
   retiredPaths: [],
-  linkedStories: { '012aaa8a-e94a-4ff2-8730-87a663205057': '/guides/finding-help/', 'cms-detachment': '/articles/detachment/', '051e6f44-9d55-4a16-ba92-61a7a06f642e': '/topics/detachment/', 'de45655f-f3a2-46a4-a2a7-a52a7174ed98': '/articles/your-first-al-anon-meeting/' },
-  cmsManaged: ['/guides/finding-help/', '/topics/detachment/', '/articles/your-first-al-anon-meeting/'],
-  drafts: ['/topics/detachment/', '/articles/your-first-al-anon-meeting/'],
+  linkedStories: { '012aaa8a-e94a-4ff2-8730-87a663205057': '/guides/finding-help/', 'cms-detachment': '/articles/detachment/', 'de45655f-f3a2-46a4-a2a7-a52a7174ed98': '/articles/your-first-al-anon-meeting/',
+    // Reclassified themes: the Story Room still publishes at the old address.
+    'cms-powerlessness': '/guides/surrender/', 'cms-boundaries': '/guides/boundaries/',
+    'cms-letting-go': '/articles/letting-go/', 'cms-honesty': '/articles/the-stories-we-tell-ourselves/' },
+  cmsManaged: ['/guides/finding-help/', '/guides/detachment-with-love/', '/articles/your-first-al-anon-meeting/'],
+  drafts: ['/guides/detachment-with-love/', '/articles/your-first-al-anon-meeting/'],
   metadata: {
     '/guides/finding-help/': { description: 'Finding help when someone else’s drinking is affecting your life.' },
-    '/topics/detachment/': { title: 'Detachment', description: 'Practical ways to step out of monitoring, rescuing, and managing another adult.' },
+    '/guides/detachment-with-love/': { title: 'Detachment', description: 'Practical ways to step out of monitoring, rescuing, and managing another adult.' },
     '/articles/the-line-i-kept-moving/': { category: 'Personal Story', author: 'Lance W' },
     '/articles/voices-from-the-grave/': { category: 'Finding your voice', author: 'Lance W' },
   },

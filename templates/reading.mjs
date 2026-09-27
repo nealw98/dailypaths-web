@@ -9,6 +9,7 @@ import { photoHero, quoteBlock, pill, terminalBand } from './ui.mjs';
 import { reflectionHeroImage, reflectionImage } from '../helpers/reflection-images.mjs';
 import { TYPOGRAPHY_REVIEW_PATH } from '../helpers/typography-review.mjs';
 import { ARTICLES } from '../helpers/content-catalog.mjs';
+import { themePath } from '../helpers/theme-pages.mjs';
 
 const NUMBER_WORDS = ['One', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine', 'Ten', 'Eleven', 'Twelve'];
 
@@ -98,7 +99,7 @@ export function renderReadingPage(reading, prevReading, nextReading, allReadings
 
   const pills = [];
   if (topicMatch) {
-    pills.push(pill(topicMatch.name, { href: bp(`/topics/${topicMatch.slug}/`) }));
+    pills.push(pill(topicMatch.name, { href: bp(themePath(topicMatch.slug)) }));
   } else if (theme) {
     pills.push(pill(theme));
   }
@@ -185,7 +186,7 @@ export function renderReadingPage(reading, prevReading, nextReading, allReadings
 
       const topicHref = isDiscoveryTrial && monthStepData
         ? bp(`/months/${monthStepData.monthSlug}/`)
-        : bp(`/topics/${topicMatch.slug}/`);
+        : bp(themePath(topicMatch.slug));
       const collectionLine = topicData
         ? `${upperFirst(countToWords(collection.length))} readings on ${lowerFirst(stripPeriod(topicData.shortDescription))}.`
         : '';
@@ -213,7 +214,7 @@ export function renderReadingPage(reading, prevReading, nextReading, allReadings
     .filter(t => t && (!topicMatch || t.slug !== topicMatch.slug))
     .slice(0, 2)
     .map(t => `
-          <a href="${bp(`/topics/${t.slug}/`)}" class="rt-card">
+          <a href="${bp(themePath(t.slug))}" class="rt-card">
             <span class="rt-card-title">${t.name}</span>
             <span class="rt-card-line">${t.shortDescription}</span>
             <span class="rt-card-meta">Read</span>
@@ -234,7 +235,7 @@ export function renderReadingPage(reading, prevReading, nextReading, allReadings
     </section>`;
 
   const relatedArticle = isDiscoveryTrial
-    ? ARTICLES.find(article => article.path === `/topics/${topicMatch.slug}/`)
+    ? ARTICLES.find(article => article.path === themePath(topicMatch.slug))
     : null;
   const goDeeperHtml = isDiscoveryTrial ? `
     <section class="wrap wrap--article deeper-section" aria-labelledby="go-deeper-heading">

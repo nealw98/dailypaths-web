@@ -56,6 +56,7 @@ import { bp, IS_PREVIEW, BASE_URL } from './helpers/config.mjs';
 import { renderVoicesFromTheGrave, VOICES_ARTICLE } from './templates/articles/voices-from-the-grave.mjs';
 import { renderLineIKeptMoving, STORY } from './templates/articles/the-line-i-kept-moving.mjs';
 import { renderHomePage, renderArticlesPage, renderGuidesPage, renderReflectionsPage } from './templates/editorial.mjs';
+import { themePath, movedThemeRedirects } from './helpers/theme-pages.mjs';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = __dirname;
@@ -210,7 +211,7 @@ for (const reading of readings) {
 
 // Create topic page directories
 for (const topic of TOPICS) {
-  mkdirSync(join(outDir, 'topics', topic.slug), { recursive: true });
+  mkdirSync(join(outDir, themePath(topic.slug).replace(/^\/+|\/+$/g, '')), { recursive: true });
 }
 
 // --- Step 3: Generate pages ---
@@ -314,7 +315,7 @@ for (const topic of TOPICS) {
   const topicShares = sharesMap.get(topic.slug) || [];
 
   writePage(
-    join(outDir, 'topics', topic.slug, 'index.html'),
+    join(outDir, themePath(topic.slug).replace(/^\/+|\/+$/g, ''), 'index.html'),
     renderTopicPage(topic, featuredReadings, readings, topicShares)
   );
 }
@@ -489,7 +490,14 @@ for (const [oldSlug, currentSlug] of slugResolver.retiredSlugs) {
   writeFileSync(join(outDir, oldSlug, 'index.html'), redirectHtml(`/${currentSlug}/`), 'utf-8');
 }
 
-for (const [oldPath,newPath] of Object.entries({'guides/detachment-with-love':'/topics/detachment/','essentials':'/reflections/','prayers':'/reflections/'})) {
+// Reclassified themes forward from their old /topics/ address, alongside the
+// handful of one-off retirements.
+const retiredPaths = Object.fromEntries([
+  ...movedThemeRedirects(),
+  ['essentials', '/reflections/'],
+  ['prayers', '/reflections/'],
+]);
+for (const [oldPath,newPath] of Object.entries(retiredPaths)) {
  if (liveReadingPaths.has(`/${oldPath}/`)) {
   console.warn(`  Retired path /${oldPath}/ is the current reading path; leaving the reflection in place`);
   continue;

@@ -51,7 +51,7 @@ try{
  const meeting=await worker.fetch(new Request('https://review.test/articles/your-first-al-anon-meeting/'));
  const meetingHtml=await meeting.text();assert.match(meetingHtml,/Approved body stays here/);assert.doesNotMatch(meetingHtml,/Placeholder content/);
  assert.equal(meeting.headers.get('X-Story-Room-Revision'),'test-approved');
- const response=await worker.fetch(new Request('https://review.test/topics/letting-go/'));const html=await response.text();
+ const response=await worker.fetch(new Request('https://review.test/articles/letting-go/'));const html=await response.text();
  assert.match(html,/Approved body stays here/);assert.doesNotMatch(html,/Coming soon|href="\/topics\/one-day-at-a-time\//);assert.equal(response.headers.get('X-Story-Room-Revision'),'test-approved');
  await worker.fetch(new Request('https://review.test/guides/'));
  assert.ok(!selectors.some(s=>s.includes('/about-alanon/')));

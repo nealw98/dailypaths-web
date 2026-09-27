@@ -1,3 +1,4 @@
+import { themePath } from '../../helpers/theme-pages.mjs';
 import { readFileSync } from 'node:fs';
 import { wrapInLayout } from '../base.mjs';
 import { photoHero, terminalBand } from '../ui.mjs';
@@ -87,6 +88,6 @@ export function renderSurrenderGuide(topic, featuredReadings, readings) {
     </article>
     <dialog class="boundary-dialog surrender-dialog" id="surrender-reading-view" aria-labelledby="surrender-dialog-title"><div class="boundary-dialog-toolbar"><button type="button" class="boundary-close" aria-label="Close enlarged insert" autofocus><span aria-hidden="true">×</span></button></div><div class="boundary-dialog-content prose-lora"></div></dialog>
     <script src="${bp('/js/surrender.js')}" defer></script>${terminalBand()}`;
-  return wrapInLayout({title: `${title} | Daily Paths`, description: subtitle, canonicalPath: '/topics/powerlessness/', bodyContent, bodyClass: 'page-topic-detail page-surrender', ogType: 'article', navSection: 'guides', hasAppPanel: true})
+  return wrapInLayout({title: `${title} | Daily Paths`, description: subtitle, canonicalPath: themePath('powerlessness'), bodyContent, bodyClass: 'page-topic-detail page-surrender', ogType: 'article', navSection: 'guides', hasAppPanel: true})
     .replace('</head>', `<link rel="stylesheet" href="${bp('/css/boundaries.css')}"><link rel="stylesheet" href="${bp('/css/surrender.css')}">\n</head>`);
 }

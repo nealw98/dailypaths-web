@@ -1,3 +1,4 @@
+import { themePath } from '../helpers/theme-pages.mjs';
 import { wrapInLayout } from './base.mjs';
 import { terminalBand, hubIntro, APP_STORE_URL, PLAY_STORE_URL } from './ui.mjs';
 import { IS_PREVIEW, bp } from '../helpers/config.mjs';
@@ -28,15 +29,15 @@ export function renderHomePage(reading) {
   const excerpt = opening.length > 155 ? opening.slice(0, 155).replace(/\s+\S*$/, '') + '…' : opening;
   const guides = launchItems(GUIDES, IS_PREVIEW);
   const articles = launchItems(ARTICLES, IS_PREVIEW);
-  const featuredGuides = ['/topics/powerlessness/', '/topics/boundaries/', '/topics/detachment/'].map(path => guides.find(g => g.path === path)).filter(Boolean);
-  const featuredArticles = ['/topics/letting-go/', '/articles/the-line-i-kept-moving/'].map(path => articles.find(a => a.path === path)).filter(Boolean);
+  const featuredGuides = [themePath('powerlessness'), themePath('boundaries'), themePath('detachment')].map(path => guides.find(g => g.path === path)).filter(Boolean);
+  const featuredArticles = [themePath('letting-go'), '/articles/the-line-i-kept-moving/'].map(path => articles.find(a => a.path === path)).filter(Boolean);
   const topic = reading.secondary_theme ? THEME_TO_TOPIC[reading.secondary_theme] : null;
   const heroImage = reflectionHeroImage(reading.day_of_year, topic?.slug);
   return wrapInLayout({
     title: 'Daily Paths — A little space for yourself',
     description: 'Daily reflections, thoughtful articles, and practical guides for people affected by someone else’s drinking.',
     canonicalPath: '/', bodyClass: 'page-home', hasAppPanel: true,
-    bodyContent: `<section class="ed-hero" aria-labelledby="reflection-title"><img class="ed-hero-photo" data-today-hero src="${bp('/assets/' + heroImage)}" alt="" fetchpriority="high"><div class="ed-hero-content ed-wrap"><div class="ed-reflection-meta"><p class="ed-label">Today’s reflection <span aria-hidden="true"></span></p><p data-today-date>${esc(reading.display_date)}</p></div><h1 id="reflection-title" data-today-title>${esc(reading.title)}</h1>${excerpt ? `<p class="ed-hero-deck" data-today-excerpt>${esc(excerpt)}</p>` : ''}<a class="ed-button" data-today-cta href="${bp('/' + readingSlug(reading.day_of_year, reading.title) + '/')}">Read today’s reflection <span aria-hidden="true">→</span></a><p class="ed-keep-reading">Also worth reading: <a class="ed-link" href="${bp('/topics/letting-go/')}">Caring without carrying</a></p></div></section>
+    bodyContent: `<section class="ed-hero" aria-labelledby="reflection-title"><img class="ed-hero-photo" data-today-hero src="${bp('/assets/' + heroImage)}" alt="" fetchpriority="high"><div class="ed-hero-content ed-wrap"><div class="ed-reflection-meta"><p class="ed-label">Today’s reflection <span aria-hidden="true"></span></p><p data-today-date>${esc(reading.display_date)}</p></div><h1 id="reflection-title" data-today-title>${esc(reading.title)}</h1>${excerpt ? `<p class="ed-hero-deck" data-today-excerpt>${esc(excerpt)}</p>` : ''}<a class="ed-button" data-today-cta href="${bp('/' + readingSlug(reading.day_of_year, reading.title) + '/')}">Read today’s reflection <span aria-hidden="true">→</span></a><p class="ed-keep-reading">Also worth reading: <a class="ed-link" href="${bp(themePath('letting-go'))}">Caring without carrying</a></p></div></section>
 <section class="ed-start" aria-labelledby="start-heading"><div class="ed-start-inner ed-wrap"><div><p class="ed-label">Start here</p><h2 id="start-heading">Is someone else&rsquo;s drinking affecting your life?</h2><p>See whether Al-Anon may be for you, what a meeting is like, and where you can begin.</p></div><a class="ed-button" href="${bp(IS_PREVIEW ? '/guides/finding-help/' : '/start/')}">${IS_PREVIEW ? 'Find help' : 'Start here'} <span aria-hidden="true">→</span></a></div></section>
     <section class="ed-articles ed-wrap" aria-labelledby="articles-heading"><div class="ed-section-heading"><h2 id="articles-heading">For the life you’re living</h2><a class="ed-link" href="${bp('/articles/')}">All articles</a></div><div class="ed-stories">${featuredArticles.map(article => homepageStory(article, article.image.replace(/^articles\//, ''))).join('')}</div></section>
     <section class="ed-guides ed-wrap" aria-labelledby="guides-heading"><div class="ed-section-heading"><h2 id="guides-heading">Guides to come back to</h2><a class="ed-link ed-all-guides" href="${bp('/guides/')}">All guides</a></div><div class="ed-guide-row">${featuredGuides.map(g => `<article><h3><a href="${bp(g.path)}">${esc(g.title)}</a></h3><p>${esc(g.description)}</p></article>`).join('')}</div></section>
@@ -51,7 +52,7 @@ export function renderArticlesPage() {
 
 export function renderGuidesPage() {
   return wrapInLayout({ title:'Guides — Daily Paths', description:'Explore detachment, boundaries, support, and other essential ideas for people affected by someone else’s drinking.', canonicalPath:'/guides/', bodyClass:'page-editorial', navSection:'guides', hasAppPanel:true,
-    bodyContent:`${hubIntro({ eyebrow:'The guides', title:'A place to begin.<br>A place to return.', description:'Explore one idea at a time, at your own pace.', id:'guides-title' })}<section class="hub-reference-measure sd-guide-library" aria-label="Guides"><ol class="sd-guide-list">${guideRows()}</ol></section><aside class="hub-reference-measure sd-related-note"><p class="sd-kicker">A related read</p><h2><a href="${bp('/topics/letting-go/')}">Letting Go: Caring Without Carrying</a></h2><p>On responsibility, control, and putting down what isn’t yours to carry.</p></aside>${terminalBand()}`});
+    bodyContent:`${hubIntro({ eyebrow:'The guides', title:'A place to begin.<br>A place to return.', description:'Explore one idea at a time, at your own pace.', id:'guides-title' })}<section class="hub-reference-measure sd-guide-library" aria-label="Guides"><ol class="sd-guide-list">${guideRows()}</ol></section><aside class="hub-reference-measure sd-related-note"><p class="sd-kicker">A related read</p><h2><a href="${bp(themePath('letting-go'))}">Letting Go: Caring Without Carrying</a></h2><p>On responsibility, control, and putting down what isn’t yours to carry.</p></aside>${terminalBand()}`});
 }
 
 export function renderReflectionsPage(reading) {

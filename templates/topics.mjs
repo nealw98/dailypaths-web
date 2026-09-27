@@ -12,6 +12,7 @@ import { LETTING_GO_ARTICLE } from './theme-guides/letting-go.mjs';
 import { renderSurrenderGuide } from './theme-guides/surrender.mjs';
 import { renderBoundariesGuide } from './theme-guides/boundaries.mjs';
 import { GUIDES } from '../helpers/content-catalog.mjs';
+import { themePath } from '../helpers/theme-pages.mjs';
 
 // Re-export TOPICS so build.mjs can continue importing from this file
 export { TOPICS };
@@ -21,7 +22,7 @@ export { TOPICS };
  */
 export function renderTopicsIndexPage() {
   const cards = TOPICS.map(topic => `
-          <a href="${bp(`/topics/${topic.slug}/`)}" class="card-elevated theme-index-card">
+          <a href="${bp(themePath(topic.slug))}" class="card-elevated theme-index-card">
             <span class="theme-index-title">${topic.name}</span>
             <span class="theme-index-line">${topic.shortDescription}</span>
             <span class="theme-index-cta">Explore</span>
@@ -42,7 +43,7 @@ ${photoHero({
       <h2 class="section-title">A place to follow an idea further</h2>
       <p class="lede theme-index-intro">The daily readings meet us in a moment. These pages gather related readings into a fuller exploration of the patterns, choices, and spiritual principles that shape recovery.</p>
 
-      <a href="${bp(`/topics/${lettingGo.slug}/`)}" class="theme-feature">
+      <a href="${bp(themePath(lettingGo.slug))}" class="theme-feature">
         <div class="theme-feature-copy">
           <span class="eyebrow">Featured article</span>
           <span class="theme-feature-title">${lettingGo.name}</span>
@@ -76,7 +77,7 @@ ${photoHero({
  */
 function injectDetachmentLink(body, currentSlug) {
   if (currentSlug === 'detachment') return body;
-  return body.replace(/\bdetachment\b/i, `<a href="${bp('/topics/detachment/')}">$&</a>`);
+  return body.replace(/\bdetachment\b/i, `<a href="${bp(themePath('detachment'))}">$&</a>`);
 }
 
 const PRINCIPLE_WORDS = ['One', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine', 'Ten', 'Eleven', 'Twelve'];
@@ -96,7 +97,7 @@ function resolveGuideLinks(html, allReadings) {
       return `<a href="${bp(`/${readingSlug(reading.day_of_year, reading.title)}/`)}">${label}</a>`;
     })
     .replace(/<a data-theme="([a-z0-9-]+)">([^<]+)<\/a>/g,
-      (match, slug, label) => `<a href="${bp(`/topics/${slug}/`)}">${label}</a>`);
+      (match, slug, label) => `<a href="${bp(themePath(slug))}">${label}</a>`);
 }
 
 /* ───────────── Letting Go — bespoke topic article ─────────────
@@ -234,7 +235,7 @@ ${flow}
   return wrapInLayout({
     title: 'Letting Go in Al-Anon — Caring Without Carrying | Daily Paths',
     description: topic.metaDescription,
-    canonicalPath: `/topics/${topic.slug}/`,
+    canonicalPath: themePath(topic.slug),
     bodyContent,
     bodyClass: 'page-topic-detail page-letting-go',
     structuredData: [topicStructuredData(topic), topicBreadcrumbStructuredData(topic)],
@@ -356,7 +357,7 @@ ${cards}
             <span class="featured-card-title">${r.title}</span>
           </a>`).join('');
 
-  const topicPath = `/topics/${topic.slug}/`;
+  const topicPath = themePath(topic.slug);
   const isGuide = GUIDES.some(guide => guide.path === topicPath);
   const collection = isGuide
     ? { href: '/guides/', label: 'Guides', eyebrow: 'Guide' }
@@ -441,7 +442,7 @@ ${readingGroups}
   return wrapInLayout({
     title: topic.displayTitle ? `${topic.displayTitle} | Daily Paths` : `${topic.name} — Al-Anon Recovery Topic | Daily Paths`,
     description: (topic.metaDescription || topic.shortDescription) + ' Reflections and curated daily readings from Al-Anon Daily Paths.',
-    canonicalPath: `/topics/${topic.slug}/`,
+    canonicalPath: themePath(topic.slug),
     bodyContent,
     bodyClass: 'page-topic-detail',
     structuredData,

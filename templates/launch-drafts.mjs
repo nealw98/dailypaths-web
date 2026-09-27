@@ -1,3 +1,4 @@
+import { themePath } from '../helpers/theme-pages.mjs';
 import {readFileSync} from 'node:fs';
 import {wrapInLayout} from './base.mjs';
 import {photoHero, terminalBand} from './ui.mjs';
@@ -11,7 +12,7 @@ function inline(value) {
     .replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>').replace(/\*(.+?)\*/g,'<em>$1</em>');
 }
 const drafts = [
-  {file:'detachment',path:'/topics/detachment/',label:'Detachment',kind:'Guide',image:'articles/detachment-hero.jpg',alt:'A roe deer watching from the edge of a forest'},
+  {file:'detachment',path:themePath('detachment'),label:'Detachment',kind:'Guide',image:'articles/detachment-hero.jpg',alt:'A roe deer watching from the edge of a forest'},
   {file:'finding-help',path:'/guides/finding-help/',label:'Finding Help',kind:'Guide',image:'hero-image.jpg',alt:'A sunlit path through a meadow'},
   {file:'first-meeting',path:FIRST_MEETING.path,label:FIRST_MEETING.title,kind:'Article',image:FIRST_MEETING.image,alt:FIRST_MEETING.alt},
 ];

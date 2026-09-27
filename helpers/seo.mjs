@@ -1,6 +1,7 @@
 import { ARTICLES, GUIDES } from './content-catalog.mjs';
 import { readingSlug, stepRecordSlug } from './slug-utils.mjs';
 import { BASE_URL, IS_PREVIEW } from './config.mjs';
+import { themePath } from './theme-pages.mjs';
 
 /**
  * Generate sitemap.xml content for all pages
@@ -30,7 +31,7 @@ export function generateSitemap(readings, topics, books = [], steps = [], lastmo
 
   // Individual principle (topic) pages
   for (const topic of topics) {
-    urls.push({ path: `/topics/${topic.slug}/`, priority: '0.6', changefreq: 'monthly' });
+    urls.push({ path: themePath(topic.slug), priority: '0.6', changefreq: 'monthly' });
   }
 
   // Supporting Step articles. The retired /steps/ index is a redirect and is

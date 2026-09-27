@@ -2,6 +2,7 @@ import { wrapInLayout } from './base.mjs';
 import { bp } from '../helpers/config.mjs';
 import { readingSlug, stepRecordSlug, MONTHS, DAYS_IN_MONTH } from '../helpers/slug-utils.mjs';
 import { markdownToHtml } from '../helpers/markdown.mjs';
+import { themePath } from '../helpers/theme-pages.mjs';
 import {
   photoHero, quoteBlock, detailRail, terminalBand, readingCard, icon,
 } from './ui.mjs';
@@ -427,7 +428,7 @@ export function renderStepPage(step, readings = []) {
     // copied text. This Step prose carries over to the reflections hub.
     const linked = paragraph.replace(
       /Let Go and Let God/g,
-      `<a href="${bp('/topics/letting-go/')}">Let Go and Let God</a>`
+      `<a href="${bp(themePath('letting-go'))}">Let Go and Let God</a>`
     );
     const headingMatch = linked.match(/^\s*\*\*(.+?)\*\*\s*$/);
     if (headingMatch) {
