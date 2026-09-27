@@ -137,10 +137,12 @@ them yet:
 - **`/traditions/` and `/concepts/`.** Do not exist.
 - **Step pages listing their reflections.** The 12 Step pages still carry only
   their essays.
-- **Theme tags on articles and guides**, and the article/guide cards on
-  reflection pages.
-- **Moving the eight `/topics/…` articles and guides** to `/articles/…` and
-  `/guides/…` addresses.
+- **The theme → destination table.** Specified in section 6. Nothing reads it yet.
+- **Moving the remaining seven `/topics/…` pages.** Five have moved — see
+  `helpers/theme-pages.mjs`. Three await final titles from the rewrites
+  (`one-day-at-a-time`, `self-worth`, `gratitude-and-hope`); four are stubs
+  (`higher-power`, `the-disease`, `focus-on-yourself`, `fellowship`).
+  `/topics/` retires once all twelve have moved.
 
 ### One live defect this leaves
 
@@ -152,7 +154,83 @@ destinations when `/traditions/` and `/concepts/` are built. Until then, roughly
 
 ---
 
-## 6. Division of labour
+## 6. Themes: one table, read in both directions
+
+`readings.secondary_theme` is free text, and it is about to carry more weight than
+it can bear as free text. Two behaviours will read it:
+
+- the **pill** on a reflection, pointing at an article, guide, Step or hub;
+- the **related readings** on both that reflection and the destination page.
+
+Both come from a single list of theme → destination pairs, read either way. A
+reflection tagged `Trust` gets a pill to its destination; that destination lists
+every reflection whose theme lands on it. **There is no second list, and articles
+carry no tags.** `templates/topics.mjs:293` already works this way against the
+inherited `TOPIC_THEME_TAGS` groups — this replaces those groups with an editable
+table and retires the `THEME_TO_TOPIC` layer.
+
+### The table
+
+A theme list, not a field on each reading. `Trust` covers 19 reflections; storing
+the destination per reading would mean 19 edits to change your mind, instead of
+one.
+
+| Column | |
+|---|---|
+| theme | the text that appears in `readings.secondary_theme` |
+| destination | a site path, e.g. `/guides/surrender/` |
+
+135 themes are in use across 366 reflections. Generate the current picture with:
+
+```bash
+node scripts/theme-destinations.mjs          # worksheet, CSV + readable
+node scripts/theme-destinations.mjs --sql    # the November repairs, as UPDATEs
+```
+
+That writes `editorial/theme-destinations.csv` and `.md`, listing every theme, how
+many reflections carry it, where it points today, and the destinations available.
+74 themes have no destination yet.
+
+### Destinations are wider than the articles and guides
+
+Sixteen reflections carry principle vocabulary — *Proportionality, Democracy,
+Authority, Unity, Charity, Tolerance* — with no plausible article home. The
+destination list therefore includes the 12 Step pages and `/traditions/` and
+`/concepts/` as well. A theme may point at any of them. `/traditions/` and
+`/concepts/` do not exist yet (section 5), so a destination naming one is inert
+until they are built.
+
+### Three requirements for the Reading Room screens
+
+The theme field should become a **dropdown** fed by the table, and the table needs
+a maintenance screen. Three behaviours are not optional:
+
+1. **Creating a theme requires choosing its destination in the same step.** One
+   extra dropdown, and an orphaned theme becomes impossible. Skipping this is how
+   162 reflections ended up with no destination under the inherited groups.
+2. **Renaming a theme must update every reading using it.** If readings reference
+   themes by text, a rename without a cascade silently detaches every reflection
+   that used the old spelling. This is the one behaviour that is easy to get
+   wrong.
+3. **Merging two themes must be possible.** Needed immediately for
+   `Self-care` → `Self-Care` and `Self-acceptance` → `Self-Acceptance`. Same
+   mechanism as the cascade in (2).
+
+A dropdown also ends the two failure modes already in the data: 85 themes used
+exactly once, and November 1–30 entered with a step number in the theme column
+(`scripts/out/november-themes.sql` proposes the 30 replacements).
+
+### Who does what
+
+Creating the table, seeding it, and building the two screens sits with the
+editorial side — **the structural work does not write to Supabase** (`AGENTS.md`).
+The build will read the table, cache it under `data/` the way
+`data/story-room-cache.json` caches the Story Room feed, and wire both
+directions. Tell the structural side the table and column names once they exist.
+
+---
+
+## 7. Division of labour
 
 Structure — URLs, redirects, sitemap, build tooling, generated state — is being
 handled outside the editorial work. Content, titles, and copy are not.

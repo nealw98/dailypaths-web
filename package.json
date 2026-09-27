@@ -12,7 +12,8 @@
     "check:sitemap": "node scripts/check-sitemap.mjs",
     "capture:favorites": "node scripts/capture-favorites.mjs",
     "check:launch-urls": "node scripts/check-launch-urls.mjs",
-    "seed:slugs": "node scripts/seed-reading-slugs.mjs"
+    "seed:slugs": "node scripts/seed-reading-slugs.mjs",
+    "themes:worksheet": "node scripts/theme-destinations.mjs"
   },
   "dependencies": {
     "dotenv": "^16.4.7",
