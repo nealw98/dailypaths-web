@@ -91,6 +91,10 @@ export function renderReadingPage(reading, prevReading, nextReading, allReadings
   // intentional duplication at two different moments.
   const theme = reading.secondary_theme;
   const topicMatch = theme ? THEME_TO_TOPIC[theme] : null;
+  // Resolved once, for the pill, the Go deeper card and the grouping alike, so a
+  // theme assigned in the table cannot reach one of them and not the others.
+  const destinationPath = themeDestination(theme);
+  const destination = destinationMeta(destinationPath);
   const stepData = stepNum ? STEPS.find(s => s.number === stepNum) : null;
   const stepPath = stepData ? `/months/${stepData.monthSlug}/` : null;
 
@@ -104,11 +108,12 @@ export function renderReadingPage(reading, prevReading, nextReading, allReadings
   const programPath = stepPath
     || (collectionPage ? `${collectionPage.path}#${collectionMatch[1].toLowerCase()}-${collectionMatch[2]}` : null);
 
+  // The pill carries the reading's own theme word rather than the name of wherever
+  // it leads — the destination announces itself in the Go deeper card below, and
+  // the related cards label themselves the same way.
   const pills = [];
-  if (topicMatch) {
-    pills.push(pill(topicMatch.name, { href: bp(themePath(topicMatch.slug)) }));
-  } else if (theme) {
-    pills.push(pill(theme));
+  if (theme) {
+    pills.push(destinationPath ? pill(theme, { href: bp(destinationPath) }) : pill(theme));
   }
   if (reading.step_theme) {
     const principleWords = reading.step_theme.replace(/\b(\d+)\b/, m => NUMBER_WORDS[Number(m) - 1] || m);
@@ -144,8 +149,6 @@ export function renderReadingPage(reading, prevReading, nextReading, allReadings
   // Where a theme has no destination yet, the group falls back to the Step,
   // Tradition or Concept this reflection belongs to, so the block appears on every
   // page rather than only on the ones whose theme has been assigned.
-  const destinationPath = themeDestination(reading.secondary_theme);
-  const destination = destinationMeta(destinationPath);
   const group = readingGroup(reading);
   let keepReadingHtml = '';
   if (group && allReadings.length > 0) {

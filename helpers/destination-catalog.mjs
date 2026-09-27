@@ -14,6 +14,7 @@
 import { GUIDES, ARTICLES } from './content-catalog.mjs';
 import { TOPICS } from './theme-data.mjs';
 import { COLLECTION_PAGES } from './collection-pages.mjs';
+import { destinationPage } from './theme-destinations.mjs';
 import { STEPS, STEP_HOOKS } from '../templates/steps.mjs';
 
 export { COLLECTION_PAGES };
@@ -52,9 +53,14 @@ export function destinationCatalog() {
   return catalog;
 }
 
-/** What to show for a destination, or null for an address nothing is known about. */
+/**
+ * What to show for a destination, or null for an address nothing is known about.
+ * An anchor is stripped first: /guides/surrender/#three-cs is still the Surrender
+ * guide, and the card describes the guide while the link keeps the section.
+ */
 export function destinationMeta(path) {
-  return path ? destinationCatalog().get(path) || null : null;
+  if (!path) return null;
+  return destinationCatalog().get(destinationPage(path)) || null;
 }
 
 /** Only for tests: forget the memoized catalog. */

@@ -54,13 +54,27 @@ export function loadThemeDestinations(path = CACHE_PATH) {
 export function resetThemeDestinations() { loaded = undefined; }
 
 /**
+ * The page a destination names, without any anchor.
+ *
+ * A destination may point into a section — /traditions/#tradition-1 lands better
+ * than the top of a 36-reflection page. The anchor belongs to the link; the page
+ * is what decides grouping and what the card says, so two themes pointing at
+ * different sections of one guide still count as leading to the same place.
+ */
+export function destinationPage(to) {
+  return to ? to.split('#')[0] : to;
+}
+
+/**
  * A stored destination is re-resolved through themePath() when it names a theme
  * page, so a row recorded as /topics/self-worth/ keeps working once that page
- * moves to an address that follows its title.
+ * moves to an address that follows its title. Any anchor is carried across.
  */
 function resolve(to) {
-  const topicMatch = /^\/topics\/([a-z0-9-]+)\/$/.exec(to);
-  return topicMatch ? themePath(topicMatch[1]) : to;
+  const [path, anchor] = to.split('#');
+  const topicMatch = /^\/topics\/([a-z0-9-]+)\/$/.exec(path);
+  const resolved = topicMatch ? themePath(topicMatch[1]) : path;
+  return anchor ? `${resolved}#${anchor}` : resolved;
 }
 
 /** The path a theme sends the reader to, or null when it has no destination. */
@@ -89,7 +103,9 @@ export function themeDestination(theme) {
  */
 export function readingGroup(reading) {
   const destination = themeDestination(reading.secondary_theme);
-  if (destination) return { kind: 'destination', key: `destination:${destination}`, destination };
+  // Grouped by the page, not the anchor: two themes pointing at different sections
+  // of one guide lead to the same place, so their reflections are related.
+  if (destination) return { kind: 'destination', key: `destination:${destinationPage(destination)}`, destination };
   const program = (reading.step_theme || '').trim();
   if (!program) return null;
   // A Step holds 22 to 26 reflections, but an individual Tradition or Concept holds
