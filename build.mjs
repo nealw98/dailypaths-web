@@ -492,7 +492,7 @@ for (const [oldSlug, currentSlug] of slugResolver.retiredSlugs) {
   writeFileSync(join(outDir, oldSlug, 'index.html'), redirectHtml(`/${currentSlug}/`), 'utf-8');
 }
 
-for (const [oldPath,newPath] of Object.entries({'guides/detachment-with-love':'/topics/detachment/'})) {
+for (const [oldPath,newPath] of Object.entries({'guides/detachment-with-love':'/topics/detachment/','prayers':'/essentials/'})) {
  if (liveReadingPaths.has(`/${oldPath}/`)) {
   console.warn(`  Retired path /${oldPath}/ is the current reading path; leaving the reflection in place`);
   continue;
