@@ -50,8 +50,8 @@ export function loadThemeDestinations(path = CACHE_PATH) {
   return loaded;
 }
 
-/** Only for tests: forget the memoized table. */
-export function resetThemeDestinations() { loaded = undefined; }
+/** Only for tests: forget the memoized table and the per-page answers from it. */
+export function resetThemeDestinations() { loaded = undefined; sharedPages = new Map(); }
 
 /**
  * The page a destination names, without any anchor.
@@ -88,6 +88,26 @@ export function themeDestination(theme) {
 }
 
 /**
+ * Whether more than one theme word leads to this destination's page. Memoized per
+ * page: the answer is asked once for every pairing of 366 reflections, and the
+ * reading set does not change within a build. resetThemeDestinations() clears it.
+ */
+let sharedPages = new Map();
+function destinationIsShared(destination, allReadings) {
+  const page = destinationPage(destination);
+  if (sharedPages.has(page)) return sharedPages.get(page);
+  const words = new Set();
+  for (const reading of allReadings) {
+    const other = themeDestination(reading.secondary_theme);
+    if (other && destinationPage(other) === page) words.add((reading.secondary_theme || '').trim());
+    if (words.size > 1) break;
+  }
+  const shared = words.size > 1;
+  sharedPages.set(page, shared);
+  return shared;
+}
+
+/**
  * What this reflection is shown alongside, and why.
  *
  * A theme with a destination groups by that destination — reflections from across
@@ -101,11 +121,20 @@ export function themeDestination(theme) {
  * block itself. 51 of the unassigned themes are used by a single reflection, so
  * requiring all of them would have been one decision per page for no gain.
  */
-export function readingGroup(reading) {
+export function readingGroup(reading, allReadings = null) {
   const destination = themeDestination(reading.secondary_theme);
   // Grouped by the page, not the anchor: two themes pointing at different sections
   // of one guide lead to the same place, so their reflections are related.
-  if (destination) return { kind: 'destination', key: `destination:${destinationPage(destination)}`, destination };
+  //
+  // A destination only groups when more than one theme leads there. Where a single
+  // theme owns a destination — Humility is the only theme pointing at Step Seven —
+  // its group is thirteen reflections all tagged Humility, and every trio drawn
+  // from it repeats the word. The reflection's own Step gives a varied group
+  // instead, while Go deeper still points at the destination. Without a reading
+  // list to count against, the destination is taken at its word.
+  if (destination && (!allReadings || destinationIsShared(destination, allReadings))) {
+    return { kind: 'destination', key: `destination:${destinationPage(destination)}`, destination };
+  }
   const program = (reading.step_theme || '').trim();
   if (!program) return null;
   // A Step holds 22 to 26 reflections, but an individual Tradition or Concept holds
@@ -125,12 +154,12 @@ export function readingGroup(reading) {
  * and next — are left out.
  */
 export function siblingReflections(reading, allReadings, { exclude = [], ratingsMap } = {}) {
-  const group = readingGroup(reading);
+  const group = readingGroup(reading, allReadings);
   if (!group) return [];
   const skip = new Set([reading.day_of_year, ...exclude]);
   const score = other => (ratingsMap?.get(other.day_of_year) || {}).positive || 0;
   return allReadings
-    .filter(other => !skip.has(other.day_of_year) && readingGroup(other)?.key === group.key)
+    .filter(other => !skip.has(other.day_of_year) && readingGroup(other, allReadings)?.key === group.key)
     .sort((a, b) => {
       const byScore = score(b) - score(a);
       if (byScore) return byScore;

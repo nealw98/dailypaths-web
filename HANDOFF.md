@@ -62,7 +62,13 @@ Treat them as state, not as configuration.
 |---|---|---|
 | `data/reading-slugs.json` | the build, for unseen reflections only | rarely |
 | `data/favorites-snapshot.json` | `scripts/capture-favorites.mjs` | quarterly |
+| `data/theme-destinations.json` | `scripts/theme-destinations.mjs --seed` | when the mapping changes |
 | `seo-lastmod.json` (repo root) | the build | every build |
+
+**`data/theme-destinations.json` must stay complete.** The build treats a present
+table as authoritative, so a theme missing from it has no destination — the
+inherited groups are the fallback for the file's *absence*, not for gaps within
+it. A partial file would strip every theme it left out. See section 6.
 
 ### Reader favorites are captured quarterly, not read live
 

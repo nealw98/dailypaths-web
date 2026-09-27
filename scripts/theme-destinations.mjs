@@ -59,6 +59,26 @@ const NOVEMBER_PROPOSALS = {
 
 const MISFILED = /^(step|tradition|concept)\s*\d+$/i;
 
+/**
+ * Two spellings of one theme each, to be merged in the data. Both spellings
+ * already pointed at the same place, so the merge is tidying, not a change of
+ * meaning.
+ */
+const MERGES = {
+  'Self-care': 'Self-Care',
+  'Self-acceptance': 'Self-Acceptance',
+};
+
+/**
+ * Destinations settled by name: each theme word is the spiritual principle of the
+ * Step it points at, so no judgment was involved. Approved 27 September.
+ */
+const APPROVED_DESTINATIONS = {
+  Humility: '/steps/al-anon-step-7-humility/',
+  Service: '/steps/al-anon-step-12-service/',
+  Courage: '/steps/al-anon-step-4-courage/',
+};
+
 /** Where a theme may point. Pages that item 9 has still to build are marked. */
 function destinations() {
   const pieces = [...GUIDES, ...ARTICLES].map(p => ({
@@ -165,6 +185,7 @@ function main() {
 
     if (process.argv.includes('--sql')) {
       mkdirSync(join(root, 'scripts/out'), { recursive: true });
+      const quote = text => text.replaceAll("'", "''");
       const sql = [
         '-- November 1–30 was entered with a step number in secondary_theme.',
         '-- Proposed replacements, drawn from words already in use elsewhere.',
@@ -173,10 +194,33 @@ function main() {
       ];
       for (const [day, theme] of Object.entries(NOVEMBER_PROPOSALS)) {
         const row = rows.find(r => r.day === Number(day));
-        sql.push(`UPDATE readings SET secondary_theme = '${theme.replaceAll("'", "''")}' WHERE day_of_year = ${day}; -- ${row?.title ?? ''}`);
+        sql.push(`UPDATE readings SET secondary_theme = '${quote(theme)}' WHERE day_of_year = ${day}; -- ${row?.title ?? ''}`);
+      }
+      sql.push('', '-- The two spelling collisions. Both already led to the same place.', '');
+      for (const [from, to] of Object.entries(MERGES)) {
+        const affected = rows.filter(r => (r.theme || '').trim() === from).length;
+        sql.push(`UPDATE readings SET secondary_theme = '${quote(to)}' WHERE secondary_theme = '${quote(from)}'; -- ${affected} reflection${affected === 1 ? '' : 's'}`);
       }
       writeFileSync(join(root, 'scripts/out/november-themes.sql'), sql.join('\n') + '\n');
-      console.log('  scripts/out/november-themes.sql — 30 UPDATEs to review, then run in Supabase');
+      console.log(`  scripts/out/november-themes.sql — ${Object.keys(NOVEMBER_PROPOSALS).length + Object.keys(MERGES).length} statements to review, then run in Supabase`);
+    }
+
+    // The table the build reads, and the seed for the Reading Room's own table.
+    // It has to be complete: the loader treats a present table as authoritative,
+    // so a partial file would strip every theme missing from it.
+    if (process.argv.includes('--seed')) {
+      const destinations = {};
+      for (const theme of list) {
+        const to = APPROVED_DESTINATIONS[theme.name] || theme.today;
+        if (to) destinations[theme.name] = to;
+      }
+      for (const [from, to] of Object.entries(MERGES)) {
+        if (destinations[to] && !destinations[from]) destinations[from] = destinations[to];
+      }
+      const sorted = Object.fromEntries(Object.keys(destinations).sort().map(k => [k, destinations[k]]));
+      writeFileSync(join(root, 'data/theme-destinations.json'),
+        JSON.stringify({ v: 1, captured: new Date().toISOString().slice(0, 10), source: 'inherited theme groups, plus destinations settled by name', destinations: sorted }, null, 2) + '\n');
+      console.log(`  data/theme-destinations.json — ${Object.keys(sorted).length} themes`);
     }
 
     console.log(`Read ${rows.length} reflections from ${source}`);

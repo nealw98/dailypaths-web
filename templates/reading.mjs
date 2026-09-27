@@ -149,7 +149,7 @@ export function renderReadingPage(reading, prevReading, nextReading, allReadings
   // Where a theme has no destination yet, the group falls back to the Step,
   // Tradition or Concept this reflection belongs to, so the block appears on every
   // page rather than only on the ones whose theme has been assigned.
-  const group = readingGroup(reading);
+  const group = readingGroup(reading, allReadings);
   let keepReadingHtml = '';
   if (group && allReadings.length > 0) {
     const siblings = pickSiblings(reading, allReadings, {

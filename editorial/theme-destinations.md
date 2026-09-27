@@ -16,11 +16,11 @@ spreadsheet. Proposals are proposals: change anything you disagree with.
 - `/guides/surrender/` — Surrender
 - `/guides/detachment-with-love/` — Detachment
 - `/guides/boundaries/` — Boundaries
-- `/topics/one-day-at-a-time/` — One Day at a Time
-- `/topics/self-worth/` — Finding Yourself
 - `/guides/about-alanon/` — About Al-Anon
 - `/guides/finding-help/` — Finding Support
 - `/articles/letting-go/` — Letting Go: Caring Without Carrying
+- `/topics/one-day-at-a-time/` — One Day at a Time
+- `/topics/self-worth/` — Finding Yourself
 - `/topics/gratitude-and-hope/` — Gratitude & Hope
 - `/articles/the-stories-we-tell-ourselves/` — Honesty
 - `/articles/the-line-i-kept-moving/` — The Line I Kept Moving
