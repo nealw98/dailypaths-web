@@ -64,9 +64,29 @@ export function dayToIsoDate(dayOfYear) {
 }
 
 /**
+ * Frozen reflection addresses, set once per build.
+ *
+ * A reflection's slug used to follow its title, so editing a title in the
+ * Reading Room moved the page and abandoned its old address. The build now
+ * hands this map in, and every caller — pages, sitemap, internal links, the
+ * email feed, redirects — resolves the same stored address rather than
+ * recomputing one from the current title.
+ */
+let frozenReadingSlugs = null;
+
+export function useFrozenReadingSlugs(slugs) {
+  frozenReadingSlugs = slugs;
+}
+
+/**
  * Build a descriptive reading slug: "march-2-the-nature-of-willingness"
+ *
+ * Returns the frozen address when one is on file, so the title is free to change.
  */
 export function readingSlug(dayOfYear, title) {
+  const frozen = frozenReadingSlugs?.get(dayOfYear);
+  if (frozen) return frozen;
+
   const dateSlug = dayToSlug(dayOfYear);
   const titleSlug = (title || '')
     .toLowerCase()

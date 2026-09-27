@@ -24,7 +24,8 @@ import { fetchAllSteps } from './helpers/fetch-steps.mjs';
 import { fetchAllThemes } from './helpers/fetch-themes.mjs';
 import { fetchReadingRatings } from './helpers/fetch-ratings.mjs';
 import { fetchApprovedShares } from './helpers/fetch-shares.mjs';
-import { dayToSlug, readingSlug, stepRecordSlug } from './helpers/slug-utils.mjs';
+import { dayToSlug, readingSlug, stepRecordSlug, useFrozenReadingSlugs } from './helpers/slug-utils.mjs';
+import { loadReadingSlugs, createSlugResolver } from './helpers/reading-slugs.mjs';
 import { generateSitemap, generateRobotsTxt } from './helpers/seo.mjs';
 import { createLastmodIndex } from './helpers/lastmod.mjs';
 import { loadFavoritesSnapshot, saveFavoritesSnapshot } from './helpers/favorites-snapshot.mjs';
@@ -77,6 +78,14 @@ syncCatalog(cmsItems,ARTICLES,GUIDES);
 // --- Step 1: Fetch readings, steps, themes ---
 console.log('Fetching readings from Supabase...');
 const readings = await fetchAllReadings();
+
+// Addresses are frozen, so editing a title in the Reading Room no longer moves
+// a published page. Every slug caller resolves through this map.
+const slugMapPath = join(ROOT, 'data', 'reading-slugs.json');
+const slugResolver = createSlugResolver(loadReadingSlugs(slugMapPath), readings);
+useFrozenReadingSlugs(slugResolver.slugs);
+const newlyFrozen = slugResolver.save(slugMapPath);
+console.log(`  Addresses: ${slugResolver.slugs.size} frozen${newlyFrozen ? `, ${newlyFrozen} newly recorded` : ''}, ${slugResolver.retiredSlugs.length} retired to redirect`);
 
 // Fetch steps from Supabase (optional — falls back to hardcoded STEPS)
 console.log('Fetching steps from Supabase...');
@@ -475,7 +484,15 @@ function resolveRedirect(target) {
   return reading ? `/${readingSlug(reading.day_of_year, reading.title)}/` : target;
 }
 
-for (const [oldPath,newPath] of Object.entries({'september-25-vision-and-improvement':'/september-25/','october-31-the-intimacy-of-transparency':'/october-31/','guides/detachment-with-love':'/topics/detachment/'})) {
+// Addresses a reflection has published under before. Recovered from the
+// deployed sitemap's history and kept in data/reading-slugs.json, so a retitle
+// can never abandon a URL again.
+for (const [oldSlug, currentSlug] of slugResolver.retiredSlugs) {
+  mkdirSync(join(outDir, oldSlug), { recursive: true });
+  writeFileSync(join(outDir, oldSlug, 'index.html'), redirectHtml(`/${currentSlug}/`), 'utf-8');
+}
+
+for (const [oldPath,newPath] of Object.entries({'guides/detachment-with-love':'/topics/detachment/'})) {
  if (liveReadingPaths.has(`/${oldPath}/`)) {
   console.warn(`  Retired path /${oldPath}/ is the current reading path; leaving the reflection in place`);
   continue;
