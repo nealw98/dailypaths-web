@@ -1,8 +1,10 @@
 import {applyEditorialPolicy} from './editorial-policy.mjs';
 import {LAUNCH_REVIEW} from './launch-review.mjs';
 import {syncHeroSocialImage} from './social-image.mjs';
+import {loadStoryRoomCache,saveStoryRoomCache} from './story-room-cache.mjs';
 import {writeFileSync,readFileSync,mkdirSync,existsSync} from 'node:fs';
 import {join,dirname} from 'node:path';
+import {fileURLToPath} from 'node:url';
 export const CMS_ORIGIN='https://daily-paths-story-room.nealw98.chatgpt.site';
 export const PREVIEW_ORIGIN='https://daily-paths-soft-daylight.nealw98.chatgpt.site';
 // About Al-Anon is published at /guides/about-alanon/; its original root-level
@@ -21,16 +23,52 @@ export function composePage(base,approved){
  if(data)html=html.replace(/<script\b[^>]*type=["']application\/ld\+json["'][^>]*>[\s\S]*?<\/script>/gi,'').replace('</head>',()=>data+'\n</head>');
  return syncHeroSocialImage(html,'https://daily-paths-soft-daylight.nealw98.chatgpt.site');
 }
-export async function getPublished(){
- const r=await fetch(CMS_ORIGIN+'/api/room/published',{signal:AbortSignal.timeout(20000)});if(!r.ok)throw new Error('Story Room publication feed unavailable; stopping to preserve approved content.');
- const data=await r.json();if(!Array.isArray(data.items))throw new Error('Invalid Story Room publication feed.');return data.items.filter(x=>validPath(x.path)&&!LAUNCH_REVIEW.retiredPaths.includes(x.path)).map(item=>({...item,cmsPath:item.path,path:LAUNCH_REVIEW.linkedStories[item.id]||item.path})).filter(item=>!LAUNCH_REVIEW.retired.includes(item.path));
+export const CACHE_PATH=join(dirname(fileURLToPath(import.meta.url)),'..','data','story-room-cache.json');
+
+/** The feed and every approved page, straight from the Story Room. Throws if any part is unavailable. */
+async function fetchLive(){
+ const r=await fetch(CMS_ORIGIN+'/api/room/published',{signal:AbortSignal.timeout(20000)});
+ if(!r.ok)throw new Error(`Story Room feed returned ${r.status}`);
+ const data=await r.json();
+ if(!Array.isArray(data.items))throw new Error('Story Room feed was not a list of items.');
+ const pages={};
+ for(const item of data.items){
+  const p=await fetch(CMS_ORIGIN+'/api/room/published?path='+encodeURIComponent(item.path),{signal:AbortSignal.timeout(20000)});
+  if(!p.ok)throw new Error(`Story Room returned ${p.status} for ${item.path}`);
+  pages[item.path]=(await p.json()).html;
+ }
+ return {feed:data.items,pages};
+}
+
+/** Filtering and remapping run on each build, so a launch-review change takes effect even from cache. */
+const selectPublished=({feed,pages})=>feed
+ .filter(x=>validPath(x.path)&&!LAUNCH_REVIEW.retiredPaths.includes(x.path))
+ .map(item=>({...item,cmsPath:item.path,path:LAUNCH_REVIEW.linkedStories[item.id]||item.path,html:pages[item.path]}))
+ .filter(item=>!LAUNCH_REVIEW.retired.includes(item.path));
+
+export async function getPublished({cachePath=CACHE_PATH}={}){
+ let snapshot,live=true;
+ try{
+  snapshot=await fetchLive();
+  saveStoryRoomCache(cachePath,snapshot);
+ }catch(err){
+  live=false;
+  snapshot=loadStoryRoomCache(cachePath);
+  if(!snapshot)throw new Error(`Story Room unavailable (${err.message}) and no cache at ${cachePath}. Refusing to publish with approved content missing.`);
+  console.warn(`  WARNING: Story Room unavailable (${err.message}).`);
+  console.warn(`  Building from content captured ${snapshot.capturedAt}. Anything published since is not in this build.`);
+ }
+ const items=selectPublished(snapshot);
+ if(live)console.log(`  Story Room: ${items.length} published items`);
+ for(const item of items)if(typeof item.html!=='string')throw new Error(`No approved HTML for ${item.cmsPath}; refusing to publish it empty.`);
+ return items;
 }
 export function syncCatalog(items,articles,guides){
  for(const item of items){const wanted=item.content_type==='guide'?guides:articles,other=item.content_type==='guide'?articles:guides;const old=other.findIndex(x=>x.path===item.path);if(old>=0)other.splice(old,1);const data={title:item.card_title||item.title,path:item.path,description:LAUNCH_REVIEW.metadata[item.path]?.description||item.summary,image:item.hero_url,alt:item.hero_alt,category:'Article',author:LAUNCH_REVIEW.metadata[item.path]?.author||item.author,cms:true};const existing=wanted.find(x=>x.path===item.path);if(existing){data.category=existing.category;Object.assign(existing,data);}else wanted.push(data);}
 }
 export async function applyPublished(outDir,{production=false,origin=PREVIEW_ORIGIN,items}={}){
  items??=await getPublished();
- for(const item of items){const r=await fetch(CMS_ORIGIN+'/api/room/published?path='+encodeURIComponent(item.cmsPath||item.path),{signal:AbortSignal.timeout(20000)});if(!r.ok)throw new Error('Could not retrieve approved page '+item.path);const page=await r.json();const dest=join(outDir,item.path,'index.html');let html=composePage(existsSync(dest)?readFileSync(dest,'utf8'):null,page.html);
+ for(const item of items){const dest=join(outDir,item.path,'index.html');let html=composePage(existsSync(dest)?readFileSync(dest,'utf8'):null,item.html);
   if(item.cmsPath&&item.cmsPath!==item.path)html=html.replaceAll(item.cmsPath,item.path);
   html=applyEditorialPolicy(html,item.path);
   html=html.replaceAll(PREVIEW_ORIGIN,origin);if(production)html=html.replace(/<meta\b(?=[^>]*name=["']robots["'])[^>]*>/gi,'');mkdirSync(dirname(dest),{recursive:true});writeFileSync(dest,html);
