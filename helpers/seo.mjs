@@ -2,6 +2,7 @@ import { ARTICLES, GUIDES } from './content-catalog.mjs';
 import { readingSlug, stepRecordSlug } from './slug-utils.mjs';
 import { BASE_URL, IS_PREVIEW } from './config.mjs';
 import { themePath } from './theme-pages.mjs';
+import { COLLECTION_PAGES } from './collection-pages.mjs';
 
 /**
  * Generate sitemap.xml content for all pages
@@ -38,6 +39,11 @@ export function generateSitemap(readings, topics, books = [], steps = [], lastmo
   // intentionally omitted; Step navigation now begins at /reflections/.
   for (const step of steps) {
     urls.push({ path: `/steps/${stepRecordSlug(step)}/`, priority: '0.6', changefreq: 'monthly' });
+  }
+
+  // The Traditions and Concepts collections, alongside the Steps.
+  for (const page of COLLECTION_PAGES) {
+    urls.push({ path: page.path, priority: '0.6', changefreq: 'monthly' });
   }
 
   // Literature

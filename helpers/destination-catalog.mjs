@@ -13,23 +13,10 @@
 
 import { GUIDES, ARTICLES } from './content-catalog.mjs';
 import { TOPICS } from './theme-data.mjs';
+import { COLLECTION_PAGES } from './collection-pages.mjs';
 import { STEPS, STEP_HOOKS } from '../templates/steps.mjs';
 
-/** The two collection pages the reflections hub introduces. */
-export const COLLECTION_PAGES = [
-  {
-    path: '/traditions/',
-    title: 'The Twelve Traditions',
-    description: 'The principles that keep Al-Anon groups whole — and what they ask of us at home.',
-    stepTag: 'Tradition',
-  },
-  {
-    path: '/concepts/',
-    title: 'The Twelve Concepts of Service',
-    description: 'How the fellowship governs itself, and what service asks of the people who carry it.',
-    stepTag: 'Concept',
-  },
-];
+export { COLLECTION_PAGES };
 
 const KIND_LABELS = { guide: 'Guide', article: 'Article', collection: 'Reflections', topic: 'Topic' };
 const KIND_CTA = {

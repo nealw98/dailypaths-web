@@ -43,6 +43,8 @@ import { renderAboutAlanonPage } from './templates/about-alanon.mjs';
 import { renderStepPage, STEPS, STEP_TOOLS, STEP_HOOKS, STEP_TAGLINES, PULL_QUOTES } from './templates/steps.mjs';
 import { renderLiteratureIndexPage, renderLiteraturePage, BOOKS } from './templates/literature.mjs';
 import { renderMonthArchivePage } from './templates/month-archive.mjs';
+import { renderCollectionPage } from './templates/collections.mjs';
+import { COLLECTION_PAGES } from './helpers/collection-pages.mjs';
 import { renderFavoriteReadingsPage } from './templates/favorite-readings.mjs';
 import { renderStartPage } from './templates/start.mjs';
 import { renderAdminPage } from './templates/admin.mjs';
@@ -198,6 +200,7 @@ const dirs = [
     const months = ['january','february','march','april','may','june','july','august','september','october','november','december'];
     return join(outDir, 'months', months[i]);
   }),
+  ...COLLECTION_PAGES.map(page => join(outDir, page.path.replace(/^\/|\/$/g, ''))),
 ];
 dirs.forEach(d => mkdirSync(d, { recursive: true }));
 
@@ -350,6 +353,16 @@ for (let m = 0; m < 12; m++) {
   writePage(
     join(outDir, 'months', monthNames[m], 'index.html'),
     renderMonthArchivePage(m, readings)
+  );
+}
+
+// The Traditions and Concepts collections — the 63 reflections whose step_theme
+// is not a Step had no page of their own and no working category pill.
+console.log(`Generating collection pages (${COLLECTION_PAGES.length})...`);
+for (const page of COLLECTION_PAGES) {
+  writePage(
+    join(outDir, page.path.replace(/^\/|\/$/g, ''), 'index.html'),
+    renderCollectionPage(page.path, readings)
   );
 }
 

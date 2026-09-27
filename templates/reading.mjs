@@ -10,6 +10,7 @@ import { reflectionHeroImage, reflectionImage } from '../helpers/reflection-imag
 import { TYPOGRAPHY_REVIEW_PATH } from '../helpers/typography-review.mjs';
 import { ARTICLES } from '../helpers/content-catalog.mjs';
 import { themePath } from '../helpers/theme-pages.mjs';
+import { COLLECTION_PAGES } from '../helpers/collection-pages.mjs';
 
 const NUMBER_WORDS = ['One', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine', 'Ten', 'Eleven', 'Twelve'];
 
@@ -97,6 +98,16 @@ export function renderReadingPage(reading, prevReading, nextReading, allReadings
   const stepPath = stepData ? `/months/${stepData.monthSlug}/` : null;
   const monthStepData = STEPS.find(step => step.number === monthIdx + 1);
 
+  // 63 reflections are tagged to a Tradition or a Concept rather than a Step, and
+  // their pill rendered as dead text for want of a page to point at. Each now
+  // lands on its own section of the matching collection.
+  const collectionMatch = (reading.step_theme || '').match(/^(Tradition|Concept) (\d+)$/);
+  const collectionPage = collectionMatch
+    ? COLLECTION_PAGES.find(page => page.stepTag === collectionMatch[1])
+    : null;
+  const programPath = stepPath
+    || (collectionPage ? `${collectionPage.path}#${collectionMatch[1].toLowerCase()}-${collectionMatch[2]}` : null);
+
   const pills = [];
   if (topicMatch) {
     pills.push(pill(topicMatch.name, { href: bp(themePath(topicMatch.slug)) }));
@@ -105,7 +116,7 @@ export function renderReadingPage(reading, prevReading, nextReading, allReadings
   }
   if (reading.step_theme) {
     const principleWords = reading.step_theme.replace(/\b(\d+)\b/, m => NUMBER_WORDS[Number(m) - 1] || m);
-    pills.push(stepPath ? pill(principleWords, { href: bp(stepPath) }) : pill(principleWords));
+    pills.push(programPath ? pill(principleWords, { href: bp(programPath) }) : pill(principleWords));
   }
 
   // Source quotation
