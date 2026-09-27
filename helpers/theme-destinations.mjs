@@ -74,19 +74,47 @@ export function themeDestination(theme) {
 }
 
 /**
- * Every reflection sharing this one's destination, best first.
+ * What this reflection is shown alongside, and why.
+ *
+ * A theme with a destination groups by that destination — reflections from across
+ * the year that lead to the same place. A theme without one falls back to the
+ * Step, Tradition or Concept the reflection belongs to, which every reflection
+ * has and which holds 22 to 26 of them.
+ *
+ * That fallback is what makes the theme table optional rather than a
+ * prerequisite. Assigning a theme upgrades its reflections from grouped-by-Step
+ * to grouped-by-idea; leaving one unassigned costs a better grouping, not the
+ * block itself. 51 of the unassigned themes are used by a single reflection, so
+ * requiring all of them would have been one decision per page for no gain.
+ */
+export function readingGroup(reading) {
+  const destination = themeDestination(reading.secondary_theme);
+  if (destination) return { kind: 'destination', key: `destination:${destination}`, destination };
+  const program = (reading.step_theme || '').trim();
+  if (!program) return null;
+  // A Step holds 22 to 26 reflections, but an individual Tradition or Concept holds
+  // two to four — Concept Eleven holds one — so those group as a whole collection
+  // instead. Grouping them by number left 19 reflections with no siblings at all.
+  const collection = /^(Tradition|Concept)\b/.exec(program);
+  return collection
+    ? { kind: 'program', key: `program:${collection[1]}`, program, label: `the ${collection[1]}s` }
+    : { kind: 'program', key: `program:${program}`, program, label: program };
+}
+
+/**
+ * Every reflection in the same group, best first.
  *
  * Ordered by how many readers marked it positively, then by nearness in the year.
  * The reflection itself and its immediate neighbours — already linked as previous
  * and next — are left out.
  */
 export function siblingReflections(reading, allReadings, { exclude = [], ratingsMap } = {}) {
-  const destination = themeDestination(reading.secondary_theme);
-  if (!destination) return [];
+  const group = readingGroup(reading);
+  if (!group) return [];
   const skip = new Set([reading.day_of_year, ...exclude]);
   const score = other => (ratingsMap?.get(other.day_of_year) || {}).positive || 0;
   return allReadings
-    .filter(other => !skip.has(other.day_of_year) && themeDestination(other.secondary_theme) === destination)
+    .filter(other => !skip.has(other.day_of_year) && readingGroup(other)?.key === group.key)
     .sort((a, b) => {
       const byScore = score(b) - score(a);
       if (byScore) return byScore;

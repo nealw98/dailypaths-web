@@ -4,7 +4,7 @@ import { dayToIsoDate, dayToMonthIndex, readingSlug, DAYS_IN_MONTH } from '../he
 import { readingStructuredData, breadcrumbStructuredData } from '../helpers/seo.mjs';
 import { bp } from '../helpers/config.mjs';
 import { THEME_TO_TOPIC, TOPICS } from '../helpers/theme-data.mjs';
-import { themeDestination, pickSiblings, siblingReflections } from '../helpers/theme-destinations.mjs';
+import { themeDestination, pickSiblings, siblingReflections, readingGroup } from '../helpers/theme-destinations.mjs';
 import { destinationMeta } from '../helpers/destination-catalog.mjs';
 import { STEPS, STEP_HOOKS } from './steps.mjs';
 import { photoHero, quoteBlock, pill, terminalBand } from './ui.mjs';
@@ -141,10 +141,14 @@ export function renderReadingPage(reading, prevReading, nextReading, allReadings
   // place. Each card carries its own theme word, because the variety is the
   // point: three different words on one destination read as three angles on an
   // idea, where three copies of "Trust" would read as a list of duplicates.
+  // Where a theme has no destination yet, the group falls back to the Step,
+  // Tradition or Concept this reflection belongs to, so the block appears on every
+  // page rather than only on the ones whose theme has been assigned.
   const destinationPath = themeDestination(reading.secondary_theme);
   const destination = destinationMeta(destinationPath);
+  const group = readingGroup(reading);
   let keepReadingHtml = '';
-  if (destinationPath && allReadings.length > 0) {
+  if (group && allReadings.length > 0) {
     const siblings = pickSiblings(reading, allReadings, {
       limit: 3,
       exclude: [prevReading.day_of_year, nextReading.day_of_year],
@@ -166,13 +170,19 @@ export function renderReadingPage(reading, prevReading, nextReading, allReadings
       }).join('');
 
       const total = siblingReflections(reading, allReadings, { ratingsMap }).length + 1;
-      const collectionLine = destination
-        ? `${upperFirst(countToWords(total))} reflections lead to ${destination.title}.`
+      const programWords = group.kind === 'program'
+        ? group.label.replace(/\b(\d+)\b/, m => NUMBER_WORDS[Number(m) - 1] || m)
         : '';
+      const heading = group.kind === 'destination'
+        ? `More on ${(theme || 'this').toLowerCase()}`
+        : `More on ${programWords}`;
+      const collectionLine = group.kind === 'destination' && destination
+        ? `${upperFirst(countToWords(total))} reflections lead to ${destination.title}.`
+        : programWords ? `${upperFirst(countToWords(total))} reflections were written alongside ${programWords}.` : '';
       keepReadingHtml = `
     <section class="wrap wrap--article section--lg kr-section" aria-labelledby="keep-reading-heading">
       <p class="eyebrow">Related reflections</p>
-      <h2 class="section-title" id="keep-reading-heading">More on ${(theme || 'this').toLowerCase()}</h2>
+      <h2 class="section-title" id="keep-reading-heading">${heading}</h2>
       ${collectionLine ? `<p class="section-desc">${collectionLine}</p>` : ''}
       <div class="kr-grid">${cards}
       </div>
