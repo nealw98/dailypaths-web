@@ -43,9 +43,9 @@ export function renderAboutAlanonPage() {
       iconName: 'book',
       title: 'The Literature',
       body: 'Conference-Approved books, pamphlets, and daily readers developed by Al-Anon members for Al-Anon members &mdash; the written wisdom of families who walked this path before you.',
-      link: 'Browse literature',
-      href: bp('/literature/'),
-      external: false,
+      link: 'Find Al-Anon literature',
+      href: 'https://al-anon.org',
+      external: true,
     },
     {
       eyebrow: 'The practice',

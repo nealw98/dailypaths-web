@@ -1,6 +1,6 @@
 {
   "v": 1,
   "chosen": "2026-09-28",
-  "note": "The ten reflections on /reflections/favorites/, in the order they appear. Seeded from the highest-rated days in the September 2026 favorites snapshot. Change them whenever you like — nothing else on the site depends on this list. `node scripts/capture-favorites.mjs --propose` prints the current top of the ratings as a starting point.",
-  "days": [270, 113, 211, 202, 119, 124, 98, 197, 209, 167]
+  "note": "The ten reflections on /reflections/favorites/, in the order they appear. Chosen by hand, informed by the ratings but not ranked by them. Change them whenever you like — nothing else on the site depends on this list. `node scripts/capture-favorites.mjs --propose` prints the current top of the ratings as a starting point.",
+  "days": [199, 209, 224, 78, 58, 169, 24, 41, 362, 326]
 }

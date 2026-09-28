@@ -7,7 +7,7 @@ import { COLLECTION_PAGES } from './collection-pages.mjs';
 /**
  * Generate sitemap.xml content for all pages
  */
-export function generateSitemap(readings, topics, books = [], steps = [], lastmodFor = () => null) {
+export function generateSitemap(readings, topics, steps = [], lastmodFor = () => null) {
   let urls = [];
 
   // Homepage
@@ -46,13 +46,6 @@ export function generateSitemap(readings, topics, books = [], steps = [], lastmo
     urls.push({ path: page.path, priority: '0.6', changefreq: 'monthly' });
   }
 
-  // Literature
-  if (books.length > 0) {
-    urls.push({ path: '/literature/', priority: '0.7', changefreq: 'monthly' });
-    for (const book of books) {
-      urls.push({ path: `/literature/${book.slug}/`, priority: '0.6', changefreq: 'monthly' });
-    }
-  }
 
   // Month archives
   const months = ['january','february','march','april','may','june','july','august','september','october','november','december'];

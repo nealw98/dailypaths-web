@@ -41,7 +41,6 @@ import { renderTermsPage } from './templates/terms.mjs';
 import { renderAboutProjectPage } from './templates/about-project.mjs';
 import { renderAboutAlanonPage } from './templates/about-alanon.mjs';
 import { renderStepPage, STEPS, STEP_TOOLS, STEP_HOOKS, STEP_TAGLINES, PULL_QUOTES } from './templates/steps.mjs';
-import { renderLiteratureIndexPage, renderLiteraturePage, BOOKS } from './templates/literature.mjs';
 import { renderMonthArchivePage } from './templates/month-archive.mjs';
 import { renderCollectionPage } from './templates/collections.mjs';
 import { COLLECTION_PAGES } from './helpers/collection-pages.mjs';
@@ -191,8 +190,6 @@ const dirs = [
   ...STEPS.map(s => join(outDir, 'steps', stepRecordSlug(s))),
   // Old step slugs (for redirects)
   ...Array.from({ length: 12 }, (_, i) => join(outDir, 'steps', `step-${i + 1}`)),
-  join(outDir, 'literature'),
-  ...BOOKS.map(b => join(outDir, 'literature', b.slug)),
   join(outDir, 'admin'),
   join(outDir, 'reflections', 'favorites'),
   join(outDir, 'months'),
@@ -366,16 +363,6 @@ for (const page of COLLECTION_PAGES) {
   );
 }
 
-// Literature index + individual book pages
-console.log(`Generating literature pages (${BOOKS.length} books)...`);
-writePage(join(outDir, 'literature', 'index.html'), renderLiteratureIndexPage());
-
-for (const book of BOOKS) {
-  writePage(
-    join(outDir, 'literature', book.slug, 'index.html'),
-    renderLiteraturePage(book)
-  );
-}
 
 // 404 page
 const notFoundHtml = wrapInLayout({
@@ -459,7 +446,7 @@ const lastmodIndex = IS_PREVIEW ? null : createLastmodIndex({
 });
 writeFileSync(
   join(outDir, 'sitemap.xml'),
-  generateSitemap(readings, TOPICS, BOOKS, STEPS, lastmodIndex?.lastmodFor),
+  generateSitemap(readings, TOPICS, STEPS, lastmodIndex?.lastmodFor),
   'utf-8'
 );
 lastmodIndex?.save();
@@ -532,6 +519,18 @@ for (const reading of readings) {
 for (const step of STEPS) {
   const oldPath = `step-${step.number}`;
   writeFileSync(join(outDir, 'steps', oldPath, 'index.html'), redirectHtml(`/steps/${stepRecordSlug(step)}/`), 'utf-8');
+}
+
+// The literature pages are gone. Four book pages of 144 to 159 words each, built
+// from descriptions of books we do not hold the rights to — thin and a copyright
+// exposure at once. About Al-Anon points to al-anon.org for the real thing, so
+// these forward there.
+const RETIRED_LITERATURE = ['courage-to-change', 'paths-to-recovery', 'one-day-at-a-time', 'how-al-anon-works'];
+mkdirSync(join(outDir, 'literature'), { recursive: true });
+writeFileSync(join(outDir, 'literature', 'index.html'), redirectHtml('/guides/about-alanon/'), 'utf-8');
+for (const slug of RETIRED_LITERATURE) {
+  mkdirSync(join(outDir, 'literature', slug), { recursive: true });
+  writeFileSync(join(outDir, 'literature', slug, 'index.html'), redirectHtml('/guides/about-alanon/'), 'utf-8');
 }
 
 // Theme redirects: /themes/... → wherever that theme's page lives now (plus
@@ -669,13 +668,6 @@ if (existsSync(themesAssetsDir)) {
   cpSync(themesAssetsDir, join(outDir, 'assets', 'themes'), { recursive: true });
 }
 
-// Book cover images
-for (const book of BOOKS) {
-  const src = join(localAssetsDir, book.image);
-  if (existsSync(src)) {
-    cpSync(src, join(outDir, 'assets', book.image));
-  }
-}
 
 // CNAME for GitHub Pages custom domain
 if (!IS_PREVIEW) writeFileSync(join(outDir, 'CNAME'), 'dailypaths.org', 'utf-8');
