@@ -1,3 +1,50 @@
+## September 28 — the review manuscripts are published, and their overrides retired
+
+Neal confirmed that Detachment with Love, Finding Help and Your First Al-Anon
+Meeting are published from the Story Room and reviewed, and that Voices from the
+Grave is published, reviewed and credited to Lance W. The September 21 review
+state is therefore retired, deliberately rather than by lapsing:
+
+- `LAUNCH_REVIEW.drafts` is empty, so no card carries a Placeholder label.
+- The three review manuscripts no longer render as pages. They remain in
+  `editorial/launch-review/` as the record of what was reviewed;
+  `templates/launch-drafts.mjs` is gone.
+- Card titles and summaries for those three now come from the Story Room, where
+  they were approved. The local overrides that said something else are removed.
+  To change a card's wording, change it in the Story Room.
+- The first-meeting article is in the catalog unconditionally. It was added only
+  in the preview, so production had it only because the CMS feed supplied it —
+  with the category reading "Article" instead of "Getting started".
+- `/articles/detachment/` and its `cms-detachment` mapping are gone. That story
+  left the feed when `051e6f44…` superseded it at `/guides/detachment-with-love/`,
+  and nothing links to the old address.
+
+**Voices from the Grave's attribution is settled: Lance W.** This supersedes the
+earlier note that the byline was unconfirmed. The Line I Kept Moving is also
+Lance W's; its card still read "Personal story · Jeff J." in production, which is
+corrected.
+
+Detachment keeps `/guides/detachment-with-love/`, which is where the Story Room
+publishes it and where `/topics/detachment/` and `/themes/detachment/` forward.
+`/guides/detachment/` was never a live address; it now forwards there too, so the
+shorter name the guide suggests does not 404.
+
+### Still open
+
+- **About Al-Anon has two versions.** The static guide at `/guides/about-alanon/`
+  carries inherited copy, and the Story Room holds `cms-about-alanon` at the old
+  root `/about-alanon/` path, titled "The Al-Anon Program" with the card "Finding
+  Support". The root path is no longer a valid publish target, so that entry is
+  filtered out of every build and cannot reach the site as it stands. Neal is
+  deciding which version to keep. Whichever wins should be published in the Story
+  Room at `/guides/about-alanon/`, which will then own the page.
+- **Finding Help and About Al-Anon still overlap.** Both introduce Al-Anon and
+  both are in the Guides listing. Settle what each is for, or merge them.
+- **Learning to Trust is being suppressed.** `retiredPaths` drops it from the feed
+  because it once published as an empty placeholder. It is now a 2,716-word
+  article by Celina R, published September 28. Removing that one line restores it.
+  Left in place pending Neal's decision.
+
 ## September 24 email collection and monthly collections
 
 Neal authorized connecting website email forms to the existing Supabase database. The public newsletter-signup Edge Function is JWT-gated with the public anon key, validates consent/input, rate-limits requests, and writes to a subscriber table unavailable to public clients. New contacts remain pending; no emails are sent until a delivery provider, sender domain, confirmations, and unsubscribe synchronization are configured. See editorial/email/setup.md. This authorization is limited to email collection and does not enable other preview database writes.

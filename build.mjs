@@ -50,7 +50,6 @@ import { renderAdminPage } from './templates/admin.mjs';
 import { wrapInLayout } from './templates/base.mjs';
 import {getPublished,syncCatalog,applyPublished} from './helpers/story-room.mjs';
 import {ARTICLES,GUIDES} from './helpers/content-catalog.mjs';
-import {renderLaunchDrafts} from './templates/launch-drafts.mjs';
 import {ARTICLE_PLACEHOLDERS,renderArticlePlaceholder} from './templates/article-placeholders.mjs';
 import {LAUNCH_REVIEW,transformLaunchPreview} from './helpers/launch-review.mjs';
 import { bp, IS_PREVIEW, BASE_URL } from './helpers/config.mjs';
@@ -415,13 +414,13 @@ if (IS_PREVIEW) for (const article of ARTICLE_PLACEHOLDERS) {
   writePage(join(outDir,article.path,'index.html'),renderArticlePlaceholder(article));
 }
 await applyPublished(outDir,{production:!IS_PREVIEW,origin:BASE_URL,items:cmsItems});
-// Review drafts replace only the development rendering, never CMS approval.
+// The three September 21 review manuscripts — Detachment, Finding Help and Your
+// First Al-Anon Meeting — are published from the Story Room and reviewed, so the
+// preview renders the approved pages like every other route. FOUNDATION.md asked
+// for the overrides to be retired deliberately rather than left to lapse, which
+// is what this is: the manuscripts stay in editorial/launch-review/ as the record
+// of what was reviewed, and nothing renders them as pages any more.
 if (IS_PREVIEW) {
-  for (const draft of renderLaunchDrafts()) {
-    if (LAUNCH_REVIEW.cmsManaged.includes(draft.path) && cmsItems.some(item => item.path === draft.path)) continue;
-    mkdirSync(join(outDir, draft.path), {recursive:true});
-    writePage(join(outDir, draft.path, 'index.html'), draft.html);
-  }
   function prepareLaunchDirectory(directory) {
     for (const entry of readdirSync(directory, {withFileTypes:true})) {
       const filename=join(directory,entry.name);
@@ -520,6 +519,13 @@ for (const step of STEPS) {
   const oldPath = `step-${step.number}`;
   writeFileSync(join(outDir, 'steps', oldPath, 'index.html'), redirectHtml(`/steps/${stepRecordSlug(step)}/`), 'utf-8');
 }
+
+// The Detachment guide lives at /guides/detachment-with-love/, which is where the
+// Story Room publishes it and where /topics/detachment/ forwards. /guides/detachment/
+// is the shorter address the guide's own name suggests, and was never live — this
+// answers it rather than letting a reasonable guess 404.
+mkdirSync(join(outDir, 'guides', 'detachment'), { recursive: true });
+writeFileSync(join(outDir, 'guides', 'detachment', 'index.html'), redirectHtml('/guides/detachment-with-love/'));
 
 // The literature pages are gone. Four book pages of 144 to 159 words each, built
 // from descriptions of books we do not hold the rights to — thin and a copyright

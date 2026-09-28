@@ -11,8 +11,11 @@ re-measure before acting on any single number.
 `FOUNDATION.md` records the design and editorial decisions. `HANDOFF.md` records
 the URL and build structure. This file is only the list of what is still open.
 
-**Nothing here is a reason to delay indefinitely.** Roughly six items are genuine
+**Nothing here is a reason to delay indefinitely.** Four items are genuine
 blockers; the rest are improvements that can follow launch. They are marked.
+
+Updated September 28 after Neal confirmed the Story Room publications. A1 and A5
+are closed — A1 was my error, corrected in place rather than removed.
 
 ---
 
@@ -36,23 +39,27 @@ policy**, **the launch mechanics**, and **SEO**.
 
 ## A. Blockers — 2.0 cannot ship until these are done
 
-### A1. Three pages are placeholders, and one of them is in the production sitemap
+### A1. ~~Three pages are placeholders~~ — resolved September 28
 
-`helpers/launch-review.mjs` marks these as drafts:
+**This item was wrong, and is now closed.** All three are published in the Story
+Room with full content, and were when the review was written:
 
-- `/guides/detachment-with-love/` — placeholder, Neal to write
-- `/articles/your-first-al-anon-meeting/` — placeholder, sits in Lance W.'s Story
-  Room draft `de45655f…` as his starting point
-- `/guides/finding-help/` — reworked introduction, awaiting editorial review
+| Page | Story Room id | Words | Published |
+|---|---|---|---|
+| `/guides/detachment-with-love/` | `051e6f44…` | 1,768 | Sept 25 |
+| `/guides/finding-help/` | `012aaa8a…` | 2,442 | Sept 25 |
+| `/articles/your-first-al-anon-meeting/` | `de45655f…` | 1,325 | Sept 26 |
 
-`/articles/your-first-al-anon-meeting/` is **already in the production build and
-the live sitemap**, indexable, carrying visible placeholder wording. Either finish
-it before launch or drop it from the production catalog. It is currently added
-only under `IS_PREVIEW` in `helpers/content-catalog.mjs`, so the copy in `docs/`
-is a leftover from an earlier build — confirm it is gone after the next production
-rebuild.
+The "placeholder" and "coming soon" strings found on the built first-meeting page
+were the newsletter block's `placeholder=` attribute and its "Email updates are
+coming soon" note — the shared footer on every page, not the article. I read a
+grep result as page content without checking where it landed.
 
-Detachment is one of the four core launch guides. It cannot ship as a placeholder.
+The code had not caught up with the publications, and that part was real:
+`drafts` still labelled two of them Placeholder, the review manuscripts could
+still stand in for approved pages, local overrides outranked the Story Room's own
+card text, and the first-meeting article was in the catalog only in the preview.
+All fixed — see the September 28 entry in `FOUNDATION.md`.
 
 ### A2. The privacy policy does not describe what the website does
 
@@ -100,23 +107,60 @@ node scripts/check-launch-review.mjs   # needs dist/server/index.js
 `check-launch-review.mjs` was never run after the About Al-Anon change
 (`HANDOFF.md` §4 asks for it).
 
-### A4. About Al-Anon's copy has never been reviewed
+### A4. About Al-Anon — two versions, one decision
 
-`/guides/about-alanon/` was revived as a published guide. Its copy is inherited,
-now appears in the Guides listing and the sitemap, and has not been read for
-launch. The review notes also flag that the old Al-Anon introduction made
-**absolute privacy and payment claims** and a narrow Alateen age assertion that
-needed correcting — confirm that correction carried into this page and not only
-into Finding Help.
+Neal has two versions of this guide and is choosing between them:
 
-### A5. Attribution and contributor approval are unresolved
+- the static page at `/guides/about-alanon/`, carrying inherited copy
+- the Story Room's `cms-about-alanon`, titled "The Al-Anon Program" with the card
+  "Finding Support", published at the old root `/about-alanon/` path
 
-- **Voices from the Grave** — `FOUNDATION.md` says no byline pending confirmation;
-  the CMS metadata credits Lance W. The page currently shows no byline. Decide.
-- **The Line I Kept Moving** — Jeff J. was to review the edited version. Final
-  contributor approval is not recorded.
+The root path stopped being a valid publish target when the guide moved
+(`helpers/story-room.mjs`, `validPath`), so that second version is filtered out of
+every build and cannot currently reach the site. **Publishing the chosen version
+in the Story Room at `/guides/about-alanon/` is what makes it live** — the CMS
+then owns the page.
 
-### A6. The launch itself is not wired
+Whichever wins still needs reading for launch. The review notes flag that the old
+Al-Anon introduction made **absolute privacy and payment claims** and a narrow
+Alateen age assertion; confirm the correction carried into this page and not only
+into Finding Help. See also B5 — this guide and Finding Support overlap.
+
+### A5. Attribution — mostly resolved September 28
+
+- **Voices from the Grave** — settled. Published, reviewed, credited to Lance W.
+  The card read "Finding your voice · Lance W" already; the earlier
+  "byline unconfirmed" note in `FOUNDATION.md` is superseded.
+- **The Line I Kept Moving** — also Lance W's. Its catalog card still read
+  "Personal story · Jeff J." in production builds, which is corrected. Confirm
+  the contributor is content with the published version if that is still open.
+
+### A6. Deferring a piece only defers it in the preview
+
+`launchItems(items, preview)` returns everything unfiltered when `preview` is
+false. So `LAUNCH_REVIEW.deferred` hides a page from the preview's listings and
+**not** from a production build. At launch, three pieces Neal explicitly deferred
+come back into the Articles and Guides listings:
+
+- `/topics/one-day-at-a-time/` — inherited, awaiting rewrite
+- `/topics/gratitude-and-hope/` — inherited, awaiting rewrite
+- `/articles/the-stories-we-tell-ourselves/` — inherited
+
+Verified by running the catalog sync against the cached feed in both modes. Either
+these ship, or the filter has to apply to production too. It is an editorial call,
+not a bug to fix silently — but it has to be made before the production build, or
+it gets made by default.
+
+### A7. Learning to Trust is published but suppressed
+
+`retiredPaths` drops `/articles/learning-to-trust/` from the feed entirely,
+because it once published with an empty summary and was asked to be dropped as a
+placeholder. It is now a **2,716-word article by Celina R**, published
+September 28 — the longest piece in the feed. Removing one line restores it.
+Left alone pending Neal's decision, since republishing a contributor's article is
+not a call to make on inference.
+
+### A8. The launch itself is not wired
 
 Nothing in the repository merges 2.0 into `main` or repoints hosting. The nightly
 workflow runs on the default branch (`main`) and pushes to whatever branch it ran
@@ -378,13 +422,17 @@ Low priority, but decide whether `/topics/` should be `noindex` in the meantime.
 ## Suggested order
 
 1. **A2** privacy policy — largest exposure, independent of everything else
-2. **A1 / A4** finish Detachment, First Meeting, Finding Help; read About Al-Anon
+2. **A4** choose the About Al-Anon version, publish it, read it for launch
 3. **B1 / B2 / B3** homepage and title/description pass — a day's work, sitewide effect
-4. **A5** settle the two attributions
+4. **A6 / A7** decide whether the three deferred pieces and Learning to Trust ship
 5. **B6** verify Search Console and baseline rankings **before** the URL moves go live
 6. **A3** fresh production build, run all three checks
-7. **A6** launch
+7. **A8** launch
 8. **B4, B7, B9** structured data, hero dimensions, theme destinations — after launch
 9. **B5, B8, B10, C** — as the article programme continues
 
 Items 1–7 are the launch. Everything after is improvement.
+
+A1 and A5 are closed. The blocker count is down from six to four: the privacy
+policy, the About Al-Anon decision, the deferred-content decisions, and the
+build-and-launch mechanics.

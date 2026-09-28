@@ -1,4 +1,3 @@
-import { IS_PREVIEW } from './config.mjs';
 import { FIRST_MEETING } from './launch-review.mjs';
 // Navigation and presentation are independent of the established content URLs.
 // These are existing source pages; editorial expansion is tracked in FOUNDATION.md.
@@ -28,8 +27,12 @@ export const ARTICLES = [
   { title: 'Who Am I Behind the Mask', path: '/articles/who-am-i-behind-the-mask/', image: 'articles/self-worth-hero.jpg', alt: 'Walking through a golden wheat field in the sun', category: 'Knowing yourself', description: 'Reconnecting with the person you are beyond someone else’s drinking.' },
   { title: 'Gratitude & Hope', path: '/topics/gratitude-and-hope/', image: 'articles/gratitude-and-hope-hero.jpg', alt: 'A quiet moment of natural light', category: 'Everyday perspective', description: 'Making space for what is still good, even when life feels uncertain.' },
   { title: 'Honesty', path: '/articles/the-stories-we-tell-ourselves/', image: 'articles/honesty-hero.jpg', alt: 'A moment of quiet reflection', category: 'Knowing yourself', description: 'Beginning with the truth about how things are—and how you feel.' },
-  { title: 'The Line I Kept Moving', path: '/articles/the-line-i-kept-moving/', image: 'articles/the-line-i-kept-moving/dinner-table-photo.webp', alt: 'A woman with dinner at the table while her adult son prepares another meal in the kitchen', category: 'Personal story · Jeff J.', description: 'Learning to set boundaries with my mother—and to stop disappearing in the effort to earn her love.' },
+  { title: 'The Line I Kept Moving', path: '/articles/the-line-i-kept-moving/', image: 'articles/the-line-i-kept-moving/dinner-table-photo.webp', alt: 'A woman with dinner at the table while her adult son prepares another meal in the kitchen', category: 'Personal Story', description: 'Learning to set boundaries with my mother—and to stop disappearing in the effort to earn her love.' },
   VOICES_ARTICLE,
 ];
 
-if (IS_PREVIEW) ARTICLES.push(FIRST_MEETING);
+// Published and reviewed, so it belongs in the catalog on both sides. The Story
+// Room supplies the page, its card title, summary and hero either way. What this
+// seeds is the category, which syncCatalog keeps rather than overwriting — so the
+// card read "Getting started" in the preview and "Article" in production.
+ARTICLES.push(FIRST_MEETING);

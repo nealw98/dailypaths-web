@@ -1,7 +1,11 @@
 // Development editorial review only. These choices do not delete legacy routes,
 // change the production catalog, or imply approval of a CMS publication.
 export const LAUNCH_REVIEW = {
-  retired: ['/articles/detachment/'],
+  // Detachment's old story published at /articles/detachment/ and was retired
+  // there. It has since been superseded by 051e6f44…, published as a guide at
+  // /guides/detachment-with-love/, and has left the feed. Nothing links to the
+  // old address any more, so there is nothing left to suppress.
+  retired: [],
   // Who Am I Behind the Mask is finished, so self-worth comes off this list.
   deferred: ['/topics/one-day-at-a-time/', '/topics/gratitude-and-hope/', '/articles/the-stories-we-tell-ourselves/'],
   // Learning to Trust published from the Story Room with an empty summary, having
@@ -10,16 +14,20 @@ export const LAUNCH_REVIEW = {
   // from the feed means no page and nothing submitted to search. The Story Room
   // keeps the draft, and this is one line to undo.
   retiredPaths: ['/articles/learning-to-trust/'],
-  linkedStories: { '012aaa8a-e94a-4ff2-8730-87a663205057': '/guides/finding-help/', 'cms-detachment': '/articles/detachment/', 'de45655f-f3a2-46a4-a2a7-a52a7174ed98': '/articles/your-first-al-anon-meeting/',
+  linkedStories: { '012aaa8a-e94a-4ff2-8730-87a663205057': '/guides/finding-help/', 'de45655f-f3a2-46a4-a2a7-a52a7174ed98': '/articles/your-first-al-anon-meeting/',
     // Reclassified themes: the Story Room still publishes at the old address.
     'cms-powerlessness': '/guides/surrender/', 'cms-boundaries': '/guides/boundaries/',
     'cms-letting-go': '/articles/letting-go/', 'cms-honesty': '/articles/the-stories-we-tell-ourselves/',
     'cms-self-worth': '/articles/who-am-i-behind-the-mask/' },
   cmsManaged: ['/guides/finding-help/', '/guides/detachment-with-love/', '/articles/your-first-al-anon-meeting/'],
-  drafts: ['/guides/detachment-with-love/', '/articles/your-first-al-anon-meeting/'],
+  // Detachment with Love, Finding Help and Your First Al-Anon Meeting are
+  // published and reviewed. Nothing here is a draft, so no card carries a
+  // Placeholder label and no review manuscript stands in for a page.
+  drafts: [],
+  // Card titles and summaries for the three above now come from the Story Room,
+  // which is where they were approved. An override here would quietly outrank
+  // the text Neal published, and the two that were here said something else.
   metadata: {
-    '/guides/finding-help/': { description: 'Finding help when someone else’s drinking is affecting your life.' },
-    '/guides/detachment-with-love/': { title: 'Detachment', description: 'Practical ways to step out of monitoring, rescuing, and managing another adult.' },
     '/articles/the-line-i-kept-moving/': { category: 'Personal Story', author: 'Lance W' },
     '/articles/voices-from-the-grave/': { category: 'Finding your voice', author: 'Lance W' },
   },
