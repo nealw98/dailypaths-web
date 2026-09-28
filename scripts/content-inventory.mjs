@@ -107,8 +107,8 @@ for (const item of feed) {
   }
 
   if (!validPath(path)) {
-    r.status = 'Unreachable';
-    r.note = `Published at ${item.path}, which the site no longer accepts. Republish at a /guides/… or /articles/… address.`;
+    r.status = 'Not served';
+    r.note = `Published at ${item.path}, which is not an address the site serves, so no build picks it up. That can be deliberate — a version being kept while a decision is pending — or an oversight. To put it on the site, publish it at a /guides/… or /articles/… address, or map its id in linkedStories.`;
   } else if (LAUNCH_REVIEW.retiredPaths.includes(path)) {
     r.status = 'Suppressed';
     r.note = 'Dropped from the feed by launch-review. No page is built and nothing is submitted to search.';
@@ -168,7 +168,7 @@ for (const r of rows.values()) {
 
 // --- Output ---------------------------------------------------------------
 
-const ORDER = ['Unreachable', 'Suppressed', 'Not in the Story Room', 'Deferred', 'Reserved', 'Published'];
+const ORDER = ['Not served', 'Suppressed', 'Not in the Story Room', 'Deferred', 'Reserved', 'Published'];
 const all = [...rows.values()].sort((a, b) =>
   ORDER.indexOf(a.status) - ORDER.indexOf(b.status) || a.kind.localeCompare(b.kind) || a.path.localeCompare(b.path));
 
@@ -183,7 +183,7 @@ for (const r of all) {
 writeFileSync(join(root, 'editorial/content-inventory.csv'), csv.join('\n') + '\n');
 
 const EXPLAIN = {
-  'Unreachable': 'Published in the Story Room, but at an address this site will not serve. Nobody can read it until it is republished at a /guides/… or /articles/… address.',
+  'Not served': 'Published in the Story Room at an address the site does not serve, so no build picks it up and no reader can reach it. Sometimes deliberate — a version kept while a decision is pending.',
   'Suppressed': 'Deliberately dropped from the feed. No page is built and nothing reaches search. One line in helpers/launch-review.mjs restores it.',
   'Not in the Story Room': 'The page comes from a template in this repository, so editing it means a code change. Publishing it from the Story Room at the same address hands it over.',
   'Deferred': 'Hidden from the preview listings while it waits for a rewrite. Note that a production build lists it anyway — see A6 in LAUNCH-READINESS.md.',

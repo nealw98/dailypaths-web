@@ -10,12 +10,12 @@ export const LAUNCH_REVIEW = {
   // first, and now The Stories We Tell Ourselves, published from the Story Room
   // on September 26. What is left is the two still awaiting their rewrite.
   deferred: ['/topics/one-day-at-a-time/', '/topics/gratitude-and-hope/'],
-  // Learning to Trust published from the Story Room with an empty summary, having
-  // been asked to be dropped as a placeholder. Deferred only hides a page from the
-  // preview's listings — it still built and still entered the sitemap. Dropping it
-  // from the feed means no page and nothing submitted to search. The Story Room
-  // keeps the draft, and this is one line to undo.
-  retiredPaths: ['/articles/learning-to-trust/'],
+  // Learning to Trust was dropped here when it briefly published with an empty
+  // summary. It has since been written — 2,716 words by Celina R — and Neal asked
+  // for it back on September 28, so the list is empty. Dropping a path from the
+  // feed means no page and nothing submitted to search, which is heavier than
+  // deferring: use it only for a piece that should not exist on the site at all.
+  retiredPaths: [],
   linkedStories: { '012aaa8a-e94a-4ff2-8730-87a663205057': '/guides/finding-help/', 'de45655f-f3a2-46a4-a2a7-a52a7174ed98': '/articles/your-first-al-anon-meeting/',
     // Reclassified themes: the Story Room still publishes at the old address.
     'cms-powerlessness': '/guides/surrender/', 'cms-boundaries': '/guides/boundaries/',

@@ -38,19 +38,28 @@ remain deferred pending their rewrites: One Day at a Time and Gratitude & Hope.
 
 ### Still open
 
-- **About Al-Anon has two versions.** The static guide at `/guides/about-alanon/`
-  carries inherited copy, and the Story Room holds `cms-about-alanon` at the old
-  root `/about-alanon/` path, titled "The Al-Anon Program" with the card "Finding
-  Support". The root path is no longer a valid publish target, so that entry is
-  filtered out of every build and cannot reach the site as it stands. Neal is
-  deciding which version to keep. Whichever wins should be published in the Story
-  Room at `/guides/about-alanon/`, which will then own the page.
+- **About Al-Anon has two versions, and both are being kept on purpose.** Neal
+  asked on September 28 to keep both until he decides; they are very different
+  pieces, not two drafts of one.
+  - **A** — "About the Al-Anon Program", published in the Story Room on
+    September 28 at 1,714 words: what the program is, why someone would need it,
+    and how meetings, the Steps, sponsorship and daily practice work. It sits at
+    `/about-alanon/`, which `validPath` does not serve, so no build picks it up.
+  - **B** — "The Al-Anon Program", live at `/guides/about-alanon/` at 653 words,
+    built from `templates/about-alanon.mjs`: what Al-Anon is, a self-check, and a
+    FAQ on religion, privacy and young people, plus related fellowships.
+
+  `editorial/about-alanon-comparison.md` holds both in full, side by side.
+  **Do not map, merge or retire either one.** When Neal decides, the winner is
+  published in the Story Room at `/guides/about-alanon/`, or its id is mapped
+  there in `linkedStories`.
 - **Finding Help and About Al-Anon still overlap.** Both introduce Al-Anon and
   both are in the Guides listing. Settle what each is for, or merge them.
-- **Learning to Trust is being suppressed.** `retiredPaths` drops it from the feed
-  because it once published as an empty placeholder. It is now a 2,716-word
-  article by Celina R, published September 28. Removing that one line restores it.
-  Left in place pending Neal's decision.
+- ~~Learning to Trust is being suppressed.~~ **Restored September 28** at Neal's
+  request. Celina R's 2,716-word article builds, lists in Articles and enters the
+  sitemap. `retiredPaths` is now empty; it drops a path from the feed entirely, so
+  it is for a piece that should not exist on the site at all, not for one awaiting
+  review — deferral is the lighter tool.
 
 ## September 24 email collection and monthly collections
 
