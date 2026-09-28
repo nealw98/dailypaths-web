@@ -1,7 +1,12 @@
 # 2.0 launch readiness — outstanding items
 
-Reviewed September 28, 2026, against the `2.0` branch at `1546ebf`, the committed
+Reviewed September 28, 2026, against the `2.0` branch at `1286a8c`, the committed
 production build in `docs/`, and the live sitemap on `origin/main`.
+
+Page-level counts come from the last committed production build, which predates
+the September 28 address moves and the removal of the literature pages. They are
+dominated by the 366 reflections, so a fresh build moves them very little — but
+re-measure before acting on any single number.
 
 `FOUNDATION.md` records the design and editorial decisions. `HANDOFF.md` records
 the URL and build structure. This file is only the list of what is still open.
@@ -77,10 +82,12 @@ AdSense review. Needed:
 Run today it reports clean — **but against the stale `docs/` build from September
 27**, which predates the September 28 address moves. Since that build:
 
-- Five themes moved (`/topics/boundaries/` → `/guides/boundaries/`, powerlessness
-  → surrender, letting-go, honesty, self-worth)
+- Six themes moved (`/topics/boundaries/` → `/guides/boundaries/`, powerlessness
+  → surrender, letting-go, honesty, self-worth, detachment)
 - `/essentials/` was dropped and `/prayers/` redirected
 - `/traditions/` and `/concepts/` were added
+- `/literature/` and its four book pages were removed and redirected
+- `/themes/<slug>/` now resolves in one hop instead of two
 
 Build fresh with `SITE_ENV=production`, then run **both**:
 
@@ -159,15 +166,20 @@ new ones did not.
 | `/` | Daily Paths — A little space for yourself |
 | `/articles/` | Articles — Daily Paths |
 | `/guides/` | Guides — Daily Paths |
-| `/topics/boundaries/` | Boundaries: Reclaiming Your Life \| Daily Paths |
-| `/topics/powerlessness/` | Surrendering the Unwinnable Battle \| Daily Paths |
-| `/topics/detachment/` | Detachment with Love \| Daily Paths |
-| `/topics/honesty/` | The Stories We Tell Ourselves \| Daily Paths |
-| `/topics/letting-go/` | Letting Go \| Daily Paths |
+| `/guides/boundaries/` | Boundaries: Reclaiming Your Life \| Daily Paths |
+| `/guides/surrender/` | Surrendering the Unwinnable Battle \| Daily Paths |
+| `/guides/detachment-with-love/` | Detachment with Love \| Daily Paths |
+| `/articles/the-stories-we-tell-ourselves/` | The Stories We Tell Ourselves \| Daily Paths |
+| `/articles/letting-go/` | Letting Go \| Daily Paths |
 | `/articles/voices-from-the-grave/` | Voices from the Grave \| Daily Paths |
 | `/articles/the-line-i-kept-moving/` | The Line I Kept Moving \| Daily Paths |
 | 12 × `/months/…` | Step N: Principle — Month Daily Reflections \| Daily Paths |
 | `/reflections/favorites/` | Favorite Daily Reflections — Daily Paths |
+
+The `<h1>` on the two hub pages was fixed on September 28 — they now read
+"Articles" and "Guides" rather than "Thoughtful insights…" and "A place to
+begin." The `<title>` tags were not changed with them, and still carry neither
+"Al-Anon" nor anything a reader would search for.
 
 The guide and article titles are good *editorial* titles and bad *search* titles —
 nobody searches "Surrendering the Unwinnable Battle". The fix is to let the
@@ -216,7 +228,6 @@ Two causes, both one-line fixes:
 |---|---|
 | Reflections | ✅ Article + BreadcrumbList |
 | Legacy `/topics/…` | ✅ Article + BreadcrumbList |
-| Literature | ✅ Book |
 | Voices / The Line I Kept Moving | ✅ Article |
 | **Guides** (Boundaries, Surrender, Detachment, Finding Help, About Al-Anon) | ❌ none |
 | **Homepage** | ❌ none |
@@ -336,7 +347,15 @@ Low priority, but decide whether `/topics/` should be `noindex` in the meantime.
   not exist" and that 63 reflections have unlinked category pills. Both were built
   on September 28 (`helpers/collection-pages.mjs`, `templates/reading.mjs:104`).
   Correct it before it misleads the next person.
-- **`homepageStructuredData()` is dead code** — either call it (B1/B4) or delete it.
+- **Two dead helpers in `helpers/seo.mjs`.** `homepageStructuredData()` is never
+  called — either call it (B1/B4) or delete it. `bookStructuredData()` became dead
+  on September 28 when the literature pages were removed.
+- **The literature redirects point somewhere unrelated.** `/literature/` and its
+  four book pages now forward to `/guides/about-alanon/`. Nothing 404s, which is
+  what `check:launch-urls` tests for — but Google treats a redirect to a page that
+  does not answer the original query as a soft 404 and drops the link equity.
+  Those five addresses had ~250–280 words each and are in the live sitemap today.
+  Worth deciding whether a short literature page is better than the redirect.
 - **Deferred pages still in the catalog**: `/topics/one-day-at-a-time/`,
   `/topics/gratitude-and-hope/`, `/articles/the-stories-we-tell-ourselves/`,
   `/articles/learning-to-trust/` are hidden from listings but their routes remain.
