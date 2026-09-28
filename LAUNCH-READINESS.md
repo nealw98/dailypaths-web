@@ -375,6 +375,26 @@ decision yet.
 `HANDOFF.md` §6 makes assigning themes the last step of publishing a piece, which
 is the right habit. The backlog above is what accumulated before that rule existed.
 
+**Read the other way round, the same gap says something sharper.** Five published
+pieces have no theme pointing at them at all, so none of the 366 reflections ever
+sends a reader to them — Learning to Trust, The Line I Kept Moving, Voices from
+the Grave, Your First Al-Anon Meeting, and Finding Help. Every one is new to 2.0.
+The theme table was inherited from the old site, where each theme was mapped to a
+`/topics/` page, so the new work has nothing pointing at it simply because that
+last step has not been taken yet.
+
+The supply is already there: 71 unassigned themes covering 112 reflections, plus
+the option of re-pointing themes that are crowded onto one destination.
+`/topics/higher-power/` carries seven themes and 35 reflections, including Trust
+(19) and Faith (14) — Learning to Trust is an obvious candidate home for some of
+those. `npm run inventory` lists the five under "Linked from their index, but from
+no reflection".
+
+One judgement to make first: whether a personal story should be a theme
+destination at all, or whether destinations stay educational — guides, Steps and
+explanatory articles — with the stories reached from the Articles index and from
+within other pieces. Three of the five are personal stories.
+
 ### B10. `/topics/` is a hub for pages that have left
 
 Six of the twelve themes have moved to `/guides/…` or `/articles/…`. `/topics/`
