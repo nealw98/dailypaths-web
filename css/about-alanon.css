@@ -17,7 +17,7 @@
 .page-about-alanon .photo-hero-scrim { display: none; }
 .page-about-alanon .photo-hero-title,
 .page-about-alanon .photo-hero-sub { color: var(--text-primary); }
-.page-about-alanon .photo-hero-title { max-width: 19ch; }
+.page-about-alanon .photo-hero-title { max-width: none; }
 .page-about-alanon .photo-hero-sub { max-width: 48ch; }
 
 .page-about-alanon :is(.rd-article, .wrap--article, .teal-band-inner) {
