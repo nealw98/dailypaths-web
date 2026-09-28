@@ -534,7 +534,10 @@ for (const step of STEPS) {
   writeFileSync(join(outDir, 'steps', oldPath, 'index.html'), redirectHtml(`/steps/${stepRecordSlug(step)}/`), 'utf-8');
 }
 
-// Theme → Topic redirects: /themes/... → /topics/... (plus renamed slugs)
+// Theme redirects: /themes/... → wherever that theme's page lives now (plus
+// renamed slugs). Resolved through themePath() rather than pointed at /topics/,
+// so a theme reclassified as an article or a guide is reached in one hop instead
+// of forwarding to an address that forwards again.
 const LEGACY_TOPIC_SLUGS = { 'letting-go': ['letting-go-of-control'] };
 mkdirSync(join(outDir, 'themes'), { recursive: true });
 writeFileSync(join(outDir, 'themes', 'index.html'), redirectHtml('/topics/'), 'utf-8');
@@ -542,7 +545,7 @@ for (const topic of TOPICS) {
   const oldSlugs = [topic.slug, ...(LEGACY_TOPIC_SLUGS[topic.slug] || [])];
   for (const oldSlug of oldSlugs) {
     mkdirSync(join(outDir, 'themes', oldSlug), { recursive: true });
-    writeFileSync(join(outDir, 'themes', oldSlug, 'index.html'), redirectHtml(`/topics/${topic.slug}/`), 'utf-8');
+    writeFileSync(join(outDir, 'themes', oldSlug, 'index.html'), redirectHtml(themePath(topic.slug)), 'utf-8');
   }
 }
 console.log('  Redirect pages generated');

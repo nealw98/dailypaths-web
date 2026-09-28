@@ -3,11 +3,13 @@
 export const LAUNCH_REVIEW = {
   retired: ['/articles/detachment/'],
   // Who Am I Behind the Mask is finished, so self-worth comes off this list.
-  // Learning to Trust published from the Story Room with an empty summary, and was
-  // asked to be dropped as a placeholder — deferred hides it from the listings and
-  // from links without retiring an address, so it is one line to bring back.
-  deferred: ['/topics/one-day-at-a-time/', '/topics/gratitude-and-hope/', '/articles/the-stories-we-tell-ourselves/', '/articles/learning-to-trust/'],
-  retiredPaths: [],
+  deferred: ['/topics/one-day-at-a-time/', '/topics/gratitude-and-hope/', '/articles/the-stories-we-tell-ourselves/'],
+  // Learning to Trust published from the Story Room with an empty summary, having
+  // been asked to be dropped as a placeholder. Deferred only hides a page from the
+  // preview's listings — it still built and still entered the sitemap. Dropping it
+  // from the feed means no page and nothing submitted to search. The Story Room
+  // keeps the draft, and this is one line to undo.
+  retiredPaths: ['/articles/learning-to-trust/'],
   linkedStories: { '012aaa8a-e94a-4ff2-8730-87a663205057': '/guides/finding-help/', 'cms-detachment': '/articles/detachment/', 'de45655f-f3a2-46a4-a2a7-a52a7174ed98': '/articles/your-first-al-anon-meeting/',
     // Reclassified themes: the Story Room still publishes at the old address.
     'cms-powerlessness': '/guides/surrender/', 'cms-boundaries': '/guides/boundaries/',
