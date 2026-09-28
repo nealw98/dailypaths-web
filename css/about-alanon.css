@@ -6,18 +6,19 @@
   margin: 0 auto;
   padding: clamp(40px, 6vw, 72px) 0 30px;
 }
-.page-about-alanon .photo-hero-img {
+body.page-about-alanon .photo-hero.photo-hero .photo-hero-img {
   position: relative;
   display: block;
   width: 100%;
   height: clamp(220px, 32vw, 420px);
+  aspect-ratio: auto;
   object-fit: cover;
   object-position: center 55%;
 }
 .page-about-alanon .photo-hero-scrim { display: none; }
 .page-about-alanon .photo-hero-title,
 .page-about-alanon .photo-hero-sub { color: var(--text-primary); }
-.page-about-alanon .photo-hero-title { max-width: none; }
+body.page-about-alanon .photo-hero .photo-hero-inner .photo-hero-title { max-width: none; }
 .page-about-alanon .photo-hero-sub { max-width: 48ch; }
 
 .page-about-alanon :is(.rd-article, .wrap--article, .teal-band-inner) {
