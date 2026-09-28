@@ -134,7 +134,7 @@ export function renderAboutAlanonPage() {
 ${photoHero({
     image: bp('/assets/hero-image.jpg'),
     alt: 'Sunlit meadow path — the Al-Anon program',
-    title: 'The Al-Anon Program',
+    title: 'About the Al-Anon Program',
     subtitle: 'A path for those affected by someone else&rsquo;s drinking.',
     size: 'lg',
   })}
@@ -186,12 +186,12 @@ ${meetingBand}
     ${terminalBand()}`;
 
   return wrapInLayout({
-    title: 'The Al-Anon Program — Steps, Fellowship, Literature & Service | Al-Anon Daily Paths',
+    title: 'About the Al-Anon Program | Daily Paths',
     description: 'Explore the Al-Anon program — the Twelve Steps, fellowship meetings, Conference-Approved literature, and service. A spiritual path for families and friends affected by someone else’s drinking.',
     canonicalPath: '/guides/about-alanon/',
     bodyContent,
     bodyClass: 'page-about-alanon',
-    navSection: 'alanon',
+    navSection: 'guides',
     hasAppPanel: true,
-  });
+  }).replace('</head>', '<link rel="stylesheet" href="' + bp('/css/about-alanon.css') + '">\n</head>');
 }
