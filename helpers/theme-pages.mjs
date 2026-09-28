@@ -16,6 +16,7 @@ export const MOVED_THEME_PAGES = {
   boundaries: '/guides/boundaries/',
   'letting-go': '/articles/letting-go/',
   honesty: '/articles/the-stories-we-tell-ourselves/',
+  'self-worth': '/articles/who-am-i-behind-the-mask/',
 };
 
 /** The current address of a theme's page. */

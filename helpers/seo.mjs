@@ -67,6 +67,13 @@ export function generateSitemap(readings, topics, books = [], steps = [], lastmo
   urls.push({ path: '/support/', priority: '0.3', changefreq: 'monthly' });
   urls.push({ path: '/terms/', priority: '0.3', changefreq: 'monthly' });
 
+  // A theme reclassified as an article or a guide is reached from two of the lists
+  // above — once as a topic, once as the piece it became — so the same address was
+  // emitted twice for all six moved themes. The first entry wins, which is the
+  // higher priority where they differ.
+  const seen = new Set();
+  urls = urls.filter(u => !seen.has(u.path) && seen.add(u.path));
+
   // lastmod is omitted rather than guessed. A date that moves on every rebuild
   // teaches search engines to ignore the signal for the whole site.
   const urlEntries = urls.map(u => {

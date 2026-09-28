@@ -2,12 +2,17 @@
 // change the production catalog, or imply approval of a CMS publication.
 export const LAUNCH_REVIEW = {
   retired: ['/articles/detachment/'],
-  deferred: ['/topics/one-day-at-a-time/', '/topics/self-worth/', '/topics/gratitude-and-hope/', '/articles/the-stories-we-tell-ourselves/'],
+  // Who Am I Behind the Mask is finished, so self-worth comes off this list.
+  // Learning to Trust published from the Story Room with an empty summary, and was
+  // asked to be dropped as a placeholder — deferred hides it from the listings and
+  // from links without retiring an address, so it is one line to bring back.
+  deferred: ['/topics/one-day-at-a-time/', '/topics/gratitude-and-hope/', '/articles/the-stories-we-tell-ourselves/', '/articles/learning-to-trust/'],
   retiredPaths: [],
   linkedStories: { '012aaa8a-e94a-4ff2-8730-87a663205057': '/guides/finding-help/', 'cms-detachment': '/articles/detachment/', 'de45655f-f3a2-46a4-a2a7-a52a7174ed98': '/articles/your-first-al-anon-meeting/',
     // Reclassified themes: the Story Room still publishes at the old address.
     'cms-powerlessness': '/guides/surrender/', 'cms-boundaries': '/guides/boundaries/',
-    'cms-letting-go': '/articles/letting-go/', 'cms-honesty': '/articles/the-stories-we-tell-ourselves/' },
+    'cms-letting-go': '/articles/letting-go/', 'cms-honesty': '/articles/the-stories-we-tell-ourselves/',
+    'cms-self-worth': '/articles/who-am-i-behind-the-mask/' },
   cmsManaged: ['/guides/finding-help/', '/guides/detachment-with-love/', '/articles/your-first-al-anon-meeting/'],
   drafts: ['/guides/detachment-with-love/', '/articles/your-first-al-anon-meeting/'],
   metadata: {
