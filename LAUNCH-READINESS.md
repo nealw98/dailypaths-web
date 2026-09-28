@@ -139,17 +139,18 @@ into Finding Help. See also B5 — this guide and Finding Support overlap.
 
 `launchItems(items, preview)` returns everything unfiltered when `preview` is
 false. So `LAUNCH_REVIEW.deferred` hides a page from the preview's listings and
-**not** from a production build. At launch, three pieces Neal explicitly deferred
-come back into the Articles and Guides listings:
+**not** from a production build. At launch, the pieces still deferred come back
+into the Articles and Guides listings:
 
 - `/topics/one-day-at-a-time/` — inherited, awaiting rewrite
 - `/topics/gratitude-and-hope/` — inherited, awaiting rewrite
-- `/articles/the-stories-we-tell-ourselves/` — inherited
+
+(The Stories We Tell Ourselves was rewritten and is no longer deferred.)
 
 Verified by running the catalog sync against the cached feed in both modes. Either
-these ship, or the filter has to apply to production too. It is an editorial call,
-not a bug to fix silently — but it has to be made before the production build, or
-it gets made by default.
+these two ship as they are, or the filter has to apply to production too. It is an
+editorial call, not a bug to fix silently — but it has to be made before the
+production build, or it gets made by default.
 
 ### A7. Learning to Trust is published but suppressed
 
@@ -400,10 +401,10 @@ Low priority, but decide whether `/topics/` should be `noindex` in the meantime.
   does not answer the original query as a soft 404 and drops the link equity.
   Those five addresses had ~250–280 words each and are in the live sitemap today.
   Worth deciding whether a short literature page is better than the redirect.
-- **Deferred pages still in the catalog**: `/topics/one-day-at-a-time/`,
-  `/topics/gratitude-and-hope/`, `/articles/the-stories-we-tell-ourselves/`,
-  `/articles/learning-to-trust/` are hidden from listings but their routes remain.
-  Decide whether they are `noindex`, rewritten, or promoted.
+- **Deferred pages still in the catalog**: `/topics/one-day-at-a-time/` and
+  `/topics/gratitude-and-hope/` are hidden from the preview's listings but their
+  routes remain and they still build. Decide whether they are `noindex`,
+  rewritten, or promoted. See A6 — the hiding does not apply to production.
 - **Reflections hub redesign** (`HANDOFF.md` §5): the agreed three-section design
   — Steps, Traditions, Concepts — is still 12 month cards.
 - **Step pages do not list their reflections.** The 12 Step pages carry only their

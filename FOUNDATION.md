@@ -29,6 +29,13 @@ publishes it and where `/topics/detachment/` and `/themes/detachment/` forward.
 `/guides/detachment/` was never a live address; it now forwards there too, so the
 shorter name the guide suggests does not 404.
 
+The Stories We Tell Ourselves is rewritten and complete, published from the Story
+Room on September 26 (1,761 words, by Neal W.), so it comes off the deferred list
+and appears in the Articles listing again. Its catalog entry still called it
+"Honesty" and described its hero as "a moment of quiet reflection" rather than the
+owl it actually shows; both now match what the Story Room publishes. Two pieces
+remain deferred pending their rewrites: One Day at a Time and Gratitude & Hope.
+
 ### Still open
 
 - **About Al-Anon has two versions.** The static guide at `/guides/about-alanon/`

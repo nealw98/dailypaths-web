@@ -6,8 +6,10 @@ export const LAUNCH_REVIEW = {
   // /guides/detachment-with-love/, and has left the feed. Nothing links to the
   // old address any more, so there is nothing left to suppress.
   retired: [],
-  // Who Am I Behind the Mask is finished, so self-worth comes off this list.
-  deferred: ['/topics/one-day-at-a-time/', '/topics/gratitude-and-hope/', '/articles/the-stories-we-tell-ourselves/'],
+  // Rewritten pieces come off this list as they land: Who Am I Behind the Mask
+  // first, and now The Stories We Tell Ourselves, published from the Story Room
+  // on September 26. What is left is the two still awaiting their rewrite.
+  deferred: ['/topics/one-day-at-a-time/', '/topics/gratitude-and-hope/'],
   // Learning to Trust published from the Story Room with an empty summary, having
   // been asked to be dropped as a placeholder. Deferred only hides a page from the
   // preview's listings — it still built and still entered the sitemap. Dropping it
@@ -43,7 +45,7 @@ export function launchItems(items, preview) {
 }
 
 // Also applied to approved CMS HTML at request time: remove promotional blocks
-// and links to the four deferred pieces without rewriting approved prose/art.
+// and links to the deferred pieces without rewriting approved prose/art.
 // Self-contained for inclusion in the preview Worker.
 export function transformLaunchPreview(html, pathname, policy = LAUNCH_REVIEW) {
   if (!html) return html;
