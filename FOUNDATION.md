@@ -55,6 +55,23 @@ remain deferred pending their rewrites: One Day at a Time and Gratitude & Hope.
   there in `linkedStories`.
 - **Finding Help and About Al-Anon still overlap.** Both introduce Al-Anon and
   both are in the Guides listing. Settle what each is for, or merge them.
+- **Splitting Learning to Trust — Neal's, to do in the Story Room.** He raised
+  dividing Celina R's 2,578-word story in two, the second half taking the reserved
+  `/articles/what-happens-after-the-drinking-stops/` address, and asked that it not
+  be done for him. Nothing here splits it; the note is only what was found looking.
+
+  The natural seam is the section "He was sober. I was still angry." at roughly
+  1,070 words: everything before it is about living with the drinking, the five
+  sections after it about what remained once it stopped. That would leave ~1,070
+  and ~1,508 words.
+
+  Two things worth settling first, neither technical. It is one contributor's
+  continuous first-person account, so splitting it into two bylined pieces is
+  Celina's to agree to. And the reserved address was set aside for an article Neal
+  meant to write himself, so using it for the second half changes what that piece
+  is. Mechanically nothing is needed: the address is already a valid publish
+  target, and publishing there replaces the placeholder and enters the catalogue
+  and sitemap on the next build.
 - ~~Learning to Trust is being suppressed.~~ **Restored September 28** at Neal's
   request. Celina R's 2,716-word article builds, lists in Articles and enters the
   sitemap. `retiredPaths` is now empty; it drops a path from the feed entirely, so

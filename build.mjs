@@ -409,7 +409,12 @@ const ogElapsed = ((Date.now() - ogStart) / 1000).toFixed(1);
 console.log(`  OG images generated in ${ogElapsed}s`);
 
 // --- Step 5: Generate SEO artifacts ---
+// A reserved address holds a coming-soon page until the Story Room publishes
+// something there, at which point the real article takes over. applyPublished
+// would overwrite the placeholder below anyway, but skipping it keeps the
+// changeover legible: once the piece exists, nothing builds a placeholder for it.
 if (IS_PREVIEW) for (const article of ARTICLE_PLACEHOLDERS) {
+  if (cmsItems.some(item => item.path === article.path)) continue;
   mkdirSync(join(outDir,article.path),{recursive:true});
   writePage(join(outDir,article.path,'index.html'),renderArticlePlaceholder(article));
 }

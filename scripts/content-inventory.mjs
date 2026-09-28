@@ -37,8 +37,14 @@ const { LAUNCH_REVIEW } = await import('../helpers/launch-review.mjs');
 const { ARTICLE_PLACEHOLDERS } = await import('../templates/article-placeholders.mjs');
 const { MOVED_THEME_PAGES, themePath } = await import('../helpers/theme-pages.mjs');
 const { TOPICS } = await import('../helpers/theme-data.mjs');
-const { getPublished, validPath, CACHE_PATH } = await import('../helpers/story-room.mjs');
+const { getPublished, validPath, CACHE_PATH, syncCatalog } = await import('../helpers/story-room.mjs');
 const { loadStoryRoomCache } = await import('../helpers/story-room-cache.mjs');
+const { loadThemeDestinations } = await import('../helpers/theme-destinations.mjs');
+
+// Which addresses were in the repository's own catalogue before the Story Room
+// was folded in, so a piece the Story Room has never carried can be told apart
+// from one it supplies.
+const staticPaths = new Set([...ARTICLES, ...GUIDES].map(i => i.path));
 
 // --- The three sources ---------------------------------------------------
 
@@ -129,7 +135,7 @@ for (const [items, kind] of [[ARTICLES, 'Article'], [GUIDES, 'Guide']]) {
     const r = row(item.path);
     r.title ||= item.title;
     r.kind ||= kind;
-    if (!r.storyRoom) {
+    if (!r.storyRoom && staticPaths.has(item.path)) {
       r.status = 'Not in the Story Room';
       r.note = 'Built from a template in this repository. Editing it means changing code, not publishing.';
     }
@@ -158,12 +164,40 @@ for (const item of ARTICLE_PLACEHOLDERS) {
   r.note = 'An address held for a piece that has not been written. Built noindex in the preview only.';
 }
 
+// --- What links to each page ---------------------------------------------
+
+// An address can answer and still be unreachable in practice, because nothing on
+// the site points at it. Folding the Story Room into the catalogue first, the way
+// the build does, gives the listings their real membership.
+syncCatalog([...rows.values()].filter(r => r.storyRoom && validPath(r.path))
+  .map(r => ({ path: r.path, card_title: r.title, summary: '', author: r.author, content_type: r.kind === 'Guide' ? 'guide' : 'article' })),
+  ARTICLES, GUIDES);
+
+const inArticles = new Set(ARTICLES.map(i => i.path));
+const inGuides = new Set(GUIDES.map(i => i.path));
+const inTopicsIndex = new Set(TOPICS.map(t => themePath(t.slug)));
+// The Go deeper card and the pill on a reflection, resolved the way the build
+// resolves them, so a destination naming a moved theme counts at its new address.
+const table = loadThemeDestinations();
+const fromReflections = new Set([...(table?.values() ?? [])]
+  .map(dest => dest.startsWith('/topics/') ? themePath(dest.split('/')[2]) : dest));
+
 for (const r of rows.values()) {
   r.redirects = redirects[r.path] || [];
   r.live = live.has(r.path);
   // A live address that now forwards is still reachable; one that neither
   // answers nor forwards is the case worth seeing.
   r.liveElsewhere = r.redirects.filter(p => live.has(p));
+
+  const links = [];
+  if (inArticles.has(r.path)) links.push('Articles index');
+  if (inGuides.has(r.path)) links.push('Guides index');
+  if (inTopicsIndex.has(r.path)) links.push('Topics index');
+  if (fromReflections.has(r.path)) links.push('Reflections');
+  r.linkedFrom = links;
+  // Deferral removes a piece from the preview's listings without removing the
+  // page, so it is linked in a production build and not in the preview.
+  r.listingNote = LAUNCH_REVIEW.deferred.includes(r.path) ? ' (production only)' : '';
 }
 
 // --- Output ---------------------------------------------------------------
@@ -173,10 +207,11 @@ const all = [...rows.values()].sort((a, b) =>
   ORDER.indexOf(a.status) - ORDER.indexOf(b.status) || a.kind.localeCompare(b.kind) || a.path.localeCompare(b.path));
 
 const csvCell = v => `"${String(v ?? '').replace(/"/g, '""')}"`;
-const csv = [['title', 'kind', 'status', 'url', 'forwards_from', 'in_story_room', 'story_room_id',
-  'author', 'words', 'live_on_dailypaths_today', 'note'].join(',')];
+const csv = [['title', 'kind', 'status', 'url', 'linked_from', 'forwards_from', 'in_story_room',
+  'story_room_id', 'author', 'words', 'live_on_dailypaths_today', 'note'].join(',')];
 for (const r of all) {
-  csv.push([r.title, r.kind, r.status, r.path, r.redirects.join(' '), r.storyRoom ? 'yes' : 'no',
+  csv.push([r.title, r.kind, r.status, r.path, (r.linkedFrom.join(' + ') || 'nothing') + r.listingNote,
+    r.redirects.join(' '), r.storyRoom ? 'yes' : 'no',
     r.storyRoom, r.author, r.words ?? '', r.live ? 'yes' : (r.liveElsewhere.length ? `via ${r.liveElsewhere.join(' ')}` : 'no'),
     r.note].map(csvCell).join(','));
 }
@@ -198,14 +233,41 @@ const md = ['# Articles and guides — where everything stands', '',
   'content and card text in the Story Room, deferral in `helpers/launch-review.mjs`,',
   'addresses in `helpers/theme-pages.mjs` and `build.mjs`.', ''];
 
+// An address answering is not the same as a reader being able to find it. Two
+// weaker cases are worth seeing on their own, because neither shows up as a
+// broken link or a failing check.
+const orphans = all.filter(r => !r.linkedFrom.length);
+const indexOnly = all.filter(r => r.linkedFrom.length && !r.linkedFrom.includes('Reflections')
+  && r.status === 'Published');
+
+md.push('## What nothing points at', '');
+if (orphans.length) {
+  md.push('Nothing on the site links to these. They answer if you know the address,',
+    'and are otherwise invisible — they need bringing in or discarding.', '');
+  for (const r of orphans) md.push(`- **${r.title}** — \`${r.path}\` (${r.status.toLowerCase()})`);
+} else {
+  md.push('Every piece is linked from somewhere.');
+}
+md.push('');
+if (indexOnly.length) {
+  md.push(`### Linked from their index, but from no reflection — ${indexOnly.length}`, '',
+    'These are reachable through the navigation, so a reader browsing finds them.',
+    'But none of the 366 reflections points at them, which is where most readers',
+    'actually are. Giving a theme a destination in the Reading Room table is what',
+    'connects them — see section 6 of `HANDOFF.md`.', '');
+  for (const r of indexOnly) md.push(`- **${r.title}** — \`${r.path}\``);
+  md.push('');
+}
+
 for (const status of ORDER) {
   const group = all.filter(r => r.status === status);
   if (!group.length) continue;
   md.push(`## ${status} — ${group.length}`, '', EXPLAIN[status], '',
-    '| Piece | Kind | Address | Forwards from | Live today | Words |',
-    '|---|---|---|---|---|---|');
+    '| Piece | Kind | Address | Linked from | Forwards from | Live today | Words |',
+    '|---|---|---|---|---|---|---|');
   for (const r of group) {
-    md.push(`| ${r.title} | ${r.kind} | \`${r.path}\` | ${r.redirects.map(p => `\`${p}\``).join('<br>') || '—'} | ${r.live ? 'yes' : (r.liveElsewhere.length ? `as \`${r.liveElsewhere[0]}\`` : 'no')} | ${r.words ?? '—'} |`);
+    const linked = r.linkedFrom.length ? r.linkedFrom.join('<br>') + r.listingNote : '**nothing**';
+    md.push(`| ${r.title} | ${r.kind} | \`${r.path}\` | ${linked} | ${r.redirects.map(p => `\`${p}\``).join('<br>') || '—'} | ${r.live ? 'yes' : (r.liveElsewhere.length ? `as \`${r.liveElsewhere[0]}\`` : 'no')} | ${r.words ?? '—'} |`);
   }
   md.push('');
   for (const r of group.filter(r => r.note && r.status !== 'Published')) md.push(`- **${r.title}** — ${r.note}`);
