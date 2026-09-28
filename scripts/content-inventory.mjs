@@ -179,8 +179,20 @@ const inTopicsIndex = new Set(TOPICS.map(t => themePath(t.slug)));
 // The Go deeper card and the pill on a reflection, resolved the way the build
 // resolves them, so a destination naming a moved theme counts at its new address.
 const table = loadThemeDestinations();
-const fromReflections = new Set([...(table?.values() ?? [])]
-  .map(dest => dest.startsWith('/topics/') ? themePath(dest.split('/')[2]) : dest));
+const resolveDest = dest => dest.startsWith('/topics/') ? themePath(dest.split('/')[2]) : dest;
+const fromReflections = new Set([...(table?.values() ?? [])].map(resolveDest));
+
+// How many reflections actually carry a theme that lands on each page. "Linked
+// from the reflections" and "linked from 43 of them" are different facts, and the
+// second is the one that says whether retiring a page would cost anything.
+const reflectionCount = {};
+try {
+  const manifest = JSON.parse(readFileSync(join(root, 'docs/readings-manifest.json'), 'utf-8'));
+  for (const reading of (Array.isArray(manifest) ? manifest : manifest.readings ?? [])) {
+    const dest = table?.get(reading.theme);
+    if (dest) reflectionCount[resolveDest(dest)] = (reflectionCount[resolveDest(dest)] ?? 0) + 1;
+  }
+} catch { /* the counts are an extra; the rest of the table stands without them */ }
 
 for (const r of rows.values()) {
   r.redirects = redirects[r.path] || [];
@@ -193,7 +205,7 @@ for (const r of rows.values()) {
   if (inArticles.has(r.path)) links.push('Articles index');
   if (inGuides.has(r.path)) links.push('Guides index');
   if (inTopicsIndex.has(r.path)) links.push('Topics index');
-  if (fromReflections.has(r.path)) links.push('Reflections');
+  if (fromReflections.has(r.path)) links.push(`Reflections (${reflectionCount[r.path] ?? 0})`);
   r.linkedFrom = links;
   // Deferral removes a piece from the preview's listings without removing the
   // page, so it is linked in a production build and not in the preview.
@@ -237,8 +249,23 @@ const md = ['# Articles and guides — where everything stands', '',
 // weaker cases are worth seeing on their own, because neither shows up as a
 // broken link or a failing check.
 const orphans = all.filter(r => !r.linkedFrom.length);
-const indexOnly = all.filter(r => r.linkedFrom.length && !r.linkedFrom.includes('Reflections')
-  && r.status === 'Published');
+const indexOnly = all.filter(r => r.linkedFrom.length
+  && !r.linkedFrom.some(l => l.startsWith('Reflections')) && r.status === 'Published');
+
+md.push('## How a reader reaches these pages', '',
+  'The site navigation is three items — Reflections, Articles, Guides. There is no',
+  '"Topics" or "Themes" in it.', '',
+  '- **`/themes/`** no longer exists. It and every `/themes/<name>/` address forward',
+  '  to wherever that piece lives now.',
+  '- **`/topics/`** still exists and still lists all twelve topics, but it is not in',
+  '  the navigation. One button on `/about-project/` links to it, and that is all.',
+  '  It is close to being an orphan hub itself.',
+  '- **The Go deeper card on a reflection** is the route that carries real traffic.',
+  '  A reflection\'s theme resolves to one destination, and the card links to it by',
+  '  name. The counts in "Linked from" below are how many of the 366 reflections',
+  '  land on each page that way.', '',
+  'So a page showing `Topics index + Reflections (35)` is not a leftover nobody can',
+  'reach. It is reached from 35 reflections, whatever the hub above it is doing.', '');
 
 md.push('## What nothing points at', '');
 if (orphans.length) {
