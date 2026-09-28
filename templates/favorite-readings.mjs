@@ -2,33 +2,42 @@ import { wrapInLayout } from './base.mjs';
 import { terminalBand } from './ui.mjs';
 import { bp } from '../helpers/config.mjs';
 import { readingSlug } from '../helpers/slug-utils.mjs';
+import { loadFavoriteReadings, readingTeaser } from '../helpers/favorite-readings.mjs';
 
-function engagement(stats = {}) {
-  return (stats.positive || 0) + (stats.favorites || 0);
-}
-
-/** Render the ten readings with the highest combined positive/favorite score. */
+/**
+ * Render the ten chosen reflections.
+ *
+ * The list is fixed in data/favorite-readings.json rather than ranked live, so
+ * this page can be changed as often as you like without moving the sibling cards
+ * on 366 reflection pages. Falls back to the highest-rated days when no list has
+ * been chosen, which keeps the page populated on a fresh checkout.
+ */
 export function renderFavoriteReadingsPage(readings, ratingsMap = new Map()) {
-  const favorites = [...readings]
-    .sort((a, b) => {
-      const aStats = ratingsMap.get(a.day_of_year) || {};
-      const bStats = ratingsMap.get(b.day_of_year) || {};
-      const scoreDifference = engagement(bStats) - engagement(aStats);
-      if (scoreDifference !== 0) return scoreDifference;
-      if ((bStats.favorites || 0) !== (aStats.favorites || 0)) return (bStats.favorites || 0) - (aStats.favorites || 0);
-      if ((bStats.positive || 0) !== (aStats.positive || 0)) return (bStats.positive || 0) - (aStats.positive || 0);
-      return a.day_of_year - b.day_of_year;
-    })
-    .slice(0, 10);
+  const byDay = new Map(readings.map(reading => [reading.day_of_year, reading]));
+  const chosen = loadFavoriteReadings();
 
-  const readingItems = favorites.map((reading, index) => `
-          <li class="ma-reading-item favorite-reading-item">
-            <a href="${bp(`/${readingSlug(reading.day_of_year, reading.title)}/`)}" class="ma-reading-link">
-              <span class="favorite-reading-rank">${String(index + 1).padStart(2, '0')}</span>
-              <span class="ma-reading-day">${reading.display_date}</span>
-              <span class="ma-reading-title">${reading.title || 'Daily Reading'}</span>
-            </a>
-          </li>`).join('');
+  const favorites = chosen
+    ? chosen.map(day => byDay.get(day)).filter(Boolean)
+    : [...readings].sort((a, b) => {
+      const score = reading => {
+        const stats = ratingsMap.get(reading.day_of_year) || {};
+        return (stats.positive || 0) + (stats.favorites || 0);
+      };
+      return score(b) - score(a) || a.day_of_year - b.day_of_year;
+    }).slice(0, 10);
+
+  const cards = favorites.map(reading => {
+    const teaser = readingTeaser(reading);
+    const theme = (reading.secondary_theme || '').trim();
+    return `
+          <a href="${bp(`/${readingSlug(reading.day_of_year, reading.title)}/`)}" class="kr-card">
+            ${theme ? `<span class="kr-card-context">${theme}</span>` : ''}
+            <span class="kr-card-date">${reading.display_date}</span>
+            <span class="kr-card-title">${reading.title || 'Daily Reading'}</span>
+            ${teaser ? `<span class="kr-card-teaser">${teaser}</span>` : ''}
+            <span class="kr-card-cta">Read</span>
+          </a>`;
+  }).join('');
 
   const bodyContent = `
     <div class="wrap section--md">
@@ -36,13 +45,12 @@ export function renderFavoriteReadingsPage(readings, ratingsMap = new Map()) {
         <a href="${bp('/reflections/')}" class="ma-back-link">&larr; All reflection collections</a>
       </nav>
       <header class="ma-header favorite-readings-header">
-        <p class="eyebrow ma-collection-eyebrow">Across the year &middot; Top 10</p>
+        <p class="eyebrow ma-collection-eyebrow">Across the year</p>
         <h1 class="ma-title">Favorite Readings</h1>
         <p class="ma-subtitle">The reflections readers return to most.</p>
       </header>
-      <ol class="ma-week-list favorite-reading-list">
-${readingItems}
-      </ol>
+      <div class="kr-grid">${cards}
+      </div>
     </div>
     ${terminalBand()}`;
 

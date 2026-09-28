@@ -12,6 +12,7 @@ import { reflectionHeroImage, reflectionImage } from '../helpers/reflection-imag
 import { TYPOGRAPHY_REVIEW_PATH } from '../helpers/typography-review.mjs';
 import { themePath } from '../helpers/theme-pages.mjs';
 import { COLLECTION_PAGES } from '../helpers/collection-pages.mjs';
+import { readingTeaser } from '../helpers/favorite-readings.mjs';
 
 const NUMBER_WORDS = ['One', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine', 'Ten', 'Eleven', 'Twelve'];
 
@@ -31,20 +32,6 @@ function countToWords(n) {
 }
 
 function upperFirst(text) { return text ? text.charAt(0).toUpperCase() + text.slice(1) : text; }
-
-/**
- * Card teaser: the reading's own reminder line, used only when it fits on
- * roughly one line. Interim until the authored `teaser` field exists in the
- * reading record (design/handoff/daily-reflection-page.md).
- */
-function readingTeaser(reading) {
-  const teaser = (reading.thought_for_day || '')
-    .replace(/\\n/g, ' ')
-    .replace(/\*\*(.+?)\*\*/g, '$1')
-    .replace(/\*(.+?)\*/g, '$1')
-    .trim();
-  return teaser.length > 0 && teaser.length <= 110 ? teaser : '';
-}
 
 /**
  * Generate the HTML for an individual reading page — the site's main hub
