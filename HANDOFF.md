@@ -144,11 +144,18 @@ them yet:
 - **Step pages listing their reflections.** The 12 Step pages still carry only
   their essays.
 - **The theme → destination table.** Specified in section 6. Nothing reads it yet.
-- **Moving the remaining seven `/topics/…` pages.** Five have moved — see
-  `helpers/theme-pages.mjs`. Three await final titles from the rewrites
-  (`one-day-at-a-time`, `self-worth`, `gratitude-and-hope`); four are stubs
-  (`higher-power`, `the-disease`, `focus-on-yourself`, `fellowship`).
+- **Moving the remaining six `/topics/…` pages.** Six have moved — see
+  `helpers/theme-pages.mjs`; `self-worth` joined them as Who Am I Behind the Mask.
+  Two await final titles from the rewrites (`one-day-at-a-time`,
+  `gratitude-and-hope`), and both are in the Story Room already.
   `/topics/` retires once all twelve have moved.
+
+  The last four — `higher-power`, `the-disease`, `focus-on-yourself`,
+  `fellowship` — were called stubs here, and are not: 545 to 1,285 words of real
+  prose each. What they have not had is a rewrite, a review, or a Story Room
+  entry, which makes them the only content on the site that can be edited solely
+  by changing code. `editorial/leftover-drafts/` holds each one's copy and
+  metadata ready to paste in as a draft (`npm run drafts:leftovers`).
 
 ### One live defect this leaves
 

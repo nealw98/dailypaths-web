@@ -14,7 +14,8 @@
     "check:launch-urls": "node scripts/check-launch-urls.mjs",
     "seed:slugs": "node scripts/seed-reading-slugs.mjs",
     "themes:worksheet": "node scripts/theme-destinations.mjs",
-    "inventory": "node scripts/content-inventory.mjs"
+    "inventory": "node scripts/content-inventory.mjs",
+    "drafts:leftovers": "node scripts/leftover-drafts.mjs"
   },
   "dependencies": {
     "dotenv": "^16.4.7",
