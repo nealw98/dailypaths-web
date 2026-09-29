@@ -129,6 +129,45 @@ the Story Room match the site.
 
 ---
 
+## 3a. The whole URL picture, as of September 29, 2026
+
+Derived from the code rather than a build, so re-run `check:launch-urls` against a
+real build before launch — that is the gate, this is the map.
+
+**417 addresses are live on dailypaths.org today. 2.0 has 420.** All 366
+reflections keep their current addresses.
+
+**14 live addresses leave the sitemap. Every one forwards:**
+
+| Live today | Forwards to in 2.0 |
+|---|---|
+| `/topics/powerlessness/` | `/guides/surrender/` |
+| `/topics/detachment/` | `/guides/detachment-with-love/` |
+| `/topics/boundaries/` | `/guides/boundaries/` |
+| `/topics/letting-go/` | `/articles/letting-go/` |
+| `/topics/self-worth/` | `/articles/who-am-i-behind-the-mask/` |
+| `/topics/honesty/` | `/articles/the-stories-we-tell-ourselves/` |
+| `/about-alanon/` | `/guides/finding-help/` |
+| `/literature/` + its 4 book pages | `/guides/finding-help/` |
+| `/steps/` | `/reflections/` |
+| `/essentials/` | `/reflections/` |
+
+**17 addresses are new in 2.0 and have never been public:** `/articles/`,
+`/guides/`, `/reflections/`, `/reflections/favorites/`, `/traditions/`,
+`/concepts/`, the seven `/articles/…` pieces, and the four `/guides/…` guides.
+
+**Redirect-only addresses that were never public either.** These exist solely so a
+guessed or internal link lands somewhere: `/guides/about-alanon/` (created on 2.0
+in `3e01481`, retired on 2.0, never shipped), `/guides/detachment/`, `/themes/`
+and every `/themes/<slug>/`, and the legacy `/steps/step-N/` forms.
+
+Verified: **no redirect chains**, and **no redirect points at an address outside
+the sitemap**. Both are things `check:sitemap` fails on, and both are easy to
+reintroduce — a retirement that forwards to a page that was itself retired is the
+usual way.
+
+---
+
 ## 4. Checks to run before deploying
 
 ```bash
