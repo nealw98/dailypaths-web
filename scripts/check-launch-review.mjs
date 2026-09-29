@@ -23,11 +23,18 @@ for (const [route,html] of Object.entries(fallback)) {
   assert.ok(fallback[pathname] || fs.existsSync(destination),route+' has missing destination/resource '+pathname);
  }
 }
+// Four guides since About Al-Anon was consolidated into Finding Help and retired;
+// seven articles since the first-meeting piece, Who Am I Behind the Mask, The
+// Stories We Tell Ourselves and Learning to Trust were published.
 assert.equal((fallback['/guides/'].match(/<li data-cms-path=/g)||[]).length,4);
-assert.equal((fallback['/articles/'].match(/<article class="sd-story"/g)||[]).length,4);
+assert.equal((fallback['/articles/'].match(/<article class="sd-story"/g)||[]).length,7);
 assert.match(fallback['/guides/'],/Finding Help/);
-assert.doesNotMatch(fallback['/articles/'],/Personal story · Jeff J\./);
-assert.match(fallback['/articles/'],/Personal Story · Jeff J\./);
+assert.doesNotMatch(fallback['/guides/'],/about-alanon/);
+// Both member stories carry Lance W's and Celina R's names, and neither carries
+// the superseded Jeff J. attribution.
+assert.doesNotMatch(fallback['/articles/'],/Jeff J\./);
+assert.match(fallback['/articles/'],/Personal Story · Lance W/);
+assert.match(fallback['/articles/'],/Personal Story · Celina R/);
 assert.doesNotMatch(fallback['/articles/the-line-i-kept-moving/'],/Coming soon/);
 const canonical=route=>fallback[route].match(/<link rel="canonical" href="([^"]+)"/)[1];
 for(const route of paths) assert.equal(canonical(route),'https://daily-paths-soft-daylight.nealw98.chatgpt.site'+route);
@@ -42,7 +49,15 @@ assert.equal(launchItems([{path:LAUNCH_REVIEW.deferred[0]}],false).length,1,'Pro
 const originalFetch=globalThis.fetch,originalRewriter=globalThis.HTMLRewriter;
 let cmsRequests=0;const selectors=[];
 globalThis.fetch=async url=>{cmsRequests++;const u=new URL(url);if(u.searchParams.has('path'))return Response.json({html:'<main><div class="story-related-links"><article><p class="sd-kicker">Article · Coming soon</p><h3>Unwritten</h3></article></div><p>Approved body stays here.</p><aside class="theme-related-guide"><a href="/topics/one-day-at-a-time/">Deferred</a></aside></main>',revision:'test-approved'});
- return Response.json({items:[{id:'de45655f-f3a2-46a4-a2a7-a52a7174ed98',path:'/articles/lances-new-title/',title:'First Meeting',content_type:'article'},...LAUNCH_REVIEW.deferred.map(path=>({path,title:'Deferred',content_type:'article'})),{path:'/about-alanon/',card_title:'Finding Support',content_type:'guide'}]});};
+ // The feed has to carry every linked story, or the worker cannot resolve the
+ // address the Story Room publishes it at and quietly serves the built page
+ // instead — which made the letting-go assertion below pass against the wrong
+ // HTML. The first-meeting entry keeps a deliberately different CMS path, so the
+ // remapping is still exercised.
+ const FIRST_MEETING_ID='de45655f-f3a2-46a4-a2a7-a52a7174ed98';
+ const linked=Object.entries(LAUNCH_REVIEW.linkedStories).map(([id,site])=>
+  ({id,path:id===FIRST_MEETING_ID?'/articles/lances-new-title/':site,title:'Linked',content_type:'article'}));
+ return Response.json({items:[...linked,...LAUNCH_REVIEW.deferred.map(path=>({path,title:'Deferred',content_type:'article'})),{path:'/about-alanon/',card_title:'Finding Support',content_type:'guide'}]});};
 globalThis.HTMLRewriter=class{on(selector){selectors.push(selector);return this;}transform(response){return response;}};
 try{
  const worker=createCmsWorker(fallback,paths.map(path=>({path})),composePage,LAUNCH_REVIEW,transformLaunchPreview);
@@ -64,12 +79,19 @@ try{
   assert.equal(moved.status,301,`${retired} should redirect`);
   assert.equal(new URL(moved.headers.get('location')).pathname,'/guides/finding-help/',`${retired} should land on Finding Help`);
  }
+ // These two used to assert the review manuscript reappeared when the CMS had
+ // nothing. The manuscripts are retired and the article is published, so the
+ // contract is now the documented one: an outage falls back to the last build,
+ // serving that page's real content rather than 404ing or emptying the page.
+ const firstMeeting='/articles/your-first-al-anon-meeting/';
  globalThis.fetch=async()=>Response.json({items:[]});
- const notPublished=await worker.fetch(new Request('https://review.test/articles/your-first-al-anon-meeting/'));
- assert.match(await notPublished.text(),/Placeholder content/);
+ const notPublished=await worker.fetch(new Request('https://review.test'+firstMeeting));
+ assert.equal(notPublished.status,200);
+ assert.match(await notPublished.text(),/Your First Al-Anon Meeting/);
  globalThis.fetch=async()=>{throw Error('Simulated CMS outage');};
- const unpublished=await worker.fetch(new Request('https://review.test/articles/your-first-al-anon-meeting/'));
- assert.match(await unpublished.text(),/Placeholder content/);
+ const unpublished=await worker.fetch(new Request('https://review.test'+firstMeeting));
+ assert.equal(unpublished.status,200);
+ assert.match(await unpublished.text(),/Your First Al-Anon Meeting/);
  const offline=await worker.fetch(new Request('https://review.test/guides/'));assert.equal(offline.status,200);assert.match(await offline.text(),/Finding Help/);
 } finally {globalThis.fetch=originalFetch;globalThis.HTMLRewriter=originalRewriter;}
-console.log('Launch review checks passed: retained routes, four guides/four articles, draft isolation, CMS filtering/outage fallback, canonical preservation, and 366 reflections.');
+console.log('Launch review checks passed: retained routes, four guides / seven articles, consolidated redirects, CMS filtering/outage fallback, canonical preservation, and 366 reflections.');

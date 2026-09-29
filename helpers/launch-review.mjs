@@ -6,6 +6,16 @@ export const LAUNCH_REVIEW = {
   // /guides/detachment-with-love/, and has left the feed. Nothing links to the
   // old address any more, so there is nothing left to suppress.
   retired: [],
+  // Retired into another page, rather than removed. `retired` above answers 410;
+  // these answer 301, because their content lives on at the address named here
+  // and whatever they had earned should follow it. One declaration, three uses:
+  // the Worker's redirect, the link rewrite in approved snapshots, and the index
+  // filter — without the last, the Story Room still lists About Al-Anon among the
+  // guides, since it goes on publishing cms-about-alanon at /about-alanon/.
+  consolidated: {
+    '/about-alanon/': '/guides/finding-help/',
+    '/guides/about-alanon/': '/guides/finding-help/',
+  },
   // Rewritten pieces come off this list as they land: Who Am I Behind the Mask
   // first, and now The Stories We Tell Ourselves, published from the Story Room
   // on September 26. What is left is the two still awaiting their rewrite.
@@ -49,10 +59,12 @@ export function launchItems(items, preview) {
 // Self-contained for inclusion in the preview Worker.
 export function transformLaunchPreview(html, pathname, policy = LAUNCH_REVIEW) {
   if (!html) return html;
-  // Approved snapshots still link to both retired About Al-Anon addresses.
-  // Point them at the guide those two were consolidated into.
-  html = html.replaceAll('/guides/about-alanon/', '/guides/finding-help/');
-  html = html.replaceAll('/about-alanon/', '/guides/finding-help/');
+  // Approved snapshots still link to addresses that have been consolidated away.
+  // Longest first, so /guides/about-alanon/ is not half-rewritten by the rule for
+  // /about-alanon/ and left pointing at /guides/guides/finding-help/.
+  for (const [from, to] of Object.entries(policy.consolidated || {}).sort((a, b) => b[0].length - a[0].length)) {
+    html = html.replaceAll(from, to);
+  }
   // Remove the retired article's cards, including cached CMS fallback listings.
   const retiredHref = href => {
     try { const u = new URL(href, 'https://daily-paths-soft-daylight.nealw98.chatgpt.site');

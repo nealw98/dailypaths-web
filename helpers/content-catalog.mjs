@@ -30,6 +30,10 @@ export const ARTICLES = [
   { title: 'The Stories We Tell Ourselves', path: '/articles/the-stories-we-tell-ourselves/', image: 'articles/honesty-hero.jpg', alt: 'An owl looking ahead with clear, steady eyes', category: 'Knowing yourself', description: 'Fear of rejection, uncertainty, and not being enough can shape the stories we tell ourselves.' },
   { title: 'The Line I Kept Moving', path: '/articles/the-line-i-kept-moving/', image: 'articles/the-line-i-kept-moving/dinner-table-photo.webp', alt: 'A woman with dinner at the table while her adult son prepares another meal in the kitchen', category: 'Personal Story', description: 'Learning to set boundaries with my mother—and to stop disappearing in the effort to earn her love.' },
   VOICES_ARTICLE,
+  // Celina R's first-person account. The Story Room owns its title, summary and
+  // hero; this seeds the category, which syncCatalog keeps rather than
+  // overwriting — without it the card read "Article" like any explanatory piece.
+  { title: 'Learning to Trust', path: '/articles/learning-to-trust/', image: 'articles/fellowship-hero.jpg', alt: 'Hands joined in a circle on the grass', category: 'Personal Story', description: 'Learning to trust my father again, and myself, after years of not being able to.' },
 ];
 
 // Published and reviewed, so it belongs in the catalog on both sides. The Story

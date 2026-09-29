@@ -8,8 +8,9 @@ export function createCmsWorker(fallback,knownPaths,composePage,launchPolicy={},
   if(request.method!=='GET'&&request.method!=='HEAD')return new Response('Method not allowed',{status:405,headers:{Allow:'GET, HEAD'}});
   if(!path.endsWith('/')&&!path.split('/').at(-1).includes('.'))return Response.redirect(u.origin+path+'/',308);
   if(launchPolicy.retired?.includes(path))return new Response(request.method==='HEAD'?null:'This article has been removed.',{status:410,headers:{'Cache-Control':'no-store','X-Robots-Tag':'noindex, nofollow'}});
-  // Both About Al-Anon addresses were consolidated into Finding Help and retired.
-  if(path==='/about-alanon/'||path==='/guides/about-alanon/')return Response.redirect(u.origin+'/guides/finding-help/'+u.search,301);
+  // Consolidated into another page: 301 rather than the 410 above, so the link
+  // equity follows the content to where it now lives.
+  if(launchPolicy.consolidated?.[path])return Response.redirect(u.origin+launchPolicy.consolidated[path]+u.search,301);
   const isIndex=['/','/articles/','/guides/'].includes(path);
   const eligible=isIndex||/^\/(articles|guides|topics)\/[a-z0-9-]+\/$/.test(path);
   if(!eligible)return new Response('Page not found',{status:404});
@@ -31,7 +32,7 @@ export function createCmsWorker(fallback,knownPaths,composePage,launchPolicy={},
    if(r.ok){const data=await r.json();
     if(!isIndex){html=composePage(html,cmsPath===path?data.html:data.html.replaceAll(cmsPath,path));revision=data.revision;}
     else{
-     const items=(data.items||[]).map(item=>({...item,path:launchPolicy.linkedStories?.[item.id]||item.path})).filter(item=>!launchPolicy.retiredPaths?.includes(item.path)&&!launchPolicy.deferred?.includes(item.path)&&!launchPolicy.retired?.includes(item.path)).map(item=>{const override=launchPolicy.metadata?.[item.path];return override?{...item,author:override.author||item.author,card_title:override.title||item.card_title,summary:(override.description||item.summary)+(launchPolicy.drafts?.includes(item.path)&&!launchPolicy.cmsManaged?.includes(item.path)?' Placeholder':'')}:item;});
+     const items=(data.items||[]).map(item=>({...item,path:launchPolicy.linkedStories?.[item.id]||item.path})).filter(item=>!launchPolicy.retiredPaths?.includes(item.path)&&!launchPolicy.deferred?.includes(item.path)&&!launchPolicy.retired?.includes(item.path)&&!launchPolicy.consolidated?.[item.path]).map(item=>{const override=launchPolicy.metadata?.[item.path];return override?{...item,author:override.author||item.author,card_title:override.title||item.card_title,summary:(override.description||item.summary)+(launchPolicy.drafts?.includes(item.path)&&!launchPolicy.cmsManaged?.includes(item.path)?' Placeholder':'')}:item;});
      // Keep the established index composition. Add newly published pages in the same lists.
      let response=new Response(html,{headers:{'Content-Type':'text/html'}});
      let rewriter=new HTMLRewriter();
