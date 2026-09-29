@@ -190,10 +190,61 @@ pages most able to rank are the ones least optimized.
 
 Suggested:
 
-- Title: `Al-Anon Daily Reflections — A Reading for Every Day | Daily Paths`
+- Title: `Al-Anon Daily Reflections & Recovery Guides | Daily Paths` (57 characters,
+  so nothing is truncated)
 - Keep the reflection title as a prominent `<h2>`; add a true `<h1>` naming what
-  the site is. The design can keep the reflection visually dominant.
+  the site is. The design can keep the reflection visually dominant. The hero's
+  existing "Today's reflection" label is the natural place — it already sits in
+  the right position at the right size and says nothing the date and the button
+  below it do not already say.
 - Call `homepageStructuredData()`, and add `Organization` alongside `WebSite`.
+
+Mockup of all three: https://claude.ai/artifact/6AZTieZEBwDH3tS3M7NN2j
+
+#### Indexing — verified clean, September 29
+
+Measured on a real production build. `robots.txt` says `Allow: /`, the homepage
+carries no `noindex`, its canonical is self-referencing, and it is in the sitemap.
+Production output is static, with no `server/`, so nothing adds an `X-Robots-Tag`
+header.
+
+One trap worth knowing about. The preview Worker sets
+`X-Robots-Tag: noindex, nofollow` on **every** response, unconditionally — correct
+for a private preview. It is only ever built for the preview
+(`scripts/build-site.mjs` packages it when `SITE_ENV !== 'production'`), so it
+cannot reach the live site as things stand. But `.openai/hosting.json` selects
+Worker output for the Sites project, so if production were ever served from Sites
+rather than GitHub Pages, **the entire site would go noindex silently**. Check the
+header, not just the meta tag, the first time production serves from anywhere new.
+
+#### Content — 224 words, and almost none of it prose
+
+| Page | Words in `<main>` |
+|---|---|
+| **`/` (homepage)** | **224** |
+| `/guides/` | 162 |
+| `/reflections/` | 215 |
+| `/articles/` | 262 |
+| `/start/` | 414 |
+| a daily reflection | 432 |
+| `/guides/finding-help/` | 2,191 |
+| `/guides/surrender/` | 2,502 |
+
+There is no word-count threshold to clear, and a short homepage is not a fault by
+itself. The problem is what the 224 words are: card summaries, button labels, a
+byline, and the day's excerpt. **Not one sentence on the homepage says what Daily
+Paths is or who it is for.** So the page Google most wants to use to classify the
+site gives it almost nothing, which compounds the keyword-free title above.
+
+The fix is already half-built. The "Start here" band carries the best heading on
+the site — *"Is someone else's drinking affecting your life?"*, phrased the way
+people actually search — and 29 words beneath it. Taking that to 120–150 words of
+genuine copy nearly doubles the homepage, puts real prose under a query-shaped
+heading, and changes no layout: it is a longer paragraph in a section that exists.
+
+**What not to do:** add a block of explanatory text at the foot of the page. It is
+the standard move, it reads as exactly what it is, and it would sit below the app
+band where no reader goes.
 
 ### B2. 24 pages omit the core keyword from the title
 
