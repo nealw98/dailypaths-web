@@ -38,23 +38,15 @@ remain deferred pending their rewrites: One Day at a Time and Gratitude & Hope.
 
 ### Still open
 
-- **About Al-Anon has two versions, and both are being kept on purpose.** Neal
-  asked on September 28 to keep both until he decides; they are very different
-  pieces, not two drafts of one.
-  - **A** — "About the Al-Anon Program", published in the Story Room on
-    September 28 at 1,714 words: what the program is, why someone would need it,
-    and how meetings, the Steps, sponsorship and daily practice work. It sits at
-    `/about-alanon/`, which `validPath` does not serve, so no build picks it up.
-  - **B** — "The Al-Anon Program", live at `/guides/about-alanon/` at 653 words,
-    built from `templates/about-alanon.mjs`: what Al-Anon is, a self-check, and a
-    FAQ on religion, privacy and young people, plus related fellowships.
-
-  `editorial/about-alanon-comparison.md` holds both in full, side by side.
-  **Do not map, merge or retire either one.** When Neal decides, the winner is
-  published in the Story Room at `/guides/about-alanon/`, or its id is mapped
-  there in `linkedStories`.
-- **Finding Help and About Al-Anon still overlap.** Both introduce Al-Anon and
-  both are in the Guides listing. Settle what each is for, or merge them.
+- ~~About Al-Anon has two versions.~~ ~~Finding Help and About Al-Anon overlap.~~
+  **Both resolved September 29.** Neal consolidated About Al-Anon, About the
+  Al-Anon Program and Finding Help into one guide — Finding Help, 2,309 words, at
+  `/guides/finding-help/` — and retired the other two. `/about-alanon/` and
+  `/guides/about-alanon/` both forward straight there; so do the five retired
+  `/literature/…` addresses, which used to forward to About Al-Anon. The guide is
+  out of the catalog, the Guides listing and the sitemap, and
+  `templates/about-alanon.mjs` and `css/about-alanon.css` are deleted. Its copy
+  survives in `editorial/about-alanon-comparison.md`. See `HANDOFF.md` §3.
 - **Splitting Learning to Trust — Neal's, to do in the Story Room.** He raised
   dividing Celina R's 2,578-word story in two, the second half taking the reserved
   `/articles/what-happens-after-the-drinking-stops/` address, and asked that it not

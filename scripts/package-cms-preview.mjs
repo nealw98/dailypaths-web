@@ -14,8 +14,10 @@ const catalog=[...ARTICLES.map(x=>({path:x.path,content_type:'article'})),...GUI
 for(const p of ['/','/articles/','/guides/',...paths,...ARTICLE_PLACEHOLDERS.map(x=>x.path)]){const filename=path.join(dist,p,'index.html');if(fs.existsSync(filename))fallback[p]=fs.readFileSync(filename,'utf8');}
 const entries=fs.readdirSync(dist);fs.mkdirSync(path.join(dist,'client'));
 for(const entry of entries){if(entry==='.openai')continue;fs.renameSync(path.join(dist,entry),path.join(dist,'client',entry));}
-// Let the Worker return a real HTTP redirect for the retired guide.
+// Let the Worker return real HTTP redirects for the two retired About Al-Anon
+// addresses, rather than serving their static meta-refresh pages.
 fs.rmSync(path.join(dist,'client','about-alanon','index.html'),{force:true});
+fs.rmSync(path.join(dist,'client','guides','about-alanon','index.html'),{force:true});
 fs.rmSync(path.join(dist,'client','guides','detachment-with-love','index.html'),{force:true});
 // Static HTML for these routes must not preempt the CMS request handler.
 for(const p of Object.keys(fallback))fs.rmSync(path.join(dist,'client',p,'index.html'),{force:true});

@@ -49,7 +49,10 @@ export function launchItems(items, preview) {
 // Self-contained for inclusion in the preview Worker.
 export function transformLaunchPreview(html, pathname, policy = LAUNCH_REVIEW) {
   if (!html) return html;
-  html = html.replaceAll('/about-alanon/', '/guides/about-alanon/');
+  // Approved snapshots still link to both retired About Al-Anon addresses.
+  // Point them at the guide those two were consolidated into.
+  html = html.replaceAll('/guides/about-alanon/', '/guides/finding-help/');
+  html = html.replaceAll('/about-alanon/', '/guides/finding-help/');
   // Remove the retired article's cards, including cached CMS fallback listings.
   const retiredHref = href => {
     try { const u = new URL(href, 'https://daily-paths-soft-daylight.nealw98.chatgpt.site');

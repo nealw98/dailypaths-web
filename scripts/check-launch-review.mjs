@@ -57,6 +57,13 @@ try{
  assert.ok(!selectors.some(s=>s.includes('/about-alanon/')));
  for(const deferred of LAUNCH_REVIEW.deferred)assert.ok(!selectors.some(s=>s.includes(deferred)),`CMS tries to reintroduce ${deferred}`);
  const head=await worker.fetch(new Request('https://review.test/about-alanon/',{method:'HEAD'}));assert.equal(await head.text(),'');
+ // Both About Al-Anon addresses were consolidated into Finding Help. Each must
+ // land there in one hop — a redirect to the other would be a chain.
+ for(const retired of ['/about-alanon/','/guides/about-alanon/']){
+  const moved=await worker.fetch(new Request('https://review.test'+retired));
+  assert.equal(moved.status,301,`${retired} should redirect`);
+  assert.equal(new URL(moved.headers.get('location')).pathname,'/guides/finding-help/',`${retired} should land on Finding Help`);
+ }
  globalThis.fetch=async()=>Response.json({items:[]});
  const notPublished=await worker.fetch(new Request('https://review.test/articles/your-first-al-anon-meeting/'));
  assert.match(await notPublished.text(),/Placeholder content/);

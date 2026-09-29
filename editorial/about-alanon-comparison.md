@@ -1,6 +1,12 @@
 # About Al-Anon — the two versions
 
-Both are kept while Neal decides. Neither is changed by this file.
+> **Settled September 29, 2026.** Neither of these shipped as it stands. Neal
+> consolidated both, together with the previous Finding Help, into a single guide
+> — **Finding Help**, 2,309 words, at `/guides/finding-help/`. Both addresses
+> below are retired and forward there.
+>
+> This file is kept as the record of what went into that merge, and because it is
+> the only remaining copy of version A outside git history.
 
 | | A — Story Room | B — On the site |
 |---|---|---|

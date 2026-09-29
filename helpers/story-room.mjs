@@ -7,8 +7,10 @@ import {join,dirname} from 'node:path';
 import {fileURLToPath} from 'node:url';
 export const CMS_ORIGIN='https://daily-paths-story-room.nealw98.chatgpt.site';
 export const PREVIEW_ORIGIN='https://daily-paths-soft-daylight.nealw98.chatgpt.site';
-// About Al-Anon is published at /guides/about-alanon/; its original root-level
-// path only forwards there, so it is no longer a place CMS content can land.
+// About Al-Anon and About the Al-Anon Program were consolidated into Finding
+// Help and retired. Neither /about-alanon/ nor /guides/about-alanon/ is a place
+// CMS content can land now; both only forward to /guides/finding-help/. The root
+// path never matched this pattern, which is what kept the old import off the site.
 export const validPath=p=>/^\/(?:articles|guides|topics)\/[a-z0-9]+(?:-[a-z0-9]+)*\/$/.test(p);
 export const escape=s=>String(s||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 export function composePage(base,approved){

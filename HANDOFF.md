@@ -98,19 +98,34 @@ rebuild there rewrites all 419 files; `2.0` replaced it with fixed labels
 
 ---
 
-## 3. About Al-Anon is a guide again
+## 3. About Al-Anon is retired into Finding Help
 
-`/guides/about-alanon/` is a published guide alongside Finding Support
-(`/guides/finding-help/`). It was previously retired and folded into Finding
-Support; that retirement was enforced in six places and has been undone in all
-six.
+On September 29, 2026, Neal consolidated three pieces into one guide: the
+inherited **About Al-Anon**, the newer **About the Al-Anon Program**, and
+**Finding Help**. The result is Finding Help at `/guides/finding-help/`, 2,309
+words, published from the Story Room. The other two are retired.
 
-- `/about-alanon/` (the original root path) forwards to the new address.
-- It is **not** a valid CMS publish target any more — content for this guide
-  belongs at `/guides/about-alanon/`.
+This section previously recorded the opposite — About Al-Anon revived as a guide
+alongside Finding Support. That is undone again, and this time the two addresses
+are retired rather than repointed at each other.
 
-**Its copy is inherited and has not been reviewed for launch.** It now appears in
-the Guides listing and the sitemap, so it needs reading before 2.0 ships.
+- **`/about-alanon/`** → `/guides/finding-help/`
+- **`/guides/about-alanon/`** → `/guides/finding-help/`
+
+Both forward **straight** to Finding Help, not through each other. The five
+retired `/literature/…` addresses used to forward to About Al-Anon and now go
+straight to Finding Help too, for the same reason: `check:sitemap` fails a
+redirect chain, and so does Google, quietly.
+
+Neither is a valid CMS publish target. `templates/about-alanon.mjs` and
+`css/about-alanon.css` are deleted, and the guide is out of the catalog, the
+Guides listing and the sitemap. The static page's copy is preserved in
+`editorial/about-alanon-comparison.md` and in git history.
+
+The Story Room still lists `cms-about-alanon` as published at `/about-alanon/`.
+It has never been able to reach the site — the root path does not match
+`validPath` — so nothing is served from it, but unpublishing it there would make
+the Story Room match the site.
 
 ---
 

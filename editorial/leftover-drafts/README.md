@@ -32,10 +32,10 @@ One Day at a Time (`cms-one-day-at-a-time`) and Gratitude & Hope
 (`cms-gratitude-and-hope`) are both there already, published, and marked deferred
 on the site pending their rewrites. Nothing to create for those two.
 
-That leaves one other page outside the Story Room: the static About Al-Anon guide
-at `/guides/about-alanon/`. It is deliberately excluded here, because a second
-version of it is already published in the Story Room and the choice between them
-is open — see `editorial/about-alanon-comparison.md`.
+About Al-Anon was the one other page outside the Story Room. It is no longer a
+page at all: on September 29 it was consolidated, with About the Al-Anon Program
+and the previous Finding Help, into a single Finding Help guide, and both of its
+addresses now forward there. So these four are the whole remainder.
 
 ## Two things to keep in mind
 

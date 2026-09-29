@@ -82,10 +82,11 @@ const forwards = (from, to) => (redirects[to] ??= []).push(from);
 for (const [slug, to] of Object.entries(MOVED_THEME_PAGES)) forwards(`/topics/${slug}/`, to);
 for (const topic of TOPICS) forwards(`/themes/${topic.slug}/`, themePath(topic.slug));
 forwards('/themes/letting-go-of-control/', themePath('letting-go'));
-forwards('/about-alanon/', '/guides/about-alanon/');
+forwards('/about-alanon/', '/guides/finding-help/');
+forwards('/guides/about-alanon/', '/guides/finding-help/');
 forwards('/guides/detachment/', '/guides/detachment-with-love/');
 for (const slug of ['', 'courage-to-change/', 'paths-to-recovery/', 'one-day-at-a-time/', 'how-al-anon-works/']) {
-  forwards(`/literature/${slug}`, '/guides/about-alanon/');
+  forwards(`/literature/${slug}`, '/guides/finding-help/');
 }
 
 // --- Assemble one row per piece ------------------------------------------

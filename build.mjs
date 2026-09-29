@@ -39,7 +39,6 @@ import { renderPrivacyPage } from './templates/privacy.mjs';
 import { renderSupportPage } from './templates/support.mjs';
 import { renderTermsPage } from './templates/terms.mjs';
 import { renderAboutProjectPage } from './templates/about-project.mjs';
-import { renderAboutAlanonPage } from './templates/about-alanon.mjs';
 import { renderStepPage, STEPS, STEP_TOOLS, STEP_HOOKS, STEP_TAGLINES, PULL_QUOTES } from './templates/steps.mjs';
 import { renderMonthArchivePage } from './templates/month-archive.mjs';
 import { renderCollectionPage } from './templates/collections.mjs';
@@ -184,7 +183,7 @@ const dirs = [
   join(outDir, 'start'),
   join(outDir, 'about-project'),
   join(outDir, 'about-alanon'),
-  join(outDir, 'guides', 'about-alanon'),
+  join(outDir, 'guides', 'about-alanon'),  // both retired; the directories hold their redirects
   join(outDir, 'steps'),
   ...STEPS.map(s => join(outDir, 'steps', stepRecordSlug(s))),
   // Old step slugs (for redirects)
@@ -326,7 +325,6 @@ writePage(join(outDir, 'support', 'index.html'), renderSupportPage());
 writePage(join(outDir, 'terms', 'index.html'), renderTermsPage());
 writePage(join(outDir, 'start', 'index.html'), renderStartPage(readings));
 writePage(join(outDir, 'about-project', 'index.html'), renderAboutProjectPage());
-writePage(join(outDir, 'guides', 'about-alanon', 'index.html'), renderAboutAlanonPage());
 // Admin page
 console.log('Generating admin page...');
 if (!IS_PREVIEW) writePage(join(outDir, 'admin', 'index.html'), renderAdminPage());
@@ -458,10 +456,12 @@ writeFileSync(join(outDir, 'robots.txt'), generateRobotsTxt(), 'utf-8');
 
 // --- Step 5b: Generate redirect pages for old slugs ---
 console.log('Generating redirect pages for old slugs...');
-// About Al-Anon is a guide again, alongside Finding Support. Its original
-// root-level path forwards to the new one rather than to Finding Support.
-writePage(join(outDir, 'about-alanon', 'index.html'), redirectHtml('/guides/about-alanon/'));
-writeFileSync(join(outDir, '_redirects'), '/about-alanon /guides/about-alanon/ 301\n/about-alanon/ /guides/about-alanon/ 301\n/about-alanon/index.html /guides/about-alanon/ 301\n');
+// About Al-Anon and About the Al-Anon Program were consolidated into Finding
+// Help on September 29 and retired. Both of their addresses forward straight
+// there — not through each other, so neither reader nor crawler takes two hops.
+writePage(join(outDir, 'about-alanon', 'index.html'), redirectHtml('/guides/finding-help/'));
+writePage(join(outDir, 'guides', 'about-alanon', 'index.html'), redirectHtml('/guides/finding-help/'));
+writeFileSync(join(outDir, '_redirects'), '/about-alanon /guides/finding-help/ 301\n/about-alanon/ /guides/finding-help/ 301\n/about-alanon/index.html /guides/finding-help/ 301\n/guides/about-alanon /guides/finding-help/ 301\n/guides/about-alanon/ /guides/finding-help/ 301\n');
 
 
 function redirectHtml(newPath) {
@@ -534,14 +534,15 @@ writeFileSync(join(outDir, 'guides', 'detachment', 'index.html'), redirectHtml('
 
 // The literature pages are gone. Four book pages of 144 to 159 words each, built
 // from descriptions of books we do not hold the rights to — thin and a copyright
-// exposure at once. About Al-Anon points to al-anon.org for the real thing, so
-// these forward there.
+// exposure at once. They used to forward to About Al-Anon, which has itself been
+// retired into Finding Help; that guide points to al-anon.org for the real thing,
+// so they forward straight there rather than through a retired address.
 const RETIRED_LITERATURE = ['courage-to-change', 'paths-to-recovery', 'one-day-at-a-time', 'how-al-anon-works'];
 mkdirSync(join(outDir, 'literature'), { recursive: true });
-writeFileSync(join(outDir, 'literature', 'index.html'), redirectHtml('/guides/about-alanon/'), 'utf-8');
+writeFileSync(join(outDir, 'literature', 'index.html'), redirectHtml('/guides/finding-help/'), 'utf-8');
 for (const slug of RETIRED_LITERATURE) {
   mkdirSync(join(outDir, 'literature', slug), { recursive: true });
-  writeFileSync(join(outDir, 'literature', slug, 'index.html'), redirectHtml('/guides/about-alanon/'), 'utf-8');
+  writeFileSync(join(outDir, 'literature', slug, 'index.html'), redirectHtml('/guides/finding-help/'), 'utf-8');
 }
 
 // Theme redirects: /themes/... → wherever that theme's page lives now (plus
@@ -573,7 +574,7 @@ if (!existsSync(cssSource)) {
 // owns the final typography cascade; attempting to remove declarations with a
 // regex also removed resets, tokens, and layout rules from complex selectors.
 writeFileSync(join(outDir, 'css', 'style.css'), readFileSync(cssSource, 'utf8'));
-for (const name of ['soft-daylight.css', 'editorial-home.css', 'boundaries.css', 'surrender.css', 'about-alanon.css', 'launch-review.css', 'inserts.css']) {
+for (const name of ['soft-daylight.css', 'editorial-home.css', 'boundaries.css', 'surrender.css', 'launch-review.css', 'inserts.css']) {
   writeFileSync(join(outDir, 'css', name), readFileSync(join(ROOT, 'css', name), 'utf8'));
 }
 cpSync(join(ROOT, 'css', 'site-system.css'), join(outDir, 'css', 'site-system.css'));

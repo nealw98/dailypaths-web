@@ -107,24 +107,18 @@ node scripts/check-launch-review.mjs   # needs dist/server/index.js
 `check-launch-review.mjs` was never run after the About Al-Anon change
 (`HANDOFF.md` §4 asks for it).
 
-### A4. About Al-Anon — two versions, one decision
+### A4. ~~About Al-Anon~~ — resolved September 29
 
-Neal has two versions of this guide and is choosing between them:
+Neal consolidated About Al-Anon, About the Al-Anon Program and Finding Help into
+a single guide: **Finding Help**, 2,309 words, at `/guides/finding-help/`. The
+other two are retired, both addresses forward straight there, and the guide is out
+of the catalog, the Guides listing and the sitemap. This also closes **B5**, which
+was about those two competing for the same searches. See `HANDOFF.md` §3.
 
-- the static page at `/guides/about-alanon/`, carrying inherited copy
-- the Story Room's `cms-about-alanon`, titled "The Al-Anon Program" with the card
-  "Finding Support", published at the old root `/about-alanon/` path
-
-The root path stopped being a valid publish target when the guide moved
-(`helpers/story-room.mjs`, `validPath`), so that second version is filtered out of
-every build and cannot currently reach the site. **Publishing the chosen version
-in the Story Room at `/guides/about-alanon/` is what makes it live** — the CMS
-then owns the page.
-
-Whichever wins still needs reading for launch. The review notes flag that the old
-Al-Anon introduction made **absolute privacy and payment claims** and a narrow
-Alateen age assertion; confirm the correction carried into this page and not only
-into Finding Help. See also B5 — this guide and Finding Support overlap.
+Still worth doing: read the consolidated guide once for launch. The review notes
+flagged that the old Al-Anon introduction carried **absolute privacy and payment
+claims** and a narrow Alateen age assertion. Confirm those did not survive the
+merge.
 
 ### A5. Attribution — mostly resolved September 28
 
@@ -283,18 +277,11 @@ likely to earn a rich result. Add `Article` and `BreadcrumbList` to each, and
 `ItemList` to the three index pages. `templates/theme-guides/boundaries.mjs:80`
 and `surrender.mjs:91` pass no `structuredData` at all.
 
-### B5. About Al-Anon and Finding Support compete for the same searches
+### B5. ~~About Al-Anon and Finding Support compete~~ — resolved September 29
 
-```
-/guides/about-alanon/   "What Al-Anon is, how the program works, and whether it might be for you."
-/guides/finding-help/   "An introduction to Al-Anon and finding people who understand."
-```
-
-Two guides, both introducing Al-Anon, both in the sitemap. They will split links
-and compete for the same queries. Either differentiate sharply — *About* explains
-the program, *Finding Support* is purely how to find and attend a meeting — or
-merge them. This should be settled as part of A4, since About Al-Anon needs
-reading anyway.
+The two were merged into Finding Help and retired. Nothing competes for these
+queries now, and the redirects consolidate whatever the old addresses had earned
+onto one page.
 
 ### B6. Nothing is verified in Search Console
 
