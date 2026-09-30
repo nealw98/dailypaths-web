@@ -3,6 +3,7 @@ import { terminalBand } from './ui.mjs';
 import { bp } from '../helpers/config.mjs';
 import { readingSlug } from '../helpers/slug-utils.mjs';
 import { loadFavoriteReadings, readingTeaser } from '../helpers/favorite-readings.mjs';
+import { groupingTheme } from '../helpers/theme-destinations.mjs';
 
 /**
  * Render the ten chosen reflections.
@@ -26,9 +27,12 @@ export function renderFavoriteReadingsPage(readings, ratingsMap = new Map()) {
       return score(b) - score(a) || a.day_of_year - b.day_of_year;
     }).slice(0, 10);
 
+  // These ten come from anywhere in the year rather than one group, so the theme
+  // does tell the reader something here and does not repeat by construction. It is
+  // the grouping theme, the same word the reflection's own pill carries.
   const cards = favorites.map(reading => {
     const teaser = readingTeaser(reading);
-    const theme = (reading.secondary_theme || '').trim();
+    const theme = groupingTheme(reading) || (reading.secondary_theme || '').trim();
     return `
           <a href="${bp(`/${readingSlug(reading.day_of_year, reading.title)}/`)}" class="kr-card">
             ${theme ? `<span class="kr-card-context">${theme}</span>` : ''}

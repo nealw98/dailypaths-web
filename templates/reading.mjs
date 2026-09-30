@@ -106,12 +106,15 @@ export function renderReadingPage(reading, prevReading, nextReading, allReadings
   const programPath = stepPath
     || (collectionPage ? `${collectionPage.path}#${collectionMatch[1].toLowerCase()}-${collectionMatch[2]}` : null);
 
-  // The pill carries the reading's own theme word rather than the name of wherever
-  // it leads — the destination announces itself in the Go deeper card below, and
-  // the related cards label themselves the same way.
+  // The pill carries the reading's own theme rather than the name of wherever it
+  // leads — the destination announces itself in the Go deeper card below. It shows
+  // the grouping theme, which is what this reading is now filed under; the finer
+  // secondary_theme is a descriptive tag behind the topic pages, not a label the
+  // reader should be shown as this reading's subject.
+  const pillTheme = groupingTheme(reading) || theme;
   const pills = [];
-  if (theme) {
-    pills.push(destinationPath ? pill(theme, { href: bp(destinationPath) }) : pill(theme));
+  if (pillTheme) {
+    pills.push(destinationPath ? pill(pillTheme, { href: bp(destinationPath) }) : pill(pillTheme));
   }
   if (reading.step_theme) {
     const principleWords = reading.step_theme.replace(/\b(\d+)\b/, m => NUMBER_WORDS[Number(m) - 1] || m);
@@ -157,12 +160,15 @@ export function renderReadingPage(reading, prevReading, nextReading, allReadings
     });
 
     if (siblings.length > 0) {
+      // No eyebrow on the card. Every reflection here shares the heading's theme, so
+      // printing it three times says nothing, and printing the older secondary_theme
+      // instead showed the reader a vocabulary the site no longer files by — and
+      // repeated a word on 31 pages where a small group had few distinct ones. The
+      // date and title separate them; the heading says what they have in common.
       const cards = siblings.map(r => {
         const teaser = readingTeaser(r);
-        const context = (r.secondary_theme || '').trim();
         return `
           <a href="${bp(`/${readingSlug(r.day_of_year, r.title)}/`)}" class="kr-card">
-            ${context ? `<span class="kr-card-context">${context}</span>` : ''}
             <span class="kr-card-date">${r.display_date}</span>
             <span class="kr-card-title">${r.title}</span>
             ${teaser ? `<span class="kr-card-teaser">${teaser}</span>` : ''}
