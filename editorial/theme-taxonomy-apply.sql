@@ -1,23 +1,35 @@
--- Daily Paths: collapse 132 secondary themes to 43.
--- Generated 2026-09-30 from editorial/theme-taxonomy-readings.csv
--- Run in the Supabase SQL editor. Everything is inside one transaction:
--- if any statement fails, nothing is applied.
+-- Daily Paths: add a grouping theme for reflection linking.
 --
--- Rollback for the readings column is in editorial/theme-taxonomy-rollback.sql
+-- readings.secondary_theme is NOT touched. It keeps driving the topic pages,
+-- the hero photograph on every reflection, the SEO metadata and the favourites
+-- page, all of which key off its 132 values through TOPIC_THEME_TAGS.
+--
+-- readings.link_theme is new: the 43-theme vocabulary, used only to group related
+-- readings and resolve the Go deeper destination. The two columns do different
+-- jobs -- a fine-grained label and a coarse grouping -- and the cards use both:
+-- the group comes from the new column, the word on each card from the old one.
+--
+-- Run in the Supabase SQL editor. One transaction; nothing applies if a step fails.
+-- Rollback: editorial/theme-taxonomy-rollback.sql
 
 BEGIN;
 
--- 1. Guard: stop if the table is not the shape this script was written against.
+-- 1. Guard.
 DO $$ BEGIN
   IF (SELECT count(*) FROM readings) <> 366 THEN
     RAISE EXCEPTION 'Expected 366 readings, found %', (SELECT count(*) FROM readings);
   END IF;
 END $$;
 
--- 2. Retag the readings. 280 of 366 rows change; the other 86 already
---    carry the theme they should have, and are left out rather than rewritten.
-UPDATE readings AS r SET secondary_theme = v.theme
+-- 2. The new column. IF NOT EXISTS makes a re-run harmless.
+ALTER TABLE readings ADD COLUMN IF NOT EXISTS link_theme text;
+COMMENT ON COLUMN readings.link_theme IS
+  'Grouping theme (43 values) for related-reading links and the Go deeper destination. Distinct from secondary_theme, which is the finer descriptive tag that maps to the twelve topic pages and picks the hero image.';
+
+-- 3. Backfill all 366.
+UPDATE readings AS r SET link_theme = v.theme
 FROM (VALUES
+  (1, 'Connection'),
   (2, 'Honesty'),
   (3, 'Powerlessness'),
   (4, 'Understanding the Disease'),
@@ -25,16 +37,21 @@ FROM (VALUES
   (6, 'Self-Focus'),
   (7, 'Letting Go'),
   (8, 'Powerlessness'),
+  (9, 'Boundaries'),
   (10, 'Understanding the Disease'),
+  (11, 'Powerlessness'),
   (12, 'Hope and Gratitude'),
   (13, 'Powerlessness'),
   (14, 'Acceptance'),
+  (15, 'Surrender'),
   (16, 'Letting Go'),
   (17, 'Self-Care'),
   (18, 'Letting Go'),
   (19, 'Detachment'),
   (20, 'People-Pleasing'),
   (21, 'Self-Focus'),
+  (22, 'Responsibility'),
+  (23, 'Boundaries'),
   (24, 'Boundaries'),
   (25, 'Self-Awareness'),
   (26, 'Practice'),
@@ -42,6 +59,7 @@ FROM (VALUES
   (28, 'Resentment and Forgiveness'),
   (29, 'Responsibility'),
   (30, 'Practice'),
+  (31, 'Boundaries'),
   (32, 'Hope and Gratitude'),
   (33, 'Coming to Believe'),
   (34, 'Hope and Gratitude'),
@@ -49,26 +67,38 @@ FROM (VALUES
   (36, 'Coming to Believe'),
   (37, 'Fellowship'),
   (38, 'Self-Awareness'),
+  (39, 'Faith'),
+  (40, 'Faith'),
   (41, 'Hope and Gratitude'),
+  (42, 'Humility'),
   (43, 'Letting Go'),
+  (44, 'Courage'),
   (45, 'Spiritual Growth'),
   (46, 'Coming to Believe'),
+  (47, 'Patience'),
   (48, 'Fellowship'),
   (49, 'Trusting Others'),
+  (50, 'Honesty'),
+  (51, 'Patience'),
+  (52, 'Practice'),
   (53, 'Prayer and Meditation'),
+  (54, 'Service'),
   (55, 'Open-Mindedness'),
   (56, 'Responsibility'),
   (57, 'Respect'),
   (58, 'Humility'),
+  (59, 'Connection'),
   (60, 'Serenity'),
   (61, 'Self-Awareness'),
   (62, 'Willingness'),
   (63, 'Surrender'),
   (64, 'Surrender'),
   (65, 'Letting Go'),
+  (66, 'Humility'),
   (67, 'Coming to Believe'),
   (68, 'Letting Go'),
   (69, 'Letting Go'),
+  (70, 'Practice'),
   (71, 'Letting Go'),
   (72, 'Fear'),
   (73, 'Surrender'),
@@ -79,22 +109,34 @@ FROM (VALUES
   (78, 'Self-Compassion'),
   (79, 'Courage'),
   (80, 'Surrender'),
+  (81, 'Faith'),
   (82, 'Faith'),
+  (83, 'Acceptance'),
   (84, 'Coming to Believe'),
+  (85, 'Connection'),
   (86, 'Coming to Believe'),
   (87, 'Fellowship'),
+  (88, 'Acceptance'),
   (89, 'Trusting Others'),
+  (90, 'Respect'),
   (91, 'Trusting Others'),
   (92, 'Inventory'),
   (93, 'Inventory'),
+  (94, 'Fear'),
   (95, 'Progress Not Perfection'),
   (96, 'Hope and Gratitude'),
   (97, 'Responsibility'),
+  (98, 'Respect'),
   (99, 'Identity'),
+  (100, 'Fellowship'),
+  (101, 'Respect'),
   (102, 'Identity'),
   (103, 'Self-Worth'),
+  (104, 'Honesty'),
+  (105, 'Responsibility'),
   (106, 'People-Pleasing'),
   (107, 'Self-Awareness'),
+  (108, 'Fellowship'),
   (109, 'Honesty'),
   (110, 'Self-Compassion'),
   (111, 'Inventory'),
@@ -110,13 +152,18 @@ FROM (VALUES
   (121, 'Spiritual Growth'),
   (122, 'Shame and Guilt'),
   (123, 'People-Pleasing'),
+  (124, 'Humility'),
   (125, 'Shame and Guilt'),
   (126, 'Responsibility'),
+  (127, 'Connection'),
+  (128, 'Fear'),
   (129, 'Trusting Others'),
   (130, 'Fellowship'),
   (131, 'Courage'),
+  (132, 'Connection'),
   (133, 'Character Defects'),
   (134, 'Shame and Guilt'),
+  (135, 'Connection'),
   (136, 'Honesty'),
   (137, 'Self-Awareness'),
   (138, 'Connection'),
@@ -124,6 +171,8 @@ FROM (VALUES
   (140, 'Shame and Guilt'),
   (141, 'Honesty'),
   (142, 'Fellowship'),
+  (143, 'Honesty'),
+  (144, 'Fear'),
   (145, 'Shame and Guilt'),
   (146, 'Shame and Guilt'),
   (147, 'Self-Focus'),
@@ -134,30 +183,44 @@ FROM (VALUES
   (152, 'Service'),
   (153, 'Readiness'),
   (154, 'Readiness'),
+  (155, 'Surrender'),
   (156, 'Readiness'),
   (157, 'Readiness'),
   (158, 'Character Defects'),
   (159, 'Character Defects'),
   (160, 'Character Defects'),
   (161, 'Prayer and Meditation'),
+  (162, 'Faith'),
   (163, 'Trust in a Higher Power'),
   (164, 'Readiness'),
   (165, 'Character Defects'),
+  (166, 'Identity'),
   (167, 'Letting Go'),
   (168, 'Surrender'),
   (169, 'Readiness'),
+  (170, 'Identity'),
   (171, 'Prayer and Meditation'),
+  (172, 'Patience'),
   (173, 'Acceptance'),
+  (174, 'Identity'),
+  (175, 'Humility'),
+  (176, 'Readiness'),
   (177, 'Surrender'),
+  (178, 'Identity'),
+  (179, 'Identity'),
+  (180, 'Boundaries'),
   (181, 'Responsibility'),
   (182, 'Humility'),
   (183, 'Humility'),
+  (184, 'Humility'),
+  (185, 'Surrender'),
   (186, 'Self-Worth'),
   (187, 'Humility'),
   (188, 'Letting Go'),
   (189, 'Patience'),
   (190, 'Prayer and Meditation'),
   (191, 'Letting Go'),
+  (192, 'Patience'),
   (193, 'Progress Not Perfection'),
   (194, 'Self-Compassion'),
   (195, 'Self-Compassion'),
@@ -169,14 +232,18 @@ FROM (VALUES
   (201, 'Spiritual Growth'),
   (202, 'Character Defects'),
   (203, 'Self-Awareness'),
+  (204, 'Fear'),
   (205, 'Trust in a Higher Power'),
   (206, 'Progress Not Perfection'),
   (207, 'Practice'),
+  (208, 'Courage'),
   (209, 'Self-Worth'),
   (210, 'Boundaries'),
+  (211, 'Detachment'),
   (212, 'Connection'),
   (213, 'Practice'),
   (214, 'Shame and Guilt'),
+  (215, 'Willingness'),
   (216, 'Inventory'),
   (217, 'Resentment and Forgiveness'),
   (218, 'Responsibility'),
@@ -188,6 +255,7 @@ FROM (VALUES
   (224, 'Amends'),
   (225, 'Acceptance'),
   (226, 'Amends'),
+  (227, 'Responsibility'),
   (228, 'Prayer and Meditation'),
   (229, 'Responsibility'),
   (230, 'Acceptance'),
@@ -197,12 +265,15 @@ FROM (VALUES
   (234, 'Amends'),
   (235, 'Amends'),
   (236, 'Resentment and Forgiveness'),
+  (237, 'Self-Care'),
   (238, 'Trust in a Higher Power'),
   (239, 'Amends'),
   (240, 'Respect'),
+  (241, 'Service'),
   (242, 'Fellowship'),
   (243, 'Trusting Others'),
   (244, 'Trusting Others'),
+  (245, 'Humility'),
   (246, 'Responsibility'),
   (247, 'Amends'),
   (248, 'Amends'),
@@ -214,6 +285,7 @@ FROM (VALUES
   (254, 'Living Amends'),
   (255, 'Fear'),
   (256, 'Fellowship'),
+  (257, 'Respect'),
   (258, 'Resentment and Forgiveness'),
   (259, 'Living Amends'),
   (260, 'Living Amends'),
@@ -221,14 +293,18 @@ FROM (VALUES
   (262, 'Living Amends'),
   (263, 'Amends'),
   (264, 'Living Amends'),
+  (265, 'Service'),
   (266, 'Character Defects'),
+  (267, 'Boundaries'),
   (268, 'Service'),
   (269, 'Service'),
+  (270, 'Self-Care'),
   (271, 'Living Amends'),
   (272, 'Acceptance'),
   (273, 'Amends'),
   (274, 'Living Amends'),
   (275, 'Practice'),
+  (276, 'Serenity'),
   (277, 'Practice'),
   (278, 'Inventory'),
   (279, 'Progress Not Perfection'),
@@ -238,8 +314,10 @@ FROM (VALUES
   (283, 'Self-Awareness'),
   (284, 'Serenity'),
   (285, 'Inventory'),
+  (286, 'Humility'),
   (287, 'Resentment and Forgiveness'),
   (288, 'Letting Go'),
+  (289, 'Detachment'),
   (290, 'Self-Worth'),
   (291, 'Character Defects'),
   (292, 'Acceptance'),
@@ -248,8 +326,10 @@ FROM (VALUES
   (295, 'Responsibility'),
   (296, 'Resentment and Forgiveness'),
   (297, 'Practice'),
+  (298, 'Powerlessness'),
   (299, 'Inventory'),
   (300, 'Readiness'),
+  (301, 'Detachment'),
   (302, 'Fellowship'),
   (303, 'Fellowship'),
   (304, 'Trusting Others'),
@@ -257,28 +337,44 @@ FROM (VALUES
   (306, 'Trust in a Higher Power'),
   (307, 'Prayer and Meditation'),
   (308, 'Prayer and Meditation'),
+  (309, 'Patience'),
   (310, 'Practice'),
   (311, 'Prayer and Meditation'),
+  (312, 'Detachment'),
   (313, 'Prayer and Meditation'),
+  (314, 'Faith'),
+  (315, 'Surrender'),
+  (316, 'Self-Care'),
   (317, 'Self-Awareness'),
   (318, 'Faith'),
+  (319, 'Serenity'),
   (320, 'Letting Go'),
+  (321, 'Humility'),
   (322, 'Open-Mindedness'),
+  (323, 'Service'),
   (324, 'Prayer and Meditation'),
+  (325, 'Fellowship'),
   (326, 'Self-Compassion'),
   (327, 'Serenity'),
   (328, 'Self-Compassion'),
+  (329, 'Connection'),
   (330, 'Progress Not Perfection'),
   (331, 'Self-Compassion'),
+  (332, 'Willingness'),
   (333, 'Spiritual Growth'),
   (334, 'Hope and Gratitude'),
+  (335, 'Humility'),
   (336, 'Practice'),
   (337, 'Spiritual Growth'),
+  (338, 'Service'),
   (339, 'Spiritual Growth'),
   (340, 'Spiritual Growth'),
   (341, 'Detachment'),
+  (342, 'Service'),
   (343, 'Service'),
   (344, 'Fellowship'),
+  (345, 'Boundaries'),
+  (346, 'Detachment'),
   (347, 'Living Amends'),
   (348, 'Practice'),
   (349, 'Acceptance'),
@@ -288,6 +384,7 @@ FROM (VALUES
   (353, 'Self-Worth'),
   (354, 'Resentment and Forgiveness'),
   (355, 'Letting Go'),
+  (356, 'Detachment'),
   (357, 'Letting Go'),
   (358, 'Self-Awareness'),
   (359, 'Open-Mindedness'),
@@ -301,9 +398,8 @@ FROM (VALUES
 ) AS v(day, theme)
 WHERE r.day_of_year = v.day;
 
--- 3. Rebuild the destination table. It is keyed by theme NAME, so once the names
---    change every old row is orphaned. Each new theme inherits the destination that
---    most of its readings already resolve to today, so Go deeper keeps working.
+-- 4. Rebuild the destination table against the new vocabulary. It is keyed by
+--    theme name, and link_theme is what will look into it now.
 DELETE FROM reflection_theme_destinations;
 INSERT INTO reflection_theme_destinations (theme, destination) VALUES
   ('Acceptance', '/guides/surrender/'),
@@ -350,10 +446,12 @@ INSERT INTO reflection_theme_destinations (theme, destination) VALUES
   ('Understanding the Disease', '/topics/the-disease/'),
   ('Willingness', '/articles/letting-go/');
 
--- 4. Verify before committing.
-SELECT count(DISTINCT secondary_theme) AS themes_now FROM readings;  -- expect 43
-SELECT count(*) AS destination_rows FROM reflection_theme_destinations;  -- expect 43
-SELECT secondary_theme, count(*) FROM readings GROUP BY 1 HAVING count(*) < 5;  -- expect 0 rows
+-- 5. Verify, then COMMIT (or ROLLBACK if anything looks wrong).
+SELECT count(*) AS unfilled FROM readings WHERE link_theme IS NULL;  -- expect 0
+SELECT count(DISTINCT link_theme) AS grouping_themes FROM readings;  -- expect 43
+SELECT count(DISTINCT secondary_theme) AS old_themes_untouched FROM readings;  -- expect 132
+SELECT link_theme, count(*) FROM readings GROUP BY 1 HAVING count(*) < 5;  -- expect 0 rows
+SELECT count(*) FROM readings r LEFT JOIN reflection_theme_destinations d
+  ON d.theme = r.link_theme WHERE d.theme IS NULL;  -- expect 0: every reading resolves
 
--- Replace with ROLLBACK; if any check above looks wrong.
 COMMIT;
