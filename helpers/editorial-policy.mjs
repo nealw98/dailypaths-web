@@ -4,6 +4,16 @@ import inserts from './editorial-inserts.json' with {type:'json'};
 export function applyEditorialPolicy(html, pathname, records = inserts) {
  if(!html)return html;
  const path=pathname||html.match(/<link\b[^>]*rel="canonical"[^>]*href="https?:\/\/[^/]+([^"?]+)/i)?.[1];
+ // Published CMS snapshots also receive the current shared Home navigation.
+ if(path && path !== '/') {
+  html=html.replace(/(<nav\b[^>]*(?:class="site-nav"|aria-label="Mobile navigation")[^>]*>)([\s\S]*?)(<\/nav>)/gi, (all,open,links,close)=>{
+   if(/>Home<\//.test(links))return all;
+   const home=open.includes('Mobile navigation')
+    ? '<a href="/" class="mobile-menu-row"><span class="mobile-menu-label">Home</span></a>'
+    : '<a href="/" class="nav-link">Home</a>';
+   return open+home+links+close;
+  });
+ }
  html=html.replaceAll('/september-25-vision-and-improvement/','/september-25/').replaceAll('/october-31-the-intimacy-of-transparency/','/october-31/');
  const authorPaths=['/articles/voices-from-the-grave/','/articles/the-line-i-kept-moving/'];
  const description='Finding help when someone else’s drinking is affecting your life.';

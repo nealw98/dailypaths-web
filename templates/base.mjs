@@ -86,7 +86,7 @@ export function wrapInLayout({
   const twitterCard = ogImage ? 'summary_large_image' : 'summary';
   const appHref = hasAppPanel ? '#get-the-app' : bp('/#get-the-app');
 
-  const nav = navItems();
+  const nav = isHome ? navItems() : [{ id: 'home', label: 'Home', href: bp('/') }, ...navItems()];
 
   const desktopNav = nav.map(n => {
     const active = n.id === navSection;
