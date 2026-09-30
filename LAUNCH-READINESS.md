@@ -191,7 +191,9 @@ pages most able to rank are the ones least optimized.
 Suggested:
 
 - Title: `Al-Anon Daily Reflections & Recovery Guides | Daily Paths` (57 characters,
-  so nothing is truncated)
+  so nothing is truncated). **Read B8 first** — the search data says this earns its
+  keep from *daily readings*, not from the bare word "Al-Anon", which is 44% of
+  impressions and converts at 0.7%.
 - Keep the reflection title as a prominent `<h2>`; add a true `<h1>` naming what
   the site is. The design can keep the reflection visually dominant. The hero's
   existing "Today's reflection" label is the natural place — it already sits in
@@ -366,34 +368,38 @@ which makes every other decision on this list guesswork.
 Add `width`/`height` to the hero templates first — it is the smallest change with
 the clearest ranking effect.
 
-### B8. Keyword targeting has never been done deliberately
+### B8. Keyword targeting — now has data, and it corrects B1
 
-There is no keyword map. Titles were written editorially, one page at a time.
-Before optimizing individual pages, produce one table — page, primary phrase,
-secondary phrases — so two pages never chase the same phrase (which is how B5
-happened).
+The Bing Webmaster keyword report for 30 September 2026 is analysed in
+`editorial/search-demand-2026-09.md`: 657 queries, 3,662 impressions, 444 clicks,
+12.1% CTR on the 1.0 site.
 
-I have no search-volume data available in this environment, so treat the
-groupings below as a starting structure to validate against Search Console and a
-keyword tool, not as researched numbers:
+**The correction:** B1 proposed building the homepage around "Al-Anon". Bare
+`alanon` and `al-anon` are 1,373 impressions and 2 clicks between them — 0.7%
+CTR, navigational searches for al-anon.org. Not winnable, and not the right
+visitor. The title change in B1 still stands, but it earns its keep from *daily
+readings* (605 impressions, 23.1% CTR), not from the brand word.
 
-| Cluster | Natural home | Currently targeted? |
-|---|---|---|
-| al-anon daily reflections / daily reader / reading for today | `/` and `/reflections/` | Weakly — `/` not at all |
-| detachment with love / how to detach from an alcoholic | `/guides/detachment-with-love/` | Blocked — page is a placeholder |
-| setting boundaries with an alcoholic / addict | `/guides/boundaries/` | Partly — title omits the phrase |
-| powerlessness / step one / unmanageability | `/guides/surrender/` | Partly |
-| what is al-anon / is al-anon for me | `/guides/about-alanon/`, `/start/` | Yes, but split across two pages |
-| what to expect at your first al-anon meeting | `/articles/your-first-al-anon-meeting/` | Blocked — placeholder |
-| living with an alcoholic husband / wife / parent | **no page** | No |
-| adult children of alcoholics | **no page** | No |
-| letting go / codependency | `/articles/letting-go/` | Partly |
-| al-anon steps / step N | `/steps/…`, `/months/…` | Yes |
+| Intent | Impressions | CTR | Where it lands |
+|---|---|---|---|
+| Brand / navigational | 1,608 | 0.7% | leave alone |
+| **Steps / Traditions / Concepts** | **912** | **19.1%** | 12 Step articles — **no hub** |
+| Daily readings | 605 | 23.1% | the 366, working |
+| Al-Anon literature | 186 | 18.3% | pages retired 28 Sep |
+| Topics | 116 | **30.2%** | the guides — barely linked |
 
-The two gaps are worth noting: *"living with an alcoholic [spouse/parent]"* and
-*"adult children of alcoholics"* are the phrases people actually type when they
-first go looking, and the site has no page for either. Both would be natural
-additions to the article programme rather than launch blockers.
+**The clearest gap:** 435 impressions for generic "12 steps of al-anon" phrasing,
+converting at 8% against 19% for the group. `/steps/` — the obvious address —
+redirects to `/reflections/`, titled "Daily Reflections by Step". The generic
+searcher is shown a reading collection. A real Twelve Steps hub at `/steps/`
+is the single best-evidenced page the site does not have.
+
+**Steps 7, 8 and 9** (humility, willingness, amends) are 221 of the 440
+Step-specific impressions — half the demand across three Steps.
+
+**Topics convert best of anything at 30.2%**, on the smallest volume, and are the
+least linked-to part of the site. That makes B9 a ranking argument as well as a
+reader one.
 
 ### B9. Internal linking — 112 reflections still lead nowhere onward
 
