@@ -95,9 +95,6 @@ export function renderCollectionPage(path, readings) {
           </section>`;
   }).join('\n');
 
-  const contents = collection.entries.map(entry =>
-    `<a href="#${collection.slugPrefix}-${entry.number}">${entry.number}</a>`).join('\n          ');
-
   const bodyContent = `
     <div class="wrap section--md">
       <nav class="ma-back-nav">
@@ -110,10 +107,6 @@ export function renderCollectionPage(path, readings) {
         <p class="ma-subtitle">${collection.description}</p>
         <div class="ma-introduction"><p>${collection.lede}</p></div>
       </header>
-
-      <nav class="ma-month-nav" aria-label="Jump to ${collection.label.toLowerCase()}">
-          ${contents}
-      </nav>
 
       <div class="ma-chapters">
 ${sections}
