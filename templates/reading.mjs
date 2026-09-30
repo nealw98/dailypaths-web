@@ -4,7 +4,7 @@ import { dayToIsoDate, dayToMonthIndex, readingSlug, DAYS_IN_MONTH } from '../he
 import { readingStructuredData, breadcrumbStructuredData } from '../helpers/seo.mjs';
 import { bp } from '../helpers/config.mjs';
 import { THEME_TO_TOPIC, TOPICS } from '../helpers/theme-data.mjs';
-import { themeDestination, pickSiblings, siblingReflections, readingGroup } from '../helpers/theme-destinations.mjs';
+import { themeDestination, pickSiblings, siblingReflections, readingGroup, groupingTheme } from '../helpers/theme-destinations.mjs';
 import { destinationMeta } from '../helpers/destination-catalog.mjs';
 import { STEPS, STEP_HOOKS } from './steps.mjs';
 import { photoHero, quoteBlock, pill, terminalBand } from './ui.mjs';
@@ -32,6 +32,15 @@ function countToWords(n) {
 }
 
 function upperFirst(text) { return text ? text.charAt(0).toUpperCase() + text.slice(1) : text; }
+// "Amends" reads better as "More on amends", but "Coming to Believe" must not
+// become "coming to believe" wholesale and "Al-Anon" must keep its capitals, so
+// only a lone leading capital is lowered.
+function lowerFirst(text) {
+  if (!text) return text;
+  const [first, ...rest] = text.split(' ');
+  const lowered = /^[A-Z][a-z]+$/.test(first) ? first.toLowerCase() : first;
+  return [lowered, ...rest].join(' ');
+}
 
 /**
  * Generate the HTML for an individual reading page — the site's main hub
@@ -80,7 +89,9 @@ export function renderReadingPage(reading, prevReading, nextReading, allReadings
   const topicMatch = theme ? THEME_TO_TOPIC[theme] : null;
   // Resolved once, for the pill, the Go deeper card and the grouping alike, so a
   // theme assigned in the table cannot reach one of them and not the others.
-  const destinationPath = themeDestination(theme);
+  // The grouping theme owns the destination once it is populated, since the table
+  // is keyed to that vocabulary; secondary_theme answers until then.
+  const destinationPath = themeDestination(groupingTheme(reading) || theme);
   const destination = destinationMeta(destinationPath);
   const stepData = stepNum ? STEPS.find(s => s.number === stepNum) : null;
   const stepPath = stepData ? `/months/${stepData.monthSlug}/` : null;
@@ -163,10 +174,16 @@ export function renderReadingPage(reading, prevReading, nextReading, allReadings
       const programWords = group.kind === 'program'
         ? group.label.replace(/\b(\d+)\b/, m => NUMBER_WORDS[Number(m) - 1] || m)
         : '';
-      const heading = group.kind === 'destination'
-        ? `More on ${(theme || 'this').toLowerCase()}`
-        : `More on ${programWords}`;
-      const collectionLine = group.kind === 'destination' && destination
+      // A grouping theme names itself — "More on amends" is what those fourteen
+      // readings have in common, where the destination could only be named by
+      // where they lead. Proper nouns inside a theme keep their capitals.
+      const themeWords = group.kind === 'theme' ? lowerFirst(group.theme) : '';
+      const heading = group.kind === 'theme'
+        ? `More on ${themeWords}`
+        : group.kind === 'destination'
+          ? `More on ${(theme || 'this').toLowerCase()}`
+          : `More on ${programWords}`;
+      const collectionLine = (group.kind === 'theme' || group.kind === 'destination') && destination
         ? `${upperFirst(countToWords(total))} reflections lead to ${destination.title}.`
         : programWords ? `${upperFirst(countToWords(total))} reflections were written alongside ${programWords}.` : '';
       keepReadingHtml = `

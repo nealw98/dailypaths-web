@@ -1,7 +1,7 @@
 {
   "name": "dailypaths-web",
   "version": "1.0.0",
-  "description": "Daily Paths \u2014 Al-Anon daily reflections static site generator",
+  "description": "Daily Paths — Al-Anon daily reflections static site generator",
   "type": "module",
   "scripts": {
     "build": "node scripts/build-site.mjs",
@@ -15,7 +15,8 @@
     "seed:slugs": "node scripts/seed-reading-slugs.mjs",
     "themes:worksheet": "node scripts/theme-destinations.mjs",
     "inventory": "node scripts/content-inventory.mjs",
-    "drafts:leftovers": "node scripts/leftover-drafts.mjs"
+    "drafts:leftovers": "node scripts/leftover-drafts.mjs",
+    "themes:capture": "node --env-file=.env scripts/capture-theme-destinations.mjs"
   },
   "dependencies": {
     "dotenv": "^16.4.7",

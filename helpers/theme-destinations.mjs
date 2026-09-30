@@ -1,17 +1,20 @@
 /**
  * Where a reflection's theme sends the reader.
  *
- * Each reflection carries a free-text theme in readings.secondary_theme. One list
- * of theme → destination pairs decides two things from it, read in either
- * direction:
+ * Each reflection carries two themes, and they do different jobs.
+ * readings.link_theme is the 43-word grouping vocabulary built for this file;
+ * readings.secondary_theme is the 132 finer words, which map to the twelve topic
+ * pages and choose the hero photograph and are left alone here. One list of
+ * theme → destination pairs then decides two things, read in either direction:
  *
  *   forwards   the Go deeper card on the reflection, and its pill
- *   backwards  the reflections shown alongside it — every other reflection whose
- *              theme lands on the same destination
+ *   backwards  the reflections shown alongside it — every other reflection in the
+ *              same grouping theme
  *
- * Grouping by destination rather than by exact theme is deliberate. Sixteen
- * reflections tagged "Trust" shown to each other read as duplicates; Trust,
- * Willingness and Self-will shown together read as three angles on one idea.
+ * Until link_theme is populated this falls back to grouping by destination, which
+ * is how the 132 words were made to work: sixteen reflections tagged "Trust" shown
+ * to each other read as duplicates, so they were grouped by where they lead
+ * instead. The grouping vocabulary removes the need for that indirection.
  *
  * The list itself is editorial and lives in the Reading Room, captured into
  * data/theme-destinations.json. Until that capture exists this falls back to the
@@ -77,6 +80,18 @@ function resolve(to) {
   return anchor ? `${resolved}#${anchor}` : resolved;
 }
 
+/**
+ * The theme a reflection is grouped by, or null before the column is populated.
+ *
+ * readings.link_theme holds the 43-word grouping vocabulary; readings.secondary_theme
+ * holds the 132 finer words that map to the twelve topic pages and pick the hero
+ * photograph. They are separate on purpose, and this is the only place that decides
+ * which one grouping means.
+ */
+export function groupingTheme(reading) {
+  return (reading?.link_theme || '').trim() || null;
+}
+
 /** The path a theme sends the reader to, or null when it has no destination. */
 export function themeDestination(theme) {
   const name = (theme || '').trim();
@@ -122,6 +137,21 @@ function destinationIsShared(destination, allReadings) {
  * requiring all of them would have been one decision per page for no gain.
  */
 export function readingGroup(reading, allReadings = null) {
+  // Once readings.link_theme is populated it decides the grouping outright: it is
+  // the vocabulary built for this job, every one of its 43 words covers at least
+  // five reflections, and each has a destination. No shared-destination test is
+  // needed, because the theme is the group rather than a proxy for it, and the
+  // card labels still come from secondary_theme so a trio reads Immediacy /
+  // Proportionality / Courtesy rather than Amends three times.
+  const grouping = groupingTheme(reading);
+  if (grouping) {
+    return {
+      kind: 'theme',
+      key: `theme:${grouping}`,
+      theme: grouping,
+      destination: themeDestination(grouping),
+    };
+  }
   const destination = themeDestination(reading.secondary_theme);
   // Grouped by the page, not the anchor: two themes pointing at different sections
   // of one guide lead to the same place, so their reflections are related.
