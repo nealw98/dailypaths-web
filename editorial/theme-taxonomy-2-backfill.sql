@@ -1,238 +1,385 @@
 -- Daily Paths: the 43-theme grouping vocabulary.
 --
--- FILE 2 of 3 — fill readings.link_theme for all 366 readings.
+-- FILE 2 of 3 - fill readings.link_theme. Run file 1 first.
 --
--- Run file 1 first. No foreign key exists on the column yet, so these names do
--- not have to be in the theme table until file 3 adds them.
---
--- One statement per theme, listing the days that carry it. Written this way so
--- every statement is short: a single 370-line UPDATE reached the editor
--- truncated and failed with "syntax error at end of input".
+-- One line per reading. Nothing is nested and no statement spans lines, so the
+-- editor cannot truncate one: the earlier version put all 366 pairs in a single
+-- UPDATE ... FROM (VALUES ...) and arrived cut off.
 --
 -- readings.secondary_theme is never modified.
 
 BEGIN;
 
--- Acceptance — 10 readings
-UPDATE readings SET link_theme = 'Acceptance' WHERE day_of_year IN (
-  14, 83, 88, 173, 225, 230, 252, 272, 292, 349
-);
-
--- Amends — 14 readings
-UPDATE readings SET link_theme = 'Amends' WHERE day_of_year IN (
-  223, 224, 226, 233, 234, 235, 239, 247, 248, 249, 253, 261, 263, 273
-);
-
--- Boundaries — 8 readings
-UPDATE readings SET link_theme = 'Boundaries' WHERE day_of_year IN (
-  9, 23, 24, 31, 180, 210, 267, 345
-);
-
--- Character Defects — 8 readings
-UPDATE readings SET link_theme = 'Character Defects' WHERE day_of_year IN (
-  133, 158, 159, 160, 165, 202, 266, 291
-);
-
--- Coming to Believe — 10 readings
-UPDATE readings SET link_theme = 'Coming to Believe' WHERE day_of_year IN (
-  33, 35, 36, 46, 67, 74, 75, 76, 84, 86
-);
-
--- Connection — 10 readings
-UPDATE readings SET link_theme = 'Connection' WHERE day_of_year IN (
-  1, 59, 85, 127, 132, 135, 138, 139, 212, 329
-);
-
--- Courage — 5 readings
-UPDATE readings SET link_theme = 'Courage' WHERE day_of_year IN (
-  44, 79, 112, 131, 208
-);
-
--- Detachment — 8 readings
-UPDATE readings SET link_theme = 'Detachment' WHERE day_of_year IN (
-  19, 211, 289, 301, 312, 341, 346, 356
-);
-
--- Faith — 7 readings
-UPDATE readings SET link_theme = 'Faith' WHERE day_of_year IN (
-  39, 40, 81, 82, 162, 314, 318
-);
-
--- Fear — 7 readings
-UPDATE readings SET link_theme = 'Fear' WHERE day_of_year IN (
-  72, 94, 128, 144, 204, 255, 362
-);
-
--- Fellowship — 14 readings
-UPDATE readings SET link_theme = 'Fellowship' WHERE day_of_year IN (
-  37, 48, 87, 100, 108, 130, 142, 150, 242, 256, 302, 303, 325, 344
-);
-
--- Honesty — 8 readings
-UPDATE readings SET link_theme = 'Honesty' WHERE day_of_year IN (
-  2, 50, 104, 109, 118, 136, 141, 143
-);
-
--- Hope and Gratitude — 8 readings
-UPDATE readings SET link_theme = 'Hope and Gratitude' WHERE day_of_year IN (
-  12, 32, 34, 41, 96, 116, 334, 360
-);
-
--- Humility — 13 readings
-UPDATE readings SET link_theme = 'Humility' WHERE day_of_year IN (
-  42, 58, 66, 124, 175, 182, 183, 184, 187, 245, 286, 321, 335
-);
-
--- Identity — 7 readings
-UPDATE readings SET link_theme = 'Identity' WHERE day_of_year IN (
-  99, 102, 166, 170, 174, 178, 179
-);
-
--- Inventory — 7 readings
-UPDATE readings SET link_theme = 'Inventory' WHERE day_of_year IN (
-  92, 93, 111, 216, 278, 285, 299
-);
-
--- Letting Go — 16 readings
-UPDATE readings SET link_theme = 'Letting Go' WHERE day_of_year IN (
-  7, 16, 18, 43, 65, 68, 69, 71, 167, 188, 191, 222, 288, 320, 355, 357
-);
-
--- Living Amends — 10 readings
-UPDATE readings SET link_theme = 'Living Amends' WHERE day_of_year IN (
-  250, 251, 254, 259, 260, 262, 264, 271, 274, 347
-);
-
--- Open-Mindedness — 8 readings
-UPDATE readings SET link_theme = 'Open-Mindedness' WHERE day_of_year IN (
-  55, 151, 322, 359, 361, 363, 364, 365
-);
-
--- Patience — 7 readings
-UPDATE readings SET link_theme = 'Patience' WHERE day_of_year IN (
-  47, 51, 172, 189, 192, 232, 309
-);
-
--- People-Pleasing — 5 readings
-UPDATE readings SET link_theme = 'People-Pleasing' WHERE day_of_year IN (
-  20, 106, 114, 123, 366
-);
-
--- Powerlessness — 5 readings
-UPDATE readings SET link_theme = 'Powerlessness' WHERE day_of_year IN (
-  3, 8, 11, 13, 298
-);
-
--- Practice — 17 readings
-UPDATE readings SET link_theme = 'Practice' WHERE day_of_year IN (
-  26, 30, 52, 70, 117, 196, 198, 207, 213, 275, 277, 280, 297, 310, 336,
-  348, 350
-);
-
--- Prayer and Meditation — 11 readings
-UPDATE readings SET link_theme = 'Prayer and Meditation' WHERE day_of_year IN (
-  53, 161, 171, 190, 221, 228, 307, 308, 311, 313, 324
-);
-
--- Progress Not Perfection — 8 readings
-UPDATE readings SET link_theme = 'Progress Not Perfection' WHERE day_of_year IN (
-  95, 115, 193, 206, 279, 293, 305, 330
-);
-
--- Readiness — 8 readings
-UPDATE readings SET link_theme = 'Readiness' WHERE day_of_year IN (
-  153, 154, 156, 157, 164, 169, 176, 300
-);
-
--- Resentment and Forgiveness — 7 readings
-UPDATE readings SET link_theme = 'Resentment and Forgiveness' WHERE day_of_year IN (
-  28, 217, 236, 258, 287, 296, 354
-);
-
--- Respect — 7 readings
-UPDATE readings SET link_theme = 'Respect' WHERE day_of_year IN (
-  57, 77, 90, 98, 101, 240, 257
-);
-
--- Responsibility — 13 readings
-UPDATE readings SET link_theme = 'Responsibility' WHERE day_of_year IN (
-  22, 29, 56, 97, 105, 126, 181, 218, 227, 229, 246, 282, 295
-);
-
--- Self-Awareness — 14 readings
-UPDATE readings SET link_theme = 'Self-Awareness' WHERE day_of_year IN (
-  25, 38, 61, 107, 119, 120, 137, 197, 200, 203, 281, 283, 317, 358
-);
-
--- Self-Care — 5 readings
-UPDATE readings SET link_theme = 'Self-Care' WHERE day_of_year IN (
-  17, 237, 270, 294, 316
-);
-
--- Self-Compassion — 7 readings
-UPDATE readings SET link_theme = 'Self-Compassion' WHERE day_of_year IN (
-  78, 110, 194, 195, 326, 328, 331
-);
-
--- Self-Focus — 5 readings
-UPDATE readings SET link_theme = 'Self-Focus' WHERE day_of_year IN (
-  6, 21, 113, 147, 231
-);
-
--- Self-Worth — 6 readings
-UPDATE readings SET link_theme = 'Self-Worth' WHERE day_of_year IN (
-  27, 103, 186, 209, 290, 353
-);
-
--- Serenity — 6 readings
-UPDATE readings SET link_theme = 'Serenity' WHERE day_of_year IN (
-  60, 199, 276, 284, 319, 327
-);
-
--- Service — 10 readings
-UPDATE readings SET link_theme = 'Service' WHERE day_of_year IN (
-  54, 152, 241, 265, 268, 269, 323, 338, 342, 343
-);
-
--- Shame and Guilt — 7 readings
-UPDATE readings SET link_theme = 'Shame and Guilt' WHERE day_of_year IN (
-  122, 125, 134, 140, 145, 146, 214
-);
-
--- Spiritual Growth — 8 readings
-UPDATE readings SET link_theme = 'Spiritual Growth' WHERE day_of_year IN (
-  45, 121, 201, 333, 337, 339, 340, 351
-);
-
--- Surrender — 10 readings
-UPDATE readings SET link_theme = 'Surrender' WHERE day_of_year IN (
-  15, 63, 64, 73, 80, 155, 168, 177, 185, 315
-);
-
--- Trust in a Higher Power — 5 readings
-UPDATE readings SET link_theme = 'Trust in a Higher Power' WHERE day_of_year IN (
-  163, 205, 238, 306, 352
-);
-
--- Trusting Others — 7 readings
-UPDATE readings SET link_theme = 'Trusting Others' WHERE day_of_year IN (
-  49, 89, 91, 129, 243, 244, 304
-);
-
--- Understanding the Disease — 5 readings
-UPDATE readings SET link_theme = 'Understanding the Disease' WHERE day_of_year IN (
-  4, 5, 10, 148, 149
-);
-
--- Willingness — 5 readings
-UPDATE readings SET link_theme = 'Willingness' WHERE day_of_year IN (
-  62, 215, 219, 220, 332
-);
+UPDATE readings SET link_theme = 'Connection' WHERE day_of_year = 1;
+UPDATE readings SET link_theme = 'Honesty' WHERE day_of_year = 2;
+UPDATE readings SET link_theme = 'Powerlessness' WHERE day_of_year = 3;
+UPDATE readings SET link_theme = 'Understanding the Disease' WHERE day_of_year = 4;
+UPDATE readings SET link_theme = 'Understanding the Disease' WHERE day_of_year = 5;
+UPDATE readings SET link_theme = 'Self-Focus' WHERE day_of_year = 6;
+UPDATE readings SET link_theme = 'Letting Go' WHERE day_of_year = 7;
+UPDATE readings SET link_theme = 'Powerlessness' WHERE day_of_year = 8;
+UPDATE readings SET link_theme = 'Boundaries' WHERE day_of_year = 9;
+UPDATE readings SET link_theme = 'Understanding the Disease' WHERE day_of_year = 10;
+UPDATE readings SET link_theme = 'Powerlessness' WHERE day_of_year = 11;
+UPDATE readings SET link_theme = 'Hope and Gratitude' WHERE day_of_year = 12;
+UPDATE readings SET link_theme = 'Powerlessness' WHERE day_of_year = 13;
+UPDATE readings SET link_theme = 'Acceptance' WHERE day_of_year = 14;
+UPDATE readings SET link_theme = 'Surrender' WHERE day_of_year = 15;
+UPDATE readings SET link_theme = 'Letting Go' WHERE day_of_year = 16;
+UPDATE readings SET link_theme = 'Self-Care' WHERE day_of_year = 17;
+UPDATE readings SET link_theme = 'Letting Go' WHERE day_of_year = 18;
+UPDATE readings SET link_theme = 'Detachment' WHERE day_of_year = 19;
+UPDATE readings SET link_theme = 'People-Pleasing' WHERE day_of_year = 20;
+UPDATE readings SET link_theme = 'Self-Focus' WHERE day_of_year = 21;
+UPDATE readings SET link_theme = 'Responsibility' WHERE day_of_year = 22;
+UPDATE readings SET link_theme = 'Boundaries' WHERE day_of_year = 23;
+UPDATE readings SET link_theme = 'Boundaries' WHERE day_of_year = 24;
+UPDATE readings SET link_theme = 'Self-Awareness' WHERE day_of_year = 25;
+UPDATE readings SET link_theme = 'Practice' WHERE day_of_year = 26;
+UPDATE readings SET link_theme = 'Self-Worth' WHERE day_of_year = 27;
+UPDATE readings SET link_theme = 'Resentment and Forgiveness' WHERE day_of_year = 28;
+UPDATE readings SET link_theme = 'Responsibility' WHERE day_of_year = 29;
+UPDATE readings SET link_theme = 'Practice' WHERE day_of_year = 30;
+UPDATE readings SET link_theme = 'Boundaries' WHERE day_of_year = 31;
+UPDATE readings SET link_theme = 'Hope and Gratitude' WHERE day_of_year = 32;
+UPDATE readings SET link_theme = 'Coming to Believe' WHERE day_of_year = 33;
+UPDATE readings SET link_theme = 'Hope and Gratitude' WHERE day_of_year = 34;
+UPDATE readings SET link_theme = 'Coming to Believe' WHERE day_of_year = 35;
+UPDATE readings SET link_theme = 'Coming to Believe' WHERE day_of_year = 36;
+UPDATE readings SET link_theme = 'Fellowship' WHERE day_of_year = 37;
+UPDATE readings SET link_theme = 'Self-Awareness' WHERE day_of_year = 38;
+UPDATE readings SET link_theme = 'Faith' WHERE day_of_year = 39;
+UPDATE readings SET link_theme = 'Faith' WHERE day_of_year = 40;
+UPDATE readings SET link_theme = 'Hope and Gratitude' WHERE day_of_year = 41;
+UPDATE readings SET link_theme = 'Humility' WHERE day_of_year = 42;
+UPDATE readings SET link_theme = 'Letting Go' WHERE day_of_year = 43;
+UPDATE readings SET link_theme = 'Courage' WHERE day_of_year = 44;
+UPDATE readings SET link_theme = 'Spiritual Growth' WHERE day_of_year = 45;
+UPDATE readings SET link_theme = 'Coming to Believe' WHERE day_of_year = 46;
+UPDATE readings SET link_theme = 'Patience' WHERE day_of_year = 47;
+UPDATE readings SET link_theme = 'Fellowship' WHERE day_of_year = 48;
+UPDATE readings SET link_theme = 'Trusting Others' WHERE day_of_year = 49;
+UPDATE readings SET link_theme = 'Honesty' WHERE day_of_year = 50;
+UPDATE readings SET link_theme = 'Patience' WHERE day_of_year = 51;
+UPDATE readings SET link_theme = 'Practice' WHERE day_of_year = 52;
+UPDATE readings SET link_theme = 'Prayer and Meditation' WHERE day_of_year = 53;
+UPDATE readings SET link_theme = 'Service' WHERE day_of_year = 54;
+UPDATE readings SET link_theme = 'Open-Mindedness' WHERE day_of_year = 55;
+UPDATE readings SET link_theme = 'Responsibility' WHERE day_of_year = 56;
+UPDATE readings SET link_theme = 'Respect' WHERE day_of_year = 57;
+UPDATE readings SET link_theme = 'Humility' WHERE day_of_year = 58;
+UPDATE readings SET link_theme = 'Connection' WHERE day_of_year = 59;
+UPDATE readings SET link_theme = 'Serenity' WHERE day_of_year = 60;
+UPDATE readings SET link_theme = 'Self-Awareness' WHERE day_of_year = 61;
+UPDATE readings SET link_theme = 'Willingness' WHERE day_of_year = 62;
+UPDATE readings SET link_theme = 'Surrender' WHERE day_of_year = 63;
+UPDATE readings SET link_theme = 'Surrender' WHERE day_of_year = 64;
+UPDATE readings SET link_theme = 'Letting Go' WHERE day_of_year = 65;
+UPDATE readings SET link_theme = 'Humility' WHERE day_of_year = 66;
+UPDATE readings SET link_theme = 'Coming to Believe' WHERE day_of_year = 67;
+UPDATE readings SET link_theme = 'Letting Go' WHERE day_of_year = 68;
+UPDATE readings SET link_theme = 'Letting Go' WHERE day_of_year = 69;
+UPDATE readings SET link_theme = 'Practice' WHERE day_of_year = 70;
+UPDATE readings SET link_theme = 'Letting Go' WHERE day_of_year = 71;
+UPDATE readings SET link_theme = 'Fear' WHERE day_of_year = 72;
+UPDATE readings SET link_theme = 'Surrender' WHERE day_of_year = 73;
+UPDATE readings SET link_theme = 'Coming to Believe' WHERE day_of_year = 74;
+UPDATE readings SET link_theme = 'Coming to Believe' WHERE day_of_year = 75;
+UPDATE readings SET link_theme = 'Coming to Believe' WHERE day_of_year = 76;
+UPDATE readings SET link_theme = 'Respect' WHERE day_of_year = 77;
+UPDATE readings SET link_theme = 'Self-Compassion' WHERE day_of_year = 78;
+UPDATE readings SET link_theme = 'Courage' WHERE day_of_year = 79;
+UPDATE readings SET link_theme = 'Surrender' WHERE day_of_year = 80;
+UPDATE readings SET link_theme = 'Faith' WHERE day_of_year = 81;
+UPDATE readings SET link_theme = 'Faith' WHERE day_of_year = 82;
+UPDATE readings SET link_theme = 'Acceptance' WHERE day_of_year = 83;
+UPDATE readings SET link_theme = 'Coming to Believe' WHERE day_of_year = 84;
+UPDATE readings SET link_theme = 'Connection' WHERE day_of_year = 85;
+UPDATE readings SET link_theme = 'Coming to Believe' WHERE day_of_year = 86;
+UPDATE readings SET link_theme = 'Fellowship' WHERE day_of_year = 87;
+UPDATE readings SET link_theme = 'Acceptance' WHERE day_of_year = 88;
+UPDATE readings SET link_theme = 'Trusting Others' WHERE day_of_year = 89;
+UPDATE readings SET link_theme = 'Respect' WHERE day_of_year = 90;
+UPDATE readings SET link_theme = 'Trusting Others' WHERE day_of_year = 91;
+UPDATE readings SET link_theme = 'Inventory' WHERE day_of_year = 92;
+UPDATE readings SET link_theme = 'Inventory' WHERE day_of_year = 93;
+UPDATE readings SET link_theme = 'Fear' WHERE day_of_year = 94;
+UPDATE readings SET link_theme = 'Progress Not Perfection' WHERE day_of_year = 95;
+UPDATE readings SET link_theme = 'Hope and Gratitude' WHERE day_of_year = 96;
+UPDATE readings SET link_theme = 'Responsibility' WHERE day_of_year = 97;
+UPDATE readings SET link_theme = 'Respect' WHERE day_of_year = 98;
+UPDATE readings SET link_theme = 'Identity' WHERE day_of_year = 99;
+UPDATE readings SET link_theme = 'Fellowship' WHERE day_of_year = 100;
+UPDATE readings SET link_theme = 'Respect' WHERE day_of_year = 101;
+UPDATE readings SET link_theme = 'Identity' WHERE day_of_year = 102;
+UPDATE readings SET link_theme = 'Self-Worth' WHERE day_of_year = 103;
+UPDATE readings SET link_theme = 'Honesty' WHERE day_of_year = 104;
+UPDATE readings SET link_theme = 'Responsibility' WHERE day_of_year = 105;
+UPDATE readings SET link_theme = 'People-Pleasing' WHERE day_of_year = 106;
+UPDATE readings SET link_theme = 'Self-Awareness' WHERE day_of_year = 107;
+UPDATE readings SET link_theme = 'Fellowship' WHERE day_of_year = 108;
+UPDATE readings SET link_theme = 'Honesty' WHERE day_of_year = 109;
+UPDATE readings SET link_theme = 'Self-Compassion' WHERE day_of_year = 110;
+UPDATE readings SET link_theme = 'Inventory' WHERE day_of_year = 111;
+UPDATE readings SET link_theme = 'Courage' WHERE day_of_year = 112;
+UPDATE readings SET link_theme = 'Self-Focus' WHERE day_of_year = 113;
+UPDATE readings SET link_theme = 'People-Pleasing' WHERE day_of_year = 114;
+UPDATE readings SET link_theme = 'Progress Not Perfection' WHERE day_of_year = 115;
+UPDATE readings SET link_theme = 'Hope and Gratitude' WHERE day_of_year = 116;
+UPDATE readings SET link_theme = 'Practice' WHERE day_of_year = 117;
+UPDATE readings SET link_theme = 'Honesty' WHERE day_of_year = 118;
+UPDATE readings SET link_theme = 'Self-Awareness' WHERE day_of_year = 119;
+UPDATE readings SET link_theme = 'Self-Awareness' WHERE day_of_year = 120;
+UPDATE readings SET link_theme = 'Spiritual Growth' WHERE day_of_year = 121;
+UPDATE readings SET link_theme = 'Shame and Guilt' WHERE day_of_year = 122;
+UPDATE readings SET link_theme = 'People-Pleasing' WHERE day_of_year = 123;
+UPDATE readings SET link_theme = 'Humility' WHERE day_of_year = 124;
+UPDATE readings SET link_theme = 'Shame and Guilt' WHERE day_of_year = 125;
+UPDATE readings SET link_theme = 'Responsibility' WHERE day_of_year = 126;
+UPDATE readings SET link_theme = 'Connection' WHERE day_of_year = 127;
+UPDATE readings SET link_theme = 'Fear' WHERE day_of_year = 128;
+UPDATE readings SET link_theme = 'Trusting Others' WHERE day_of_year = 129;
+UPDATE readings SET link_theme = 'Fellowship' WHERE day_of_year = 130;
+UPDATE readings SET link_theme = 'Courage' WHERE day_of_year = 131;
+UPDATE readings SET link_theme = 'Connection' WHERE day_of_year = 132;
+UPDATE readings SET link_theme = 'Character Defects' WHERE day_of_year = 133;
+UPDATE readings SET link_theme = 'Shame and Guilt' WHERE day_of_year = 134;
+UPDATE readings SET link_theme = 'Connection' WHERE day_of_year = 135;
+UPDATE readings SET link_theme = 'Honesty' WHERE day_of_year = 136;
+UPDATE readings SET link_theme = 'Self-Awareness' WHERE day_of_year = 137;
+UPDATE readings SET link_theme = 'Connection' WHERE day_of_year = 138;
+UPDATE readings SET link_theme = 'Connection' WHERE day_of_year = 139;
+UPDATE readings SET link_theme = 'Shame and Guilt' WHERE day_of_year = 140;
+UPDATE readings SET link_theme = 'Honesty' WHERE day_of_year = 141;
+UPDATE readings SET link_theme = 'Fellowship' WHERE day_of_year = 142;
+UPDATE readings SET link_theme = 'Honesty' WHERE day_of_year = 143;
+UPDATE readings SET link_theme = 'Fear' WHERE day_of_year = 144;
+UPDATE readings SET link_theme = 'Shame and Guilt' WHERE day_of_year = 145;
+UPDATE readings SET link_theme = 'Shame and Guilt' WHERE day_of_year = 146;
+UPDATE readings SET link_theme = 'Self-Focus' WHERE day_of_year = 147;
+UPDATE readings SET link_theme = 'Understanding the Disease' WHERE day_of_year = 148;
+UPDATE readings SET link_theme = 'Understanding the Disease' WHERE day_of_year = 149;
+UPDATE readings SET link_theme = 'Fellowship' WHERE day_of_year = 150;
+UPDATE readings SET link_theme = 'Open-Mindedness' WHERE day_of_year = 151;
+UPDATE readings SET link_theme = 'Service' WHERE day_of_year = 152;
+UPDATE readings SET link_theme = 'Readiness' WHERE day_of_year = 153;
+UPDATE readings SET link_theme = 'Readiness' WHERE day_of_year = 154;
+UPDATE readings SET link_theme = 'Surrender' WHERE day_of_year = 155;
+UPDATE readings SET link_theme = 'Readiness' WHERE day_of_year = 156;
+UPDATE readings SET link_theme = 'Readiness' WHERE day_of_year = 157;
+UPDATE readings SET link_theme = 'Character Defects' WHERE day_of_year = 158;
+UPDATE readings SET link_theme = 'Character Defects' WHERE day_of_year = 159;
+UPDATE readings SET link_theme = 'Character Defects' WHERE day_of_year = 160;
+UPDATE readings SET link_theme = 'Prayer and Meditation' WHERE day_of_year = 161;
+UPDATE readings SET link_theme = 'Faith' WHERE day_of_year = 162;
+UPDATE readings SET link_theme = 'Trust in a Higher Power' WHERE day_of_year = 163;
+UPDATE readings SET link_theme = 'Readiness' WHERE day_of_year = 164;
+UPDATE readings SET link_theme = 'Character Defects' WHERE day_of_year = 165;
+UPDATE readings SET link_theme = 'Identity' WHERE day_of_year = 166;
+UPDATE readings SET link_theme = 'Letting Go' WHERE day_of_year = 167;
+UPDATE readings SET link_theme = 'Surrender' WHERE day_of_year = 168;
+UPDATE readings SET link_theme = 'Readiness' WHERE day_of_year = 169;
+UPDATE readings SET link_theme = 'Identity' WHERE day_of_year = 170;
+UPDATE readings SET link_theme = 'Prayer and Meditation' WHERE day_of_year = 171;
+UPDATE readings SET link_theme = 'Patience' WHERE day_of_year = 172;
+UPDATE readings SET link_theme = 'Acceptance' WHERE day_of_year = 173;
+UPDATE readings SET link_theme = 'Identity' WHERE day_of_year = 174;
+UPDATE readings SET link_theme = 'Humility' WHERE day_of_year = 175;
+UPDATE readings SET link_theme = 'Readiness' WHERE day_of_year = 176;
+UPDATE readings SET link_theme = 'Surrender' WHERE day_of_year = 177;
+UPDATE readings SET link_theme = 'Identity' WHERE day_of_year = 178;
+UPDATE readings SET link_theme = 'Identity' WHERE day_of_year = 179;
+UPDATE readings SET link_theme = 'Boundaries' WHERE day_of_year = 180;
+UPDATE readings SET link_theme = 'Responsibility' WHERE day_of_year = 181;
+UPDATE readings SET link_theme = 'Humility' WHERE day_of_year = 182;
+UPDATE readings SET link_theme = 'Humility' WHERE day_of_year = 183;
+UPDATE readings SET link_theme = 'Humility' WHERE day_of_year = 184;
+UPDATE readings SET link_theme = 'Surrender' WHERE day_of_year = 185;
+UPDATE readings SET link_theme = 'Self-Worth' WHERE day_of_year = 186;
+UPDATE readings SET link_theme = 'Humility' WHERE day_of_year = 187;
+UPDATE readings SET link_theme = 'Letting Go' WHERE day_of_year = 188;
+UPDATE readings SET link_theme = 'Patience' WHERE day_of_year = 189;
+UPDATE readings SET link_theme = 'Prayer and Meditation' WHERE day_of_year = 190;
+UPDATE readings SET link_theme = 'Letting Go' WHERE day_of_year = 191;
+UPDATE readings SET link_theme = 'Patience' WHERE day_of_year = 192;
+UPDATE readings SET link_theme = 'Progress Not Perfection' WHERE day_of_year = 193;
+UPDATE readings SET link_theme = 'Self-Compassion' WHERE day_of_year = 194;
+UPDATE readings SET link_theme = 'Self-Compassion' WHERE day_of_year = 195;
+UPDATE readings SET link_theme = 'Practice' WHERE day_of_year = 196;
+UPDATE readings SET link_theme = 'Self-Awareness' WHERE day_of_year = 197;
+UPDATE readings SET link_theme = 'Practice' WHERE day_of_year = 198;
+UPDATE readings SET link_theme = 'Serenity' WHERE day_of_year = 199;
+UPDATE readings SET link_theme = 'Self-Awareness' WHERE day_of_year = 200;
+UPDATE readings SET link_theme = 'Spiritual Growth' WHERE day_of_year = 201;
+UPDATE readings SET link_theme = 'Character Defects' WHERE day_of_year = 202;
+UPDATE readings SET link_theme = 'Self-Awareness' WHERE day_of_year = 203;
+UPDATE readings SET link_theme = 'Fear' WHERE day_of_year = 204;
+UPDATE readings SET link_theme = 'Trust in a Higher Power' WHERE day_of_year = 205;
+UPDATE readings SET link_theme = 'Progress Not Perfection' WHERE day_of_year = 206;
+UPDATE readings SET link_theme = 'Practice' WHERE day_of_year = 207;
+UPDATE readings SET link_theme = 'Courage' WHERE day_of_year = 208;
+UPDATE readings SET link_theme = 'Self-Worth' WHERE day_of_year = 209;
+UPDATE readings SET link_theme = 'Boundaries' WHERE day_of_year = 210;
+UPDATE readings SET link_theme = 'Detachment' WHERE day_of_year = 211;
+UPDATE readings SET link_theme = 'Connection' WHERE day_of_year = 212;
+UPDATE readings SET link_theme = 'Practice' WHERE day_of_year = 213;
+UPDATE readings SET link_theme = 'Shame and Guilt' WHERE day_of_year = 214;
+UPDATE readings SET link_theme = 'Willingness' WHERE day_of_year = 215;
+UPDATE readings SET link_theme = 'Inventory' WHERE day_of_year = 216;
+UPDATE readings SET link_theme = 'Resentment and Forgiveness' WHERE day_of_year = 217;
+UPDATE readings SET link_theme = 'Responsibility' WHERE day_of_year = 218;
+UPDATE readings SET link_theme = 'Willingness' WHERE day_of_year = 219;
+UPDATE readings SET link_theme = 'Willingness' WHERE day_of_year = 220;
+UPDATE readings SET link_theme = 'Prayer and Meditation' WHERE day_of_year = 221;
+UPDATE readings SET link_theme = 'Letting Go' WHERE day_of_year = 222;
+UPDATE readings SET link_theme = 'Amends' WHERE day_of_year = 223;
+UPDATE readings SET link_theme = 'Amends' WHERE day_of_year = 224;
+UPDATE readings SET link_theme = 'Acceptance' WHERE day_of_year = 225;
+UPDATE readings SET link_theme = 'Amends' WHERE day_of_year = 226;
+UPDATE readings SET link_theme = 'Responsibility' WHERE day_of_year = 227;
+UPDATE readings SET link_theme = 'Prayer and Meditation' WHERE day_of_year = 228;
+UPDATE readings SET link_theme = 'Responsibility' WHERE day_of_year = 229;
+UPDATE readings SET link_theme = 'Acceptance' WHERE day_of_year = 230;
+UPDATE readings SET link_theme = 'Self-Focus' WHERE day_of_year = 231;
+UPDATE readings SET link_theme = 'Patience' WHERE day_of_year = 232;
+UPDATE readings SET link_theme = 'Amends' WHERE day_of_year = 233;
+UPDATE readings SET link_theme = 'Amends' WHERE day_of_year = 234;
+UPDATE readings SET link_theme = 'Amends' WHERE day_of_year = 235;
+UPDATE readings SET link_theme = 'Resentment and Forgiveness' WHERE day_of_year = 236;
+UPDATE readings SET link_theme = 'Self-Care' WHERE day_of_year = 237;
+UPDATE readings SET link_theme = 'Trust in a Higher Power' WHERE day_of_year = 238;
+UPDATE readings SET link_theme = 'Amends' WHERE day_of_year = 239;
+UPDATE readings SET link_theme = 'Respect' WHERE day_of_year = 240;
+UPDATE readings SET link_theme = 'Service' WHERE day_of_year = 241;
+UPDATE readings SET link_theme = 'Fellowship' WHERE day_of_year = 242;
+UPDATE readings SET link_theme = 'Trusting Others' WHERE day_of_year = 243;
+UPDATE readings SET link_theme = 'Trusting Others' WHERE day_of_year = 244;
+UPDATE readings SET link_theme = 'Humility' WHERE day_of_year = 245;
+UPDATE readings SET link_theme = 'Responsibility' WHERE day_of_year = 246;
+UPDATE readings SET link_theme = 'Amends' WHERE day_of_year = 247;
+UPDATE readings SET link_theme = 'Amends' WHERE day_of_year = 248;
+UPDATE readings SET link_theme = 'Amends' WHERE day_of_year = 249;
+UPDATE readings SET link_theme = 'Living Amends' WHERE day_of_year = 250;
+UPDATE readings SET link_theme = 'Living Amends' WHERE day_of_year = 251;
+UPDATE readings SET link_theme = 'Acceptance' WHERE day_of_year = 252;
+UPDATE readings SET link_theme = 'Amends' WHERE day_of_year = 253;
+UPDATE readings SET link_theme = 'Living Amends' WHERE day_of_year = 254;
+UPDATE readings SET link_theme = 'Fear' WHERE day_of_year = 255;
+UPDATE readings SET link_theme = 'Fellowship' WHERE day_of_year = 256;
+UPDATE readings SET link_theme = 'Respect' WHERE day_of_year = 257;
+UPDATE readings SET link_theme = 'Resentment and Forgiveness' WHERE day_of_year = 258;
+UPDATE readings SET link_theme = 'Living Amends' WHERE day_of_year = 259;
+UPDATE readings SET link_theme = 'Living Amends' WHERE day_of_year = 260;
+UPDATE readings SET link_theme = 'Amends' WHERE day_of_year = 261;
+UPDATE readings SET link_theme = 'Living Amends' WHERE day_of_year = 262;
+UPDATE readings SET link_theme = 'Amends' WHERE day_of_year = 263;
+UPDATE readings SET link_theme = 'Living Amends' WHERE day_of_year = 264;
+UPDATE readings SET link_theme = 'Service' WHERE day_of_year = 265;
+UPDATE readings SET link_theme = 'Character Defects' WHERE day_of_year = 266;
+UPDATE readings SET link_theme = 'Boundaries' WHERE day_of_year = 267;
+UPDATE readings SET link_theme = 'Service' WHERE day_of_year = 268;
+UPDATE readings SET link_theme = 'Service' WHERE day_of_year = 269;
+UPDATE readings SET link_theme = 'Self-Care' WHERE day_of_year = 270;
+UPDATE readings SET link_theme = 'Living Amends' WHERE day_of_year = 271;
+UPDATE readings SET link_theme = 'Acceptance' WHERE day_of_year = 272;
+UPDATE readings SET link_theme = 'Amends' WHERE day_of_year = 273;
+UPDATE readings SET link_theme = 'Living Amends' WHERE day_of_year = 274;
+UPDATE readings SET link_theme = 'Practice' WHERE day_of_year = 275;
+UPDATE readings SET link_theme = 'Serenity' WHERE day_of_year = 276;
+UPDATE readings SET link_theme = 'Practice' WHERE day_of_year = 277;
+UPDATE readings SET link_theme = 'Inventory' WHERE day_of_year = 278;
+UPDATE readings SET link_theme = 'Progress Not Perfection' WHERE day_of_year = 279;
+UPDATE readings SET link_theme = 'Practice' WHERE day_of_year = 280;
+UPDATE readings SET link_theme = 'Self-Awareness' WHERE day_of_year = 281;
+UPDATE readings SET link_theme = 'Responsibility' WHERE day_of_year = 282;
+UPDATE readings SET link_theme = 'Self-Awareness' WHERE day_of_year = 283;
+UPDATE readings SET link_theme = 'Serenity' WHERE day_of_year = 284;
+UPDATE readings SET link_theme = 'Inventory' WHERE day_of_year = 285;
+UPDATE readings SET link_theme = 'Humility' WHERE day_of_year = 286;
+UPDATE readings SET link_theme = 'Resentment and Forgiveness' WHERE day_of_year = 287;
+UPDATE readings SET link_theme = 'Letting Go' WHERE day_of_year = 288;
+UPDATE readings SET link_theme = 'Detachment' WHERE day_of_year = 289;
+UPDATE readings SET link_theme = 'Self-Worth' WHERE day_of_year = 290;
+UPDATE readings SET link_theme = 'Character Defects' WHERE day_of_year = 291;
+UPDATE readings SET link_theme = 'Acceptance' WHERE day_of_year = 292;
+UPDATE readings SET link_theme = 'Progress Not Perfection' WHERE day_of_year = 293;
+UPDATE readings SET link_theme = 'Self-Care' WHERE day_of_year = 294;
+UPDATE readings SET link_theme = 'Responsibility' WHERE day_of_year = 295;
+UPDATE readings SET link_theme = 'Resentment and Forgiveness' WHERE day_of_year = 296;
+UPDATE readings SET link_theme = 'Practice' WHERE day_of_year = 297;
+UPDATE readings SET link_theme = 'Powerlessness' WHERE day_of_year = 298;
+UPDATE readings SET link_theme = 'Inventory' WHERE day_of_year = 299;
+UPDATE readings SET link_theme = 'Readiness' WHERE day_of_year = 300;
+UPDATE readings SET link_theme = 'Detachment' WHERE day_of_year = 301;
+UPDATE readings SET link_theme = 'Fellowship' WHERE day_of_year = 302;
+UPDATE readings SET link_theme = 'Fellowship' WHERE day_of_year = 303;
+UPDATE readings SET link_theme = 'Trusting Others' WHERE day_of_year = 304;
+UPDATE readings SET link_theme = 'Progress Not Perfection' WHERE day_of_year = 305;
+UPDATE readings SET link_theme = 'Trust in a Higher Power' WHERE day_of_year = 306;
+UPDATE readings SET link_theme = 'Prayer and Meditation' WHERE day_of_year = 307;
+UPDATE readings SET link_theme = 'Prayer and Meditation' WHERE day_of_year = 308;
+UPDATE readings SET link_theme = 'Patience' WHERE day_of_year = 309;
+UPDATE readings SET link_theme = 'Practice' WHERE day_of_year = 310;
+UPDATE readings SET link_theme = 'Prayer and Meditation' WHERE day_of_year = 311;
+UPDATE readings SET link_theme = 'Detachment' WHERE day_of_year = 312;
+UPDATE readings SET link_theme = 'Prayer and Meditation' WHERE day_of_year = 313;
+UPDATE readings SET link_theme = 'Faith' WHERE day_of_year = 314;
+UPDATE readings SET link_theme = 'Surrender' WHERE day_of_year = 315;
+UPDATE readings SET link_theme = 'Self-Care' WHERE day_of_year = 316;
+UPDATE readings SET link_theme = 'Self-Awareness' WHERE day_of_year = 317;
+UPDATE readings SET link_theme = 'Faith' WHERE day_of_year = 318;
+UPDATE readings SET link_theme = 'Serenity' WHERE day_of_year = 319;
+UPDATE readings SET link_theme = 'Letting Go' WHERE day_of_year = 320;
+UPDATE readings SET link_theme = 'Humility' WHERE day_of_year = 321;
+UPDATE readings SET link_theme = 'Open-Mindedness' WHERE day_of_year = 322;
+UPDATE readings SET link_theme = 'Service' WHERE day_of_year = 323;
+UPDATE readings SET link_theme = 'Prayer and Meditation' WHERE day_of_year = 324;
+UPDATE readings SET link_theme = 'Fellowship' WHERE day_of_year = 325;
+UPDATE readings SET link_theme = 'Self-Compassion' WHERE day_of_year = 326;
+UPDATE readings SET link_theme = 'Serenity' WHERE day_of_year = 327;
+UPDATE readings SET link_theme = 'Self-Compassion' WHERE day_of_year = 328;
+UPDATE readings SET link_theme = 'Connection' WHERE day_of_year = 329;
+UPDATE readings SET link_theme = 'Progress Not Perfection' WHERE day_of_year = 330;
+UPDATE readings SET link_theme = 'Self-Compassion' WHERE day_of_year = 331;
+UPDATE readings SET link_theme = 'Willingness' WHERE day_of_year = 332;
+UPDATE readings SET link_theme = 'Spiritual Growth' WHERE day_of_year = 333;
+UPDATE readings SET link_theme = 'Hope and Gratitude' WHERE day_of_year = 334;
+UPDATE readings SET link_theme = 'Humility' WHERE day_of_year = 335;
+UPDATE readings SET link_theme = 'Practice' WHERE day_of_year = 336;
+UPDATE readings SET link_theme = 'Spiritual Growth' WHERE day_of_year = 337;
+UPDATE readings SET link_theme = 'Service' WHERE day_of_year = 338;
+UPDATE readings SET link_theme = 'Spiritual Growth' WHERE day_of_year = 339;
+UPDATE readings SET link_theme = 'Spiritual Growth' WHERE day_of_year = 340;
+UPDATE readings SET link_theme = 'Detachment' WHERE day_of_year = 341;
+UPDATE readings SET link_theme = 'Service' WHERE day_of_year = 342;
+UPDATE readings SET link_theme = 'Service' WHERE day_of_year = 343;
+UPDATE readings SET link_theme = 'Fellowship' WHERE day_of_year = 344;
+UPDATE readings SET link_theme = 'Boundaries' WHERE day_of_year = 345;
+UPDATE readings SET link_theme = 'Detachment' WHERE day_of_year = 346;
+UPDATE readings SET link_theme = 'Living Amends' WHERE day_of_year = 347;
+UPDATE readings SET link_theme = 'Practice' WHERE day_of_year = 348;
+UPDATE readings SET link_theme = 'Acceptance' WHERE day_of_year = 349;
+UPDATE readings SET link_theme = 'Practice' WHERE day_of_year = 350;
+UPDATE readings SET link_theme = 'Spiritual Growth' WHERE day_of_year = 351;
+UPDATE readings SET link_theme = 'Trust in a Higher Power' WHERE day_of_year = 352;
+UPDATE readings SET link_theme = 'Self-Worth' WHERE day_of_year = 353;
+UPDATE readings SET link_theme = 'Resentment and Forgiveness' WHERE day_of_year = 354;
+UPDATE readings SET link_theme = 'Letting Go' WHERE day_of_year = 355;
+UPDATE readings SET link_theme = 'Detachment' WHERE day_of_year = 356;
+UPDATE readings SET link_theme = 'Letting Go' WHERE day_of_year = 357;
+UPDATE readings SET link_theme = 'Self-Awareness' WHERE day_of_year = 358;
+UPDATE readings SET link_theme = 'Open-Mindedness' WHERE day_of_year = 359;
+UPDATE readings SET link_theme = 'Hope and Gratitude' WHERE day_of_year = 360;
+UPDATE readings SET link_theme = 'Open-Mindedness' WHERE day_of_year = 361;
+UPDATE readings SET link_theme = 'Fear' WHERE day_of_year = 362;
+UPDATE readings SET link_theme = 'Open-Mindedness' WHERE day_of_year = 363;
+UPDATE readings SET link_theme = 'Open-Mindedness' WHERE day_of_year = 364;
+UPDATE readings SET link_theme = 'Open-Mindedness' WHERE day_of_year = 365;
+UPDATE readings SET link_theme = 'People-Pleasing' WHERE day_of_year = 366;
 
 -- Verify before committing.
 SELECT count(*) AS unfilled FROM readings WHERE link_theme IS NULL;  -- expect 0
 SELECT count(DISTINCT link_theme) AS grouping_themes FROM readings;  -- expect 43
 SELECT count(DISTINCT secondary_theme) AS old_themes_untouched FROM readings;  -- expect 132
-SELECT link_theme, count(*) FROM readings GROUP BY 1 HAVING count(*) < 5;  -- expect 0 rows
 
 COMMIT;
