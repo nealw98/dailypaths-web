@@ -88,8 +88,8 @@ export function renderLineIKeptMoving(allReadings) {
       mainEntityOfPage: BASE_URL + STORY.path,
     }),
     bodyContent: `<nav class="collection-rail" aria-label="Breadcrumb"><div class="collection-rail-inner"><a href="${bp('/articles/')}">&larr; Back to Articles</a><span aria-current="page">${STORY.title}</span></div></nav>
-${photoHero({ image: bp('/assets/articles/the-line-i-kept-moving/dinner-table-photo.webp'), alt: 'A woman seated at the dinner table with a plate of food while her adult son cooks another meal in the kitchen behind her.', eyebrow: 'Personal story · Boundaries', title: STORY.title, subtitle: STORY.description, size: 'lg', titleClass: 'photo-hero-title--theme' })}
-<article class="rd-article tg-article"><p class="story-byline">By Lance W</p>${flow}
+${photoHero({ image: bp('/assets/articles/the-line-i-kept-moving/dinner-table-photo.webp'), alt: 'A woman seated at the dinner table with a plate of food while her adult son cooks another meal in the kitchen behind her.', eyebrow: 'Personal story · Boundaries', title: STORY.title, subtitle: STORY.description, byline: 'By Lance W', size: 'lg', titleClass: 'photo-hero-title--theme' })}
+<article class="rd-article tg-article">${flow}
 <figure class="tg-diagram story-reflection-insert"><img src="${bp('/assets/articles/the-line-i-kept-moving/reflection-insert-editorial.png')}" alt="Four reflections on boundaries and self-worth. Complete text follows." width="1086" height="1448" loading="lazy"><figcaption class="story-insert-caption">Questions to consider alongside Lance’s story.</figcaption><details class="story-insert-text"><summary>Read the reflection text</summary><h2>A moment to reflect</h2>${transcript}</details></figure></article>
 <section class="wrap section--lg story-connections" aria-labelledby="story-readings"><h2 id="story-readings">Related daily readings</h2><div class="story-reading-links">${readings}</div></section>
 <section class="wrap section--md story-connections" aria-labelledby="story-related"><h2 id="story-related">Keep exploring</h2><div class="story-related-links">${related}</div></section>

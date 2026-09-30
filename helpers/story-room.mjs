@@ -13,8 +13,13 @@ export const PREVIEW_ORIGIN='https://daily-paths-soft-daylight.nealw98.chatgpt.s
 // path never matched this pattern, which is what kept the old import off the site.
 export const validPath=p=>/^\/(?:articles|guides|topics)\/[a-z0-9]+(?:-[a-z0-9]+)*\/$/.test(p);
 export const escape=s=>String(s||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+function moveBylineIntoTitleBlock(html){
+ const byline=html.match(/<article\b[^>]*>\s*(<p class="story-byline">[^<]*<\/p>)/i)?.[1];
+ if(!byline||!html.includes('photo-hero-inner'))return html;
+ return html.replace(byline,'').replace(/(<div class="photo-hero-inner">[\s\S]*?)(\s*<\/div>\s*<\/header>)/i,(_,inner,end)=>`${inner}\n          ${byline}${end}`);
+}
 export function composePage(base,approved){
- if(!base)return syncHeroSocialImage(approved,'https://daily-paths-soft-daylight.nealw98.chatgpt.site');
+ if(!base)return syncHeroSocialImage(moveBylineIntoTitleBlock(approved),'https://daily-paths-soft-daylight.nealw98.chatgpt.site');
  let html=base;
  for(const re of [/<main\b[\s\S]*?<\/main>/i,/<title>[\s\S]*?<\/title>/i]){const value=approved.match(re)?.[0];if(value)html=html.replace(re,()=>value);}
  for(const name of ['description','og:title','og:description','og:image','og:url','twitter:title','twitter:description','twitter:image']){
@@ -23,7 +28,7 @@ export function composePage(base,approved){
  // Editorial structured data belongs to the approved article; site navigation stays current.
  const data=[...approved.matchAll(/<script\b[^>]*type=["']application\/ld\+json["'][^>]*>[\s\S]*?<\/script>/gi)].map(m=>m[0]).join('\n');
  if(data)html=html.replace(/<script\b[^>]*type=["']application\/ld\+json["'][^>]*>[\s\S]*?<\/script>/gi,'').replace('</head>',()=>data+'\n</head>');
- return syncHeroSocialImage(html,'https://daily-paths-soft-daylight.nealw98.chatgpt.site');
+ return syncHeroSocialImage(moveBylineIntoTitleBlock(html),'https://daily-paths-soft-daylight.nealw98.chatgpt.site');
 }
 export const CACHE_PATH=join(dirname(fileURLToPath(import.meta.url)),'..','data','story-room-cache.json');
 

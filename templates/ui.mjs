@@ -138,7 +138,7 @@ export function storeBadges({ context = '' } = {}) {
  * @param {string} [options.titleClass] - Extra class for measure/weight tweaks
  * @param {string} [options.heroClass] - Optional variant class on the hero
  */
-export function photoHero({ image, alt, eyebrow, title, subtitle, size = 'md', titleClass = '', heroClass = '', width, height }) {
+export function photoHero({ image, alt, eyebrow, title, subtitle, byline, size = 'md', titleClass = '', heroClass = '', width, height }) {
   return `<header class="photo-hero photo-hero--${size}${heroClass ? ` ${heroClass}` : ''}">
         <img class="photo-hero-img" src="${image}" alt="${alt}"${width && height ? ` width="${width}" height="${height}"` : ''} />
         <div class="photo-hero-scrim"></div>
@@ -146,6 +146,7 @@ export function photoHero({ image, alt, eyebrow, title, subtitle, size = 'md', t
           ${eyebrow ? `<p class="eyebrow eyebrow--on-dark">${eyebrow}</p>` : ''}
           <h1 class="photo-hero-title${titleClass ? ` ${titleClass}` : ''}">${title}</h1>
           ${subtitle ? `<p class="photo-hero-sub">${subtitle}</p>` : ''}
+          ${byline ? `<p class="story-byline">${byline}</p>` : ''}
         </div>
       </header>`;
 }

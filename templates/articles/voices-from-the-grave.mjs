@@ -48,8 +48,8 @@ export function renderVoicesFromTheGrave() {
       mainEntityOfPage: BASE_URL + VOICES_ARTICLE.path,
     }),
     bodyContent: `<nav class="collection-rail" aria-label="Breadcrumb"><div class="collection-rail-inner"><a href="${bp('/articles/')}">&larr; Back to Articles</a><span aria-current="page">${VOICES_ARTICLE.title}</span></div></nav>
-      ${photoHero({ image: bp('/assets/' + VOICES_ARTICLE.image), alt: VOICES_ARTICLE.alt, title: VOICES_ARTICLE.title, eyebrow: 'Finding your voice', subtitle: VOICES_ARTICLE.description, size: 'lg', titleClass: 'photo-hero-title--theme', width: 1672, height: 941 })}
-      <article class="rd-article tg-article"><p class="story-byline">By Lance W</p><div class="tg-section prose-reading">${flow}</div></article>
+      ${photoHero({ image: bp('/assets/' + VOICES_ARTICLE.image), alt: VOICES_ARTICLE.alt, title: VOICES_ARTICLE.title, eyebrow: 'Finding your voice', subtitle: VOICES_ARTICLE.description, byline: 'By Lance W', size: 'lg', titleClass: 'photo-hero-title--theme', width: 1672, height: 941 })}
+      <article class="rd-article tg-article"><div class="tg-section prose-reading">${flow}</div></article>
       ${terminalBand()}`,
   });
 }
