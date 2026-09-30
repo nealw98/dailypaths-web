@@ -34,7 +34,7 @@ const COLLECTIONS = {
     entries: TRADITION_ENTRIES,
     label: 'Tradition',
     slugPrefix: 'tradition',
-    lede: 'The Traditions describe how Al-Anon groups stay whole — and read differently once you notice how much they ask of us outside a meeting too. These reflections were written alongside them.',
+    lede: 'The Traditions guide Al-Anon groups and offer principles we can apply to our own recovery program and relationships. These reflections explore both.',
     metaSubject: 'the Twelve Traditions of Al-Anon',
   },
   '/concepts/': {
@@ -42,7 +42,7 @@ const COLLECTIONS = {
     entries: CONCEPT_ENTRIES,
     label: 'Concept',
     slugPrefix: 'concept',
-    lede: 'The Concepts of Service describe how the fellowship governs itself, and what carrying responsibility asks of the people who take it on. These reflections were written alongside them.',
+    lede: 'The Concepts of Service guide how Al-Anon shares responsibility and offer principles we can apply to our own recovery program. These reflections explore trust, participation, and service in daily life.',
     metaSubject: 'the Twelve Concepts of Service in Al-Anon',
   },
 };
@@ -104,7 +104,6 @@ export function renderCollectionPage(path, readings) {
       <header class="ma-header">
         <p class="eyebrow ma-collection-eyebrow">${total} reflections</p>
         <h1 class="ma-title">${collection.title}</h1>
-        <p class="ma-subtitle">${collection.description}</p>
         <div class="ma-introduction"><p>${collection.lede}</p></div>
       </header>
 
