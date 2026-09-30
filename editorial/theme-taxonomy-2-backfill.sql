@@ -1,35 +1,25 @@
--- Daily Paths: add a grouping theme for reflection linking.
+-- Daily Paths: the 43-theme grouping vocabulary.
 --
--- readings.secondary_theme is NOT touched. It keeps driving the topic pages,
--- the hero photograph on every reflection, the SEO metadata and the favourites
--- page, all of which key off its 132 values through TOPIC_THEME_TAGS.
+-- Three files, run in order, each its own transaction. Stop after any of them.
+--   1  theme-taxonomy-1-column.sql        add readings.link_theme
+--   2  theme-taxonomy-2-backfill.sql      fill it for all 366 readings
+--   3  theme-taxonomy-3-destinations.sql  teach the theme table the new names
 --
--- readings.link_theme is new: the 43-theme vocabulary, used only to group related
--- readings and resolve the Go deeper destination. The two columns do different
--- jobs -- a fine-grained label and a coarse grouping -- and the cards use both:
--- the group comes from the new column, the word on each card from the old one.
+-- readings.secondary_theme is never modified. It keeps driving the topic pages,
+-- the hero photograph, the SEO metadata and the favourites page.
 --
--- Run in the Supabase SQL editor. One transaction; nothing applies if a step fails.
--- Rollback: editorial/theme-taxonomy-rollback.sql
+-- Undo: theme-taxonomy-rollback.sql
+--
+-- No dollar-quoted blocks anywhere: the Supabase SQL editor splits a script on
+-- semicolons, and a dollar-quoted body holding any of its own arrives truncated.
+
+-- FILE 2 of 3 — fill the column for all 366 readings.
+--
+-- Run file 1 first. No foreign key exists on the column yet, so the names below
+-- do not have to be in the theme table until file 3 adds them.
 
 BEGIN;
 
--- 1. Guard. Written as one statement with no semicolons inside it: the
---    Supabase SQL editor splits on semicolons, so a DO $$ ... $$ block with
---    any inside it arrives truncated and fails with "syntax error at end of
---    input". If the count is wrong the cast fails and the message says so,
---    which aborts the transaction before anything below runs.
-SELECT CASE WHEN count(*) = 366 THEN 'ok'
-            ELSE ('ABORT - expected 366 readings, found ' || count(*))::int::text
-       END AS guard
-FROM readings;
-
--- 2. The new column. IF NOT EXISTS makes a re-run harmless.
-ALTER TABLE readings ADD COLUMN IF NOT EXISTS link_theme text;
-COMMENT ON COLUMN readings.link_theme IS
-  'Grouping theme (43 values) for related-reading links and the Go deeper destination. Distinct from secondary_theme, which is the finer descriptive tag that maps to the twelve topic pages and picks the hero image.';
-
--- 3. Backfill all 366.
 UPDATE readings AS r SET link_theme = v.theme
 FROM (VALUES
   (1, 'Connection'),
@@ -401,60 +391,10 @@ FROM (VALUES
 ) AS v(day, theme)
 WHERE r.day_of_year = v.day;
 
--- 4. Rebuild the destination table against the new vocabulary. It is keyed by
---    theme name, and link_theme is what will look into it now.
-DELETE FROM reflection_theme_destinations;
-INSERT INTO reflection_theme_destinations (theme, destination) VALUES
-  ('Acceptance', '/guides/surrender/'),
-  ('Amends', '/guides/detachment-with-love/'),
-  ('Boundaries', '/guides/boundaries/'),
-  ('Character Defects', '/topics/self-worth/'),
-  ('Coming to Believe', '/topics/higher-power/'),
-  ('Connection', '/topics/fellowship/'),
-  ('Courage', '/articles/letting-go/'),
-  ('Detachment', '/guides/detachment-with-love/'),
-  ('Faith', '/topics/higher-power/'),
-  ('Fear', '/guides/surrender/'),
-  ('Fellowship', '/topics/fellowship/'),
-  ('Honesty', '/articles/the-stories-we-tell-ourselves/'),
-  ('Hope and Gratitude', '/topics/gratitude-and-hope/'),
-  ('Humility', '/guides/surrender/'),
-  ('Identity', '/topics/self-worth/'),
-  ('Inventory', '/articles/the-stories-we-tell-ourselves/'),
-  ('Letting Go', '/guides/surrender/'),
-  ('Living Amends', '/articles/the-stories-we-tell-ourselves/'),
-  ('Open-Mindedness', '/topics/fellowship/'),
-  ('Patience', '/topics/one-day-at-a-time/'),
-  ('People-Pleasing', '/guides/boundaries/'),
-  ('Powerlessness', '/guides/surrender/'),
-  ('Practice', '/traditions/'),
-  ('Prayer and Meditation', '/topics/higher-power/'),
-  ('Progress Not Perfection', '/articles/the-stories-we-tell-ourselves/'),
-  ('Readiness', '/guides/surrender/'),
-  ('Resentment and Forgiveness', '/guides/surrender/'),
-  ('Respect', '/guides/boundaries/'),
-  ('Responsibility', '/articles/the-stories-we-tell-ourselves/'),
-  ('Self-Awareness', '/articles/the-stories-we-tell-ourselves/'),
-  ('Self-Care', '/topics/focus-on-yourself/'),
-  ('Self-Compassion', '/topics/self-worth/'),
-  ('Self-Focus', '/topics/focus-on-yourself/'),
-  ('Self-Worth', '/topics/self-worth/'),
-  ('Serenity', '/topics/one-day-at-a-time/'),
-  ('Service', '/topics/gratitude-and-hope/'),
-  ('Shame and Guilt', '/guides/surrender/'),
-  ('Spiritual Growth', '/topics/higher-power/'),
-  ('Surrender', '/guides/surrender/'),
-  ('Trust in a Higher Power', '/topics/higher-power/'),
-  ('Trusting Others', '/topics/higher-power/'),
-  ('Understanding the Disease', '/topics/the-disease/'),
-  ('Willingness', '/articles/letting-go/');
-
--- 5. Verify, then COMMIT (or ROLLBACK if anything looks wrong).
+-- Verify before committing.
 SELECT count(*) AS unfilled FROM readings WHERE link_theme IS NULL;  -- expect 0
 SELECT count(DISTINCT link_theme) AS grouping_themes FROM readings;  -- expect 43
 SELECT count(DISTINCT secondary_theme) AS old_themes_untouched FROM readings;  -- expect 132
 SELECT link_theme, count(*) FROM readings GROUP BY 1 HAVING count(*) < 5;  -- expect 0 rows
-SELECT count(*) FROM readings r LEFT JOIN reflection_theme_destinations d
-  ON d.theme = r.link_theme WHERE d.theme IS NULL;  -- expect 0: every reading resolves
 
 COMMIT;
