@@ -168,6 +168,46 @@ usual way.
 
 ---
 
+## 3b. The homepage has couplings that break silently
+
+Rebuilt on 30 September. Four things about it are load-bearing across more than one
+file, and three of them fail without an error.
+
+**The hero's `<h1>` is the small eyebrow label, not the reflection title.** The
+title is an `<h2>`. That means every stylesheet rule for the hero title has to say
+`h2`: five in `css/editorial-home.css` and **four in `css/site-system.css`**
+(`.page-home .ed-hero h2`). site-system loads *after* editorial-home and is more
+specific, so a single missed selector there renders the label at 66px in the
+reflection's typography. Change the markup and both stylesheets together, or
+neither.
+
+**The collection band's responsive rules sit at the end of `editorial-home.css`,
+on purpose.** That file's media blocks come *before* its later base rules, so
+overrides placed inside those blocks never win. Put them at the end or the band
+stays three columns on a phone. Do not sort or reorganise that file.
+
+**`renderHomePage(reading, allReadings)` takes two arguments.** The second is the
+full reading list, used for the six previous days. Drop it and the band disappears
+with no error — the page still builds and still validates.
+
+**`homepageStructuredData()` is called again.** It sat unused in `helpers/seo.mjs`
+for months. It is not dead code; removing it takes the homepage's only structured
+data with it.
+
+A build is not enough to catch any of these. Load the built page in a browser and
+look at the hero, and check the band at phone width.
+
+### One pre-existing conflict, not introduced by that work
+
+The hero reflection title computes to **Cormorant Garamond italic**, because
+`site-system.css` sets `--type-reflection: italic 500 … var(--font-devotional)`.
+`FOUNDATION.md` says the title "uses upright Lora … this explicitly supersedes the
+earlier italic hero", and `editorial-home.css` does specify upright Lora — but
+site-system overrides it. The live site has been contradicting that decision.
+Left alone because fixing it is a visible change and Neal's call.
+
+---
+
 ## 4. Checks to run before deploying
 
 ```bash
