@@ -4,7 +4,7 @@ import { dayToIsoDate, dayToMonthIndex, readingSlug, DAYS_IN_MONTH } from '../he
 import { readingStructuredData, breadcrumbStructuredData } from '../helpers/seo.mjs';
 import { bp } from '../helpers/config.mjs';
 import { THEME_TO_TOPIC, TOPICS } from '../helpers/theme-data.mjs';
-import { themeDestination, pickSiblings, siblingReflections, readingGroup, groupingTheme } from '../helpers/theme-destinations.mjs';
+import { themeDestination, pickSiblings, readingGroup, groupingTheme } from '../helpers/theme-destinations.mjs';
 import { destinationMeta } from '../helpers/destination-catalog.mjs';
 import { STEPS, STEP_HOOKS } from './steps.mjs';
 import { photoHero, quoteBlock, pill, terminalBand } from './ui.mjs';
@@ -16,22 +16,6 @@ import { readingTeaser } from '../helpers/favorite-readings.mjs';
 
 const NUMBER_WORDS = ['One', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine', 'Ten', 'Eleven', 'Twelve'];
 
-const SMALL_COUNT_WORDS = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten',
-  'eleven', 'twelve', 'thirteen', 'fourteen', 'fifteen', 'sixteen', 'seventeen', 'eighteen', 'nineteen'];
-const TENS_COUNT_WORDS = ['', '', 'twenty', 'thirty', 'forty', 'fifty', 'sixty', 'seventy', 'eighty', 'ninety'];
-
-/** 42 → "forty-two"; falls back to the numeral past ninety-nine. */
-function countToWords(n) {
-  if (n < 20) return SMALL_COUNT_WORDS[n];
-  if (n < 100) {
-    const tens = TENS_COUNT_WORDS[Math.floor(n / 10)];
-    const ones = n % 10;
-    return ones ? `${tens}-${SMALL_COUNT_WORDS[ones]}` : tens;
-  }
-  return String(n);
-}
-
-function upperFirst(text) { return text ? text.charAt(0).toUpperCase() + text.slice(1) : text; }
 // Themes are stored in title case and read as a phrase mid-sentence: "More on
 // shame and guilt". Lowering only the first word left "shame and Guilt", so the
 // whole name is lowered and the handful of proper nouns are put back.
@@ -171,7 +155,6 @@ export function renderReadingPage(reading, prevReading, nextReading, allReadings
           </a>`;
       }).join('');
 
-      const total = siblingReflections(reading, allReadings, { ratingsMap }).length + 1;
       const programWords = group.kind === 'program'
         ? group.label.replace(/\b(\d+)\b/, m => NUMBER_WORDS[Number(m) - 1] || m)
         : '';
@@ -184,14 +167,10 @@ export function renderReadingPage(reading, prevReading, nextReading, allReadings
         : group.kind === 'destination'
           ? `More on ${(theme || 'this').toLowerCase()}`
           : `More on ${programWords}`;
-      const collectionLine = (group.kind === 'theme' || group.kind === 'destination') && destination
-        ? `${upperFirst(countToWords(total))} reflections lead to ${destination.title}.`
-        : programWords ? `${upperFirst(countToWords(total))} reflections were written alongside ${programWords}.` : '';
       keepReadingHtml = `
     <section class="wrap wrap--article section--lg kr-section" aria-labelledby="keep-reading-heading">
       <p class="eyebrow">Related reflections</p>
       <h2 class="section-title" id="keep-reading-heading">${heading}</h2>
-      ${collectionLine ? `<p class="section-desc">${collectionLine}</p>` : ''}
       <div class="kr-grid">${cards}
       </div>
     </section>`;
