@@ -1,0 +1,367 @@
+day,date,title,program,current_theme,proposed_theme,changed
+1,January 1,The Power of We,Step 1,Connection,Connection,
+2,January 2,Coming for Relief,Step 1,Relief,Honesty,yes
+3,January 3,The Convincing Game,Step 1,Acceptance,Powerlessness,yes
+4,January 4,Taking Things Into Our Own Hands,Step 1,Understanding,Understanding the Disease,yes
+5,January 5,A Family Disease,Step 1,Family,Understanding the Disease,yes
+6,January 6,Shifting the Focus,Step 1,Self-focus,Self-Focus,yes
+7,January 7,Impossible Responsibilities,Step 1,Relief,Letting Go,yes
+8,January 8,Fixing Someone Else's Disease,Step 1,Boundaries,Powerlessness,yes
+9,January 9,Our Proper Relationship,Step 1,Boundaries,Boundaries,
+10,January 10,Well-Meaning Efforts,Step 1,Awareness,Understanding the Disease,yes
+11,January 11,Nothing We Do or Don't Do,Step 1,Powerlessness,Powerlessness,
+12,January 12,Paths to Recovery,Step 1,Clarity,Hope and Gratitude,yes
+13,January 13,My Actions Have No Power,Step 1,Freedom,Powerlessness,yes
+14,January 14,Accepting the Truth,Step 1,Truth,Acceptance,yes
+15,January 15,The Hardest Thing,Step 1,Surrender,Surrender,
+16,January 16,Putting Down the Rock,Step 1,Surrender,Letting Go,yes
+17,January 17,What Can Be Changed,Step 1,Empowerment,Self-Care,yes
+18,January 18,The Burden Lifted,Step 1,Relief,Letting Go,yes
+19,January 19,Freeing My Mind,Step 1,Freedom,Detachment,yes
+20,January 20,The Martyr Role,Step 1,Humility,People-Pleasing,yes
+21,January 21,Discovering What I'm Not Powerless Over,Step 1,Empowerment,Self-Focus,yes
+22,January 22,Responsible for Me,Step 1,Responsibility,Responsibility,
+23,January 23,The Boundaries of Happiness,Step 1,Boundaries,Boundaries,
+24,January 24,My Emotions Are My Own,Step 1,Autonomy,Boundaries,yes
+25,January 25,Conscious Choices,Step 1,Detachment,Self-Awareness,yes
+26,January 26,Traditions at Home,Tradition 1,Application,Practice,yes
+27,January 27,Equal in Importance,Tradition 1,Equality,Self-Worth,yes
+28,January 28,The Warm Bath of Victimhood,Tradition 1,Acceptance,Resentment and Forgiveness,yes
+29,January 29,Ultimate Responsibility,Concept 1,Wisdom,Responsibility,yes
+30,January 30,A Tool for My Recovery,Concept 1,Tools,Practice,yes
+31,January 31,The Knot in My Stomach,Concept 1,Boundaries,Boundaries,
+32,February 1,Not Helpless,Step 2,Hope,Hope and Gratitude,yes
+33,February 2,The Past Tense of Belief,Step 2,Faith,Coming to Believe,yes
+34,February 3,Growing Encouragement,Step 2,Hope,Hope and Gratitude,yes
+35,February 4,Seeking a Power Greater,Step 2,Faith,Coming to Believe,yes
+36,February 5,The Group as Higher Power,Step 2,Faith,Coming to Believe,yes
+37,February 6,Desiring Sanity,Step 2,Unity,Fellowship,yes
+38,February 7,Defining Sanity,Step 2,Sanity,Self-Awareness,yes
+39,February 8,Acting As If,Step 2,Faith,Faith,
+40,February 9,Faith in Daily Living,Step 2,Faith,Faith,
+41,February 10,New-Found Hope,Step 2,Hope,Hope and Gratitude,yes
+42,February 11,Humbled by Frailty,Step 2,Humility,Humility,
+43,February 12,Let Go and Let God,Step 2,Faith,Letting Go,yes
+44,February 13,Courage to Change,Step 2,Courage,Courage,
+45,February 14,Restored to Sanity,Step 2,Trust,Spiritual Growth,yes
+46,February 15,The Moment I Came to Believe,Step 2,Faith,Coming to Believe,yes
+47,February 16,Meaning Takes Time,Step 2,Patience,Patience,
+48,February 17,Consistency I Never Found,Step 2,Consistency,Fellowship,yes
+49,February 18,Learning to Trust,Step 2,Trust,Trusting Others,yes
+50,February 19,Breaking Denial,Step 2,Honesty,Honesty,
+51,February 20,Not Instantly Sane,Step 2,Patience,Patience,
+52,February 21,Turning to My Higher Power,Step 2,Practice,Practice,
+53,February 22,Praying for Restoration,Step 2,Prayer,Prayer and Meditation,yes
+54,February 23,Resigning as General Manager,Tradition 2,Service,Service,
+55,February 24,Listening with Respect,Tradition 2,Tolerance,Open-Mindedness,yes
+56,February 25,Obedience to the Unenforceable,Tradition 2,Integrity,Responsibility,yes
+57,February 26,Advising Is Not Al-Anon,Tradition 2,Humility,Respect,yes
+58,February 27,I Can't Do Everything,Concept 2,Acceptance,Humility,yes
+59,February 28,Relying on Others,Concept 2,Connection,Connection,
+60,February 29,One Day at a Time,Step 1,Presence,Serenity,yes
+61,March 1,The Power of Choice,Step 3,Choice,Self-Awareness,yes
+62,March 2,The Nature of Willingness,Step 3,Freedom,Willingness,yes
+63,March 3,The Solid Misery of the Lily Pad,Step 3,Faith,Surrender,yes
+64,March 4,One at a Time,Step 3,Practice,Surrender,yes
+65,March 5,The Geography of Relief,Step 3,Relief,Letting Go,yes
+66,March 6,The Hardest Admission,Step 3,Humility,Humility,
+67,March 7,Freedom to Define,Step 3,Freedom,Coming to Believe,yes
+68,March 8,Setting Aside Willfulness,Step 3,Willingness,Letting Go,yes
+69,March 9,Outcomes in God's Hands,Step 3,Trust,Letting Go,yes
+70,March 10,The Practice of Release,Step 3,Practice,Practice,
+71,March 11,Taking Responsibility Off My Shoulders,Step 3,Relief,Letting Go,yes
+72,March 12,The Limits of Control,Step 3,Acceptance,Fear,yes
+73,March 13,My Way,Step 3,Honesty,Surrender,yes
+74,March 14,Examining My Beliefs,Step 3,Honesty,Coming to Believe,yes
+75,March 15,Personal Relationship,Step 3,Connection,Coming to Believe,yes
+76,March 16,Much Different Today,Step 3,Growth,Coming to Believe,yes
+77,March 17,The Privilege of Choice,Step 3,Freedom,Respect,yes
+78,March 18,Patient with Mistakes,Step 3,Compassion,Self-Compassion,yes
+79,March 19,Things I Never Thought I Could,Step 3,Empowerment,Courage,yes
+80,March 20,Comfortable Turning Over,Step 3,Trust,Surrender,yes
+81,March 21,The Principle of Faith,Step 3,Faith,Faith,
+82,March 22,Belief in Help,Step 3,Trust,Faith,yes
+83,March 23,The Acceptance Steps,Step 3,Acceptance,Acceptance,
+84,March 24,Any Concept I Wanted,Step 3,Freedom,Coming to Believe,yes
+85,March 25,A Friend Always There,Step 3,Connection,Connection,
+86,March 26,Understanding Made It Easy,Step 3,Understanding,Coming to Believe,yes
+87,March 27,Similarities Outweigh Differences,Tradition 3,Unity,Fellowship,yes
+88,March 28,Accepting Al-Anon as It Is,Tradition 3,Acceptance,Acceptance,
+89,March 29,Faith in a Power Greater,Concept 3,Trust,Trusting Others,yes
+90,March 30,Supporting Competence and Dignity,Concept 3,Respect,Respect,
+91,March 31,Three Trusts,Concept 3,Trust,Trusting Others,yes
+92,April 1,Both Sides of Myself,Step 4,Honesty,Inventory,yes
+93,April 2,The Gap Between Deciding and Doing,Step 4,Courage,Inventory,yes
+94,April 3,Addicted to Chaos,Step 4,Fear,Fear,
+95,April 4,Not Perfect Just Done,Step 4,Perfectionism,Progress Not Perfection,yes
+96,April 5,The Door Opens,Step 4,Change,Hope and Gratitude,yes
+97,April 6,The Structure That Set Me Free,Tradition 4,Autonomy,Responsibility,yes
+98,April 7,The Right to Be Wrong,Tradition 4,Respect,Respect,
+99,April 8,Seeing Myself as Separate,Tradition 4,Boundaries,Identity,yes
+100,April 9,The Need I Didn't Know I Had,Concept 4,Fellowship,Fellowship,
+101,April 10,Respect Makes Harmony,Concept 4,Respect,Respect,
+102,April 11,A Change in Perspective,Step 4,Detachment,Identity,yes
+103,April 12,What Alcoholism Destroyed,Step 4,Self-esteem,Self-Worth,yes
+104,April 13,Best Friends and Worst Enemies,Step 4,Honesty,Honesty,
+105,April 14,Blaming and Excusing,Step 4,Responsibility,Responsibility,
+106,April 15,No Longer Acceptable,Step 4,Accountability,People-Pleasing,yes
+107,April 16,New Horizons Opening,Step 4,Growth,Self-Awareness,yes
+108,April 17,Guidance and Encouragement,Step 4,Fellowship,Fellowship,
+109,April 18,Honest Open Willing,Step 4,Willingness,Honesty,yes
+110,April 19,The Balance of Honesty,Step 4,Self-compassion,Self-Compassion,yes
+111,April 20,True Perspective,Step 4,Perspective,Inventory,yes
+112,April 21,Facing What Haunts Me,Step 4,Willingness,Courage,yes
+113,April 22,Taking Back Power,Step 4,Empowerment,Self-Focus,yes
+114,April 23,The Risk of Disapproval,Step 4,Boundaries,People-Pleasing,yes
+115,April 24,Honest Equals Improved,Step 4,Honesty,Progress Not Perfection,yes
+116,April 25,Candles in Darkness,Step 4,Hope,Hope and Gratitude,yes
+117,April 26,The Starting Point,Step 4,Action,Practice,yes
+118,April 27,The Courage to See,Step 4,Courage,Honesty,yes
+119,April 28,Inventorying Beliefs,Step 4,Beliefs,Self-Awareness,yes
+120,April 29,Acting on Beliefs,Step 4,Understanding,Self-Awareness,yes
+121,April 30,The Inventory Grows With Me,Step 4,Growth,Spiritual Growth,yes
+122,May 1,Beginning to Unburden,Step 5,Relief,Shame and Guilt,yes
+123,May 2,No More Martyrdom,Step 5,Boundaries,People-Pleasing,yes
+124,May 3,The Humiliation of Needing Help,Step 5,Humility,Humility,
+125,May 4,Acceptance Despite Wrongs,Step 5,Acceptance,Shame and Guilt,yes
+126,May 5,Stripping Away Excuses,Step 5,Honesty,Responsibility,yes
+127,May 6,Breaking Isolation,Step 5,Connection,Connection,
+128,May 7,The Gift of Honesty,Step 5,Fear,Fear,
+129,May 8,The Architecture of Trust,Step 5,Growth,Trusting Others,yes
+130,May 9,Lovingly Received,Step 5,Courage,Fellowship,yes
+131,May 10,Faith in Necessity,Step 5,Faith,Courage,yes
+132,May 11,The Verdict: You Are Seen,Step 5,Connection,Connection,
+133,May 12,Defenses That No Longer Serve,Step 5,Vulnerability,Character Defects,yes
+134,May 13,Not the Worst,Step 5,Self-compassion,Shame and Guilt,yes
+135,May 14,Closer to God and People,Step 5,Connection,Connection,
+136,May 15,The Truth Sets Me Free,Step 5,Commitment,Honesty,yes
+137,May 16,The Pattern Beneath the Pain,Step 5,Understanding,Self-Awareness,yes
+138,May 17,The Strength of a Phone Call,Step 5,Reaching out,Connection,yes
+139,May 18,Never Alone Again,Step 5,Belonging,Connection,yes
+140,May 19,Healing the Hidden Self,Step 5,Honesty,Shame and Guilt,yes
+141,May 20,Reasoning Together,Step 5,Perspective,Honesty,yes
+142,May 21,Not All By Myself,Step 5,Community,Fellowship,yes
+143,May 22,Nothing Hidden From God,Step 5,Honesty,Honesty,
+144,May 23,Cleaning the House,Step 5,Fear,Fear,
+145,May 24,Feeling Free,Step 5,Freedom,Shame and Guilt,yes
+146,May 25,Burden Lifted,Step 5,Relief,Shame and Guilt,yes
+147,May 26,The Discipline of One Thing,Tradition 5,Focus,Self-Focus,yes
+148,May 27,The Most Difficult Part,Tradition 5,Compassion,Understanding the Disease,yes
+149,May 28,Growing Compassion,Tradition 5,Understanding,Understanding the Disease,yes
+150,May 29,Freedom and Belonging,Concept 5,Balance,Fellowship,yes
+151,May 30,Minority Voices,Concept 5,Inclusion,Open-Mindedness,yes
+152,May 31,Helped and Helping,Concept 5,Mutuality,Service,yes
+153,June 1,"Readiness, Not Control",Step 6,Surrender,Readiness,yes
+154,June 2,The Key Principle,Step 6,Honesty,Readiness,yes
+155,June 3,Unconditional Acceptance,Step 6,Surrender,Surrender,
+156,June 4,Saying Versus Being,Step 6,Honesty,Readiness,yes
+157,June 5,Becoming Entirely Ready,Step 6,Fear,Readiness,yes
+158,June 6,The Defect That Feels Like Me,Step 6,Identity,Character Defects,yes
+159,June 7,Making Conscious Decisions,Step 6,Choice,Character Defects,yes
+160,June 8,The Defect That Protects Me,Step 6,Trust,Character Defects,yes
+161,June 9,Not Our Friends,Step 6,Spiritual intimacy,Prayer and Meditation,yes
+162,June 10,Unconditional Faith,Step 6,Faith,Faith,
+163,June 11,No Reason to Doubt,Step 6,Trust,Trust in a Higher Power,yes
+164,June 12,Ready and Knowing,Step 6,Relationship,Readiness,yes
+165,June 13,The Ones I Need,Step 6,Resistance,Character Defects,yes
+166,June 14,The Silence After Surrender,Step 6,Identity,Identity,
+167,June 15,Not Giving Up,Step 6,Hope,Letting Go,yes
+168,June 16,Giving Up Self-Will,Step 6,Self-will,Surrender,yes
+169,June 17,Too Tired to Hold On,Step 6,Surrender,Readiness,yes
+170,June 18,The Stranger in the Mirror,Step 6,Identity,Identity,
+171,June 19,Pray for Openness,Step 6,Prayer,Prayer and Meditation,yes
+172,June 20,God's Timing,Step 6,Patience,Patience,
+173,June 21,A Grief Process,Step 6,Grief,Acceptance,yes
+174,June 22,Always Filled With Something,Step 6,Identity,Identity,
+175,June 23,I Am Not God,Step 6,Humility,Humility,
+176,June 24,When Pain Exceeds Fear,Step 6,Readiness,Readiness,
+177,June 25,Already Turned Over,Step 6,Connection,Surrender,yes
+178,June 26,My Name Is Not Their Reputation,Tradition 6,Identity,Identity,
+179,June 27,Preserve Integrity and Identity,Tradition 6,Identity,Identity,
+180,June 28,No Longer Overly Supportive,Tradition 6,Boundaries,Boundaries,
+181,June 29,Responsibility Needs Power,Concept 6,Authority,Responsibility,yes
+182,June 30,Power Needs Accountability,Concept 6,Accountability,Humility,yes
+183,July 1,The Gap Between Ready and Asking,Step 7,Vulnerability,Humility,yes
+184,July 2,The Strength I Misunderstood,Step 7,Humility,Humility,
+185,July 3,Totally Willing,Step 7,Surrender,Surrender,
+186,July 4,The Self-Esteem That Survives Defects,Step 7,Self-worth,Self-Worth,yes
+187,July 5,Learning From the Humble,Step 7,Honesty,Humility,yes
+188,July 6,The Passenger Seat,Step 7,Surrender,Letting Go,yes
+189,July 7,God's Way and Pace,Step 7,Trust,Patience,yes
+190,July 8,However I Choose to Ask,Step 7,Simplicity,Prayer and Meditation,yes
+191,July 9,The Release of Turning Over,Step 7,Release,Letting Go,yes
+192,July 10,Probably Not Immediately,Step 7,Patience,Patience,
+193,July 11,Old Behaviors Stay,Step 7,Patience,Progress Not Perfection,yes
+194,July 12,Again and Again,Step 7,Gentleness,Self-Compassion,yes
+195,July 13,Stubborn Shortcomings,Step 7,Self-Acceptance,Self-Compassion,yes
+196,July 14,Not Sitting Back,Step 7,Cooperation,Practice,yes
+197,July 15,The Holy Pause,Step 7,Awakening,Self-Awareness,yes
+198,July 16,Alternative Ways to Act,Step 7,Preparation,Practice,yes
+199,July 17,Detoxing from Urgency,Step 7,Patience,Serenity,yes
+200,July 18,Catching Myself,Step 7,Awareness,Self-Awareness,yes
+201,July 19,Peeling Layers,Step 7,Depth,Spiritual Growth,yes
+202,July 20,Assets Hidden in Faults,Step 7,Transformation,Character Defects,yes
+203,July 21,Judgment's Two Faces,Step 7,Discernment,Self-Awareness,yes
+204,July 22,Fear as Stumbling Block,Step 7,Fear,Fear,
+205,July 23,Trust That Grows,Step 7,Trust,Trust in a Higher Power,yes
+206,July 24,Cooperate Then Move On,Step 7,Progress,Progress Not Perfection,yes
+207,July 25,Spiritual Muscles,Step 7,Strength,Practice,yes
+208,July 26,Courage to Change,Step 7,Courage,Courage,
+209,July 27,Paying My Own Emotional Rent,Tradition 7,Independence,Self-Worth,yes
+210,July 28,When Others Support Us,Tradition 7,Independence,Boundaries,yes
+211,July 29,Not Adopting Others' Moods,Tradition 7,Detachment,Detachment,
+212,July 30,The First Word,Concept 7,Balance,Connection,yes
+213,July 31,Cross-Checks and Balance,Concept 7,Accountability,Practice,yes
+214,August 1,From Indictment To Invitation,Step 8,Integrity,Shame and Guilt,yes
+215,August 2,The Fresh Starting Point,Step 8,Willingness,Willingness,
+216,August 3,Already Have a List,Step 8,Clarity,Inventory,yes
+217,August 4,Best Served by Forgiving,Step 8,Forgiveness,Resentment and Forgiveness,yes
+218,August 5,The Endless List,Step 8,Boundaries,Responsibility,yes
+219,August 6,The Second Part,Step 8,Readiness,Willingness,yes
+220,August 7,Take Action and Try,Step 8,Persistence,Willingness,yes
+221,August 8,How Do We Acquire Willingness,Step 8,Prayer,Prayer and Meditation,yes
+222,August 9,Let Go and Let God,Step 8,Partnership,Letting Go,yes
+223,August 10,Without Dumping the Garbage,Step 8,Freedom,Amends,yes
+224,August 11,Dumping the Garbage,Step 8,Freedom,Amends,yes
+225,August 12,Building Belief,Step 8,Faith,Acceptance,yes
+226,August 13,The Yes Category,Step 8,Progress,Amends,yes
+227,August 14,Only I Can Unlock,Step 8,Responsibility,Responsibility,
+228,August 15,Help to Move On,Step 8,Guidance,Prayer and Meditation,yes
+229,August 16,Justified But Harmful,Step 8,Honesty,Responsibility,yes
+230,August 17,Expecting Too Much,Step 8,Expectations,Acceptance,yes
+231,August 18,Not Their Inventory,Step 8,Focus,Self-Focus,yes
+232,August 19,Taking Responsibility Gradually,Step 8,Process,Patience,yes
+233,August 20,Equal Height Steps,Step 8,Perspective,Amends,yes
+234,August 21,Look Before You Leap,Step 8,Discernment,Amends,yes
+235,August 22,Think Instead of Leap,Step 8,Consideration,Amends,yes
+236,August 23,Freedom to Acknowledge,Step 8,Self-forgiveness,Resentment and Forgiveness,yes
+237,August 24,I Had Harmed Myself,Step 8,Self-Care,Self-Care,
+238,August 25,God on the List,Step 8,Relationship,Trust in a Higher Power,yes
+239,August 26,I Will Reap Benefits,Step 8,Certainty,Amends,yes
+240,August 27,The Intimacy of Being Peers,Tradition 8,Connection,Respect,yes
+241,August 28,Many Forms,Tradition 8,Service,Service,
+242,August 29,Nonprofessional Strength,Tradition 8,Experience,Fellowship,yes
+243,August 30,Growth Requires Delegation,Concept 8,Trust,Trusting Others,yes
+244,August 31,Choose and Allow,Concept 8,Leadership,Trusting Others,yes
+245,September 1,The Terror of Action,Step 9,Humility,Humility,
+246,September 2,Character Through Thoroughness,Step 9,Courage,Responsibility,yes
+247,September 3,"Mitigating, Not Undoing",Step 9,Acceptance,Amends,yes
+248,September 4,One at a Time,Step 9,Patience,Amends,yes
+249,September 5,Simple Plans,Step 9,Simplicity,Amends,yes
+250,September 6,More Than Sorry,Step 9,Integrity,Living Amends,yes
+251,September 7,The Sound of Changed Behavior,Step 9,Consistency,Living Amends,yes
+252,September 8,Letting Go of the Result,Step 9,Detachment,Acceptance,yes
+253,September 9,Immediate Attention,Step 9,Immediacy,Amends,yes
+254,September 10,The Lie of Habitual Apologies,Step 9,Self-Discipline,Living Amends,yes
+255,September 11,The Trap of Self-Spared Discomfort,Step 9,Honesty,Fear,yes
+256,September 12,"Praying for Guidance, Not a Script",Step 9,Sponsorship,Fellowship,yes
+257,September 13,"Courteous, Accepting, Respectful",Step 9,Respect,Respect,
+258,September 14,The Softening of Resentment,Step 9,Forgiveness,Resentment and Forgiveness,yes
+259,September 15,Amends to Those Closest,Step 9,Intimacy,Living Amends,yes
+260,September 16,Loving in the Present,Step 9,Love,Living Amends,yes
+261,September 17,Fitting the Amends,Step 9,Proportionality,Amends,yes
+262,September 18,Courtesy as Amends,Step 9,Courtesy,Living Amends,yes
+263,September 19,Free to Continue the Journey,Step 9,Freedom,Amends,yes
+264,September 20,Kindness as Amends,Step 9,Charity,Living Amends,yes
+265,September 21,The Illusion of Control in Service,Tradition 9,Service,Service,
+266,September 22,Control Disguised as Love,Tradition 9,Control,Character Defects,yes
+267,September 23,Balancing Responsibility,Tradition 9,Boundaries,Boundaries,
+268,September 24,The Necessity of Good Leadership,Concept 9,Leadership,Service,yes
+269,September 25,Improving the Fellowship,Concept 9,Vision,Service,yes
+270,September 26,Amends for Damage to Self,Step 9,Self-Care,Self-Care,
+271,September 27,The Many Forms of Amends,Step 9,Redirection,Living Amends,yes
+272,September 28,Acceptance in God's Time,Step 9,Detachment,Acceptance,yes
+273,September 29,The Purpose of Cleansing,Step 9,Purification,Amends,yes
+274,September 30,The Hardest Amends,Step 9,Continuity,Living Amends,yes
+275,October 1,The Maintenance Phase,Step 10,Consistency,Practice,yes
+276,October 2,"Daily Serenity, Continued Growth",Step 10,Serenity,Serenity,
+277,October 3,Effort vs. Perfection,Step 10,Effort,Practice,yes
+278,October 4,Keeping the Slate Clean,Step 10,Honesty,Inventory,yes
+279,October 5,Imperfection and Recovery,Step 10,Acceptance,Progress Not Perfection,yes
+280,October 6,The Tool Box of Growth,Step 10,Resourcefulness,Practice,yes
+281,October 7,The Emergency Brake,Step 10,Awareness,Self-Awareness,yes
+282,October 8,The Immediate Stop,Step 10,Accountability,Responsibility,yes
+283,October 9,Adept at Correction,Step 10,Discernment,Self-Awareness,yes
+284,October 10,A Clear Conscience,Step 10,Peace,Serenity,yes
+285,October 11,The Balance of the Positive,Step 10,Balance,Inventory,yes
+286,October 12,Humble and Accepting,Step 10,Humility,Humility,
+287,October 13,The Spiritual Expansion of Forgiveness,Step 10,Forgiveness,Resentment and Forgiveness,yes
+288,October 14,The Relief of Not Being Right,Step 10,Relinquishment,Letting Go,yes
+289,October 15,Allowing Consequences,Step 10,Detachment,Detachment,
+290,October 16,Comfort in Self,Step 10,Self-Acceptance,Self-Worth,yes
+291,October 17,Avoiding the Pain of Shortcomings,Step 10,Motivation,Character Defects,yes
+292,October 18,Serenity is Not the End Goal,Step 10,Reality,Acceptance,yes
+293,October 19,Fewer and Farther Between,Step 10,Progress,Progress Not Perfection,yes
+294,October 20,Daily Health Maintenance,Step 10,Health,Self-Care,yes
+295,October 21,The End of Justification,Step 10,Integrity,Responsibility,yes
+296,October 22,Saved from Resentment,Step 10,Redirection,Resentment and Forgiveness,yes
+297,October 23,The Foundation of Experience,Step 10,Foundation,Practice,yes
+298,October 24,Powerlessness Over Others,Step 10,Powerlessness,Powerlessness,
+299,October 25,Higher Power's Care,Step 10,Reliance,Inventory,yes
+300,October 26,The Growth Cycle,Step 10,Spiritual Connection,Readiness,yes
+301,October 27,Declining Every Invitation to Argue,Tradition 10,Detachment,Detachment,
+302,October 28,Unity Through Focus,Tradition 10,Unity,Fellowship,yes
+303,October 29,Maintaining Group Focus,Tradition 10,Focus,Fellowship,yes
+304,October 30,The Authority to Crash,Concept 10,Trust,Trusting Others,yes
+305,October 31,Afraid I Did It Wrong,Concept 10,Honesty,Progress Not Perfection,yes
+306,November 1,The Evolution of Trust,Step 11,Trust,Trust in a Higher Power,yes
+307,November 2,Two-Way Communication,Step 11,Prayer,Prayer and Meditation,yes
+308,November 3,Keeping It Simple,Step 11,Simplicity,Prayer and Meditation,yes
+309,November 4,Active Waiting,Step 11,Patience,Patience,
+310,November 5,The Busyness Defense,Step 11,Spiritual Connection,Practice,yes
+311,November 6,Redefining Meditation,Step 11,Meditation,Prayer and Meditation,yes
+312,November 7,Detaching from Thoughts,Step 11,Detachment,Detachment,
+313,November 8,Listening is Action,Step 11,Meditation,Prayer and Meditation,yes
+314,November 9,Spiritual Dry Spells,Step 11,Faith,Faith,
+315,November 10,The Terror of Surrender,Step 11,Surrender,Surrender,
+316,November 11,Doormat or Disciple?,Step 11,Self-Care,Self-Care,
+317,November 12,The Mask of Ego,Step 11,Humility,Self-Awareness,yes
+318,November 13,Paralysis by Analysis,Step 11,Trust,Faith,yes
+319,November 14,The Power Inside,Step 11,Serenity,Serenity,
+320,November 15,Backseat Driving,Step 11,Control,Letting Go,yes
+321,November 16,"Attraction, Not Promotion",Tradition 11,Humility,Humility,
+322,November 17,The Safety of Anonymity,Tradition 11,Trust,Open-Mindedness,yes
+323,November 18,Reluctant Leadership,Concept 11,Service,Service,
+324,November 19,Reclaiming Prayer,Step 11,Prayer,Prayer and Meditation,yes
+325,November 20,Learning by Osmosis,Step 11,Fellowship,Fellowship,
+326,November 21,The 'All or Nothing' Trap,Step 11,Self-compassion,Self-Compassion,yes
+327,November 22,Spiritualizing the Mundane,Step 11,Presence,Serenity,yes
+328,November 23,Gentle Returns,Step 11,Willingness,Self-Compassion,yes
+329,November 24,Opening the Heart,Step 11,Connection,Connection,
+330,November 25,The Spiritual Yo-Yo,Step 11,Surrender,Progress Not Perfection,yes
+331,November 26,God is Patient,Step 11,Faith,Self-Compassion,yes
+332,November 27,Praying for Desire,Step 11,Willingness,Willingness,
+333,November 28,Measuring Success,Step 11,Sanity,Spiritual Growth,yes
+334,November 29,The Gifts of Step Eleven,Step 11,Gratitude,Hope and Gratitude,yes
+335,November 30,Equality in Need,Tradition 11,Humility,Humility,
+336,December 1,The Program Summed Up,Step 12,Integration,Practice,yes
+337,December 2,The Crash That Woke Me,Step 12,Awakening,Spiritual Growth,yes
+338,December 3,Keeping by Giving,Step 12,Service,Service,
+339,December 4,The Flower Opening,Step 12,Growth,Spiritual Growth,yes
+340,December 5,What I Almost Missed,Step 12,Awareness,Spiritual Growth,yes
+341,December 6,From Obsession to Peace,Step 12,Peace,Detachment,yes
+342,December 7,The Satisfaction of Sharing,Step 12,Service,Service,
+343,December 8,Supporting My Own Recovery,Step 12,Availability,Service,yes
+344,December 9,Challenged to Continue,Step 12,Accountability,Fellowship,yes
+345,December 10,The Balance of Service,Step 12,Boundaries,Boundaries,
+346,December 11,Share and Let Go,Step 12,Detachment,Detachment,
+347,December 12,Being the Message,Step 12,Example,Living Amends,yes
+348,December 13,Beyond the Meetings,Step 12,Integration,Practice,yes
+349,December 14,Life Still Happens,Step 12,Reality,Acceptance,yes
+350,December 15,A Way of Life Like No Other,Step 12,Completeness,Practice,yes
+351,December 16,Becoming Aware,Step 12,Awareness,Spiritual Growth,yes
+352,December 17,Learning to Trust,Step 12,Trust,Trust in a Higher Power,yes
+353,December 18,The Order of Love,Step 12,Self-love,Self-Worth,yes
+354,December 19,The Question That Changed Everything,Step 12,Resentment,Resentment and Forgiveness,yes
+355,December 20,The Miracle of Letting Go,Step 12,Miracles,Letting Go,yes
+356,December 21,The Trap of Hyped Up,Step 12,Detachment,Detachment,
+357,December 22,The Door to Miracles,Step 12,Surrender,Letting Go,yes
+358,December 23,Studying My Reactions,Step 12,Self-awareness,Self-Awareness,yes
+359,December 24,"Their Truth, My Truth",Step 12,Discernment,Open-Mindedness,yes
+360,December 25,The Joy of Giving,Step 12,Gratitude,Hope and Gratitude,yes
+361,December 26,The Spiritual Foundation,Tradition 12,Principles,Open-Mindedness,yes
+362,December 27,A Thousand Small Fears,Tradition 12,Humility,Fear,yes
+363,December 28,Principles Above Personalities,Tradition 12,Unity,Open-Mindedness,yes
+364,December 29,The Spirit of the Traditions,Concept 12,Spirit,Open-Mindedness,yes
+365,December 30,The Rush to Certainty,Concept 12,Democracy,Open-Mindedness,yes
+366,December 31,The Weight of Yes,Concept 12,Service,People-Pleasing,yes
