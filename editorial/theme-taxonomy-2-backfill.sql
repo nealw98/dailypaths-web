@@ -1,395 +1,233 @@
 -- Daily Paths: the 43-theme grouping vocabulary.
 --
--- Three files, run in order, each its own transaction. Stop after any of them.
---   1  theme-taxonomy-1-column.sql        add readings.link_theme
---   2  theme-taxonomy-2-backfill.sql      fill it for all 366 readings
---   3  theme-taxonomy-3-destinations.sql  teach the theme table the new names
+-- FILE 2 of 3 — fill readings.link_theme for all 366 readings.
 --
--- readings.secondary_theme is never modified. It keeps driving the topic pages,
--- the hero photograph, the SEO metadata and the favourites page.
+-- Run file 1 first. No foreign key exists on the column yet, so these names do
+-- not have to be in the theme table until file 3 adds them.
 --
--- Undo: theme-taxonomy-rollback.sql
+-- One statement per theme, listing the days that carry it. Written this way so
+-- every statement is short: a single 370-line UPDATE reached the editor
+-- truncated and failed with "syntax error at end of input".
 --
--- No dollar-quoted blocks anywhere: the Supabase SQL editor splits a script on
--- semicolons, and a dollar-quoted body holding any of its own arrives truncated.
-
--- FILE 2 of 3 — fill the column for all 366 readings.
---
--- Run file 1 first. No foreign key exists on the column yet, so the names below
--- do not have to be in the theme table until file 3 adds them.
+-- readings.secondary_theme is never modified.
 
 BEGIN;
 
-UPDATE readings AS r SET link_theme = v.theme
-FROM (VALUES
-  (1, 'Connection'),
-  (2, 'Honesty'),
-  (3, 'Powerlessness'),
-  (4, 'Understanding the Disease'),
-  (5, 'Understanding the Disease'),
-  (6, 'Self-Focus'),
-  (7, 'Letting Go'),
-  (8, 'Powerlessness'),
-  (9, 'Boundaries'),
-  (10, 'Understanding the Disease'),
-  (11, 'Powerlessness'),
-  (12, 'Hope and Gratitude'),
-  (13, 'Powerlessness'),
-  (14, 'Acceptance'),
-  (15, 'Surrender'),
-  (16, 'Letting Go'),
-  (17, 'Self-Care'),
-  (18, 'Letting Go'),
-  (19, 'Detachment'),
-  (20, 'People-Pleasing'),
-  (21, 'Self-Focus'),
-  (22, 'Responsibility'),
-  (23, 'Boundaries'),
-  (24, 'Boundaries'),
-  (25, 'Self-Awareness'),
-  (26, 'Practice'),
-  (27, 'Self-Worth'),
-  (28, 'Resentment and Forgiveness'),
-  (29, 'Responsibility'),
-  (30, 'Practice'),
-  (31, 'Boundaries'),
-  (32, 'Hope and Gratitude'),
-  (33, 'Coming to Believe'),
-  (34, 'Hope and Gratitude'),
-  (35, 'Coming to Believe'),
-  (36, 'Coming to Believe'),
-  (37, 'Fellowship'),
-  (38, 'Self-Awareness'),
-  (39, 'Faith'),
-  (40, 'Faith'),
-  (41, 'Hope and Gratitude'),
-  (42, 'Humility'),
-  (43, 'Letting Go'),
-  (44, 'Courage'),
-  (45, 'Spiritual Growth'),
-  (46, 'Coming to Believe'),
-  (47, 'Patience'),
-  (48, 'Fellowship'),
-  (49, 'Trusting Others'),
-  (50, 'Honesty'),
-  (51, 'Patience'),
-  (52, 'Practice'),
-  (53, 'Prayer and Meditation'),
-  (54, 'Service'),
-  (55, 'Open-Mindedness'),
-  (56, 'Responsibility'),
-  (57, 'Respect'),
-  (58, 'Humility'),
-  (59, 'Connection'),
-  (60, 'Serenity'),
-  (61, 'Self-Awareness'),
-  (62, 'Willingness'),
-  (63, 'Surrender'),
-  (64, 'Surrender'),
-  (65, 'Letting Go'),
-  (66, 'Humility'),
-  (67, 'Coming to Believe'),
-  (68, 'Letting Go'),
-  (69, 'Letting Go'),
-  (70, 'Practice'),
-  (71, 'Letting Go'),
-  (72, 'Fear'),
-  (73, 'Surrender'),
-  (74, 'Coming to Believe'),
-  (75, 'Coming to Believe'),
-  (76, 'Coming to Believe'),
-  (77, 'Respect'),
-  (78, 'Self-Compassion'),
-  (79, 'Courage'),
-  (80, 'Surrender'),
-  (81, 'Faith'),
-  (82, 'Faith'),
-  (83, 'Acceptance'),
-  (84, 'Coming to Believe'),
-  (85, 'Connection'),
-  (86, 'Coming to Believe'),
-  (87, 'Fellowship'),
-  (88, 'Acceptance'),
-  (89, 'Trusting Others'),
-  (90, 'Respect'),
-  (91, 'Trusting Others'),
-  (92, 'Inventory'),
-  (93, 'Inventory'),
-  (94, 'Fear'),
-  (95, 'Progress Not Perfection'),
-  (96, 'Hope and Gratitude'),
-  (97, 'Responsibility'),
-  (98, 'Respect'),
-  (99, 'Identity'),
-  (100, 'Fellowship'),
-  (101, 'Respect'),
-  (102, 'Identity'),
-  (103, 'Self-Worth'),
-  (104, 'Honesty'),
-  (105, 'Responsibility'),
-  (106, 'People-Pleasing'),
-  (107, 'Self-Awareness'),
-  (108, 'Fellowship'),
-  (109, 'Honesty'),
-  (110, 'Self-Compassion'),
-  (111, 'Inventory'),
-  (112, 'Courage'),
-  (113, 'Self-Focus'),
-  (114, 'People-Pleasing'),
-  (115, 'Progress Not Perfection'),
-  (116, 'Hope and Gratitude'),
-  (117, 'Practice'),
-  (118, 'Honesty'),
-  (119, 'Self-Awareness'),
-  (120, 'Self-Awareness'),
-  (121, 'Spiritual Growth'),
-  (122, 'Shame and Guilt'),
-  (123, 'People-Pleasing'),
-  (124, 'Humility'),
-  (125, 'Shame and Guilt'),
-  (126, 'Responsibility'),
-  (127, 'Connection'),
-  (128, 'Fear'),
-  (129, 'Trusting Others'),
-  (130, 'Fellowship'),
-  (131, 'Courage'),
-  (132, 'Connection'),
-  (133, 'Character Defects'),
-  (134, 'Shame and Guilt'),
-  (135, 'Connection'),
-  (136, 'Honesty'),
-  (137, 'Self-Awareness'),
-  (138, 'Connection'),
-  (139, 'Connection'),
-  (140, 'Shame and Guilt'),
-  (141, 'Honesty'),
-  (142, 'Fellowship'),
-  (143, 'Honesty'),
-  (144, 'Fear'),
-  (145, 'Shame and Guilt'),
-  (146, 'Shame and Guilt'),
-  (147, 'Self-Focus'),
-  (148, 'Understanding the Disease'),
-  (149, 'Understanding the Disease'),
-  (150, 'Fellowship'),
-  (151, 'Open-Mindedness'),
-  (152, 'Service'),
-  (153, 'Readiness'),
-  (154, 'Readiness'),
-  (155, 'Surrender'),
-  (156, 'Readiness'),
-  (157, 'Readiness'),
-  (158, 'Character Defects'),
-  (159, 'Character Defects'),
-  (160, 'Character Defects'),
-  (161, 'Prayer and Meditation'),
-  (162, 'Faith'),
-  (163, 'Trust in a Higher Power'),
-  (164, 'Readiness'),
-  (165, 'Character Defects'),
-  (166, 'Identity'),
-  (167, 'Letting Go'),
-  (168, 'Surrender'),
-  (169, 'Readiness'),
-  (170, 'Identity'),
-  (171, 'Prayer and Meditation'),
-  (172, 'Patience'),
-  (173, 'Acceptance'),
-  (174, 'Identity'),
-  (175, 'Humility'),
-  (176, 'Readiness'),
-  (177, 'Surrender'),
-  (178, 'Identity'),
-  (179, 'Identity'),
-  (180, 'Boundaries'),
-  (181, 'Responsibility'),
-  (182, 'Humility'),
-  (183, 'Humility'),
-  (184, 'Humility'),
-  (185, 'Surrender'),
-  (186, 'Self-Worth'),
-  (187, 'Humility'),
-  (188, 'Letting Go'),
-  (189, 'Patience'),
-  (190, 'Prayer and Meditation'),
-  (191, 'Letting Go'),
-  (192, 'Patience'),
-  (193, 'Progress Not Perfection'),
-  (194, 'Self-Compassion'),
-  (195, 'Self-Compassion'),
-  (196, 'Practice'),
-  (197, 'Self-Awareness'),
-  (198, 'Practice'),
-  (199, 'Serenity'),
-  (200, 'Self-Awareness'),
-  (201, 'Spiritual Growth'),
-  (202, 'Character Defects'),
-  (203, 'Self-Awareness'),
-  (204, 'Fear'),
-  (205, 'Trust in a Higher Power'),
-  (206, 'Progress Not Perfection'),
-  (207, 'Practice'),
-  (208, 'Courage'),
-  (209, 'Self-Worth'),
-  (210, 'Boundaries'),
-  (211, 'Detachment'),
-  (212, 'Connection'),
-  (213, 'Practice'),
-  (214, 'Shame and Guilt'),
-  (215, 'Willingness'),
-  (216, 'Inventory'),
-  (217, 'Resentment and Forgiveness'),
-  (218, 'Responsibility'),
-  (219, 'Willingness'),
-  (220, 'Willingness'),
-  (221, 'Prayer and Meditation'),
-  (222, 'Letting Go'),
-  (223, 'Amends'),
-  (224, 'Amends'),
-  (225, 'Acceptance'),
-  (226, 'Amends'),
-  (227, 'Responsibility'),
-  (228, 'Prayer and Meditation'),
-  (229, 'Responsibility'),
-  (230, 'Acceptance'),
-  (231, 'Self-Focus'),
-  (232, 'Patience'),
-  (233, 'Amends'),
-  (234, 'Amends'),
-  (235, 'Amends'),
-  (236, 'Resentment and Forgiveness'),
-  (237, 'Self-Care'),
-  (238, 'Trust in a Higher Power'),
-  (239, 'Amends'),
-  (240, 'Respect'),
-  (241, 'Service'),
-  (242, 'Fellowship'),
-  (243, 'Trusting Others'),
-  (244, 'Trusting Others'),
-  (245, 'Humility'),
-  (246, 'Responsibility'),
-  (247, 'Amends'),
-  (248, 'Amends'),
-  (249, 'Amends'),
-  (250, 'Living Amends'),
-  (251, 'Living Amends'),
-  (252, 'Acceptance'),
-  (253, 'Amends'),
-  (254, 'Living Amends'),
-  (255, 'Fear'),
-  (256, 'Fellowship'),
-  (257, 'Respect'),
-  (258, 'Resentment and Forgiveness'),
-  (259, 'Living Amends'),
-  (260, 'Living Amends'),
-  (261, 'Amends'),
-  (262, 'Living Amends'),
-  (263, 'Amends'),
-  (264, 'Living Amends'),
-  (265, 'Service'),
-  (266, 'Character Defects'),
-  (267, 'Boundaries'),
-  (268, 'Service'),
-  (269, 'Service'),
-  (270, 'Self-Care'),
-  (271, 'Living Amends'),
-  (272, 'Acceptance'),
-  (273, 'Amends'),
-  (274, 'Living Amends'),
-  (275, 'Practice'),
-  (276, 'Serenity'),
-  (277, 'Practice'),
-  (278, 'Inventory'),
-  (279, 'Progress Not Perfection'),
-  (280, 'Practice'),
-  (281, 'Self-Awareness'),
-  (282, 'Responsibility'),
-  (283, 'Self-Awareness'),
-  (284, 'Serenity'),
-  (285, 'Inventory'),
-  (286, 'Humility'),
-  (287, 'Resentment and Forgiveness'),
-  (288, 'Letting Go'),
-  (289, 'Detachment'),
-  (290, 'Self-Worth'),
-  (291, 'Character Defects'),
-  (292, 'Acceptance'),
-  (293, 'Progress Not Perfection'),
-  (294, 'Self-Care'),
-  (295, 'Responsibility'),
-  (296, 'Resentment and Forgiveness'),
-  (297, 'Practice'),
-  (298, 'Powerlessness'),
-  (299, 'Inventory'),
-  (300, 'Readiness'),
-  (301, 'Detachment'),
-  (302, 'Fellowship'),
-  (303, 'Fellowship'),
-  (304, 'Trusting Others'),
-  (305, 'Progress Not Perfection'),
-  (306, 'Trust in a Higher Power'),
-  (307, 'Prayer and Meditation'),
-  (308, 'Prayer and Meditation'),
-  (309, 'Patience'),
-  (310, 'Practice'),
-  (311, 'Prayer and Meditation'),
-  (312, 'Detachment'),
-  (313, 'Prayer and Meditation'),
-  (314, 'Faith'),
-  (315, 'Surrender'),
-  (316, 'Self-Care'),
-  (317, 'Self-Awareness'),
-  (318, 'Faith'),
-  (319, 'Serenity'),
-  (320, 'Letting Go'),
-  (321, 'Humility'),
-  (322, 'Open-Mindedness'),
-  (323, 'Service'),
-  (324, 'Prayer and Meditation'),
-  (325, 'Fellowship'),
-  (326, 'Self-Compassion'),
-  (327, 'Serenity'),
-  (328, 'Self-Compassion'),
-  (329, 'Connection'),
-  (330, 'Progress Not Perfection'),
-  (331, 'Self-Compassion'),
-  (332, 'Willingness'),
-  (333, 'Spiritual Growth'),
-  (334, 'Hope and Gratitude'),
-  (335, 'Humility'),
-  (336, 'Practice'),
-  (337, 'Spiritual Growth'),
-  (338, 'Service'),
-  (339, 'Spiritual Growth'),
-  (340, 'Spiritual Growth'),
-  (341, 'Detachment'),
-  (342, 'Service'),
-  (343, 'Service'),
-  (344, 'Fellowship'),
-  (345, 'Boundaries'),
-  (346, 'Detachment'),
-  (347, 'Living Amends'),
-  (348, 'Practice'),
-  (349, 'Acceptance'),
-  (350, 'Practice'),
-  (351, 'Spiritual Growth'),
-  (352, 'Trust in a Higher Power'),
-  (353, 'Self-Worth'),
-  (354, 'Resentment and Forgiveness'),
-  (355, 'Letting Go'),
-  (356, 'Detachment'),
-  (357, 'Letting Go'),
-  (358, 'Self-Awareness'),
-  (359, 'Open-Mindedness'),
-  (360, 'Hope and Gratitude'),
-  (361, 'Open-Mindedness'),
-  (362, 'Fear'),
-  (363, 'Open-Mindedness'),
-  (364, 'Open-Mindedness'),
-  (365, 'Open-Mindedness'),
-  (366, 'People-Pleasing')
-) AS v(day, theme)
-WHERE r.day_of_year = v.day;
+-- Acceptance — 10 readings
+UPDATE readings SET link_theme = 'Acceptance' WHERE day_of_year IN (
+  14, 83, 88, 173, 225, 230, 252, 272, 292, 349
+);
+
+-- Amends — 14 readings
+UPDATE readings SET link_theme = 'Amends' WHERE day_of_year IN (
+  223, 224, 226, 233, 234, 235, 239, 247, 248, 249, 253, 261, 263, 273
+);
+
+-- Boundaries — 8 readings
+UPDATE readings SET link_theme = 'Boundaries' WHERE day_of_year IN (
+  9, 23, 24, 31, 180, 210, 267, 345
+);
+
+-- Character Defects — 8 readings
+UPDATE readings SET link_theme = 'Character Defects' WHERE day_of_year IN (
+  133, 158, 159, 160, 165, 202, 266, 291
+);
+
+-- Coming to Believe — 10 readings
+UPDATE readings SET link_theme = 'Coming to Believe' WHERE day_of_year IN (
+  33, 35, 36, 46, 67, 74, 75, 76, 84, 86
+);
+
+-- Connection — 10 readings
+UPDATE readings SET link_theme = 'Connection' WHERE day_of_year IN (
+  1, 59, 85, 127, 132, 135, 138, 139, 212, 329
+);
+
+-- Courage — 5 readings
+UPDATE readings SET link_theme = 'Courage' WHERE day_of_year IN (
+  44, 79, 112, 131, 208
+);
+
+-- Detachment — 8 readings
+UPDATE readings SET link_theme = 'Detachment' WHERE day_of_year IN (
+  19, 211, 289, 301, 312, 341, 346, 356
+);
+
+-- Faith — 7 readings
+UPDATE readings SET link_theme = 'Faith' WHERE day_of_year IN (
+  39, 40, 81, 82, 162, 314, 318
+);
+
+-- Fear — 7 readings
+UPDATE readings SET link_theme = 'Fear' WHERE day_of_year IN (
+  72, 94, 128, 144, 204, 255, 362
+);
+
+-- Fellowship — 14 readings
+UPDATE readings SET link_theme = 'Fellowship' WHERE day_of_year IN (
+  37, 48, 87, 100, 108, 130, 142, 150, 242, 256, 302, 303, 325, 344
+);
+
+-- Honesty — 8 readings
+UPDATE readings SET link_theme = 'Honesty' WHERE day_of_year IN (
+  2, 50, 104, 109, 118, 136, 141, 143
+);
+
+-- Hope and Gratitude — 8 readings
+UPDATE readings SET link_theme = 'Hope and Gratitude' WHERE day_of_year IN (
+  12, 32, 34, 41, 96, 116, 334, 360
+);
+
+-- Humility — 13 readings
+UPDATE readings SET link_theme = 'Humility' WHERE day_of_year IN (
+  42, 58, 66, 124, 175, 182, 183, 184, 187, 245, 286, 321, 335
+);
+
+-- Identity — 7 readings
+UPDATE readings SET link_theme = 'Identity' WHERE day_of_year IN (
+  99, 102, 166, 170, 174, 178, 179
+);
+
+-- Inventory — 7 readings
+UPDATE readings SET link_theme = 'Inventory' WHERE day_of_year IN (
+  92, 93, 111, 216, 278, 285, 299
+);
+
+-- Letting Go — 16 readings
+UPDATE readings SET link_theme = 'Letting Go' WHERE day_of_year IN (
+  7, 16, 18, 43, 65, 68, 69, 71, 167, 188, 191, 222, 288, 320, 355, 357
+);
+
+-- Living Amends — 10 readings
+UPDATE readings SET link_theme = 'Living Amends' WHERE day_of_year IN (
+  250, 251, 254, 259, 260, 262, 264, 271, 274, 347
+);
+
+-- Open-Mindedness — 8 readings
+UPDATE readings SET link_theme = 'Open-Mindedness' WHERE day_of_year IN (
+  55, 151, 322, 359, 361, 363, 364, 365
+);
+
+-- Patience — 7 readings
+UPDATE readings SET link_theme = 'Patience' WHERE day_of_year IN (
+  47, 51, 172, 189, 192, 232, 309
+);
+
+-- People-Pleasing — 5 readings
+UPDATE readings SET link_theme = 'People-Pleasing' WHERE day_of_year IN (
+  20, 106, 114, 123, 366
+);
+
+-- Powerlessness — 5 readings
+UPDATE readings SET link_theme = 'Powerlessness' WHERE day_of_year IN (
+  3, 8, 11, 13, 298
+);
+
+-- Practice — 17 readings
+UPDATE readings SET link_theme = 'Practice' WHERE day_of_year IN (
+  26, 30, 52, 70, 117, 196, 198, 207, 213, 275, 277, 280, 297, 310, 336,
+  348, 350
+);
+
+-- Prayer and Meditation — 11 readings
+UPDATE readings SET link_theme = 'Prayer and Meditation' WHERE day_of_year IN (
+  53, 161, 171, 190, 221, 228, 307, 308, 311, 313, 324
+);
+
+-- Progress Not Perfection — 8 readings
+UPDATE readings SET link_theme = 'Progress Not Perfection' WHERE day_of_year IN (
+  95, 115, 193, 206, 279, 293, 305, 330
+);
+
+-- Readiness — 8 readings
+UPDATE readings SET link_theme = 'Readiness' WHERE day_of_year IN (
+  153, 154, 156, 157, 164, 169, 176, 300
+);
+
+-- Resentment and Forgiveness — 7 readings
+UPDATE readings SET link_theme = 'Resentment and Forgiveness' WHERE day_of_year IN (
+  28, 217, 236, 258, 287, 296, 354
+);
+
+-- Respect — 7 readings
+UPDATE readings SET link_theme = 'Respect' WHERE day_of_year IN (
+  57, 77, 90, 98, 101, 240, 257
+);
+
+-- Responsibility — 13 readings
+UPDATE readings SET link_theme = 'Responsibility' WHERE day_of_year IN (
+  22, 29, 56, 97, 105, 126, 181, 218, 227, 229, 246, 282, 295
+);
+
+-- Self-Awareness — 14 readings
+UPDATE readings SET link_theme = 'Self-Awareness' WHERE day_of_year IN (
+  25, 38, 61, 107, 119, 120, 137, 197, 200, 203, 281, 283, 317, 358
+);
+
+-- Self-Care — 5 readings
+UPDATE readings SET link_theme = 'Self-Care' WHERE day_of_year IN (
+  17, 237, 270, 294, 316
+);
+
+-- Self-Compassion — 7 readings
+UPDATE readings SET link_theme = 'Self-Compassion' WHERE day_of_year IN (
+  78, 110, 194, 195, 326, 328, 331
+);
+
+-- Self-Focus — 5 readings
+UPDATE readings SET link_theme = 'Self-Focus' WHERE day_of_year IN (
+  6, 21, 113, 147, 231
+);
+
+-- Self-Worth — 6 readings
+UPDATE readings SET link_theme = 'Self-Worth' WHERE day_of_year IN (
+  27, 103, 186, 209, 290, 353
+);
+
+-- Serenity — 6 readings
+UPDATE readings SET link_theme = 'Serenity' WHERE day_of_year IN (
+  60, 199, 276, 284, 319, 327
+);
+
+-- Service — 10 readings
+UPDATE readings SET link_theme = 'Service' WHERE day_of_year IN (
+  54, 152, 241, 265, 268, 269, 323, 338, 342, 343
+);
+
+-- Shame and Guilt — 7 readings
+UPDATE readings SET link_theme = 'Shame and Guilt' WHERE day_of_year IN (
+  122, 125, 134, 140, 145, 146, 214
+);
+
+-- Spiritual Growth — 8 readings
+UPDATE readings SET link_theme = 'Spiritual Growth' WHERE day_of_year IN (
+  45, 121, 201, 333, 337, 339, 340, 351
+);
+
+-- Surrender — 10 readings
+UPDATE readings SET link_theme = 'Surrender' WHERE day_of_year IN (
+  15, 63, 64, 73, 80, 155, 168, 177, 185, 315
+);
+
+-- Trust in a Higher Power — 5 readings
+UPDATE readings SET link_theme = 'Trust in a Higher Power' WHERE day_of_year IN (
+  163, 205, 238, 306, 352
+);
+
+-- Trusting Others — 7 readings
+UPDATE readings SET link_theme = 'Trusting Others' WHERE day_of_year IN (
+  49, 89, 91, 129, 243, 244, 304
+);
+
+-- Understanding the Disease — 5 readings
+UPDATE readings SET link_theme = 'Understanding the Disease' WHERE day_of_year IN (
+  4, 5, 10, 148, 149
+);
+
+-- Willingness — 5 readings
+UPDATE readings SET link_theme = 'Willingness' WHERE day_of_year IN (
+  62, 215, 219, 220, 332
+);
 
 -- Verify before committing.
 SELECT count(*) AS unfilled FROM readings WHERE link_theme IS NULL;  -- expect 0
