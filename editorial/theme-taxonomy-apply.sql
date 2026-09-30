@@ -14,12 +14,15 @@
 
 BEGIN;
 
--- 1. Guard.
-DO $$ BEGIN
-  IF (SELECT count(*) FROM readings) <> 366 THEN
-    RAISE EXCEPTION 'Expected 366 readings, found %', (SELECT count(*) FROM readings);
-  END IF;
-END $$;
+-- 1. Guard. Written as one statement with no semicolons inside it: the
+--    Supabase SQL editor splits on semicolons, so a DO $$ ... $$ block with
+--    any inside it arrives truncated and fails with "syntax error at end of
+--    input". If the count is wrong the cast fails and the message says so,
+--    which aborts the transaction before anything below runs.
+SELECT CASE WHEN count(*) = 366 THEN 'ok'
+            ELSE ('ABORT - expected 366 readings, found ' || count(*))::int::text
+       END AS guard
+FROM readings;
 
 -- 2. The new column. IF NOT EXISTS makes a re-run harmless.
 ALTER TABLE readings ADD COLUMN IF NOT EXISTS link_theme text;
