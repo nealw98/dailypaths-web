@@ -81,12 +81,10 @@ export function renderReadingPage(reading, prevReading, nextReading, allReadings
     ? `${reading.display_date} &middot; Step ${stepWord}`
     : reading.display_date;
 
-  // Pills — the reading's own topic and Step as live, arrowed links. The same
-  // destinations reappear after the reading (Keep reading, the Step card):
-  // intentional duplication at two different moments.
+  // Theme destinations support the discovery sections below the reading.
   const theme = reading.secondary_theme;
   const topicMatch = theme ? THEME_TO_TOPIC[theme] : null;
-  // Resolved once, for the pill, the Go deeper card and the grouping alike, so a
+  // Resolved once, for the Go deeper card and the grouping alike, so a
   // theme assigned in the table cannot reach one of them and not the others.
   // The grouping theme owns the destination once it is populated, since the table
   // is keyed to that vocabulary; secondary_theme answers until then.
@@ -105,16 +103,8 @@ export function renderReadingPage(reading, prevReading, nextReading, allReadings
   const programPath = stepPath
     || (collectionPage ? `${collectionPage.path}#${collectionMatch[1].toLowerCase()}-${collectionMatch[2]}` : null);
 
-  // The pill carries the reading's own theme rather than the name of wherever it
-  // leads — the destination announces itself in the Go deeper card below. It shows
-  // the grouping theme, which is what this reading is now filed under; the finer
-  // secondary_theme is a descriptive tag behind the topic pages, not a label the
-  // reader should be shown as this reading's subject.
-  const pillTheme = groupingTheme(reading) || theme;
+  // Keep only the primary Step, Tradition, or Concept pill above the reading.
   const pills = [];
-  if (pillTheme) {
-    pills.push(destinationPath ? pill(pillTheme, { href: bp(destinationPath) }) : pill(pillTheme));
-  }
   if (reading.step_theme) {
     const principleWords = reading.step_theme.replace(/\b(\d+)\b/, m => NUMBER_WORDS[Number(m) - 1] || m);
     pills.push(programPath ? pill(principleWords, { href: bp(programPath) }) : pill(principleWords));
