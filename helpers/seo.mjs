@@ -262,7 +262,18 @@ export function homepageStructuredData() {
     }
   };
 
-  return [JSON.stringify(webSite, null, 2), JSON.stringify(app, null, 2)];
+  // Named separately from the app so the publisher is a described entity rather
+  // than a bare string repeated inside every other block.
+  const organization = {
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    'name': 'Daily Growth, LLC',
+    'url': BASE_URL,
+    'logo': `${BASE_URL}/assets/favicon.png`,
+    'description': 'Publisher of Daily Paths, an independent project of original daily reflections for people affected by someone else\u2019s drinking. Not affiliated with Al-Anon Family Groups.'
+  };
+
+  return [JSON.stringify(webSite, null, 2), JSON.stringify(organization, null, 2), JSON.stringify(app, null, 2)];
 }
 
 /**

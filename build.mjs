@@ -234,7 +234,7 @@ const todayReading = readings[todayIdx >= 0 ? todayIdx : 0];
 const todayPrev = readings[(todayIdx - 1 + readings.length) % readings.length];
 const todayNext = readings[(todayIdx + 1) % readings.length];
 
-writePage(join(outDir, 'index.html'), renderHomePage(todayReading));
+writePage(join(outDir, 'index.html'), renderHomePage(todayReading, readings));
 
 for (const [path, render] of [['articles', renderArticlesPage], ['guides', renderGuidesPage], ['reflections', () => renderReflectionsPage(todayReading)]]) {
   mkdirSync(join(outDir, path), {recursive:true});

@@ -111,7 +111,7 @@ h1,
 .type-page-title,
 .page-editorial .sd-page-heading h1 { font: var(--type-page); letter-spacing: -.7px; }
 
-.page-home .ed-hero h1,
+.page-home .ed-hero h2,
 .page-reading .photo-hero-title { font: var(--type-reflection); letter-spacing: -.4px; }
 
 .content-article h1,
@@ -919,7 +919,7 @@ a[target="_blank"]:not(:has(img)):not(.pillar-card):not(.fellow-card)::after,
 .collection-rail span { color: var(--text-muted, #66685d); }
 
 /* Homepage: the reflection dominates; promotions stay subordinate. */
-.page-home .ed-hero h1 { width: 47%; max-width: 10.5ch; margin-bottom: var(--space-4); }
+.page-home .ed-hero h2 { width: 47%; max-width: 10.5ch; margin-bottom: var(--space-4); }
 .page-home .ed-hero-deck { width: 39%; max-width: 34ch; margin-bottom: var(--space-4); color: var(--text-primary, #34382e); }
 .page-home .ed-section-heading h2 { font: var(--type-reading-body); font-size: 2rem; }
 .page-home .ed-story h3,
@@ -1124,7 +1124,7 @@ a[target="_blank"]:not(:has(img)):not(.pillar-card):not(.fellow-card)::after,
 
   .page-home .ed-hero-photo { height: 420px; }
   .page-home .ed-hero-content { padding-top: 310px; }
-  .page-home .ed-hero h1,
+  .page-home .ed-hero h2,
   .page-home .ed-hero-deck { width: 100%; max-width: none; }
   .page-home .ed-section-heading { display: block; }
   .page-home .ed-section-heading > .ed-link { margin-top: var(--space-2); }
@@ -1324,7 +1324,7 @@ a[target="_blank"]:not(:has(img)):not(.pillar-card):not(.fellow-card)::after,
   @media (max-width: 1000px) {
     body.page-home .ed-hero-content { grid-area: 2 / 1; padding-block: 2rem; }
     body.page-home .ed-hero::after { display: none; }
-    body.page-home .ed-hero h1,
+    body.page-home .ed-hero h2,
     body.page-home .ed-hero-deck { width: 100%; max-width: 22ch; }
     body.page-home .ed-hero-deck { max-width: 44ch; }
     body.page-home .ed-keep-reading { max-width: none; }
