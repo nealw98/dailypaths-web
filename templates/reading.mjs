@@ -76,10 +76,16 @@ export function renderReadingPage(reading, prevReading, nextReading, allReadings
   const stepNum = stepMatch ? parseInt(stepMatch[1], 10) : null;
   const stepWord = stepNum ? NUMBER_WORDS[stepNum - 1] : '';
 
-  // Hero eyebrow: "August 9 · Step Eight"
-  const heroEyebrow = stepWord
-    ? `${reading.display_date} &middot; Step ${stepWord}`
-    : reading.display_date;
+  // Hero eyebrow: "Al-Anon daily reflection · August 9".
+  //
+  // The Step used to sit here too, an inch above a pill that says the same thing
+  // and is a link. What was missing instead was any sign of what this page is: a
+  // reader arriving from a search saw the site name, a date and a title, and the
+  // word Al-Anon appeared nowhere until the fine print at the foot.
+  //
+  // Only the date goes inside <time>, so the machine-readable date does not end
+  // up wrapping the words around it.
+  const heroEyebrow = `Al-Anon daily reflection &middot; <time datetime="${isoDate}">${reading.display_date}</time>`;
 
   // Theme destinations support the discovery sections below the reading.
   const theme = reading.secondary_theme;
@@ -235,7 +241,7 @@ ${photoHero({
       ? reflectionImage(reading.day_of_year, topicMatch?.slug)
       : reflectionHeroImage(reading.day_of_year, topicMatch?.slug)}`),
     alt: '',
-    eyebrow: `<time datetime="${isoDate}">${heroEyebrow}</time>`,
+    eyebrow: heroEyebrow,
     title: reading.title,
     size: 'md',
     titleClass: 'photo-hero-title--reading',
