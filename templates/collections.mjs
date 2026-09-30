@@ -34,7 +34,7 @@ const COLLECTIONS = {
     entries: TRADITION_ENTRIES,
     label: 'Tradition',
     slugPrefix: 'tradition',
-    lede: 'The Traditions guide Al-Anon groups and offer principles we can apply to our own recovery program and relationships. These reflections explore both.',
+    lede: 'The Traditions guide how Al-Anon groups stay united and focused. They also offer principles we can apply to our own recovery.',
     metaSubject: 'the Twelve Traditions of Al-Anon',
   },
   '/concepts/': {
@@ -42,7 +42,7 @@ const COLLECTIONS = {
     entries: CONCEPT_ENTRIES,
     label: 'Concept',
     slugPrefix: 'concept',
-    lede: 'The Concepts of Service guide how Al-Anon shares responsibility and offer principles we can apply to our own recovery program. These reflections explore trust, participation, and service in daily life.',
+    lede: 'The Concepts of Service guide how responsibility is shared throughout Al-Anon. They also offer principles we can apply to our own recovery.',
     metaSubject: 'the Twelve Concepts of Service in Al-Anon',
   },
 };

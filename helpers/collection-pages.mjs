@@ -12,13 +12,13 @@ export const COLLECTION_PAGES = [
   {
     path: '/traditions/',
     title: 'The Twelve Traditions',
-    description: 'The principles that keep Al-Anon groups whole — and what they ask of us at home.',
+    description: 'How groups stay united, with principles for our own recovery.',
     stepTag: 'Tradition',
   },
   {
     path: '/concepts/',
     title: 'The Twelve Concepts of Service',
-    description: 'How the fellowship governs itself, and what service asks of the people who carry it.',
+    description: 'How Al-Anon shares service, with principles for our own recovery.',
     stepTag: 'Concept',
   },
 ];
