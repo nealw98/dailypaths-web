@@ -18,9 +18,9 @@ function articleCard(article) {
 }
 
 function guideRows() {
-  return launchItems(GUIDES, IS_PREVIEW).map((g, i) => {
+  return launchItems(GUIDES, IS_PREVIEW).map(g => {
     const hero = g.image ? `<span class="sd-guide-image"><img src="${g.cms ? esc(g.image) : bp('/assets/' + g.image)}" alt="${esc(g.alt || '')}" loading="lazy"></span>` : '';
-    return `<li data-cms-path="${esc(g.path)}"${hero ? ' class="has-image"' : ''}><a href="${bp(g.path)}"><span class="sd-guide-number" aria-hidden="true">0${i + 1}</span>${hero}<span class="sd-guide-copy"><h3>${esc(g.title)}</h3><p>${esc(g.description)}${g.reviewDraft ? ' <small>Placeholder</small>' : ''}</p></span></a></li>`;
+    return `<li data-cms-path="${esc(g.path)}"${hero ? ' class="has-image"' : ''}><a href="${bp(g.path)}">${hero}<span class="sd-guide-copy"><h3>${esc(g.title)}</h3><p>${esc(g.description)}${g.reviewDraft ? ' <small>Placeholder</small>' : ''}</p></span></a></li>`;
   }).join('');
 }
 

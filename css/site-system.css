@@ -361,7 +361,6 @@ h3,
 .book-card-category,
 .book-category,
 .prayer-card-title,
-.sd-guide-number,
 .start-step-numeral,
 .step-card-numeral,
 .na-n {
@@ -1080,13 +1079,13 @@ a[target="_blank"]:not(:has(img)):not(.pillar-card):not(.fellow-card)::after,
   text-underline-offset: .2em;
 }
 
-.sd-guide-list li > a { grid-template-columns: 28px minmax(0, 1fr); }
+.sd-guide-list li > a { grid-template-columns: minmax(0, 1fr); }
 
 /* A guide row carries its hero at a fixed crop, so the row stays a row rather than
    becoming a card. The image arrives from the Story Room through syncCatalog, so a
-   guide published without one keeps the two-column layout instead of leaving a gap. */
+   guide published without one keeps the single-column layout instead of leaving a gap. */
 .sd-guide-list li.has-image > a {
-  grid-template-columns: 28px 150px minmax(0, 1fr);
+  grid-template-columns: 150px minmax(0, 1fr);
   align-items: start;
 }
 .sd-guide-image { display: block; }
@@ -1098,10 +1097,10 @@ a[target="_blank"]:not(:has(img)):not(.pillar-card):not(.fellow-card)::after,
   border-radius: 2px;
 }
 @media (max-width: 720px) {
-  .sd-guide-list li.has-image > a { grid-template-columns: 28px minmax(0, 1fr); }
-  .sd-guide-image { grid-column: 2; grid-row: 1; margin-bottom: 14px; }
+  .sd-guide-list li.has-image > a { grid-template-columns: minmax(0, 1fr); }
+  .sd-guide-image { grid-column: 1; grid-row: 1; margin-bottom: 14px; }
   .sd-guide-image img { aspect-ratio: 16 / 9; }
-  .sd-guide-list li.has-image .sd-guide-copy { grid-column: 2; grid-row: 2; }
+  .sd-guide-list li.has-image .sd-guide-copy { grid-column: 1; grid-row: 2; }
 }
 
 @media (max-width: 960px) {
