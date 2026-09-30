@@ -81,6 +81,6 @@ export function renderGuidesPage() {
     bodyContent:`${hubIntro({ title:'Guides', subtitle:'A place to begin. A place to return.', description:'Explore one idea at a time, at your own pace.', id:'guides-title' })}<section class="hub-reference-measure sd-guide-library" aria-labelledby="guide-library-heading"><h2 class="visually-hidden" id="guide-library-heading">All guides</h2><ol class="sd-guide-list">${guideRows()}</ol></section><aside class="hub-reference-measure sd-related-note"><p class="sd-kicker">A related read</p><h2><a href="${bp(themePath('letting-go'))}">Letting Go: Caring Without Carrying</a></h2><p>On responsibility, control, and putting down what isn’t yours to carry.</p></aside>${terminalBand()}`});
 }
 
-export function renderReflectionsPage(reading) {
-  return renderReflectionsIndexPage(reading);
+export function renderReflectionsPage(reading, allReadings = []) {
+  return renderReflectionsIndexPage(reading, allReadings);
 }

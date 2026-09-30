@@ -832,6 +832,15 @@ a[target="_blank"]:not(:has(img)):not(.pillar-card):not(.fellow-card)::after,
   gap: var(--space-3);
 }
 
+/* Two cards rather than twelve, so they sit half-width and read as a pair
+   alongside the Steps grid above rather than as two orphans in a three-column
+   track. They collapse with that grid at the same breakpoints. */
+.page-reflections-index .step-card-grid--collections {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-3);
+}
+
 /* The homepage's Soft Daylight grammar, carried across every reflection. */
 .page-reading .photo-hero--soft-daylight {
   min-height: clamp(520px, 48vw, 640px);
@@ -1163,7 +1172,8 @@ a[target="_blank"]:not(:has(img)):not(.pillar-card):not(.fellow-card)::after,
   .start-hero-inner { padding-block: var(--space-6); }
 
   .page-reflections-index .reflection-index-lead { margin-bottom: var(--space-5); }
-  .page-reflections-index .step-card-grid--index { grid-template-columns: 1fr; }
+  .page-reflections-index .step-card-grid--index,
+  .page-reflections-index .step-card-grid--collections { grid-template-columns: 1fr; }
   .sd-article-library { row-gap: var(--space-6); }
 
   .collection-rail-inner { min-height: 42px; }

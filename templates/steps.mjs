@@ -6,6 +6,7 @@ import { themePath } from '../helpers/theme-pages.mjs';
 import {
   photoHero, quoteBlock, detailRail, terminalBand, readingCard, icon,
 } from './ui.mjs';
+import { COLLECTION_PAGES } from '../helpers/collection-pages.mjs';
 
 /**
  * Step data — shared between the index and individual step pages.
@@ -269,7 +270,25 @@ export const STEPS = [
 /**
  * Generate the reflection collection index using the established Steps cards.
  */
-export function renderReflectionsIndexPage(todayReading) {
+export function renderReflectionsIndexPage(todayReading, allReadings = []) {
+  // 63 of the 366 readings belong to a Tradition or a Concept rather than a Step.
+  // Their pages exist and are complete, but the hub listed only the twelve Steps,
+  // so those readings were reachable from a reflection and from nowhere else. Each
+  // card opens the whole collection, which is how they are written: a Tradition
+  // holds two to four readings, too few to deserve a card of its own.
+  const collectionCards = COLLECTION_PAGES.map(page => {
+    const count = allReadings.filter(r => (r.step_theme || '').startsWith(page.stepTag)).length;
+    return `
+          <a href="${bp(page.path)}" class="card-elevated step-card">
+            <span class="step-card-numeral">12</span>
+            <span>
+              <span class="step-card-keyword">${page.title.replace(/^The Twelve /, '')}</span>
+              <span class="step-card-hook">${page.description}</span>
+              <span class="step-card-cta">${count ? `View ${count} reflections` : 'View reflections'}</span>
+            </span>
+          </a>`;
+  }).join('');
+
   const gridCards = STEPS.map(step => `
           <a href="${bp(`/months/${step.monthSlug}/`)}" class="card-elevated step-card">
             <span class="step-card-numeral">${step.number}</span>
@@ -298,6 +317,14 @@ ${photoHero({
         </div>
       </div>
       <div class="step-card-grid step-card-grid--index">${gridCards}
+      </div>
+    </section>
+
+    <section class="wrap section--md" aria-labelledby="collections-heading">
+      <p class="eyebrow">Also in the year</p>
+      <h2 class="section-title" id="collections-heading">The Traditions and the Concepts</h2>
+      <p class="section-desc">Sixty-three of the readings follow a Tradition or a Concept rather than a Step. Each collection opens in full.</p>
+      <div class="step-card-grid step-card-grid--collections">${collectionCards}
       </div>
     </section>
 
