@@ -285,7 +285,7 @@ ${photoHero({
 ${keepReadingHtml}
 ${goDeeperHtml}
 
-    <div class="wrap wrap--article">
+    <div class="wrap wrap--article rd-attribution">
       <p class="fine-print">Curated by members of the Al-Anon community for Daily Growth, LLC. Grounded in the Twelve Steps and the contemplative tradition of Al-Anon.</p>
     </div>
 

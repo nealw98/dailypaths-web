@@ -1401,3 +1401,18 @@ a[target="_blank"]:not(:has(img)):not(.pillar-card):not(.fellow-card)::after,
 .ma-month-nav{display:flex;justify-content:space-between;gap:16px;margin:40px 0;font:14px/1.5 var(--font-ui)}
 .ma-month-nav a{text-decoration:underline;text-underline-offset:4px;color:var(--accent)}
 @media(max-width:700px){.ma-orientation{grid-template-columns:1fr;gap:20px}.ma-month-note{border-left:0;border-top:1px solid var(--rule);padding:22px 0 0}.page-month-archive .ma-chapters{grid-template-columns:1fr;gap:12px}.page-month-archive .ma-reading-title{font-size:17px}.ma-introduction p{font-size:18px}.page-month-archive .ma-reading-link{grid-template-columns:80px minmax(0,1fr);gap:10px}}
+
+/* Reflection content shares one edge from the reading through discovery. */
+.page-reading :is(.rd-article, .kr-section, .deeper-section, .rd-attribution) {
+  width: min(calc(100% - (2 * var(--gutter-system))), var(--content-reading));
+  margin-inline: auto;
+  padding-inline: 0;
+}
+.page-reading .kr-section { padding-bottom: var(--space-6); }
+.page-reading .deeper-section { padding-bottom: var(--space-6); }
+.page-reading .rd-attribution { padding-bottom: var(--space-7); }
+.page-reading .rd-attribution .fine-print { margin: 0; }
+.page-reading .kr-card { min-width: 0; }
+@media (min-width: 761px) {
+  .page-reading .kr-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
