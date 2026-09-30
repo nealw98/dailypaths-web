@@ -1,3 +1,42 @@
+## September 30 — the homepage collection band
+
+Neal settled the shape of the reflections section on the homepage, after reading the
+Bing keyword report (`editorial/search-demand-2026-09.md`). Mockup:
+https://claude.ai/artifact/XCcoxxWrmQmGX2U54cJYSx
+
+**Six readings, the six days before today.** Today's stays in the hero and the band
+picks up where it leaves off. Approved for launch, to be revisited against search
+results rather than re-guessed. Chosen over the hand-picked ten (which already own
+`/reflections/favorites/`, and would leave the homepage unchanged for months) and
+over ratings-ranked (app-heavy: the top-scoring reading has 38 app favourites and no
+web ratings). The rotation means every one of the 366 gets a week of homepage links
+each year — the part of the site with the most pages and the least support. It needs
+no new machinery: the page is built with real readings and real links, and
+`js/main.js` advances them from the manifest, so a crawler sees six real links
+refreshed nightly and a reader sees it move without a deploy.
+
+**The band closes with two links: "Browse the entire collection" and "The ten readers
+return to most."** Not three — a "by Step" link would land on the same page as the
+first. A third only becomes meaningful if the unbuilt date browse in
+`templates/browse-date.mjs` is wired up, which is a separate decision.
+
+**The hub is not the Steps alone.** It is each Step, the Traditions and the Concepts.
+Do not label it "Step collections" anywhere. This settles the hub's shape as the
+three sections `HANDOFF.md` §5 specifies; both `/traditions/` and `/concepts/` are
+already built and already reached by 63 reflections, so what remains is the hub
+presenting them.
+
+The site-overview band from the first mockup is dropped. The collection band is the
+reflections, and the Articles and Guides sections below carry their own hub links in
+their headings, as the live template already does.
+
+### Still open on the homepage
+
+- The hero eyebrow: "Today's reflection" becoming an H1 reading "Al-Anon daily
+  reflections". The one visible change to approved copy.
+- Where the independence statement lands, now the FAQ has moved to Finding Help.
+- All new homepage copy in the mockup is draft, not approved launch text.
+
 ## September 28 — the review manuscripts are published, and their overrides retired
 
 Neal confirmed that Detachment with Love, Finding Help and Your First Al-Anon
