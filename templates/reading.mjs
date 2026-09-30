@@ -32,14 +32,13 @@ function countToWords(n) {
 }
 
 function upperFirst(text) { return text ? text.charAt(0).toUpperCase() + text.slice(1) : text; }
-// "Amends" reads better as "More on amends", but "Coming to Believe" must not
-// become "coming to believe" wholesale and "Al-Anon" must keep its capitals, so
-// only a lone leading capital is lowered.
-function lowerFirst(text) {
+// Themes are stored in title case and read as a phrase mid-sentence: "More on
+// shame and guilt". Lowering only the first word left "shame and Guilt", so the
+// whole name is lowered and the handful of proper nouns are put back.
+const THEME_PROPER_NOUNS = [[/\bhigher power\b/g, 'Higher Power'], [/\bal-anon\b/g, 'Al-Anon'], [/\bgod\b/g, 'God']];
+function lowerTheme(text) {
   if (!text) return text;
-  const [first, ...rest] = text.split(' ');
-  const lowered = /^[A-Z][a-z]+$/.test(first) ? first.toLowerCase() : first;
-  return [lowered, ...rest].join(' ');
+  return THEME_PROPER_NOUNS.reduce((s, [re, word]) => s.replace(re, word), text.toLowerCase());
 }
 
 /**
@@ -183,7 +182,7 @@ export function renderReadingPage(reading, prevReading, nextReading, allReadings
       // A grouping theme names itself — "More on amends" is what those fourteen
       // readings have in common, where the destination could only be named by
       // where they lead. Proper nouns inside a theme keep their capitals.
-      const themeWords = group.kind === 'theme' ? lowerFirst(group.theme) : '';
+      const themeWords = group.kind === 'theme' ? lowerTheme(group.theme) : '';
       const heading = group.kind === 'theme'
         ? `More on ${themeWords}`
         : group.kind === 'destination'
