@@ -34,7 +34,7 @@ const COLLECTIONS = {
     entries: TRADITION_ENTRIES,
     label: 'Tradition',
     slugPrefix: 'tradition',
-    lede: 'The Traditions guide how Al-Anon groups stay united and focused. They also offer principles we can apply to our own recovery.',
+    lede: 'The Traditions help Al-Anon groups stay united and focused on helping families and friends affected by alcoholism. They address how groups make decisions, welcome members, support themselves, and protect anonymity. Written for groups, they also offer principles we can apply in our own recovery: listening to others, keeping our focus, and placing principles above personalities.',
     metaSubject: 'the Twelve Traditions of Al-Anon',
   },
   '/concepts/': {
@@ -42,7 +42,7 @@ const COLLECTIONS = {
     entries: CONCEPT_ENTRIES,
     label: 'Concept',
     slugPrefix: 'concept',
-    lede: 'The Concepts of Service guide how responsibility is shared throughout Al-Anon. They also offer principles we can apply to our own recovery.',
+    lede: 'The Concepts of Service describe how responsibility and authority are shared throughout Al-Anon’s service structure. They address participation, delegation, clear roles, and the importance of hearing minority voices. We can apply these principles in our own recovery by sharing responsibility without taking over, trusting others to do their part, and listening when someone sees things differently.',
     metaSubject: 'the Twelve Concepts of Service in Al-Anon',
   },
 };
