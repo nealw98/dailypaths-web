@@ -1395,6 +1395,7 @@ a[target="_blank"]:not(:has(img)):not(.pillar-card):not(.fellow-card)::after,
 .page-step-detail .photo-hero-title--step-essay{font-size:clamp(31px,3.6vw,48px);line-height:1.12;max-width:26ch}
 .step-essay-list{margin:12px 0 24px;padding-left:28px;font:var(--type-reading-body)}
 .step-essay-list li{margin:0 0 12px;padding-left:3px}
+.step-return-link{display:inline-block;margin:36px 0 56px;padding-top:22px;border-top:1px solid var(--rule);font:600 15px/1.5 var(--font-ui);text-decoration:underline;text-underline-offset:4px}
 .ma-orientation{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:54px;margin-top:32px;padding-top:28px;border-top:1px solid var(--rule)}
 .ma-introduction p{font:19px/1.7 var(--font-reading);margin:0 0 20px;max-width:620px}
 .ma-introduction .ma-practice{font-size:17px;line-height:1.65;color:var(--text-secondary)}

@@ -336,7 +336,7 @@ writePage(join(outDir, 'steps', 'index.html'), redirectHtml('/reflections/'));
 for (const step of STEPS) {
   writePage(
     join(outDir, 'steps', stepRecordSlug(step), 'index.html'),
-    renderStepPage(step, readings)
+    renderStepPage(step)
   );
 }
 

@@ -1,10 +1,10 @@
 import { wrapInLayout } from './base.mjs';
 import { bp } from '../helpers/config.mjs';
-import { readingSlug, stepRecordSlug, MONTHS, DAYS_IN_MONTH } from '../helpers/slug-utils.mjs';
+import { readingSlug, stepRecordSlug } from '../helpers/slug-utils.mjs';
 import { markdownToHtml } from '../helpers/markdown.mjs';
 import { themePath } from '../helpers/theme-pages.mjs';
 import {
-  photoHero, quoteBlock, detailRail, terminalBand, readingCard, icon,
+  photoHero, quoteBlock, detailRail, terminalBand,
 } from './ui.mjs';
 import { COLLECTION_PAGES } from '../helpers/collection-pages.mjs';
 import { STEP_ONE_ESSAY, STEP_ONE_ESSAY_TITLE } from './step-one-essay.mjs';
@@ -434,31 +434,17 @@ const NUMBER_WORDS = ['One','Two','Three','Four','Five','Six','Seven','Eight','N
 function wordNumber(n) { return NUMBER_WORDS[n - 1] || String(n); }
 
 /**
- * Get the range of day_of_year values for a given month index (0-based).
- */
-function getMonthDayRange(monthIndex) {
-  let startDay = 1;
-  for (let m = 0; m < monthIndex; m++) {
-    startDay += DAYS_IN_MONTH[m];
-  }
-  return { start: startDay, end: startDay + DAYS_IN_MONTH[monthIndex] - 1 };
-}
-
-/**
  * Generate an individual step page.
  *
- * Step rail, photo hero, then an 820px column: the Step text in a teal-edged
- * quote panel, the body sections, Questions for Reflection, Step N in Action.
- * The daily-practice reading grid and the app CTA sit in the wider column.
+ * Step rail, photo hero, Step text, essay, and a return link to the
+ * Step's reflection collection.
  *
  * @param {Object} step - Step data from STEPS array
- * @param {Array} [readings] - All 366 readings (for the daily practice grid)
  */
-export function renderStepPage(step, readings = []) {
+export function renderStepPage(step) {
   const prevStep = STEPS[(step.number - 2 + 12) % 12];
   const nextStep = STEPS[step.number % 12];
 
-  const tools = STEP_TOOLS[step.number] || [];
   const stepWord = wordNumber(step.number);
   const essayTitle = STEP_ESSAY_TITLES[step.number]?.replace(/^Step [^:]+:\s*/, '');
 
@@ -496,57 +482,6 @@ export function renderStepPage(step, readings = []) {
           </div>`;
   }).join('\n');
 
-  const questionItems = (step.questions || []).map(q => `
-              <li>
-                ${icon('feather', { size: 18 })}
-                <span class="questions-text">${markdownToHtml(q)}</span>
-              </li>`).join('');
-
-  // Theme URL mapping — links each step to its primary principle page
-  const STEP_THEME_URLS = {
-    1:  { slug: 'powerlessness',        name: 'Powerlessness &amp; Surrender' },
-    2:  { slug: 'higher-power',         name: 'Trusting a Higher Power' },
-    3:  { slug: 'letting-go',            name: 'Letting Go' },
-    4:  { slug: 'honesty',              name: 'Honesty &amp; Self-Awareness' },
-    5:  { slug: 'self-worth',           name: 'Self-Worth &amp; Identity' },
-    6:  { slug: 'boundaries',           name: 'Boundaries' },
-    7:  { slug: 'detachment',           name: 'Detachment with Love' },
-    8:  { slug: 'the-disease',          name: 'Understanding the Disease' },
-    9:  { slug: 'focus-on-yourself',    name: 'Focus on Yourself' },
-    10: { slug: 'one-day-at-a-time',    name: 'One Day at a Time' },
-    11: { slug: 'gratitude-and-hope',   name: 'Gratitude &amp; Hope' },
-    12: { slug: 'fellowship',           name: 'Community &amp; Fellowship' },
-  };
-  const themeInfo = STEP_THEME_URLS[step.number];
-
-  const toolItems = [
-    `<li><a href="#step-readings">View all ${step.month} reflections on Step ${step.number}</a></li>`,
-    ...tools.map(t => `<li><span>${t}</span></li>`),
-  ].map(li => `              ${li}`).join('\n');
-
-  // Readings tagged to this Step across the year
-  const stepTag = `Step ${step.number}`;
-  const associatedReadings = readings.filter(r => r.step_theme === stepTag);
-
-  let dailyPracticeHtml = '';
-  if (associatedReadings.length > 0) {
-    const cards = associatedReadings.map(r => readingCard({
-      href: bp(`/${readingSlug(r.day_of_year, r.title)}/`),
-      date: r.display_date,
-      title: r.title,
-    })).join('\n');
-
-    dailyPracticeHtml = `
-    <section class="wrap section--lg" id="step-readings">
-      <p class="eyebrow">Daily practice</p>
-      <h2 class="daily-practice-heading">Step ${step.number} in ${step.month}</h2>
-      <p class="daily-practice-intro">Each month in the app focuses on one Step. ${step.month} is dedicated to the principle of ${step.principle}. ${associatedReadings.length} reading${associatedReadings.length === 1 ? '' : 's'} across the year explore it &mdash; deep dive through the <a href="${bp(`/topics/${themeInfo.slug}/`)}">${themeInfo.name}</a> topic.</p>
-      <div class="reading-grid daily-practice-grid">
-${cards}
-      </div>
-    </section>`;
-  }
-
   const bodyContent = `
 ${detailRail({
     prevHref: bp(`/steps/${stepRecordSlug(prevStep)}/`),
@@ -572,29 +507,13 @@ ${photoHero({
       </div>
 
 ${bodySections}
-
-      ${!STEP_ESSAYS[step.number] && step.questions && step.questions.length > 0 ? `<div class="panel-outlined questions-card">
-        <h2 class="questions-heading">Questions for Reflection</h2>
-        <p class="questions-intro">Take your time with these. There are no right answers &mdash; only honest ones.</p>
-        <ul class="questions-list">${questionItems}
-        </ul>
-      </div>` : ''}
-
-      ${!STEP_ESSAYS[step.number] && tools.length > 0 ? `<div class="panel-seafoam action-panel">
-        <h2 class="action-panel-heading">Step ${step.number} in Action</h2>
-        <ul class="action-list">
-${toolItems}
-        </ul>
-        <p class="action-panel-resource">Go deeper with Al-Anon&rsquo;s <a href="https://ecomm.al-anon.org/EN/ItemDetail?iProductCode=B24" target="_blank" rel="noopener noreferrer"><em>Paths to Recovery</em></a>.</p>
-      </div>` : ''}
+      <a class="step-return-link" href="${bp(`/months/${step.monthSlug}/`)}">&larr; Return to Step ${stepWord} reflections</a>
     </article>
-${dailyPracticeHtml}
-
-    ${terminalBand()}`;
+`;
 
   return wrapInLayout({
     title: STEP_ESSAY_TITLES[step.number] ? `${STEP_ESSAY_TITLES[step.number]} | Daily Paths` : `Step ${step.number}: ${step.principle} — Al-Anon 12 Steps | Al-Anon Daily Paths`,
-    description: step.number === 1 ? 'Step One explores the effort to control another person’s drinking, the unmanageability in our own lives, and the freedom of redirecting our attention.' : step.number === 2 ? 'Step Two explores the possibility of hope, a Higher Power, and the restoration of clear perspective and sound judgment.' : step.number === 3 ? 'Step Three explores the decision to turn our will and lives over to a Higher Power, one person and one problem at a time.' : step.number === 4 ? 'Step Four explores a searching and fearless moral inventory, with honesty, balance, and support from a sponsor.' : step.number === 5 ? 'Step Five explores honest admission, finding a trusted confidant, and breaking isolation through sharing our inventory.' : step.number === 6 ? 'Step Six explores willingness to let go of character defects, trust in a Higher Power, and patience with the process of change.' : step.number === 7 ? 'Step Seven explores humility, asking a Higher Power to remove shortcomings, and practicing positive alternatives in daily life.' : step.number === 8 ? 'Step Eight explores sorting out responsibility, making a list of those harmed, and becoming willing to make amends.' : step.number === 9 ? 'Step Nine explores direct amends, discretion to avoid further harm, and the relief of taking responsibility for our part.' : step.number === 10 ? 'Step Ten explores daily inventory, prompt admission of mistakes, and continued self-awareness in recovery.' : `Explore Step ${step.number} of Al-Anon's Twelve Steps with reflection questions and daily readings for ${step.month}. Recovery guidance from Al-Anon Daily Paths.`,
+    description: step.number === 1 ? 'Step One explores the effort to control another person’s drinking, the unmanageability in our own lives, and the freedom of redirecting our attention.' : step.number === 2 ? 'Step Two explores the possibility of hope, a Higher Power, and the restoration of clear perspective and sound judgment.' : step.number === 3 ? 'Step Three explores the decision to turn our will and lives over to a Higher Power, one person and one problem at a time.' : step.number === 4 ? 'Step Four explores a searching and fearless moral inventory, with honesty, balance, and support from a sponsor.' : step.number === 5 ? 'Step Five explores honest admission, finding a trusted confidant, and breaking isolation through sharing our inventory.' : step.number === 6 ? 'Step Six explores willingness to let go of character defects, trust in a Higher Power, and patience with the process of change.' : step.number === 7 ? 'Step Seven explores humility, asking a Higher Power to remove shortcomings, and practicing positive alternatives in daily life.' : step.number === 8 ? 'Step Eight explores sorting out responsibility, making a list of those harmed, and becoming willing to make amends.' : step.number === 9 ? 'Step Nine explores direct amends, discretion to avoid further harm, and the relief of taking responsibility for our part.' : step.number === 10 ? 'Step Ten explores daily inventory, prompt admission of mistakes, and continued self-awareness in recovery.' : `Explore the text and explanation of Step ${step.number} of Al-Anon's Twelve Steps.`,
     canonicalPath: `/steps/${stepRecordSlug(step)}/`,
     bodyContent,
     bodyClass: 'page-step-detail',
