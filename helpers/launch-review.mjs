@@ -59,6 +59,12 @@ export function launchItems(items, preview) {
 // Self-contained for inclusion in the preview Worker.
 export function transformLaunchPreview(html, pathname, policy = LAUNCH_REVIEW) {
   if (!html) return html;
+  if ((pathname === '/guides/finding-help/' || html.includes('id="the-twelve-steps-turning-toward-your-own-life"')) && !html.includes('/assets/resources/12-steps-at-a-glance.pdf')) {
+    html = html.replace(
+      /(<h3\b[^>]*id="sponsorship-a-conversation-between-meetings"[^>]*>)/i,
+      '<p>For a quick overview, open the Daily Paths <a href="/assets/resources/12-steps-at-a-glance.pdf" target="_blank" rel="noopener noreferrer">12 Steps at a glance</a> (PDF).</p>\n$1'
+    );
+  }
   // Approved snapshots still link to addresses that have been consolidated away.
   // Longest first, so /guides/about-alanon/ is not half-rewritten by the rule for
   // /about-alanon/ and left pointing at /guides/guides/finding-help/.

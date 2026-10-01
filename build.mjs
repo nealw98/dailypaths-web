@@ -581,6 +581,7 @@ cpSync(join(ROOT, 'css', 'site-system.css'), join(outDir, 'css', 'site-system.cs
 mkdirSync(join(outDir, 'css', 'tokens'), { recursive: true });
 cpSync(join(ROOT, 'css', 'tokens', 'fonts.css'), join(outDir, 'css', 'tokens', 'fonts.css'));
 cpSync(join(ROOT, 'assets', 'fonts'), join(outDir, 'assets', 'fonts'), { recursive: true });
+cpSync(join(ROOT, 'assets', 'resources'), join(outDir, 'assets', 'resources'), { recursive: true });
 if (IS_PREVIEW) {
   const reviewLayout = ['version-c.css', 'soft-daylight.css'].map(name =>
     readFileSync(join(ROOT, 'css', name), 'utf8')
