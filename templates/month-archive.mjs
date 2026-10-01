@@ -49,8 +49,7 @@ export function renderMonthArchivePage(monthIndex, readings) {
 
       <!-- Page Header -->
       <header class="ma-header">
-        <p class="eyebrow ma-collection-eyebrow">${stepName}</p>
-        <h1 class="ma-title">${step.principle}</h1>
+        <h1 class="ma-title"><span class="eyebrow ma-collection-eyebrow">${stepName}</span><span class="visually-hidden">: </span>${step.principle}</h1>
         <p class="ma-step-statement">${step.text}</p>
         <div class="ma-essay-preview">
           <p class="ma-essay-excerpt">${markdownToHtml(stepOpening.replace(/\[([^\]]+)\]\([^)]+\)/g, '$1'))}</p>

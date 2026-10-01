@@ -89,7 +89,7 @@ export function renderCollectionPage(path, readings) {
     const count = entryReadings.length === 1 ? '1 reflection' : `${entryReadings.length} reflections`;
     return `
           <section class="ma-week" id="${anchor}">
-            <h2 class="ma-week-heading">${collection.label} ${entry.word}<span>${count}</span></h2>
+            <h2 class="ma-week-heading">${collection.label} ${entry.word} <span>${count}</span></h2>
             ${entry.text ? `<p class="ma-step-statement">${entry.text}</p>` : ''}
             ${items ? `<ul class="ma-week-list">\n${items}\n            </ul>` : ''}
           </section>`;

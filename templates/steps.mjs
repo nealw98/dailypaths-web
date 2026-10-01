@@ -495,8 +495,7 @@ ${detailRail({
   })}
 
     <header class="step-text-header">
-      <p class="eyebrow">Step ${stepWord}</p>
-      <h1>${essayTitle || step.principle}</h1>
+      <h1><span class="eyebrow step-h1-eyebrow">Step ${stepWord}</span><span class="visually-hidden">: </span>${essayTitle || step.principle}</h1>
     </header>
 
     <article class="rd-article">

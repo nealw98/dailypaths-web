@@ -203,7 +203,7 @@ export function renderReadingPage(reading, prevReading, nextReading, allReadings
   const goDeeperHtml = deeperCards.length ? `
     <section class="wrap wrap--article deeper-section" aria-labelledby="go-deeper-heading">
       <p class="eyebrow">Go deeper</p>
-      <h2 class="section-title" id="go-deeper-heading">Understand it. Put it into practice.</h2>
+      <p class="section-title" id="go-deeper-heading">Understand it. Put it into practice.</p>
       <div class="deeper-grid">
         ${deeperCards.map(card => `<a href="${bp(card.path)}" class="deeper-card">
           <span class="deeper-card-type">${card.label}</span>

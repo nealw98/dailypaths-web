@@ -320,7 +320,7 @@ h3,
 .start-fact-body,
 .start-step-intro,
 .app-panel-body,
-.sd-app-copy > p:not(.sd-kicker),
+.sd-app-copy > p:not(.sd-kicker):not(.sd-app-heading),
 .ed-app-copy > p,
 .sd-email p:not(.sd-kicker),
 .book-app-text { font: var(--type-small); letter-spacing: 0; }
@@ -950,6 +950,7 @@ a[target="_blank"]:not(:has(img)):not(.pillar-card):not(.fellow-card)::after,
 .page-home .ed-guides { padding-top: var(--space-5); padding-bottom: var(--space-6); }
 .page-home .ed-app h2,
 .sd-app-copy h2,
+.sd-app-copy .sd-app-heading,
 .app-panel-heading { font: normal 500 clamp(30px, 2.7vw, 36px)/1.15 var(--font-editorial); letter-spacing: -.35px; }
 .sd-article-library {
   column-gap: var(--space-5);
@@ -999,11 +1000,12 @@ a[target="_blank"]:not(:has(img)):not(.pillar-card):not(.fellow-card)::after,
   text-underline-offset: 5px;
 }
 .sd-related-note { padding-top: var(--space-5); padding-bottom: var(--space-7); }
-.sd-related-note h2 { font: var(--type-chapter); }
+.sd-related-note h2,
+.sd-related-note .sd-related-title { font: var(--type-chapter); }
 
 .sd-app { min-height: 360px; }
 .sd-app-inner { min-height: 360px; padding-block: var(--space-6); }
-.sd-app-copy > p:not(.sd-kicker) { max-width: 40ch; }
+.sd-app-copy > p:not(.sd-kicker):not(.sd-app-heading) { max-width: 40ch; }
 
 /* One quiet email invitation closes every public page, directly above the footer. */
 .site-newsletter {
@@ -1498,3 +1500,9 @@ a[target="_blank"]:not(:has(img)):not(.pillar-card):not(.fellow-card)::after,
 /* Privacy and Terms: website / app part headings */
 .privacy-part { margin: 56px 0 8px; padding-top: 28px; border-top: 1px solid var(--rule, #e1ddd0); }
 .page-privacy .content-section > h3, .page-terms .content-section > h3 { margin: 0 0 8px; font-size: 1.15rem; }
+
+/* Step labels live inside the heading so it reads "Step One: ..." */
+.step-text-header h1 .step-h1-eyebrow,
+.ma-header h1 .ma-collection-eyebrow,
+.ts-card h2 .ts-eyebrow { display: block; }
+.ts-card h2 .ts-eyebrow { line-height: 1.65; }
