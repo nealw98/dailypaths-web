@@ -41,7 +41,7 @@ function newsletterInvitation() {
  */
 function navItems() {
   return [
-    { id: 'reflection', label: 'Reflections', href: bp('/reflections/'), menu: STEPS.map(st => ({ title: `Step ${st.number} · ${st.principle}`, path: `/steps/${stepRecordSlug(st)}/` })) },
+    { id: 'reflection', label: 'Reflections', href: bp('/reflections/'), menu: [...STEPS.map(st => ({ title: `Step ${st.number} · ${st.principle}`, path: `/steps/${stepRecordSlug(st)}/` })), { title: 'The Twelve Traditions', path: '/traditions/' }, { title: 'The Twelve Concepts', path: '/concepts/' }] },
     { id: 'articles', label: 'Articles', href: bp('/articles/'), menu: ARTICLES },
     { id: 'guides', label: 'Guides', href: bp('/guides/'), menu: GUIDES },
   ];
