@@ -15,7 +15,7 @@ export function renderSupportPage() {
           <h2>Contact Us</h2>
           <p>Have a question, suggestion, or feedback? We'd love to hear from you.</p>
           <p>
-            <a href="mailto:soberdailies@gmail.com" class="contact-link">soberdailies@gmail.com</a>
+            <a href="mailto:support@dailypaths.org" class="contact-link">support@dailypaths.org</a>
           </p>
           <p class="text-muted">We typically respond within 1-2 business days.</p>
         </section>
