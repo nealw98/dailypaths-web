@@ -78,6 +78,9 @@ disclosure is a trust problem before it is a legal one, and it will also fail
 AdSense review. Needed:
 
 - Disclose GA4 and Mixpanel by name, what each collects, and the session recording
+  — **Done October 1:** session recording is switched off (`record_sessions_percent: 0`
+  in `templates/base.mjs`) and the website section of the policy names both services.
+  The live `main` site keeps recording until `2.0` replaces it.
 - Reconsider whether 100% session recording is appropriate for this audience at all
 - Fix the email contradiction
 - Add a cookie statement

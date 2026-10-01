@@ -174,7 +174,7 @@ ${json}
     e.location.protocol&&"//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js".match(/^\\/\\//)?"https://cdn.mxpnl.com/libs/mixpanel-2-latest.min.js":"//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js";e=e.getElementsByTagName("script")[0];e.parentNode.insertBefore(k,e)}})(document,window.mixpanel||[]);
     mixpanel.init('52f2220068271346a45866162087fc9c', {
       autocapture: true,
-      record_sessions_percent: 100,
+      record_sessions_percent: 0,
     });
   </script>
   <script src="${bp('/js/analytics.js')}"></script>
