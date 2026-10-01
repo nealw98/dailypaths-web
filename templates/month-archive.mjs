@@ -6,6 +6,7 @@ import { markdownToHtml } from '../helpers/markdown.mjs';
 import { STEP_ONE_OPENING } from './step-one-essay.mjs';
 import { STEP_TWO_OPENING } from './step-two-essay.mjs';
 import { STEP_THREE_OPENING } from './step-three-essay.mjs';
+import { STEP_FIVE_OPENING } from './step-five-essay.mjs';
 
 // Stable collection URLs are retained; membership is determined by primary theme.
 const STEP_WORDS = ['One','Two','Three','Four','Five','Six','Seven','Eight','Nine','Ten','Eleven','Twelve'];
@@ -14,7 +15,7 @@ export function renderMonthArchivePage(monthIndex, readings) {
   const monthName = MONTHS[monthIndex];
   const step = STEPS[monthIndex];
   const stepName = `Step ${STEP_WORDS[monthIndex]}`;
-  const stepOpening = ({ 1: STEP_ONE_OPENING, 2: STEP_TWO_OPENING, 3: STEP_THREE_OPENING })[step.number] || (step.description || []).find(p => !/^\s*\*\*/.test(p)) || '';
+  const stepOpening = ({ 1: STEP_ONE_OPENING, 2: STEP_TWO_OPENING, 3: STEP_THREE_OPENING, 5: STEP_FIVE_OPENING })[step.number] || (step.description || []).find(p => !/^\s*\*\*/.test(p)) || '';
   const previous = MONTHS[(monthIndex + 11) % 12];
   const next = MONTHS[(monthIndex + 1) % 12];
 
@@ -40,8 +41,8 @@ export function renderMonthArchivePage(monthIndex, readings) {
 
       <!-- Page Header -->
       <header class="ma-header">
-        <p class="eyebrow ma-collection-eyebrow">Daily reflections</p>
-        <h1 class="ma-title">${stepName}: ${step.principle}</h1>
+        <p class="eyebrow ma-collection-eyebrow">${stepName}</p>
+        <h1 class="ma-title">${step.principle}</h1>
         <p class="ma-step-statement">${step.text}</p>
         <div class="ma-essay-preview">
           <p class="ma-essay-excerpt">${markdownToHtml(stepOpening.replace(/\[([^\]]+)\]\([^)]+\)/g, '$1'))}</p>

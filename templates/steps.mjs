@@ -10,9 +10,10 @@ import { COLLECTION_PAGES } from '../helpers/collection-pages.mjs';
 import { STEP_ONE_ESSAY, STEP_ONE_ESSAY_TITLE } from './step-one-essay.mjs';
 import { STEP_TWO_ESSAY, STEP_TWO_ESSAY_TITLE } from './step-two-essay.mjs';
 import { STEP_THREE_ESSAY, STEP_THREE_ESSAY_TITLE } from './step-three-essay.mjs';
+import { STEP_FIVE_ESSAY, STEP_FIVE_ESSAY_TITLE } from './step-five-essay.mjs';
 
-const STEP_ESSAYS = { 1: STEP_ONE_ESSAY, 2: STEP_TWO_ESSAY, 3: STEP_THREE_ESSAY };
-const STEP_ESSAY_TITLES = { 1: STEP_ONE_ESSAY_TITLE, 2: STEP_TWO_ESSAY_TITLE, 3: STEP_THREE_ESSAY_TITLE };
+const STEP_ESSAYS = { 1: STEP_ONE_ESSAY, 2: STEP_TWO_ESSAY, 3: STEP_THREE_ESSAY, 5: STEP_FIVE_ESSAY };
+const STEP_ESSAY_TITLES = { 1: STEP_ONE_ESSAY_TITLE, 2: STEP_TWO_ESSAY_TITLE, 3: STEP_THREE_ESSAY_TITLE, 5: STEP_FIVE_ESSAY_TITLE };
 
 function essayHtml(text) {
   return markdownToHtml(text).replace(/\[([^\]]+)\]\((\/[^)]+)\)/g, (_match, label, path) => `<a href="${bp(path)}">${label}</a>`);
@@ -452,8 +453,8 @@ export function renderStepPage(step, readings = []) {
   const nextStep = STEPS[step.number % 12];
 
   const tools = STEP_TOOLS[step.number] || [];
-  const tagline = STEP_TAGLINES[step.number] || `The Principle of ${step.principle}`;
   const stepWord = wordNumber(step.number);
+  const essayTitle = STEP_ESSAY_TITLES[step.number]?.replace(/^Step [^:]+:\s*/, '');
 
   // Body sections. A description paragraph that is entirely bold is a section
   // heading in the source data — the design sets those as Cormorant H2s over
@@ -553,18 +554,16 @@ ${detailRail({
 ${photoHero({
     image: bp(`/assets/${step.heroImage || 'themes/steps-hub-hero.jpg'}`),
     alt: step.heroAlt ? `${step.heroAlt} — Step ${step.number} of Al-Anon: ${step.principle}` : `Coastal path at first light — Step ${step.number} of Al-Anon: ${step.principle}`,
-    eyebrow: tagline,
-    title: `Step ${stepWord}`,
+    eyebrow: `Step ${stepWord}`,
+    title: essayTitle || step.principle,
     size: 'lg',
-    titleClass: 'photo-hero-title--step',
+    titleClass: essayTitle ? 'photo-hero-title--step-essay' : 'photo-hero-title--step',
   })}
 
     <article class="rd-article">
       <div class="quote-panel">
         ${quoteBlock({ text: step.text, attribution: `Step ${stepWord}` })}
       </div>
-
-      ${STEP_ESSAY_TITLES[step.number] ? `<h2 class="step-essay-title">${STEP_ESSAY_TITLES[step.number]}</h2>` : ''}
 
 ${bodySections}
 
@@ -589,7 +588,7 @@ ${dailyPracticeHtml}
 
   return wrapInLayout({
     title: STEP_ESSAY_TITLES[step.number] ? `${STEP_ESSAY_TITLES[step.number]} | Daily Paths` : `Step ${step.number}: ${step.principle} — Al-Anon 12 Steps | Al-Anon Daily Paths`,
-    description: step.number === 1 ? 'Step One explores the effort to control another person’s drinking, the unmanageability in our own lives, and the freedom of redirecting our attention.' : step.number === 2 ? 'Step Two explores the possibility of hope, a Higher Power, and the restoration of clear perspective and sound judgment.' : step.number === 3 ? 'Step Three explores the decision to turn our will and lives over to a Higher Power, one person and one problem at a time.' : `Explore Step ${step.number} of Al-Anon's Twelve Steps with reflection questions and daily readings for ${step.month}. Recovery guidance from Al-Anon Daily Paths.`,
+    description: step.number === 1 ? 'Step One explores the effort to control another person’s drinking, the unmanageability in our own lives, and the freedom of redirecting our attention.' : step.number === 2 ? 'Step Two explores the possibility of hope, a Higher Power, and the restoration of clear perspective and sound judgment.' : step.number === 3 ? 'Step Three explores the decision to turn our will and lives over to a Higher Power, one person and one problem at a time.' : step.number === 5 ? 'Step Five explores honest admission, finding a trusted confidant, and breaking isolation through sharing our inventory.' : `Explore Step ${step.number} of Al-Anon's Twelve Steps with reflection questions and daily readings for ${step.month}. Recovery guidance from Al-Anon Daily Paths.`,
     canonicalPath: `/steps/${stepRecordSlug(step)}/`,
     bodyContent,
     bodyClass: 'page-step-detail',

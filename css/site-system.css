@@ -1392,6 +1392,7 @@ a[target="_blank"]:not(:has(img)):not(.pillar-card):not(.fellow-card)::after,
 .ma-essay-link{font:600 14px/1.5 var(--font-ui);color:var(--accent);text-decoration:underline;text-underline-offset:4px}
 .ma-essay-link:hover{color:var(--text-primary)}
 .step-essay-title{font:500 clamp(27px,3vw,38px)/1.2 var(--font-editorial);margin:32px 0 24px}
+.page-step-detail .photo-hero-title--step-essay{font-size:clamp(31px,3.6vw,48px);line-height:1.12;max-width:26ch}
 .step-essay-list{margin:12px 0 24px;padding-left:28px;font:var(--type-reading-body)}
 .step-essay-list li{margin:0 0 12px;padding-left:3px}
 .ma-orientation{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:54px;margin-top:32px;padding-top:28px;border-top:1px solid var(--rule)}
