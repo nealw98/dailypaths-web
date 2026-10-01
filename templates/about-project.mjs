@@ -3,10 +3,9 @@ import { bp } from '../helpers/config.mjs';
 
 /**
  * About the Daily Paths Project — Editorial Drop-Cap style.
- * Hero: hero-image.jpg (meadow path), sharp and clear with Sage overlay.
  * Magazine-feature layout with narrow editorial column.
  *
- * Sections: Hero → Our Mission → Our Approach → The Heart Behind the Project →
+ * Sections: Title → Our Mission → Our Approach → The Heart Behind the Project →
  * Which Is Right for You? (Site vs App) → Closing → Disclaimer → Nav CTA
  */
 export function renderAboutProjectPage() {
@@ -15,17 +14,13 @@ export function renderAboutProjectPage() {
       <!-- Schema.org author link -->
       <span itemprop="author" itemscope itemtype="https://schema.org/Person"><meta itemprop="name" content="Neal W."></span>
 
-      <!-- Hero -->
-      <header class="ap-hero">
-        <div class="ap-hero-image">
-          <img src="${bp('/assets/hero-image.jpg')}" alt="Sunlit meadow path \u2014 The Daily Paths Project" />
-          <div class="ap-hero-overlay"></div>
+      <!-- Page title: same plain header as Support, Privacy and Terms (no hero image) -->
+      <div class="content-page">
+        <div class="content-container">
+          <h1 class="page-title">The Daily Paths Project</h1>
+          <p class="page-description">Building a digital sanctuary for the Al-Anon journey.</p>
         </div>
-        <div class="ap-hero-content">
-          <h1 class="ap-hero-title">The Daily Paths Project</h1>
-          <p class="ap-hero-desc">Building a digital sanctuary for the Al-Anon journey.</p>
-        </div>
-      </header>
+      </div>
 
       <!-- Editorial Body -->
       <div class="ap-body">
