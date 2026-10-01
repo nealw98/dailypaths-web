@@ -1443,25 +1443,31 @@ a[target="_blank"]:not(:has(img)):not(.pillar-card):not(.fellow-card)::after,
   .page-reading .kr-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 }
 
-/* Finding Help's compact, scrollable Steps reference. */
+/* Finding Help's scrollable Steps reference: a small editorial booklet. */
 .steps-glance-trigger{display:inline;padding:0;border:0;background:none;color:var(--accent);font:inherit;text-decoration:underline;text-underline-offset:3px;cursor:pointer}
 .steps-glance-trigger:hover{color:var(--text-primary)}
-.steps-glance-trigger:focus-visible,.steps-glance-close:focus-visible{outline:3px solid var(--accent);outline-offset:4px}
-.steps-glance-dialog{box-sizing:border-box;width:min(640px,calc(100vw - 32px));max-width:none;max-height:min(78vh,800px);max-height:min(78dvh,800px);margin:auto;padding:0;border:1px solid var(--rule);border-radius:8px;background:#faf8f3;color:var(--text-primary);box-shadow:0 24px 80px #161b1980;overflow:hidden;overscroll-behavior:contain}
-.steps-glance-dialog::backdrop{background:rgba(25,32,28,.68)}
-.steps-glance-head{display:flex;align-items:flex-start;justify-content:space-between;gap:20px;padding:26px 30px 21px;border-bottom:1px solid var(--rule);background:#faf8f3}
-.steps-glance-head h2{font:500 clamp(26px,4vw,34px)/1.16 var(--font-editorial);margin:3px 0 7px}
-.steps-glance-head p:last-child{font:14px/1.5 var(--font-ui);margin:0;color:var(--text-secondary)}
-.steps-glance-eyebrow{font:600 11px/1.4 var(--font-ui);letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin:0 0 7px}
-.steps-glance-close{flex:none;border:1px solid var(--rule);border-radius:3px;background:transparent;color:var(--text-primary);padding:7px 10px;font:600 13px/1.3 var(--font-ui);cursor:pointer}
+.steps-glance-trigger:focus-visible,.steps-glance-close:focus-visible{outline:3px solid #b8904b;outline-offset:4px}
+.steps-glance-dialog{box-sizing:border-box;width:min(740px,calc(100vw - 32px));max-width:none;max-height:84vh;max-height:84dvh;margin:auto;padding:0;border:1px solid #d6d2c7;border-radius:3px;background:#f7f5ef;color:#1c2524;box-shadow:0 28px 90px #101c1aaa;overflow:hidden;overscroll-behavior:contain}
+.steps-glance-dialog[open]{display:flex;flex-direction:column}
+.steps-glance-dialog::backdrop{background:rgba(18,29,28,.72)}
+.steps-glance-head{position:relative;background:#214743;color:#f9f7f0;padding:22px 42px 28px;border-bottom:4px solid #b8904b}
+.steps-glance-head-inner{max-width:540px}
+.steps-glance-masthead{font:600 11px/1.4 var(--font-ui);text-transform:uppercase;letter-spacing:.16em;margin:0 0 20px;color:#e4dfcf}
+.steps-glance-masthead span{color:#d4b477;padding:0 5px}
+.steps-glance-head h2{font:500 clamp(30px,4vw,41px)/1.1 var(--font-editorial);letter-spacing:-.025em;margin:0 0 9px;color:#f9f7f0}
+.steps-glance-head-inner>p:last-child{font:14px/1.5 var(--font-ui);margin:0;max-width:44ch;color:#e6eae4}
+.steps-glance-close{position:absolute;right:24px;top:18px;border:1px solid #b9cfc5;border-radius:2px;background:transparent;color:#f9f7f0;padding:7px 10px;font:600 13px/1.3 var(--font-ui);cursor:pointer}
 .steps-glance-close span{font-size:20px;vertical-align:-2px;margin-left:5px}
-.steps-glance-close:hover{background:var(--surface-soft,#eceae3)}
-.steps-glance-content{max-height:calc(min(78vh,800px) - 130px);max-height:calc(min(78dvh,800px) - 130px);overflow:auto;overscroll-behavior:contain;padding:4px 30px 26px}
-.steps-glance-section{padding:22px 0 20px;border-bottom:1px solid var(--rule)}
-.steps-glance-section h3{font:500 23px/1.25 var(--font-editorial);margin:0 0 8px}
-.steps-glance-principle{font:600 13px/1.5 var(--font-ui);color:var(--text-secondary);margin:0 0 12px}
-.steps-glance-section ul{padding-left:21px;margin:0;font:16px/1.55 var(--font-reading)}
-.steps-glance-section li{padding-left:2px;margin:0 0 8px}
-.steps-glance-section li:last-child{margin-bottom:0}
-.steps-glance-source{font:12px/1.5 var(--font-ui);color:var(--text-secondary);margin:22px 0 0}
-@media(max-width:550px){.steps-glance-dialog{width:calc(100vw - 22px);max-height:88dvh}.steps-glance-head{padding:18px 18px 15px;gap:12px}.steps-glance-content{max-height:calc(88dvh - 125px);padding:2px 18px 20px}.steps-glance-close{font-size:0}.steps-glance-close span{font-size:23px;margin:0}}
+.steps-glance-close:hover{background:#355b56}
+.steps-glance-content{min-height:0;overflow:auto;overscroll-behavior:contain;padding:0 42px 30px;scrollbar-color:#a3aca4 transparent}
+.steps-glance-section{display:grid;grid-template-columns:64px minmax(0,1fr);gap:18px;padding:31px 0 29px;border-bottom:1px solid #cbd2c9}
+.steps-glance-number{font:italic 48px/1 var(--font-editorial);letter-spacing:-.06em;color:#77918b;padding-top:1px}
+.steps-glance-eyebrow{font:700 11px/1.4 var(--font-ui);letter-spacing:.14em;text-transform:uppercase;color:#477269;margin:1px 0 5px}
+.steps-glance-section h3{font:500 clamp(22px,2.7vw,27px)/1.2 var(--font-editorial);letter-spacing:-.02em;color:#1c2524;margin:0 0 14px}
+.steps-glance-principle{display:flex;gap:10px;align-items:baseline;margin:0 0 17px;color:#214743;font:italic 22px/1.25 var(--font-editorial)}
+.steps-glance-principle span{flex:none;font:700 10px/1.4 var(--font-ui);text-transform:uppercase;letter-spacing:.1em;color:#477269}
+.steps-glance-section ul{list-style:none;padding:0;margin:0;font:16px/1.55 var(--font-ui);color:#263532}
+.steps-glance-section li{padding:9px 0 0;margin:0 0 9px;border-top:1px solid #e0e2d9}
+.steps-glance-section li strong{font-weight:700;color:#214743}
+.steps-glance-source{font:12px/1.5 var(--font-ui);color:#586a64;margin:22px 0 0;padding-left:82px}
+@media(max-width:550px){.steps-glance-dialog{width:calc(100vw - 20px);max-height:90dvh}.steps-glance-head{padding:17px 20px 21px}.steps-glance-masthead{margin-bottom:16px;padding-right:36px}.steps-glance-head h2{font-size:29px}.steps-glance-head-inner>p:last-child{font-size:13px;max-width:35ch}.steps-glance-close{top:12px;right:14px;font-size:0;padding:4px 9px}.steps-glance-close span{font-size:23px;margin:0}.steps-glance-content{padding:0 20px 22px}.steps-glance-section{grid-template-columns:44px minmax(0,1fr);gap:10px;padding:24px 0}.steps-glance-number{font-size:37px}.steps-glance-section h3{font-size:22px}.steps-glance-principle{display:block;font-size:20px}.steps-glance-principle span{display:block;margin-bottom:4px}.steps-glance-source{padding-left:54px}}
