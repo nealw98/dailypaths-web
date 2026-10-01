@@ -11,6 +11,7 @@ import { STEP_FIVE_OPENING } from './step-five-essay.mjs';
 import { STEP_SIX_OPENING } from './step-six-essay.mjs';
 import { STEP_SEVEN_OPENING } from './step-seven-essay.mjs';
 import { STEP_EIGHT_OPENING } from './step-eight-essay.mjs';
+import { STEP_NINE_OPENING } from './step-nine-essay.mjs';
 
 // Stable collection URLs are retained; membership is determined by primary theme.
 const STEP_WORDS = ['One','Two','Three','Four','Five','Six','Seven','Eight','Nine','Ten','Eleven','Twelve'];
@@ -19,7 +20,7 @@ export function renderMonthArchivePage(monthIndex, readings) {
   const monthName = MONTHS[monthIndex];
   const step = STEPS[monthIndex];
   const stepName = `Step ${STEP_WORDS[monthIndex]}`;
-  const stepOpening = ({ 1: STEP_ONE_OPENING, 2: STEP_TWO_OPENING, 3: STEP_THREE_OPENING, 4: STEP_FOUR_OPENING, 5: STEP_FIVE_OPENING, 6: STEP_SIX_OPENING, 7: STEP_SEVEN_OPENING, 8: STEP_EIGHT_OPENING })[step.number] || (step.description || []).find(p => !/^\s*\*\*/.test(p)) || '';
+  const stepOpening = ({ 1: STEP_ONE_OPENING, 2: STEP_TWO_OPENING, 3: STEP_THREE_OPENING, 4: STEP_FOUR_OPENING, 5: STEP_FIVE_OPENING, 6: STEP_SIX_OPENING, 7: STEP_SEVEN_OPENING, 8: STEP_EIGHT_OPENING, 9: STEP_NINE_OPENING })[step.number] || (step.description || []).find(p => !/^\s*\*\*/.test(p)) || '';
   const previous = MONTHS[(monthIndex + 11) % 12];
   const next = MONTHS[(monthIndex + 1) % 12];
 
