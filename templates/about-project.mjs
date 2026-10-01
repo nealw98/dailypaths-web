@@ -42,7 +42,7 @@ export function renderAboutProjectPage() {
           <section class="ap-section">
             <h2 class="ap-section-heading">Who Writes It</h2>
             <div class="ap-editorial">
-              <p>Daily Paths is curated by <strong>Neal W.</strong>, who brings over 30 years of personal recovery experience to this project. While Neal&rsquo;s journey began in other Twelve Step rooms, his life has been deeply intertwined with Al-Anon through his marriage and his role as a sponsor to many navigating the complexities of family recovery. This unique perspective allows Daily Paths to offer reflections that are grounded in time-tested principles while remaining accessible to those just beginning to discover the Al-Anon path.</p>
+              <p>Daily Paths was created by <strong>Neal W.</strong>, who brings over 30 years of personal recovery experience to this project. While Neal&rsquo;s journey began in other Twelve Step rooms, his life has been deeply intertwined with Al-Anon through his marriage and his role as a sponsor to many navigating the complexities of family recovery. This unique perspective allows Daily Paths to offer reflections that are grounded in time-tested principles while remaining accessible to those just beginning to discover the Al-Anon path.</p>
               <p>Neal writes many of the guides. The writing and editing are shared with a growing group of contributors and editors, currently <strong>Celina R.</strong>, <strong>Lance W.</strong> and <strong>Lance T.</strong>, all longtime members of Al-Anon. The work also benefits from the feedback of other members of the fellowship. Daily Paths is published by <strong>Daily Growth, LLC</strong>.</p>
             </div>
           </section>
@@ -102,8 +102,8 @@ export function renderAboutProjectPage() {
       </div>`;
 
   return wrapInLayout({
-    title: 'About Daily Paths \u2014 Our Mission & Approach | Al-Anon Daily Paths',
-    description: 'Daily Paths is an independent digital sanctuary for Al-Anon recovery, curated by Neal W. and published by Daily Growth, LLC. 366 original daily reflections, step guides, and a private journaling app.',
+    title: 'About Daily Paths | Al-Anon Daily Paths',
+    description: 'Daily Paths is an independent collection of daily reflections, articles and guides for people affected by someone else\'s drinking, created by Neal W. and published by Daily Growth, LLC.',
     canonicalPath: '/about-project/',
     bodyContent,
     bodyClass: 'page-about-project',
