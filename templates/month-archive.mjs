@@ -5,6 +5,7 @@ import { STEPS, STEP_HOOKS } from './steps.mjs';
 import { markdownToHtml } from '../helpers/markdown.mjs';
 import { STEP_ONE_OPENING } from './step-one-essay.mjs';
 import { STEP_TWO_OPENING } from './step-two-essay.mjs';
+import { STEP_THREE_OPENING } from './step-three-essay.mjs';
 
 /**
  * Weekly chapter labels for grouping daily readings.
@@ -28,7 +29,7 @@ export function renderMonthArchivePage(monthIndex, readings) {
   const monthDisplay = monthName.charAt(0).toUpperCase() + monthName.slice(1);
   const step = STEPS[monthIndex];
   const daysInMonth = DAYS_IN_MONTH[monthIndex];
-  const stepOpening = ({ 1: STEP_ONE_OPENING, 2: STEP_TWO_OPENING })[step.number] || (step.description || []).find(p => !/^\s*\*\*/.test(p)) || '';
+  const stepOpening = ({ 1: STEP_ONE_OPENING, 2: STEP_TWO_OPENING, 3: STEP_THREE_OPENING })[step.number] || (step.description || []).find(p => !/^\s*\*\*/.test(p)) || '';
   const previous = MONTHS[(monthIndex + 11) % 12];
   const next = MONTHS[(monthIndex + 1) % 12];
 
