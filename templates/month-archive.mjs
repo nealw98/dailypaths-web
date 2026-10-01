@@ -7,73 +7,29 @@ import { STEP_ONE_OPENING } from './step-one-essay.mjs';
 import { STEP_TWO_OPENING } from './step-two-essay.mjs';
 import { STEP_THREE_OPENING } from './step-three-essay.mjs';
 
-/**
- * Weekly chapter labels for grouping daily readings.
- * Each month's readings are split into 4 chunks: weeks 1-4.
- */
-const WEEK_CHAPTERS = [
-  { label: 'Week One', days: [1, 7] },
-  { label: 'Week Two', days: [8, 14] },
-  { label: 'Week Three', days: [15, 21] },
-  { label: 'Week Four', days: [22, 31] }, // captures remaining days (22-28, 29, 30, or 31)
-];
+// Stable collection URLs are retained; membership is determined by primary theme.
+const STEP_WORDS = ['One','Two','Three','Four','Five','Six','Seven','Eight','Nine','Ten','Eleven','Twelve'];
 
-/**
- * Render a month archive page listing all daily readings for a given month.
- *
- * @param {number} monthIndex - 0-based month index (0 = January)
- * @param {Array} readings - All 366 readings
- */
 export function renderMonthArchivePage(monthIndex, readings) {
   const monthName = MONTHS[monthIndex];
-  const monthDisplay = monthName.charAt(0).toUpperCase() + monthName.slice(1);
   const step = STEPS[monthIndex];
-  const daysInMonth = DAYS_IN_MONTH[monthIndex];
+  const stepName = `Step ${STEP_WORDS[monthIndex]}`;
   const stepOpening = ({ 1: STEP_ONE_OPENING, 2: STEP_TWO_OPENING, 3: STEP_THREE_OPENING })[step.number] || (step.description || []).find(p => !/^\s*\*\*/.test(p)) || '';
   const previous = MONTHS[(monthIndex + 11) % 12];
   const next = MONTHS[(monthIndex + 1) % 12];
 
-  // Get the starting day_of_year for this month
-  let startDay = 1;
-  for (let m = 0; m < monthIndex; m++) {
-    startDay += DAYS_IN_MONTH[m];
-  }
-
-  // Filter readings for this month
-  const monthReadings = readings.filter(
-    r => r.day_of_year >= startDay && r.day_of_year <= startDay + daysInMonth - 1
-  );
-
-  // Group readings into weekly chapters
-  const weekSections = WEEK_CHAPTERS.map(chapter => {
-    const weekReadings = monthReadings.filter(r => {
-      const dayInMonth = r.day_of_year - startDay + 1;
-      return dayInMonth >= chapter.days[0] && dayInMonth <= chapter.days[1];
-    });
-
-    if (weekReadings.length === 0) return '';
-
-    const readingItems = weekReadings.map(r => {
-      const rSlug = readingSlug(r.day_of_year, r.title);
-      const dayInMonth = r.day_of_year - startDay + 1;
-
-      return `
-            <li class="ma-reading-item">
-              <a href="${bp(`/${rSlug}/`)}" class="ma-reading-link">
-                <span class="ma-reading-day">${monthDisplay} ${dayInMonth}</span>
-                <span class="ma-reading-title">${r.title || 'Daily Reading'}</span>
-              </a>
-            </li>`;
-    }).join('\n');
-
-    return `
-          <div class="ma-week">
-            <h2 class="ma-week-heading">${chapter.label}<span>${monthDisplay} ${chapter.days[0]}–${Math.min(chapter.days[1],daysInMonth)}</span></h2>
-            <ul class="ma-week-list">
-${readingItems}
-            </ul>
-          </div>`;
-  }).join('\n');
+  const stepReadings = readings.filter(r => (r.step_theme || '').trim() === `Step ${step.number}`)
+    .sort((a, b) => a.day_of_year - b.day_of_year);
+  const readingItems = stepReadings.map(r => {
+    let day = r.day_of_year;
+    let month = 0;
+    while (day > DAYS_IN_MONTH[month]) day -= DAYS_IN_MONTH[month++];
+    const date = `${MONTHS[month][0].toUpperCase()}${MONTHS[month].slice(1)} ${day}`;
+    return `<li class="ma-reading-item"><a href="${bp(`/${readingSlug(r.day_of_year, r.title)}/`)}" class="ma-reading-link"><span class="ma-reading-day">${date}</span><span class="ma-reading-title">${r.title || 'Daily Reading'}</span></a></li>`;
+  });
+  const midpoint = Math.ceil(readingItems.length / 2);
+  const readingColumns = [readingItems.slice(0, midpoint), readingItems.slice(midpoint)]
+    .map(items => `<ul class="ma-week-list">${items.join('\n')}</ul>`).join('\n');
 
   const bodyContent = `
     <div class="wrap section--md">
@@ -84,26 +40,26 @@ ${readingItems}
 
       <!-- Page Header -->
       <header class="ma-header">
-        <p class="eyebrow ma-collection-eyebrow">${monthDisplay} &middot; ${monthReadings.length} reflections</p>
-        <h1 class="ma-title">${monthDisplay}: ${step.principle}</h1>
+        <p class="eyebrow ma-collection-eyebrow">Daily reflections</p>
+        <h1 class="ma-title">${stepName}: ${step.principle}</h1>
         <p class="ma-subtitle">${STEP_HOOKS[step.number]}</p>
         <div class="ma-essay-preview">
           <p class="ma-essay-excerpt">${markdownToHtml(stepOpening.replace(/\[([^\]]+)\]\([^)]+\)/g, '$1'))}</p>
-          <a class="ma-essay-link" href="${bp(`/steps/${stepRecordSlug(step)}/`)}">Read more about Step ${step.number} <span aria-hidden="true">→</span></a>
+          <a class="ma-essay-link" href="${bp(`/steps/${stepRecordSlug(step)}/`)}">Read more about ${stepName} <span aria-hidden="true">→</span></a>
         </div>
       </header>
 
-      <div class="ma-reading-intro"><h2>The daily readings</h2><p>Read with the calendar, or begin with a title that speaks to what you are living today.</p></div>
-      <!-- Weekly Chapters -->
+      <div class="ma-reading-intro"><h2>Reflections on ${stepName}</h2></div>
+      <!-- Readings explicitly assigned to this Step -->
       <div class="ma-chapters">
-${weekSections}
+${readingColumns}
       </div>
 
-      <nav class="ma-month-nav" aria-label="Other months"><a href="${bp('/months/'+previous+'/')}">← ${previous[0].toUpperCase()+previous.slice(1)}</a><a href="${bp('/reflections/')}">All months</a><a href="${bp('/months/'+next+'/')}">${next[0].toUpperCase()+next.slice(1)} →</a></nav>
+      <nav class="ma-month-nav" aria-label="Other Steps"><a href="${bp('/months/'+previous+'/')}">← Step ${STEP_WORDS[(monthIndex + 11) % 12]}</a><a href="${bp('/reflections/')}">All reflections</a><a href="${bp('/months/'+next+'/')}">Step ${STEP_WORDS[(monthIndex + 1) % 12]} →</a></nav>
       <!-- Engine CTA -->
       <section class="ma-engine-cta bg-navy">
         <div class="ma-engine-cta-inner">
-          <h2 class="ma-engine-cta-heading">Read ${monthDisplay} on the Go</h2>
+          <h2 class="ma-engine-cta-heading">Take your reflections with you</h2>
           <p class="ma-engine-cta-text">Get all 366 daily reflections and personal journaling tools in the Al-Anon Daily Paths App.</p>
           <div class="ma-engine-cta-badges">
             <a href="https://apps.apple.com/app/id6755981862" target="_blank" rel="noopener noreferrer" class="ma-engine-cta-badge-link">
@@ -118,8 +74,8 @@ ${weekSections}
     </div>`;
 
   return wrapInLayout({
-    title: `Step ${step.number}: ${step.principle} — ${monthDisplay} Daily Reflections | Daily Paths`,
-    description: `${monthReadings.length} ${monthDisplay} daily reflections for Step ${step.number}, ${step.principle}. ${STEP_HOOKS[step.number]}`,
+    title: `${stepName}: ${step.principle} — Daily Reflections | Daily Paths`,
+    description: `Daily reflections on ${stepName}, ${step.principle}. ${STEP_HOOKS[step.number]}`,
     canonicalPath: `/months/${monthName}/`,
     bodyContent,
     bodyClass: 'page-month-archive',

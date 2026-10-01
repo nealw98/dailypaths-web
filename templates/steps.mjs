@@ -320,7 +320,7 @@ ${photoHero({
 
     <section class="wrap section--md">
       <div class="reflection-index-lead">
-        <p>Each month follows one Step and one spiritual principle. Choose a collection, or begin with the readings people return to most.</p>
+        <p>Explore readings by Step, Tradition, or Concept. Choose a collection, or begin with the readings people return to most.</p>
         <div class="reflection-index-actions">
           <a class="btn" data-today-link href="${bp(`/${readingSlug(todayReading.day_of_year, todayReading.title)}/`)}">Read today&rsquo;s reflection <span aria-hidden="true">&rarr;</span></a>
           <a class="btn btn--ghost" href="${bp('/reflections/favorites/')}">Favorite readings</a>
