@@ -5,8 +5,8 @@ import { bp } from '../helpers/config.mjs';
  * About the Daily Paths Project — Editorial Drop-Cap style.
  * Magazine-feature layout with narrow editorial column.
  *
- * Sections: Title → Our Mission → Our Approach → The Heart Behind the Project →
- * Which Is Right for You? (Site vs App) → Closing → Disclaimer → Nav CTA
+ * Sections: Title → Mission → What you'll find → People → How we make it →
+ * Independence & resources → App → Support → Closing → Start reading
  */
 export function renderAboutProjectPage() {
 
@@ -22,11 +22,11 @@ export function renderAboutProjectPage() {
         </div>
       </div>
 
-      <!-- Editorial Body -->
+      <!-- DRAFT (October 1, 2026): rewritten for credibility and authority. Not approved
+           launch copy. Contributor names need each person's approval before launch. -->
       <div class="ap-body">
         <div class="ap-body-inner">
 
-          <!-- Our Mission — Drop Cap -->
           <section class="ap-section">
             <h2 class="ap-section-heading">Our Mission</h2>
             <div class="ap-editorial">
@@ -35,103 +35,39 @@ export function renderAboutProjectPage() {
             </div>
           </section>
 
-          <!-- The Heart Behind the Project -->
-          <section class="ap-section ap-curator">
-            <h2 class="ap-section-heading">The Heart Behind the Project</h2>
+          <section class="ap-section">
+            <h2 class="ap-section-heading">What You&rsquo;ll Find Here</h2>
+            <ul class="ap-resource-list">
+              <li><a href="${bp('/reflections/')}"><strong>Reflections.</strong></a> A reading for every day of the year, 366 in all, gathered by the Twelve Steps, the Twelve Traditions and the Twelve Concepts.</li>
+              <li><a href="${bp('/articles/')}"><strong>Articles.</strong></a> Longer pieces on everyday concerns, including personal stories from members.</li>
+              <li><a href="${bp('/guides/')}"><strong>Guides.</strong></a> Focused introductions to a single idea, such as surrender, detachment, boundaries, and finding help.</li>
+            </ul>
+          </section>
+
+          <section class="ap-section">
+            <h2 class="ap-section-heading">The People Behind Daily Paths</h2>
             <div class="ap-editorial">
               <p>Daily Paths is curated by <strong>Neal W.</strong>, who brings over 30 years of personal recovery experience to this project. While Neal&rsquo;s journey began in other Twelve Step rooms, his life has been deeply intertwined with Al-Anon through his marriage and his role as a sponsor to many navigating the complexities of family recovery. This unique perspective allows Daily Paths to offer reflections that are grounded in time-tested principles while remaining accessible to those just beginning to discover the Al-Anon path.</p>
-              <p>Published by <strong>Daily Growth, LLC</strong>, Daily Paths is committed to supporting the global recovery community. Every reflection, every theme page, and every feature in the app is built with a single question in mind: <em>will this help someone find a little more serenity today?</em></p>
+              <p>Neal writes many of the guides. The writing and editing are shared with a growing group of contributors and editors, currently <strong>Celina R.</strong>, <strong>Lance W.</strong> and <strong>Lance T.</strong>, all longtime members of Al-Anon. The work also benefits from the feedback of other members of the fellowship.</p>
+              <p>Daily Paths is published by <strong>Daily Growth, LLC</strong>. Everything here is built with a single question in mind: <em>will this help someone find a little more serenity today?</em></p>
             </div>
           </section>
 
-          <!-- Which Is Right for You? -->
           <section class="ap-section">
-            <h2 class="ap-section-heading">Which Is Right for You?</h2>
+            <h2 class="ap-section-heading">How We Make What You Read</h2>
             <div class="ap-editorial">
-              <p>Daily Paths lives in two places&mdash;a website built for exploration and an app built for daily practice. Each serves a different part of your journey.</p>
-            </div>
-            <div class="ap-compare">
-              <div class="ap-compare-col">
-                <h3 class="ap-compare-heading">The Site</h3>
-                <p class="ap-compare-subtitle">Explore &amp; Discover</p>
-                <ul class="ap-compare-list">
-                  <li>
-                    <span class="ap-compare-feature">Recovery Topics</span>
-                    <span class="ap-compare-detail">Twelve curated explorations of the ideas that shape Al-Anon recovery&mdash;from detachment and boundaries to gratitude and hope.</span>
-                  </li>
-                  <li>
-                    <span class="ap-compare-feature">Daily Readings</span>
-                    <span class="ap-compare-detail">The core of the experience&mdash;new reflections delivered every morning to help you stay centered and focused on your own path.</span>
-                  </li>
-                  <li>
-                    <span class="ap-compare-feature">Step Navigation</span>
-                    <span class="ap-compare-detail">In-depth guides to each of the Twelve Steps, with practical context for families and friends of alcoholics.</span>
-                  </li>
-                  <li>
-                    <span class="ap-compare-feature">Prayer Library</span>
-                    <span class="ap-compare-detail">A quiet collection of the prayers most commonly used in Al-Anon meetings&mdash;from the Serenity Prayer to Just for Today.</span>
-                  </li>
-                </ul>
-              </div>
-              <div class="ap-compare-col">
-                <h3 class="ap-compare-heading">The App</h3>
-                <p class="ap-compare-subtitle">Reflect &amp; Record</p>
-                <ul class="ap-compare-list">
-                  <li>
-                    <span class="ap-compare-feature">Integrated Journal</span>
-                    <span class="ap-compare-detail">Gratitude entries, personal inventories, and free-form reflections&mdash;all in one private, searchable space.</span>
-                  </li>
-                  <li>
-                    <span class="ap-compare-feature">Speaker Library</span>
-                    <span class="ap-compare-detail">Curated audio from Al-Anon speakers sharing their experience, strength, and hope&mdash;available anytime, anywhere.</span>
-                  </li>
-                  <li>
-                    <span class="ap-compare-feature">Community Perspective</span>
-                    <span class="ap-compare-detail">Personal insights and &ldquo;Voice of Experience&rdquo; contributions from members who have walked the path before us.</span>
-                  </li>
-                  <li>
-                    <span class="ap-compare-feature">Secure Sync</span>
-                    <span class="ap-compare-detail">Your private reflections stay safe and travel with you. End-to-end syncing keeps your journal accessible across all your devices.</span>
-                  </li>
-                </ul>
-              </div>
-            </div>
-            <div class="ap-app-badges">
-              <a href="https://apps.apple.com/app/id6755981862" target="_blank" rel="noopener noreferrer" class="ap-badge-link">
-                <img src="https://developer.apple.com/app-store/marketing/guidelines/images/badge-download-on-the-app-store.svg" alt="Download Al-Anon Daily Paths on the App Store" class="ap-badge ap-badge--ios">
-              </a>
-              <a href="https://play.google.com/store/apps/details?id=com.nealw98.dailypaths" target="_blank" rel="noopener noreferrer" class="ap-badge-link">
-                <img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" alt="Get Al-Anon Daily Paths on Google Play" class="ap-badge ap-badge--play">
-              </a>
+              <p><strong>Written from within the fellowship.</strong> The reflections, articles and guides come from the experience of Al-Anon members and are grounded in the program&rsquo;s principles and the Twelve Steps. They are not official Al-Anon literature and do not replace it.</p>
+              <p><strong>Reviewed by members.</strong> The reflections have been reviewed by members of Al-Anon. The Daily Paths app also asks readers for feedback on each reflection, and we use that feedback to review and revise the readings.</p>
+              <p><strong>Drafted with AI, reviewed by people.</strong> We use AI tools to help draft and develop some of our material. Every piece is reviewed and edited by a person before it is published.</p>
+              <p><strong>Corrections.</strong> If something reads wrong, or you spot a mistake, please tell us at <a href="mailto:support@dailypaths.org">support@dailypaths.org</a>.</p>
             </div>
           </section>
 
-          <!-- Final Note -->
-          <section class="ap-section ap-closing">
-            <div class="ap-closing-rule" aria-hidden="true"></div>
+          <section class="ap-section">
+            <h2 class="ap-section-heading">Independence, and What This Is Not</h2>
             <div class="ap-editorial">
-              <p>This project is a labor of love, designed by members for members. We hope it helps you find the serenity you seek, one day at a time.</p>
-            </div>
-          </section>
-
-          <!-- Non-Affiliation Disclaimer -->
-          <section class="ap-section ap-disclaimer">
-            <p>Daily Paths is an independent project published by Daily Growth, LLC. It is not affiliated with, endorsed by, or approved by Al-Anon Family Groups, Inc. or any other organization. The Twelve Steps and Twelve Traditions are used with the understanding that they are the shared heritage of the recovery community.</p>
-          </section>
-
-          <!-- Project Support -->
-          <section class="ap-section ap-support">
-            <h2 class="ap-section-heading">Project Support</h2>
-            <div class="ap-editorial">
-              <p>For questions regarding the Daily Paths website or the mobile app, please contact us at <a href="mailto:support@dailypaths.org">support@dailypaths.org</a>. As a small, personal project by Daily Growth, LLC, we aim to respond to all inquiries within 48 hours.</p>
-            </div>
-          </section>
-
-          <!-- Additional Community Resources -->
-          <section class="ap-section ap-support">
-            <h2 class="ap-section-heading">Additional Community Resources</h2>
-            <div class="ap-editorial">
-              <p>Daily Paths is a tool for daily reflection and is not a substitute for professional healthcare or crisis intervention. If you or someone you know is in need of extra support, these confidential national resources are available 24/7:</p>
+              <p>Daily Paths is an independent project published by Daily Growth, LLC. It is not affiliated with, endorsed by, or approved by Al-Anon Family Groups, Inc. or any other organization. The Twelve Steps and Twelve Traditions are used with the understanding that they are the shared heritage of the recovery community.</p>
+            <p>Daily Paths is a tool for daily reflection and is not a substitute for professional healthcare or crisis intervention. If you or someone you know is in need of extra support, these confidential national resources are available 24/7:</p>
             </div>
             <ul class="ap-resource-list">
               <li>
@@ -146,16 +82,44 @@ export function renderAboutProjectPage() {
             </ul>
           </section>
 
+          <section class="ap-section">
+            <h2 class="ap-section-heading">The Daily Paths App</h2>
+            <div class="ap-editorial">
+              <p>The app is for daily practice: a daily reflection, a place for your thoughts, and small ways to bring the focus back to you. Your journal stays on your device.</p>
+            </div>
+            <div class="ap-app-badges">
+              <a href="https://apps.apple.com/app/id6755981862" target="_blank" rel="noopener noreferrer" class="ap-badge-link">
+                <img src="https://developer.apple.com/app-store/marketing/guidelines/images/badge-download-on-the-app-store.svg" alt="Download Al-Anon Daily Paths on the App Store" class="ap-badge ap-badge--ios">
+              </a>
+              <a href="https://play.google.com/store/apps/details?id=com.nealw98.dailypaths" target="_blank" rel="noopener noreferrer" class="ap-badge-link">
+                <img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" alt="Get Al-Anon Daily Paths on Google Play" class="ap-badge ap-badge--play">
+              </a>
+            </div>
+          </section>
+
+          <section class="ap-section ap-support">
+            <h2 class="ap-section-heading">Get in Touch</h2>
+            <div class="ap-editorial">
+              <p>For questions about the website or the app, visit our <a href="${bp('/support/')}">Support page</a> or write to <a href="mailto:support@dailypaths.org">support@dailypaths.org</a>. As a small, personal project by Daily Growth, LLC, we aim to respond to all inquiries within 48 hours.</p>
+            </div>
+          </section>
+
+          <section class="ap-section ap-closing">
+            <div class="ap-closing-rule" aria-hidden="true"></div>
+            <div class="ap-editorial">
+              <p>This project is a labor of love, designed by members for members. We hope it helps you find the serenity you seek, one day at a time.</p>
+            </div>
+          </section>
+
         </div>
       </div>
 
-      <!-- Site Navigation CTA -->
       <section class="ap-nav-cta">
         <div class="ap-nav-cta-inner">
-          <h2 class="ap-nav-cta-heading">Continue the Journey</h2>
+          <h2 class="ap-nav-cta-heading">Start Reading</h2>
           <div class="ap-nav-cta-actions">
-            <a href="${bp('/topics/')}" class="ap-nav-cta-btn">Explore the 12 Topics</a>
-            <a href="${bp('/reflections/')}" class="ap-nav-cta-btn">Explore reflections by Step</a>
+            <a href="${bp('/reflections/')}" class="ap-nav-cta-btn">Browse the reflections</a>
+            <a href="${bp('/guides/')}" class="ap-nav-cta-btn">Explore the guides</a>
           </div>
         </div>
       </section>`;
