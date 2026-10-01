@@ -10,10 +10,11 @@ import { COLLECTION_PAGES } from '../helpers/collection-pages.mjs';
 import { STEP_ONE_ESSAY, STEP_ONE_ESSAY_TITLE } from './step-one-essay.mjs';
 import { STEP_TWO_ESSAY, STEP_TWO_ESSAY_TITLE } from './step-two-essay.mjs';
 import { STEP_THREE_ESSAY, STEP_THREE_ESSAY_TITLE } from './step-three-essay.mjs';
+import { STEP_FOUR_ESSAY, STEP_FOUR_ESSAY_TITLE } from './step-four-essay.mjs';
 import { STEP_FIVE_ESSAY, STEP_FIVE_ESSAY_TITLE } from './step-five-essay.mjs';
 
-const STEP_ESSAYS = { 1: STEP_ONE_ESSAY, 2: STEP_TWO_ESSAY, 3: STEP_THREE_ESSAY, 5: STEP_FIVE_ESSAY };
-const STEP_ESSAY_TITLES = { 1: STEP_ONE_ESSAY_TITLE, 2: STEP_TWO_ESSAY_TITLE, 3: STEP_THREE_ESSAY_TITLE, 5: STEP_FIVE_ESSAY_TITLE };
+const STEP_ESSAYS = { 1: STEP_ONE_ESSAY, 2: STEP_TWO_ESSAY, 3: STEP_THREE_ESSAY, 4: STEP_FOUR_ESSAY, 5: STEP_FIVE_ESSAY };
+const STEP_ESSAY_TITLES = { 1: STEP_ONE_ESSAY_TITLE, 2: STEP_TWO_ESSAY_TITLE, 3: STEP_THREE_ESSAY_TITLE, 4: STEP_FOUR_ESSAY_TITLE, 5: STEP_FIVE_ESSAY_TITLE };
 
 function essayHtml(text) {
   return markdownToHtml(text).replace(/\[([^\]]+)\]\((\/[^)]+)\)/g, (_match, label, path) => `<a href="${bp(path)}">${label}</a>`);
@@ -588,7 +589,7 @@ ${dailyPracticeHtml}
 
   return wrapInLayout({
     title: STEP_ESSAY_TITLES[step.number] ? `${STEP_ESSAY_TITLES[step.number]} | Daily Paths` : `Step ${step.number}: ${step.principle} — Al-Anon 12 Steps | Al-Anon Daily Paths`,
-    description: step.number === 1 ? 'Step One explores the effort to control another person’s drinking, the unmanageability in our own lives, and the freedom of redirecting our attention.' : step.number === 2 ? 'Step Two explores the possibility of hope, a Higher Power, and the restoration of clear perspective and sound judgment.' : step.number === 3 ? 'Step Three explores the decision to turn our will and lives over to a Higher Power, one person and one problem at a time.' : step.number === 5 ? 'Step Five explores honest admission, finding a trusted confidant, and breaking isolation through sharing our inventory.' : `Explore Step ${step.number} of Al-Anon's Twelve Steps with reflection questions and daily readings for ${step.month}. Recovery guidance from Al-Anon Daily Paths.`,
+    description: step.number === 1 ? 'Step One explores the effort to control another person’s drinking, the unmanageability in our own lives, and the freedom of redirecting our attention.' : step.number === 2 ? 'Step Two explores the possibility of hope, a Higher Power, and the restoration of clear perspective and sound judgment.' : step.number === 3 ? 'Step Three explores the decision to turn our will and lives over to a Higher Power, one person and one problem at a time.' : step.number === 4 ? 'Step Four explores a searching and fearless moral inventory, with honesty, balance, and support from a sponsor.' : step.number === 5 ? 'Step Five explores honest admission, finding a trusted confidant, and breaking isolation through sharing our inventory.' : `Explore Step ${step.number} of Al-Anon's Twelve Steps with reflection questions and daily readings for ${step.month}. Recovery guidance from Al-Anon Daily Paths.`,
     canonicalPath: `/steps/${stepRecordSlug(step)}/`,
     bodyContent,
     bodyClass: 'page-step-detail',
