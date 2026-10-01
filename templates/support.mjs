@@ -70,8 +70,22 @@ export function renderSupportPage() {
               and other personal entries stay on your device. The website does not require an
               account; it uses Google Analytics and Mixpanel to understand how the site is used,
               and the only personal detail we hold is your email address if you join the email
-              list. See our <a href="${bp('/privacy/')}">Privacy Policy</a> for complete details
+              list. If you choose to back up the app, the backup goes to your own iCloud or Google
+              Drive account, and we cannot read it. See our <a href="${bp('/privacy/')}">Privacy Policy</a> for complete details
               on both.
+            </p>
+          </details>
+
+          <details class="faq-item">
+            <summary>Can I back up and restore my data?</summary>
+            <p>
+              Yes. The app can back up your journal entries, gratitude entries, personal prayers,
+              bookmarks and listening progress to your own cloud account: iCloud on iPhone and
+              iPad, or a hidden app folder in your Google Drive on Android. If you move to a new
+              device, you can restore your content from the same account. We cannot see or read
+              your backup, and you can turn backup off or delete it at any time from the
+              app&rsquo;s Backup &amp; Sync screen. See our
+              <a href="${bp('/privacy/')}">Privacy Policy</a> for details.
             </p>
           </details>
 

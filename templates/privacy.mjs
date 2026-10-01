@@ -135,7 +135,9 @@ export function renderPrivacyPage() {
             account. It is never sent to or stored on our servers, and we cannot
             access it. Once stored in your iCloud or Google Drive account, it is
             also protected by Apple's or Google's privacy policies and your own
-            account settings.
+            account settings. If you move to a new device, you can restore your
+            content from that same account; the restore also goes directly between
+            your cloud account and your device, never through us.
           </p>
           <p>
             Device settings, purchase information, and downloaded audio are not
