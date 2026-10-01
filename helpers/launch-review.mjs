@@ -64,17 +64,11 @@ export function transformLaunchPreview(html, pathname, policy = LAUNCH_REVIEW) {
   if (!html) return html;
   if (pathname === '/guides/finding-help/' || html.includes('id="the-twelve-steps-turning-toward-your-own-life"')) {
     html = html.replace(/(\/css\/site-system\.css\?v=)[^"']+/i, '$1steps-glance-2');
-    const trigger = '<p>For a quick overview, open the Daily Paths <button type="button" class="steps-glance-trigger" data-steps-glance-open aria-haspopup="dialog" aria-controls="steps-glance-dialog">12 Steps at a glance</button>.</p>';
+    // The quick overview now lives on its own guide rather than in a pop-up.
+    const trigger = '<p>For a quick overview, read the Daily Paths <a href="/guides/twelve-steps/" data-twelve-steps-guide>Twelve Steps of Al-Anon guide</a>.</p>';
     html = html.replace(/<p>For a quick overview, open the Daily Paths <a href="\/assets\/resources\/12-steps-at-a-glance\.pdf"[^>]*>12 Steps at a glance<\/a> \(PDF\)\.<\/p>/i, trigger);
-    if (!html.includes('data-steps-glance-open')) {
+    if (!html.includes('data-twelve-steps-guide')) {
       html = html.replace(/(<h3\b[^>]*id="sponsorship-a-conversation-between-meetings"[^>]*>)/i, trigger + '\n$1');
-    }
-    if (html.includes('data-steps-glance-open') && !html.includes('id="steps-glance-dialog"')) {
-      const escape = s => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
-      const words = ['One','Two','Three','Four','Five','Six','Seven','Eight','Nine','Ten','Eleven','Twelve'];
-      const sections = policy.stepsGlance.map(item => `<section class="steps-glance-section" aria-labelledby="steps-glance-step-${item.number}"><div class="steps-glance-number" aria-hidden="true">${String(item.number).padStart(2, '0')}</div><div class="steps-glance-entry"><p class="steps-glance-eyebrow">Step ${words[item.number - 1]}</p><h3 id="steps-glance-step-${item.number}">${escape(item.title)}</h3><p class="steps-glance-principle"><span>Core principle</span> ${escape(item.principle)}</p><ul>${item.points.map(point => { const breakAt = point.indexOf(':'); return `<li><strong>${escape(point.slice(0, breakAt + 1))}</strong> ${escape(point.slice(breakAt + 1).trim())}</li>`; }).join('')}</ul></div></section>`).join('');
-      const dialog = `<dialog id="steps-glance-dialog" class="steps-glance-dialog" aria-labelledby="steps-glance-title"><div class="steps-glance-head"><div class="steps-glance-head-inner"><p class="steps-glance-masthead">Daily Paths <span>·</span> Study reference</p><h2 id="steps-glance-title">The Twelve Steps<br>of Al-Anon</h2><p>Key Takeaways, Core Principles &amp; Spiritual Insights from Personal Recovery Essays</p></div><button type="button" class="steps-glance-close" data-steps-glance-close aria-label="Close 12 Steps at a glance">Close <span aria-hidden="true">×</span></button></div><div class="steps-glance-content">${sections}<p class="steps-glance-source">Grounded in Al-Anon Family Groups Literature</p></div></dialog><script src="/js/steps-glance.js" defer></script>`;
-      html = html.replace(/<\/body>/i, dialog + '\n</body>');
     }
   }
   // Approved snapshots still link to addresses that have been consolidated away.
