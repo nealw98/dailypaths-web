@@ -54,6 +54,7 @@ import {LAUNCH_REVIEW,transformLaunchPreview} from './helpers/launch-review.mjs'
 import { bp, IS_PREVIEW, BASE_URL } from './helpers/config.mjs';
 import { renderVoicesFromTheGrave, VOICES_ARTICLE } from './templates/articles/voices-from-the-grave.mjs';
 import { renderLineIKeptMoving, STORY } from './templates/articles/the-line-i-kept-moving.mjs';
+import { renderTwelveStepsGuide } from './templates/theme-guides/twelve-steps.mjs';
 import { renderHomePage, renderArticlesPage, renderGuidesPage, renderReflectionsPage } from './templates/editorial.mjs';
 import { themePath, movedThemeRedirects } from './helpers/theme-pages.mjs';
 
@@ -240,6 +241,8 @@ for (const [path, render] of [['articles', renderArticlesPage], ['guides', rende
   mkdirSync(join(outDir, path), {recursive:true});
   writePage(join(outDir,path,'index.html'), render());
 }
+mkdirSync(join(outDir, 'guides', 'twelve-steps'), { recursive: true });
+writePage(join(outDir, 'guides', 'twelve-steps', 'index.html'), renderTwelveStepsGuide());
 writePage(join(outDir, 'reflections', 'favorites', 'index.html'), renderFavoriteReadingsPage(readings, ratingsMap));
 
 // Original member story, with related readings resolved from the current collection.

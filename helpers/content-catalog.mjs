@@ -2,6 +2,7 @@ import { FIRST_MEETING } from './launch-review.mjs';
 // Navigation and presentation are independent of the established content URLs.
 // These are existing source pages; editorial expansion is tracked in FOUNDATION.md.
 export const GUIDES = [
+  { title: 'The Twelve Steps', path: '/guides/twelve-steps/', description: 'Key takeaways and core principles for each Step, with an essay and daily reflections for every one.' },
   { title: 'Surrender', path: '/guides/surrender/', description: 'Recognizing powerlessness, admitting unmanageability, and practicing the Three C’s.' },
   { title: 'Detachment', path: '/guides/detachment-with-love/', description: 'What it means to care without getting pulled into someone else’s choices.' },
   { title: 'Boundaries', path: '/guides/boundaries/', description: 'Recognizing your limits and making room for your own needs.' },
