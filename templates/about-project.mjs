@@ -43,14 +43,15 @@ export function renderAboutProjectPage() {
             <h2 class="ap-section-heading">Who Writes It</h2>
             <div class="ap-editorial">
               <p>Daily Paths was created by <strong>Neal W.</strong>, who brings over 30 years of personal recovery experience to this project. While Neal&rsquo;s journey began in other Twelve Step rooms, his life has been deeply intertwined with Al-Anon through his marriage and his role as a sponsor to many navigating the complexities of family recovery. This unique perspective allows Daily Paths to offer reflections that are grounded in time-tested principles while remaining accessible to those just beginning to discover the Al-Anon path.</p>
-              <p>Neal writes the guides, which are based on Al-Anon literature. The writing and editing are shared with a growing group of contributors and editors, currently <strong>Celina R.</strong>, <strong>Lance W.</strong> and <strong>Lance T.</strong>, all longtime members of Al-Anon. The work also benefits from the feedback of other members of the fellowship. Daily Paths is published by <strong>Daily Growth, LLC</strong>.</p>
+              <p>Neal writes the guides. The writing and editing are shared with a growing group of contributors and editors, currently <strong>Celina R.</strong>, <strong>Lance W.</strong> and <strong>Lance T.</strong>, all longtime members of Al-Anon. The work also benefits from the feedback of other members of the fellowship. Daily Paths is published by <strong>Daily Growth, LLC</strong>.</p>
             </div>
           </section>
 
           <section class="ap-section">
             <h2 class="ap-section-heading">How It&rsquo;s Made</h2>
             <div class="ap-editorial">
-              <p><strong>From members&rsquo; experience.</strong> The reflections, articles and guides come from the experience of Al-Anon members and draw on the program&rsquo;s principles; the guides are based on Al-Anon literature. They are not official Al-Anon literature and do not replace it.</p>
+              <p><strong>From members&rsquo; experience.</strong> The reflections, articles and guides come from the experience of Al-Anon members and draw on the program&rsquo;s principles. They are not official Al-Anon literature and do not replace it.</p>
+              <p><strong>Researched.</strong> Each guide is based on Al-Anon literature, along with further research into the topic and conversations with people in Al-Anon, which are pulled together into one piece.</p>
               <p><strong>Reviewed by members.</strong> The reflections have been reviewed by members of Al-Anon. The Daily Paths app also asks readers for feedback on each reflection, and we use that feedback to review and revise the readings.</p>
               <p><strong>Drafted with AI, reviewed by people.</strong> We use AI tools to help draft and develop some of our material. Every piece is reviewed and edited by a person before it is published.</p>
               <p><strong>Corrections.</strong> If something reads wrong, or you spot a mistake, please tell us at <a href="mailto:support@dailypaths.org">support@dailypaths.org</a>.</p>
