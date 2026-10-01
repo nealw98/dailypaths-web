@@ -1494,3 +1494,7 @@ a[target="_blank"]:not(:has(img)):not(.pillar-card):not(.fellow-card)::after,
 .ts-links { display: flex; flex-wrap: wrap; gap: 8px 26px; margin: 0; padding-top: 14px; border-top: 1px solid var(--rule, #e1ddd0); font-weight: 600; }
 .ts-links a { color: var(--accent-strong, #444e34); }
 @media (max-width: 600px) { .ts-card { padding: 20px 18px 18px; } .ts-card h2 { font-size: 24px; } }
+
+/* Privacy and Terms: website / app part headings */
+.privacy-part { margin: 56px 0 8px; padding-top: 28px; border-top: 1px solid var(--rule, #e1ddd0); }
+.page-privacy .content-section > h3, .page-terms .content-section > h3 { margin: 0 0 8px; font-size: 1.15rem; }
