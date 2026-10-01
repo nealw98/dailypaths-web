@@ -42,7 +42,7 @@ export function renderMonthArchivePage(monthIndex, readings) {
       <header class="ma-header">
         <p class="eyebrow ma-collection-eyebrow">Daily reflections</p>
         <h1 class="ma-title">${stepName}: ${step.principle}</h1>
-        <p class="ma-subtitle">${STEP_HOOKS[step.number]}</p>
+        <p class="ma-step-statement">${step.text}</p>
         <div class="ma-essay-preview">
           <p class="ma-essay-excerpt">${markdownToHtml(stepOpening.replace(/\[([^\]]+)\]\([^)]+\)/g, '$1'))}</p>
           <a class="ma-essay-link" href="${bp(`/steps/${stepRecordSlug(step)}/`)}">Read more about ${stepName} <span aria-hidden="true">→</span></a>
