@@ -1,6 +1,8 @@
 import { bp, BASE_URL, IS_PREVIEW } from '../helpers/config.mjs';
 import { TYPOGRAPHY_REVIEW_PATH, GUIDE_REVIEW_PATH } from '../helpers/typography-review.mjs';
 import { GUIDES, ARTICLES } from '../helpers/content-catalog.mjs';
+import { STEPS } from './steps.mjs';
+import { stepRecordSlug } from '../helpers/slug-utils.mjs';
 import { syncHeroSocialImage } from '../helpers/social-image.mjs';
 
 function brandIcon() {
@@ -39,13 +41,12 @@ function newsletterInvitation() {
  */
 function navItems() {
   return [
-    { id: 'reflection', label: 'Reflections', href: bp('/reflections/'), menu: MONTHS.map(m => ({ title: m[0].toUpperCase() + m.slice(1), path: `/months/${m}/` })) },
+    { id: 'reflection', label: 'Reflections', href: bp('/reflections/'), menu: STEPS.map(st => ({ title: `Step ${st.number} · ${st.principle}`, path: `/steps/${stepRecordSlug(st)}/` })) },
     { id: 'articles', label: 'Articles', href: bp('/articles/'), menu: ARTICLES },
     { id: 'guides', label: 'Guides', href: bp('/guides/'), menu: GUIDES },
   ];
 }
 
-const MONTHS = ['january','february','march','april','may','june','july','august','september','october','november','december'];
 
 /**
  * Base HTML layout — wraps all pages with head, sticky header, and footer.
