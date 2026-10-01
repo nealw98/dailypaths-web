@@ -1,8 +1,10 @@
 import { wrapInLayout } from './base.mjs';
 import { bp } from '../helpers/config.mjs';
-import { readingSlug, MONTHS, DAYS_IN_MONTH } from '../helpers/slug-utils.mjs';
+import { readingSlug, stepRecordSlug, MONTHS, DAYS_IN_MONTH } from '../helpers/slug-utils.mjs';
 import { STEPS, STEP_HOOKS } from './steps.mjs';
-import { MONTH_GUIDANCE } from '../helpers/month-guidance.mjs';
+import { markdownToHtml } from '../helpers/markdown.mjs';
+import { STEP_ONE_OPENING } from './step-one-essay.mjs';
+import { STEP_TWO_OPENING } from './step-two-essay.mjs';
 
 /**
  * Weekly chapter labels for grouping daily readings.
@@ -26,7 +28,7 @@ export function renderMonthArchivePage(monthIndex, readings) {
   const monthDisplay = monthName.charAt(0).toUpperCase() + monthName.slice(1);
   const step = STEPS[monthIndex];
   const daysInMonth = DAYS_IN_MONTH[monthIndex];
-  const guidance = MONTH_GUIDANCE[monthIndex];
+  const stepOpening = ({ 1: STEP_ONE_OPENING, 2: STEP_TWO_OPENING })[step.number] || (step.description || []).find(p => !/^\s*\*\*/.test(p)) || '';
   const previous = MONTHS[(monthIndex + 11) % 12];
   const next = MONTHS[(monthIndex + 1) % 12];
 
@@ -84,9 +86,9 @@ ${readingItems}
         <p class="eyebrow ma-collection-eyebrow">${monthDisplay} &middot; ${monthReadings.length} reflections</p>
         <h1 class="ma-title">${monthDisplay}: ${step.principle}</h1>
         <p class="ma-subtitle">${STEP_HOOKS[step.number]}</p>
-        <div class="ma-orientation">
-          <div class="ma-introduction"><p>${guidance.intro}</p><p class="ma-practice"><strong>A small practice</strong> ${guidance.practice}</p></div>
-          <aside class="ma-month-note" aria-label="This month’s focus"><p class="eyebrow">Step ${step.number}</p><p class="ma-step-statement">${step.text}</p><p class="ma-question-label">A question to carry</p><p class="ma-question">${guidance.question}</p></aside>
+        <div class="ma-essay-preview">
+          <p class="ma-essay-excerpt">${markdownToHtml(stepOpening.replace(/\[([^\]]+)\]\([^)]+\)/g, '$1'))}</p>
+          <a class="ma-essay-link" href="${bp(`/steps/${stepRecordSlug(step)}/`)}">Read more about Step ${step.number} <span aria-hidden="true">→</span></a>
         </div>
       </header>
 

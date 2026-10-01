@@ -7,6 +7,15 @@ import {
   photoHero, quoteBlock, detailRail, terminalBand, readingCard, icon,
 } from './ui.mjs';
 import { COLLECTION_PAGES } from '../helpers/collection-pages.mjs';
+import { STEP_ONE_ESSAY, STEP_ONE_ESSAY_TITLE } from './step-one-essay.mjs';
+import { STEP_TWO_ESSAY, STEP_TWO_ESSAY_TITLE } from './step-two-essay.mjs';
+
+const STEP_ESSAYS = { 1: STEP_ONE_ESSAY, 2: STEP_TWO_ESSAY };
+const STEP_ESSAY_TITLES = { 1: STEP_ONE_ESSAY_TITLE, 2: STEP_TWO_ESSAY_TITLE };
+
+function essayHtml(text) {
+  return markdownToHtml(text).replace(/\[([^\]]+)\]\((\/[^)]+)\)/g, (_match, label, path) => `<a href="${bp(path)}">${label}</a>`);
+}
 
 /**
  * Step data — shared between the index and individual step pages.
@@ -466,13 +475,16 @@ export function renderStepPage(step, readings = []) {
     }
   }
 
-  const bodySections = sections.map(section => {
+  const renderedSections = STEP_ESSAYS[step.number] || sections;
+  const bodySections = renderedSections.map(section => {
     const heading = section.heading
       ? `<h2 class="step-body-heading">${markdownToHtml(section.heading)}</h2>`
       : '';
-    const paras = section.paragraphs.map(p => `<p>${markdownToHtml(p)}</p>`).join('\n            ');
+    const paras = section.paragraphs.map(p => `<p>${essayHtml(p)}</p>`).join('\n            ');
+    const list = section.list ? `<ul class="step-essay-list">${section.list.map(item => `<li>${essayHtml(item)}</li>`).join('')}</ul>` : '';
+    const after = section.after ? `<p>${essayHtml(section.after)}</p>` : '';
     return `          <div class="step-body-section">${heading}
-            ${paras}
+            ${paras}${list}${after}
           </div>`;
   }).join('\n');
 
@@ -551,16 +563,18 @@ ${photoHero({
         ${quoteBlock({ text: step.text, attribution: `Step ${stepWord}` })}
       </div>
 
+      ${STEP_ESSAY_TITLES[step.number] ? `<h2 class="step-essay-title">${STEP_ESSAY_TITLES[step.number]}</h2>` : ''}
+
 ${bodySections}
 
-      ${step.questions && step.questions.length > 0 ? `<div class="panel-outlined questions-card">
+      ${!STEP_ESSAYS[step.number] && step.questions && step.questions.length > 0 ? `<div class="panel-outlined questions-card">
         <h2 class="questions-heading">Questions for Reflection</h2>
         <p class="questions-intro">Take your time with these. There are no right answers &mdash; only honest ones.</p>
         <ul class="questions-list">${questionItems}
         </ul>
       </div>` : ''}
 
-      ${tools.length > 0 ? `<div class="panel-seafoam action-panel">
+      ${!STEP_ESSAYS[step.number] && tools.length > 0 ? `<div class="panel-seafoam action-panel">
         <h2 class="action-panel-heading">Step ${step.number} in Action</h2>
         <ul class="action-list">
 ${toolItems}
@@ -573,8 +587,8 @@ ${dailyPracticeHtml}
     ${terminalBand()}`;
 
   return wrapInLayout({
-    title: `Step ${step.number}: ${step.principle} — Al-Anon 12 Steps | Al-Anon Daily Paths`,
-    description: `Explore Step ${step.number} of Al-Anon's Twelve Steps with reflection questions and daily readings for ${step.month}. Recovery guidance from Al-Anon Daily Paths.`,
+    title: STEP_ESSAY_TITLES[step.number] ? `${STEP_ESSAY_TITLES[step.number]} | Daily Paths` : `Step ${step.number}: ${step.principle} — Al-Anon 12 Steps | Al-Anon Daily Paths`,
+    description: step.number === 1 ? 'Step One explores the effort to control another person’s drinking, the unmanageability in our own lives, and the freedom of redirecting our attention.' : step.number === 2 ? 'Step Two explores the possibility of hope, a Higher Power, and the restoration of clear perspective and sound judgment.' : `Explore Step ${step.number} of Al-Anon's Twelve Steps with reflection questions and daily readings for ${step.month}. Recovery guidance from Al-Anon Daily Paths.`,
     canonicalPath: `/steps/${stepRecordSlug(step)}/`,
     bodyContent,
     bodyClass: 'page-step-detail',
