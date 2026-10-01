@@ -66,7 +66,8 @@ export function renderSupportPage() {
             <summary>Is my data private?</summary>
             <p>
               We keep what we collect to a minimum. The app uses an anonymous identifier stored
-              on your device, and we never collect your name or email through it. Your journal
+              on your device, along with anonymous usage analytics from Mixpanel, and we never
+              collect your name or email through it. Your journal
               and other personal entries stay on your device. The website does not require an
               account; it uses Google Analytics and Mixpanel to understand how the site is used,
               and the only personal detail we hold is your email address if you join the email
@@ -79,7 +80,7 @@ export function renderSupportPage() {
           <details class="faq-item">
             <summary>Can I back up and restore my data?</summary>
             <p>
-              Yes. The app can back up your journal entries, gratitude entries, personal prayers,
+              Yes. Backup is optional and stays off until you turn it on in the app. Once it is on, the app can back up your journal entries, gratitude entries, personal prayers,
               bookmarks and listening progress to your own cloud account: iCloud on iPhone and
               iPad, or a hidden app folder in your Google Drive on Android. If you move to a new
               device, you can restore your content from the same account. We cannot see or read

@@ -97,6 +97,11 @@ export function renderPrivacyPage() {
               <strong>Favorites:</strong> If you mark readings as favorites, this preference
               is stored with your anonymous device identifier.
             </li>
+            <li>
+              <strong>Usage Analytics:</strong> We use Mixpanel to see which features are used
+              and where the app may be confusing. These events are tied to the same random
+              device identifier, never to your name, your email, or the contents of your entries.
+            </li>
           </ul>
         </section>
 
@@ -114,15 +119,17 @@ export function renderPrivacyPage() {
         <section class="content-section">
           <h3>Backup &amp; Sync</h3>
           <p>
-            Al-Anon Daily Paths can automatically back up your personal content —
-            journal entries, gratitude entries, personal prayers, bookmarks, and
-            listening progress — so it is protected if you lose your device and
+            Backup &amp; Sync is optional and stays off until you turn it on and give
+            permission. When it is on, Al-Anon Daily Paths can back up your personal
+            content — journal entries, gratitude entries, personal prayers, bookmarks,
+            and listening progress — so it is protected if you lose your device and
             stays up to date across your devices.
           </p>
           <ul>
             <li>
               <strong>On iOS,</strong> backups are stored in your private iCloud
-              account when you are signed in to iCloud with iCloud Drive turned on.
+              account once you turn Backup &amp; Sync on, and when you are signed in to iCloud
+              with iCloud Drive turned on.
             </li>
             <li>
               <strong>On Android,</strong> backups are stored in your own Google
@@ -195,6 +202,7 @@ export function renderPrivacyPage() {
           <ul>
             <li>Improve the quality of our daily readings based on user feedback</li>
             <li>Understand which content resonates with our community</li>
+            <li>Understand which features are used, and where the app is confusing</li>
             <li>Maintain and enhance the app experience</li>
           </ul>
         </section>
@@ -202,9 +210,9 @@ export function renderPrivacyPage() {
         <section class="content-section">
           <h3>Data Sharing</h3>
           <p>
-            We do not sell, trade, or share your information with third parties.
-            The anonymous feedback and preference data we collect remains within
-            our secure systems and is used solely for improving the Al-Anon Daily
+            We do not sell or trade your information. Anonymous usage analytics are
+            processed on our behalf by Mixpanel. The anonymous feedback and
+            preference data we collect is used solely for improving the Al-Anon Daily
             Paths experience. Your personal content and backups are different:
             they belong to you, stay on your device and in your personal cloud
             account, and never pass through our systems at all.
@@ -214,7 +222,7 @@ export function renderPrivacyPage() {
         <section class="content-section">
           <h3>Data Retention</h3>
           <p>
-            We retain anonymous feedback and preference data indefinitely to support
+            We retain anonymous feedback, preference and usage data indefinitely to support
             ongoing content improvement. Since this data is not linked to any
             personally identifiable information, it cannot be used to identify you.
           </p>
