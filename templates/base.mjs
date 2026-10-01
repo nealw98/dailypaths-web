@@ -1,8 +1,6 @@
 import { bp, BASE_URL, IS_PREVIEW } from '../helpers/config.mjs';
 import { TYPOGRAPHY_REVIEW_PATH, GUIDE_REVIEW_PATH } from '../helpers/typography-review.mjs';
 import { GUIDES, ARTICLES } from '../helpers/content-catalog.mjs';
-import { STEPS } from './steps.mjs';
-import { stepRecordSlug } from '../helpers/slug-utils.mjs';
 import { syncHeroSocialImage } from '../helpers/social-image.mjs';
 
 function brandIcon() {
@@ -41,7 +39,7 @@ function newsletterInvitation() {
  */
 function navItems() {
   return [
-    { id: 'reflection', label: 'Reflections', href: bp('/reflections/'), menu: [...STEPS.map(st => ({ title: `Step ${st.number} · ${st.principle}`, path: `/steps/${stepRecordSlug(st)}/` })), { title: 'The Twelve Traditions', path: '/traditions/' }, { title: 'The Twelve Concepts', path: '/concepts/' }] },
+    { id: 'reflection', label: 'Reflections', href: bp('/reflections/') },
     { id: 'articles', label: 'Articles', href: bp('/articles/'), menu: ARTICLES },
     { id: 'guides', label: 'Guides', href: bp('/guides/'), menu: GUIDES },
   ];
