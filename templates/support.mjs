@@ -65,10 +65,13 @@ export function renderSupportPage() {
           <details class="faq-item">
             <summary>Is my data private?</summary>
             <p>
-              Absolutely. We take your privacy seriously. The app uses an anonymous
-              identifier stored on your device &mdash; we never collect your name, email, or
-              any personally identifiable information. See our
-              <a href="${bp('/privacy/')}">Privacy Policy</a> for complete details.
+              We keep what we collect to a minimum. The app uses an anonymous identifier stored
+              on your device, and we never collect your name or email through it. Your journal
+              and other personal entries stay on your device. The website does not require an
+              account; it uses Google Analytics and Mixpanel to understand how the site is used,
+              and the only personal detail we hold is your email address if you join the email
+              list. See our <a href="${bp('/privacy/')}">Privacy Policy</a> for complete details
+              on both.
             </p>
           </details>
 
