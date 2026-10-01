@@ -317,6 +317,16 @@ Two causes, both one-line fixes:
    readings from Al-Anon Daily Paths."* to every topic description, producing
    199–208 character descriptions whose visible half is boilerplate.
 
+**Status, October 1: deferred, to do later.** Re-measured after the heading work.
+365 of 366 reflection titles and all 12 Step essay titles (avg 83 characters) are
+still over 60; article and guide titles are fine, though some are too short to say
+what the page is (e.g. "Letting Go"). The brand ending also varies between
+`| Daily Paths`, `| Al-Anon Daily Paths` and `— Daily Paths`. Two decisions are
+needed first: keep or drop the `| Daily Paths` ending on the shorter titles, and
+whether to shorten the Step essay titles mechanically or leave them for Neal to
+rewrite (they come from `templates/step-*-essay.mjs`). Article and guide titles
+belong to the Story Room, so those are editorial.
+
 ### B4. Structured data is missing where it would help most
 
 | Page type | Has JSON-LD |
