@@ -1393,6 +1393,9 @@ a[target="_blank"]:not(:has(img)):not(.pillar-card):not(.fellow-card)::after,
 .ma-essay-link:hover{color:var(--text-primary)}
 .step-essay-title{font:500 clamp(27px,3vw,38px)/1.2 var(--font-editorial);margin:32px 0 24px}
 .page-step-detail .photo-hero-title--step-essay{font-size:clamp(31px,3.6vw,48px);line-height:1.12;max-width:26ch}
+.step-text-header{width:min(calc(100% - (2 * var(--gutter-system))),var(--content-reading));margin:0 auto;padding:clamp(54px,8vw,92px) 0 clamp(22px,3vw,36px);border-bottom:1px solid var(--rule)}
+.step-text-header .eyebrow{margin:0 0 14px;color:var(--accent)}
+.step-text-header h1{max-width:24ch;margin:0;font:500 clamp(35px,5vw,58px)/1.08 var(--font-editorial);letter-spacing:-.7px;color:var(--text-primary)}
 .step-essay-list{margin:12px 0 24px;padding-left:28px;font:var(--type-reading-body)}
 .step-essay-list li{margin:0 0 12px;padding-left:3px}
 .step-return-link{display:inline-block;margin:36px 0 56px;padding-top:22px;border-top:1px solid var(--rule);font:600 15px/1.5 var(--font-ui);text-decoration:underline;text-underline-offset:4px}

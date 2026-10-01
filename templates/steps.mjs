@@ -492,14 +492,10 @@ ${detailRail({
     nextLabel: `Step ${nextStep.number}: ${nextStep.principle}`,
   })}
 
-${photoHero({
-    image: bp(`/assets/${step.heroImage || 'themes/steps-hub-hero.jpg'}`),
-    alt: step.heroAlt ? `${step.heroAlt} — Step ${step.number} of Al-Anon: ${step.principle}` : `Coastal path at first light — Step ${step.number} of Al-Anon: ${step.principle}`,
-    eyebrow: `Step ${stepWord}`,
-    title: essayTitle || step.principle,
-    size: 'lg',
-    titleClass: essayTitle ? 'photo-hero-title--step-essay' : 'photo-hero-title--step',
-  })}
+    <header class="step-text-header">
+      <p class="eyebrow">Step ${stepWord}</p>
+      <h1>${essayTitle || step.principle}</h1>
+    </header>
 
     <article class="rd-article">
       <div class="quote-panel">
