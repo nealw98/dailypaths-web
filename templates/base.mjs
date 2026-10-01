@@ -1,6 +1,7 @@
 import { bp, BASE_URL, IS_PREVIEW } from '../helpers/config.mjs';
 import { TYPOGRAPHY_REVIEW_PATH, GUIDE_REVIEW_PATH } from '../helpers/typography-review.mjs';
 import { GUIDES, ARTICLES } from '../helpers/content-catalog.mjs';
+import { launchItems } from '../helpers/launch-review.mjs';
 import { syncHeroSocialImage } from '../helpers/social-image.mjs';
 
 function brandIcon() {
@@ -40,8 +41,8 @@ function newsletterInvitation() {
 function navItems() {
   return [
     { id: 'reflection', label: 'Reflections', href: bp('/reflections/') },
-    { id: 'articles', label: 'Articles', href: bp('/articles/'), menu: ARTICLES },
-    { id: 'guides', label: 'Guides', href: bp('/guides/'), menu: GUIDES },
+    { id: 'articles', label: 'Articles', href: bp('/articles/'), menu: launchItems(ARTICLES, IS_PREVIEW) },
+    { id: 'guides', label: 'Guides', href: bp('/guides/'), menu: launchItems(GUIDES, IS_PREVIEW) },
   ];
 }
 
