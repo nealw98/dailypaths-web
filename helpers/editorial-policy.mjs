@@ -4,6 +4,11 @@ import inserts from './editorial-inserts.json' with {type:'json'};
 export function applyEditorialPolicy(html, pathname, records = inserts) {
  if(!html)return html;
  const path=pathname||html.match(/<link\b[^>]*rel="canonical"[^>]*href="https?:\/\/[^/]+([^"?]+)/i)?.[1];
+ // October 1 approved Worry Loop artwork: keep the imported transcript in sync.
+ if(['/articles/letting-go/','/topics/letting-go/'].includes(path)){
+  html=html.replace(/(<div class="visually-hidden">)([\s\S]*?)(<\/div>)/g,(all,open,text,close)=>
+   text.includes('The Worry Loop.')?open+text.replaceAll('Scanning the future','Scanning for problems').replaceAll('Reviewing the past','Regretting the past').replaceAll('Taking responsibility','Creating expectations')+close:all);
+ }
  // Published CMS snapshots also receive the current shared Home navigation.
  if(path && path !== '/') {
   html=html.replace(/(<nav\b[^>]*(?:class="site-nav"|aria-label="Mobile navigation")[^>]*>)([\s\S]*?)(<\/nav>)/gi, (all,open,links,close)=>{

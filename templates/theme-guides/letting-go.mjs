@@ -111,15 +111,15 @@ export const LETTING_GO_ARTICLE = {
       stations: [
         {
           title: 'What if?',
-          sub: 'Scanning the future',
+          sub: 'Scanning for problems',
         },
         {
           title: 'If only&hellip;',
-          sub: 'Reviewing the past',
+          sub: 'Regretting the past',
         },
         {
           title: 'I should&hellip;',
-          sub: 'Taking responsibility',
+          sub: 'Creating expectations',
         },
       ],
       center: 'Still awake. Still stuck.',
