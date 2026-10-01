@@ -399,8 +399,8 @@ for (let i = 0; i < readings.length; i += BATCH_SIZE) {
   const batch = readings.slice(i, i + BATCH_SIZE);
   await Promise.all(batch.map(async (reading) => {
     const newSlug = readingSlug(reading.day_of_year, reading.title);
-    const png = await generateOgImage(reading);
-    writeFileSync(join(outDir, newSlug, 'og.png'), png);
+    const jpeg = await generateOgImage(reading);
+    writeFileSync(join(outDir, newSlug, 'og.jpg'), jpeg);
   }));
 }
 const ogElapsed = ((Date.now() - ogStart) / 1000).toFixed(1);

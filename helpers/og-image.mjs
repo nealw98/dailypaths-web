@@ -52,10 +52,10 @@ function parseQuote(rawQuote) {
 }
 
 /**
- * Generate an OG image (1200x630 PNG) for a reading.
+ * Generate an OG image (1200x630 JPEG) for a reading.
  *
  * @param {Object} reading - Reading object with title, display_date, quote
- * @returns {Promise<Buffer>} PNG buffer
+ * @returns {Promise<Buffer>} JPEG buffer
  */
 export async function generateOgImage(reading) {
   const { text: quoteText, attribution } = parseQuote(reading.quote);
@@ -236,6 +236,5 @@ export async function generateOgImage(reading) {
     fonts,
   });
 
-  const png = await sharp(Buffer.from(svg)).png({ quality: 85 }).toBuffer();
-  return png;
+  return sharp(Buffer.from(svg)).jpeg({ quality: 90, mozjpeg: true }).toBuffer();
 }

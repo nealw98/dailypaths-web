@@ -279,7 +279,7 @@ ${goDeeperHtml}
     typographyPreview,
     noindex: typographyPreview,
     ogType: 'article',
-    ogImage: `/${slug}/og.png`,
+    ogImage: `/${slug}/og.jpg`,
     bodyClass: 'page-reading',
     navSection: 'reflection',
     hasAppPanel: true,
