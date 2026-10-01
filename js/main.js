@@ -29,6 +29,22 @@
     }).catch(function () { /* Build-time content remains usable offline. */ });
   }
 
+  // Desktop nav dropdowns: hover and focus open via CSS; the caret button
+  // serves touch and keyboard users, and Escape closes.
+  var navItems = document.querySelectorAll('[data-nav-item]');
+  navItems.forEach(function (item) {
+    var caret = item.querySelector('.nav-caret');
+    caret.addEventListener('click', function () {
+      var open = !item.classList.contains('is-open');
+      navItems.forEach(function (o) { o.classList.remove('is-open'); o.querySelector('.nav-caret').setAttribute('aria-expanded', 'false'); });
+      item.classList.toggle('is-open', open);
+      caret.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+  });
+  document.addEventListener('keydown', function (event) {
+    if (event.key === 'Escape') navItems.forEach(function (o) { o.classList.remove('is-open'); o.querySelector('.nav-caret').setAttribute('aria-expanded', 'false'); if (o.contains(document.activeElement)) document.activeElement.blur(); });
+  });
+
   // ---------------------------------------------------------------------------
   // 3. Mobile menu — quiet dropdown with complete keyboard behavior
   // ---------------------------------------------------------------------------

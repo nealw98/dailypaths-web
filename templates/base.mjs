@@ -1,6 +1,6 @@
 import { bp, BASE_URL, IS_PREVIEW } from '../helpers/config.mjs';
 import { TYPOGRAPHY_REVIEW_PATH, GUIDE_REVIEW_PATH } from '../helpers/typography-review.mjs';
-import { GUIDES } from '../helpers/content-catalog.mjs';
+import { GUIDES, ARTICLES } from '../helpers/content-catalog.mjs';
 import { syncHeroSocialImage } from '../helpers/social-image.mjs';
 
 function brandIcon() {
@@ -39,11 +39,13 @@ function newsletterInvitation() {
  */
 function navItems() {
   return [
-    { id: 'reflection', label: 'Reflections', href: bp('/reflections/') },
-    { id: 'articles', label: 'Articles', href: bp('/articles/') },
-    { id: 'guides', label: 'Guides', href: bp('/guides/') },
+    { id: 'reflection', label: 'Reflections', href: bp('/reflections/'), menu: MONTHS.map(m => ({ title: m[0].toUpperCase() + m.slice(1), path: `/months/${m}/` })) },
+    { id: 'articles', label: 'Articles', href: bp('/articles/'), menu: ARTICLES },
+    { id: 'guides', label: 'Guides', href: bp('/guides/'), menu: GUIDES },
   ];
 }
+
+const MONTHS = ['january','february','march','april','may','june','july','august','september','october','november','december'];
 
 /**
  * Base HTML layout — wraps all pages with head, sticky header, and footer.
@@ -90,6 +92,14 @@ export function wrapInLayout({
 
   const desktopNav = nav.map(n => {
     const active = n.id === navSection;
+    if (n.menu) {
+      const items = n.menu.map(i => `<a href="${bp(i.path)}">${escapeHtml(i.title)}</a>`).join('');
+      return `        <div class="nav-item" data-nav-item>
+          <a href="${n.href}" class="nav-link${active ? ' is-active' : ''}"${active ? ' aria-current="page"' : ''}>${n.label}</a>
+          <button type="button" class="nav-caret" aria-expanded="false" aria-label="Show ${n.label} menu"></button>
+          <div class="nav-dropdown${n.menu.length > 8 ? ' nav-dropdown--long' : ''}">${items}<a class="nav-dropdown-all" href="${n.href}">All ${n.label.toLowerCase()}</a></div>
+        </div>`;
+    }
     return `        <a href="${n.href}" class="nav-link${active ? ' is-active' : ''}"${active ? ' aria-current="page"' : ''}>${n.label}</a>`;
   }).join('\n');
 
@@ -135,7 +145,7 @@ export function wrapInLayout({
   <!-- Page structure first, then the shared Daily Paths design system. -->
   ${isHome ? `<link rel="stylesheet" href="${bp('/css/editorial-home.css')}?v=home-header-band-1">` : `<link rel="stylesheet" href="${bp('/css/style.css')}?v=brand-icon-1"><link rel="stylesheet" href="${bp('/css/soft-daylight.css')}?v=brand-icon-1">`}
   <link rel="stylesheet" href="${bp('/css/tokens/fonts.css')}?v=wordmark-loading-1">
-  <link rel="stylesheet" href="${bp('/css/site-system.css')}?v=wordmark-loading-1">
+  <link rel="stylesheet" href="${bp('/css/site-system.css')}?v=nav-dropdown-1">
   <meta name="site-mode" content="${IS_PREVIEW ? 'preview' : 'production'}">
 
   ${structuredData ? (Array.isArray(structuredData) ? structuredData : [structuredData]).map(json => `<!-- Structured Data -->
@@ -232,7 +242,7 @@ ${bodyContent}
 `}
 
   <script src="${bp('/js/newsletter.js')}?v=20260924" defer></script>
-  <script src="${bp('/js/main.js')}?v=link-nav-refinement-1" defer></script>
+  <script src="${bp('/js/main.js')}?v=nav-dropdown-1" defer></script>
 ${bodyClass === 'page-reading' ? `  <script src="${bp('/js/calendar.js')}" defer></script>` : ''}
 </body>
 </html>`, BASE_URL);
