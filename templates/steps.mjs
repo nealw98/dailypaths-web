@@ -14,9 +14,10 @@ import { STEP_FOUR_ESSAY, STEP_FOUR_ESSAY_TITLE } from './step-four-essay.mjs';
 import { STEP_FIVE_ESSAY, STEP_FIVE_ESSAY_TITLE } from './step-five-essay.mjs';
 import { STEP_SIX_ESSAY, STEP_SIX_ESSAY_TITLE } from './step-six-essay.mjs';
 import { STEP_SEVEN_ESSAY, STEP_SEVEN_ESSAY_TITLE } from './step-seven-essay.mjs';
+import { STEP_EIGHT_ESSAY, STEP_EIGHT_ESSAY_TITLE } from './step-eight-essay.mjs';
 
-const STEP_ESSAYS = { 1: STEP_ONE_ESSAY, 2: STEP_TWO_ESSAY, 3: STEP_THREE_ESSAY, 4: STEP_FOUR_ESSAY, 5: STEP_FIVE_ESSAY, 6: STEP_SIX_ESSAY, 7: STEP_SEVEN_ESSAY };
-const STEP_ESSAY_TITLES = { 1: STEP_ONE_ESSAY_TITLE, 2: STEP_TWO_ESSAY_TITLE, 3: STEP_THREE_ESSAY_TITLE, 4: STEP_FOUR_ESSAY_TITLE, 5: STEP_FIVE_ESSAY_TITLE, 6: STEP_SIX_ESSAY_TITLE, 7: STEP_SEVEN_ESSAY_TITLE };
+const STEP_ESSAYS = { 1: STEP_ONE_ESSAY, 2: STEP_TWO_ESSAY, 3: STEP_THREE_ESSAY, 4: STEP_FOUR_ESSAY, 5: STEP_FIVE_ESSAY, 6: STEP_SIX_ESSAY, 7: STEP_SEVEN_ESSAY, 8: STEP_EIGHT_ESSAY };
+const STEP_ESSAY_TITLES = { 1: STEP_ONE_ESSAY_TITLE, 2: STEP_TWO_ESSAY_TITLE, 3: STEP_THREE_ESSAY_TITLE, 4: STEP_FOUR_ESSAY_TITLE, 5: STEP_FIVE_ESSAY_TITLE, 6: STEP_SIX_ESSAY_TITLE, 7: STEP_SEVEN_ESSAY_TITLE, 8: STEP_EIGHT_ESSAY_TITLE };
 
 function essayHtml(text) {
   return markdownToHtml(text).replace(/\[([^\]]+)\]\((\/[^)]+)\)/g, (_match, label, path) => `<a href="${bp(path)}">${label}</a>`);
@@ -591,7 +592,7 @@ ${dailyPracticeHtml}
 
   return wrapInLayout({
     title: STEP_ESSAY_TITLES[step.number] ? `${STEP_ESSAY_TITLES[step.number]} | Daily Paths` : `Step ${step.number}: ${step.principle} — Al-Anon 12 Steps | Al-Anon Daily Paths`,
-    description: step.number === 1 ? 'Step One explores the effort to control another person’s drinking, the unmanageability in our own lives, and the freedom of redirecting our attention.' : step.number === 2 ? 'Step Two explores the possibility of hope, a Higher Power, and the restoration of clear perspective and sound judgment.' : step.number === 3 ? 'Step Three explores the decision to turn our will and lives over to a Higher Power, one person and one problem at a time.' : step.number === 4 ? 'Step Four explores a searching and fearless moral inventory, with honesty, balance, and support from a sponsor.' : step.number === 5 ? 'Step Five explores honest admission, finding a trusted confidant, and breaking isolation through sharing our inventory.' : step.number === 6 ? 'Step Six explores willingness to let go of character defects, trust in a Higher Power, and patience with the process of change.' : step.number === 7 ? 'Step Seven explores humility, asking a Higher Power to remove shortcomings, and practicing positive alternatives in daily life.' : `Explore Step ${step.number} of Al-Anon's Twelve Steps with reflection questions and daily readings for ${step.month}. Recovery guidance from Al-Anon Daily Paths.`,
+    description: step.number === 1 ? 'Step One explores the effort to control another person’s drinking, the unmanageability in our own lives, and the freedom of redirecting our attention.' : step.number === 2 ? 'Step Two explores the possibility of hope, a Higher Power, and the restoration of clear perspective and sound judgment.' : step.number === 3 ? 'Step Three explores the decision to turn our will and lives over to a Higher Power, one person and one problem at a time.' : step.number === 4 ? 'Step Four explores a searching and fearless moral inventory, with honesty, balance, and support from a sponsor.' : step.number === 5 ? 'Step Five explores honest admission, finding a trusted confidant, and breaking isolation through sharing our inventory.' : step.number === 6 ? 'Step Six explores willingness to let go of character defects, trust in a Higher Power, and patience with the process of change.' : step.number === 7 ? 'Step Seven explores humility, asking a Higher Power to remove shortcomings, and practicing positive alternatives in daily life.' : step.number === 8 ? 'Step Eight explores sorting out responsibility, making a list of those harmed, and becoming willing to make amends.' : `Explore Step ${step.number} of Al-Anon's Twelve Steps with reflection questions and daily readings for ${step.month}. Recovery guidance from Al-Anon Daily Paths.`,
     canonicalPath: `/steps/${stepRecordSlug(step)}/`,
     bodyContent,
     bodyClass: 'page-step-detail',
