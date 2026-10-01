@@ -1,3 +1,5 @@
+import stepsGlance from './steps-glance.json' with {type:'json'};
+
 // Development editorial review only. These choices do not delete legacy routes,
 // change the production catalog, or imply approval of a CMS publication.
 export const LAUNCH_REVIEW = {
@@ -43,6 +45,7 @@ export const LAUNCH_REVIEW = {
     '/articles/the-line-i-kept-moving/': { category: 'Personal Story', author: 'Lance W' },
     '/articles/voices-from-the-grave/': { category: 'Finding your voice', author: 'Lance W' },
   },
+  stepsGlance,
 };
 export const FIRST_MEETING = {
   title: 'Your First Al-Anon Meeting', path: '/articles/your-first-al-anon-meeting/',
@@ -59,11 +62,20 @@ export function launchItems(items, preview) {
 // Self-contained for inclusion in the preview Worker.
 export function transformLaunchPreview(html, pathname, policy = LAUNCH_REVIEW) {
   if (!html) return html;
-  if ((pathname === '/guides/finding-help/' || html.includes('id="the-twelve-steps-turning-toward-your-own-life"')) && !html.includes('/assets/resources/12-steps-at-a-glance.pdf')) {
-    html = html.replace(
-      /(<h3\b[^>]*id="sponsorship-a-conversation-between-meetings"[^>]*>)/i,
-      '<p>For a quick overview, open the Daily Paths <a href="/assets/resources/12-steps-at-a-glance.pdf" target="_blank" rel="noopener noreferrer">12 Steps at a glance</a> (PDF).</p>\n$1'
-    );
+  if (pathname === '/guides/finding-help/' || html.includes('id="the-twelve-steps-turning-toward-your-own-life"')) {
+    html = html.replace(/(\/css\/site-system\.css\?v=)[^"']+/i, '$1steps-glance-1');
+    const trigger = '<p>For a quick overview, open the Daily Paths <button type="button" class="steps-glance-trigger" data-steps-glance-open aria-haspopup="dialog" aria-controls="steps-glance-dialog">12 Steps at a glance</button>.</p>';
+    html = html.replace(/<p>For a quick overview, open the Daily Paths <a href="\/assets\/resources\/12-steps-at-a-glance\.pdf"[^>]*>12 Steps at a glance<\/a> \(PDF\)\.<\/p>/i, trigger);
+    if (!html.includes('data-steps-glance-open')) {
+      html = html.replace(/(<h3\b[^>]*id="sponsorship-a-conversation-between-meetings"[^>]*>)/i, trigger + '\n$1');
+    }
+    if (html.includes('data-steps-glance-open') && !html.includes('id="steps-glance-dialog"')) {
+      const escape = s => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+      const words = ['One','Two','Three','Four','Five','Six','Seven','Eight','Nine','Ten','Eleven','Twelve'];
+      const sections = policy.stepsGlance.map(item => `<section class="steps-glance-section" aria-labelledby="steps-glance-step-${item.number}"><p class="steps-glance-eyebrow">Step ${words[item.number - 1]}</p><h3 id="steps-glance-step-${item.number}">${escape(item.title)}</h3><p class="steps-glance-principle">Core Principle: ${escape(item.principle)}</p><ul>${item.points.map(point => `<li>${escape(point)}</li>`).join('')}</ul></section>`).join('');
+      const dialog = `<dialog id="steps-glance-dialog" class="steps-glance-dialog" aria-labelledby="steps-glance-title"><div class="steps-glance-head"><div><p class="steps-glance-eyebrow">Daily Paths reference</p><h2 id="steps-glance-title">The Twelve Steps of Al-Anon</h2><p>Key Takeaways, Core Principles &amp; Spiritual Insights from Personal Recovery Essays</p></div><button type="button" class="steps-glance-close" data-steps-glance-close aria-label="Close 12 Steps at a glance">Close <span aria-hidden="true">×</span></button></div><div class="steps-glance-content">${sections}<p class="steps-glance-source">Grounded in Al-Anon Family Groups Literature</p></div></dialog><script src="/js/steps-glance.js" defer></script>`;
+      html = html.replace(/<\/body>/i, dialog + '\n</body>');
+    }
   }
   // Approved snapshots still link to addresses that have been consolidated away.
   // Longest first, so /guides/about-alanon/ is not half-rewritten by the rule for

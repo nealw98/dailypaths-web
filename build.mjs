@@ -581,7 +581,6 @@ cpSync(join(ROOT, 'css', 'site-system.css'), join(outDir, 'css', 'site-system.cs
 mkdirSync(join(outDir, 'css', 'tokens'), { recursive: true });
 cpSync(join(ROOT, 'css', 'tokens', 'fonts.css'), join(outDir, 'css', 'tokens', 'fonts.css'));
 cpSync(join(ROOT, 'assets', 'fonts'), join(outDir, 'assets', 'fonts'), { recursive: true });
-cpSync(join(ROOT, 'assets', 'resources'), join(outDir, 'assets', 'resources'), { recursive: true });
 if (IS_PREVIEW) {
   const reviewLayout = ['version-c.css', 'soft-daylight.css'].map(name =>
     readFileSync(join(ROOT, 'css', name), 'utf8')
@@ -593,6 +592,7 @@ if (IS_PREVIEW) {
 // JS
 cpSync(join(__dirname, 'js', 'newsletter.js'), join(outDir, 'js', 'newsletter.js'));
 cpSync(join(__dirname, 'js', 'main.js'), join(outDir, 'js', 'main.js'));
+cpSync(join(__dirname, 'js', 'steps-glance.js'), join(outDir, 'js', 'steps-glance.js'));
 if (!IS_PREVIEW) cpSync(join(__dirname, 'js', 'admin.js'), join(outDir, 'js', 'admin.js'));
 cpSync(join(__dirname, 'js', 'analytics.js'), join(outDir, 'js', 'analytics.js'));
 cpSync(join(__dirname, 'js', 'calendar.js'), join(outDir, 'js', 'calendar.js'));
