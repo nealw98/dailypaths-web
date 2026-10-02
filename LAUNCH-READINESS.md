@@ -134,14 +134,24 @@ confirmation message that moves `pending` → `subscribed`, and unsubscribe hand
 Then replace the footer line "Email updates are coming soon." See
 `editorial/email/setup.md`.
 
-### A3c. Four database tables are writable by anyone — exists on `main` too
+### A3c. Four database tables were writable by anyone — partly fixed, October 2
 
-`stories`, `steps`, `themes` and `journal_quotes` have row-level security off and
-anon insert/update/delete grants (Supabase advisor, October 2). It is the same
-Supabase project the live site uses, so it is not new with 2.0 and not a website
-change. `js/admin.js` writes to `steps` and `themes` with the public key, so locking
-writes would stop that page saving. Needs a decision on who may write before any
-change. Not a reason to hold the website launch.
+`stories`, `steps`, `themes` and `journal_quotes` had row-level security off and
+anon insert/update/delete grants. Same Supabase project as the live site, so this
+predates 2.0.
+
+- **`stories` — locked (done).** Read by everyone, written by signed-in admins only.
+  Neal does not use it. Migration: `supabase/migrations/20261002170000_lock_stories.sql`.
+- **`steps`, `themes` — prepared, not applied.** `js/admin.js` now sends the admin's
+  signed-in token when saving, but the live admin page on `main` still uses the
+  public key, so locking these before 2.0 is live would stop it saving. Apply
+  `editorial/database-lockdown-pending.sql` (steps/themes parts) after launch.
+- **`journal_quotes` — not applied.** Something writes to it (154 inserts, 52 deletes
+  to date) and it is not in this repo. Confirm the app does not write it with the
+  public key before locking.
+- Service-role access (Reading Room, edge functions, Supabase MCP / AI tools)
+  bypasses these rules and is unaffected. Other admin saves (`member_shares`) still
+  use the public key and are a separate table not covered here.
 
 ### A4. ~~About Al-Anon~~ — resolved September 29
 
