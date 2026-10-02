@@ -1506,3 +1506,7 @@ a[target="_blank"]:not(:has(img)):not(.pillar-card):not(.fellow-card)::after,
 .ma-header h1 .ma-collection-eyebrow,
 .ts-card h2 .ts-eyebrow { display: block; }
 .ts-card h2 .ts-eyebrow { line-height: 1.65; }
+
+/* Twelve Steps guide: keep the photograph separate from the title and reading. */
+.ts-hero { margin: 0 auto 40px; }
+.ts-hero .photo-hero-img { display: block; position: static; width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; }
