@@ -1,6 +1,6 @@
 // This small HTTP layer serves only CMS-managed routes. The existing static
 // generator and its assets continue to serve reflections and the rest of the site.
-export function createCmsWorker(fallback,knownPaths,composePage,launchPolicy={},transformPreview=html=>html,editorialPolicy=html=>html){
+export function createCmsWorker(fallback,knownPaths,composePage,launchPolicy={},transformPreview=html=>html,editorialPolicy=html=>html,syncChrome=html=>html){
  const origin='https://daily-paths-story-room.nealw98.chatgpt.site';
  const esc=s=>String(s||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
  return {async fetch(request){
@@ -57,6 +57,7 @@ export function createCmsWorker(fallback,knownPaths,composePage,launchPolicy={},
   }catch{ /* Existing generated pages remain available during a transient CMS outage. */ }
   if(!html)return new Response('Page not found',{status:404});
   html=editorialPolicy(transformPreview(html,path,launchPolicy),path);
+  html=syncChrome(html,fallback['/']);
   return new Response(request.method==='HEAD'?null:html,{headers:{'Content-Type':'text/html; charset=utf-8','Cache-Control':'no-store','X-Robots-Tag':'noindex, nofollow',...(revision?{'X-Story-Room-Revision':revision}:{})}});
  }};
 }

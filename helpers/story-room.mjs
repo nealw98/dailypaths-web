@@ -1,4 +1,5 @@
 import {applyEditorialPolicy} from './editorial-policy.mjs';
+import {syncNewsletter} from './site-chrome.mjs';
 import {LAUNCH_REVIEW} from './launch-review.mjs';
 import {syncHeroSocialImage} from './social-image.mjs';
 import {loadStoryRoomCache,saveStoryRoomCache} from './story-room-cache.mjs';
@@ -75,9 +76,11 @@ export function syncCatalog(items,articles,guides){
 }
 export async function applyPublished(outDir,{production=false,origin=PREVIEW_ORIGIN,items}={}){
  items??=await getPublished();
+ const homePage=existsSync(join(outDir,'index.html'))?readFileSync(join(outDir,'index.html'),'utf8'):null;
  for(const item of items){const dest=join(outDir,item.path,'index.html');let html=composePage(existsSync(dest)?readFileSync(dest,'utf8'):null,item.html);
   if(item.cmsPath&&item.cmsPath!==item.path)html=html.replaceAll(item.cmsPath,item.path);
   html=applyEditorialPolicy(html,item.path);
+  html=syncNewsletter(html,homePage);
   html=html.replaceAll(PREVIEW_ORIGIN,origin);if(production)html=html.replace(/<meta\b(?=[^>]*name=["']robots["'])[^>]*>/gi,'');mkdirSync(dirname(dest),{recursive:true});writeFileSync(dest,html);
  }
  return items;

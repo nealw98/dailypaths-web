@@ -393,3 +393,23 @@ handled outside the editorial work. Content, titles, and copy are not.
 If a structural change looks necessary to do a piece of content work, say so
 rather than making it: the pieces above interlock, and the redirect loop that
 started this was caused by two well-intentioned hand-written entries.
+
+---
+
+## 8. Story Room pages carry the footer they were saved with
+
+Story Room pages the site has no template for (Learning to Trust, Your First Al-Anon
+Meeting, Finding Help, and in the preview server also The Line I Kept Moving) are
+published as complete saved pages. Their footer, scripts and style-sheet version are
+whatever the site looked like when they were saved — which, at launch time, was an older
+footer whose e-mail field and button were **disabled** ("Email signup is coming soon"),
+so sign-up silently did not work on them.
+
+`helpers/site-chrome.mjs` (`syncNewsletter`) now copies the current sign-up block, its
+script and the `site-system.css` version label from the freshly built homepage into every
+Story Room page, both in the build (`applyPublished` in `helpers/story-room.mjs`) and in
+the preview server (`createCmsWorker`, passed in by `scripts/package-cms-preview.mjs`).
+The function is embedded in the preview server as text, so keep it self-contained.
+
+If the sign-up block's markup changes again, nothing needs doing for these pages. If a new
+shared part of the footer must stay current on saved pages, extend `syncNewsletter`.
