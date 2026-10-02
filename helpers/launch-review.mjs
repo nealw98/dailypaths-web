@@ -15,6 +15,7 @@ export const LAUNCH_REVIEW = {
   // filter — without the last, the Story Room still lists About Al-Anon among the
   // guides, since it goes on publishing cms-about-alanon at /about-alanon/.
   consolidated: {
+    '/topics/fellowship/': '/guides/finding-help/',
     '/about-alanon/': '/guides/finding-help/',
     '/guides/about-alanon/': '/guides/finding-help/',
   },

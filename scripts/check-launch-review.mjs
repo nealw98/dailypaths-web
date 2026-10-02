@@ -74,7 +74,7 @@ try{
  const head=await worker.fetch(new Request('https://review.test/about-alanon/',{method:'HEAD'}));assert.equal(await head.text(),'');
  // Both About Al-Anon addresses were consolidated into Finding Help. Each must
  // land there in one hop — a redirect to the other would be a chain.
- for(const retired of ['/about-alanon/','/guides/about-alanon/']){
+ for(const retired of ['/about-alanon/','/guides/about-alanon/','/topics/fellowship/']){
   const moved=await worker.fetch(new Request('https://review.test'+retired));
   assert.equal(moved.status,301,`${retired} should redirect`);
   assert.equal(new URL(moved.headers.get('location')).pathname,'/guides/finding-help/',`${retired} should land on Finding Help`);

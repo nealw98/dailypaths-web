@@ -12,7 +12,7 @@ import { LETTING_GO_ARTICLE } from './theme-guides/letting-go.mjs';
 import { renderSurrenderGuide } from './theme-guides/surrender.mjs';
 import { renderBoundariesGuide } from './theme-guides/boundaries.mjs';
 import { GUIDES } from '../helpers/content-catalog.mjs';
-import { themePath } from '../helpers/theme-pages.mjs';
+import { themePath, CONSOLIDATED_THEMES } from '../helpers/theme-pages.mjs';
 
 // Re-export TOPICS so build.mjs can continue importing from this file
 export { TOPICS };
@@ -21,7 +21,7 @@ export { TOPICS };
  * Render the Topics index page — all twelve topics as cards.
  */
 export function renderTopicsIndexPage() {
-  const cards = TOPICS.map(topic => `
+  const cards = TOPICS.filter(topic => !CONSOLIDATED_THEMES.has(topic.slug)).map(topic => `
           <a href="${bp(themePath(topic.slug))}" class="card-elevated theme-index-card">
             <span class="theme-index-title">${topic.name}</span>
             <span class="theme-index-line">${topic.shortDescription}</span>

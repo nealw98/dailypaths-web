@@ -56,7 +56,7 @@ import { renderVoicesFromTheGrave, VOICES_ARTICLE } from './templates/articles/v
 import { renderLineIKeptMoving, STORY } from './templates/articles/the-line-i-kept-moving.mjs';
 import { renderTwelveStepsGuide } from './templates/theme-guides/twelve-steps.mjs';
 import { renderHomePage, renderArticlesPage, renderGuidesPage, renderReflectionsPage } from './templates/editorial.mjs';
-import { themePath, movedThemeRedirects } from './helpers/theme-pages.mjs';
+import { themePath, movedThemeRedirects, CONSOLIDATED_THEMES } from './helpers/theme-pages.mjs';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = __dirname;
@@ -288,6 +288,7 @@ for (const reading of readings) {
 
 for (const topic of TOPICS) {
   // Auto-select top-rated readings as featured for this principle
+  if (CONSOLIDATED_THEMES.has(topic.slug)) continue;
   const themeTags = TOPIC_THEME_TAGS[topic.slug] || [];
   const matchedReadings = readings.filter(
     r => r.secondary_theme && themeTags.includes(r.secondary_theme)

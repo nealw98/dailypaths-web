@@ -11,6 +11,7 @@
  * each, once their rewrites settle.
  */
 export const MOVED_THEME_PAGES = {
+  fellowship: '/guides/finding-help/',
   powerlessness: '/guides/surrender/',
   detachment: '/guides/detachment-with-love/',
   boundaries: '/guides/boundaries/',
@@ -18,6 +19,9 @@ export const MOVED_THEME_PAGES = {
   honesty: '/articles/the-stories-we-tell-ourselves/',
   'self-worth': '/articles/who-am-i-behind-the-mask/',
 };
+
+// Consolidated topics keep their links but no longer own a page or index card.
+export const CONSOLIDATED_THEMES = new Set(['fellowship']);
 
 /** The current address of a theme's page. */
 export const themePath = slug => MOVED_THEME_PAGES[slug] || `/topics/${slug}/`;

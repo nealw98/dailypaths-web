@@ -1,5 +1,14 @@
 # Structural work on `2.0` — what changed, and what to leave alone
 
+## October 2 — Community & Fellowship retired
+
+Neal confirmed that the inherited Community & Fellowship page is removed.
+`/topics/fellowship/` and `/themes/fellowship/` now forward directly to
+`/guides/finding-help/`, superseding the earlier proposed First Meeting target.
+The topic no longer renders its old essay or an index card. Its theme links
+resolve to Finding Help, and a stale CMS publication cannot restore the old page.
+The source copy remains in git and the existing editorial draft for reference.
+
 This records structural changes made on the `2.0` branch in late September 2026,
 alongside the editorial work. Read it before touching URLs, slugs, redirects,
 the sitemap, or anything under `data/`.

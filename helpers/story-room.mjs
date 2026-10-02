@@ -51,7 +51,7 @@ async function fetchLive(){
 const selectPublished=({feed,pages})=>feed
  .filter(x=>validPath(x.path)&&!LAUNCH_REVIEW.retiredPaths.includes(x.path))
  .map(item=>({...item,cmsPath:item.path,path:LAUNCH_REVIEW.linkedStories[item.id]||item.path,html:pages[item.path]}))
- .filter(item=>!LAUNCH_REVIEW.retired.includes(item.path));
+ .filter(item=>!LAUNCH_REVIEW.retired.includes(item.path)&&!LAUNCH_REVIEW.consolidated[item.path]);
 
 export async function getPublished({cachePath=CACHE_PATH}={}){
  let snapshot,live=true;
