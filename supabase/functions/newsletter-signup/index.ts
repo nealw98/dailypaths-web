@@ -6,7 +6,19 @@ const messageText=()=>sendingConfigured()?"Almost done. Check your email and tap
 async function sendConfirmation(email:string,token:string,site:string){
  const link=site+'/email/confirm/?token='+token;
  const text='Thanks for signing up for Daily Paths.\n\nPlease confirm your email address by opening this link:\n'+link+'\n\nIf you did not sign up, you can ignore this message and nothing more will be sent.\n\nDaily Paths';
- const html='<p>Thanks for signing up for Daily Paths.</p><p><a href="'+link+'">Confirm my email address</a></p><p>If you did not sign up, you can ignore this message and nothing more will be sent.</p><p>Daily Paths</p>';
+ const font="Georgia,'Times New Roman',serif", sans="Helvetica,Arial,sans-serif";
+ const html='<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Please confirm your Daily Paths email updates</title></head>'
+  +'<body style="margin:0;padding:0;background-color:#f4f1ea;">'
+  +'<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" bgcolor="#f4f1ea"><tr><td align="center" style="padding:32px 16px;">'
+  +'<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="max-width:520px;background-color:#ffffff;border-radius:8px;">'
+  +'<tr><td align="center" style="padding:32px 32px 8px 32px;"><img src="https://dailypaths.org/assets/app-icon.png" width="64" height="64" alt="Daily Paths" border="0" style="display:block;border-radius:14px;"></td></tr>'
+  +'<tr><td align="center" style="padding:8px 32px 0 32px;font-family:'+font+';font-style:italic;font-size:26px;line-height:32px;color:#1b4d54;">Daily Paths</td></tr>'
+  +'<tr><td style="padding:24px 32px 0 32px;font-family:'+font+';font-size:20px;line-height:28px;color:#2b2b2b;">Thanks for signing up.</td></tr>'
+  +'<tr><td style="padding:12px 32px 0 32px;font-family:'+sans+';font-size:16px;line-height:25px;color:#444444;">Please confirm your email address, and we&rsquo;ll send you a short note with each new daily reflection.</td></tr>'
+  +'<tr><td align="center" style="padding:28px 32px 8px 32px;"><table role="presentation" cellpadding="0" cellspacing="0" border="0"><tr><td align="center" bgcolor="#1b4d54" style="background-color:#1b4d54;border-radius:6px;"><a href="'+link+'" style="display:inline-block;padding:14px 28px;font-family:'+sans+';font-size:16px;line-height:20px;font-weight:bold;color:#ffffff;text-decoration:none;">Confirm my email address</a></td></tr></table></td></tr>'
+  +'<tr><td style="padding:20px 32px 0 32px;font-family:'+sans+';font-size:13px;line-height:20px;color:#777777;">Button not working? Copy this link into your browser:<br><a href="'+link+'" style="color:#1b4d54;word-break:break-all;">'+link+'</a></td></tr>'
+  +'<tr><td style="padding:24px 32px 32px 32px;font-family:'+sans+';font-size:13px;line-height:20px;color:#777777;border-top-width:0;">If you didn&rsquo;t sign up, you can ignore this message. Nothing more will be sent.</td></tr>'
+  +'</table></td></tr></table></body></html>';
  const r=await fetch('https://api.resend.com/emails',{method:'POST',headers:{Authorization:'Bearer '+resendKey(),'Content-Type':'application/json'},body:JSON.stringify({from:fromAddress(),reply_to:[Deno.env.get('NEWSLETTER_REPLY_TO')||'support@dailypaths.org'],to:[email],subject:'Please confirm your Daily Paths email updates',text,html})});
  return r.ok;
 }
