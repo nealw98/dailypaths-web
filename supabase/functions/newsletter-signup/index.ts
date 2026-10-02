@@ -63,17 +63,24 @@ Deno.serve(async (req: Request) => {
     const created=await saved.json();
     let token:string|null=created[0]?.confirm_token??null;
     if(!token){
-     // Existing address: only a still-pending one gets a fresh link, at most hourly. Never reactivates an unsubscribe.
+     // Existing address. A still-pending one gets a fresh link at most hourly. An unsubscribed one may rejoin, but only
+     // by confirming a new link (which proves they own the address), and old links stop working. Suppressed addresses never rejoin.
      const cutoff=new Date(Date.now()-3600000).toISOString();
-     const again=await (await fetch(url+'/rest/v1/newsletter_subscribers?email=eq.'+encodeURIComponent(email)+'&status=eq.pending&or=(confirmation_sent_at.is.null,confirmation_sent_at.lt.'+cutoff+')&select=confirm_token',{headers:dbHeaders})).json();
-     token=again[0]?.confirm_token??null;
+     const found=(await (await fetch(url+'/rest/v1/newsletter_subscribers?email=eq.'+encodeURIComponent(email)+'&select=status,confirm_token,confirmation_sent_at',{headers:dbHeaders})).json())[0];
+     if(found?.status==='pending'&&(!found.confirmation_sent_at||found.confirmation_sent_at<cutoff))token=found.confirm_token;
+     else if(found?.status==='unsubscribed'){
+      const fresh=crypto.randomUUID();
+      const now=new Date().toISOString();
+      const back=await fetch(url+'/rest/v1/newsletter_subscribers?email=eq.'+encodeURIComponent(email)+'&status=eq.unsubscribed',{method:'PATCH',headers:{...dbHeaders,Prefer:'return=minimal'},body:JSON.stringify({status:'pending',confirm_token:fresh,confirmed_at:null,unsubscribed_at:null,confirmation_sent_at:null,consent_at:now,consent_version:'2026-09-24'})});
+      if(back.ok)token=fresh;
+     }
     }
     if(token&&await sendConfirmation(email,token,origin)){
      await fetch(url+'/rest/v1/newsletter_subscribers?email=eq.'+encodeURIComponent(email),{method:'PATCH',headers:{...dbHeaders,Prefer:'return=minimal'},body:JSON.stringify({confirmation_sent_at:new Date().toISOString()})});
     }
    }catch{/* signup is saved; a later attempt can resend the link */}
   }
-  // Same response for new/existing addresses. Never reactivate an unsubscribe.
+  // Same response for new and existing addresses, so the form never reveals who is on the list.
   return reply(200,{message:messageText()});
  }catch{return reply(503,{error:'Signup is temporarily unavailable. Please try again later.'});}
 });

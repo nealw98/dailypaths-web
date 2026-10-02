@@ -12,7 +12,7 @@ Sign-up now uses double opt-in:
 2. If `RESEND_API_KEY` and `NEWSLETTER_FROM` are set on the `newsletter-signup` function, a confirmation email goes out with a link to `/email/confirm/?token=…` on the website. If either is missing, nothing is sent and the form keeps its old message — so deploying the code first is safe.
 3. The page asks the person to press a button (so mail scanners that merely open links cannot confirm anyone). That calls the `newsletter-manage` function, which sets `subscribed`.
 4. Unsubscribe works the same way from `/email/unsubscribe/?token=…`, and the function also accepts mail clients' one-click unsubscribe (POST to `newsletter-manage?action=unsubscribe&token=…`, no login).
-5. An `unsubscribed` address is never reactivated by signing up again or by an old confirm link. A still-`pending` address that signs up again gets a fresh link at most once an hour.
+5. Someone who has unsubscribed can rejoin by signing up again: the address goes back to `pending` with a **new** confirmation token (old links stop working) and they must confirm the new email. Nothing is sent to them until they do. A `suppressed` address (bounce or complaint) never rejoins. A still-`pending` address that signs up again gets a fresh link at most once an hour. An old confirm link cannot re-subscribe an unsubscribed address.
 
 Status meanings: `pending` signed up, not confirmed, never emailed beyond the confirmation; `subscribed` confirmed, may receive daily emails; `unsubscribed` opted out; `suppressed` blocked (bounces/complaints), never mailed.
 
