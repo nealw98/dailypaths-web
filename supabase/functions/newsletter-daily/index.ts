@@ -5,7 +5,6 @@
 const SITE = 'https://dailypaths.org';
 const TZ = 'America/New_York';
 const STORY_ROOM = 'https://daily-paths-story-room.nealw98.chatgpt.site';
-const FEATURE_DAYS = 5;
 const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
 const esc = (s: string) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 
@@ -53,7 +52,7 @@ function buildEmail(r: { title: string; date: string; thought: string; slug: str
     + (excerpt ? `<tr><td style="padding:22px 0 0 0;font-family:${serif};font-size:18px;line-height:29px;color:#34382e;">${esc(excerpt)}</td></tr>` : '')
     + `<tr><td style="padding:28px 0 0 0;"><table role="presentation" cellpadding="0" cellspacing="0" border="0"><tr><td bgcolor="#4f5b3d" style="background-color:#4f5b3d;border-radius:2px;"><a href="${link}" style="display:inline-block;padding:14px 24px;font-family:${sans};font-size:15px;line-height:20px;font-weight:500;color:#ffffff;text-decoration:none;">Read today&rsquo;s reflection</a></td></tr></table></td></tr>`
     + (featured ? `<tr><td style="padding:40px 0 0 0;"><table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="border-top:1px solid #dfdfd3;padding-top:24px;">`
-      + `<div style="font-family:${sans};font-weight:600;font-size:12px;line-height:18px;letter-spacing:1.1px;text-transform:uppercase;color:#4f5b3d;">New on Daily Paths</div>`
+      + `<div style="font-family:${sans};font-weight:600;font-size:12px;line-height:18px;letter-spacing:1.1px;text-transform:uppercase;color:#4f5b3d;">Worth reading</div>`
       + `<div style="padding-top:8px;font-family:${serif};font-weight:500;font-size:24px;line-height:30px;letter-spacing:-0.2px;color:#34382e;">${esc(featured.title)}</div>`
       + `<div style="padding-top:8px;font-family:${serif};font-size:17px;line-height:27px;color:#34382e;">${esc(featured.description)}</div>`
       + `<div style="padding-top:14px;font-family:${sans};font-size:15px;line-height:22px;font-weight:500;"><a href="${featuredLink}" style="color:#4f5b3d;text-decoration:underline;">${featuredCta}</a></div>`
@@ -62,7 +61,7 @@ function buildEmail(r: { title: string; date: string; thought: string; slug: str
     + `You&rsquo;re receiving this because you signed up for Daily Paths email updates.<br>`
     + `<a href="${unsubscribeUrl}" style="color:#4f5b3d;text-decoration:underline;">Unsubscribe</a> &nbsp;·&nbsp; <a href="${SITE}/privacy/" style="color:#4f5b3d;text-decoration:underline;">Privacy</a>`
     + `</td></tr></table></td></tr></table></td></tr></table></body></html>`;
-  const text = `${r.date}\n\n${r.title}\n\nThought for the day:\n"${r.thought}"\n\n${excerpt ? excerpt + '\n\n' : ''}Read today's reflection: ${link}\n\n${featured ? `New on Daily Paths\n${featured.title}\n${featured.description}\n${featuredCta}: ${featuredLink}\n\n` : ''}--\nYou're receiving this because you signed up for Daily Paths email updates.\nUnsubscribe: ${unsubscribeUrl}\nPrivacy: ${SITE}/privacy/`;
+  const text = `${r.date}\n\n${r.title}\n\nThought for the day:\n"${r.thought}"\n\n${excerpt ? excerpt + '\n\n' : ''}Read today's reflection: ${link}\n\n${featured ? `Worth reading\n${featured.title}\n${featured.description}\n${featuredCta}: ${featuredLink}\n\n` : ''}--\nYou're receiving this because you signed up for Daily Paths email updates.\nUnsubscribe: ${unsubscribeUrl}\nPrivacy: ${SITE}/privacy/`;
   return { subject: r.title, html, text };
 }
 
@@ -92,7 +91,7 @@ Deno.serve(async (req: Request) => {
     const reading = Array.isArray(manifest) ? manifest.find((m: any) => m.date === label) : null;
     if (!reading || !reading.title || !reading.thought || !reading.slug) return json(502, { error: `No reading found for ${label}.` });
 
-    // Excerpt from the reading itself, and today's "New on Daily Paths" item if one is active. Either may be absent.
+    // Excerpt from the reading itself, and today's "Worth reading" item if one is active. Either may be absent.
     let excerpt = '';
     try {
       if (reading.d) {
@@ -106,40 +105,44 @@ Deno.serve(async (req: Request) => {
       const rows = await (await rest(`newsletter_featured?show_from=lte.${isoDate}&show_until=gte.${isoDate}&order=show_from.desc&limit=1&select=kind,title,description,path`)).json();
       if (Array.isArray(rows) && rows[0]) featured = rows[0];
     } catch { featured = null; }
-    // 2) Otherwise the newest of: an article or guide published in the Story Room, or a Step essay whose page changed
-    //    (the site's sitemap carries a date per page), for FEATURE_DAYS days. Step essays are called articles.
+    // 2) Otherwise a piece worth reading: every article, guide and Step essay (Step essays are called articles), one per day,
+    //    in a fixed order, so nothing repeats until the whole set has been shown.
+    //    Pieces listed in newsletter_config 'feature_exclude' (comma-separated path fragments) are never shown.
     if (!featured) {
-      type Candidate = { at: number; make: () => Promise<Featured | null> };
-      const candidates: Candidate[] = [];
-      const within = (at: number) => today.getTime() - at >= 0 && today.getTime() - at < FEATURE_DAYS * 86400000;
+      type Entry = { path: string; make: () => Promise<Featured | null> };
+      const entries: Entry[] = [];
       try {
         const feed = await (await fetch(`${STORY_ROOM}/api/room/published`, { signal: AbortSignal.timeout(10000) })).json();
         for (const i of Array.isArray(feed?.items) ? feed.items : []) {
-          const at = new Date(i.published_at).getTime();
-          if (['article', 'guide'].includes(i.content_type) && /^\/(articles|guides|topics)\/[a-z0-9-]+\/$/.test(i.path || '') && (i.card_title || i.title) && i.summary && within(at)) {
-            candidates.push({ at, make: async () => ({ kind: i.content_type, title: i.card_title || i.title, description: i.summary, path: i.path }) });
+          if (['article', 'guide'].includes(i.content_type) && /^\/(articles|guides|topics)\/[a-z0-9-]+\/$/.test(i.path || '') && (i.card_title || i.title) && i.summary) {
+            entries.push({ path: i.path, make: async () => ({ kind: i.content_type, title: i.card_title || i.title, description: i.summary, path: i.path }) });
           }
         }
       } catch { /* Story Room unavailable: skip its items */ }
       try {
         const sitemap = await (await fetch(`${SITE}/sitemap.xml`, { signal: AbortSignal.timeout(10000) })).text();
-        for (const m of sitemap.matchAll(/<loc>https:\/\/dailypaths\.org(\/steps\/al-anon-step-(\d{1,2})-[a-z-]+\/)<\/loc>\s*<lastmod>(\d{4}-\d{2}-\d{2})<\/lastmod>/g)) {
-          const [, path, num, lastmod] = m, at = Date.parse(lastmod + 'T00:00:00Z');
-          if (!within(at)) continue;
-          candidates.push({ at, make: async () => {
+        for (const m of sitemap.matchAll(/<loc>https:\/\/dailypaths\.org(\/steps\/al-anon-step-(\d{1,2})-[a-z-]+\/)<\/loc>/g)) {
+          const [, path, num] = m;
+          entries.push({ path, make: async () => {
             const step = (await (await rest(`steps?number=eq.${Number(num)}&select=number,principle,hook`)).json())[0];
             return step?.principle && step?.hook ? { kind: 'article' as const, title: `Step ${step.number}: ${step.principle}`, description: step.hook, path } : null;
           } });
         }
       } catch { /* sitemap unavailable: skip Step essays */ }
-      for (const c of candidates.sort((x, y) => y.at - x.at).slice(0, 4)) {
+      const excluded = (config.feature_exclude || '').split(',').map((x) => x.trim()).filter(Boolean);
+      const rotation = entries
+        .filter((e, i, all) => !excluded.some((x) => e.path.includes(x)) && all.findIndex((o) => o.path === e.path) === i)
+        .sort((x, y) => x.path.localeCompare(y.path));
+      const dayNumber = Math.floor(Date.parse(isoDate + 'T00:00:00Z') / 86400000);
+      const start = rotation.length ? dayNumber % rotation.length : 0;
+      for (const c of [...rotation.slice(start), ...rotation.slice(0, start)].slice(0, 8)) {
         try {
           const made = await c.make();
           if (!made) continue;
           // Never put a dead link in an email: the page must answer on the live site (redirects are followed).
-          const live = await fetch(`${SITE}${made.path}`, { redirect: 'follow', signal: AbortSignal.timeout(10000) });
+          const live = await fetch(`${SITE}${made.path}`, { redirect: 'follow', signal: AbortSignal.timeout(8000) });
           if (live.ok) { featured = made; break; }
-        } catch { /* try the next newest */ }
+        } catch { /* try the next one */ }
       }
     }
 
