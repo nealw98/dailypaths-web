@@ -18,7 +18,18 @@ Status meanings: `pending` signed up, not confirmed, never emailed beyond the co
 
 Done October 2: migration `20261002180000_newsletter_tokens.sql` applied; `newsletter-signup` (v3) and `newsletter-manage` (v1, `verify_jwt` false) deployed; `dailypaths.org` is verified for sending in Resend. Replies to the confirmation go to `support@dailypaths.org` (override with the optional secret `NEWSLETTER_REPLY_TO`). The live site (`main`) has no signup form, so secrets can be added before launch without sending anything public. **Remaining to switch on:** add Resend secrets `RESEND_API_KEY` and `NEWSLETTER_FROM` (for example `Daily Paths <hello@dailypaths.org>`) in Supabase → Edge Functions → Secrets; verify the sending domain in Resend (DNS records). Confirmation links point at dailypaths.org, so enable sending only once the new site is live there.
 
-**Still to build:** the daily send itself. Resend has no RSS-to-email feature, so a scheduled function must send the day's reflection teaser to `subscribed` addresses, with the unsubscribe link and `List-Unsubscribe` headers.
+## Daily send (built and deployed October 2, 2026; switched OFF)
+
+`newsletter-daily` sends each day's reflection (title, date, the day's thought line and a "Read today's reflection" button) to `subscribed` addresses only. It reads today's reading by New York date from `https://dailypaths.org/readings-manifest.json`, so it follows the live site.
+
+- **Unsubscribe:** every email has an Unsubscribe link in the footer (to `/email/unsubscribe/?token=…`) and the one-click `List-Unsubscribe` headers that Gmail and Apple Mail turn into their own Unsubscribe button.
+- **Schedule:** a database job (`cron` job `newsletter-daily`) calls the function at 11:00 UTC every day (7:00 AM EDT / 6:00 AM EST).
+- **Switch:** nothing is sent until `public.newsletter_config` row `send_enabled` is `true` (it is `false`). To go live: `update public.newsletter_config set value='true' where key='send_enabled';` To stop: set it back to `false`.
+- **Once per day:** a row in `public.newsletter_sends` is claimed before sending, so the same day can never be sent twice. If every batch fails the row is released so it can be retried.
+- **Secret:** the function is called with a random secret kept only in `public.newsletter_config` (`send_secret`) — nobody has to create or paste one. Calls without it are refused.
+- **Modes:** `{"mode":"preview"}` returns the email without sending; `{"mode":"test","to":"you@example.com"}` sends one copy marked [Test].
+- **Not done:** a postal address in the footer. Commercial email normally needs one (CAN-SPAM); add the business address to the footer before going live if it applies.
+- **Scale:** sends in batches of 100 about every 0.6 seconds; fine for several thousand subscribers per day.
 
 ## Delivery setup (original notes)
 
