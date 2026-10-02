@@ -20,7 +20,11 @@ Done October 2: migration `20261002180000_newsletter_tokens.sql` applied; `newsl
 
 ## Daily send (built and deployed October 2, 2026; switched OFF)
 
-`newsletter-daily` sends each day's reflection (title, date, the day's thought line and a "Read today's reflection" button) to `subscribed` addresses only. It reads today's reading by New York date from `https://dailypaths.org/readings-manifest.json`, so it follows the live site.
+`newsletter-daily` sends each day's reflection to `subscribed` addresses only. Email order: date, title, "Thought for the day", an excerpt, a "Read today's reflection" button, then an optional "New on Daily Paths" block, then the unsubscribe footer.
+
+- **Excerpt:** built from the reading's text in the `readings` table — whole sentences, about 200–330 characters, cut at a word only if the first sentence is very long. (The site's own `readings-manifest.json` excerpt is a hard 205-character cut, so it is not used.)
+- **"New on Daily Paths":** shown only when a row in `public.newsletter_featured` covers today's date; otherwise the section is simply left out. Add a row with `kind` (`article` or `guide`, which sets the link wording "Read the article" / "Read the guide"), `title`, `description`, `path` (e.g. `/guides/finding-help/`), `show_from` and `show_until`. If several rows overlap, the one with the latest `show_from` wins. Example: `insert into public.newsletter_featured(kind,title,description,path,show_from,show_until) values ('guide','Finding Help','Recognizing the effects of someone else''s drinking, finding a meeting, and what the program asks of you.','/guides/finding-help/','2026-10-10','2026-10-17');`
+- **Preview what tomorrow's email looks like** without sending: call the function with `{"mode":"preview"}`. It reads today's reading by New York date from `https://dailypaths.org/readings-manifest.json`, so it follows the live site.
 
 - **Unsubscribe:** every email has an Unsubscribe link in the footer (to `/email/unsubscribe/?token=…`) and the one-click `List-Unsubscribe` headers that Gmail and Apple Mail turn into their own Unsubscribe button.
 - **Schedule:** a database job (`cron` job `newsletter-daily`) calls the function at 11:00 UTC every day (7:00 AM EDT / 6:00 AM EST).
@@ -28,7 +32,7 @@ Done October 2: migration `20261002180000_newsletter_tokens.sql` applied; `newsl
 - **Once per day:** a row in `public.newsletter_sends` is claimed before sending, so the same day can never be sent twice. If every batch fails the row is released so it can be retried.
 - **Secret:** the function is called with a random secret kept only in `public.newsletter_config` (`send_secret`) — nobody has to create or paste one. Calls without it are refused.
 - **Modes:** `{"mode":"preview"}` returns the email without sending; `{"mode":"test","to":"you@example.com"}` sends one copy marked [Test].
-- **Not done:** a postal address in the footer. Commercial email normally needs one (CAN-SPAM); add the business address to the footer before going live if it applies.
+- **Postal address — decided October 2:** the footer deliberately has **no** postal address, because the only address available is Neal's home. US commercial-email law (CAN-SPAM) expects a physical or PO box address; Neal accepted that until a business PO box exists. When one does, add it as one line in the footer of `buildEmail` in `supabase/functions/newsletter-daily/index.ts` (and the confirmation email in `newsletter-signup` if wanted).
 - **Scale:** sends in batches of 100 about every 0.6 seconds; fine for several thousand subscribers per day.
 
 ## Delivery setup (original notes)

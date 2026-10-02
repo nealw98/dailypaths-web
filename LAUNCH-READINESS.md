@@ -134,8 +134,8 @@ unsubscribe, token migration. Details and the switch-on steps are in
 `editorial/email/setup.md`. Still needed from Neal: add the Supabase secrets
 `RESEND_API_KEY` (sending-only key) and `NEWSLETTER_FROM` — only when ready to go live,
 because confirmation links point at dailypaths.org. The daily send is built and deployed but **switched off** (`send_enabled` = false); see
-`editorial/email/setup.md`. At go-live: flip `send_enabled`, replace the footer line
-"Email updates are coming soon.", and decide on a postal address in the email footer.
+`editorial/email/setup.md`. At go-live: flip `send_enabled` and replace the footer line
+"Email updates are coming soon." The emails carry no postal address by Neal's decision (home address; add a business PO box line later). Pick the first "New on Daily Paths" item (`newsletter_featured`).
 
 ### A3c. Four database tables were writable by anyone — fixed October 2
 
