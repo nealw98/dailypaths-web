@@ -12,7 +12,7 @@
 .app-page .store-badge-link::after { content: none; }
 .app-page .store-badge { display: block; width: auto; max-width: none; }
 .app-page .store-badge--ios { height: 44px; }
-.app-page .store-badge--play { height: 65.48px; margin: -10.74px; }
+.app-page .store-badge--play { height: 65.48px; margin: 0; }
 .app-page .app-store-note { font: 400 13px/1.6 var(--font-ui, sans-serif); color: var(--text-muted, #66685d); margin: 0 0 22px; }
 .app-text-link { font: 500 15px/1.5 var(--font-ui, sans-serif); text-underline-offset: 5px; }
 .app-screen { width: min(100%, 300px); margin: 0 auto; }
