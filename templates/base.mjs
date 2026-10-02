@@ -2,6 +2,7 @@ import { bp, BASE_URL, IS_PREVIEW } from '../helpers/config.mjs';
 import { TYPOGRAPHY_REVIEW_PATH, GUIDE_REVIEW_PATH } from '../helpers/typography-review.mjs';
 import { GUIDES, ARTICLES } from '../helpers/content-catalog.mjs';
 import { launchItems } from '../helpers/launch-review.mjs';
+import { storeBadges } from './ui.mjs';
 import { syncHeroSocialImage } from '../helpers/social-image.mjs';
 
 function brandIcon() {
@@ -86,7 +87,6 @@ export function wrapInLayout({
   const canonicalUrl = BASE_URL + canonicalPath;
   const ogImageUrl = new URL(ogImage || '/assets/og-image.png', BASE_URL).href;
   const twitterCard = ogImage ? 'summary_large_image' : 'summary';
-  const appHref = hasAppPanel ? '#get-the-app' : bp('/#get-the-app');
 
   const nav = isHome ? navItems() : [{ id: 'home', label: 'Home', href: bp('/') }, ...navItems()];
 
@@ -196,7 +196,7 @@ ${json}
       <nav class="site-nav" aria-label="Main navigation">
 ${desktopNav}
       </nav>
-      <a href="${appHref}" class="btn btn--sm header-cta">Get the app</a>
+      <div class="header-store-links">${storeBadges({ context: 'header' })}</div>
       <button type="button" class="menu-toggle" data-menu-toggle aria-expanded="false" aria-controls="mobile-menu">
         <span class="menu-glyph" aria-hidden="true"><span></span><span></span><span></span></span>
         <span data-menu-label>Menu</span>
@@ -206,7 +206,7 @@ ${desktopNav}
       <nav aria-label="Mobile navigation">
 ${mobileNav}
       </nav>
-      <a href="${appHref}" class="btn btn--full mobile-menu-cta">Get the app</a>
+      <div class="mobile-store-links">${storeBadges({ context: 'menu' })}</div>
     </div>
   </header>
 
