@@ -4,6 +4,22 @@ import inserts from './editorial-inserts.json' with {type:'json'};
 export function applyEditorialPolicy(html, pathname, records = inserts) {
  if(!html)return html;
  const path=pathname||html.match(/<link\b[^>]*rel="canonical"[^>]*href="https?:\/\/[^/]+([^"?]+)/i)?.[1];
+ // Story Room text replaced an inherited member-insight grid in this article.
+ // Keep approved prose and inserts, but discard the old card/truncation behavior.
+ if(['/articles/who-am-i-behind-the-mask/','/topics/self-worth/'].includes(path)){
+  html=html.replace(/(<article\b[^>]*class="[^"]*rd-article[^"]*"[^>]*>)([\s\S]*?)(<\/article>)/i,(_,open,body,close)=>{
+   if(body.includes('data-mask-prose'))return open+body+close;
+   body=body.replace(/<button\b[^>]*data-insight-read-more[^>]*>[\s\S]*?<\/button>/gi,'');
+   body=body.replace(/\sdata-insight-(?:grid|card-text|read-more)(?:="[^"]*")?/gi,'');
+   body=body.replace(/\saria-label="Member insights[^"]*"/gi,'');
+   body=body.replace(/<(p|h2|h3|div|section|aside)\b[^>]*>/gi,tag=>tag.replace(/\sclass="([^"]*)"/i,(_,classes)=>{
+    const retired=new Set(['eyebrow','share-heading','share-prompt','sd-small','section--md','insight-grid','insight-card','insight-card-text','truncated','insight-card-attribution','panel-outlined','share-card']);
+    const kept=classes.split(/\s+/).filter(c=>!retired.has(c)&&!(c==='pull-quote'&&/^<p\b/i.test(tag)&&/data-cms-block=/.test(tag)));
+    return kept.length?' class="'+kept.join(' ')+'"':'';
+   }));
+   return open+'<div class="prose-reading" data-mask-prose>'+body+'</div>'+close;
+  });
+ }
  // October 1 approved Worry Loop artwork: keep the imported transcript in sync.
  if(['/articles/letting-go/','/topics/letting-go/'].includes(path)){
   html=html.replace(/(<div class="visually-hidden">)([\s\S]*?)(<\/div>)/g,(all,open,text,close)=>
