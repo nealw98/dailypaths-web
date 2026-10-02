@@ -8,7 +8,9 @@
   const messages = {
     confirmed: 'Thank you. Your email address is confirmed.',
     already: 'This address is already confirmed.',
-    unsubscribed: 'You are unsubscribed. No more Daily Paths emails will be sent to this address.',
+    unsubscribed: root.dataset.action === 'confirm'
+      ? 'This address has unsubscribed, so it was not confirmed. If that was a mistake, write to support@dailypaths.org.'
+      : 'You are unsubscribed. No more Daily Paths emails will be sent to this address.',
     invalid: 'This link is not valid. Please use the link in your most recent email.',
   };
   const done = (text) => { lead.hidden = true; button.hidden = true; status.textContent = text; };

@@ -71,6 +71,7 @@ export function wrapInLayout({
   ogImage,
   bodyClass = '',
   noindex = false,
+  hideNewsletter = false,
   navSection = '',
   hasAppPanel = false,
   typographyPreview = false,
@@ -213,7 +214,7 @@ ${mobileNav}
 ${bodyContent}
   </main>
 
-  ${newsletterInvitation()}
+  ${hideNewsletter ? '' : newsletterInvitation()}
 
   ${isHome ? `<footer class="ed-footer ed-wrap"><nav aria-label="Footer"><a href="${bp('/about-project/')}">About</a><a href="${bp('/support/')}">Support</a><a href="${bp('/privacy/')}">Privacy</a><a href="${bp('/terms/')}">Terms</a></nav></footer>` : `  <footer class="site-footer">
     <div class="footer-inner">

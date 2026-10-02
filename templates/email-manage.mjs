@@ -24,7 +24,7 @@ export function renderEmailManagePage(action) {
         <h1 class="page-title">${copy.title}</h1>
         <div data-email-manage data-action="${action}" data-endpoint="${endpoint}">
           <p class="page-description" data-email-lead>${copy.lead}</p>
-          <p><button type="button" class="btn-primary" data-email-button>${copy.button}</button></p>
+          <p><button type="button" class="site-newsletter-button" data-email-button>${copy.button}</button></p>
           <p role="status" aria-live="polite" data-email-status></p>
         </div>
         <noscript><p>This page needs JavaScript. You can also write to <a href="mailto:support@dailypaths.org">support@dailypaths.org</a>.</p></noscript>
@@ -38,5 +38,6 @@ export function renderEmailManagePage(action) {
     bodyContent,
     bodyClass: 'page-email-manage',
     noindex: true,
+    hideNewsletter: true,
   });
 }
