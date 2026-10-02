@@ -135,7 +135,7 @@ unsubscribe, token migration. Details and the switch-on steps are in
 `RESEND_API_KEY` (sending-only key) and `NEWSLETTER_FROM` — only when ready to go live,
 because confirmation links point at dailypaths.org. The daily send is built and deployed but **switched off** (`send_enabled` = false); see
 `editorial/email/setup.md`. At go-live: flip `send_enabled` and replace the footer line
-"Email updates are coming soon." The emails carry no postal address by Neal's decision (home address; add a business PO box line later). Pick the first "New on Daily Paths" item (`newsletter_featured`).
+"Email updates are coming soon." The emails carry no postal address by Neal's decision (home address; add a business PO box line later). "New on Daily Paths" is automatic (newest Story Room article/guide or Step essay, shown 5 days); `newsletter_featured` can override it.
 
 ### A3c. Four database tables were writable by anyone — fixed October 2
 

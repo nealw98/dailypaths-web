@@ -4,6 +4,8 @@
 // {"mode":"send"} sends to every subscribed address, once per day, and only when newsletter_config.send_enabled is 'true'.
 const SITE = 'https://dailypaths.org';
 const TZ = 'America/New_York';
+const STORY_ROOM = 'https://daily-paths-story-room.nealw98.chatgpt.site';
+const FEATURE_DAYS = 5;
 const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
 const esc = (s: string) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 
@@ -98,11 +100,48 @@ Deno.serve(async (req: Request) => {
         excerpt = makeExcerpt(row?.opening || row?.body || '');
       }
     } catch { excerpt = ''; }
+    // 1) A hand-set item in newsletter_featured wins while its dates cover today.
     let featured: Featured | null = null;
     try {
       const rows = await (await rest(`newsletter_featured?show_from=lte.${isoDate}&show_until=gte.${isoDate}&order=show_from.desc&limit=1&select=kind,title,description,path`)).json();
       if (Array.isArray(rows) && rows[0]) featured = rows[0];
     } catch { featured = null; }
+    // 2) Otherwise the newest of: an article or guide published in the Story Room, or a Step essay whose page changed
+    //    (the site's sitemap carries a date per page), for FEATURE_DAYS days. Step essays are called articles.
+    if (!featured) {
+      type Candidate = { at: number; make: () => Promise<Featured | null> };
+      const candidates: Candidate[] = [];
+      const within = (at: number) => today.getTime() - at >= 0 && today.getTime() - at < FEATURE_DAYS * 86400000;
+      try {
+        const feed = await (await fetch(`${STORY_ROOM}/api/room/published`, { signal: AbortSignal.timeout(10000) })).json();
+        for (const i of Array.isArray(feed?.items) ? feed.items : []) {
+          const at = new Date(i.published_at).getTime();
+          if (['article', 'guide'].includes(i.content_type) && /^\/(articles|guides|topics)\/[a-z0-9-]+\/$/.test(i.path || '') && (i.card_title || i.title) && i.summary && within(at)) {
+            candidates.push({ at, make: async () => ({ kind: i.content_type, title: i.card_title || i.title, description: i.summary, path: i.path }) });
+          }
+        }
+      } catch { /* Story Room unavailable: skip its items */ }
+      try {
+        const sitemap = await (await fetch(`${SITE}/sitemap.xml`, { signal: AbortSignal.timeout(10000) })).text();
+        for (const m of sitemap.matchAll(/<loc>https:\/\/dailypaths\.org(\/steps\/al-anon-step-(\d{1,2})-[a-z-]+\/)<\/loc>\s*<lastmod>(\d{4}-\d{2}-\d{2})<\/lastmod>/g)) {
+          const [, path, num, lastmod] = m, at = Date.parse(lastmod + 'T00:00:00Z');
+          if (!within(at)) continue;
+          candidates.push({ at, make: async () => {
+            const step = (await (await rest(`steps?number=eq.${Number(num)}&select=number,principle,hook`)).json())[0];
+            return step?.principle && step?.hook ? { kind: 'article' as const, title: `Step ${step.number}: ${step.principle}`, description: step.hook, path } : null;
+          } });
+        }
+      } catch { /* sitemap unavailable: skip Step essays */ }
+      for (const c of candidates.sort((x, y) => y.at - x.at).slice(0, 4)) {
+        try {
+          const made = await c.make();
+          if (!made) continue;
+          // Never put a dead link in an email: the page must answer on the live site (redirects are followed).
+          const live = await fetch(`${SITE}${made.path}`, { redirect: 'follow', signal: AbortSignal.timeout(10000) });
+          if (live.ok) { featured = made; break; }
+        } catch { /* try the next newest */ }
+      }
+    }
 
     const unsubscribeUrl = (token: string) => `${SITE}/email/unsubscribe/?token=${token}`;
     const oneClick = (token: string) => ({ 'List-Unsubscribe': `<${url}/functions/v1/newsletter-manage?action=unsubscribe&token=${token}>`, 'List-Unsubscribe-Post': 'List-Unsubscribe=One-Click' });
