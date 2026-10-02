@@ -47,8 +47,8 @@ export function renderSupportPage() {
             <summary>How do I navigate between readings?</summary>
             <p>
               On the website, use the previous and next links at the bottom of each reading.
-              You can also explore reflection collections by Step, or browse by topic
-              through Principles. In the app, use the Previous and Next buttons, or tap
+              Open Reflections to browse collections by Step, Tradition, or Concept.
+              In the app, use the Previous and Next buttons, or tap
               the date to open a calendar picker.
             </p>
           </details>
