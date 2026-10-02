@@ -68,11 +68,16 @@ Google Analytics 4 (`G-HSDBJDBVCS`) and Mixpanel with `autocapture: true` and
 **`record_sessions_percent: 100`** — full session recording of every visitor.
 The policy mentioned neither, and no cookies. (Since fixed — see below.)
 
-It also reads as contradicting itself. "Information We Do Not Collect" opens with
-*"Your name, email address, or contact information"* — true of the **app**, which
-collects no email addresses, but that section does not say it is about the app. The
-**website** stores an email address only when someone joins the list. Fix: one
-sentence saying which is which. Wording needs Neal's approval.
+The app section's "we do not collect your email" is accurate for the app and sits
+under the App heading; the website section says it stores an email only if someone
+joins the list. Not a contradiction.
+
+**Updated October 2 (Neal approved):** policy now names Resend as the sender, says a
+confirmation email is sent and every message carries an unsubscribe link, states
+retention (until unsubscribe or removal request), drops the "development" signup
+detail and the "marketing" wording, and mentions the host's server logs. It
+assumes email sending is live at launch — **do not ship it before that is true.**
+The confirmation-email sentence assumes double opt-in is built.
 
 This is the most serious item on the list. The audience is people whose lives are
 affected by someone else's drinking; recording their full sessions without

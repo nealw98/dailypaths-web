@@ -6,7 +6,7 @@ export function renderPrivacyPage() {
     <div class="content-page">
       <div class="content-container">
         <h1 class="page-title">Privacy Policy</h1>
-        <p class="page-meta">Last updated: October 1, 2026</p>
+        <p class="page-meta">Last updated: October 2, 2026</p>
 
         <section class="content-section">
           <h2>Overview</h2>
@@ -33,7 +33,7 @@ export function renderPrivacyPage() {
           <p>
             You do not need an account to read the website, and we do not ask for your name. When
             you visit, we collect usage information so we can understand which pages are helpful and
-            improve the site, including for product development and marketing:
+            improve the site:
           </p>
           <ul>
             <li>The pages you view, how you arrived, and how you interact with them, such as clicks and link and form interactions.</li>
@@ -58,12 +58,17 @@ export function renderPrivacyPage() {
             <a href="https://tools.google.com/dlpage/gaoptout" target="_blank" rel="noopener noreferrer">browser add-on</a>
             that opts you out of Google Analytics. The site works without cookies.
           </p>
+          <p>
+            Like any website, our hosting provider (GitHub Pages) receives your internet address
+            and basic request details when your browser loads a page, and keeps them in its own
+            server logs. We do not receive or use those logs to identify you.
+          </p>
         </section>
 
         <section class="content-section">
           <h3>Email updates</h3>
-          <p>If you join our email list, we store your email address, the date and version of your consent, and whether you signed up on our development or public website. We use this information for the reflections and article updates you requested. We do not sell the list.</p>
-          <p>Addresses are stored in Supabase. Email delivery is not active yet. When delivery begins, messages will include an unsubscribe link. You can also contact us through the <a href="${bp('/support/')}">Support</a> page to request removal. Signup protection uses a temporary hash of your network address; we do not store the raw address in the subscriber list.</p>
+          <p>If you join our email list, we store your email address and the date and version of your consent. We use it only to send the reflections and article updates you asked for. We do not sell the list.</p>
+          <p>Addresses are stored in Supabase. Emails are sent through Resend, which receives your address for that purpose. We send a confirmation email when you sign up, and every message includes an unsubscribe link. You can also contact us through the <a href="${bp('/support/')}">Support</a> page to ask for your address to be removed. We keep your address until you unsubscribe or ask us to remove it. Signup protection uses a temporary hash of your network address; we do not store the raw address in the subscriber list.</p>
         </section>
 
         <section class="content-section">
