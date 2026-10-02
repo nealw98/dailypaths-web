@@ -39,6 +39,7 @@ import { renderPrivacyPage } from './templates/privacy.mjs';
 import { renderSupportPage } from './templates/support.mjs';
 import { renderAppPage } from './templates/app.mjs';
 import { renderTermsPage } from './templates/terms.mjs';
+import { renderEmailManagePage } from './templates/email-manage.mjs';
 import { renderAboutProjectPage } from './templates/about-project.mjs';
 import { renderStepPage, STEPS, STEP_TOOLS, STEP_HOOKS, STEP_TAGLINES, PULL_QUOTES } from './templates/steps.mjs';
 import { renderMonthArchivePage } from './templates/month-archive.mjs';
@@ -183,6 +184,8 @@ const dirs = [
   join(outDir, 'support'),
   join(outDir, 'app'),
   join(outDir, 'terms'),
+  join(outDir, 'email', 'confirm'),
+  join(outDir, 'email', 'unsubscribe'),
   join(outDir, 'start'),
   join(outDir, 'about-project'),
   join(outDir, 'about-alanon'),
@@ -330,6 +333,8 @@ writePage(join(outDir, 'privacy', 'index.html'), renderPrivacyPage());
 writePage(join(outDir, 'support', 'index.html'), renderSupportPage());
 writePage(join(outDir, 'app', 'index.html'), renderAppPage());
 writePage(join(outDir, 'terms', 'index.html'), renderTermsPage());
+writePage(join(outDir, 'email', 'confirm', 'index.html'), renderEmailManagePage('confirm'));
+writePage(join(outDir, 'email', 'unsubscribe', 'index.html'), renderEmailManagePage('unsubscribe'));
 writePage(join(outDir, 'start', 'index.html'), renderStartPage(readings));
 writePage(join(outDir, 'about-project', 'index.html'), renderAboutProjectPage());
 // Admin page
@@ -598,6 +603,7 @@ if (IS_PREVIEW) {
 
 // JS
 cpSync(join(__dirname, 'js', 'newsletter.js'), join(outDir, 'js', 'newsletter.js'));
+cpSync(join(__dirname, 'js', 'email-manage.js'), join(outDir, 'js', 'email-manage.js'));
 cpSync(join(__dirname, 'js', 'main.js'), join(outDir, 'js', 'main.js'));
 cpSync(join(__dirname, 'js', 'steps-glance.js'), join(outDir, 'js', 'steps-glance.js'));
 if (!IS_PREVIEW) cpSync(join(__dirname, 'js', 'admin.js'), join(outDir, 'js', 'admin.js'));

@@ -11,3 +11,6 @@ verify_jwt = false
 
 [functions.newsletter-signup]
 verify_jwt = true
+
+[functions.newsletter-manage]
+verify_jwt = false

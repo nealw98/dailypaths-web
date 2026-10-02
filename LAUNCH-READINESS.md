@@ -126,13 +126,14 @@ file held `…i-cannot-do-everything` for day 58, probably seeded while the titl
 `data/reading-slugs.json` to match the live address; the "cannot" form was never
 public, so it gets no redirect. After the fix, re-run `check:launch-urls`.
 
-### A3b. Email sending is not connected — open launch item
+### A3b. Email sending — confirmation built, daily send not yet
 
-The sign-up form works and addresses are saved as `pending`. Nothing sends. Still
-needed: a sending service and sender address, a verified sending domain, a
-confirmation message that moves `pending` → `subscribed`, and unsubscribe handling.
-Then replace the footer line "Email updates are coming soon." See
-`editorial/email/setup.md`.
+Resend is the service. Built October 2 and committed, **not deployed**: double
+opt-in (confirmation email → `subscribed`), unsubscribe page and one-click
+unsubscribe, token migration. Details and the switch-on steps are in
+`editorial/email/setup.md`. Still needed from Neal: a Resend API key, a verified
+sending domain and a sender address. Still to build: the daily send (Resend has no
+RSS-to-email). Then replace the footer line "Email updates are coming soon."
 
 ### A3c. Four database tables were writable by anyone — fixed October 2
 

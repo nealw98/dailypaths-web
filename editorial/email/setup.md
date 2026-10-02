@@ -4,7 +4,23 @@ The website posts opt-ins to the `newsletter-signup` Supabase Edge Function. It 
 
 New contacts are `pending`. No confirmation or newsletter messages are sent by this implementation. Development and production sources are recorded separately. Do not import test/development addresses into production campaigns. Only send broadcasts to confirmed `subscribed` contacts. Respect `unsubscribed` and `suppressed` states. There is no automatic provider sync yet.
 
-## Delivery setup still needed
+## Resend wiring (built October 2, 2026 — not yet deployed)
+
+Sign-up now uses double opt-in:
+
+1. Someone submits the form. The address is saved as `pending` (as before).
+2. If `RESEND_API_KEY` and `NEWSLETTER_FROM` are set on the `newsletter-signup` function, a confirmation email goes out with a link to `/email/confirm/?token=…` on the website. If either is missing, nothing is sent and the form keeps its old message — so deploying the code first is safe.
+3. The page asks the person to press a button (so mail scanners that merely open links cannot confirm anyone). That calls the `newsletter-manage` function, which sets `subscribed`.
+4. Unsubscribe works the same way from `/email/unsubscribe/?token=…`, and the function also accepts mail clients' one-click unsubscribe (POST to `newsletter-manage?action=unsubscribe&token=…`, no login).
+5. An `unsubscribed` address is never reactivated by signing up again or by an old confirm link. A still-`pending` address that signs up again gets a fresh link at most once an hour.
+
+Status meanings: `pending` signed up, not confirmed, never emailed beyond the confirmation; `subscribed` confirmed, may receive daily emails; `unsubscribed` opted out; `suppressed` blocked (bounces/complaints), never mailed.
+
+To switch on: apply `supabase/migrations/20261002180000_newsletter_tokens.sql`; deploy `newsletter-signup` and `newsletter-manage` (`verify_jwt` false for manage — see `supabase/config.toml`); add Resend secrets `RESEND_API_KEY` and `NEWSLETTER_FROM` (for example `Daily Paths <hello@dailypaths.org>`) in Supabase → Edge Functions → Secrets; verify the sending domain in Resend (DNS records). Confirmation links point at dailypaths.org, so enable sending only once the new site is live there.
+
+**Still to build:** the daily send itself. Resend has no RSS-to-email feature, so a scheduled function must send the day's reflection teaser to `subscribed` addresses, with the unsubscribe link and `List-Unsubscribe` headers.
+
+## Delivery setup (original notes)
 
 Choose an email service and sender address, verify the sending domain, and connect opt-in confirmation plus unsubscribe/bounce events before activating campaigns. Mailchimp is a suitable managed option for newsletter templates, confirmations, unsubscribes, and RSS campaigns. This is separate from Supabase Auth email, which is for account access.
 
