@@ -1413,7 +1413,8 @@ a[target="_blank"]:not(:has(img)):not(.pillar-card):not(.fellow-card)::after,
 .step-resource .eyebrow{margin:0 0 7px;color:var(--accent)}
 .step-resource p:last-child{margin:0;font:17px/1.65 var(--font-reading)}
 .step-resource a{font-weight:600;text-decoration:underline;text-underline-offset:4px}
-.step-return-link{display:inline-block;margin:36px 0 56px;padding-top:22px;border-top:1px solid var(--rule);font:600 15px/1.5 var(--font-ui);text-decoration:underline;text-underline-offset:4px}
+.step-return-link{display:flex;align-items:center;width:fit-content;min-height:44px;margin:36px 0 0;padding:22px 0 8px;border-top:1px solid var(--rule);font:600 15px/1.5 var(--font-ui);text-decoration:underline;text-underline-offset:4px}
+.step-return-link + .step-return-link{margin:8px 0 56px;padding:8px 0;border-top:0}
 .ma-orientation{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:54px;margin-top:32px;padding-top:28px;border-top:1px solid var(--rule)}
 .ma-introduction p{font:19px/1.7 var(--font-reading);margin:0 0 20px;max-width:620px}
 .ma-introduction .ma-practice{font-size:17px;line-height:1.65;color:var(--text-secondary)}
