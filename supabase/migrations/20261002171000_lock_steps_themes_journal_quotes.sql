@@ -1,7 +1,5 @@
--- PENDING — NOT APPLIED. Run steps/themes only after the admin page fix
--- (js/admin.js: saves send the admin's token) is live on dailypaths.org, or the
--- live admin page cannot save. Run journal_quotes only after confirming the app
--- does not write to it with the public key. Same pattern as supabase/migrations/20261002170000_lock_stories.sql.
+-- Applied October 2, 2026. Anyone may read; only signed-in admins may change.
+-- Service-role access (Reading Room, edge functions, Supabase MCP) bypasses RLS.
 alter table public.steps enable row level security;
 create policy "Anyone can read steps" on public.steps for select to anon, authenticated using (true);
 create policy "Admins can change steps" on public.steps for all to authenticated

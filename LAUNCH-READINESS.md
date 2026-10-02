@@ -134,24 +134,26 @@ confirmation message that moves `pending` → `subscribed`, and unsubscribe hand
 Then replace the footer line "Email updates are coming soon." See
 `editorial/email/setup.md`.
 
-### A3c. Four database tables were writable by anyone — partly fixed, October 2
+### A3c. Four database tables were writable by anyone — fixed October 2
 
 `stories`, `steps`, `themes` and `journal_quotes` had row-level security off and
 anon insert/update/delete grants. Same Supabase project as the live site, so this
-predates 2.0.
+predates 2.0. All four are now locked: everyone can read, only signed-in admins can
+write (migrations `20261002170000` and `20261002171000`). Service-role access
+(Reading Room, edge functions, Supabase MCP / AI tools) is unaffected.
 
-- **`stories` — locked (done).** Read by everyone, written by signed-in admins only.
-  Neal does not use it. Migration: `supabase/migrations/20261002170000_lock_stories.sql`.
-- **`steps`, `themes` — prepared, not applied.** `js/admin.js` now sends the admin's
-  signed-in token when saving, but the live admin page on `main` still uses the
-  public key, so locking these before 2.0 is live would stop it saving. Apply
-  `editorial/database-lockdown-pending.sql` (steps/themes parts) after launch.
-- **`journal_quotes` — not applied.** Something writes to it (154 inserts, 52 deletes
-  to date) and it is not in this repo. Confirm the app does not write it with the
-  public key before locking.
-- Service-role access (Reading Room, edge functions, Supabase MCP / AI tools)
-  bypasses these rules and is unaffected. Other admin saves (`member_shares`) still
-  use the public key and are a separate table not covered here.
+**Consequences to watch until 2.0 is live:**
+- The admin page currently on `main` saves steps and themes with the public key, so
+  those saves will fail there. `js/admin.js` on 2.0 sends the admin's token instead;
+  after launch, test a step save in `/admin/`.
+- `journal_quotes` was locked without confirming whether the app writes to it. If
+  any app feature stops saving or adding quotes, this is the cause; rolling back is
+  `alter table public.journal_quotes disable row level security;`.
+
+**Still flagged by Supabase, not touched:** 10 "security definer" analytics/admin
+views (`analytics_*`, `admin_reading_*`, `daily_user_counts`), a few functions
+callable without sign-in (account deletion, `has_role`), and leaked-password
+protection off. Fixing the views can break dashboards, so review separately.
 
 ### A4. ~~About Al-Anon~~ — resolved September 29
 
