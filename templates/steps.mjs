@@ -508,8 +508,8 @@ ${bodySections}
         <p class="eyebrow">Step Four resource</p>
         <p><a href="https://ecomm.al-anon.org/ItemDetail?CATEGORY=BOOKS&amp;iProductCode=P91" target="_blank" rel="noopener noreferrer"><em>Blueprint for Progress: 4th Step Inventory</em></a> is Al-Anon&rsquo;s workbook for taking an in-depth personal inventory.</p>
       </aside>` : ''}
-      <a class="step-return-link" href="${bp(`/months/${step.monthSlug}/`)}">&larr; Return to Step ${stepWord} reflections</a>
-      <a class="step-return-link" href="${bp('/guides/twelve-steps/')}">&larr; The Twelve Steps of Al-Anon</a>
+      <a class="step-return-link" href="${bp(`/months/${step.monthSlug}/`)}">Step ${stepWord} Reflections</a>
+      <a class="step-return-link" href="${bp('/guides/twelve-steps/')}">12 Steps Guide</a>
     </article>
 `;
 
