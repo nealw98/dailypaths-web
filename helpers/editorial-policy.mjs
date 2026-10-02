@@ -35,6 +35,8 @@ export function applyEditorialPolicy(html, pathname, records = inserts) {
    return open+home+links+close;
   });
  }
+ // Keep app invitations in approved CMS snapshots connected to the app page.
+ if (!html.includes('data-app-overview-link')) html=html.replace(/(<div class="sd-app-copy">[\s\S]*?)(<div class="store-badges">)/g,'$1<p><a href="/app/" data-app-overview-link>Explore the app</a></p>$2');
  // Restore the live February 27 address in older CMS links, without a redirect.
  html=html.replaceAll('/february-27-i-cannot-do-everything/','/february-27-i-cant-do-everything/');
  html=html.replaceAll('/september-25-vision-and-improvement/','/september-25/').replaceAll('/october-31-the-intimacy-of-transparency/','/october-31/');

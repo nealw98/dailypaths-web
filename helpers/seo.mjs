@@ -58,6 +58,7 @@ export function generateSitemap(readings, topics, steps = [], lastmodFor = () =>
   urls.push({ path: '/about-project/', priority: '0.5', changefreq: 'monthly' });
   urls.push({ path: '/privacy/', priority: '0.3', changefreq: 'monthly' });
   urls.push({ path: '/support/', priority: '0.3', changefreq: 'monthly' });
+  urls.push({ path: '/app/', priority: '0.7', changefreq: 'monthly' });
   urls.push({ path: '/terms/', priority: '0.3', changefreq: 'monthly' });
 
   // A theme reclassified as an article or a guide is reached from two of the lists

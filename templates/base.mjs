@@ -2,7 +2,6 @@ import { bp, BASE_URL, IS_PREVIEW } from '../helpers/config.mjs';
 import { TYPOGRAPHY_REVIEW_PATH, GUIDE_REVIEW_PATH } from '../helpers/typography-review.mjs';
 import { GUIDES, ARTICLES } from '../helpers/content-catalog.mjs';
 import { launchItems } from '../helpers/launch-review.mjs';
-import { storeBadges } from './ui.mjs';
 import { syncHeroSocialImage } from '../helpers/social-image.mjs';
 
 function brandIcon() {
@@ -60,8 +59,7 @@ function navItems() {
  * @param {string} [options.ogType] - Open Graph type (default: "website")
  * @param {string} [options.bodyClass] - Additional class for <body>
  * @param {string} [options.navSection] - Nav item to mark active.
- * @param {boolean} [options.hasAppPanel] - Page contains #get-the-app, so the
- *   header CTA can scroll in place instead of going home.
+ * @param {boolean} [options.hasAppPanel] - Retained for existing page callers.
  */
 export function wrapInLayout({
   title,
@@ -196,7 +194,7 @@ ${json}
       <nav class="site-nav" aria-label="Main navigation">
 ${desktopNav}
       </nav>
-      <div class="header-store-links">${storeBadges({ context: 'header' })}</div>
+      <a href="${bp('/app/')}" class="btn btn--sm header-cta"${canonicalPath === '/app/' ? ' aria-current="page"' : ''}>Get the app</a>
       <button type="button" class="menu-toggle" data-menu-toggle aria-expanded="false" aria-controls="mobile-menu">
         <span class="menu-glyph" aria-hidden="true"><span></span><span></span><span></span></span>
         <span data-menu-label>Menu</span>
@@ -206,7 +204,7 @@ ${desktopNav}
       <nav aria-label="Mobile navigation">
 ${mobileNav}
       </nav>
-      <div class="mobile-store-links">${storeBadges({ context: 'menu' })}</div>
+      <a href="${bp('/app/')}" class="btn btn--full mobile-menu-cta"${canonicalPath === '/app/' ? ' aria-current="page"' : ''}>Get the app</a>
     </div>
   </header>
 

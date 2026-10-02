@@ -1,5 +1,16 @@
 # Structural work on `2.0` — what changed, and what to leave alone
 
+## October 2 — App overview page
+
+`/app/` is the new destination for Get the app in desktop and mobile navigation.
+It replaces the temporary store badges in the header. Store badges remain in
+app invitations and on the new page, with Explore the app linking to the overview.
+`templates/app.mjs` and `css/app.css` own the page. Five intentionally labeled
+portrait placeholders request Today’s reading, Journal, Spot Check, Nightly
+Review, and Speaker Library captures. Replace these with Neal’s supplied real
+screenshots before launch; do not invent app UI. Use demonstration writing in
+captures. Pricing is left to the current store listings rather than guessed.
+
 ## October 2 — February 27 keeps its live address
 
 Neal confirmed `/february-27-i-cant-do-everything/` is the correct address.

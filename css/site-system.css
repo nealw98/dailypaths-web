@@ -1511,16 +1511,3 @@ a[target="_blank"]:not(:has(img)):not(.pillar-card):not(.fellow-card)::after,
 /* Twelve Steps guide: keep the photograph separate from the title and reading. */
 .ts-hero { margin: 0 auto 40px; }
 .ts-hero .photo-hero-img { display: block; position: static; width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; }
-
-/* Direct store links replace the header's app-section jump. */
-.header-store-links { flex: 0 0 auto; }
-.site-header .store-badges { display: flex; align-items: center; flex-wrap: wrap; gap: 12px; }
-.site-header .store-badge-link { display: flex; align-items: center; flex-shrink: 0; min-height: 44px; line-height: 0; border: 0; text-decoration: none; }
-.site-header .store-badge-link::after { content: none; }
-.site-header .store-badge { display: block; width: auto; max-width: none; }
-.site-header .store-badge--ios { height: 36px; }
-.site-header .store-badge--play { height: 53.57px; margin: -8.785px; }
-.mobile-store-links { padding-top: 20px; }
-@media (max-width: 960px) {
-  .header-store-links { display: none; }
-}
