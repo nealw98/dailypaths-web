@@ -7,7 +7,7 @@ async function sendConfirmation(email:string,token:string,site:string){
  const link=site+'/email/confirm/?token='+token;
  const text='Thanks for signing up for Daily Paths.\n\nPlease confirm your email address by opening this link:\n'+link+'\n\nIf you did not sign up, you can ignore this message and nothing more will be sent.\n\nDaily Paths';
  const html='<p>Thanks for signing up for Daily Paths.</p><p><a href="'+link+'">Confirm my email address</a></p><p>If you did not sign up, you can ignore this message and nothing more will be sent.</p><p>Daily Paths</p>';
- const r=await fetch('https://api.resend.com/emails',{method:'POST',headers:{Authorization:'Bearer '+resendKey(),'Content-Type':'application/json'},body:JSON.stringify({from:fromAddress(),to:[email],subject:'Please confirm your Daily Paths email updates',text,html})});
+ const r=await fetch('https://api.resend.com/emails',{method:'POST',headers:{Authorization:'Bearer '+resendKey(),'Content-Type':'application/json'},body:JSON.stringify({from:fromAddress(),reply_to:[Deno.env.get('NEWSLETTER_REPLY_TO')||'support@dailypaths.org'],to:[email],subject:'Please confirm your Daily Paths email updates',text,html})});
  return r.ok;
 }
 Deno.serve(async (req: Request) => {
