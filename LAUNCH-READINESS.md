@@ -128,11 +128,12 @@ public, so it gets no redirect. After the fix, re-run `check:launch-urls`.
 
 ### A3b. Email sending — confirmation built, daily send not yet
 
-Resend is the service. Built October 2 and committed, **not deployed**: double
+Resend is the service. Built and deployed October 2 (database and functions live; domain verified in Resend): double
 opt-in (confirmation email → `subscribed`), unsubscribe page and one-click
 unsubscribe, token migration. Details and the switch-on steps are in
-`editorial/email/setup.md`. Still needed from Neal: a Resend API key, a verified
-sending domain and a sender address. Still to build: the daily send (Resend has no
+`editorial/email/setup.md`. Still needed from Neal: add the Supabase secrets
+`RESEND_API_KEY` (sending-only key) and `NEWSLETTER_FROM` — only when ready to go live,
+because confirmation links point at dailypaths.org. Still to build: the daily send (Resend has no
 RSS-to-email). Then replace the footer line "Email updates are coming soon."
 
 ### A3c. Four database tables were writable by anyone — fixed October 2

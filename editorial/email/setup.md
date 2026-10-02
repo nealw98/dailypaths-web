@@ -4,7 +4,7 @@ The website posts opt-ins to the `newsletter-signup` Supabase Edge Function. It 
 
 New contacts are `pending`. No confirmation or newsletter messages are sent by this implementation. Development and production sources are recorded separately. Do not import test/development addresses into production campaigns. Only send broadcasts to confirmed `subscribed` contacts. Respect `unsubscribed` and `suppressed` states. There is no automatic provider sync yet.
 
-## Resend wiring (built October 2, 2026 — not yet deployed)
+## Resend wiring (built and deployed October 2, 2026; sending not yet switched on)
 
 Sign-up now uses double opt-in:
 
@@ -16,7 +16,7 @@ Sign-up now uses double opt-in:
 
 Status meanings: `pending` signed up, not confirmed, never emailed beyond the confirmation; `subscribed` confirmed, may receive daily emails; `unsubscribed` opted out; `suppressed` blocked (bounces/complaints), never mailed.
 
-To switch on: apply `supabase/migrations/20261002180000_newsletter_tokens.sql`; deploy `newsletter-signup` and `newsletter-manage` (`verify_jwt` false for manage — see `supabase/config.toml`); add Resend secrets `RESEND_API_KEY` and `NEWSLETTER_FROM` (for example `Daily Paths <hello@dailypaths.org>`) in Supabase → Edge Functions → Secrets; verify the sending domain in Resend (DNS records). Confirmation links point at dailypaths.org, so enable sending only once the new site is live there.
+Done October 2: migration `20261002180000_newsletter_tokens.sql` applied; `newsletter-signup` (v3) and `newsletter-manage` (v1, `verify_jwt` false) deployed; `dailypaths.org` is verified for sending in Resend. **Remaining to switch on:** add Resend secrets `RESEND_API_KEY` and `NEWSLETTER_FROM` (for example `Daily Paths <hello@dailypaths.org>`) in Supabase → Edge Functions → Secrets; verify the sending domain in Resend (DNS records). Confirmation links point at dailypaths.org, so enable sending only once the new site is live there.
 
 **Still to build:** the daily send itself. Resend has no RSS-to-email feature, so a scheduled function must send the day's reflection teaser to `subscribed` addresses, with the unsubscribe link and `List-Unsubscribe` headers.
 
