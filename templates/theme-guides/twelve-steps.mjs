@@ -27,7 +27,7 @@ function card(item) {
       <h2 id="ts-step-${item.number}"><span class="ts-eyebrow">Step ${word}</span><span class="visually-hidden">: </span>${esc(item.title)}</h2>
       <p class="ts-principle"><span>Core principle</span> ${esc(item.principle)}</p>
       <ul>${points}</ul>
-      <p class="ts-links"><a href="${bp(`/steps/${stepRecordSlug(step)}/`)}">Step ${word}</a><a href="${bp(`/months/${step.monthSlug}/`)}">Step ${word} reflections <span aria-hidden="true">&rarr;</span></a></p>
+      <p class="ts-links"><a href="${bp(`/steps/${stepRecordSlug(step)}/`)}">Read about Step ${word} <span aria-hidden="true">&rarr;</span></a><a href="${bp(`/months/${step.monthSlug}/`)}">Step ${word} reflections <span aria-hidden="true">&rarr;</span></a></p>
     </article>`;
 }
 
