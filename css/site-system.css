@@ -1535,10 +1535,11 @@ body .store-badges a.store-badge-link:focus-visible {
 }
 
 /* After a successful sign-up the form, its helper text and the privacy note give way to one clear confirmation. */
+.site-newsletter.is-done h2,
 .site-newsletter.is-done .site-newsletter-copy,
 .site-newsletter.is-done .site-newsletter-form > :not(.newsletter-status),
 .site-newsletter.is-done .site-newsletter-inner > .site-newsletter-note { display: none; }
-.site-newsletter.is-done .site-newsletter-form { display: block; margin-top: 14px; }
+.site-newsletter.is-done .site-newsletter-form { display: block; margin-top: 0; }
 .site-newsletter.is-done .newsletter-status { margin: 0 auto; max-width: 34em; text-align: center; color: var(--text-primary, #34382e); outline: none; }
 .site-newsletter.is-done .newsletter-done-message { display: block; font: normal 500 clamp(21px, 2vw, 25px)/1.35 var(--font-editorial); letter-spacing: -.2px; }
 .site-newsletter.is-done .newsletter-done-sub { display: block; margin-top: 8px; font: var(--type-small); color: var(--text-muted, #66685d); }
