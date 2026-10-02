@@ -14,7 +14,7 @@ the URL and build structure. This file is only the list of what is still open.
 **Nothing here is a reason to delay indefinitely.** Four items are genuine
 blockers; the rest are improvements that can follow launch. They are marked.
 
-Updated September 28 after Neal confirmed the Story Room publications. A1 and A5
+Updated October 2 (A7 closed, address fix, email and database items added). Earlier: September 28 after Neal confirmed the Story Room publications. A1 and A5
 are closed — A1 was my error, corrected in place rather than removed.
 
 ---
@@ -66,11 +66,13 @@ All fixed — see the September 28 entry in `FOUNDATION.md`.
 `templates/privacy.mjs` is written for the app. Every production page loads
 Google Analytics 4 (`G-HSDBJDBVCS`) and Mixpanel with `autocapture: true` and
 **`record_sessions_percent: 100`** — full session recording of every visitor.
-The policy mentions neither, and mentions no cookies.
+The policy mentioned neither, and no cookies. (Since fixed — see below.)
 
-It also contradicts itself. "Information We Do Not Collect" opens with *"Your
-name, email address, or contact information"*, three paragraphs after "Email
-Updates" explains that signups store your email address in Supabase.
+It also reads as contradicting itself. "Information We Do Not Collect" opens with
+*"Your name, email address, or contact information"* — true of the **app**, which
+collects no email addresses, but that section does not say it is about the app. The
+**website** stores an email address only when someone joins the list. Fix: one
+sentence saying which is which. Wording needs Neal's approval.
 
 This is the most serious item on the list. The audience is people whose lives are
 affected by someone else's drinking; recording their full sessions without
@@ -109,6 +111,32 @@ node scripts/check-launch-review.mjs   # needs dist/server/index.js
 
 `check-launch-review.mjs` was never run after the About Al-Anon change
 (`HANDOFF.md` §4 asks for it).
+
+### A3a. One live address would have 404'd — fixed
+
+`check:launch-urls` against a fresh production build (October 2) found one live
+address with no redirect: `/february-27-i-cant-do-everything/`. The frozen slug
+file held `…i-cannot-do-everything` for day 58, probably seeded while the title read
+"Cannot" and not updated when it became "I Can't Do Everything". Corrected in
+`data/reading-slugs.json` to match the live address; the "cannot" form was never
+public, so it gets no redirect. After the fix, re-run `check:launch-urls`.
+
+### A3b. Email sending is not connected — open launch item
+
+The sign-up form works and addresses are saved as `pending`. Nothing sends. Still
+needed: a sending service and sender address, a verified sending domain, a
+confirmation message that moves `pending` → `subscribed`, and unsubscribe handling.
+Then replace the footer line "Email updates are coming soon." See
+`editorial/email/setup.md`.
+
+### A3c. Four database tables are writable by anyone — exists on `main` too
+
+`stories`, `steps`, `themes` and `journal_quotes` have row-level security off and
+anon insert/update/delete grants (Supabase advisor, October 2). It is the same
+Supabase project the live site uses, so it is not new with 2.0 and not a website
+change. `js/admin.js` writes to `steps` and `themes` with the public key, so locking
+writes would stop that page saving. Needs a decision on who may write before any
+change. Not a reason to hold the website launch.
 
 ### A4. ~~About Al-Anon~~ — resolved September 29
 
@@ -149,14 +177,11 @@ these two ship as they are, or the filter has to apply to production too. It is 
 editorial call, not a bug to fix silently — but it has to be made before the
 production build, or it gets made by default.
 
-### A7. Learning to Trust is published but suppressed
+### A7. ~~Learning to Trust is published but suppressed~~ — resolved
 
-`retiredPaths` drops `/articles/learning-to-trust/` from the feed entirely,
-because it once published with an empty summary and was asked to be dropped as a
-placeholder. It is now a **2,716-word article by Celina R**, published
-September 28 — the longest piece in the feed. Removing one line restores it.
-Left alone pending Neal's decision, since republishing a contributor's article is
-not a call to make on inference.
+Restored September 28 at Neal's request. Celina R's 2,716-word article is published
+on 2.0, builds, lists in Articles and is in the sitemap. `retiredPaths` is empty.
+Nothing left to do. (Note: it still has no reflection theme pointing at it — see B9.)
 
 ### A8. The launch itself is not wired
 
@@ -502,7 +527,7 @@ Low priority, but decide whether `/topics/` should be `noindex` in the meantime.
 1. **A2** privacy policy — largest exposure, independent of everything else
 2. **A4** choose the About Al-Anon version, publish it, read it for launch
 3. **B1 / B2 / B3** homepage and title/description pass — a day's work, sitewide effect
-4. **A6 / A7** decide whether the three deferred pieces and Learning to Trust ship
+4. **A6** decide whether the deferred pieces ship (One Day at a Time is being written; Gratitude & Hope undecided)
 5. **B6** verify Search Console and baseline rankings **before** the URL moves go live
 6. **A3** fresh production build, run all three checks
 7. **A8** launch
