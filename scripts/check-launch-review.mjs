@@ -23,10 +23,10 @@ for (const [route,html] of Object.entries(fallback)) {
   assert.ok(fallback[pathname] || fs.existsSync(destination),route+' has missing destination/resource '+pathname);
  }
 }
-// Four guides since About Al-Anon was consolidated into Finding Help and retired;
+// Five guides including The Twelve Steps;
 // seven articles since the first-meeting piece, Who Am I Behind the Mask, The
 // Stories We Tell Ourselves and Learning to Trust were published.
-assert.equal((fallback['/guides/'].match(/<li data-cms-path=/g)||[]).length,4);
+assert.equal((fallback['/guides/'].match(/<li data-cms-path=/g)||[]).length,5);
 assert.equal((fallback['/articles/'].match(/<article class="sd-story"/g)||[]).length,7);
 assert.match(fallback['/guides/'],/Finding Help/);
 assert.doesNotMatch(fallback['/guides/'],/about-alanon/);
@@ -94,4 +94,4 @@ try{
  assert.match(await unpublished.text(),/Your First Al-Anon Meeting/);
  const offline=await worker.fetch(new Request('https://review.test/guides/'));assert.equal(offline.status,200);assert.match(await offline.text(),/Finding Help/);
 } finally {globalThis.fetch=originalFetch;globalThis.HTMLRewriter=originalRewriter;}
-console.log('Launch review checks passed: retained routes, four guides / seven articles, consolidated redirects, CMS filtering/outage fallback, canonical preservation, and 366 reflections.');
+console.log('Launch review checks passed: retained routes, five guides / seven articles, consolidated redirects, CMS filtering/outage fallback, canonical preservation, and 366 reflections.');
