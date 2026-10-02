@@ -1391,7 +1391,7 @@ a[target="_blank"]:not(:has(img)):not(.pillar-card):not(.fellow-card)::after,
 .site-newsletter-form{position:relative}
 .site-newsletter-form .newsletter-consent{grid-column:1 / -1;display:flex;flex:0 0 100%;align-items:flex-start;gap:10px;text-align:left;font:14px/1.5 var(--font-ui);color:var(--text-secondary);margin-top:12px}
 .site-newsletter-form .newsletter-consent input{flex:0 0 18px;width:18px;height:18px;min-width:18px;margin:2px 0;padding:0;accent-color:var(--accent)}
-.site-newsletter-form .newsletter-status{grid-column:1 / -1;flex:0 0 100%;margin:6px 0 0;text-align:left}
+.site-newsletter-form .newsletter-status{grid-column:1 / -1;flex:0 0 100%;margin:6px 0 0;text-align:center}
 .newsletter-trap{position:absolute;left:-10000px;width:1px;height:1px;overflow:hidden}
 /* Monthly collections: a reading-room introduction and compact weekly indexes. */
 .page-month-archive .wrap{max-width:1100px}
@@ -1533,3 +1533,12 @@ body .store-badges a.store-badge-link:focus-visible {
   outline-offset: 3px;
   border-radius: 6px;
 }
+
+/* After a successful sign-up the form, its helper text and the privacy note give way to one clear confirmation. */
+.site-newsletter.is-done .site-newsletter-copy,
+.site-newsletter.is-done .site-newsletter-form > :not(.newsletter-status),
+.site-newsletter.is-done .site-newsletter-inner > .site-newsletter-note { display: none; }
+.site-newsletter.is-done .site-newsletter-form { display: block; margin-top: 14px; }
+.site-newsletter.is-done .newsletter-status { margin: 0 auto; max-width: 34em; text-align: center; color: var(--text-primary, #34382e); outline: none; }
+.site-newsletter.is-done .newsletter-done-message { display: block; font: normal 500 clamp(21px, 2vw, 25px)/1.35 var(--font-editorial); letter-spacing: -.2px; }
+.site-newsletter.is-done .newsletter-done-sub { display: block; margin-top: 8px; font: var(--type-small); color: var(--text-muted, #66685d); }
