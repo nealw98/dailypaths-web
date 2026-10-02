@@ -18,9 +18,8 @@ function newsletterInvitation() {
   if (!key || !process.env.SUPABASE_URL) throw new Error('Newsletter requires the public Supabase URL and anon key.');
   return `<section class="site-newsletter" aria-labelledby="site-newsletter-heading">
     <div class="site-newsletter-inner">
-      <p class="site-newsletter-eyebrow">Email updates</p>
-      <h2 id="site-newsletter-heading">A little clarity in your inbox.</h2>
-      <p class="site-newsletter-copy">A short introduction to a daily reflection or new article, with a link to read it here.</p>
+      <h2 id="site-newsletter-heading">Get the Daily Reflection in your inbox.</h2>
+      <p class="site-newsletter-copy">Sign up to receive a daily email with the Daily Reflection and a link to an article worth reading.</p>
       <form class="site-newsletter-form" data-newsletter-form data-endpoint="${escapeAttr(endpoint)}" data-key="${escapeAttr(key)}">
         <label class="sr-only" for="site-newsletter-email">Your email address</label>
         <input id="site-newsletter-email" name="email" type="email" maxlength="254" autocomplete="email" placeholder="Your email address" required>
@@ -144,7 +143,7 @@ export function wrapInLayout({
   <!-- Page structure first, then the shared Daily Paths design system. -->
   ${isHome ? `<link rel="stylesheet" href="${bp('/css/editorial-home.css')}?v=home-header-band-1">` : `<link rel="stylesheet" href="${bp('/css/style.css')}?v=brand-icon-1"><link rel="stylesheet" href="${bp('/css/soft-daylight.css')}?v=brand-icon-1">`}
   <link rel="stylesheet" href="${bp('/css/tokens/fonts.css')}?v=wordmark-loading-1">
-  <link rel="stylesheet" href="${bp('/css/site-system.css')}?v=signup-done-2">
+  <link rel="stylesheet" href="${bp('/css/site-system.css')}?v=signup-done-3">
   <meta name="site-mode" content="${IS_PREVIEW ? 'preview' : 'production'}">
 
   ${structuredData ? (Array.isArray(structuredData) ? structuredData : [structuredData]).map(json => `<!-- Structured Data -->
@@ -240,7 +239,7 @@ ${bodyContent}
   </footer>
 `}
 
-  <script src="${bp('/js/newsletter.js')}?v=signup-done-2" defer></script>
+  <script src="${bp('/js/newsletter.js')}?v=signup-done-3" defer></script>
   <script src="${bp('/js/main.js')}?v=nav-dropdown-1" defer></script>
 ${bodyClass === 'page-reading' ? `  <script src="${bp('/js/calendar.js')}" defer></script>` : ''}
 </body>
