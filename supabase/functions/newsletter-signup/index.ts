@@ -11,6 +11,7 @@ async function sendConfirmation(email:string,token:string,site:string){
  const fonts='https://dailypaths.org/assets/fonts/';
  const css='@font-face{font-family:Newsreader;font-style:normal;font-weight:400 600;src:url('+fonts+'newsreader-normal-latin.woff2) format("woff2");}'
   +'@font-face{font-family:"Cormorant Garamond";font-style:italic;font-weight:500 600;src:url('+fonts+'cormorant-garamond-italic-latin.woff2) format("woff2");}'
+  +'@font-face{font-family:"Daily Paths Wordmark";font-style:italic;font-weight:600;src:url('+fonts+'cormorant-garamond-italic-latin.woff2) format("woff2");}'
   +'@font-face{font-family:Manrope;font-style:normal;font-weight:400 600;src:url('+fonts+'manrope-normal-latin.woff2) format("woff2");}';
  const html='<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Please confirm your Daily Paths email updates</title><style>'+css+'</style></head>'
   +'<body style="margin:0;padding:0;background-color:#faf9f5;">'
@@ -18,7 +19,7 @@ async function sendConfirmation(email:string,token:string,site:string){
   +'<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="max-width:540px;">'
   +'<tr><td style="padding:0 0 18px 0;border-bottom:1px solid #dfdfd3;"><table role="presentation" cellpadding="0" cellspacing="0" border="0"><tr>'
   +'<td valign="middle" style="padding-right:12px;"><img src="https://dailypaths.org/assets/app-icon.png" width="42" height="42" alt="" border="0" style="display:block;border-radius:9px;"></td>'
-  +'<td valign="middle" style="font-family:'+wordmark+';font-style:italic;font-weight:600;font-size:31px;line-height:36px;letter-spacing:-0.35px;color:#4f5b3d;">Daily Paths</td></tr></table></td></tr>'
+  +'<td valign="middle" style="font-family:\'Daily Paths Wordmark\','+wordmark+';font-style:italic;font-weight:600;font-size:28px;line-height:34px;letter-spacing:-0.35px;color:#444e34;">Daily Paths</td></tr></table></td></tr>'
   +'<tr><td style="padding:32px 0 0 0;font-family:'+serif+';font-weight:500;font-size:30px;line-height:35px;letter-spacing:-0.3px;color:#34382e;">Please confirm your email.</td></tr>'
   +'<tr><td style="padding:14px 0 0 0;font-family:'+serif+';font-size:19px;line-height:30px;color:#34382e;">Thanks for signing up. Confirm your address, and we&rsquo;ll send you a short note with each new daily reflection, with a link to read it on the site.</td></tr>'
   +'<tr><td style="padding:26px 0 0 0;"><table role="presentation" cellpadding="0" cellspacing="0" border="0"><tr><td bgcolor="#4f5b3d" style="background-color:#4f5b3d;border-radius:2px;"><a href="'+link+'" style="display:inline-block;padding:14px 24px;font-family:'+sans+';font-size:15px;line-height:20px;font-weight:500;color:#ffffff;text-decoration:none;">Confirm my email address</a></td></tr></table></td></tr>'

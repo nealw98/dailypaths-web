@@ -14,6 +14,7 @@ function buildEmail(r: { title: string; date: string; thought: string; slug: str
   const css = `@font-face{font-family:Newsreader;font-style:normal;font-weight:400 600;src:url(${fonts}newsreader-normal-latin.woff2) format("woff2");}`
     + `@font-face{font-family:Newsreader;font-style:italic;font-weight:400 600;src:url(${fonts}newsreader-italic-latin.woff2) format("woff2");}`
     + `@font-face{font-family:"Cormorant Garamond";font-style:italic;font-weight:500 600;src:url(${fonts}cormorant-garamond-italic-latin.woff2) format("woff2");}`
+    + `@font-face{font-family:"Daily Paths Wordmark";font-style:italic;font-weight:600;src:url(${fonts}cormorant-garamond-italic-latin.woff2) format("woff2");}`
     + `@font-face{font-family:Manrope;font-style:normal;font-weight:400 600;src:url(${fonts}manrope-normal-latin.woff2) format("woff2");}`;
   const html = `<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>${esc(r.title)}</title><style>${css}</style></head>`
     + `<body style="margin:0;padding:0;background-color:#faf9f5;">`
@@ -22,7 +23,7 @@ function buildEmail(r: { title: string; date: string; thought: string; slug: str
     + `<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="max-width:540px;">`
     + `<tr><td style="padding:0 0 18px 0;border-bottom:1px solid #dfdfd3;"><table role="presentation" cellpadding="0" cellspacing="0" border="0"><tr>`
     + `<td valign="middle" style="padding-right:12px;"><img src="${SITE}/assets/app-icon.png" width="42" height="42" alt="" border="0" style="display:block;border-radius:9px;"></td>`
-    + `<td valign="middle" style="font-family:${wordmark};font-style:italic;font-weight:600;font-size:31px;line-height:36px;letter-spacing:-0.35px;color:#4f5b3d;">Daily Paths</td></tr></table></td></tr>`
+    + `<td valign="middle" style="font-family:'Daily Paths Wordmark',${wordmark};font-style:italic;font-weight:600;font-size:28px;line-height:34px;letter-spacing:-0.35px;color:#444e34;">Daily Paths</td></tr></table></td></tr>`
     + `<tr><td style="padding:30px 0 0 0;font-family:${sans};font-weight:600;font-size:12px;line-height:18px;letter-spacing:1.1px;text-transform:uppercase;color:#4f5b3d;">${esc(r.date)}</td></tr>`
     + `<tr><td style="padding:8px 0 0 0;font-family:${wordmark};font-style:italic;font-weight:500;font-size:40px;line-height:42px;letter-spacing:-0.3px;color:#34382e;">${esc(r.title)}</td></tr>`
     + `<tr><td style="padding:22px 0 0 0;font-family:${serif};font-style:italic;font-size:21px;line-height:32px;color:#34382e;">&ldquo;${esc(r.thought)}&rdquo;</td></tr>`
