@@ -5,6 +5,7 @@
 const SITE = 'https://dailypaths.org';
 const TZ = 'America/New_York';
 const STORY_ROOM = 'https://daily-paths-story-room.nealw98.chatgpt.site';
+const PREVIEW = 'https://daily-paths-soft-daylight.nealw98.chatgpt.site';
 const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
 const esc = (s: string) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 
@@ -30,13 +31,16 @@ function buildEmail(r: { title: string; date: string; thought: string; slug: str
   const link = `${SITE}/${r.slug}/`;
   const featuredLink = featured ? `${SITE}${featured.path}` : '';
   const featuredCta = featured ? (featured.kind === 'guide' ? 'Read the guide' : 'Read the article') : '';
-  const serif = "Newsreader,Georgia,'Times New Roman',serif", wordmark = "'Cormorant Garamond',Georgia,'Times New Roman',serif", sans = "Manrope,Helvetica,Arial,sans-serif";
-  const fonts = `${SITE}/assets/fonts/`;
-  const css = `@font-face{font-family:Newsreader;font-style:normal;font-weight:400 600;src:url(${fonts}newsreader-normal-latin.woff2) format("woff2");}`
-    + `@font-face{font-family:Newsreader;font-style:italic;font-weight:400 600;src:url(${fonts}newsreader-italic-latin.woff2) format("woff2");}`
-    + `@font-face{font-family:"Cormorant Garamond";font-style:italic;font-weight:500 600;src:url(${fonts}cormorant-garamond-italic-latin.woff2) format("woff2");}`
-    + `@font-face{font-family:"Daily Paths Wordmark";font-style:italic;font-weight:600;src:url(${fonts}cormorant-garamond-italic-latin.woff2) format("woff2");}`
-    + `@font-face{font-family:Manrope;font-style:normal;font-weight:400 600;src:url(${fonts}manrope-normal-latin.woff2) format("woff2");}`;
+  const serif = "Newsreader,Georgia,'Times New Roman',serif", wordmark = "'Cormorant Garamond',Georgia,'Times New Roman',serif", sans = "Manrope,'Avenir Next','Segoe UI',Helvetica,Arial,sans-serif";
+  // The site's own font files. The live site is tried first; until the new site launches the preview serves the same files.
+  const face = (family: string, style: string, weight: string, file: string) =>
+    `@font-face{font-family:${family};font-style:${style};font-weight:${weight};src:url(${SITE}/assets/fonts/${file}) format("woff2"),url(${PREVIEW}/assets/fonts/${file}) format("woff2");}`;
+  const css = face('Newsreader', 'normal', '400 600', 'newsreader-normal-latin.woff2')
+    + face('Newsreader', 'italic', '400 600', 'newsreader-italic-latin.woff2')
+    + face('"Cormorant Garamond"', 'italic', '500 600', 'cormorant-garamond-italic-latin.woff2')
+    + face('"Daily Paths Wordmark"', 'italic', '600', 'cormorant-garamond-italic-latin.woff2')
+    + face('Manrope', 'normal', '400 600', 'manrope-normal-latin.woff2');
+  const eyebrow = `font-family:${sans};font-weight:600;font-size:12px;line-height:18px;letter-spacing:1.1px;text-transform:uppercase;color:#444e34;`;
   const html = `<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>${esc(r.title)}</title><style>${css}</style></head>`
     + `<body style="margin:0;padding:0;background-color:#faf9f5;">`
     + `<div style="display:none;max-height:0;overflow:hidden;opacity:0;color:#faf9f5;">${esc(r.thought)}</div>`
@@ -45,21 +49,21 @@ function buildEmail(r: { title: string; date: string; thought: string; slug: str
     + `<tr><td style="padding:0 0 18px 0;border-bottom:1px solid #dfdfd3;"><table role="presentation" cellpadding="0" cellspacing="0" border="0"><tr>`
     + `<td valign="middle" style="padding-right:12px;"><img src="${SITE}/assets/app-icon.png" width="42" height="42" alt="" border="0" style="display:block;border-radius:9px;"></td>`
     + `<td valign="middle" style="font-family:'Daily Paths Wordmark',${wordmark};font-style:italic;font-weight:600;font-size:28px;line-height:34px;letter-spacing:-0.35px;color:#444e34;">Daily Paths</td></tr></table></td></tr>`
-    + `<tr><td style="padding:30px 0 0 0;font-family:${sans};font-weight:600;font-size:12px;line-height:18px;letter-spacing:1.1px;text-transform:uppercase;color:#4f5b3d;">${esc(r.date)}</td></tr>`
+    + `<tr><td style="padding:30px 0 0 0;${eyebrow}">${esc(r.date)}</td></tr>`
     + `<tr><td style="padding:8px 0 0 0;font-family:${wordmark};font-style:italic;font-weight:500;font-size:40px;line-height:42px;letter-spacing:-0.3px;color:#34382e;">${esc(r.title)}</td></tr>`
-    + `<tr><td style="padding:24px 0 0 0;font-family:${sans};font-weight:600;font-size:12px;line-height:18px;letter-spacing:1.1px;text-transform:uppercase;color:#66685d;">Thought for the day</td></tr>`
+    + `<tr><td style="padding:24px 0 0 0;${eyebrow}">Thought for the day</td></tr>`
     + `<tr><td style="padding:6px 0 0 0;font-family:${serif};font-style:italic;font-size:21px;line-height:32px;color:#34382e;">&ldquo;${esc(r.thought)}&rdquo;</td></tr>`
     + (excerpt ? `<tr><td style="padding:22px 0 0 0;font-family:${serif};font-size:18px;line-height:29px;color:#34382e;">${esc(excerpt)}</td></tr>` : '')
-    + `<tr><td style="padding:28px 0 0 0;"><table role="presentation" cellpadding="0" cellspacing="0" border="0"><tr><td bgcolor="#4f5b3d" style="background-color:#4f5b3d;border-radius:2px;"><a href="${link}" style="display:inline-block;padding:14px 24px;font-family:${sans};font-size:15px;line-height:20px;font-weight:500;color:#ffffff;text-decoration:none;">Read today&rsquo;s reflection</a></td></tr></table></td></tr>`
+    + `<tr><td style="padding:28px 0 0 0;"><table role="presentation" cellpadding="0" cellspacing="0" border="0"><tr><td bgcolor="#444e34" style="background-color:#444e34;border-radius:2px;"><a href="${link}" style="display:inline-block;padding:14px 24px;font-family:${sans};font-size:15px;line-height:20px;font-weight:500;color:#ffffff;text-decoration:none;">Read today&rsquo;s reflection</a></td></tr></table></td></tr>`
     + (featured ? `<tr><td style="padding:40px 0 0 0;"><table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="border-top:1px solid #dfdfd3;padding-top:24px;">`
-      + `<div style="font-family:${sans};font-weight:600;font-size:12px;line-height:18px;letter-spacing:1.1px;text-transform:uppercase;color:#4f5b3d;">Worth reading</div>`
+      + `<div style="${eyebrow}">Worth reading</div>`
       + `<div style="padding-top:8px;font-family:${serif};font-weight:500;font-size:24px;line-height:30px;letter-spacing:-0.2px;color:#34382e;">${esc(featured.title)}</div>`
-      + `<div style="padding-top:8px;font-family:${serif};font-size:17px;line-height:27px;color:#34382e;">${esc(featured.description)}</div>`
-      + `<div style="padding-top:14px;font-family:${sans};font-size:15px;line-height:22px;font-weight:500;"><a href="${featuredLink}" style="color:#4f5b3d;text-decoration:underline;">${featuredCta}</a></div>`
+      + `<div style="padding-top:8px;font-family:${serif};font-size:17px;line-height:27px;color:#66685d;">${esc(featured.description)}</div>`
+      + `<div style="padding-top:14px;font-family:${sans};font-size:15px;line-height:22px;font-weight:500;"><a href="${featuredLink}" style="color:#444e34;text-decoration:underline;">${featuredCta}</a></div>`
       + `</td></tr></table></td></tr>` : '')
-    + `<tr><td style="padding:36px 0 0 0;"><table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="border-top:1px solid #dfdfd3;padding-top:16px;font-family:${sans};font-size:13px;line-height:21px;color:#66685d;">`
+    + `<tr><td style="padding:36px 0 0 0;"><table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="border-top:1px solid #dfdfd3;padding-top:16px;font-family:${sans};font-size:12px;line-height:19px;letter-spacing:0.15px;color:#66685d;">`
     + `You&rsquo;re receiving this because you signed up for Daily Paths email updates.<br>`
-    + `<a href="${unsubscribeUrl}" style="color:#4f5b3d;text-decoration:underline;">Unsubscribe</a> &nbsp;·&nbsp; <a href="${SITE}/privacy/" style="color:#4f5b3d;text-decoration:underline;">Privacy</a>`
+    + `<a href="${unsubscribeUrl}" style="color:#444e34;text-decoration:underline;">Unsubscribe</a> &nbsp;·&nbsp; <a href="${SITE}/privacy/" style="color:#444e34;text-decoration:underline;">Privacy</a>`
     + `</td></tr></table></td></tr></table></td></tr></table></body></html>`;
   const text = `${r.date}\n\n${r.title}\n\nThought for the day:\n"${r.thought}"\n\n${excerpt ? excerpt + '\n\n' : ''}Read today's reflection: ${link}\n\n${featured ? `Worth reading\n${featured.title}\n${featured.description}\n${featuredCta}: ${featuredLink}\n\n` : ''}--\nYou're receiving this because you signed up for Daily Paths email updates.\nUnsubscribe: ${unsubscribeUrl}\nPrivacy: ${SITE}/privacy/`;
   return { subject: r.title, html, text };
