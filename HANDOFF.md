@@ -1,5 +1,12 @@
 # Structural work on `2.0` — what changed, and what to leave alone
 
+## October 2 — February 27 keeps its live address
+
+Neal confirmed `/february-27-i-cant-do-everything/` is the correct address.
+The preview-only `cannot` variant is dropped entirely, with no redirect and no
+entry in the frozen slug map's past list. Existing CMS links are normalized to
+`cant` during composition. Do not recreate the `cannot` page or a redirect.
+
 ## October 2 — Community & Fellowship retired
 
 Neal confirmed that the inherited Community & Fellowship page is removed.
