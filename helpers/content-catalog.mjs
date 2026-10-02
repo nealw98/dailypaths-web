@@ -2,10 +2,10 @@ import { FIRST_MEETING } from './launch-review.mjs';
 // Navigation and presentation are independent of the established content URLs.
 // These are existing source pages; editorial expansion is tracked in FOUNDATION.md.
 export const GUIDES = [
-  { title: 'The Twelve Steps', path: '/guides/twelve-steps/', image: 'guides/twelve-steps/stone-steps-hero.webp', alt: 'Worn stone steps rise through a leafy garden toward a sunlit opening.', description: 'Key takeaways and core principles for each Step, with links to explore each Step and its daily reflections.' },
   { title: 'Surrender', path: '/guides/surrender/', description: 'Recognizing powerlessness, admitting unmanageability, and practicing the Three C’s.' },
   { title: 'Detachment', path: '/guides/detachment-with-love/', description: 'What it means to care without getting pulled into someone else’s choices.' },
   { title: 'Boundaries', path: '/guides/boundaries/', description: 'Recognizing your limits and making room for your own needs.' },
+  { title: 'The Twelve Steps', path: '/guides/twelve-steps/', image: 'guides/twelve-steps/stone-steps-hero.webp', alt: 'Worn stone steps rise through a leafy garden toward a sunlit opening.', description: 'Key takeaways and core principles for each Step, with links to explore each Step and its daily reflections.' },
   // About Al-Anon and About the Al-Anon Program were consolidated into Finding
   // Help on September 29 and retired. Both addresses forward here.
   { title: 'Finding Help', path: '/guides/finding-help/', description: 'Recognizing the effects of someone else’s drinking, finding a meeting, and what the program asks of you.' },
