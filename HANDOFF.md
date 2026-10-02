@@ -5,11 +5,10 @@
 `/app/` is the new destination for Get the app in desktop and mobile navigation.
 It replaces the temporary store badges in the header. Store badges remain in
 app invitations and on the new page, with Explore the app linking to the overview.
-`templates/app.mjs` and `css/app.css` own the page. Five intentionally labeled
-portrait placeholders request Today’s reading, Journal, Spot Check, Nightly
-Review, and Speaker Library captures. Replace these with Neal’s supplied real
-screenshots before launch; do not invent app UI. Use demonstration writing in
-captures. Pricing is left to the current store listings rather than guessed.
+`templates/app.mjs` and `css/app.css` own the page. Five real screenshots supplied by Neal on October 2 now show Today’s reading,
+Journal, Spot Check, Nightly Review, and Speaker Library. The full, uncropped PNGs
+live in `assets/Screenshots/app/`; no app UI or journal text was fabricated.
+Upload instructions have been removed. Pricing is left to the store listings.
 
 ## October 2 — February 27 keeps its live address
 

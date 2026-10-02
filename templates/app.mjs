@@ -2,18 +2,20 @@ import { wrapInLayout } from './base.mjs';
 import { bp } from '../helpers/config.mjs';
 import { storeBadges } from './ui.mjs';
 
-// Replace each labeled placeholder with a real, uncropped portrait app capture.
-// Keep screenshot requests visible until Neal supplies the corresponding asset.
-const screen = (number, title, instruction) => `<figure class="app-screen" aria-label="Screenshot ${number}: ${title}">
-  <div class="app-screen-placeholder">
-    <span class="app-screen-number">${number}</span>
-    <p class="app-screen-label">Screenshot to upload</p>
-    <h3>${title}</h3>
-    <p>${instruction}</p>
-    <span class="app-screen-format">Portrait · full screen · no added frame</span>
-  </div>
-  <figcaption>Screenshot ${number} · ${title}</figcaption>
-</figure>`;
+const screens = {
+  '01': ['daily-reading', 'A daily reflection with its date, title, and reading text'],
+  '02': ['journal', 'The journal screen with space to write a personal entry'],
+  '03': ['spot-check', 'Spot Check prompts for what happened and how you feel'],
+  '04': ['nightly-review', 'Nightly Review questions for reflecting on the day'],
+  '05': ['speaker-library', 'Speaker recordings with listening and download controls'],
+};
+const screen = (number, title) => {
+  const [file, alt] = screens[number];
+  return `<figure class="app-screen">
+    <img class="app-screen-image" src="${bp(`/assets/Screenshots/app/${file}.png`)}" alt="${alt}" width="944" height="2048" loading="${number === '01' ? 'eager' : 'lazy'}" decoding="async">
+    <figcaption>${title}</figcaption>
+  </figure>`;
+};
 
 export function renderAppPage() {
   const bodyContent = `<div class="app-page">
@@ -27,7 +29,7 @@ export function renderAppPage() {
         <p class="app-store-note">Available for iPhone and Android. See your store for current pricing.</p>
         <a class="app-text-link" href="#inside-the-app">Take a look inside</a>
       </div>
-      ${screen('01', 'Today’s reading', 'Open a daily reflection. Show its title, date, and the beginning of the reading, with the app’s navigation visible.')}
+      ${screen('01', 'Today’s reading')}
     </section>
 
     <section class="app-opening app-measure" id="inside-the-app" aria-labelledby="app-opening-title">
@@ -37,7 +39,7 @@ export function renderAppPage() {
     </section>
 
     <section class="app-feature app-measure" aria-labelledby="app-notebook-title">
-      ${screen('02', 'Journal', 'Open a journal entry with a short sample about something a reading brought to mind. Use demonstration text rather than a personal entry. Keep the keyboard closed.')}
+      ${screen('02', 'Journal')}
       <div class="app-feature-copy">
         <p class="app-eyebrow">Make room for your own thoughts</p>
         <h2 id="app-notebook-title">Put it into words.</h2>
@@ -51,15 +53,15 @@ export function renderAppPage() {
       <div class="app-measure">
         <div class="app-practice-intro"><p class="app-eyebrow">In the middle of living</p><h2 id="app-practice-title">Pause now.<br>Reflect later.</h2><p>Some moments need a pause before you respond. Others make more sense when you look back at the end of the day.</p></div>
         <div class="app-practice-pair">
-          <div class="app-practice-item"><h3>When something happens</h3><p>Use Spot Check to look at what happened, what you’re feeling, and your part in it.</p>${screen('03', 'Spot Check', 'Show the Spot Check questions and the beginning of a brief demonstration response. Include the screen title; keep the keyboard closed.')}</div>
-          <div class="app-practice-item"><h3>When the day is done</h3><p>Use Nightly Review to reflect on difficult moments and recognize what you did well.</p>${screen('04', 'Nightly Review', 'Show the Nightly Review title and its first few questions. Leave answers empty or use demonstration text. Keep the keyboard closed.')}</div>
+          <div class="app-practice-item"><h3>When something happens</h3><p>Use Spot Check to look at what happened, what you’re feeling, and your part in it.</p>${screen('03', 'Spot Check')}</div>
+          <div class="app-practice-item"><h3>When the day is done</h3><p>Use Nightly Review to reflect on difficult moments and recognize what you did well.</p>${screen('04', 'Nightly Review')}</div>
         </div>
       </div>
     </section>
 
     <section class="app-feature app-feature--listening app-measure" aria-labelledby="app-listen-title">
       <div class="app-feature-copy"><p class="app-eyebrow">Hear another person’s experience</p><h2 id="app-listen-title">Take the fellowship<br>with you.</h2><p>Listen to Al-Anon speakers sharing their experience in recovery. Stream a recording or download one to listen to later.</p><p>Keep familiar prayers close, and add your own. A few words from someone else—or words you’ve made your own—can help you return to what matters.</p></div>
-      ${screen('05', 'Speaker Library', 'Show the library with several recording titles and its listening or download controls. Use the library screen rather than a phone’s audio lock screen.')}
+      ${screen('05', 'Speaker Library')}
     </section>
 
     <section class="app-practical app-measure" aria-labelledby="app-practical-title">
@@ -77,5 +79,5 @@ export function renderAppPage() {
       <a class="app-text-link" href="${bp('/support/')}">Questions about the app?</a>
     </section>
   </div>`;
-  return wrapInLayout({ title: 'The Daily Paths App — A Daily Recovery Practice', description: 'Bring Al-Anon principles into your day with Daily Paths: daily reflections, a journal, gratitude, Spot Check, Nightly Review, and speaker recordings.', canonicalPath: '/app/', bodyClass: 'page-app', bodyContent }).replace('</head>', `<link rel="stylesheet" href="${bp('/css/app.css')}?v=app-page-1">\n</head>`);
+  return wrapInLayout({ title: 'The Daily Paths App — A Daily Recovery Practice', description: 'Bring Al-Anon principles into your day with Daily Paths: daily reflections, a journal, gratitude, Spot Check, Nightly Review, and speaker recordings.', canonicalPath: '/app/', bodyClass: 'page-app', bodyContent }).replace('</head>', `<link rel="stylesheet" href="${bp('/css/app.css')}?v=app-page-2">\n</head>`);
 }
