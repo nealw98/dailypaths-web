@@ -29,7 +29,7 @@ function newsletterInvitation() {
         <label class="newsletter-consent"><input name="consent" type="checkbox" required> <span>Yes, send me Daily Paths reflections and article updates.</span></label>
         <p class="site-newsletter-note newsletter-status" role="status" aria-live="polite"></p>
       </form>
-      <p class="site-newsletter-note">Email updates are coming soon. <a href="${bp('/privacy/')}">Privacy</a> · Unsubscribe at any time once emails begin.</p>
+      <p class="site-newsletter-note">We&rsquo;ll send a link to confirm your address. Unsubscribe at any time. <a href="${bp('/privacy/')}">Privacy</a></p>
       <noscript><p>Please enable JavaScript to join the email list.</p></noscript>
     </div>
   </section>`;
