@@ -35,6 +35,8 @@ export function applyEditorialPolicy(html, pathname, records = inserts) {
    return open+home+links+close;
   });
  }
+ // Restore the live February 27 address in older CMS links, without a redirect.
+ html=html.replaceAll('/february-27-i-cannot-do-everything/','/february-27-i-cant-do-everything/');
  html=html.replaceAll('/september-25-vision-and-improvement/','/september-25/').replaceAll('/october-31-the-intimacy-of-transparency/','/october-31/');
  const authorPaths=['/articles/voices-from-the-grave/','/articles/the-line-i-kept-moving/'];
  const description='Finding help when someone else’s drinking is affecting your life.';
