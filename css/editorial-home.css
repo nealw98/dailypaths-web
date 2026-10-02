@@ -49,3 +49,6 @@
    base rules above, which sit after the older media blocks in this file. */
 @media(max-width:780px){.ed-collection-intro{grid-template-columns:1fr;gap:18px}.ed-start-inner{grid-template-columns:1fr;gap:18px}.ed-week{grid-template-columns:1fr 1fr;gap:0 26px}}
 @media(max-width:520px){.ed-collection{padding-block:30px}.ed-collection-intro{gap:14px}.ed-collection-copy p{font-size:16px}.ed-start-copy p{font-size:16px}.ed-week{grid-template-columns:1fr;gap:0}.ed-day{padding:15px 0}.ed-day-title{font-size:20px}.ed-collection-links{font-size:15px;gap:8px 12px}}
+
+/* Match the visible artwork heights of the two store badges. */
+.ed-app .store-badges{display:flex;align-items:center;flex-wrap:wrap;gap:12px}.ed-app .store-badge-link{display:block;flex-shrink:0;line-height:0}.ed-app .store-badge{display:block;width:auto;max-width:none}.ed-app .store-badge--ios{height:44px}.ed-app .store-badge--play{height:65.48px;margin:-10.74px}
