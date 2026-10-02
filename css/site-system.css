@@ -1511,3 +1511,25 @@ a[target="_blank"]:not(:has(img)):not(.pillar-card):not(.fellow-card)::after,
 /* Twelve Steps guide: keep the photograph separate from the title and reading. */
 .ts-hero { margin: 0 auto 40px; }
 .ts-hero .photo-hero-img { display: block; position: static; width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; }
+
+/* Keep the full store artwork inside its link, including Google's clearspace.
+   The extra height gives both badges a comfortable, non-overlapping tap target. */
+body .store-badges a.store-badge-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 66px;
+  padding: 0 6px;
+  flex-shrink: 0;
+  line-height: 0;
+  touch-action: manipulation;
+}
+body .store-badges a.store-badge-link > .store-badge {
+  margin: 0;
+  pointer-events: none;
+}
+body .store-badges a.store-badge-link:focus-visible {
+  outline: 2px solid var(--accent-strong, #444e34);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
