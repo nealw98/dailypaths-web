@@ -30,7 +30,7 @@ Done October 2: migration `20261002180000_newsletter_tokens.sql` applied; `newsl
 - **Preview what tomorrow's email looks like** without sending: call the function with `{"mode":"preview"}`. It reads today's reading by New York date from `https://dailypaths.org/readings-manifest.json`, so it follows the live site.
 
 - **Unsubscribe:** every email has an Unsubscribe link in the footer (to `/email/unsubscribe/?token=…`) and the one-click `List-Unsubscribe` headers that Gmail and Apple Mail turn into their own Unsubscribe button.
-- **Schedule:** a database job (`cron` job `newsletter-daily`) calls the function at 11:00 UTC every day (7:00 AM EDT / 6:00 AM EST).
+- **Schedule:** 5:00 AM Eastern every day, all year. The database job (`cron` job `newsletter-daily`) runs at both 09:00 and 10:00 UTC and marks its call `scheduled`; the function sends only when it is 5 AM in New York and skips the other run, so daylight saving needs no changes. To change the hour, change `SEND_HOUR` in `supabase/functions/newsletter-daily/index.ts` (and redeploy). A manual send (no `scheduled` flag) ignores the clock.
 - **Switch:** nothing is sent until `public.newsletter_config` row `send_enabled` is `true` (it is `false`). To go live: `update public.newsletter_config set value='true' where key='send_enabled';` To stop: set it back to `false`.
 - **Once per day:** a row in `public.newsletter_sends` is claimed before sending, so the same day can never be sent twice. If every batch fails the row is released so it can be retried.
 - **Secret:** the function is called with a random secret kept only in `public.newsletter_config` (`send_secret`) — nobody has to create or paste one. Calls without it are refused.

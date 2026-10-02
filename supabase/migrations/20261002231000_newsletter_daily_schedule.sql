@@ -1,4 +1,4 @@
--- Runs every day at 11:00 UTC (7:00 AM EDT / 6:00 AM EST). Nothing is sent until
+-- SUPERSEDED by 20261003010000_newsletter_daily_schedule_5am_eastern.sql (5:00 AM Eastern). Originally ran at 11:00 UTC. Nothing is sent until
 -- public.newsletter_config 'send_enabled' is set to 'true'; until then each run is refused.
 -- To change the time, re-run cron.schedule with the same job name and a new cron expression.
 select cron.schedule(

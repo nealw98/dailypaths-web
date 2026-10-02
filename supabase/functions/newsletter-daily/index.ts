@@ -4,6 +4,8 @@
 // {"mode":"send"} sends to every subscribed address, once per day, and only when newsletter_config.send_enabled is 'true'.
 const SITE = 'https://dailypaths.org';
 const TZ = 'America/New_York';
+// The scheduled run sends only when it is this hour in New York, so the time stays 5:00 AM Eastern through daylight saving.
+const SEND_HOUR = 5;
 const STORY_ROOM = 'https://daily-paths-story-room.nealw98.chatgpt.site';
 const PREVIEW = 'https://daily-paths-soft-daylight.nealw98.chatgpt.site';
 const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
@@ -86,6 +88,10 @@ Deno.serve(async (req: Request) => {
     const body = await req.json().catch(() => ({}));
     const mode = String(body?.mode || 'send');
     if (!['preview', 'test', 'send'].includes(mode)) return json(400, { error: 'Unknown mode.' });
+    // The database schedule fires at both 09:00 and 10:00 UTC and marks its call "scheduled"; only the one that lands on 5 AM in New York sends.
+    // A manual send (no "scheduled" flag) is never held back by the clock.
+    const nyHour = Number(new Intl.DateTimeFormat('en-US', { timeZone: TZ, hour: '2-digit', hourCycle: 'h23' }).format(new Date()));
+    if (mode === 'send' && body?.scheduled === true && nyHour !== SEND_HOUR) return json(200, { skipped: `Not ${SEND_HOUR}:00 AM in New York (it is hour ${nyHour}).` });
 
     // Today's reading, by calendar date in New York, from the published manifest.
     const today = new Date();
