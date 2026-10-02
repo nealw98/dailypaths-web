@@ -6,18 +6,24 @@ const messageText=()=>sendingConfigured()?"Almost done. Check your email and tap
 async function sendConfirmation(email:string,token:string,site:string){
  const link=site+'/email/confirm/?token='+token;
  const text='Thanks for signing up for Daily Paths.\n\nPlease confirm your email address by opening this link:\n'+link+'\n\nIf you did not sign up, you can ignore this message and nothing more will be sent.\n\nDaily Paths';
- const font="Georgia,'Times New Roman',serif", sans="Helvetica,Arial,sans-serif";
- const html='<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Please confirm your Daily Paths email updates</title></head>'
-  +'<body style="margin:0;padding:0;background-color:#f4f1ea;">'
-  +'<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" bgcolor="#f4f1ea"><tr><td align="center" style="padding:32px 16px;">'
-  +'<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="max-width:520px;background-color:#ffffff;border-radius:8px;">'
-  +'<tr><td align="center" style="padding:32px 32px 8px 32px;"><img src="https://dailypaths.org/assets/app-icon.png" width="64" height="64" alt="Daily Paths" border="0" style="display:block;border-radius:14px;"></td></tr>'
-  +'<tr><td align="center" style="padding:8px 32px 0 32px;font-family:'+font+';font-style:italic;font-size:26px;line-height:32px;color:#1b4d54;">Daily Paths</td></tr>'
-  +'<tr><td style="padding:24px 32px 0 32px;font-family:'+font+';font-size:20px;line-height:28px;color:#2b2b2b;">Thanks for signing up.</td></tr>'
-  +'<tr><td style="padding:12px 32px 0 32px;font-family:'+sans+';font-size:16px;line-height:25px;color:#444444;">Please confirm your email address, and we&rsquo;ll send you a short note with each new daily reflection.</td></tr>'
-  +'<tr><td align="center" style="padding:28px 32px 8px 32px;"><table role="presentation" cellpadding="0" cellspacing="0" border="0"><tr><td align="center" bgcolor="#1b4d54" style="background-color:#1b4d54;border-radius:6px;"><a href="'+link+'" style="display:inline-block;padding:14px 28px;font-family:'+sans+';font-size:16px;line-height:20px;font-weight:bold;color:#ffffff;text-decoration:none;">Confirm my email address</a></td></tr></table></td></tr>'
-  +'<tr><td style="padding:20px 32px 0 32px;font-family:'+sans+';font-size:13px;line-height:20px;color:#777777;">Button not working? Copy this link into your browser:<br><a href="'+link+'" style="color:#1b4d54;word-break:break-all;">'+link+'</a></td></tr>'
-  +'<tr><td style="padding:24px 32px 32px 32px;font-family:'+sans+';font-size:13px;line-height:20px;color:#777777;border-top-width:0;">If you didn&rsquo;t sign up, you can ignore this message. Nothing more will be sent.</td></tr>'
+ // Matches the website: warm-white paper, olive accent, Newsreader / Cormorant / Manrope (web fonts load in Apple Mail; others use the fallbacks).
+ const serif="Newsreader,Georgia,'Times New Roman',serif", wordmark="'Cormorant Garamond',Georgia,'Times New Roman',serif", sans="Manrope,Helvetica,Arial,sans-serif";
+ const fonts='https://dailypaths.org/assets/fonts/';
+ const css='@font-face{font-family:Newsreader;font-style:normal;font-weight:400 600;src:url('+fonts+'newsreader-normal-latin.woff2) format("woff2");}'
+  +'@font-face{font-family:"Cormorant Garamond";font-style:italic;font-weight:500 600;src:url('+fonts+'cormorant-garamond-italic-latin.woff2) format("woff2");}'
+  +'@font-face{font-family:Manrope;font-style:normal;font-weight:400 600;src:url('+fonts+'manrope-normal-latin.woff2) format("woff2");}';
+ const html='<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Please confirm your Daily Paths email updates</title><style>'+css+'</style></head>'
+  +'<body style="margin:0;padding:0;background-color:#faf9f5;">'
+  +'<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" bgcolor="#faf9f5"><tr><td align="center" style="padding:32px 20px 40px 20px;">'
+  +'<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="max-width:540px;">'
+  +'<tr><td style="padding:0 0 18px 0;border-bottom:1px solid #dfdfd3;"><table role="presentation" cellpadding="0" cellspacing="0" border="0"><tr>'
+  +'<td valign="middle" style="padding-right:12px;"><img src="https://dailypaths.org/assets/app-icon.png" width="42" height="42" alt="" border="0" style="display:block;border-radius:9px;"></td>'
+  +'<td valign="middle" style="font-family:'+wordmark+';font-style:italic;font-weight:600;font-size:31px;line-height:36px;letter-spacing:-0.35px;color:#4f5b3d;">Daily Paths</td></tr></table></td></tr>'
+  +'<tr><td style="padding:32px 0 0 0;font-family:'+serif+';font-weight:500;font-size:30px;line-height:35px;letter-spacing:-0.3px;color:#34382e;">Please confirm your email.</td></tr>'
+  +'<tr><td style="padding:14px 0 0 0;font-family:'+serif+';font-size:19px;line-height:30px;color:#34382e;">Thanks for signing up. Confirm your address, and we&rsquo;ll send you a short note with each new daily reflection, with a link to read it on the site.</td></tr>'
+  +'<tr><td style="padding:26px 0 0 0;"><table role="presentation" cellpadding="0" cellspacing="0" border="0"><tr><td bgcolor="#4f5b3d" style="background-color:#4f5b3d;border-radius:2px;"><a href="'+link+'" style="display:inline-block;padding:14px 24px;font-family:'+sans+';font-size:15px;line-height:20px;font-weight:500;color:#ffffff;text-decoration:none;">Confirm my email address</a></td></tr></table></td></tr>'
+  +'<tr><td style="padding:26px 0 0 0;font-family:'+sans+';font-size:13px;line-height:21px;color:#66685d;">If the button doesn&rsquo;t work, copy this link into your browser:<br><a href="'+link+'" style="color:#4f5b3d;text-decoration:underline;word-break:break-all;">'+link+'</a></td></tr>'
+  +'<tr><td style="padding:28px 0 0 0;"><table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="border-top:1px solid #dfdfd3;padding-top:16px;font-family:'+sans+';font-size:13px;line-height:21px;color:#66685d;">If you didn&rsquo;t sign up, you can ignore this message. Nothing more will be sent.</td></tr></table></td></tr>'
   +'</table></td></tr></table></body></html>';
  const r=await fetch('https://api.resend.com/emails',{method:'POST',headers:{Authorization:'Bearer '+resendKey(),'Content-Type':'application/json'},body:JSON.stringify({from:fromAddress(),reply_to:[Deno.env.get('NEWSLETTER_REPLY_TO')||'support@dailypaths.org'],to:[email],subject:'Please confirm your Daily Paths email updates',text,html})});
  return r.ok;
