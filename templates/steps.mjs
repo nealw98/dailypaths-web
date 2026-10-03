@@ -313,7 +313,6 @@ export function renderReflectionsIndexPage(todayReading, allReadings = []) {
             <span class="step-card-numeral">${step.number}</span>
             <span>
               <span class="step-card-keyword">${step.principle}</span>
-              <span class="step-card-hook">${STEP_HOOKS[step.number] || ''}</span>
               <span class="step-card-cta">View reflections</span>
             </span>
           </a>`).join('');
