@@ -30,11 +30,9 @@ assert.equal((fallback['/guides/'].match(/<li data-cms-path=/g)||[]).length,5);
 assert.equal((fallback['/articles/'].match(/<article class="sd-story"/g)||[]).length,7);
 assert.match(fallback['/guides/'],/Finding Help/);
 assert.doesNotMatch(fallback['/guides/'],/about-alanon/);
-// Both member stories carry Lance W's and Celina R's names, and neither carries
-// the superseded Jeff J. attribution.
+// Articles hub eyebrows were removed at Neal's request; article bylines remain on detail pages.
 assert.doesNotMatch(fallback['/articles/'],/Jeff J\./);
-assert.match(fallback['/articles/'],/Personal Story · Lance W/);
-assert.match(fallback['/articles/'],/Personal Story · Celina R/);
+assert.doesNotMatch(fallback['/articles/'],/class="sd-kicker"/);
 assert.doesNotMatch(fallback['/articles/the-line-i-kept-moving/'],/Coming soon/);
 const canonical=route=>fallback[route].match(/<link rel="canonical" href="([^"]+)"/)[1];
 for(const route of paths) assert.equal(canonical(route),'https://daily-paths-soft-daylight.nealw98.chatgpt.site'+route);
