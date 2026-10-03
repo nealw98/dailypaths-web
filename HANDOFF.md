@@ -419,3 +419,20 @@ shared part of the footer must stay current on saved pages, extend `syncNewslett
 builds do not depend on the Story Room), and rewrites the pages. Do not hand-edit those files. The Story Room's
 `insert-view.js` is now `js/story-insert-view.js`. The preview Worker still composes Story Room pages at request time
 and is unchanged.
+
+## October 3 — Story Room publication routes
+
+The public Story Room feed now carries `routes` and `route_managed` metadata. New
+publications use their approved canonical address; old aliases are redirects.
+Do not remap route-managed publications through the older linkedStories policy.
+The preview Worker consults routes before serving pages and updates the hubs and
+sitemap at request time. Existing Step URLs are CMS-capable while their essays
+remain in the Twelve Steps collection rather than flooding the Articles hub.
+
+The static build caches the same route metadata and applies redirects, link rewrites,
+listing changes and sitemap removals. No production deployment was performed.
+`check-cms-routing.mjs` uses the Story Room checkout's Worker test runtime via
+CMS_TEST_ROOT and exercises actual HTML rewriting, redirects and sitemap updates.
+When packaging, sitemap and individual articles/guides/topics/steps/themes belong
+to the Worker; their built pages are retained in its fallback map. For static
+sitemap checks, reconstruct the fallback pages into a temporary check directory.

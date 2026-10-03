@@ -12,7 +12,7 @@ export const PREVIEW_ORIGIN='https://daily-paths-soft-daylight.nealw98.chatgpt.s
 // Help and retired. Neither /about-alanon/ nor /guides/about-alanon/ is a place
 // CMS content can land now; both only forward to /guides/finding-help/. The root
 // path never matched this pattern, which is what kept the old import off the site.
-export const validPath=p=>/^\/(?:articles|guides|topics)\/[a-z0-9]+(?:-[a-z0-9]+)*\/$/.test(p);
+export const validPath=p=>/^\/(?:articles|guides|topics|steps)\/[a-z0-9]+(?:-[a-z0-9]+)*\/$/.test(p);
 export const escape=s=>String(s||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 function moveBylineIntoTitleBlock(html){
  const byline=html.match(/<article\b[^>]*>\s*(<p class="story-byline">[^<]*<\/p>)/i)?.[1];
@@ -45,13 +45,13 @@ async function fetchLive(){
   if(!p.ok)throw new Error(`Story Room returned ${p.status} for ${item.path}`);
   pages[item.path]=(await p.json()).html;
  }
- return {feed:data.items,pages};
+ return {feed:data.items,pages,routes:data.routes||[]};
 }
 
 /** Filtering and remapping run on each build, so a launch-review change takes effect even from cache. */
 const selectPublished=({feed,pages})=>feed
  .filter(x=>validPath(x.path)&&!LAUNCH_REVIEW.retiredPaths.includes(x.path))
- .map(item=>({...item,cmsPath:item.path,path:LAUNCH_REVIEW.linkedStories[item.id]||item.path,html:pages[item.path]}))
+ .map(item=>({...item,cmsPath:item.path,path:item.route_managed?item.path:LAUNCH_REVIEW.linkedStories[item.id]||item.path,html:pages[item.path]}))
  .filter(item=>!LAUNCH_REVIEW.retired.includes(item.path)&&!LAUNCH_REVIEW.consolidated[item.path]);
 
 export async function getPublished({cachePath=CACHE_PATH}={}){
@@ -66,13 +66,16 @@ export async function getPublished({cachePath=CACHE_PATH}={}){
   console.warn(`  WARNING: Story Room unavailable (${err.message}).`);
   console.warn(`  Building from content captured ${snapshot.capturedAt}. Anything published since is not in this build.`);
  }
- const items=selectPublished(snapshot);
+ const items=selectPublished(snapshot);items.routes=snapshot.routes||[];
  if(live)console.log(`  Story Room: ${items.length} published items`);
  for(const item of items)if(typeof item.html!=='string')throw new Error(`No approved HTML for ${item.cmsPath}; refusing to publish it empty.`);
  return items;
 }
 export function syncCatalog(items,articles,guides){
- for(const item of items){const wanted=item.content_type==='guide'?guides:articles,other=item.content_type==='guide'?articles:guides;const old=other.findIndex(x=>x.path===item.path);if(old>=0)other.splice(old,1);const data={title:item.card_title||item.title,path:item.path,description:LAUNCH_REVIEW.metadata[item.path]?.description||item.summary,image:item.hero_url,alt:item.hero_alt,category:'Article',author:LAUNCH_REVIEW.metadata[item.path]?.author||item.author,cms:true};const existing=wanted.find(x=>x.path===item.path);if(existing){data.category=existing.category;Object.assign(existing,data);}else wanted.push(data);}
+ LAUNCH_REVIEW.deferred=LAUNCH_REVIEW.deferred.filter(p=>!items.some(i=>i.path===p&&i.route_managed));
+ const moved=new Set((items.routes||[]).filter(r=>r.kind==='redirect').map(r=>r.path));for(const list of [articles,guides])for(let n=list.length-1;n>=0;n--)if(moved.has(list[n].path))list.splice(n,1);
+
+ for(const item of items){if(item.id?.startsWith('website-step-'))continue;const wanted=item.content_type==='guide'?guides:articles,other=item.content_type==='guide'?articles:guides;const old=other.findIndex(x=>x.path===item.path);if(old>=0)other.splice(old,1);const data={title:item.card_title||item.title,path:item.path,description:LAUNCH_REVIEW.metadata[item.path]?.description||item.summary,image:item.hero_url,alt:item.hero_alt,category:'Article',author:LAUNCH_REVIEW.metadata[item.path]?.author||item.author,cms:true};const existing=wanted.find(x=>x.path===item.path);if(existing){data.category=existing.category;Object.assign(existing,data);}else wanted.push(data);}
 }
 export async function applyPublished(outDir,{production=false,origin=PREVIEW_ORIGIN,items}={}){
  items??=await getPublished();

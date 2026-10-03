@@ -35,7 +35,7 @@ assert.doesNotMatch(fallback['/articles/'],/Jeff J\./);
 assert.doesNotMatch(fallback['/articles/'],/class="sd-kicker"/);
 assert.doesNotMatch(fallback['/articles/the-line-i-kept-moving/'],/Coming soon/);
 const canonical=route=>fallback[route].match(/<link rel="canonical" href="([^"]+)"/)[1];
-for(const route of paths) assert.equal(canonical(route),'https://daily-paths-soft-daylight.nealw98.chatgpt.site'+route);
+for(const route of paths.filter(p=>p!=='/sitemap.xml'&&!/http-equiv=["']refresh/i.test(fallback[p]))) assert.equal(canonical(route),'https://daily-paths-soft-daylight.nealw98.chatgpt.site'+route);
 const readings=JSON.parse(fs.readFileSync(path.join(root,'client/readings-manifest.json'),'utf8'));
 assert.equal(Object.keys(readings).length,366);
 assert.ok(!fs.existsSync(path.join(root,'client/admin/index.html')));
