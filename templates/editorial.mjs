@@ -57,7 +57,6 @@ export function renderHomePage(reading, allReadings = []) {
         <div><p class="ed-label">The collection</p><h2 id="collection-heading">366 Al-Anon daily reflections, one for every day</h2></div>
         <div class="ed-collection-copy">
           <p>Every reading here is original, written for this collection rather than reprinted from anywhere else. Each month follows one of the Twelve Steps, so a reading sits in the company of the others written alongside it &mdash; you can follow the year as it comes, or go to whichever Step you are working.</p>
-          <p>The collection gathers them three ways &mdash; by Step, by Tradition and by Concept. February 29 has its own reading, so nothing is skipped in a leap year.</p>
         </div>
       </div>
       ${recentReadings.length ? `<p class="ed-label ed-week-label">Earlier this week</p>
