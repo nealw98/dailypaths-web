@@ -1,3 +1,13 @@
+## October 3 — Remove development-only aliases
+
+Removed `/guides/about-alanon/`, `/guides/detachment/` and the Story Room alias
+`/articles/detachment/`. They never appeared in production main history.
+Do not recreate redirects for them. Older notes below claiming that `/themes/`
+and `/steps/step-N/` were never public are incorrect: main contains those routes,
+so their redirects remain. Production `/about-alanon/`, `/prayers/` and historical
+reflection addresses also retain their redirects. This section supersedes earlier
+instructions about the three removed preview aliases.
+
 # Structural work on `2.0` — what changed, and what to leave alone
 
 ## October 2 — App overview retired

@@ -18,7 +18,6 @@ export const LAUNCH_REVIEW = {
     '/topics/gratitude-and-hope/': '/articles/',
     '/topics/fellowship/': '/guides/finding-help/',
     '/about-alanon/': '/guides/finding-help/',
-    '/guides/about-alanon/': '/guides/finding-help/',
   },
   // Rewritten pieces come off this list as they land: Who Am I Behind the Mask
   // first, and now The Stories We Tell Ourselves, published from the Story Room

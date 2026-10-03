@@ -188,7 +188,6 @@ const dirs = [
   join(outDir, 'start'),
   join(outDir, 'about-project'),
   join(outDir, 'about-alanon'),
-  join(outDir, 'guides', 'about-alanon'),  // both retired; the directories hold their redirects
   join(outDir, 'steps'),
   ...STEPS.map(s => join(outDir, 'steps', stepRecordSlug(s))),
   // Old step slugs (for redirects)
@@ -466,11 +465,9 @@ writeFileSync(join(outDir, 'robots.txt'), generateRobotsTxt(), 'utf-8');
 // --- Step 5b: Generate redirect pages for old slugs ---
 console.log('Generating redirect pages for old slugs...');
 // About Al-Anon and About the Al-Anon Program were consolidated into Finding
-// Help on September 29 and retired. Both of their addresses forward straight
-// there — not through each other, so neither reader nor crawler takes two hops.
+// Help on September 29. Only the former production address needs a redirect.
 writePage(join(outDir, 'about-alanon', 'index.html'), redirectHtml('/guides/finding-help/'));
-writePage(join(outDir, 'guides', 'about-alanon', 'index.html'), redirectHtml('/guides/finding-help/'));
-writeFileSync(join(outDir, '_redirects'), '/about-alanon /guides/finding-help/ 301\n/about-alanon/ /guides/finding-help/ 301\n/about-alanon/index.html /guides/finding-help/ 301\n/guides/about-alanon /guides/finding-help/ 301\n/guides/about-alanon/ /guides/finding-help/ 301\n');
+writeFileSync(join(outDir, '_redirects'), '/about-alanon /guides/finding-help/ 301\n/about-alanon/ /guides/finding-help/ 301\n/about-alanon/index.html /guides/finding-help/ 301\n');
 
 
 function redirectHtml(newPath) {
@@ -533,13 +530,6 @@ for (const step of STEPS) {
   const oldPath = `step-${step.number}`;
   writeFileSync(join(outDir, 'steps', oldPath, 'index.html'), redirectHtml(`/steps/${stepRecordSlug(step)}/`), 'utf-8');
 }
-
-// The Detachment guide lives at /guides/detachment-with-love/, which is where the
-// Story Room publishes it and where /topics/detachment/ forwards. /guides/detachment/
-// is the shorter address the guide's own name suggests, and was never live — this
-// answers it rather than letting a reasonable guess 404.
-mkdirSync(join(outDir, 'guides', 'detachment'), { recursive: true });
-writeFileSync(join(outDir, 'guides', 'detachment', 'index.html'), redirectHtml('/guides/detachment-with-love/'));
 
 // The literature pages are gone. Four book pages of 144 to 159 words each, built
 // from descriptions of books we do not hold the rights to — thin and a copyright

@@ -8,10 +8,8 @@ import {join,dirname} from 'node:path';
 import {fileURLToPath} from 'node:url';
 export const CMS_ORIGIN='https://daily-paths-story-room.nealw98.chatgpt.site';
 export const PREVIEW_ORIGIN='https://daily-paths-soft-daylight.nealw98.chatgpt.site';
-// About Al-Anon and About the Al-Anon Program were consolidated into Finding
-// Help and retired. Neither /about-alanon/ nor /guides/about-alanon/ is a place
-// CMS content can land now; both only forward to /guides/finding-help/. The root
-// path never matched this pattern, which is what kept the old import off the site.
+// The production /about-alanon/ address redirects to Finding Help.
+// Abandoned preview guide addresses have no redirects.
 export const validPath=p=>/^\/(?:articles|guides|topics|steps)\/[a-z0-9]+(?:-[a-z0-9]+)*\/$/.test(p);
 export const escape=s=>String(s||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 function moveBylineIntoTitleBlock(html){
