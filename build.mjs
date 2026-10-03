@@ -37,7 +37,6 @@ import { TOPIC_PULL_QUOTES, TOPIC_TOOLS, TOPIC_THEME_TAGS, THEME_TO_TOPIC } from
 import { reflectionHeroImage } from './helpers/reflection-images.mjs';
 import { renderPrivacyPage } from './templates/privacy.mjs';
 import { renderSupportPage } from './templates/support.mjs';
-import { renderAppPage } from './templates/app.mjs';
 import { renderTermsPage } from './templates/terms.mjs';
 import { renderEmailManagePage } from './templates/email-manage.mjs';
 import { renderAboutProjectPage } from './templates/about-project.mjs';
@@ -331,7 +330,6 @@ for (const topic of TOPICS) {
 console.log('Generating static pages...');
 writePage(join(outDir, 'privacy', 'index.html'), renderPrivacyPage());
 writePage(join(outDir, 'support', 'index.html'), renderSupportPage());
-writePage(join(outDir, 'app', 'index.html'), renderAppPage());
 writePage(join(outDir, 'terms', 'index.html'), renderTermsPage());
 writePage(join(outDir, 'email', 'confirm', 'index.html'), renderEmailManagePage('confirm'));
 writePage(join(outDir, 'email', 'unsubscribe', 'index.html'), renderEmailManagePage('unsubscribe'));
@@ -586,7 +584,7 @@ if (!existsSync(cssSource)) {
 // owns the final typography cascade; attempting to remove declarations with a
 // regex also removed resets, tokens, and layout rules from complex selectors.
 writeFileSync(join(outDir, 'css', 'style.css'), readFileSync(cssSource, 'utf8'));
-for (const name of ['soft-daylight.css', 'editorial-home.css', 'boundaries.css', 'surrender.css', 'launch-review.css', 'inserts.css', 'app.css']) {
+for (const name of ['soft-daylight.css', 'editorial-home.css', 'boundaries.css', 'surrender.css', 'launch-review.css', 'inserts.css']) {
   writeFileSync(join(outDir, 'css', name), readFileSync(join(ROOT, 'css', name), 'utf8'));
 }
 cpSync(join(ROOT, 'css', 'site-system.css'), join(outDir, 'css', 'site-system.css'));

@@ -194,7 +194,6 @@ ${json}
       <nav class="site-nav" aria-label="Main navigation">
 ${desktopNav}
       </nav>
-      <a href="${bp('/app/')}" class="btn btn--sm header-cta"${canonicalPath === '/app/' ? ' aria-current="page"' : ''}>Get the app</a>
       <button type="button" class="menu-toggle" data-menu-toggle aria-expanded="false" aria-controls="mobile-menu">
         <span class="menu-glyph" aria-hidden="true"><span></span><span></span><span></span></span>
         <span data-menu-label>Menu</span>
@@ -204,7 +203,6 @@ ${desktopNav}
       <nav aria-label="Mobile navigation">
 ${mobileNav}
       </nav>
-      <a href="${bp('/app/')}" class="btn btn--full mobile-menu-cta"${canonicalPath === '/app/' ? ' aria-current="page"' : ''}>Get the app</a>
     </div>
   </header>
 

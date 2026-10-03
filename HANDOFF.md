@@ -1,21 +1,12 @@
 # Structural work on `2.0` — what changed, and what to leave alone
 
-## October 2 — App overview simplified
+## October 2 — App overview retired
 
-The app page now pairs each of Neal’s five original, uncropped screenshots with
-a plain feature heading and short description. Promotional slogans and repeated
-introductions are removed. The compact privacy, independence and download details
-remain. Images stay in `assets/Screenshots/app/`; generated mockup screens are not used.
-
-## October 2 — App overview page
-
-`/app/` is the new destination for Get the app in desktop and mobile navigation.
-It replaces the temporary store badges in the header. Store badges remain in
-app invitations and on the new page, with Explore the app linking to the overview.
-`templates/app.mjs` and `css/app.css` own the page. Five real screenshots supplied by Neal on October 2 now show Today’s reading,
-Journal, Spot Check, Nightly Review, and Speaker Library. The full, uncropped PNGs
-live in `assets/Screenshots/app/`; no app UI or journal text was fabricated.
-Upload instructions have been removed. Pricing is left to the store listings.
+Neal removed the app overview page and Get the app from desktop and mobile
+navigation. The existing bottom app invitations and direct store buttons remain;
+Explore the app links are removed, including from older CMS snapshots.
+`/app/` is no longer built or listed in the sitemap. The original uploaded
+screenshots remain in `assets/Screenshots/app/` for future use.
 
 ## October 2 — February 27 keeps its live address
 
