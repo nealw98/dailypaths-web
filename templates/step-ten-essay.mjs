@@ -24,6 +24,6 @@ export const STEP_TEN_ESSAY = [
   ] },
   { heading: 'Living Openly in Present-Moment Peace', paragraphs: [
     'Step Ten allows us to live in the present day without carrying the heavy baggage of yesterday or the fearful projections of tomorrow. By practicing daily self-examination and prompt admission, we cultivate a spirit of continuous willingness, humility, and growth.',
-    'Instead of hiding behind masks of perfection or living in fear of our flaws, we embrace our humanness with gentleness and humor. Step Ten keeps our connection to our [Higher Power](/topics/higher-power/) and our fellow human beings clear and open, ensuring that the serenity, dignity, and freedom we discovered in recovery remain a permanent part of our daily lives.',
+    'Instead of hiding behind masks of perfection or living in fear of our flaws, we embrace our humanness with gentleness and humor. Step Ten keeps our connection to our [Higher Power](/steps/al-anon-step-11-connection/) and our fellow human beings clear and open, ensuring that the serenity, dignity, and freedom we discovered in recovery remain a permanent part of our daily lives.',
   ] },
 ];

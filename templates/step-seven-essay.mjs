@@ -13,7 +13,7 @@ export const STEP_SEVEN_ESSAY = [
     'In Al-Anon, we learn that humiliation is a form of emotional distress that has no place in our spiritual growth. True humility, by contrast, is not a position of weakness, inferiority, or submission, but a state of genuine spiritual strength and self-acceptance. Humility simply means seeing ourselves in true relationship to God and to our fellow human beings—neither superior nor inferior, but equal. It allows us to recognize our limitations with honesty while honoring our inherent worth and character assets.',
   ] },
   { heading: 'Simply Asking Without Begging or Demanding', paragraphs: [
-    'When we take Step Seven, we learn a new way of communicating with our [Higher Power](/topics/higher-power/). In the past, many of us used frantic prayers to bargain with God, demand immediate results, or dictate exactly how a problem should be solved.',
+    'When we take Step Seven, we learn a new way of communicating with our [Higher Power](/steps/al-anon-step-11-connection/). In the past, many of us used frantic prayers to bargain with God, demand immediate results, or dictate exactly how a problem should be solved.',
     "Step Seven shows us that true humility allows us to ask for help without groveling or demanding. We do not need to impress God, nor do we need to treat our desires as all-important. We simply express our sincere desire to be freed from the excess baggage that blocks our spiritual awareness and disrupts our relationships. Whether we pray quietly, write our thoughts in a journal, or speak from the heart, we calmly state our request and trust God's timing and wisdom.",
   ] },
   { heading: 'Shortcomings as Roadblocks and Hidden Assets', paragraphs: [

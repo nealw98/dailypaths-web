@@ -19,7 +19,7 @@ export const STEP_THREE_ESSAY = [
     'Turning over our will and our lives means recognizing that this rigid self-reliance has failed us repeatedly. It means releasing the illusion that we know what is best for everyone else or that we can force a specific outcome. By making this decision, we stop setting ourselves up for failure and step down from trying to manage the universe.',
   ] },
   { heading: 'One Person and One Problem at a Time', paragraphs: [
-    'For most of us, the alcoholic in our lives is the very first person we need to turn over to a [Higher Power](/topics/higher-power/). Having accepted in Step One that we cannot cure, control, or change their drinking, Step Three asks us to release our obsession with their choices. We hand over our urge to reform them, allowing them the dignity to face their own choices and consequences.',
+    'For most of us, the alcoholic in our lives is the very first person we need to turn over to a [Higher Power](/steps/al-anon-step-2-hope/). Having accepted in Step One that we cannot cure, control, or change their drinking, Step Three asks us to release our obsession with their choices. We hand over our urge to reform them, allowing them the dignity to face their own choices and consequences.',
     'When facing major decisions or overwhelming crises, we often find it helpful to use concrete, practical tools to practice turning things over:',
   ], list: [
     '**The "God Box":** Many members write down a specific worry, fear, or uncontrollable situation on a slip of paper and place it inside a physical box. This physical gesture symbolizes transferring the burden from our minds into the care of our Higher Power.',

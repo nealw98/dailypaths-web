@@ -24,6 +24,6 @@ export const STEP_SIX_ESSAY = [
   ] },
   { heading: 'Preparing the Heart for Spiritual Transformation', paragraphs: [
     'The core spiritual principles of Step Six are **willingness, patience, humility, and trust**. By practicing non-judgmental self-awareness, we align ourselves with the slogan *"[Let Go and Let God](/topics/letting-go/)"*.',
-    'Step Six does not require immediate perfection or dramatic action. It is a quiet, internal commitment to cooperate with our [Higher Power](/topics/higher-power/). By acknowledging that we need help, accepting ourselves as we are today, and expressing gratitude for our ongoing growth, we prepare our hearts for the healing work that follows. Unburdened by the need to manage our own transformation, we rest in the quiet assurance that when the time is right, our Higher Power will do for us what we could never accomplish on our own.',
+    'Step Six does not require immediate perfection or dramatic action. It is a quiet, internal commitment to cooperate with our [Higher Power](/steps/al-anon-step-3-faith/). By acknowledging that we need help, accepting ourselves as we are today, and expressing gratitude for our ongoing growth, we prepare our hearts for the healing work that follows. Unburdened by the need to manage our own transformation, we rest in the quiet assurance that when the time is right, our Higher Power will do for us what we could never accomplish on our own.',
   ] },
 ];

@@ -10,7 +10,7 @@ export const STEP_FIVE_ESSAY = [
   ] },
   { heading: 'The Threefold Order of Admission', paragraphs: [
     'The specific structure of Step Five guides us through a gentle, intentional sequence of three admissions: to God, to ourselves, and to another human being.',
-    '**Admitting to God:** Placing God first allows us to "come clean" before the God of our understanding. Since our [Higher Power](/topics/higher-power/) already knows our hearts, this admission is not about informing God, but about opening ourselves up to a deeper, more intimate spiritual relationship without pretense or justification.',
+    '**Admitting to God:** Placing God first allows us to "come clean" before the God of our understanding. Since our [Higher Power](/steps/al-anon-step-11-connection/) already knows our hearts, this admission is not about informing God, but about opening ourselves up to a deeper, more intimate spiritual relationship without pretense or justification.',
     '**Admitting to Ourselves:** Next, we face the truth of our inventory without whitewashing our errors or blaming others. Admitting to ourselves means taking full responsibility for our choices while also refusing to invalidate our talents and positive character assets. We simply acknowledge, "This is who I am".',
     '**Admitting to Another Human Being:** Finally, we break our spiritual isolation by sharing our inventory aloud with a trusted person. Sharing our burden with another human being transforms abstract thoughts into concrete reality, freeing us from the heavy weight of hidden secrets.',
   ] },

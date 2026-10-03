@@ -26,6 +26,7 @@ import { existsSync, readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
 import { THEME_TO_TOPIC } from './theme-data.mjs';
+import { internalLinkDestination } from './internal-link-destinations.mjs';
 import { themePath } from './theme-pages.mjs';
 
 const CACHE_PATH = join(dirname(fileURLToPath(import.meta.url)), '../data/theme-destinations.json');
@@ -73,8 +74,10 @@ export function destinationPage(to) {
  * page, so a row recorded as /topics/self-worth/ keeps working once that page
  * moves to an address that follows its title. Any anchor is carried across.
  */
-function resolve(to) {
+function resolve(to, theme) {
   const [path, anchor] = to.split('#');
+  const replacement = internalLinkDestination(path, theme);
+  if (replacement !== undefined) return replacement;
   const topicMatch = /^\/topics\/([a-z0-9-]+)\/$/.exec(path);
   const resolved = topicMatch ? themePath(topicMatch[1]) : path;
   return anchor ? `${resolved}#${anchor}` : resolved;
@@ -97,9 +100,9 @@ export function themeDestination(theme) {
   const name = (theme || '').trim();
   if (!name) return null;
   const table = loadThemeDestinations();
-  if (table) return table.has(name) ? resolve(table.get(name)) : null;
+  if (table) return table.has(name) ? resolve(table.get(name), name) : null;
   const topic = THEME_TO_TOPIC[name];
-  return topic ? themePath(topic.slug) : null;
+  return topic ? resolve(themePath(topic.slug), name) : null;
 }
 
 /**

@@ -1,3 +1,4 @@
+import { internalLinkDestination } from './internal-link-destinations.mjs';
 import inserts from './editorial-inserts.json' with {type:'json'};
 // Explicit September 24 author approvals and presentation decisions. Apply after
 // CMS composition so an older published snapshot cannot undo these corrections.
@@ -18,6 +19,20 @@ export function applyEditorialPolicy(html, pathname, records = inserts) {
  // Match the old label above instead of overriding future CMS title decisions.
 
  const path=pathname||html.match(/<link\b[^>]*rel="canonical"[^>]*href="https?:\/\/[^/]+([^"?]+)/i)?.[1];
+ // Do not advertise legacy topic essays that are awaiting a 2.0 rewrite.
+ // The old Topics hub loses those cards; prose links use published alternatives.
+ if(path==='/topics/')html=html.replace(/<a\b[^>]*class="[^"]*theme-index-card[^"]*"[^>]*>[\s\S]*?<\/a>/gi,card=>/href="\/(?:topics|themes)\/(?:higher-power|focus-on-yourself|the-disease)\/"/.test(card)?'':card);
+ html=html.replace(/<a\b([^>]*?)href=(["'])([^"']+)\2([^>]*)>([\s\S]*?)<\/a>/gi,(all,before,quote,href,after,label)=>{
+  let url;try{url=new URL(href,'https://dailypaths.org');}catch{return all;}
+  if(!['dailypaths.org','www.dailypaths.org','daily-paths-soft-daylight.nealw98.chatgpt.site'].includes(url.hostname))return all;
+  const replacement=internalLinkDestination(url.pathname,'',path);
+  if(replacement===undefined)return all;
+  if(replacement===null)return label;
+  // A different page cannot inherit an anchor from the legacy essay.
+  if(url.pathname.startsWith('/october-31'))label=label.replace(/The Intimacy of Transparency/gi,'Afraid I Did It Wrong');
+  if(path==='/articles/letting-go/'&&url.pathname.endsWith('/higher-power/'))label='Step Three: Trusting a Higher Power';
+  return '<a'+before+'href='+quote+replacement+url.search+quote+after+'>'+label+'</a>';
+ });
  // Story Room text replaced an inherited member-insight grid in this article.
  // Keep approved prose and inserts, but discard the old card/truncation behavior.
  if(['/articles/who-am-i-behind-the-mask/','/topics/self-worth/'].includes(path)){
@@ -60,7 +75,7 @@ export function applyEditorialPolicy(html, pathname, records = inserts) {
  html=html.replace(/<a\b[^>]*(?:class="[^"]*(?:header-cta|mobile-menu-cta)[^"]*"|href="\/app\/")[^>]*>[\s\S]*?<\/a>/gi,'');
  // Restore the live February 27 address in older CMS links, without a redirect.
  html=html.replaceAll('/february-27-i-cannot-do-everything/','/february-27-i-cant-do-everything/');
- html=html.replaceAll('/september-25-vision-and-improvement/','/september-25/').replaceAll('/october-31-the-intimacy-of-transparency/','/october-31/');
+ html=html.replaceAll('/september-25-vision-and-improvement/','/september-25/');
  const authorPaths=['/articles/voices-from-the-grave/','/articles/the-line-i-kept-moving/'];
  const description='Finding help when someone else’s drinking is affecting your life.';
  if(authorPaths.includes(path)){

@@ -1,3 +1,15 @@
+## October 3 — Internal recommendations avoid unrevised legacy essays
+
+Internal links to Higher Power, Focus on Yourself and Understanding the Disease
+now use published 2.0 Steps or guides. `internal-link-destinations.mjs` holds the
+contextual replacements; `theme-destinations.mjs` resolves captured legacy mappings
+without rewriting the generated Reading Room data. A future explicit new destination
+in Reading Room takes precedence because only the legacy paths are substituted.
+Saved CMS pages receive the same link corrections through editorial policy, including
+the current October 31 address/title. The old Topics hub no longer recommends these
+three essays. This changes internal recommendations only, not manuscript status or
+legacy-page retirement. Do not infer that the remaining legacy pages are retired.
+
 ## October 3 — Remove development-only aliases
 
 Removed `/guides/about-alanon/`, `/guides/detachment/` and the Story Room alias

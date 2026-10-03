@@ -21,7 +21,7 @@ export { TOPICS };
  * Render the Topics index page — all twelve topics as cards.
  */
 export function renderTopicsIndexPage() {
-  const cards = TOPICS.filter(topic => !CONSOLIDATED_THEMES.has(topic.slug)).map(topic => `
+  const cards = TOPICS.filter(topic => !CONSOLIDATED_THEMES.has(topic.slug) && !['higher-power','focus-on-yourself','the-disease'].includes(topic.slug)).map(topic => `
           <a href="${bp(themePath(topic.slug))}" class="card-elevated theme-index-card">
             <span class="theme-index-title">${topic.name}</span>
             <span class="theme-index-line">${topic.shortDescription}</span>
