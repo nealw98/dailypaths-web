@@ -33,6 +33,20 @@ all tested; sending switched off), privacy policy updated, four database tables 
 **Still open before launch:** A8 (how 2.0 reaches `main`, and Neal's go-ahead), A9 below, Neal's sign-off on
 the Terms, a final read of Finding Help, then the live checks in "Launch day" at the bottom.
 
+## Audit — October 3, 2026 (after the image and placeholder cleanup)
+
+Measured on a fresh production build: 421 sitemap URLs, no duplicates, every one has a real page, a self-referencing
+canonical, one H1, a title, a description and a share image, and none is noindex or a redirect. No indexable page is
+missing from the sitemap. 425 redirect pages all carry a canonical to their target and are noindex; 0 broken internal
+links or images; no Story Room or preview addresses remain in any page. `robots.txt` allows crawling and lists the
+sitemap; `www` redirects to the bare domain (301); the live host sends no `X-Robots-Tag`.
+Email: sending is off (`send_enabled=false`), daily job active (`0 9,10 * * *`), one subscriber (Neal).
+
+Open: A8 (go-ahead and merge), Terms sign-off, Finding Help read, B6 (no Search Console / Bing verification tag yet;
+nothing has been submitted), 40 index/hub pages have no structured data, every page's lastmod is today because the
+footer changed everywhere (it settles after the next nightly build). Old addresses redirect with an instant
+meta-refresh page, not a 301 (GitHub Pages cannot send 301s; the `_redirects` file is ignored there).
+
 ## Where 2.0 actually stands
 
 | | |
