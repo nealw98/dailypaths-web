@@ -841,6 +841,46 @@ a[target="_blank"]:not(:has(img)):not(.pillar-card):not(.fellow-card)::after,
   gap: var(--space-3);
 }
 
+/* Collection cards: label, principle, then a quiet reading link. */
+.page-reflections-index .step-card{
+  display:flex;
+  flex-direction:column;
+  align-items:stretch;
+  gap:12px;
+  padding:26px 28px;
+  border:1px solid var(--rule);
+  border-radius:0;
+  box-shadow:none;
+  min-width:0;
+}
+.page-reflections-index .step-card > span:last-child{display:flex;flex:1;flex-direction:column;min-width:0}
+.page-reflections-index .step-card-label{
+  font:600 13px/1.4 var(--font-ui);
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  color:var(--text-secondary);
+}
+.page-reflections-index .step-card .step-card-keyword{
+  font:500 32px/1.15 var(--font-editorial);
+  letter-spacing:-.3px;
+  color:var(--text-primary);
+  margin:0 0 22px;
+  text-wrap:balance;
+}
+.page-reflections-index .step-card .step-card-hook{font:16px/1.55 var(--font-ui);margin:-8px 0 24px;color:var(--text-secondary);max-width:46ch}
+.page-reflections-index .step-card .step-card-cta{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:16px;
+  margin-top:auto;
+  font:400 14px/1.5 var(--font-ui);
+  color:var(--accent);
+}
+.page-reflections-index .step-card .step-card-cta > span{font-size:20px;line-height:1}
+.page-reflections-index .step-card:hover{border-color:var(--accent);box-shadow:none;transform:none}
+.page-reflections-index .step-card:focus-visible{outline:2px solid var(--accent);outline-offset:4px}
+
 /* Two cards rather than twelve, so they sit half-width and read as a pair
    alongside the Steps grid above rather than as two orphans in a three-column
    track. They collapse with that grid at the same breakpoints. */

@@ -299,21 +299,20 @@ export function renderReflectionsIndexPage(todayReading, allReadings = []) {
     const count = allReadings.filter(r => (r.step_theme || '').startsWith(page.stepTag)).length;
     return `
           <a href="${bp(page.path)}" class="card-elevated step-card">
-            <span class="step-card-numeral">12</span>
             <span>
               <span class="step-card-keyword">${page.title.replace(/^The Twelve /, '')}</span>
               <span class="step-card-hook">${page.description}</span>
-              <span class="step-card-cta">${count ? `View ${count} reflections` : 'View reflections'}</span>
+              <span class="step-card-cta">${count ? `View ${count} reflections` : 'View reflections'} <span aria-hidden="true">&rarr;</span></span>
             </span>
           </a>`;
   }).join('');
 
   const gridCards = STEPS.map(step => `
           <a href="${bp(`/months/${step.monthSlug}/`)}" class="card-elevated step-card">
-            <span class="step-card-numeral">${step.number}</span>
+            <span class="step-card-label">Step ${step.number}</span>
             <span>
               <span class="step-card-keyword">${step.principle}</span>
-              <span class="step-card-cta">View reflections</span>
+              <span class="step-card-cta">View reflections <span aria-hidden="true">&rarr;</span></span>
             </span>
           </a>`).join('');
 
