@@ -891,6 +891,8 @@ a[target="_blank"]:not(:has(img)):not(.pillar-card):not(.fellow-card)::after,
   gap: var(--space-3);
 }
 
+.page-reflections-index .step-card-grid--collections .step-card { background: #f0f2eb; }
+
 /* The homepage's Soft Daylight grammar, carried across every reflection. */
 .page-reading .photo-hero--soft-daylight {
   min-height: clamp(520px, 48vw, 640px);

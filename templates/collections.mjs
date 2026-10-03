@@ -102,7 +102,6 @@ export function renderCollectionPage(path, readings) {
       </nav>
 
       <header class="ma-header">
-        <p class="eyebrow ma-collection-eyebrow">${total} reflections</p>
         <h1 class="ma-title">${collection.title}</h1>
         <div class="ma-introduction"><p>${collection.lede}</p></div>
       </header>
