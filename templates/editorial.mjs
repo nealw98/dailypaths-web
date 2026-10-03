@@ -14,7 +14,7 @@ const esc = value => String(value ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;',
 const plain = value => String(value || '').replace(/<[^>]*>/g, '').replace(/\\n/g, ' ').replace(/[*_]/g, '').replace(/\s+/g, ' ').trim();
 
 function articleCard(article) {
-  return `<article class="sd-story" data-cms-path="${esc(article.path)}"><a class="sd-story-image" href="${bp(article.path)}" tabindex="-1" aria-hidden="true"><img src="${(article.cms?article.image:bp('/assets/' + article.image))}" alt="" width="960" height="600" loading="lazy"></a><p class="sd-kicker">${esc(article.category)}${article.author && article.category === 'Personal Story' ? ` · ${esc(article.author)}` : ''}${article.reviewDraft ? ' · Placeholder' : ''}</p><h3><a href="${bp(article.path)}">${esc(article.title)}</a></h3><p class="cms-card-summary">${esc(article.description)}</p><a class="sd-text-link" href="${bp(article.path)}" aria-label="Read ${esc(article.title)}">Read the article</a></article>`;
+  return `<article class="sd-story" data-cms-path="${esc(article.path)}"><a class="sd-story-image" href="${bp(article.path)}" tabindex="-1" aria-hidden="true"><img src="${(article.cms?article.image:bp('/assets/' + article.image))}" alt="" width="960" height="600" loading="lazy"></a><h3><a href="${bp(article.path)}">${esc(article.title)}</a></h3><p class="cms-card-summary">${esc(article.description)}</p><a class="sd-text-link" href="${bp(article.path)}" aria-label="Read ${esc(article.title)}">Read the article</a></article>`;
 }
 
 function guideRows() {
@@ -72,7 +72,7 @@ export function renderHomePage(reading, allReadings = []) {
 
 export function renderArticlesPage() {
   return wrapInLayout({ title:'Articles — Daily Paths', description:'Personal stories and articles about living with the effects of someone else’s drinking.', canonicalPath:'/articles/', bodyClass:'page-editorial', navSection:'articles', hasAppPanel:true,
-    bodyContent:`${hubIntro({ title:'Articles', description:'Personal stories and articles about living with the effects of someone else’s drinking.', id:'articles-title' })}<section class="sd-stories sd-wrap sd-article-library" aria-labelledby="article-library-heading"><h2 class="visually-hidden" id="article-library-heading">All articles</h2>${launchItems(ARTICLES, IS_PREVIEW).map(articleCard).join('')}</section>${terminalBand()}`});
+    bodyContent:`${hubIntro({ title:'Articles', description:'Personal stories and articles about living with the effects of someone else’s drinking.', id:'articles-title' })}<section class="sd-stories sd-wrap sd-article-library" aria-labelledby="article-library-heading"><h2 class="visually-hidden" id="article-library-heading">All articles</h2>${launchItems(ARTICLES, IS_PREVIEW).map(articleCard).join('')}</section>${terminalBand().replace('<p class="sd-kicker">The Daily Paths app</p>', '')}`});
 }
 
 export function renderGuidesPage() {
