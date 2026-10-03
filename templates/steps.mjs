@@ -335,12 +335,6 @@ ${photoHero({
       </div>
       <div class="step-card-grid step-card-grid--index">${gridCards}
       </div>
-    </section>
-
-    <section class="wrap section--md" aria-labelledby="collections-heading">
-      <p class="eyebrow">Also in the year</p>
-      <h2 class="section-title" id="collections-heading">The Traditions and the Concepts</h2>
-      <p class="section-desc">Sixty-three of the readings follow a Tradition or a Concept rather than a Step. Each collection opens in full.</p>
       <div class="step-card-grid step-card-grid--collections">${collectionCards}
       </div>
     </section>
