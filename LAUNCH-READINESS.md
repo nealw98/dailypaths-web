@@ -42,6 +42,13 @@ links or images; no Story Room or preview addresses remain in any page. `robots.
 sitemap; `www` redirects to the bare domain (301); the live host sends no `X-Robots-Tag`.
 Email: sending is off (`send_enabled=false`), daily job active (`0 9,10 * * *`), one subscriber (Neal).
 
+Later October 3: every searchable page now has exactly one BreadcrumbList (`helpers/breadcrumbs.mjs` adds it at build time
+to the 45 pages that did not build their own); the sign-up box title is no longer an H2; heading levels no longer skip;
+the app band's "yourself,every" spacing is fixed. **Found, not fixed:** Story Room's saved copy of the Surrender guide
+(`/topics/powerlessness/`) has the "Dropping the Rope" insert swallowing guide sections 4 and 5 into its two-column layout
+(already so on Oct 1); this needs repairing in the Story Room. Gratitude and Hope was retired in Neal's commit 364dc38,
+which is why the sitemap is 419 URLs; its `feature_exclude` entry in `newsletter_config` is now unneeded.
+
 Open: A8 (go-ahead and merge), Terms sign-off, Finding Help read, B6 (no Search Console / Bing verification tag yet;
 nothing has been submitted), 40 index/hub pages have no structured data, every page's lastmod is today because the
 footer changed everywhere (it settles after the next nightly build). Old addresses redirect with an instant

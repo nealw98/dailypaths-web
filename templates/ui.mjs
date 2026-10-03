@@ -237,7 +237,7 @@ export function appPanel({ tone = 'seafoam', heading, text, showIcon = false, co
  * separates them (guidelines/inserts-system).
  */
 export function terminalBand({
-  heading = 'Make room for yourself,<br><em>every day.</em>',
+  heading = 'Make room for yourself, <br><em>every day.</em>',
   text = 'A daily reflection. A place for your thoughts. Small ways to bring the focus back to you.',
 } = {}) {
   return `<section class="sd-app" id="get-the-app" aria-label="The Daily Paths app">

@@ -18,7 +18,7 @@ function newsletterInvitation() {
   if (!key || !process.env.SUPABASE_URL) throw new Error('Newsletter requires the public Supabase URL and anon key.');
   return `<section class="site-newsletter" aria-labelledby="site-newsletter-heading">
     <div class="site-newsletter-inner">
-      <h2 id="site-newsletter-heading">Get the Daily Reflection in your inbox.</h2>
+      <p class="site-newsletter-title" id="site-newsletter-heading">Get the Daily Reflection in your inbox.</p>
       <p class="site-newsletter-copy">Sign up to receive a daily email with the Daily Reflection and a link to an article worth reading.</p>
       <form class="site-newsletter-form" data-newsletter-form data-endpoint="${escapeAttr(endpoint)}" data-key="${escapeAttr(key)}">
         <label class="sr-only" for="site-newsletter-email">Your email address</label>

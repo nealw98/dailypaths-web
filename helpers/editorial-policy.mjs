@@ -34,6 +34,9 @@ export function applyEditorialPolicy(html, pathname, records = inserts) {
   html=html.replace(/(<div class="visually-hidden">)([\s\S]*?)(<\/div>)/g,(all,open,text,close)=>
    text.includes('The Worry Loop.')?open+text.replaceAll('Scanning the future','Scanning for problems').replaceAll('Reviewing the past','Regretting the past').replaceAll('Taking responsibility','Creating expectations')+close:all);
  }
+ // Story Room's saved copies carry two heading/spacing flaws that search engines read literally: a missing space in the
+ // app band ("yourself,<br>" reads as "yourself,every"), and h5 labels that skip heading levels. Fix them wherever they appear.
+ html=html.replace(/Make room for yourself,<br>/g,'Make room for yourself, <br>').replace(/<h5>([\s\S]*?)<\/h5>/g,'<p class="rope-row-title">$1</p>');
  // The Power of Saying No is not written yet. Story Room's saved copy of The Line I Kept Moving still lists it as a
  // "Coming soon" recommendation, so take the card out wherever it appears; this does nothing once the saved copy is edited.
  html=html.replace(/<article\b[^>]*>(?:(?!<\/article>)[\s\S])*?The Power of Saying No(?:(?!<\/article>)[\s\S])*?<\/article>/gi,'');

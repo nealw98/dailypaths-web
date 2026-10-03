@@ -699,6 +699,10 @@ import { localizeStoryRoomMedia } from './helpers/localize-media.mjs';
 const media = await localizeStoryRoomMedia({ outDir, assetsDir: localAssetsDir, origin: BASE_URL });
 console.log(`Story Room images: ${media.copied} newly copied, ${media.kept} still linked`);
 
+// Breadcrumb trail for pages that don't build their own
+import { addBreadcrumbs } from './helpers/breadcrumbs.mjs';
+console.log(`Breadcrumbs added to ${addBreadcrumbs({ outDir, origin: BASE_URL })} pages`);
+
 // CNAME for GitHub Pages custom domain
 if (!IS_PREVIEW) writeFileSync(join(outDir, 'CNAME'), 'dailypaths.org', 'utf-8');
 

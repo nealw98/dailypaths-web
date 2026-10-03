@@ -13,7 +13,8 @@
 .rope-column-title { font: var(--type-small); font-weight: 600; color: var(--boundary-teal); margin: 0 0 1rem; }
 .rope-columns ul { list-style: none; padding: 0; margin: 0; }
 .rope-columns li, .boundary-body .rope-columns li + li { margin: 0; padding: 1.1rem 0; border-top: 1px solid var(--boundary-rule); }
-.rope-columns h5 { font: italic 600 28px/1.2 var(--font-devotional); color: var(--boundary-teal); margin: 0 0 .35rem; }
+.rope-columns h5,
+.rope-columns .rope-row-title { font: italic 600 28px/1.2 var(--font-devotional); color: var(--boundary-teal); margin: 0 0 .35rem; }
 .surrender-insert .surrender-insert-footer { font-size: 18px; margin-top: 1rem; }
 .surrender-insert--questions { display: grid; grid-template-columns: 1fr 1.7fr; gap: 1.75rem; align-items: center; }
 .surrender-insert--questions h3 { color: var(--boundary-teal); margin: 0; }

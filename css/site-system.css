@@ -1068,7 +1068,8 @@ a[target="_blank"]:not(:has(img)):not(.pillar-card):not(.fellow-card)::after,
   text-transform: uppercase;
   color: var(--accent-strong, #4f5b3d);
 }
-.site-newsletter h2 {
+.site-newsletter h2,
+.site-newsletter .site-newsletter-title {
   margin: 0;
   font: normal 500 clamp(27px, 2.4vw, 32px)/1.16 var(--font-editorial);
   letter-spacing: -.3px;
@@ -1590,6 +1591,7 @@ body .store-badges a.store-badge-link:focus-visible {
 
 /* After a successful sign-up the form, its helper text and the privacy note give way to one clear confirmation. */
 .site-newsletter.is-done h2,
+.site-newsletter.is-done .site-newsletter-title,
 .site-newsletter.is-done .site-newsletter-copy,
 .site-newsletter.is-done .site-newsletter-form > :not(.newsletter-status),
 .site-newsletter.is-done .site-newsletter-inner > .site-newsletter-note { display: none; }
