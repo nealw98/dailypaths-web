@@ -19,6 +19,20 @@ are closed — A1 was my error, corrected in place rather than removed.
 
 ---
 
+## Status — October 3, 2026 (fresh production build and checks)
+
+**Verified today:** 425 pages build; `check:sitemap` passes (421 sitemap URLs, 424 redirects, no chains);
+`check:launch-urls` passes (15 live addresses leave the sitemap and every one redirects; nothing would 404);
+`check-launch-review` passes; robots allows crawling and `CNAME` is dailypaths.org; the only real pages marked
+noindex are `/admin/`, `/email/confirm/` and `/email/unsubscribe/` (the other 425 noindex pages are redirect stubs);
+every page with a sign-up block now has the live form and its script.
+
+**Done since the last review:** email (sign-up, confirmation, confirm/unsubscribe pages, daily send at 5:00 AM Eastern,
+all tested; sending switched off), privacy policy updated, four database tables locked, footer wording, Feb 27 address.
+
+**Still open before launch:** A8 (how 2.0 reaches `main`, and Neal's go-ahead), A9 and A10 below, Neal's sign-off on
+the Terms, a final read of Finding Help, then the live checks in "Launch day" at the bottom.
+
 ## Where 2.0 actually stands
 
 | | |
@@ -178,6 +192,21 @@ merge.
 - **The Line I Kept Moving** — also Lance W's. Its catalog card still read
   "Personal story · Jeff J." in production builds, which is corrected. Confirm
   the contributor is content with the published version if that is still open.
+
+### A9. Production pages load images from the Story Room's address — new October 3
+
+26 image references on 8 pages (Articles and Guides indexes, Learning to Trust, Your First Al-Anon Meeting, Finding Help,
+Detachment with Love, Surrender, Who Am I Behind the Mask) point to
+`daily-paths-story-room.nealw98.chatgpt.site/api/room/media/…`. That is the Story Room's own preview-style host, not
+dailypaths.org. It works while that host is up, but the live site would depend on it for its hero and card images, and the
+pages are slower and less private than self-hosted images. Fix (not yet done): copy each Story Room image into
+`assets/` at build time and rewrite the address, as the build already does for page text. Decide whether this is done
+before launch or soon after; nothing is broken today.
+
+### A10. A "Coming soon" card on a launch page — new October 3
+
+`/articles/the-line-i-kept-moving/` ends with related cards, one of which reads "Article · Coming soon — The Power of
+Saying No" (the piece does not exist). Neal's call: remove the card, or keep it.
 
 ### A6. Deferring a piece only defers it in the preview
 
@@ -558,3 +587,15 @@ Items 1–7 are the launch. Everything after is improvement.
 A1 and A5 are closed. The blocker count is down from six to four: the privacy
 policy, the About Al-Anon decision, the deferred-content decisions, and the
 build-and-launch mechanics.
+
+---
+
+## Launch day (in order)
+
+1. Neal gives the go-ahead; merge `2.0` into `main` (A8). The nightly build then needs the GitHub secrets
+   `SUPABASE_URL` and `SUPABASE_ANON_KEY` and a reachable Story Room, and it fails on purpose if the Story Room is down.
+2. Check that these open on dailypaths.org: the homepage, `/email/confirm/`, `/email/unsubscribe/`, `/guides/finding-help/`.
+3. Sign up on the live site with a spare address; confirm it; use the unsubscribe link.
+4. Send a test of the daily email (test mode); then set `send_enabled` to `true` (`editorial/email/setup.md`).
+5. Save a step in `/admin/` (its saves now use the admin login).
+6. Verify the site in Google Search Console and Bing; submit `sitemap.xml`.
