@@ -169,7 +169,6 @@ export function renderReadingPage(reading, prevReading, nextReading, allReadings
           : `More on ${programWords}`;
       keepReadingHtml = `
     <section class="wrap wrap--article section--lg kr-section" aria-labelledby="keep-reading-heading">
-      <p class="eyebrow">Related reflections</p>
       <h2 class="section-title" id="keep-reading-heading">${heading}</h2>
       <div class="kr-grid">${cards}
       </div>
@@ -202,8 +201,7 @@ export function renderReadingPage(reading, prevReading, nextReading, allReadings
 
   const goDeeperHtml = deeperCards.length ? `
     <section class="wrap wrap--article deeper-section" aria-labelledby="go-deeper-heading">
-      <p class="eyebrow">Go deeper</p>
-      <p class="section-title" id="go-deeper-heading">Understand it. Put it into practice.</p>
+      <p class="section-title" id="go-deeper-heading">Explore further</p>
       <div class="deeper-grid">
         ${deeperCards.map(card => `<a href="${bp(card.path)}" class="deeper-card">
           <span class="deeper-card-type">${card.label}</span>
