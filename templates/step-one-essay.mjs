@@ -1,5 +1,5 @@
 // Neal's approved Step One essay. Keep the prose unchanged; links wrap existing words.
-export const STEP_ONE_ESSAY_TITLE = 'Step One: Finding Freedom by Letting Go of the Unwinnable Battle';
+export const STEP_ONE_ESSAY_TITLE = "Step One: Accepting What We Can’t Control";
 
 export const STEP_ONE_OPENING = 'Many of us come to Al-Anon feeling completely defeated by the disease of alcoholism in a relative or friend. Out of deep desperation, we try everything we can think of to put an end to the frustration, chaos, and suffering in our homes. Yet, as long as we persist in the delusion that we can control or cure this illness, we remain trapped in an exhausting fight that we cannot win. Step One offers us a doorway out of this destructive cycle by inviting us to admit that **we are powerless over alcohol—and that our lives have become unmanageable**.';
 

@@ -1,5 +1,5 @@
 // Step Eleven essay. Links wrap existing words; pasted line-break artifacts are removed.
-export const STEP_ELEVEN_ESSAY_TITLE = 'Step Eleven: Deepening Spiritual Connection Through Prayer and Meditation';
+export const STEP_ELEVEN_ESSAY_TITLE = "Step Eleven: Seeking Guidance Through Prayer and Meditation";
 
 export const STEP_ELEVEN_OPENING = 'Having established a foundation of self-honesty, willingness, amends, and daily self-awareness through the first ten Steps, we arrive at Step Eleven. Step Eleven states that we "Sought through prayer and meditation to improve our conscious contact with God as we understood Him, praying only for knowledge of His will for us and the power to carry that out".';
 

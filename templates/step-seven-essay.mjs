@@ -1,5 +1,5 @@
 // Step Seven essay. Links wrap existing words.
-export const STEP_SEVEN_ESSAY_TITLE = 'Step Seven: Putting Acceptance into Action Through Humility and Trust';
+export const STEP_SEVEN_ESSAY_TITLE = "Step Seven: Asking for Help with Our Shortcomings";
 
 export const STEP_SEVEN_OPENING = 'Having become entirely ready in [Step Six](/steps/al-anon-step-6-willingness/) to have our defects of character removed, we take a natural and active step forward in Step Seven. Step Seven states that we **"Humbly asked Him to remove our shortcomings"**.';
 

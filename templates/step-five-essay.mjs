@@ -1,5 +1,5 @@
 // Neal's Step Five essay. Links wrap existing words; line-break artifacts before periods are removed.
-export const STEP_FIVE_ESSAY_TITLE = 'Step Five: Breaking Isolation and Finding Freedom Through Honest Admission';
+export const STEP_FIVE_ESSAY_TITLE = "Step Five: Being Honest About Our Wrongs";
 
 export const STEP_FIVE_OPENING = 'Building on the foundation laid in [Step Four](/steps/al-anon-step-4-courage/), where we took a searching and fearless moral inventory of ourselves, Step Five invites us to take an active leap toward healing. Step Five states that we "Admitted to God, to ourselves, and to another human being the exact nature of our wrongs".';
 

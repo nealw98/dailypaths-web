@@ -1,5 +1,5 @@
 // Step Nine essay. Links wrap existing words.
-export const STEP_NINE_ESSAY_TITLE = 'Step Nine: Cleaning Up the Past Through Direct Action and Healing';
+export const STEP_NINE_ESSAY_TITLE = "Step Nine: Making Amends Without Causing More Harm";
 
 export const STEP_NINE_OPENING = 'Having listed those we harmed in [Step Eight](/steps/al-anon-step-8-responsibility/) and cultivated the willingness to make things right, Step Nine calls us into direct, humble action. Step Nine states that we **"Made direct amends to such people wherever possible, except when to do so would injure them or others"**. Where previous Steps prepared our hearts and minds, Step Nine provides us with the opportunity to take responsibility for our past behavior, clear away the emotional wreckage we created, and leave the past behind. The core purpose of this Step is not to seek forgiveness or validation from others, but to free ourselves from the suffocating weight of lingering guilt and over-responsibility so we can move forward in recovery.';
 

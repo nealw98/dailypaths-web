@@ -1,5 +1,5 @@
 // Step Eight essay. Links wrap existing words; line-break artifacts before periods are removed.
-export const STEP_EIGHT_ESSAY_TITLE = 'Step Eight: Sorting Out Responsibility and Cultivating Willingness';
+export const STEP_EIGHT_ESSAY_TITLE = "Step Eight: Becoming Willing to Make Amends";
 
 export const STEP_EIGHT_OPENING = 'Having humbly asked our Higher Power in [Step Seven](/steps/al-anon-step-7-humility/) to remove our shortcomings, we move into the restorative work of Step Eight. Step Eight states that we "Made a list of all persons we had harmed, and became willing to make amends to them all".';
 

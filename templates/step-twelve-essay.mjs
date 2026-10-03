@@ -1,5 +1,5 @@
 // Step Twelve essay. Links wrap existing words.
-export const STEP_TWELVE_ESSAY_TITLE = 'Step Twelve: A Spiritual Awakening, Carrying the Message, and Living the Principles';
+export const STEP_TWELVE_ESSAY_TITLE = "Step Twelve: Living the Steps and Sharing What Helps";
 
 export const STEP_TWELVE_OPENING = 'Having worked the previous eleven Steps, we arrive at the culmination and ongoing practice of the Al-Anon program. Step Twelve states that **"Having had a spiritual awakening as the result of these steps, we tried to carry this message to others, and to practice these principles in all our affairs"**.';
 

@@ -1,5 +1,5 @@
 // Neal's Step Two essay. Keep the prose unchanged; links wrap existing words.
-export const STEP_TWO_ESSAY_TITLE = 'Step Two: Finding Sanity and Hope Beyond Our Own Limited Power';
+export const STEP_TWO_ESSAY_TITLE = "Step Two: Believing a Higher Power Can Help";
 
 export const STEP_TWO_OPENING = 'After accepting in [Step One](/steps/al-anon-step-1-honesty/) that we are powerless over alcohol and that our lives have become unmanageable, many of us in Al-Anon enter Step Two feeling confused, vulnerable, or emotionally spent. Step Two states that we "Came to believe that a Power greater than ourselves could restore us to sanity". By removing the emphasis on our past struggles with control, this Step shifts our focus toward spiritual healing and reassurance, reminding us that although we are powerless, we are neither helpless nor alone.';
 

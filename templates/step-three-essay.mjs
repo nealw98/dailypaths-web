@@ -1,5 +1,5 @@
 // Neal's Step Three essay. Keep the prose unchanged; links wrap existing words.
-export const STEP_THREE_ESSAY_TITLE = 'Step Three: Releasing the Burden of Self-Will Through Decision and Trust';
+export const STEP_THREE_ESSAY_TITLE = "Step Three: Trusting Our Lives to a Higher Power";
 
 export const STEP_THREE_OPENING = 'Having admitted in [Step One](/steps/al-anon-step-1-honesty/) that we are powerless over alcoholism and that our lives have become unmanageable, and having come to believe in [Step Two](/steps/al-anon-step-2-hope/) that a Power greater than ourselves could restore us to sanity, we arrive naturally at Step Three. Step Three states that we **"Made a decision to turn our will and our lives over to the care of God as we understood Him"**.';
 

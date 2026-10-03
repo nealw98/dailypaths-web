@@ -1,5 +1,5 @@
 // Step Four essay. Links wrap existing words.
-export const STEP_FOUR_ESSAY_TITLE = 'Step Four: A Searching and Fearless Journey Toward Self-Discovery';
+export const STEP_FOUR_ESSAY_TITLE = "Step Four: Taking an Honest Look at Ourselves";
 
 export const STEP_FOUR_OPENING = 'Having established a solid spiritual foundation in the first three acceptance Steps—admitting our powerlessness, opening our minds to hope, and deciding to trust a Power greater than ourselves—we arrive at Step Four. Step Four challenges us to take direct action through nine simple words: **"Made a searching and fearless moral inventory of ourselves"**.';
 
