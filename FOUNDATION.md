@@ -88,7 +88,7 @@ remain deferred pending their rewrites: One Day at a Time and Gratitude & Hope.
   survives in `editorial/about-alanon-comparison.md`. See `HANDOFF.md` §3.
 - **Splitting Learning to Trust — Neal's, to do in the Story Room.** He raised
   dividing Celina R's 2,578-word story in two, the second half taking the reserved
-  `/articles/what-happens-after-the-drinking-stops/` address, and asked that it not
+  address that has since been dropped, and asked that it not
   be done for him. Nothing here splits it; the note is only what was found looking.
 
   The natural seam is the section "He was sober. I was still angry." at roughly
@@ -132,14 +132,9 @@ dimensions. CMS publications apply the same rule at request time and during
 production builds. Pages without heroes retain their existing sharing fallback.
 No editorial content or production publishing settings were changed.
 
-## Reserved article address — September 24, 2026
+## Reserved article address
 
-`/articles/what-happens-after-the-drinking-stops/` has a short coming-soon
-placeholder in the development site. Neal will create and write its Story Room
-article using that page address. It is not promoted on the Articles index until
-published. The normal CMS route replaces the placeholder with the published
-snapshot; private drafts do not appear. No story ID mapping is needed when the
-Story Room page address matches this reserved URL.
+No article address is reserved. The placeholder for "What Happens After the Drinking Stops" was removed on October 3, 2026; the placeholder mechanism in `templates/article-placeholders.mjs` is kept, with an empty list.
 
 ## Story Room content management — September 20, 2026
 

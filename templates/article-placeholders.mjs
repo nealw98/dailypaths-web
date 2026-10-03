@@ -3,7 +3,6 @@ import {bp} from '../helpers/config.mjs';
 
 // Reserved addresses stay out of the article index until Story Room publishes them.
 export const ARTICLE_PLACEHOLDERS = [
-  {title:'What Happens After the Drinking Stops',path:'/articles/what-happens-after-the-drinking-stops/'},
 ];
 
 export function renderArticlePlaceholder(article) {
