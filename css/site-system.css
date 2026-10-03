@@ -1543,3 +1543,11 @@ body .store-badges a.store-badge-link:focus-visible {
 .site-newsletter.is-done .newsletter-status { margin: 0 auto; max-width: 34em; text-align: center; color: var(--text-primary, #34382e); outline: none; }
 .site-newsletter.is-done .newsletter-done-message { display: block; font: normal 500 clamp(21px, 2vw, 25px)/1.35 var(--font-editorial); letter-spacing: -.2px; }
 .site-newsletter.is-done .newsletter-done-sub { display: block; margin-top: 8px; font: var(--type-small); color: var(--text-muted, #66685d); }
+
+/* Separate the reading's action from its prose without adding another panel. */
+.page-reading .rd-practice { margin-block: 32px 28px; }
+.page-reading .rd-practice > .eyebrow { margin: 0 0 12px; font: var(--type-label); letter-spacing: 1.25px; text-transform: uppercase; color: var(--text-muted, #66685d); }
+.page-reading .rd-practice .prose-lora > :first-child,
+.page-reading .rd-practice .prose-reading > :first-child { margin-top: 0; }
+.page-reading .rd-practice .prose-lora > :last-child,
+.page-reading .rd-practice .prose-reading > :last-child { margin-bottom: 0; }

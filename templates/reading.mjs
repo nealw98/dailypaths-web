@@ -237,8 +237,12 @@ ${photoHero({
       <div class="prose-lora rd-body">
         ${openingHtml}
         ${bodyHtml}
-        ${applicationHtml}
       </div>
+
+      ${applicationHtml ? `<section class="rd-practice" aria-labelledby="practice-heading">
+        <h2 class="eyebrow" id="practice-heading">Practice</h2>
+        <div class="prose-lora">${applicationHtml}</div>
+      </section>` : ''}
 
       ${thoughtHtml ? `<div class="panel-seafoam reminder-panel">
         <p class="reminder-label">Today&rsquo;s Reminder</p>
