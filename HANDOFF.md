@@ -1,5 +1,12 @@
 # Structural work on `2.0` — what changed, and what to leave alone
 
+## October 2 — App overview simplified
+
+The app page now pairs each of Neal’s five original, uncropped screenshots with
+a plain feature heading and short description. Promotional slogans and repeated
+introductions are removed. The compact privacy, independence and download details
+remain. Images stay in `assets/Screenshots/app/`; generated mockup screens are not used.
+
 ## October 2 — App overview page
 
 `/app/` is the new destination for Get the app in desktop and mobile navigation.
