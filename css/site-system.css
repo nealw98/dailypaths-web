@@ -1607,11 +1607,3 @@ body .store-badges a.store-badge-link:focus-visible {
 .page-reading .rd-practice .prose-reading > :first-child { margin-top: 0; }
 .page-reading .rd-practice .prose-lora > :last-child,
 .page-reading .rd-practice .prose-reading > :last-child { margin-bottom: 0; }
-
-/* A quiet contact section shared by the homepage and reading pages. */
-.site-contact { background: var(--surface, #faf9f5); border-top: 1px solid var(--rule, #dfdfd3); }
-.site-contact-inner { width: min(calc(100% - (2 * var(--gutter-system))), 960px); margin-inline: auto; padding-block: 28px; display: flex; align-items: baseline; gap: 24px; }
-.site-contact h2 { margin: 0; font-family: var(--font-heading, Georgia, serif); font-size: 1.5rem; line-height: 1.3; font-weight: 500; }
-.site-contact p { margin: 0; font-size: 1rem; line-height: 1.6; }
-.site-contact a { color: inherit; text-decoration: underline; text-underline-offset: 3px; overflow-wrap: anywhere; }
-@media (max-width: 600px) { .site-contact-inner { display: block; } .site-contact h2 { margin-bottom: 8px; } }

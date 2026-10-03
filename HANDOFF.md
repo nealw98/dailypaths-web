@@ -1,8 +1,8 @@
-## October 3 — Shared contact section
+## October 3 — Footer contact link
 
-The bottom of every standard page now includes Contact and a direct mail link to
-support@dailypaths.org. `syncNewsletter` also synchronizes this section into saved
-CMS publications without duplicating it. No contact form or email sending added.
+Contact is a small “Contact Us” link to mailto:support@dailypaths.org beside
+Support in the homepage and standard footers. The separate Contact section was
+removed at Neal's request. Saved CMS publications receive the same footer link.
 
 ## October 3 — Internal recommendations avoid unrevised legacy essays
 

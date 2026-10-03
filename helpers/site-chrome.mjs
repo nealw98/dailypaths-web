@@ -4,11 +4,13 @@
 // version label. Self-contained on purpose: the preview server embeds this function as text.
 export function syncNewsletter(html, ref) {
   if (!html || !ref) return html;
-  // Published CMS snapshots receive the shared contact section too, once only.
-  const contactRe = /<section\b[^>]*class="site-contact"[^>]*>[\s\S]*?<\/section>/i;
-  const contact = ref.match(contactRe)?.[0];
-  let out = html;
-  if (contact) out = contactRe.test(out) ? out.replace(contactRe, () => contact) : out.replace(/<footer\b/i, () => contact + '\n<footer');
+  // Older saved pages lose the oversized section and gain the small footer link.
+  let out = html.replace(/<section\b[^>]*class="site-contact"[^>]*>[\s\S]*?<\/section>/gi, '');
+  out = out.replace(/<footer\b[^>]*>[\s\S]*?<\/footer>/gi, footer => {
+    if (/href=["']mailto:support@dailypaths\.org["']/i.test(footer)) return footer;
+    const link = '<a href="mailto:support@dailypaths.org">Contact Us</a>';
+    return footer.replace(/(<a\b[^>]*href=["'][^"']*\/support\/["'][^>]*>[\s\S]*?<\/a>)/i, '$1' + link);
+  });
   const sectionRe = /<section class="site-newsletter"[\s\S]*?<\/section>/i;
   const section = ref.match(sectionRe)?.[0];
   if (!section || !sectionRe.test(out)) return out;
