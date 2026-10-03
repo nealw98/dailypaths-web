@@ -19,7 +19,6 @@ export const STORY = {
     { title: 'Finding Yourself', kind: 'Guide', path: '/topics/self-worth/', description: 'Reconnecting with the person you are beyond someone else’s drinking.' },
     { title: 'Letting Go: Caring Without Carrying', kind: 'Article', path: themePath('letting-go'), description: 'Caring about someone without taking responsibility for every outcome.' },
     { title: 'Voices from the Grave', kind: 'Article', path: '/articles/voices-from-the-grave/', description: 'Recognizing old family rules, finding your own voice, and living in the present.' },
-    { title: 'The Power of Saying No', kind: 'Article', status: 'pending', plannedPath: '/articles/the-power-of-saying-no/', description: 'Saying no, facing guilt, and allowing your answer to stand.' },
   ],
 };
 
@@ -76,7 +75,7 @@ export function renderLineIKeptMoving(allReadings) {
     return `<article><p class="sd-kicker">${esc(reading.display_date)}</p><h3><a href="${bp('/' + readingSlug(reading.day_of_year, reading.title) + '/')}">${esc(reading.title)}</a></h3><p>${esc(item.reason)}</p></article>`;
   }).join('');
   const transcript = TAKEAWAYS.map((item, index) => `<section><h3>${index + 1}. ${esc(item.title)}</h3><p>${esc(item.body)}</p><p><em>${esc(item.question)}</em></p></section>`).join('');
-  const related = STORY.related.map(item => `<article><p class="sd-kicker">${esc(item.kind)}${item.status === 'pending' ? ' · Coming soon' : ''}</p><h3>${item.path ? `<a href="${bp(item.path)}">${esc(item.title)}</a>` : esc(item.title)}</h3><p>${esc(item.description)}</p></article>`).join('');
+  const related = STORY.related.map(item => `<article><p class="sd-kicker">${esc(item.kind)}</p><h3>${item.path ? `<a href="${bp(item.path)}">${esc(item.title)}</a>` : esc(item.title)}</h3><p>${esc(item.description)}</p></article>`).join('');
   return wrapInLayout({
     title: `${STORY.title} — A Personal Story by Lance W | Daily Paths`,
     description: STORY.description, canonicalPath: STORY.path,

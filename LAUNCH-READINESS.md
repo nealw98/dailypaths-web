@@ -30,7 +30,7 @@ every page with a sign-up block now has the live form and its script.
 **Done since the last review:** email (sign-up, confirmation, confirm/unsubscribe pages, daily send at 5:00 AM Eastern,
 all tested; sending switched off), privacy policy updated, four database tables locked, footer wording, Feb 27 address.
 
-**Still open before launch:** A8 (how 2.0 reaches `main`, and Neal's go-ahead), A9 and A10 below, Neal's sign-off on
+**Still open before launch:** A8 (how 2.0 reaches `main`, and Neal's go-ahead), A9 below, Neal's sign-off on
 the Terms, a final read of Finding Help, then the live checks in "Launch day" at the bottom.
 
 ## Where 2.0 actually stands
@@ -203,10 +203,12 @@ pages are slower and less private than self-hosted images. Fix (not yet done): c
 `assets/` at build time and rewrite the address, as the build already does for page text. Decide whether this is done
 before launch or soon after; nothing is broken today.
 
-### A10. A "Coming soon" card on a launch page — new October 3
+### A10. ~~A "Coming soon" card on a launch page~~ — resolved October 3
 
-`/articles/the-line-i-kept-moving/` ends with related cards, one of which reads "Article · Coming soon — The Power of
-Saying No" (the piece does not exist). Neal's call: remove the card, or keep it.
+An unwritten article was listed as "Coming soon" at the end of The Line I Kept Moving. It lives in the Story Room's
+saved copy of that page (the preview hid it with a preview-only rule; the production build did not). Removed from the
+story's template, and `applyEditorialPolicy` now strips the card from the saved copy. Neal will write that piece after
+launch; when it is published, add it back to the story's related list (and in the Story Room).
 
 ### A6. Deferring a piece only defers it in the preview
 

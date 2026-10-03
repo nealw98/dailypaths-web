@@ -409,9 +409,8 @@ accompanying editorial content, not a verbatim contributor quotation.
 
 Related readings: April 23 / day 114, June 28 / day 180, December 18 / day 353.
 Live destinations: current Boundaries guide (rewrite still pending), Finding
-Yourself, and Letting Go. Voices from the Grave and The Power of Saying No are
-marked Coming soon. Their proposed paths are recorded in the story module;
-they are not broken hyperlinks or empty published pages. Update status and
+Yourself, and Letting Go. Voices from the Grave was marked Coming soon until it
+was published, and has since gone live. Update status and
 path when the full pieces are ready. Confirm contributor approval and credit
 as part of the existing launch editorial review.
 
@@ -614,7 +613,7 @@ one written personal story with its author for a final review, not yet supplied.
 
 Boundaries, Surrender, Letting Go, Voices from the Grave, and Jeff J.'s existing
 story retain their authoritative prose and art. Deferred recommendations and the
-unwritten Power of Saying No card are suppressed; personal stories remain within
+unwritten-article card are suppressed; personal stories remain within
 Articles. Voices attribution is still inconsistent between the earlier foundation
 record and CMS metadata, so the existing page byline state is preserved pending
 confirmation. Contributor approval for The Line I Kept Moving remains separate.

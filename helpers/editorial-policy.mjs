@@ -25,6 +25,9 @@ export function applyEditorialPolicy(html, pathname, records = inserts) {
   html=html.replace(/(<div class="visually-hidden">)([\s\S]*?)(<\/div>)/g,(all,open,text,close)=>
    text.includes('The Worry Loop.')?open+text.replaceAll('Scanning the future','Scanning for problems').replaceAll('Reviewing the past','Regretting the past').replaceAll('Taking responsibility','Creating expectations')+close:all);
  }
+ // The Power of Saying No is not written yet. Story Room's saved copy of The Line I Kept Moving still lists it as a
+ // "Coming soon" recommendation, so take the card out wherever it appears; this does nothing once the saved copy is edited.
+ html=html.replace(/<article\b[^>]*>(?:(?!<\/article>)[\s\S])*?The Power of Saying No(?:(?!<\/article>)[\s\S])*?<\/article>/gi,'');
  // Published CMS snapshots also receive the current shared Home navigation.
  if(path && path !== '/') {
   html=html.replace(/(<nav\b[^>]*(?:class="site-nav"|aria-label="Mobile navigation")[^>]*>)([\s\S]*?)(<\/nav>)/gi, (all,open,links,close)=>{
