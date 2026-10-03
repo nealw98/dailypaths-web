@@ -12,6 +12,7 @@
  */
 export const MOVED_THEME_PAGES = {
   fellowship: '/guides/finding-help/',
+  'gratitude-and-hope': '/articles/',
   powerlessness: '/guides/surrender/',
   detachment: '/guides/detachment-with-love/',
   boundaries: '/guides/boundaries/',
@@ -21,7 +22,7 @@ export const MOVED_THEME_PAGES = {
 };
 
 // Consolidated topics keep their links but no longer own a page or index card.
-export const CONSOLIDATED_THEMES = new Set(['fellowship']);
+export const CONSOLIDATED_THEMES = new Set(['fellowship', 'gratitude-and-hope']);
 
 /** The current address of a theme's page. */
 export const themePath = slug => MOVED_THEME_PAGES[slug] || `/topics/${slug}/`;

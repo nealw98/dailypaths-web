@@ -15,14 +15,15 @@ export const LAUNCH_REVIEW = {
   // filter — without the last, the Story Room still lists About Al-Anon among the
   // guides, since it goes on publishing cms-about-alanon at /about-alanon/.
   consolidated: {
+    '/topics/gratitude-and-hope/': '/articles/',
     '/topics/fellowship/': '/guides/finding-help/',
     '/about-alanon/': '/guides/finding-help/',
     '/guides/about-alanon/': '/guides/finding-help/',
   },
   // Rewritten pieces come off this list as they land: Who Am I Behind the Mask
   // first, and now The Stories We Tell Ourselves, published from the Story Room
-  // on September 26. What is left is the two still awaiting their rewrite.
-  deferred: ['/topics/one-day-at-a-time/', '/topics/gratitude-and-hope/'],
+  // on September 26. One Day at a Time remains awaiting its rewrite.
+  deferred: ['/topics/one-day-at-a-time/'],
   // Learning to Trust was dropped here when it briefly published with an empty
   // summary. It has since been written — 2,716 words by Celina R — and Neal asked
   // for it back on September 28, so the list is empty. Dropping a path from the
