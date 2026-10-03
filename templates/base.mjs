@@ -213,6 +213,13 @@ ${bodyContent}
 
   ${hideNewsletter ? '' : newsletterInvitation()}
 
+  <section class="site-contact" aria-labelledby="site-contact-title">
+    <div class="site-contact-inner">
+      <h2 id="site-contact-title">Contact</h2>
+      <p>For questions or feedback, email <a href="mailto:support@dailypaths.org">support@dailypaths.org</a>.</p>
+    </div>
+  </section>
+
   ${isHome ? `<footer class="ed-footer ed-wrap"><nav aria-label="Footer"><a href="${bp('/about-project/')}">About</a><a href="${bp('/support/')}">Support</a><a href="${bp('/privacy/')}">Privacy</a><a href="${bp('/terms/')}">Terms</a></nav></footer>` : `  <footer class="site-footer">
     <div class="footer-inner">
       <div class="footer-col">

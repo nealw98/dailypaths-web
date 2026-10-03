@@ -1,6 +1,6 @@
 {
   "v": 1,
-  "capturedAt": "2026-10-03T22:11:59.136Z",
+  "capturedAt": "2026-10-03T22:40:50.779Z",
   "feed": [
     {
       "id": "cms-powerlessness",
@@ -363,14 +363,14 @@
     {
       "path": "/topics/focus-on-yourself/",
       "story_id": "legacy-focus-on-yourself",
-      "kind": "current",
-      "target": null
+      "kind": "redirect",
+      "target": "/articles/the-line-i-kept-moving/"
     },
     {
       "path": "/themes/focus-on-yourself/",
       "story_id": "legacy-focus-on-yourself",
       "kind": "redirect",
-      "target": "/topics/focus-on-yourself/"
+      "target": "/articles/the-line-i-kept-moving/"
     },
     {
       "path": "/topics/the-disease/",

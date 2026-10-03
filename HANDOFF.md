@@ -1,3 +1,9 @@
+## October 3 — Shared contact section
+
+The bottom of every standard page now includes Contact and a direct mail link to
+support@dailypaths.org. `syncNewsletter` also synchronizes this section into saved
+CMS publications without duplicating it. No contact form or email sending added.
+
 ## October 3 — Internal recommendations avoid unrevised legacy essays
 
 Internal links to Higher Power, Focus on Yourself and Understanding the Disease
