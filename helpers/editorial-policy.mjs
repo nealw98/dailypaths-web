@@ -3,6 +3,11 @@ import inserts from './editorial-inserts.json' with {type:'json'};
 // CMS composition so an older published snapshot cannot undo these corrections.
 export function applyEditorialPolicy(html, pathname, records = inserts) {
  if(!html)return html;
+ // Public contributions are retired in both preview and production, including old CMS snapshots.
+ html=html.replace(/<div\b[^>]*class="[^"]*\bshare-card\b[^"]*"[^>]*>[\s\S]*?<\/form>\s*<\/div>/gi,'');
+ html=html.replace(/<form\b[^>]*data-share-form[\s\S]*?<\/form>/gi,'');
+ html=html.replace(/<div\b[^>]*class="[^"]*\bshare-card\b[^"]*"[^>]*>(?:(?!<\/div>)[\s\S])*?<\/div>/gi,'');
+
  // October 3 approved title cleanup, including navigation and related cards
  // retained inside older Story Room page snapshots. Body headings are unchanged.
  html=html.replaceAll('Letting Go: Caring Without Carrying','Letting Go')

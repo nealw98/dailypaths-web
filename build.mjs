@@ -221,7 +221,6 @@ for (const topic of TOPICS) {
 let pageCount = 0;
 
 function writePage(filePath, html) {
-  if (IS_PREVIEW) html = html.replace(/<form\b[^>]*data-share-form[\s\S]*?<\/form>/g, '<p class="sd-small">Contributions are available on the live site.</p>');
   writeFileSync(filePath, applyEditorialPolicy(html), 'utf-8');
   pageCount++;
 }

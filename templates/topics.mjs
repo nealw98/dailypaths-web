@@ -5,7 +5,7 @@ import { markdownToHtml } from '../helpers/markdown.mjs';
 import { topicStructuredData, topicBreadcrumbStructuredData } from '../helpers/seo.mjs';
 import {
   TOPICS, TOPIC_THEME_TAGS, TOPIC_PULL_QUOTES,
-  TOPIC_INSIGHT_PROMPTS, TOPIC_FORM_QUESTIONS,
+  TOPIC_INSIGHT_PROMPTS,
 } from '../helpers/theme-data.mjs';
 import { photoHero, readingCard, terminalBand } from './ui.mjs';
 import { LETTING_GO_ARTICLE } from './theme-guides/letting-go.mjs';
@@ -283,7 +283,6 @@ export function renderTopicPage(topic, featuredReadings, allReadings = [], topic
   const pullQuote = topic.suppressIntroPullQuote ? '' : (TOPIC_PULL_QUOTES[topic.slug] || '');
   const themeTags = TOPIC_THEME_TAGS[topic.slug] || [];
   const insightPrompt = TOPIC_INSIGHT_PROMPTS[topic.slug] || `What is your experience with ${topic.name}?`;
-  const formQuestion = TOPIC_FORM_QUESTIONS[topic.slug] || `How has ${topic.name.toLowerCase()} shaped your recovery?`;
 
   // Theme-matched readings, excluding anything already featured
   const featuredDaySet = new Set(topic.featuredDays || []);
@@ -395,26 +394,6 @@ ${extraCards}
         ${hasMore ? '<button type="button" class="insight-show-more" data-insight-show-more>Show more community insights</button>' : ''}
       </section>` : ''}
 
-      <div class="panel-outlined share-card">
-        <h2 class="share-heading">Share Your Experience</h2>
-        <p class="share-prompt">${formQuestion}</p>
-        <form id="share-form-${topic.slug}" class="share-form" data-share-form data-topic-slug="${topic.slug}" data-supabase-url="${process.env.SUPABASE_URL}" data-supabase-key="${process.env.SUPABASE_ANON_KEY}">
-          <label class="field" for="share-name-${topic.slug}">
-            <span class="visually-hidden">Name</span>
-            <input type="text" id="share-name-${topic.slug}" name="display_name" placeholder="Name" required>
-          </label>
-          <label class="field field--area" for="share-content-${topic.slug}">
-            <span class="visually-hidden">Your insight</span>
-            <textarea id="share-content-${topic.slug}" name="content" rows="4" maxlength="3000" placeholder="Your insight&hellip;" required></textarea>
-          </label>
-          <div class="share-footer">
-            <p class="share-counter"><span data-char-count>0</span> / 3000 characters</p>
-            <button type="submit" class="btn">Post insight</button>
-          </div>
-          <p class="share-consent">By submitting, you consent to sharing your experience with the Daily Paths community. Insights are reviewed before they appear.</p>
-          <p class="share-status" data-share-status></p>
-        </form>
-      </div>
     </article>
 
     ${featuredReadings.length > 0 ? `<section class="wrap section--lg" id="readings">
