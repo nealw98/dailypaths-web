@@ -25,7 +25,7 @@ function guideRows() {
 }
 
 function homepageStory(article, image) {
-  return `<article class="ed-story" data-cms-path="${esc(article.path)}"><a class="ed-story-image" href="${bp(article.path)}" aria-label="${esc(article.title)}"><img src="${(article.cms&&article.image?article.image:bp('/assets/articles/' + image))}" alt="" width="800" height="1000" loading="lazy"></a><div class="ed-story-copy"><p class="ed-label">${esc(article.category)}${article.author && article.category === 'Personal Story' ? ` · ${esc(article.author)}` : ''}</p><h3><a href="${bp(article.path)}">${esc(article.title)}</a></h3><p class="cms-card-summary">${esc(article.description)}</p><a class="ed-link" href="${bp(article.path)}">Read the article</a></div></article>`;
+  return `<article class="ed-story" data-cms-path="${esc(article.path)}"><a class="ed-story-image" href="${bp(article.path)}" aria-label="${esc(article.title)}"><img src="${(article.cms&&article.image?article.image:bp('/assets/articles/' + image))}" alt="" width="800" height="1000" loading="lazy"></a><div class="ed-story-copy">${article.author ? `<p class="ed-label">By ${esc(article.author)}</p>` : ''}<h3><a href="${bp(article.path)}">${esc(article.title)}</a></h3><p class="cms-card-summary">${esc(article.description)}</p><a class="ed-link" href="${bp(article.path)}">Read the article</a></div></article>`;
 }
 
 export function renderHomePage(reading, allReadings = []) {
@@ -54,7 +54,7 @@ export function renderHomePage(reading, allReadings = []) {
     bodyContent: `<section class="ed-hero" aria-labelledby="reflection-title"><img class="ed-hero-photo" data-today-hero src="${bp('/assets/' + heroImage)}" alt="" fetchpriority="high"><div class="ed-hero-content ed-wrap"><div class="ed-reflection-meta"><h1 class="ed-label">Al-Anon daily reflections <span aria-hidden="true"></span></h1><p data-today-date>${esc(reading.display_date)}</p></div><h2 id="reflection-title" data-today-title>${esc(reading.title)}</h2>${excerpt ? `<p class="ed-hero-deck" data-today-excerpt>${esc(excerpt)}</p>` : ''}<a class="ed-button" data-today-cta href="${bp('/' + readingSlug(reading.day_of_year, reading.title) + '/')}">Read today’s reflection <span aria-hidden="true">→</span></a><p class="ed-keep-reading">Also worth reading: <a class="ed-link" href="${bp('/articles/the-stories-we-tell-ourselves/')}">The Stories We Tell Ourselves</a></p></div></section>
 <section class="ed-collection ed-wrap" aria-labelledby="collection-heading">
       <div class="ed-collection-intro">
-        <div><p class="ed-label">The collection</p><h2 id="collection-heading">366 Al-Anon daily reflections, one for every day</h2></div>
+        <div><h2 id="collection-heading">366 Al-Anon daily reflections, one for every day</h2></div>
         <div class="ed-collection-copy">
           <p>Every reading here is original, written for this collection rather than reprinted from anywhere else. Each month follows one of the Twelve Steps, so a reading sits in the company of the others written alongside it &mdash; you can follow the year as it comes, or go to whichever Step you are working.</p>
         </div>
@@ -77,7 +77,7 @@ export function renderArticlesPage() {
 
 export function renderGuidesPage() {
   return wrapInLayout({ title:'Guides — Daily Paths', description:'Practical help with boundaries, detachment, surrender, and finding support.', canonicalPath:'/guides/', bodyClass:'page-editorial', navSection:'guides', hasAppPanel:true,
-    bodyContent:`${hubIntro({ title:'Guides', description:'Practical help with boundaries, detachment, surrender, and finding support.', id:'guides-title' })}<section class="hub-reference-measure sd-guide-library" aria-labelledby="guide-library-heading"><h2 class="visually-hidden" id="guide-library-heading">All guides</h2><ol class="sd-guide-list">${guideRows()}</ol></section><aside class="hub-reference-measure sd-related-note"><p class="sd-kicker">A related read</p><p class="sd-related-title"><a href="${bp(themePath('letting-go'))}">Letting Go</a></p><p>When worry keeps you rehearsing tomorrow and replaying yesterday.</p></aside>${terminalBand()}`});
+    bodyContent:`${hubIntro({ title:'Guides', description:'Practical help with boundaries, detachment, surrender, and finding support.', id:'guides-title' })}<section class="hub-reference-measure sd-guide-library" aria-labelledby="guide-library-heading"><h2 class="visually-hidden" id="guide-library-heading">All guides</h2><ol class="sd-guide-list">${guideRows()}</ol></section><aside class="hub-reference-measure sd-related-note"><p class="sd-kicker">Article</p><p class="sd-related-title"><a href="${bp(themePath('letting-go'))}">Letting Go</a></p><p>When worry keeps you rehearsing tomorrow and replaying yesterday.</p></aside>${terminalBand()}`});
 }
 
 export function renderReflectionsPage(reading, allReadings = []) {

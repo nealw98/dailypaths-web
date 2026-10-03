@@ -327,10 +327,9 @@ ${photoHero({
 
     <section class="wrap section--md">
       <div class="reflection-index-lead">
-        <p>Explore readings by Step, Tradition, or Concept. Choose a collection, or begin with the readings people return to most.</p>
+        <p>Explore readings by Step, Tradition, or Concept.</p>
         <div class="reflection-index-actions">
           <a class="btn" data-today-link href="${bp(`/${readingSlug(todayReading.day_of_year, todayReading.title)}/`)}">Read today&rsquo;s reflection <span aria-hidden="true">&rarr;</span></a>
-          <a class="btn btn--ghost" href="${bp('/reflections/favorites/')}">Favorite readings</a>
         </div>
       </div>
       <div class="step-card-grid step-card-grid--index">${gridCards}
@@ -497,7 +496,6 @@ ${detailRail({
 
 ${bodySections}
       ${step.number === 4 ? `<aside class="step-resource">
-        <p class="eyebrow">Step Four resource</p>
         <p><a href="https://ecomm.al-anon.org/ItemDetail?CATEGORY=BOOKS&amp;iProductCode=P91" target="_blank" rel="noopener noreferrer"><em>Blueprint for Progress: 4th Step Inventory</em></a> is Al-Anon&rsquo;s workbook for taking an in-depth personal inventory.</p>
       </aside>` : ''}
       <a class="step-return-link" href="${bp(`/months/${step.monthSlug}/`)}">Step ${stepWord} Reflections</a>

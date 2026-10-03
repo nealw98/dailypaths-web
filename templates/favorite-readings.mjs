@@ -49,7 +49,6 @@ export function renderFavoriteReadingsPage(readings, ratingsMap = new Map()) {
         <a href="${bp('/reflections/')}" class="ma-back-link">&larr; All reflection collections</a>
       </nav>
       <header class="ma-header favorite-readings-header">
-        <p class="eyebrow ma-collection-eyebrow">Across the year</p>
         <h1 class="ma-title">Favorite Readings</h1>
         <p class="ma-subtitle">The reflections readers return to most.</p>
       </header>
