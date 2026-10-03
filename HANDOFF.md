@@ -1,3 +1,14 @@
+## October 3 — Legacy drafts are withheld from 2.0
+
+The Story Room feed excludes legacy rewrites in draft/needs-decision state.
+Their old canonical and alias paths redirect temporarily to their hub; reserving
+an article/guide URL does not publish it. Publishing replaces those redirects
+with direct permanent redirects to the new page. Retired records remain retired;
+edits to already approved 2.0 publications keep the previous approved version live.
+The preview Worker returns 302 for temporary routes. The static build writes
+redirect-only files, removes these pages from the sitemap and carries the same
+routes in its outage cache. Manuscripts and publication history stay in the CMS.
+
 ## October 3 — Footer contact link
 
 Contact is a small “Contact Us” link to mailto:support@dailypaths.org beside

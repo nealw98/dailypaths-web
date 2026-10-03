@@ -9,7 +9,7 @@ const root=path.resolve(process.argv[2]||'dist');
 const source=fs.readFileSync(path.join(root,'server/index.js'),'utf8');
 const fallback=JSON.parse(source.split('\n')[0].slice('const fallback='.length,-1));
 const paths=Object.keys(fallback);
-for(const route of LAUNCH_REVIEW.deferred) assert.ok(fallback[route],`Retain ${route}`);
+for(const route of LAUNCH_REVIEW.deferred) assert.ok(fallback[route],`Retain address ${route}`);
 for(const route of LAUNCH_REVIEW.drafts) assert.match(fallback[route],/Placeholder content/);
 for(const route of ['/','/guides/','/articles/']){
  for(const deferred of LAUNCH_REVIEW.deferred) assert.ok(!fallback[route].includes(`href="${deferred}"`),`${route} promotes ${deferred}`);

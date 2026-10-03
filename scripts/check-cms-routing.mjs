@@ -19,5 +19,11 @@ try{
  catalog={items:[{id:'website-step-1',path:'/steps/al-anon-step-1-honesty/',title:'Step One',content_type:'article'}],routes:[]};
  r=await mf.dispatchFetch('https://site.test/steps/al-anon-step-1-honesty/');assert.equal(r.status,200);assert.equal(r.headers.get('x-story-room-revision'),'r1');
  html=await(await mf.dispatchFetch('https://site.test/articles/')).text();assert(!html.includes('>Step One<'),'Step essays retain their own collection');
+ catalog={items:[],routes:[{path:'/topics/old/',story_id:'legacy',kind:'redirect',target:'/articles/',temporary:true}]};
+ r=await mf.dispatchFetch('https://site.test/topics/old/',{redirect:'manual'});assert.equal(r.status,302);assert.equal(r.headers.get('location'),'https://site.test/articles/');assert.equal(r.headers.get('cache-control'),'no-store');
+ xml=await(await mf.dispatchFetch('https://site.test/sitemap.xml')).text();assert(!xml.includes('/topics/old/'));
+ const offlineCode=`${createCmsWorker.toString()}\nexport default createCmsWorker(${JSON.stringify(fallback)},[],(base,approved)=>approved,${JSON.stringify({cmsRoutes:catalog.routes})});`;
+ const offline=new Miniflare({modules:true,script:offlineCode,compatibilityDate:'2026-05-15',outboundService:async()=>new Response('Unavailable',{status:503})});
+ try{r=await offline.dispatchFetch('https://site.test/topics/old/',{redirect:'manual'});assert.equal(r.status,302,'CMS outage must not restore withdrawn fallback HTML');assert(!(await r.text()).includes('Old page'));}finally{await offline.dispose();}
  console.log('CMS routing checks passed: real HTML rewriting, 301s, listing removal/addition, sitemap and Step publication.');
 }finally{await mf.dispose();}

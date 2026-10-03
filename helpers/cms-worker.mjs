@@ -10,7 +10,7 @@ export function createCmsWorker(fallback,knownPaths,composePage,launchPolicy={},
   let catalog=null;try{const response=await fetch(origin+'/api/room/published',{signal:AbortSignal.timeout(10000)});if(response.ok)catalog=await response.json();}catch{}
   const routes=catalog?.routes||launchPolicy.cmsRoutes||[];const route=routes.find(r=>r.path===path);
   const policy={...launchPolicy,deferred:(launchPolicy.deferred||[]).filter(p=>!(catalog?.items||[]).some(i=>i.path===p&&i.route_managed))};
-  if(route?.kind==='redirect'&&route.target)return Response.redirect(u.origin+route.target+u.search,301);
+  if(route?.kind==='redirect'&&route.target)return new Response(null,{status:route.temporary?302:301,headers:{Location:u.origin+route.target+u.search,'Cache-Control':'no-store'}});
   if(policy.retired?.includes(path))return new Response(request.method==='HEAD'?null:'This article has been removed.',{status:410,headers:{'Cache-Control':'no-store','X-Robots-Tag':'noindex, nofollow'}});
   // Consolidated into another page: 301 rather than the 410 above, so the link
   // equity follows the content to where it now lives.
@@ -29,7 +29,7 @@ export function createCmsWorker(fallback,knownPaths,composePage,launchPolicy={},
    if(linkedId){const item=catalog?.items?.find(item=>item.id===linkedId);if(item)cmsPath=item.path;}
    const r=isIndex&&catalog?{ok:true,json:async()=>catalog}:await fetch(origin+'/api/room/published'+(isIndex?'':'?path='+encodeURIComponent(cmsPath)),{signal:AbortSignal.timeout(10000)});
    if(r.ok){const data=await r.json();
-    if(data.redirect)return Response.redirect(u.origin+data.redirect+u.search,301);
+    if(data.redirect)return new Response(null,{status:data.temporary?302:301,headers:{Location:u.origin+data.redirect+u.search,'Cache-Control':'no-store'}});
     if(!isIndex){html=composePage(html,cmsPath===path?data.html:data.html.replaceAll(cmsPath,path));revision=data.revision;}
     else{
      const items=(data.items||[]).map(item=>({...item,path:item.route_managed?item.path:policy.linkedStories?.[item.id]||item.path})).filter(item=>!item.id?.startsWith('website-step-')).filter(item=>!policy.retiredPaths?.includes(item.path)&&!policy.deferred?.includes(item.path)&&!policy.retired?.includes(item.path)&&!policy.consolidated?.[item.path]).map(item=>{const override=policy.metadata?.[item.path];return override?{...item,author:override.author||item.author,card_title:override.title||item.card_title,summary:(override.description||item.summary)+(policy.drafts?.includes(item.path)&&!policy.cmsManaged?.includes(item.path)?' Placeholder':'')}:item;});
