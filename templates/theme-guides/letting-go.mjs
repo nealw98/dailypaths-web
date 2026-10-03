@@ -15,7 +15,7 @@
 export const LETTING_GO_ARTICLE = {
   slug: 'letting-go',
   title: 'Letting Go',
-  definition: 'Caring without carrying &mdash; releasing the need to manage, fix, or control.',
+  definition: 'When worry keeps you rehearsing tomorrow and replaying yesterday.',
   hero: {
     image: 'articles/letting-go-tightrope.webp',
     alt: 'A tightrope walker balances above a circus ring, viewed from overhead',

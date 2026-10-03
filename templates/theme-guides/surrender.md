@@ -1,4 +1,4 @@
-# Surrendering the Unwinnable Battle
+# Surrender
 
 A practical guide to accepting powerlessness, reclaiming your own life, and returning to surrender when the urge to control comes back.
 

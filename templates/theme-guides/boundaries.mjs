@@ -7,8 +7,8 @@ import { readingSlug } from '../../helpers/slug-utils.mjs';
 
 const source = readFileSync(new URL('./boundaries.md', import.meta.url), 'utf8')
   .replace(/<!--[\s\S]*?-->/g, '').trim();
-const title = 'Boundaries: Reclaiming Your Life';
-const subtitle = 'A practical guide to setting limits when affected by someone else’s drinking.';
+const title = 'Setting Boundaries';
+const subtitle = 'Decide what you’ll accept, explain your limit, and follow through.';
 const headings = new Map([
   ['The Cost of Living Without Boundaries', 'Living Without Boundaries'],
   ['What Boundaries Are—and What They Are Not', 'Understanding Boundaries'],

@@ -8,7 +8,7 @@ export const GUIDES = [
   { title: 'The Twelve Steps', path: '/guides/twelve-steps/', image: 'guides/twelve-steps/stone-steps-hero.webp', alt: 'Worn stone steps rise through a leafy garden toward a sunlit opening.', description: 'Key takeaways and core principles for each Step, with links to explore each Step and its daily reflections.' },
   { title: 'Surrender', path: '/guides/surrender/', description: 'Recognizing powerlessness, admitting unmanageability, and practicing the Three C’s.' },
   { title: 'Detachment', path: '/guides/detachment-with-love/', description: 'What it means to care without getting pulled into someone else’s choices.' },
-  { title: 'Boundaries', path: '/guides/boundaries/', description: 'Recognizing your limits and making room for your own needs.' },
+  { title: 'Setting Boundaries', path: '/guides/boundaries/', description: 'Decide what you’ll accept, explain your limit, and follow through.' },
 ];
 
 export const VOICES_ARTICLE = {
@@ -21,12 +21,12 @@ export const VOICES_ARTICLE = {
 };
 
 export const ARTICLES = [
-  { title: 'Letting Go: Caring Without Carrying', path: '/articles/letting-go/', image: 'articles/letting-go-tightrope.webp', alt: 'A tightrope walker balances above a circus ring, viewed from overhead', category: 'Letting go', description: 'Recognizing what is yours to handle—and what you can begin to put down.' },
+  { title: 'Letting Go', path: '/articles/letting-go/', image: 'articles/letting-go-tightrope.webp', alt: 'A tightrope walker balances above a circus ring, viewed from overhead', category: 'Letting go', description: 'When worry keeps you rehearsing tomorrow and replaying yesterday.' },
   // Reclassified as articles. Their addresses are unchanged: classification is
   // free to move, URLs are not (AGENTS.md). Both follow their titles to
   // /articles/… once the rewrites settle, as the five moved themes did.
   { title: 'One Day at a Time', path: '/topics/one-day-at-a-time/', image: 'articles/one-day-at-a-time-hero.jpg', alt: 'A quiet lake at sunset with a resting canoe', category: 'Everyday perspective', description: 'Meeting today without carrying all of tomorrow.' },
-  { title: 'Who Am I Behind the Mask', path: '/articles/who-am-i-behind-the-mask/', image: 'articles/self-worth-hero.jpg', alt: 'Walking through a golden wheat field in the sun', category: 'Knowing yourself', description: 'Reconnecting with the person you are beyond someone else’s drinking.' },
+  { title: 'Who Am I Behind the Mask?', path: '/articles/who-am-i-behind-the-mask/', image: 'articles/self-worth-hero.jpg', alt: 'Walking through a golden wheat field in the sun', category: 'Knowing yourself', description: 'I knew how to be what other people wanted. I wasn’t sure who I was.' },
   { title: 'Gratitude & Hope', path: '/topics/gratitude-and-hope/', image: 'articles/gratitude-and-hope-hero.jpg', alt: 'A quiet moment of natural light', category: 'Everyday perspective', description: 'Making space for what is still good, even when life feels uncertain.' },
   { title: 'The Stories We Tell Ourselves', path: '/articles/the-stories-we-tell-ourselves/', image: 'articles/honesty-hero.jpg', alt: 'An owl looking ahead with clear, steady eyes', category: 'Knowing yourself', description: 'Fear of rejection, uncertainty, and not being enough can shape the stories we tell ourselves.' },
   { title: 'The Line I Kept Moving', path: '/articles/the-line-i-kept-moving/', image: 'articles/the-line-i-kept-moving/dinner-table-photo.webp', alt: 'A woman with dinner at the table while her adult son prepares another meal in the kitchen', category: 'Personal Story', description: 'Learning to set boundaries with my mother—and to stop disappearing in the effort to earn her love.' },

@@ -72,13 +72,13 @@ export function renderHomePage(reading, allReadings = []) {
 }
 
 export function renderArticlesPage() {
-  return wrapInLayout({ title:'Articles — Daily Paths', description:'Thoughtful reading about letting go, relationships, and finding your way back to yourself.', canonicalPath:'/articles/', bodyClass:'page-editorial', navSection:'articles', hasAppPanel:true,
-    bodyContent:`${hubIntro({ eyebrow:'The reading room', title:'Articles', subtitle:'Thoughtful insights into everyday issues', description:'Thoughts and perspectives for the moments that feel familiar.', id:'articles-title' })}<section class="sd-stories sd-wrap sd-article-library" aria-labelledby="article-library-heading"><h2 class="visually-hidden" id="article-library-heading">All articles</h2>${launchItems(ARTICLES, IS_PREVIEW).map(articleCard).join('')}</section>${terminalBand()}`});
+  return wrapInLayout({ title:'Articles — Daily Paths', description:'Personal stories and articles about living with the effects of someone else’s drinking.', canonicalPath:'/articles/', bodyClass:'page-editorial', navSection:'articles', hasAppPanel:true,
+    bodyContent:`${hubIntro({ title:'Articles', description:'Personal stories and articles about living with the effects of someone else’s drinking.', id:'articles-title' })}<section class="sd-stories sd-wrap sd-article-library" aria-labelledby="article-library-heading"><h2 class="visually-hidden" id="article-library-heading">All articles</h2>${launchItems(ARTICLES, IS_PREVIEW).map(articleCard).join('')}</section>${terminalBand()}`});
 }
 
 export function renderGuidesPage() {
-  return wrapInLayout({ title:'Guides — Daily Paths', description:'Explore detachment, boundaries, support, and other essential ideas for people affected by someone else’s drinking.', canonicalPath:'/guides/', bodyClass:'page-editorial', navSection:'guides', hasAppPanel:true,
-    bodyContent:`${hubIntro({ title:'Guides', subtitle:'A place to begin. A place to return.', description:'Explore one idea at a time, at your own pace.', id:'guides-title' })}<section class="hub-reference-measure sd-guide-library" aria-labelledby="guide-library-heading"><h2 class="visually-hidden" id="guide-library-heading">All guides</h2><ol class="sd-guide-list">${guideRows()}</ol></section><aside class="hub-reference-measure sd-related-note"><p class="sd-kicker">A related read</p><p class="sd-related-title"><a href="${bp(themePath('letting-go'))}">Letting Go: Caring Without Carrying</a></p><p>On responsibility, control, and putting down what isn’t yours to carry.</p></aside>${terminalBand()}`});
+  return wrapInLayout({ title:'Guides — Daily Paths', description:'Practical help with boundaries, detachment, surrender, and finding support.', canonicalPath:'/guides/', bodyClass:'page-editorial', navSection:'guides', hasAppPanel:true,
+    bodyContent:`${hubIntro({ title:'Guides', description:'Practical help with boundaries, detachment, surrender, and finding support.', id:'guides-title' })}<section class="hub-reference-measure sd-guide-library" aria-labelledby="guide-library-heading"><h2 class="visually-hidden" id="guide-library-heading">All guides</h2><ol class="sd-guide-list">${guideRows()}</ol></section><aside class="hub-reference-measure sd-related-note"><p class="sd-kicker">A related read</p><p class="sd-related-title"><a href="${bp(themePath('letting-go'))}">Letting Go</a></p><p>When worry keeps you rehearsing tomorrow and replaying yesterday.</p></aside>${terminalBand()}`});
 }
 
 export function renderReflectionsPage(reading, allReadings = []) {

@@ -1,5 +1,5 @@
 // Step Six essay. Links wrap existing words.
-export const STEP_SIX_ESSAY_TITLE = 'Step Six: Becoming Entirely Ready to Let Go of Our Deficits';
+export const STEP_SIX_ESSAY_TITLE = 'Step Six: Becoming Willing to Change';
 
 export const STEP_SIX_OPENING = 'Having taken a searching and fearless moral inventory in [Step Four](/steps/al-anon-step-4-courage/) and admitted the exact nature of our wrongs in [Step Five](/steps/al-anon-step-5-integrity/), we arrive at Step Six. Step Six states that we **"Were entirely ready to have God remove all these defects of character"**.';
 

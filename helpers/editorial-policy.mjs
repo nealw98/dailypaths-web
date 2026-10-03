@@ -3,6 +3,15 @@ import inserts from './editorial-inserts.json' with {type:'json'};
 // CMS composition so an older published snapshot cannot undo these corrections.
 export function applyEditorialPolicy(html, pathname, records = inserts) {
  if(!html)return html;
+ // October 3 approved title cleanup, including navigation and related cards
+ // retained inside older Story Room page snapshots. Body headings are unchanged.
+ html=html.replaceAll('Letting Go: Caring Without Carrying','Letting Go')
+  .replaceAll('Boundaries: Reclaiming Your Life','Setting Boundaries')
+  .replaceAll('Surrendering the Unwinnable Battle','Surrender')
+  .replace(/Who Am I Behind the Mask(?!\?)/g,'Who Am I Behind the Mask?');
+ // The imported CMS card label predates the shorter, unchanged article title.
+ // Match the old label above instead of overriding future CMS title decisions.
+
  const path=pathname||html.match(/<link\b[^>]*rel="canonical"[^>]*href="https?:\/\/[^/]+([^"?]+)/i)?.[1];
  // Story Room text replaced an inherited member-insight grid in this article.
  // Keep approved prose and inserts, but discard the old card/truncation behavior.

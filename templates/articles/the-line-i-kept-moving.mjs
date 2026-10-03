@@ -17,7 +17,7 @@ export const STORY = {
   related: [
     { title: 'Boundaries', kind: 'Guide', path: themePath('boundaries'), description: 'Recognizing your limits and making room for your own needs.' },
     { title: 'Finding Yourself', kind: 'Guide', path: '/topics/self-worth/', description: 'Reconnecting with the person you are beyond someone else’s drinking.' },
-    { title: 'Letting Go: Caring Without Carrying', kind: 'Article', path: themePath('letting-go'), description: 'Caring about someone without taking responsibility for every outcome.' },
+    { title: 'Letting Go', kind: 'Article', path: themePath('letting-go'), description: 'Caring about someone without taking responsibility for every outcome.' },
     { title: 'Voices from the Grave', kind: 'Article', path: '/articles/voices-from-the-grave/', description: 'Recognizing old family rules, finding your own voice, and living in the present.' },
   ],
 };

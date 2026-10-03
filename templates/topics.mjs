@@ -233,7 +233,7 @@ ${flow}
     ${terminalBand()}`;
 
   return wrapInLayout({
-    title: 'Letting Go in Al-Anon — Caring Without Carrying | Daily Paths',
+    title: 'Letting Go | Daily Paths',
     description: topic.metaDescription,
     canonicalPath: themePath(topic.slug),
     bodyContent,

@@ -1,5 +1,5 @@
 // Step Ten essay. Links wrap existing words.
-export const STEP_TEN_ESSAY_TITLE = 'Step Ten: Maintaining Daily Serenity Through Continuous Self-Awareness';
+export const STEP_TEN_ESSAY_TITLE = 'Step Ten: Keeping an Honest Inventory';
 
 export const STEP_TEN_OPENING = 'Having completed the deep, transformative work of taking an inventory, sharing it, and making amends in Steps Four through Nine, we arrive at Step Ten. Step Ten states that we **"Continued to take personal inventory and when we were wrong promptly admitted it"**.';
 

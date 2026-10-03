@@ -1,6 +1,6 @@
 <!-- Editorial note: Revised draft for Neal's review; not published. The three blockquotes mark the pull quotes Neal liked. The delimited “What is a boundary?”, “Before you state your boundary”, and “When safety is at risk” blocks are inserts. See the end notes for presentation guidance. -->
 
-# Boundaries: Reclaiming Your Life
+# Setting Boundaries
 
 A practical guide to setting limits when affected by someone else’s drinking.
 

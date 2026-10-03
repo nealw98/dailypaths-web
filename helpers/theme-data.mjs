@@ -123,7 +123,7 @@ export const TOPICS = [
   {
     slug: 'powerlessness',
     name: 'Surrender',
-    displayTitle: 'Surrendering the Unwinnable Battle: Taking the first step',
+    displayTitle: 'Surrender',
     displaySubtitle: 'Accepting Powerlessness, Reclaiming Peace, and Finding Recovery for Families Impacted by Alcoholism',
     suppressIntroPullQuote: true,
     shortDescription: 'Recognizing powerlessness, admitting unmanageability, and practicing the Three C’s.',
@@ -307,7 +307,7 @@ export const TOPICS = [
   {
     slug: 'self-worth',
     name: 'Self-Worth & Identity',
-    shortDescription: 'Reclaiming the sense of self that years of crisis eroded.',
+    shortDescription: 'I knew how to be what other people wanted. I wasn’t sure who I was.',
     metaDescription: 'Rediscover who you are beyond someone else\u2019s crisis. Daily Al-Anon reflections on rebuilding self-worth and reclaiming your identity.',
     image: 'articles/self-worth-hero.jpg',
     imageAlt: 'Walking through a golden wheat field in the sun',
