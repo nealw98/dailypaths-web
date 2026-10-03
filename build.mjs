@@ -604,6 +604,7 @@ if (IS_PREVIEW) {
 // JS
 cpSync(join(__dirname, 'js', 'newsletter.js'), join(outDir, 'js', 'newsletter.js'));
 cpSync(join(__dirname, 'js', 'email-manage.js'), join(outDir, 'js', 'email-manage.js'));
+cpSync(join(__dirname, 'js', 'story-insert-view.js'), join(outDir, 'js', 'story-insert-view.js'));
 cpSync(join(__dirname, 'js', 'main.js'), join(outDir, 'js', 'main.js'));
 cpSync(join(__dirname, 'js', 'steps-glance.js'), join(outDir, 'js', 'steps-glance.js'));
 if (!IS_PREVIEW) cpSync(join(__dirname, 'js', 'admin.js'), join(outDir, 'js', 'admin.js'));
@@ -694,6 +695,11 @@ if (existsSync(themesAssetsDir)) {
   cpSync(themesAssetsDir, join(outDir, 'assets', 'themes'), { recursive: true });
 }
 
+
+// Copy Story Room images into the site (as WebP) so pages don't depend on its address
+import { localizeStoryRoomMedia } from './helpers/localize-media.mjs';
+const media = await localizeStoryRoomMedia({ outDir, assetsDir: localAssetsDir, origin: BASE_URL });
+console.log(`Story Room images: ${media.copied} newly copied, ${media.kept} still linked`);
 
 // CNAME for GitHub Pages custom domain
 if (!IS_PREVIEW) writeFileSync(join(outDir, 'CNAME'), 'dailypaths.org', 'utf-8');

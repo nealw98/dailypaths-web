@@ -413,3 +413,11 @@ The function is embedded in the preview server as text, so keep it self-containe
 
 If the sign-up block's markup changes again, nothing needs doing for these pages. If a new
 shared part of the footer must stay current on saved pages, extend `syncNewsletter`.
+
+## Story Room images are copied into the site — October 3, 2026
+
+`helpers/localize-media.mjs` runs at the end of `build.mjs`. It finds Story Room image addresses
+(`…/api/room/media/<id>`) in the built pages, saves each as `assets/story-room/<id>.webp` (generated, but commit it so
+builds do not depend on the Story Room), and rewrites the pages. Do not hand-edit those files. The Story Room's
+`insert-view.js` is now `js/story-insert-view.js`. The preview Worker still composes Story Room pages at request time
+and is unchanged.

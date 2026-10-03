@@ -193,15 +193,13 @@ merge.
   "Personal story · Jeff J." in production builds, which is corrected. Confirm
   the contributor is content with the published version if that is still open.
 
-### A9. Production pages load images from the Story Room's address — new October 3
+### A9. ~~Production pages load images from the Story Room's address~~ — resolved October 3
 
-26 image references on 8 pages (Articles and Guides indexes, Learning to Trust, Your First Al-Anon Meeting, Finding Help,
-Detachment with Love, Surrender, Who Am I Behind the Mask) point to
-`daily-paths-story-room.nealw98.chatgpt.site/api/room/media/…`. That is the Story Room's own preview-style host, not
-dailypaths.org. It works while that host is up, but the live site would depend on it for its hero and card images, and the
-pages are slower and less private than self-hosted images. Fix (not yet done): copy each Story Room image into
-`assets/` at build time and rewrite the address, as the build already does for page text. Decide whether this is done
-before launch or soon after; nothing is broken today.
+26 image references on 8 pages used to point at the Story Room's own host. Every build now copies each Story Room
+image into `assets/story-room/` as WebP (committed to the repo, so builds work even if the Story Room is down),
+rewrites the pages and share-preview tags to the copy, and serves the enlarge-image script from `js/story-insert-view.js`
+instead of the Story Room. A new Story Room image is picked up on the next build. If a download fails, that one image
+stays as a link and the build prints a warning. See `helpers/localize-media.mjs`.
 
 ### A10. ~~A "Coming soon" card on a launch page~~ — resolved October 3
 
