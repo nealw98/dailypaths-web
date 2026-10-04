@@ -42,8 +42,8 @@ export function renderTwelveStepsGuide() {
     </section>
     ${terminalBand()}`;
   return wrapInLayout({
-    title: `${TITLE} | Daily Paths`,
-    description: 'A guide to the Twelve Steps of Al-Anon: key takeaways and core principles for each Step, with links to explore each Step and its daily reflections.',
+    title: 'The 12 Steps of Al-Anon: Key Takeaways for Each Step | Daily Paths',
+    description: 'The 12 Steps of Al-Anon at a glance: the key takeaways and core principle of each Step, with links to the full Step and its daily reflections.',
     canonicalPath: TWELVE_STEPS_PATH,
     bodyContent,
     bodyClass: 'page-editorial page-twelve-steps',

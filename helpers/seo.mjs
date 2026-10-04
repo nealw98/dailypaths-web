@@ -36,7 +36,7 @@ export function generateSitemap(readings, topics, steps = [], lastmodFor = () =>
   }
 
   // Supporting Step articles. The retired /steps/ index is a redirect and is
-  // intentionally omitted; Step navigation now begins at /reflections/.
+  // intentionally omitted; it forwards to the Twelve Steps guide.
   for (const step of steps) {
     urls.push({ path: `/steps/${stepRecordSlug(step)}/`, priority: '0.6', changefreq: 'monthly' });
   }

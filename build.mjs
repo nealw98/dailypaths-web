@@ -337,10 +337,11 @@ writePage(join(outDir, 'about-project', 'index.html'), renderAboutProjectPage())
 console.log('Generating admin page...');
 if (!IS_PREVIEW) writePage(join(outDir, 'admin', 'index.html'), renderAdminPage());
 
-// The reflection library owns the Step index, while the established individual
-// Step URLs remain available as supporting long-form articles.
-console.log('Generating Step articles and reflection index redirect...');
-writePage(join(outDir, 'steps', 'index.html'), redirectHtml('/reflections/'));
+// /steps/ is the address people search for ("12 steps of al-anon"), so it forwards
+// to the Twelve Steps guide, not the reflection library. The individual Step URLs
+// remain available as supporting long-form articles.
+console.log('Generating Step articles and Steps index redirect...');
+writePage(join(outDir, 'steps', 'index.html'), redirectHtml('/guides/twelve-steps/'));
 for (const step of STEPS) {
   writePage(
     join(outDir, 'steps', stepRecordSlug(step), 'index.html'),
