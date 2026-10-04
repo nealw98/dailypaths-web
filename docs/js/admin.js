@@ -371,11 +371,23 @@
     });
   }
 
+  // Writes to steps/themes must carry the signed-in admin's token, not the public
+  // key, so the database can tell an admin from anyone else.
+  function adminFetch(url, init) {
+    return new Promise(function (resolve, reject) {
+      getValidSession(function (err, session) {
+        if (err) { signOut(); reject(new Error('Session expired. Please sign in again.')); return; }
+        init.headers['Authorization'] = 'Bearer ' + session.access_token;
+        resolve(fetch(url, init));
+      });
+    });
+  }
+
   function saveStep(stepNumber, updates, cb) {
     state.saving = true;
     render();
     updates.updated_at = new Date().toISOString();
-    fetch(EXT_SUPABASE_URL + '/rest/v1/steps?number=eq.' + stepNumber, {
+    adminFetch(EXT_SUPABASE_URL + '/rest/v1/steps?number=eq.' + stepNumber, {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',
@@ -413,7 +425,7 @@
     state.saving = true;
     render();
     updates.updated_at = new Date().toISOString();
-    fetch(EXT_SUPABASE_URL + '/rest/v1/themes?slug=eq.' + themeSlug, {
+    adminFetch(EXT_SUPABASE_URL + '/rest/v1/themes?slug=eq.' + themeSlug, {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',

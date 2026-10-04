@@ -4,13 +4,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Privacy Policy | Al-Anon Daily Paths</title>
-  <meta name="description" content="Al-Anon Daily Paths privacy policy. Learn how we handle app data and optional website email subscriptions.">
+  <meta name="description" content="Daily Paths privacy policy for the website and the mobile app: what each collects, how it is used, and your choices.">
   <link rel="canonical" href="https://dailypaths.org/privacy/">
   <meta name="theme-color" content="#f4f1ea">
 
   <!-- Open Graph -->
   <meta property="og:title" content="Privacy Policy | Al-Anon Daily Paths">
-  <meta property="og:description" content="Al-Anon Daily Paths privacy policy. Learn how we handle app data and optional website email subscriptions.">
+  <meta property="og:description" content="Daily Paths privacy policy for the website and the mobile app: what each collects, how it is used, and your choices.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://dailypaths.org/privacy/">
   <meta property="og:image" content="https://dailypaths.org/assets/og-image.png">
@@ -21,7 +21,7 @@
   <!-- Twitter -->
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Privacy Policy | Al-Anon Daily Paths">
-  <meta name="twitter:description" content="Al-Anon Daily Paths privacy policy. Learn how we handle app data and optional website email subscriptions.">
+  <meta name="twitter:description" content="Daily Paths privacy policy for the website and the mobile app: what each collects, how it is used, and your choices.">
   <meta name="twitter:image" content="https://dailypaths.org/assets/og-image.png">
 
   <!-- Favicon -->
@@ -35,7 +35,7 @@
   <!-- Page structure first, then the shared Daily Paths design system. -->
   <link rel="stylesheet" href="/css/style.css?v=brand-icon-1"><link rel="stylesheet" href="/css/soft-daylight.css?v=brand-icon-1">
   <link rel="stylesheet" href="/css/tokens/fonts.css?v=wordmark-loading-1">
-  <link rel="stylesheet" href="/css/site-system.css?v=wordmark-loading-1">
+  <link rel="stylesheet" href="/css/site-system.css?v=collection-tint-10">
   <meta name="site-mode" content="production">
 
   
@@ -61,7 +61,7 @@
     e.location.protocol&&"//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js".match(/^\/\//)?"https://cdn.mxpnl.com/libs/mixpanel-2-latest.min.js":"//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js";e=e.getElementsByTagName("script")[0];e.parentNode.insertBefore(k,e)}})(document,window.mixpanel||[]);
     mixpanel.init('52f2220068271346a45866162087fc9c', {
       autocapture: true,
-      record_sessions_percent: 100,
+      record_sessions_percent: 0,
     });
   </script>
   <script src="/js/analytics.js"></script>
@@ -71,6 +71,27 @@
   </script>
 
 <link rel="stylesheet" href="/css/inserts.css?v=20260924">
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://dailypaths.org/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Privacy Policy",
+      "item": "https://dailypaths.org/privacy/"
+    }
+  ]
+}
+  </script>
 </head>
 <body class="page-privacy">
   <a href="#main" class="skip-link">Skip to content</a>
@@ -82,11 +103,19 @@
       </a>
       <span class="header-divider" aria-hidden="true"></span>
       <nav class="site-nav" aria-label="Main navigation">
+        <a href="/" class="nav-link">Home</a>
         <a href="/reflections/" class="nav-link">Reflections</a>
-        <a href="/articles/" class="nav-link">Articles</a>
-        <a href="/guides/" class="nav-link">Guides</a>
+        <div class="nav-item" data-nav-item>
+          <a href="/articles/" class="nav-link">Articles</a>
+          <button type="button" class="nav-caret" aria-expanded="false" aria-label="Show Articles menu"></button>
+          <div class="nav-dropdown"><a href="/articles/letting-go/">Letting Go</a><a href="/articles/who-am-i-behind-the-mask/">Who Am I Behind the Mask?</a><a href="/articles/the-stories-we-tell-ourselves/">The Stories We Tell Ourselves</a><a href="/articles/the-line-i-kept-moving/">The Line I Kept Moving</a><a href="/articles/voices-from-the-grave/">Voices from the Grave</a><a href="/articles/learning-to-trust/">Learning to Trust</a><a href="/articles/your-first-al-anon-meeting/">Your First Al-Anon Meeting: What to Expect</a><a class="nav-dropdown-all" href="/articles/">All articles</a></div>
+        </div>
+        <div class="nav-item" data-nav-item>
+          <a href="/guides/" class="nav-link">Guides</a>
+          <button type="button" class="nav-caret" aria-expanded="false" aria-label="Show Guides menu"></button>
+          <div class="nav-dropdown"><a href="/guides/finding-help/">Finding Help: Could Al-Anon Be for You?</a><a href="/guides/twelve-steps/">The Twelve Steps</a><a href="/guides/surrender/">Surrender</a><a href="/guides/detachment-with-love/">Detachment with Love</a><a href="/guides/boundaries/">Setting Boundaries</a><a class="nav-dropdown-all" href="/guides/">All guides</a></div>
+        </div>
       </nav>
-      <a href="/#get-the-app" class="btn btn--sm header-cta">Get the app</a>
       <button type="button" class="menu-toggle" data-menu-toggle aria-expanded="false" aria-controls="mobile-menu">
         <span class="menu-glyph" aria-hidden="true"><span></span><span></span><span></span></span>
         <span data-menu-label>Menu</span>
@@ -94,11 +123,11 @@
     </div>
     <div class="mobile-menu" id="mobile-menu" data-mobile-menu hidden>
       <nav aria-label="Mobile navigation">
+        <a href="/" class="mobile-menu-row"><span class="mobile-menu-label">Home</span></a>
         <a href="/reflections/" class="mobile-menu-row"><span class="mobile-menu-label">Reflections</span></a>
         <a href="/articles/" class="mobile-menu-row"><span class="mobile-menu-label">Articles</span></a>
         <a href="/guides/" class="mobile-menu-row"><span class="mobile-menu-label">Guides</span></a>
       </nav>
-      <a href="/#get-the-app" class="btn btn--full mobile-menu-cta">Get the app</a>
     </div>
   </header>
 
@@ -108,19 +137,86 @@
     <div class="content-page">
       <div class="content-container">
         <h1 class="page-title">Privacy Policy</h1>
-        <p class="page-meta">Last updated: September 24, 2026</p>
+        <p class="page-meta">Last updated: October 2, 2026</p>
 
         <section class="content-section">
           <h2>Overview</h2>
           <p>
-            Al-Anon Daily Paths ("we," "our," or "us") is committed to protecting your privacy.
-            This Privacy Policy explains how we collect, use, and safeguard information
-            when you use our mobile application and website.
+            Daily Paths ("we," "our," or "us") is published by Daily Growth, LLC. This Privacy
+            Policy covers two things: the <strong>Daily Paths website</strong> and the
+            <strong>Daily Paths mobile app</strong>. They collect different information, so each
+            has its own section below.
+          </p>
+          <ul>
+            <li><a href="#website">The Daily Paths website</a></li>
+            <li><a href="#app">The Daily Paths app</a></li>
+          </ul>
+          <p>
+            The sections after those, on children, changes to this policy and how to contact us,
+            apply to both.
+          </p>
+        </section>
+
+        <h2 class="privacy-part" id="website">The Daily Paths Website</h2>
+
+        <section class="content-section">
+          <h3>What we collect</h3>
+          <p>
+            You do not need an account to read the website, and we do not ask for your name. When
+            you visit, we collect usage information so we can understand which pages are helpful and
+            improve the site:
+          </p>
+          <ul>
+            <li>The pages you view, how you arrived, and how you interact with them, such as clicks and link and form interactions.</li>
+            <li>Technical information about your device and browser, such as screen size, browser type, language and operating system.</li>
+            <li>Your approximate location, such as country or region, based on your internet address.</li>
+          </ul>
+          <p>
+            This information is not tied to your name or email address, and we do not use it to
+            identify you.
           </p>
         </section>
 
         <section class="content-section">
-          <h2>Information We Collect</h2>
+          <h3>Analytics services and cookies</h3>
+          <p>We use two analytics services, each of which may set cookies or similar identifiers in your browser:</p>
+          <ul>
+            <li><strong>Google Analytics</strong> (Google LLC) measures visits and page views. Learn more in <a href="https://policies.google.com/technologies/partner-sites" target="_blank" rel="noopener noreferrer">Google&rsquo;s explanation of how it uses data from sites that use its services</a>.</li>
+            <li><strong>Mixpanel</strong> (Mixpanel, Inc.) records how visitors use the site, such as pages viewed and links clicked. Learn more in <a href="https://mixpanel.com/legal/privacy-policy/" target="_blank" rel="noopener noreferrer">Mixpanel&rsquo;s privacy policy</a>.</li>
+          </ul>
+          <p>
+            You can block or delete cookies in your browser settings, and Google offers a
+            <a href="https://tools.google.com/dlpage/gaoptout" target="_blank" rel="noopener noreferrer">browser add-on</a>
+            that opts you out of Google Analytics. The site works without cookies.
+          </p>
+          <p>
+            Like any website, our hosting provider (GitHub Pages) receives your internet address
+            and basic request details when your browser loads a page, and keeps them in its own
+            server logs. We do not receive or use those logs to identify you.
+          </p>
+        </section>
+
+        <section class="content-section">
+          <h3>Email updates</h3>
+          <p>If you join our email list, we store your email address and the date and version of your consent. We use it only to send the reflections and article updates you asked for. We do not sell the list.</p>
+          <p>Addresses are stored in Supabase. Emails are sent through Resend, which receives your address for that purpose. We send a confirmation email when you sign up, and every message includes an unsubscribe link. You can also contact us through the <a href="/support/">Support</a> page to ask for your address to be removed. We keep your address until you unsubscribe or ask us to remove it. Signup protection uses a temporary hash of your network address; we do not store the raw address in the subscriber list.</p>
+        </section>
+
+        <section class="content-section">
+          <h3>What we do not collect on the website</h3>
+          <p>
+            We do not collect payment information, and we do not ask you to create an account or
+            enter personal details to read. The only personal information you give us on the website
+            is your email address, if you choose to join the email list. We do not sell personal
+            information.
+          </p>
+        </section>
+
+        <h2 class="privacy-part" id="app">The Daily Paths App</h2>
+
+
+        <section class="content-section">
+          <h3>Information We Collect</h3>
           <p>We collect minimal information to provide and improve our service:</p>
           <ul>
             <li>
@@ -137,16 +233,16 @@
               <strong>Favorites:</strong> If you mark readings as favorites, this preference
               is stored with your anonymous device identifier.
             </li>
+            <li>
+              <strong>Usage Analytics:</strong> We use Mixpanel to see which features are used
+              and where the app may be confusing. These events are tied to the same random
+              device identifier, never to your name, your email, or the contents of your entries.
+            </li>
           </ul>
         </section>
 
         <section class="content-section">
-          <h2>Email Updates</h2>
-          <p>If you join our email list, we store your email address, the date and version of your consent, and whether you signed up on our development or public website. We use this information for the reflections and article updates you requested. We do not sell the list.</p>
-          <p>Addresses are stored in Supabase. Email delivery is not active yet. When delivery begins, messages will include an unsubscribe link. You can also contact us through the <a href="/support/">Support</a> page to request removal. Signup protection uses a temporary hash of your network address; we do not store the raw address in the subscriber list.</p>
-        </section>
-        <section class="content-section">
-          <h2>Data Stored on Your Device</h2>
+          <h3>Data Stored on Your Device</h3>
           <p>
             Some features of Al-Anon Daily Paths create personal content, including
             journal entries, gratitude entries, personal prayers, bookmarks, and
@@ -157,17 +253,19 @@
         </section>
 
         <section class="content-section">
-          <h2>Backup &amp; Sync</h2>
+          <h3>Backup &amp; Sync</h3>
           <p>
-            Al-Anon Daily Paths can automatically back up your personal content —
-            journal entries, gratitude entries, personal prayers, bookmarks, and
-            listening progress — so it is protected if you lose your device and
+            Backup &amp; Sync is optional and stays off until you turn it on and give
+            permission. When it is on, Al-Anon Daily Paths can back up your personal
+            content — journal entries, gratitude entries, personal prayers, bookmarks,
+            and listening progress — so it is protected if you lose your device and
             stays up to date across your devices.
           </p>
           <ul>
             <li>
               <strong>On iOS,</strong> backups are stored in your private iCloud
-              account when you are signed in to iCloud with iCloud Drive turned on.
+              account once you turn Backup &amp; Sync on, and when you are signed in to iCloud
+              with iCloud Drive turned on.
             </li>
             <li>
               <strong>On Android,</strong> backups are stored in your own Google
@@ -180,7 +278,9 @@
             account. It is never sent to or stored on our servers, and we cannot
             access it. Once stored in your iCloud or Google Drive account, it is
             also protected by Apple's or Google's privacy policies and your own
-            account settings.
+            account settings. If you move to a new device, you can restore your
+            content from that same account; the restore also goes directly between
+            your cloud account and your device, never through us.
           </p>
           <p>
             Device settings, purchase information, and downloaded audio are not
@@ -194,7 +294,7 @@
         </section>
 
         <section class="content-section">
-          <h2>Google User Data</h2>
+          <h3>Google User Data</h3>
           <p>
             On Android, Backup &amp; Sync uses Google Drive through Google Sign-In.
             The app requests only the <em>drive.appdata</em> permission, which
@@ -218,7 +318,7 @@
         </section>
 
         <section class="content-section">
-          <h2>Information We Do Not Collect</h2>
+          <h3>Information We Do Not Collect</h3>
           <p>We do not collect:</p>
           <ul>
             <li>Your name, email address, or contact information (if you connect
@@ -233,21 +333,22 @@
         </section>
 
         <section class="content-section">
-          <h2>How We Use Your Information</h2>
+          <h3>How We Use Your Information</h3>
           <p>We use the anonymous information we collect to:</p>
           <ul>
             <li>Improve the quality of our daily readings based on user feedback</li>
             <li>Understand which content resonates with our community</li>
+            <li>Understand which features are used, and where the app is confusing</li>
             <li>Maintain and enhance the app experience</li>
           </ul>
         </section>
 
         <section class="content-section">
-          <h2>Data Sharing</h2>
+          <h3>Data Sharing</h3>
           <p>
-            We do not sell, trade, or share your information with third parties.
-            The anonymous feedback and preference data we collect remains within
-            our secure systems and is used solely for improving the Al-Anon Daily
+            We do not sell or trade your information. Anonymous usage analytics are
+            processed on our behalf by Mixpanel. The anonymous feedback and
+            preference data we collect is used solely for improving the Al-Anon Daily
             Paths experience. Your personal content and backups are different:
             they belong to you, stay on your device and in your personal cloud
             account, and never pass through our systems at all.
@@ -255,16 +356,16 @@
         </section>
 
         <section class="content-section">
-          <h2>Data Retention</h2>
+          <h3>Data Retention</h3>
           <p>
-            We retain anonymous feedback and preference data indefinitely to support
+            We retain anonymous feedback, preference and usage data indefinitely to support
             ongoing content improvement. Since this data is not linked to any
             personally identifiable information, it cannot be used to identify you.
           </p>
         </section>
 
         <section class="content-section">
-          <h2>Data Security</h2>
+          <h3>Data Security</h3>
           <p>
             We implement appropriate technical and organizational measures to protect
             the information we collect. Our data is stored on secure servers with
@@ -273,7 +374,7 @@
         </section>
 
         <section class="content-section">
-          <h2>Your Choices</h2>
+          <h3>Your Choices</h3>
           <p>
             You can use Al-Anon Daily Paths without providing any feedback or ratings.
             The core reading experience does not require any data collection beyond
@@ -284,8 +385,11 @@
           </p>
         </section>
 
+        <h2 class="privacy-part">Both the Website and the App</h2>
+
+
         <section class="content-section">
-          <h2>Children's Privacy</h2>
+          <h3>Children's Privacy</h3>
           <p>
             Al-Anon Daily Paths is intended for adults. We do not knowingly collect
             information from children under 13 years of age.
@@ -293,7 +397,7 @@
         </section>
 
         <section class="content-section">
-          <h2>Changes to This Policy</h2>
+          <h3>Changes to This Policy</h3>
           <p>
             We may update this Privacy Policy from time to time. We will notify
             you of any changes by posting the new Privacy Policy on this page
@@ -302,7 +406,7 @@
         </section>
 
         <section class="content-section">
-          <h2>Contact Us</h2>
+          <h3>Contact Us</h3>
           <p>
             If you have questions about this Privacy Policy, please contact us
             through our <a href="/support/">Support</a> page.
@@ -314,11 +418,9 @@
 
   <section class="site-newsletter" aria-labelledby="site-newsletter-heading">
     <div class="site-newsletter-inner">
-      <p class="site-newsletter-eyebrow">Email updates</p>
-      <h2 id="site-newsletter-heading">A little clarity in your inbox.</h2>
-      <p class="site-newsletter-copy">A short introduction to a daily reflection or new article, with a link to read it here.</p>
-      <form class="site-newsletter-form" data-newsletter-form data-endpoint="https://ofmqgqaoubsiwujgvcil.supabase.co/functions/v1/newsletter-signup" data-key="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9mbXFncWFvdWJzaXd1amd2Y2lsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjM5MDI1NzEsImV4cCI6MjA3OTQ3ODU3MX0.85ile88Honj3SdXzxGEPFA04LG0B4OjRsbChZ8oUnmE
-">
+      <p class="site-newsletter-title" id="site-newsletter-heading">Get the Daily Reflection in your inbox.</p>
+      <p class="site-newsletter-copy">Sign up to receive a daily email with the Daily Reflection and a link to an article worth reading.</p>
+      <form class="site-newsletter-form" data-newsletter-form data-endpoint="https://ofmqgqaoubsiwujgvcil.supabase.co/functions/v1/newsletter-signup" data-key="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9mbXFncWFvdWJzaXd1amd2Y2lsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjM5MDI1NzEsImV4cCI6MjA3OTQ3ODU3MX0.85ile88Honj3SdXzxGEPFA04LG0B4OjRsbChZ8oUnmE">
         <label class="sr-only" for="site-newsletter-email">Your email address</label>
         <input id="site-newsletter-email" name="email" type="email" maxlength="254" autocomplete="email" placeholder="Your email address" required>
         <button class="site-newsletter-button" type="submit">Sign me up</button>
@@ -326,10 +428,11 @@
         <label class="newsletter-consent"><input name="consent" type="checkbox" required> <span>Yes, send me Daily Paths reflections and article updates.</span></label>
         <p class="site-newsletter-note newsletter-status" role="status" aria-live="polite"></p>
       </form>
-      <p class="site-newsletter-note">Email updates are coming soon. <a href="/privacy/">Privacy</a> · Unsubscribe at any time once emails begin.</p>
+      <p class="site-newsletter-note">We&rsquo;ll send a link to confirm your address. Unsubscribe at any time. <a href="/privacy/">Privacy</a></p>
       <noscript><p>Please enable JavaScript to join the email list.</p></noscript>
     </div>
   </section>
+
 
     <footer class="site-footer">
     <div class="footer-inner">
@@ -337,7 +440,7 @@
         <p class="footer-col-title">About</p>
         <nav class="footer-links" aria-label="About">
           <a href="/about-project/">About the project</a>
-          <a href="/support/">Contact us</a>
+          <a href="/support/">Support</a><a href="mailto:support@dailypaths.org">Contact Us</a>
         </nav>
       </div>
       <div class="footer-col">
@@ -355,8 +458,8 @@
   </footer>
 
 
-  <script src="/js/newsletter.js?v=20260924" defer></script>
-  <script src="/js/main.js?v=link-nav-refinement-1" defer></script>
+  <script src="/js/newsletter.js?v=signup-done-4" defer></script>
+  <script src="/js/main.js?v=remove-contributions-2" defer></script>
 
 <script src="/js/inserts.js?v=20260924" defer></script>
 </body>

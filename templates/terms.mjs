@@ -1,8 +1,7 @@
 import { wrapInLayout } from './base.mjs';
 import { bp } from '../helpers/config.mjs';
 
-// DRAFT, October 1, 2026. Not legal advice and not approved launch copy: have it
-// reviewed before launch. These terms are for the website only; the app links
+// Reviewed and approved by Neal, October 4, 2026. These terms are for the website only; the app links
 // to its own terms (Apple's standard EULA).
 export function renderTermsPage() {
   const bodyContent = `

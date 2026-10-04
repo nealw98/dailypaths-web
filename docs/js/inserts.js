@@ -44,7 +44,6 @@
    const wrapper=document.createElement('div');wrapper.className='insert-safety-frame';panel.before(wrapper);wrapper.append(panel);
    const fit=()=>{const scale=Math.min(1,wrapper.clientWidth/720);panel.style.transform=`scale(${scale})`;wrapper.style.height=Math.ceil(panel.scrollHeight*scale)+'px';};
    new ResizeObserver(fit).observe(wrapper);fit();
-   const button=document.createElement('button');button.type='button';button.className='insert-safety-enlarge';button.textContent='Enlarge safety information';wrapper.after(button);button.onclick=()=>open(panel,button);
   });
  };
  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init,{once:true});else init();

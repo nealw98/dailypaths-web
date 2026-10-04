@@ -35,7 +35,7 @@
   <!-- Page structure first, then the shared Daily Paths design system. -->
   <link rel="stylesheet" href="/css/style.css?v=brand-icon-1"><link rel="stylesheet" href="/css/soft-daylight.css?v=brand-icon-1">
   <link rel="stylesheet" href="/css/tokens/fonts.css?v=wordmark-loading-1">
-  <link rel="stylesheet" href="/css/site-system.css?v=wordmark-loading-1">
+  <link rel="stylesheet" href="/css/site-system.css?v=collection-tint-10">
   <meta name="site-mode" content="production">
 
   <!-- Structured Data -->
@@ -117,7 +117,7 @@
     e.location.protocol&&"//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js".match(/^\/\//)?"https://cdn.mxpnl.com/libs/mixpanel-2-latest.min.js":"//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js";e=e.getElementsByTagName("script")[0];e.parentNode.insertBefore(k,e)}})(document,window.mixpanel||[]);
     mixpanel.init('52f2220068271346a45866162087fc9c', {
       autocapture: true,
-      record_sessions_percent: 100,
+      record_sessions_percent: 0,
     });
   </script>
   <script src="/js/analytics.js"></script>
@@ -143,11 +143,19 @@
       </a>
       <span class="header-divider" aria-hidden="true"></span>
       <nav class="site-nav" aria-label="Main navigation">
+        <a href="/" class="nav-link">Home</a>
         <a href="/reflections/" class="nav-link">Reflections</a>
-        <a href="/articles/" class="nav-link is-active" aria-current="page">Articles</a>
-        <a href="/guides/" class="nav-link">Guides</a>
+        <div class="nav-item" data-nav-item>
+          <a href="/articles/" class="nav-link is-active" aria-current="page">Articles</a>
+          <button type="button" class="nav-caret" aria-expanded="false" aria-label="Show Articles menu"></button>
+          <div class="nav-dropdown"><a href="/articles/letting-go/">Letting Go</a><a href="/articles/who-am-i-behind-the-mask/">Who Am I Behind the Mask?</a><a href="/articles/the-stories-we-tell-ourselves/">The Stories We Tell Ourselves</a><a href="/articles/the-line-i-kept-moving/">The Line I Kept Moving</a><a href="/articles/voices-from-the-grave/">Voices from the Grave</a><a href="/articles/learning-to-trust/">Learning to Trust</a><a href="/articles/your-first-al-anon-meeting/">Your First Al-Anon Meeting: What to Expect</a><a class="nav-dropdown-all" href="/articles/">All articles</a></div>
+        </div>
+        <div class="nav-item" data-nav-item>
+          <a href="/guides/" class="nav-link">Guides</a>
+          <button type="button" class="nav-caret" aria-expanded="false" aria-label="Show Guides menu"></button>
+          <div class="nav-dropdown"><a href="/guides/finding-help/">Finding Help: Could Al-Anon Be for You?</a><a href="/guides/twelve-steps/">The Twelve Steps</a><a href="/guides/surrender/">Surrender</a><a href="/guides/detachment-with-love/">Detachment with Love</a><a href="/guides/boundaries/">Setting Boundaries</a><a class="nav-dropdown-all" href="/guides/">All guides</a></div>
+        </div>
       </nav>
-      <a href="#get-the-app" class="btn btn--sm header-cta">Get the app</a>
       <button type="button" class="menu-toggle" data-menu-toggle aria-expanded="false" aria-controls="mobile-menu">
         <span class="menu-glyph" aria-hidden="true"><span></span><span></span><span></span></span>
         <span data-menu-label>Menu</span>
@@ -155,11 +163,11 @@
     </div>
     <div class="mobile-menu" id="mobile-menu" data-mobile-menu hidden>
       <nav aria-label="Mobile navigation">
+        <a href="/" class="mobile-menu-row"><span class="mobile-menu-label">Home</span></a>
         <a href="/reflections/" class="mobile-menu-row"><span class="mobile-menu-label">Reflections</span></a>
         <a href="/articles/" class="mobile-menu-row is-active" aria-current="page"><span class="mobile-menu-label">Articles</span></a>
         <a href="/guides/" class="mobile-menu-row"><span class="mobile-menu-label">Guides</span></a>
       </nav>
-      <a href="#get-the-app" class="btn btn--full mobile-menu-cta">Get the app</a>
     </div>
   </header>
 
@@ -180,6 +188,7 @@
           <p class="eyebrow eyebrow--on-dark">Article</p>
           <h1 class="photo-hero-title photo-hero-title--theme">Trusting a Higher Power</h1>
           <p class="photo-hero-sub">Finding a source of guidance beyond your own willpower.</p>
+          
         </div>
       </header>
 
@@ -212,27 +221,6 @@
         
       </section>
 
-      <div class="panel-outlined share-card">
-        <h2 class="share-heading">Share Your Experience</h2>
-        <p class="share-prompt">What has been your experience in learning to trust in a Power greater than yourself?</p>
-        <form id="share-form-higher-power" class="share-form" data-share-form data-topic-slug="higher-power" data-supabase-url="https://ofmqgqaoubsiwujgvcil.supabase.co" data-supabase-key="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9mbXFncWFvdWJzaXd1amd2Y2lsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjM5MDI1NzEsImV4cCI6MjA3OTQ3ODU3MX0.85ile88Honj3SdXzxGEPFA04LG0B4OjRsbChZ8oUnmE
-">
-          <label class="field" for="share-name-higher-power">
-            <span class="visually-hidden">Name</span>
-            <input type="text" id="share-name-higher-power" name="display_name" placeholder="Name" required>
-          </label>
-          <label class="field field--area" for="share-content-higher-power">
-            <span class="visually-hidden">Your insight</span>
-            <textarea id="share-content-higher-power" name="content" rows="4" maxlength="3000" placeholder="Your insight&hellip;" required></textarea>
-          </label>
-          <div class="share-footer">
-            <p class="share-counter"><span data-char-count>0</span> / 3000 characters</p>
-            <button type="submit" class="btn">Post insight</button>
-          </div>
-          <p class="share-consent">By submitting, you consent to sharing your experience with the Daily Paths community. Insights are reviewed before they appear.</p>
-          <p class="share-status" data-share-status></p>
-        </form>
-      </div>
     </article>
 
     <section class="wrap section--lg" id="readings">
@@ -264,7 +252,7 @@
 
     <section class="wrap section--lg">
       <h2 class="section-title">Daily Reflections on Trusting a Higher Power</h2>
-      <p class="section-desc" style="margin-bottom:20px">26 additional readings explore this theme.</p>
+      <p class="section-desc" style="margin-bottom:20px">32 additional readings explore this theme.</p>
       <div class="theme-groups">
 
         <div>
@@ -297,6 +285,14 @@
                 <span class="reading-card-date">August 12</span>
                 <span class="reading-card-title">Building Belief</span>
               </a>
+<a href="/november-9-spiritual-dry-spells/" class="reading-card reading-card--tinted">
+                <span class="reading-card-date">November 9</span>
+                <span class="reading-card-title">Spiritual Dry Spells</span>
+              </a>
+<a href="/november-26-god-is-patient/" class="reading-card reading-card--tinted">
+                <span class="reading-card-date">November 26</span>
+                <span class="reading-card-title">God is Patient</span>
+              </a>
           </div>
         </div>
 
@@ -317,6 +313,14 @@
 <a href="/august-8-how-do-we-acquire-willingness/" class="reading-card reading-card--tinted">
                 <span class="reading-card-date">August 8</span>
                 <span class="reading-card-title">How Do We Acquire Willingness</span>
+              </a>
+<a href="/november-2-two-way-communication/" class="reading-card reading-card--tinted">
+                <span class="reading-card-date">November 2</span>
+                <span class="reading-card-title">Two-Way Communication</span>
+              </a>
+<a href="/november-19-reclaiming-prayer/" class="reading-card reading-card--tinted">
+                <span class="reading-card-date">November 19</span>
+                <span class="reading-card-title">Reclaiming Prayer</span>
               </a>
           </div>
         </div>
@@ -357,6 +361,10 @@
                 <span class="reading-card-date">October 26</span>
                 <span class="reading-card-title">The Growth Cycle</span>
               </a>
+<a href="/november-5-the-busyness-defense/" class="reading-card reading-card--tinted">
+                <span class="reading-card-date">November 5</span>
+                <span class="reading-card-title">The Busyness Defense</span>
+              </a>
           </div>
         </div>
 
@@ -383,10 +391,6 @@
                 <span class="reading-card-date">February 14</span>
                 <span class="reading-card-title">Restored to Sanity</span>
               </a>
-<a href="/february-17-consistency-i-never-found/" class="reading-card reading-card--tinted">
-                <span class="reading-card-date">February 17</span>
-                <span class="reading-card-title">Consistency I Never Found</span>
-              </a>
 <a href="/february-18-learning-to-trust/" class="reading-card reading-card--tinted">
                 <span class="reading-card-date">February 18</span>
                 <span class="reading-card-title">Learning to Trust</span>
@@ -398,10 +402,6 @@
 <a href="/march-31-three-trusts/" class="reading-card reading-card--tinted">
                 <span class="reading-card-date">March 31</span>
                 <span class="reading-card-title">Three Trusts</span>
-              </a>
-<a href="/may-8-the-architecture-of-trust/" class="reading-card reading-card--tinted">
-                <span class="reading-card-date">May 8</span>
-                <span class="reading-card-title">The Architecture of Trust</span>
               </a>
 <a href="/june-8-the-defect-that-protects-me/" class="reading-card reading-card--tinted">
                 <span class="reading-card-date">June 8</span>
@@ -427,6 +427,18 @@
                 <span class="reading-card-date">October 30</span>
                 <span class="reading-card-title">The Authority to Crash</span>
               </a>
+<a href="/november-1-the-evolution-of-trust/" class="reading-card reading-card--tinted">
+                <span class="reading-card-date">November 1</span>
+                <span class="reading-card-title">The Evolution of Trust</span>
+              </a>
+<a href="/november-13-paralysis-by-analysis/" class="reading-card reading-card--tinted">
+                <span class="reading-card-date">November 13</span>
+                <span class="reading-card-title">Paralysis by Analysis</span>
+              </a>
+<a href="/november-17-the-safety-of-anonymity/" class="reading-card reading-card--tinted">
+                <span class="reading-card-date">November 17</span>
+                <span class="reading-card-title">The Safety of Anonymity</span>
+              </a>
 <a href="/december-17-learning-to-trust/" class="reading-card reading-card--tinted">
                 <span class="reading-card-date">December 17</span>
                 <span class="reading-card-title">Learning to Trust</span>
@@ -440,7 +452,7 @@
     <img class="sd-app-background" src="/assets/articles/soft-daylight-journal.webp" alt="" width="1672" height="941" loading="lazy">
     <div class="sd-app-inner sd-wrap">
       <div class="sd-phone"><img src="/assets/Screenshots/today-actual.png" alt="The actual Daily Paths app: today’s reflection, journal, and daily tools" width="944" height="2048" loading="lazy"></div>
-      <div class="sd-app-copy"><p class="sd-kicker">The Daily Paths app</p><h2>Make room for yourself,<br><em>every day.</em></h2><p>A daily reflection. A place for your thoughts. Small ways to bring the focus back to you.</p><div class="store-badges">
+      <div class="sd-app-copy"><p class="sd-kicker">The Daily Paths app</p><p class="sd-app-heading">Make room for yourself, <br><em>every day.</em></p><p>A daily reflection. A place for your thoughts. Small ways to bring the focus back to you.</p><div class="store-badges">
           <a href="https://apps.apple.com/app/id6755981862" target="_blank" rel="noopener noreferrer" class="store-badge-link">
             <img src="https://developer.apple.com/app-store/marketing/guidelines/images/badge-download-on-the-app-store.svg" alt="Download Al-Anon Daily Paths on the App Store" class="store-badge store-badge--ios" width="120" height="40" loading="lazy">
           </a>
@@ -454,11 +466,9 @@
 
   <section class="site-newsletter" aria-labelledby="site-newsletter-heading">
     <div class="site-newsletter-inner">
-      <p class="site-newsletter-eyebrow">Email updates</p>
-      <h2 id="site-newsletter-heading">A little clarity in your inbox.</h2>
-      <p class="site-newsletter-copy">A short introduction to a daily reflection or new article, with a link to read it here.</p>
-      <form class="site-newsletter-form" data-newsletter-form data-endpoint="https://ofmqgqaoubsiwujgvcil.supabase.co/functions/v1/newsletter-signup" data-key="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9mbXFncWFvdWJzaXd1amd2Y2lsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjM5MDI1NzEsImV4cCI6MjA3OTQ3ODU3MX0.85ile88Honj3SdXzxGEPFA04LG0B4OjRsbChZ8oUnmE
-">
+      <p class="site-newsletter-title" id="site-newsletter-heading">Get the Daily Reflection in your inbox.</p>
+      <p class="site-newsletter-copy">Sign up to receive a daily email with the Daily Reflection and a link to an article worth reading.</p>
+      <form class="site-newsletter-form" data-newsletter-form data-endpoint="https://ofmqgqaoubsiwujgvcil.supabase.co/functions/v1/newsletter-signup" data-key="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9mbXFncWFvdWJzaXd1amd2Y2lsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjM5MDI1NzEsImV4cCI6MjA3OTQ3ODU3MX0.85ile88Honj3SdXzxGEPFA04LG0B4OjRsbChZ8oUnmE">
         <label class="sr-only" for="site-newsletter-email">Your email address</label>
         <input id="site-newsletter-email" name="email" type="email" maxlength="254" autocomplete="email" placeholder="Your email address" required>
         <button class="site-newsletter-button" type="submit">Sign me up</button>
@@ -466,10 +476,11 @@
         <label class="newsletter-consent"><input name="consent" type="checkbox" required> <span>Yes, send me Daily Paths reflections and article updates.</span></label>
         <p class="site-newsletter-note newsletter-status" role="status" aria-live="polite"></p>
       </form>
-      <p class="site-newsletter-note">Email updates are coming soon. <a href="/privacy/">Privacy</a> · Unsubscribe at any time once emails begin.</p>
+      <p class="site-newsletter-note">We&rsquo;ll send a link to confirm your address. Unsubscribe at any time. <a href="/privacy/">Privacy</a></p>
       <noscript><p>Please enable JavaScript to join the email list.</p></noscript>
     </div>
   </section>
+
 
     <footer class="site-footer">
     <div class="footer-inner">
@@ -477,7 +488,7 @@
         <p class="footer-col-title">About</p>
         <nav class="footer-links" aria-label="About">
           <a href="/about-project/">About the project</a>
-          <a href="/support/">Contact us</a>
+          <a href="/support/">Support</a><a href="mailto:support@dailypaths.org">Contact Us</a>
         </nav>
       </div>
       <div class="footer-col">
@@ -495,8 +506,8 @@
   </footer>
 
 
-  <script src="/js/newsletter.js?v=20260924" defer></script>
-  <script src="/js/main.js?v=link-nav-refinement-1" defer></script>
+  <script src="/js/newsletter.js?v=signup-done-4" defer></script>
+  <script src="/js/main.js?v=remove-contributions-2" defer></script>
 
 <script src="/js/inserts.js?v=20260924" defer></script>
 </body>

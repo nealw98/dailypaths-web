@@ -35,7 +35,7 @@
   <!-- Page structure first, then the shared Daily Paths design system. -->
   <link rel="stylesheet" href="/css/style.css?v=brand-icon-1"><link rel="stylesheet" href="/css/soft-daylight.css?v=brand-icon-1">
   <link rel="stylesheet" href="/css/tokens/fonts.css?v=wordmark-loading-1">
-  <link rel="stylesheet" href="/css/site-system.css?v=wordmark-loading-1">
+  <link rel="stylesheet" href="/css/site-system.css?v=collection-tint-10">
   <meta name="site-mode" content="production">
 
   <!-- Structured Data -->
@@ -114,7 +114,7 @@
     e.location.protocol&&"//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js".match(/^\/\//)?"https://cdn.mxpnl.com/libs/mixpanel-2-latest.min.js":"//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js";e=e.getElementsByTagName("script")[0];e.parentNode.insertBefore(k,e)}})(document,window.mixpanel||[]);
     mixpanel.init('52f2220068271346a45866162087fc9c', {
       autocapture: true,
-      record_sessions_percent: 100,
+      record_sessions_percent: 0,
     });
   </script>
   <script src="/js/analytics.js"></script>
@@ -140,11 +140,19 @@
       </a>
       <span class="header-divider" aria-hidden="true"></span>
       <nav class="site-nav" aria-label="Main navigation">
+        <a href="/" class="nav-link">Home</a>
         <a href="/reflections/" class="nav-link is-active" aria-current="page">Reflections</a>
-        <a href="/articles/" class="nav-link">Articles</a>
-        <a href="/guides/" class="nav-link">Guides</a>
+        <div class="nav-item" data-nav-item>
+          <a href="/articles/" class="nav-link">Articles</a>
+          <button type="button" class="nav-caret" aria-expanded="false" aria-label="Show Articles menu"></button>
+          <div class="nav-dropdown"><a href="/articles/letting-go/">Letting Go</a><a href="/articles/who-am-i-behind-the-mask/">Who Am I Behind the Mask?</a><a href="/articles/the-stories-we-tell-ourselves/">The Stories We Tell Ourselves</a><a href="/articles/the-line-i-kept-moving/">The Line I Kept Moving</a><a href="/articles/voices-from-the-grave/">Voices from the Grave</a><a href="/articles/learning-to-trust/">Learning to Trust</a><a href="/articles/your-first-al-anon-meeting/">Your First Al-Anon Meeting: What to Expect</a><a class="nav-dropdown-all" href="/articles/">All articles</a></div>
+        </div>
+        <div class="nav-item" data-nav-item>
+          <a href="/guides/" class="nav-link">Guides</a>
+          <button type="button" class="nav-caret" aria-expanded="false" aria-label="Show Guides menu"></button>
+          <div class="nav-dropdown"><a href="/guides/finding-help/">Finding Help: Could Al-Anon Be for You?</a><a href="/guides/twelve-steps/">The Twelve Steps</a><a href="/guides/surrender/">Surrender</a><a href="/guides/detachment-with-love/">Detachment with Love</a><a href="/guides/boundaries/">Setting Boundaries</a><a class="nav-dropdown-all" href="/guides/">All guides</a></div>
+        </div>
       </nav>
-      <a href="#get-the-app" class="btn btn--sm header-cta">Get the app</a>
       <button type="button" class="menu-toggle" data-menu-toggle aria-expanded="false" aria-controls="mobile-menu">
         <span class="menu-glyph" aria-hidden="true"><span></span><span></span><span></span></span>
         <span data-menu-label>Menu</span>
@@ -152,11 +160,11 @@
     </div>
     <div class="mobile-menu" id="mobile-menu" data-mobile-menu hidden>
       <nav aria-label="Mobile navigation">
+        <a href="/" class="mobile-menu-row"><span class="mobile-menu-label">Home</span></a>
         <a href="/reflections/" class="mobile-menu-row is-active" aria-current="page"><span class="mobile-menu-label">Reflections</span></a>
         <a href="/articles/" class="mobile-menu-row"><span class="mobile-menu-label">Articles</span></a>
         <a href="/guides/" class="mobile-menu-row"><span class="mobile-menu-label">Guides</span></a>
       </nav>
-      <a href="#get-the-app" class="btn btn--full mobile-menu-cta">Get the app</a>
     </div>
   </header>
 
@@ -167,15 +175,15 @@
         <img class="photo-hero-img" src="/assets/reflections/soft-daylight-higher-power.jpg" alt="" />
         <div class="photo-hero-scrim"></div>
         <div class="photo-hero-inner">
-          <p class="eyebrow eyebrow--on-dark"><time datetime="2026-10-25">October 25 &middot; Step Ten</time></p>
+          <p class="eyebrow eyebrow--on-dark">Al-Anon daily reflection &middot; <time datetime="2026-10-25">October 25</time></p>
           <h1 class="photo-hero-title photo-hero-title--reading">Higher Power's Care</h1>
+          
           
         </div>
       </header>
 
     <article class="rd-article">
       <div class="pill-row rd-pills">
-        <a href="/topics/higher-power/" class="pill">Trusting a Higher Power</a>
         <a href="/months/october/" class="pill">Step Ten</a>
       </div>
 
@@ -192,11 +200,14 @@
       <div class="prose-reading rd-body">
         
         <p>Taking a daily inventory asks me to look honestly at my behavior. That can be difficult when I feel hurt or certain I am right. I can explain every sharp word by pointing to what someone else did first. Even when I recognize my part, admitting it may feel like letting the other person off the hook.</p>
-<p>I need my Higher Power’s help to practice Step Ten. Before examining my day, I can ask for the willingness to see what I have been defending or avoiding. Where did concern become interference? Did I speak to resolve a problem or to punish someone? I need help hearing the answers without making excuses or condemning myself.
-Allowing my Higher Power to care for me makes room for honesty. I can acknowledge a wrong without letting it define me. I can apologize for my words while addressing what hurt me. Their part remains theirs; I can ask for courage to take responsibility for mine.</p>
-<p>My inventory becomes useful when I act on what I see. With help, I can admit a wrong promptly and begin correcting it, even when doing so feels uncomfortable.</p>
-        <p>Before taking my inventory, I will ask: “Help me see my part clearly and give me the willingness to put it right.” If I recognize a wrong, I will take one step toward correcting it</p>
+<p>I need my Higher Power’s help to practice Step Ten. That help goes beyond recognizing a wrong. I need willingness to make amends and to face the character defects behind my actions—the pride, fear, or resentment that I cannot simply wish away.</p>
+<p>Allowing my Higher Power to care for me includes accepting help to change. If resentment has led me to speak unkindly, I can acknowledge the hurt I caused without defending it. I can ask for that resentment to be removed and for help speaking honestly without trying to wound. My amend begins with admitting the harm and continues in how I treat that person.</p>
       </div>
+
+      <section class="rd-practice" aria-labelledby="practice-heading">
+        <h2 class="eyebrow" id="practice-heading">Practice</h2>
+        <div class="prose-reading"><p>In today’s inventory, I will look for an action that needs repair and the character defect behind it. I will ask my Higher Power to help remove that defect, take one step toward making amends, and practice a different response.</p></div>
+      </section>
 
       <div class="panel-seafoam reminder-panel">
         <p class="reminder-label">Today&rsquo;s Reminder</p>
@@ -221,59 +232,48 @@ Allowing my Higher Power to care for me makes room for honesty. I can acknowledg
 
 
     <section class="wrap wrap--article section--lg kr-section" aria-labelledby="keep-reading-heading">
-      <p class="eyebrow">Keep reading</p>
-      <h2 class="section-title" id="keep-reading-heading">More on trusting a higher power</h2>
-      <p class="section-desc">Thirty-five readings on finding a source of guidance beyond your own willpower.</p>
+      <h2 class="section-title" id="keep-reading-heading">More on inventory</h2>
       <div class="kr-grid">
-          <a href="/march-21-the-principle-of-faith/" class="kr-card">
-            
-            <span class="kr-card-date">March 21</span>
-            <span class="kr-card-title">The Principle of Faith</span>
-            <span class="kr-card-teaser">Faith isn't being sure. It's being willing to move without being sure.</span>
+          <a href="/april-1-both-sides-of-myself/" class="kr-card">
+            <span class="kr-card-date">April 1</span>
+            <span class="kr-card-title">Both Sides of Myself</span>
+            <span class="kr-card-teaser">The bravest part of my inventory was claiming what's good.</span>
             <span class="kr-card-cta">Read</span>
           </a>
-          <a href="/march-3-the-solid-misery-of-the-lily-pad/" class="kr-card">
-            
-            <span class="kr-card-date">March 3</span>
-            <span class="kr-card-title">The Solid Misery of the Lily Pad</span>
-            <span class="kr-card-teaser">Decision is the beginning not the end.</span>
+          <a href="/april-20-true-perspective/" class="kr-card">
+            <span class="kr-card-date">April 20</span>
+            <span class="kr-card-title">True Perspective</span>
+            <span class="kr-card-teaser">I couldn't tell what was real until I wrote it down.</span>
             <span class="kr-card-cta">Read</span>
           </a>
-          <a href="/march-20-comfortable-turning-over/" class="kr-card">
-            
-            <span class="kr-card-date">March 20</span>
-            <span class="kr-card-title">Comfortable Turning Over</span>
-            <span class="kr-card-teaser">Comfort with surrender comes from doing it badly, over and over.</span>
+          <a href="/april-2-the-gap-between-deciding-and-doing/" class="kr-card">
+            <span class="kr-card-date">April 2</span>
+            <span class="kr-card-title">The Gap Between Deciding and Doing</span>
+            <span class="kr-card-teaser">A Step Four problem usually needs a Step Three answer.</span>
             <span class="kr-card-cta">Read</span>
-          </a>
-      </div>
-      <div class="kr-more">
-        <a href="/topics/higher-power/#readings" class="text-link">More readings</a>
-      </div>
-    </section>
-
-    <section class="wrap wrap--article rt-section">
-      <p class="eyebrow">Related topics</p>
-      <div class="rt-grid">
-          <a href="/topics/powerlessness/" class="rt-card">
-            <span class="rt-card-title">Surrender</span>
-            <span class="rt-card-line">Recognizing powerlessness, admitting unmanageability, and practicing the Three C’s.</span>
-            <span class="rt-card-meta">Read</span>
-          </a>
-          <a href="/topics/gratitude-and-hope/" class="rt-card">
-            <span class="rt-card-title">Gratitude & Hope</span>
-            <span class="rt-card-line">Moving from despair toward appreciation for progress, even when circumstances haven’t changed.</span>
-            <span class="rt-card-meta">Read</span>
-          </a>
-          <a href="/months/october/" class="rt-card">
-            <span class="rt-card-title">Integrity</span>
-            <span class="rt-card-line">Step Ten &mdash; the Step this reading belongs to.</span>
-            <span class="rt-card-meta">Read</span>
           </a>
       </div>
     </section>
 
-    <div class="wrap wrap--article">
+    <section class="wrap wrap--article deeper-section" aria-labelledby="go-deeper-heading">
+      <p class="section-title" id="go-deeper-heading">Explore further</p>
+      <div class="deeper-grid">
+        <a href="/articles/the-stories-we-tell-ourselves/" class="deeper-card">
+          <span class="deeper-card-type">Article</span>
+          <span class="deeper-card-title">The Stories We Tell Ourselves</span>
+          <span class="deeper-card-line">Fear of rejection, uncertainty, and not being enough can shape the stories we tell ourselves. An exploration of seeing the facts and letting others help us face them.</span>
+          <span class="deeper-card-cta">Read the article</span>
+        </a>
+        <a href="/months/october/" class="deeper-card">
+          <span class="deeper-card-type">Reflections</span>
+          <span class="deeper-card-title">Step Ten: Integrity</span>
+          <span class="deeper-card-line">Taking responsibility through daily self-examination. Read every October reflection on this Step.</span>
+          <span class="deeper-card-cta">Explore the collection</span>
+        </a>
+      </div>
+    </section>
+
+    <div class="wrap wrap--article rd-attribution">
       <p class="fine-print">Curated by members of the Al-Anon community for Daily Growth, LLC. Grounded in the Twelve Steps and the contemplative tradition of Al-Anon.</p>
     </div>
 
@@ -281,7 +281,7 @@ Allowing my Higher Power to care for me makes room for honesty. I can acknowledg
     <img class="sd-app-background" src="/assets/articles/soft-daylight-journal.webp" alt="" width="1672" height="941" loading="lazy">
     <div class="sd-app-inner sd-wrap">
       <div class="sd-phone"><img src="/assets/Screenshots/today-actual.png" alt="The actual Daily Paths app: today’s reflection, journal, and daily tools" width="944" height="2048" loading="lazy"></div>
-      <div class="sd-app-copy"><p class="sd-kicker">The Daily Paths app</p><h2>Make room for yourself,<br><em>every day.</em></h2><p>A daily reflection. A place for your thoughts. Small ways to bring the focus back to you.</p><div class="store-badges">
+      <div class="sd-app-copy"><p class="sd-kicker">The Daily Paths app</p><p class="sd-app-heading">Make room for yourself, <br><em>every day.</em></p><p>A daily reflection. A place for your thoughts. Small ways to bring the focus back to you.</p><div class="store-badges">
           <a href="https://apps.apple.com/app/id6755981862" target="_blank" rel="noopener noreferrer" class="store-badge-link">
             <img src="https://developer.apple.com/app-store/marketing/guidelines/images/badge-download-on-the-app-store.svg" alt="Download Al-Anon Daily Paths on the App Store" class="store-badge store-badge--ios" width="120" height="40" loading="lazy">
           </a>
@@ -295,11 +295,9 @@ Allowing my Higher Power to care for me makes room for honesty. I can acknowledg
 
   <section class="site-newsletter" aria-labelledby="site-newsletter-heading">
     <div class="site-newsletter-inner">
-      <p class="site-newsletter-eyebrow">Email updates</p>
-      <h2 id="site-newsletter-heading">A little clarity in your inbox.</h2>
-      <p class="site-newsletter-copy">A short introduction to a daily reflection or new article, with a link to read it here.</p>
-      <form class="site-newsletter-form" data-newsletter-form data-endpoint="https://ofmqgqaoubsiwujgvcil.supabase.co/functions/v1/newsletter-signup" data-key="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9mbXFncWFvdWJzaXd1amd2Y2lsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjM5MDI1NzEsImV4cCI6MjA3OTQ3ODU3MX0.85ile88Honj3SdXzxGEPFA04LG0B4OjRsbChZ8oUnmE
-">
+      <p class="site-newsletter-title" id="site-newsletter-heading">Get the Daily Reflection in your inbox.</p>
+      <p class="site-newsletter-copy">Sign up to receive a daily email with the Daily Reflection and a link to an article worth reading.</p>
+      <form class="site-newsletter-form" data-newsletter-form data-endpoint="https://ofmqgqaoubsiwujgvcil.supabase.co/functions/v1/newsletter-signup" data-key="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9mbXFncWFvdWJzaXd1amd2Y2lsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjM5MDI1NzEsImV4cCI6MjA3OTQ3ODU3MX0.85ile88Honj3SdXzxGEPFA04LG0B4OjRsbChZ8oUnmE">
         <label class="sr-only" for="site-newsletter-email">Your email address</label>
         <input id="site-newsletter-email" name="email" type="email" maxlength="254" autocomplete="email" placeholder="Your email address" required>
         <button class="site-newsletter-button" type="submit">Sign me up</button>
@@ -307,10 +305,11 @@ Allowing my Higher Power to care for me makes room for honesty. I can acknowledg
         <label class="newsletter-consent"><input name="consent" type="checkbox" required> <span>Yes, send me Daily Paths reflections and article updates.</span></label>
         <p class="site-newsletter-note newsletter-status" role="status" aria-live="polite"></p>
       </form>
-      <p class="site-newsletter-note">Email updates are coming soon. <a href="/privacy/">Privacy</a> · Unsubscribe at any time once emails begin.</p>
+      <p class="site-newsletter-note">We&rsquo;ll send a link to confirm your address. Unsubscribe at any time. <a href="/privacy/">Privacy</a></p>
       <noscript><p>Please enable JavaScript to join the email list.</p></noscript>
     </div>
   </section>
+
 
     <footer class="site-footer">
     <div class="footer-inner">
@@ -318,7 +317,7 @@ Allowing my Higher Power to care for me makes room for honesty. I can acknowledg
         <p class="footer-col-title">About</p>
         <nav class="footer-links" aria-label="About">
           <a href="/about-project/">About the project</a>
-          <a href="/support/">Contact us</a>
+          <a href="/support/">Support</a><a href="mailto:support@dailypaths.org">Contact Us</a>
         </nav>
       </div>
       <div class="footer-col">
@@ -336,8 +335,8 @@ Allowing my Higher Power to care for me makes room for honesty. I can acknowledg
   </footer>
 
 
-  <script src="/js/newsletter.js?v=20260924" defer></script>
-  <script src="/js/main.js?v=link-nav-refinement-1" defer></script>
+  <script src="/js/newsletter.js?v=signup-done-4" defer></script>
+  <script src="/js/main.js?v=remove-contributions-2" defer></script>
   <script src="/js/calendar.js" defer></script>
 <script src="/js/inserts.js?v=20260924" defer></script>
 </body>

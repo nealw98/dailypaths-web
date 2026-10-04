@@ -35,7 +35,7 @@
   <!-- Page structure first, then the shared Daily Paths design system. -->
   <link rel="stylesheet" href="/css/style.css?v=brand-icon-1"><link rel="stylesheet" href="/css/soft-daylight.css?v=brand-icon-1">
   <link rel="stylesheet" href="/css/tokens/fonts.css?v=wordmark-loading-1">
-  <link rel="stylesheet" href="/css/site-system.css?v=wordmark-loading-1">
+  <link rel="stylesheet" href="/css/site-system.css?v=collection-tint-10">
   <meta name="site-mode" content="production">
 
   <!-- Structured Data -->
@@ -114,7 +114,7 @@
     e.location.protocol&&"//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js".match(/^\/\//)?"https://cdn.mxpnl.com/libs/mixpanel-2-latest.min.js":"//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js";e=e.getElementsByTagName("script")[0];e.parentNode.insertBefore(k,e)}})(document,window.mixpanel||[]);
     mixpanel.init('52f2220068271346a45866162087fc9c', {
       autocapture: true,
-      record_sessions_percent: 100,
+      record_sessions_percent: 0,
     });
   </script>
   <script src="/js/analytics.js"></script>
@@ -140,11 +140,19 @@
       </a>
       <span class="header-divider" aria-hidden="true"></span>
       <nav class="site-nav" aria-label="Main navigation">
+        <a href="/" class="nav-link">Home</a>
         <a href="/reflections/" class="nav-link is-active" aria-current="page">Reflections</a>
-        <a href="/articles/" class="nav-link">Articles</a>
-        <a href="/guides/" class="nav-link">Guides</a>
+        <div class="nav-item" data-nav-item>
+          <a href="/articles/" class="nav-link">Articles</a>
+          <button type="button" class="nav-caret" aria-expanded="false" aria-label="Show Articles menu"></button>
+          <div class="nav-dropdown"><a href="/articles/letting-go/">Letting Go</a><a href="/articles/who-am-i-behind-the-mask/">Who Am I Behind the Mask?</a><a href="/articles/the-stories-we-tell-ourselves/">The Stories We Tell Ourselves</a><a href="/articles/the-line-i-kept-moving/">The Line I Kept Moving</a><a href="/articles/voices-from-the-grave/">Voices from the Grave</a><a href="/articles/learning-to-trust/">Learning to Trust</a><a href="/articles/your-first-al-anon-meeting/">Your First Al-Anon Meeting: What to Expect</a><a class="nav-dropdown-all" href="/articles/">All articles</a></div>
+        </div>
+        <div class="nav-item" data-nav-item>
+          <a href="/guides/" class="nav-link">Guides</a>
+          <button type="button" class="nav-caret" aria-expanded="false" aria-label="Show Guides menu"></button>
+          <div class="nav-dropdown"><a href="/guides/finding-help/">Finding Help: Could Al-Anon Be for You?</a><a href="/guides/twelve-steps/">The Twelve Steps</a><a href="/guides/surrender/">Surrender</a><a href="/guides/detachment-with-love/">Detachment with Love</a><a href="/guides/boundaries/">Setting Boundaries</a><a class="nav-dropdown-all" href="/guides/">All guides</a></div>
+        </div>
       </nav>
-      <a href="#get-the-app" class="btn btn--sm header-cta">Get the app</a>
       <button type="button" class="menu-toggle" data-menu-toggle aria-expanded="false" aria-controls="mobile-menu">
         <span class="menu-glyph" aria-hidden="true"><span></span><span></span><span></span></span>
         <span data-menu-label>Menu</span>
@@ -152,11 +160,11 @@
     </div>
     <div class="mobile-menu" id="mobile-menu" data-mobile-menu hidden>
       <nav aria-label="Mobile navigation">
+        <a href="/" class="mobile-menu-row"><span class="mobile-menu-label">Home</span></a>
         <a href="/reflections/" class="mobile-menu-row is-active" aria-current="page"><span class="mobile-menu-label">Reflections</span></a>
         <a href="/articles/" class="mobile-menu-row"><span class="mobile-menu-label">Articles</span></a>
         <a href="/guides/" class="mobile-menu-row"><span class="mobile-menu-label">Guides</span></a>
       </nav>
-      <a href="#get-the-app" class="btn btn--full mobile-menu-cta">Get the app</a>
     </div>
   </header>
 
@@ -167,15 +175,15 @@
         <img class="photo-hero-img" src="/assets/reflections/soft-daylight-self-worth.jpg" alt="" />
         <div class="photo-hero-scrim"></div>
         <div class="photo-hero-inner">
-          <p class="eyebrow eyebrow--on-dark"><time datetime="2026-12-08">December 8 &middot; Step Twelve</time></p>
+          <p class="eyebrow eyebrow--on-dark">Al-Anon daily reflection &middot; <time datetime="2026-12-08">December 8</time></p>
           <h1 class="photo-hero-title photo-hero-title--reading">Supporting My Own Recovery</h1>
+          
           
         </div>
       </header>
 
     <article class="rd-article">
       <div class="pill-row rd-pills">
-        <span class="pill">Availability</span>
         <a href="/months/december/" class="pill">Step Twelve</a>
       </div>
 
@@ -195,8 +203,12 @@
 <p>Now I support my own recovery by attending meetings because I want to be available when anyone needs them. My motivation has shifted. Yes, I still fill my own cup at meetings. I still need the reminders, the connection, and the wisdom. But I also go because someone might walk in who needs what I needed when I first came.</p>
 <p>I go because I want to be part of creating the safe space that saved my life. Because someone staying after a meeting to talk to me made all the difference. Because the person who smiled at me that first terrifying Tuesday gave me courage to come back. I want to be that person for whoever walks through the door.</p>
 <p>This shift in why I attend isn't about being noble or selfless. It's about understanding how recovery works. I can't keep what I have if meetings disappear. My recovery depends on a healthy program. Being available for others is how I support my own recovery.</p>
-        <p>I will stay after my meeting today. I will be present and open, ready to offer a smile or a word of welcome to anyone who looks like they need it.</p>
       </div>
+
+      <section class="rd-practice" aria-labelledby="practice-heading">
+        <h2 class="eyebrow" id="practice-heading">Practice</h2>
+        <div class="prose-reading"><p>I will stay after my meeting today. I will be present and open, ready to offer a smile or a word of welcome to anyone who looks like they need it.</p></div>
+      </section>
 
       <div class="panel-seafoam reminder-panel">
         <p class="reminder-label">Today&rsquo;s Reminder</p>
@@ -220,29 +232,43 @@
     </article>
 
 
-
-    <section class="wrap wrap--article rt-section">
-      <p class="eyebrow">Related topics</p>
-      <div class="rt-grid">
-          <a href="/topics/letting-go/" class="rt-card">
-            <span class="rt-card-title">Letting Go</span>
-            <span class="rt-card-line">Recognizing what isn't yours to control and learning to put it down.</span>
-            <span class="rt-card-meta">Read</span>
+    <section class="wrap wrap--article section--lg kr-section" aria-labelledby="keep-reading-heading">
+      <h2 class="section-title" id="keep-reading-heading">More on service</h2>
+      <div class="kr-grid">
+          <a href="/february-23-resigning-as-general-manager/" class="kr-card">
+            <span class="kr-card-date">February 23</span>
+            <span class="kr-card-title">Resigning as General Manager</span>
+            <span class="kr-card-teaser">I can serve my family without governing them—love doesn't require control.</span>
+            <span class="kr-card-cta">Read</span>
           </a>
-          <a href="/topics/one-day-at-a-time/" class="rt-card">
-            <span class="rt-card-title">One Day at a Time</span>
-            <span class="rt-card-line">Releasing anxiety about the future and regret about the past.</span>
-            <span class="rt-card-meta">Read</span>
+          <a href="/september-25-improving-the-fellowship/" class="kr-card">
+            <span class="kr-card-date">September 25</span>
+            <span class="kr-card-title">Improving the Fellowship</span>
+            <span class="kr-card-teaser">The measure of my contributions is how well it serves the fellowship.</span>
+            <span class="kr-card-cta">Read</span>
           </a>
-          <a href="/months/december/" class="rt-card">
-            <span class="rt-card-title">Service</span>
-            <span class="rt-card-line">Step Twelve &mdash; the Step this reading belongs to.</span>
-            <span class="rt-card-meta">Read</span>
+          <a href="/september-24-the-necessity-of-good-leadership/" class="kr-card">
+            <span class="kr-card-date">September 24</span>
+            <span class="kr-card-title">The Necessity of Good Leadership</span>
+            <span class="kr-card-teaser">Humility isn't about hiding nor taking center state.</span>
+            <span class="kr-card-cta">Read</span>
           </a>
       </div>
     </section>
 
-    <div class="wrap wrap--article">
+    <section class="wrap wrap--article deeper-section" aria-labelledby="go-deeper-heading">
+      <p class="section-title" id="go-deeper-heading">Explore further</p>
+      <div class="deeper-grid">
+        <a href="/months/december/" class="deeper-card">
+          <span class="deeper-card-type">Reflections</span>
+          <span class="deeper-card-title">Step Twelve: Service</span>
+          <span class="deeper-card-line">Carrying recovery forward through service. Read every December reflection on this Step.</span>
+          <span class="deeper-card-cta">Explore the collection</span>
+        </a>
+      </div>
+    </section>
+
+    <div class="wrap wrap--article rd-attribution">
       <p class="fine-print">Curated by members of the Al-Anon community for Daily Growth, LLC. Grounded in the Twelve Steps and the contemplative tradition of Al-Anon.</p>
     </div>
 
@@ -250,7 +276,7 @@
     <img class="sd-app-background" src="/assets/articles/soft-daylight-journal.webp" alt="" width="1672" height="941" loading="lazy">
     <div class="sd-app-inner sd-wrap">
       <div class="sd-phone"><img src="/assets/Screenshots/today-actual.png" alt="The actual Daily Paths app: today’s reflection, journal, and daily tools" width="944" height="2048" loading="lazy"></div>
-      <div class="sd-app-copy"><p class="sd-kicker">The Daily Paths app</p><h2>Make room for yourself,<br><em>every day.</em></h2><p>A daily reflection. A place for your thoughts. Small ways to bring the focus back to you.</p><div class="store-badges">
+      <div class="sd-app-copy"><p class="sd-kicker">The Daily Paths app</p><p class="sd-app-heading">Make room for yourself, <br><em>every day.</em></p><p>A daily reflection. A place for your thoughts. Small ways to bring the focus back to you.</p><div class="store-badges">
           <a href="https://apps.apple.com/app/id6755981862" target="_blank" rel="noopener noreferrer" class="store-badge-link">
             <img src="https://developer.apple.com/app-store/marketing/guidelines/images/badge-download-on-the-app-store.svg" alt="Download Al-Anon Daily Paths on the App Store" class="store-badge store-badge--ios" width="120" height="40" loading="lazy">
           </a>
@@ -264,11 +290,9 @@
 
   <section class="site-newsletter" aria-labelledby="site-newsletter-heading">
     <div class="site-newsletter-inner">
-      <p class="site-newsletter-eyebrow">Email updates</p>
-      <h2 id="site-newsletter-heading">A little clarity in your inbox.</h2>
-      <p class="site-newsletter-copy">A short introduction to a daily reflection or new article, with a link to read it here.</p>
-      <form class="site-newsletter-form" data-newsletter-form data-endpoint="https://ofmqgqaoubsiwujgvcil.supabase.co/functions/v1/newsletter-signup" data-key="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9mbXFncWFvdWJzaXd1amd2Y2lsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjM5MDI1NzEsImV4cCI6MjA3OTQ3ODU3MX0.85ile88Honj3SdXzxGEPFA04LG0B4OjRsbChZ8oUnmE
-">
+      <p class="site-newsletter-title" id="site-newsletter-heading">Get the Daily Reflection in your inbox.</p>
+      <p class="site-newsletter-copy">Sign up to receive a daily email with the Daily Reflection and a link to an article worth reading.</p>
+      <form class="site-newsletter-form" data-newsletter-form data-endpoint="https://ofmqgqaoubsiwujgvcil.supabase.co/functions/v1/newsletter-signup" data-key="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9mbXFncWFvdWJzaXd1amd2Y2lsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjM5MDI1NzEsImV4cCI6MjA3OTQ3ODU3MX0.85ile88Honj3SdXzxGEPFA04LG0B4OjRsbChZ8oUnmE">
         <label class="sr-only" for="site-newsletter-email">Your email address</label>
         <input id="site-newsletter-email" name="email" type="email" maxlength="254" autocomplete="email" placeholder="Your email address" required>
         <button class="site-newsletter-button" type="submit">Sign me up</button>
@@ -276,10 +300,11 @@
         <label class="newsletter-consent"><input name="consent" type="checkbox" required> <span>Yes, send me Daily Paths reflections and article updates.</span></label>
         <p class="site-newsletter-note newsletter-status" role="status" aria-live="polite"></p>
       </form>
-      <p class="site-newsletter-note">Email updates are coming soon. <a href="/privacy/">Privacy</a> · Unsubscribe at any time once emails begin.</p>
+      <p class="site-newsletter-note">We&rsquo;ll send a link to confirm your address. Unsubscribe at any time. <a href="/privacy/">Privacy</a></p>
       <noscript><p>Please enable JavaScript to join the email list.</p></noscript>
     </div>
   </section>
+
 
     <footer class="site-footer">
     <div class="footer-inner">
@@ -287,7 +312,7 @@
         <p class="footer-col-title">About</p>
         <nav class="footer-links" aria-label="About">
           <a href="/about-project/">About the project</a>
-          <a href="/support/">Contact us</a>
+          <a href="/support/">Support</a><a href="mailto:support@dailypaths.org">Contact Us</a>
         </nav>
       </div>
       <div class="footer-col">
@@ -305,8 +330,8 @@
   </footer>
 
 
-  <script src="/js/newsletter.js?v=20260924" defer></script>
-  <script src="/js/main.js?v=link-nav-refinement-1" defer></script>
+  <script src="/js/newsletter.js?v=signup-done-4" defer></script>
+  <script src="/js/main.js?v=remove-contributions-2" defer></script>
   <script src="/js/calendar.js" defer></script>
 <script src="/js/inserts.js?v=20260924" defer></script>
 </body>

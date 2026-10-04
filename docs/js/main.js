@@ -29,6 +29,22 @@
     }).catch(function () { /* Build-time content remains usable offline. */ });
   }
 
+  // Desktop nav dropdowns: hover and focus open via CSS; the caret button
+  // serves touch and keyboard users, and Escape closes.
+  var navItems = document.querySelectorAll('[data-nav-item]');
+  navItems.forEach(function (item) {
+    var caret = item.querySelector('.nav-caret');
+    caret.addEventListener('click', function () {
+      var open = !item.classList.contains('is-open');
+      navItems.forEach(function (o) { o.classList.remove('is-open'); o.querySelector('.nav-caret').setAttribute('aria-expanded', 'false'); });
+      item.classList.toggle('is-open', open);
+      caret.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+  });
+  document.addEventListener('keydown', function (event) {
+    if (event.key === 'Escape') navItems.forEach(function (o) { o.classList.remove('is-open'); o.querySelector('.nav-caret').setAttribute('aria-expanded', 'false'); if (o.contains(document.activeElement)) document.activeElement.blur(); });
+  });
+
   // ---------------------------------------------------------------------------
   // 3. Mobile menu — quiet dropdown with complete keyboard behavior
   // ---------------------------------------------------------------------------
@@ -116,86 +132,6 @@
         updateQuiz();
       });
     }
-  }
-
-  // ---------------------------------------------------------------------------
-  // 5. Member share form
-  // ---------------------------------------------------------------------------
-  var shareForms = document.querySelectorAll('[data-share-form]');
-  for (var f = 0; f < shareForms.length; f++) {
-    shareForms[f].addEventListener('submit', function (e) {
-      e.preventDefault();
-      if (document.querySelector('meta[name="site-mode"][content="preview"]')) return;
-      var form = this;
-      var status = form.querySelector('[data-share-status]');
-      var btn = form.querySelector('button[type="submit"]');
-      var supabaseUrl = form.getAttribute('data-supabase-url');
-      var supabaseKey = form.getAttribute('data-supabase-key');
-      var topicSlug = form.getAttribute('data-topic-slug');
-
-      var displayName = form.querySelector('input[name="display_name"]').value.trim();
-      var content = form.querySelector('textarea[name="content"]').value.trim();
-
-      if (!displayName || !content) {
-        status.textContent = 'Please complete all fields.';
-        status.className = 'share-status share-status--error';
-        return;
-      }
-
-      btn.disabled = true;
-      btn.textContent = 'Submitting…';
-      status.textContent = '';
-
-      fetch(supabaseUrl + '/rest/v1/member_shares', {
-        method: 'POST',
-        headers: {
-          'apikey': supabaseKey,
-          'Authorization': 'Bearer ' + supabaseKey,
-          'Content-Type': 'application/json',
-          'Prefer': 'return=minimal'
-        },
-        body: JSON.stringify({
-          topic_slug: topicSlug,
-          display_name: displayName,
-          content: content,
-          consent_confirmed: true,
-          is_approved: false
-        })
-      }).then(function (res) {
-        if (!res.ok) throw new Error(res.status);
-        status.textContent = 'Thank you for sharing. Your story will be reviewed before it appears.';
-        status.className = 'share-status share-status--success';
-        form.querySelector('input[name="display_name"]').value = '';
-        form.querySelector('textarea[name="content"]').value = '';
-        var charCounter = form.querySelector('[data-char-count]');
-        if (charCounter) charCounter.textContent = '0';
-        btn.textContent = 'Submitted';
-        setTimeout(function () {
-          btn.disabled = false;
-          btn.textContent = 'Post insight';
-        }, 2000);
-        Analytics.trackEvent('Share Form Submit', { topic_slug: topicSlug, status: 'success' });
-      }).catch(function () {
-        status.textContent = 'Something went wrong. Please try again.';
-        status.className = 'share-status share-status--error';
-        btn.disabled = false;
-        btn.textContent = 'Post insight';
-        Analytics.trackEvent('Share Form Submit', { topic_slug: topicSlug, status: 'error' });
-      });
-    });
-  }
-
-  // Live character counter
-  var shareTextareas = document.querySelectorAll('[data-share-form] textarea');
-  for (var tc = 0; tc < shareTextareas.length; tc++) {
-    (function (textarea) {
-      var form = textarea.closest('[data-share-form]');
-      var counter = form && form.querySelector('[data-char-count]');
-      if (!counter) return;
-      textarea.addEventListener('input', function () {
-        counter.textContent = String(textarea.value.length);
-      });
-    })(shareTextareas[tc]);
   }
 
   // ---------------------------------------------------------------------------

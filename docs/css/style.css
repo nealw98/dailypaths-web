@@ -13,6 +13,12 @@
 /* ───────────────────────────── Tokens ───────────────────────────── */
 
 :root {
+  /* Google's Play badge PNG carries its clear space inside the file: the artwork
+     is about 67% of the image height, where Apple's SVG fills its box. This is
+     the file-to-artwork ratio, so a Play badge scaled by it has artwork the same
+     height as an Apple badge beside it. */
+  --play-badge-scale: 1.4881;
+
   /* Base ramp: Ocean */
   --dp-teal-900: #214743;
   --dp-teal-800: #2D4C47;
@@ -1085,7 +1091,7 @@ a.card-tinted:hover { background: var(--surface-card); }
    sit flush, and neither vendor's artwork is altered. */
 .store-badges {
   --badge-h: 40px;
-  --play-h: calc(var(--badge-h) * 1.4881);
+  --play-h: calc(var(--badge-h) * var(--play-badge-scale));
   --play-bleed: calc((var(--play-h) - var(--badge-h)) / 2);
 
   display: flex;
@@ -1751,26 +1757,11 @@ a.card-tinted:hover { background: var(--surface-card); }
 
 /* ───────────────────────────── Theme detail ───────────────────────────── */
 
-.share-card { margin-top: clamp(24px, 3vw, 36px); }
-
 .share-heading {
   margin: 0;
   font-family: var(--font-display);
   font-weight: 600;
   font-size: clamp(23px, 2.4vw, 28px);
-}
-
-.share-prompt {
-  margin: 8px 0 20px;
-  font-size: 16px;
-  line-height: 26px;
-  color: var(--text-muted);
-}
-
-.share-form {
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
 }
 
 .field {
@@ -1809,36 +1800,6 @@ a.card-tinted:hover { background: var(--surface-card); }
 
 .field input::placeholder,
 .field textarea::placeholder { color: var(--text-muted); }
-
-.share-footer {
-  display: flex;
-  gap: 14px;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-}
-
-.share-counter {
-  margin: 0;
-  font-size: 13px;
-  color: var(--text-muted);
-}
-
-.share-consent {
-  margin: 0;
-  font-size: 13px;
-  line-height: 21px;
-  color: var(--text-muted);
-}
-
-.share-status {
-  margin: 0;
-  font-size: 14px;
-  line-height: 22px;
-}
-
-.share-status--success { color: var(--accent); }
-.share-status--error { color: #b3402f; }
 
 .featured-grid {
   display: grid;
@@ -3064,6 +3025,21 @@ a.card-tinted:hover { background: var(--surface-card); }
 .aa-app-cta-badge {
   height: 40px;
   width: auto;
+}
+
+/* Google ships its badge as a PNG with clear space baked in, so the artwork is
+   only about 67% of the file's height: set both badges to the same height and
+   the Play one renders visibly smaller. The terminal band has compensated for
+   this since it was built; the About page, the month archive and the book CTA
+   never did, which is why Play looked short everywhere except the band.
+   Scaling by the file-to-artwork ratio makes the artwork match, and the negative
+   margin pulls the now-oversized transparent box back so it still sits on the
+   same baseline as its neighbour. */
+.ap-badge--play,
+.ma-engine-cta-badge-play {
+  height: calc(40px * var(--play-badge-scale));
+  margin: calc((40px * var(--play-badge-scale) - 40px) / -2);
+  max-width: none;
 }
 
 .ap-app-badges,

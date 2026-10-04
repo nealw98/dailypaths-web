@@ -4,13 +4,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Articles — Daily Paths</title>
-  <meta name="description" content="Thoughtful reading about letting go, relationships, and finding your way back to yourself.">
+  <meta name="description" content="Personal stories and articles about living with the effects of someone else’s drinking.">
   <link rel="canonical" href="https://dailypaths.org/articles/">
   <meta name="theme-color" content="#f4f1ea">
 
   <!-- Open Graph -->
   <meta property="og:title" content="Articles — Daily Paths">
-  <meta property="og:description" content="Thoughtful reading about letting go, relationships, and finding your way back to yourself.">
+  <meta property="og:description" content="Personal stories and articles about living with the effects of someone else’s drinking.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://dailypaths.org/articles/">
   <meta property="og:image" content="https://dailypaths.org/assets/og-image.png">
@@ -21,7 +21,7 @@
   <!-- Twitter -->
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Articles — Daily Paths">
-  <meta name="twitter:description" content="Thoughtful reading about letting go, relationships, and finding your way back to yourself.">
+  <meta name="twitter:description" content="Personal stories and articles about living with the effects of someone else’s drinking.">
   <meta name="twitter:image" content="https://dailypaths.org/assets/og-image.png">
 
   <!-- Favicon -->
@@ -35,7 +35,7 @@
   <!-- Page structure first, then the shared Daily Paths design system. -->
   <link rel="stylesheet" href="/css/style.css?v=brand-icon-1"><link rel="stylesheet" href="/css/soft-daylight.css?v=brand-icon-1">
   <link rel="stylesheet" href="/css/tokens/fonts.css?v=wordmark-loading-1">
-  <link rel="stylesheet" href="/css/site-system.css?v=wordmark-loading-1">
+  <link rel="stylesheet" href="/css/site-system.css?v=collection-tint-10">
   <meta name="site-mode" content="production">
 
   
@@ -61,7 +61,7 @@
     e.location.protocol&&"//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js".match(/^\/\//)?"https://cdn.mxpnl.com/libs/mixpanel-2-latest.min.js":"//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js";e=e.getElementsByTagName("script")[0];e.parentNode.insertBefore(k,e)}})(document,window.mixpanel||[]);
     mixpanel.init('52f2220068271346a45866162087fc9c', {
       autocapture: true,
-      record_sessions_percent: 100,
+      record_sessions_percent: 0,
     });
   </script>
   <script src="/js/analytics.js"></script>
@@ -71,6 +71,27 @@
   </script>
 
 <link rel="stylesheet" href="/css/inserts.css?v=20260924">
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://dailypaths.org/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Articles",
+      "item": "https://dailypaths.org/articles/"
+    }
+  ]
+}
+  </script>
 </head>
 <body class="page-editorial">
   <a href="#main" class="skip-link">Skip to content</a>
@@ -82,11 +103,19 @@
       </a>
       <span class="header-divider" aria-hidden="true"></span>
       <nav class="site-nav" aria-label="Main navigation">
+        <a href="/" class="nav-link">Home</a>
         <a href="/reflections/" class="nav-link">Reflections</a>
-        <a href="/articles/" class="nav-link is-active" aria-current="page">Articles</a>
-        <a href="/guides/" class="nav-link">Guides</a>
+        <div class="nav-item" data-nav-item>
+          <a href="/articles/" class="nav-link is-active" aria-current="page">Articles</a>
+          <button type="button" class="nav-caret" aria-expanded="false" aria-label="Show Articles menu"></button>
+          <div class="nav-dropdown"><a href="/articles/letting-go/">Letting Go</a><a href="/articles/who-am-i-behind-the-mask/">Who Am I Behind the Mask?</a><a href="/articles/the-stories-we-tell-ourselves/">The Stories We Tell Ourselves</a><a href="/articles/the-line-i-kept-moving/">The Line I Kept Moving</a><a href="/articles/voices-from-the-grave/">Voices from the Grave</a><a href="/articles/learning-to-trust/">Learning to Trust</a><a href="/articles/your-first-al-anon-meeting/">Your First Al-Anon Meeting: What to Expect</a><a class="nav-dropdown-all" href="/articles/">All articles</a></div>
+        </div>
+        <div class="nav-item" data-nav-item>
+          <a href="/guides/" class="nav-link">Guides</a>
+          <button type="button" class="nav-caret" aria-expanded="false" aria-label="Show Guides menu"></button>
+          <div class="nav-dropdown"><a href="/guides/finding-help/">Finding Help: Could Al-Anon Be for You?</a><a href="/guides/twelve-steps/">The Twelve Steps</a><a href="/guides/surrender/">Surrender</a><a href="/guides/detachment-with-love/">Detachment with Love</a><a href="/guides/boundaries/">Setting Boundaries</a><a class="nav-dropdown-all" href="/guides/">All guides</a></div>
+        </div>
       </nav>
-      <a href="#get-the-app" class="btn btn--sm header-cta">Get the app</a>
       <button type="button" class="menu-toggle" data-menu-toggle aria-expanded="false" aria-controls="mobile-menu">
         <span class="menu-glyph" aria-hidden="true"><span></span><span></span><span></span></span>
         <span data-menu-label>Menu</span>
@@ -94,25 +123,26 @@
     </div>
     <div class="mobile-menu" id="mobile-menu" data-mobile-menu hidden>
       <nav aria-label="Mobile navigation">
+        <a href="/" class="mobile-menu-row"><span class="mobile-menu-label">Home</span></a>
         <a href="/reflections/" class="mobile-menu-row"><span class="mobile-menu-label">Reflections</span></a>
         <a href="/articles/" class="mobile-menu-row is-active" aria-current="page"><span class="mobile-menu-label">Articles</span></a>
         <a href="/guides/" class="mobile-menu-row"><span class="mobile-menu-label">Guides</span></a>
       </nav>
-      <a href="#get-the-app" class="btn btn--full mobile-menu-cta">Get the app</a>
     </div>
   </header>
 
   
   <main id="main">
 <header class="hub-intro sd-wrap" aria-labelledby="articles-title">
-          <p class="hub-eyebrow sd-kicker">The reading room</p>
-          <h1 class="hub-title" id="articles-title">Thoughtful insights in the everyday issues</h1>
-          <p class="hub-deck">Thoughts and perspectives for the moments that feel familiar.</p>
-        </header><section class="sd-stories sd-wrap sd-article-library" aria-label="Articles"><article class="sd-story" data-cms-path="/topics/letting-go/"><a class="sd-story-image" href="/topics/letting-go/" tabindex="-1" aria-hidden="true"><img src="/assets/articles/letting-go-hero.jpg" alt="" width="960" height="600" loading="lazy"></a><p class="sd-kicker">Letting go</p><h3><a href="/topics/letting-go/">Letting Go: Caring Without Carrying</a></h3><p class="cms-card-summary">Recognizing what is yours to handle—and what you can begin to put down.</p><a class="sd-text-link" href="/topics/letting-go/" aria-label="Read Letting Go: Caring Without Carrying">Read the article</a></article><article class="sd-story" data-cms-path="/topics/gratitude-and-hope/"><a class="sd-story-image" href="/topics/gratitude-and-hope/" tabindex="-1" aria-hidden="true"><img src="/assets/articles/gratitude-and-hope-hero.jpg" alt="" width="960" height="600" loading="lazy"></a><p class="sd-kicker">Everyday perspective</p><h3><a href="/topics/gratitude-and-hope/">Gratitude &amp; Hope</a></h3><p class="cms-card-summary">Making space for what is still good, even when life feels uncertain.</p><a class="sd-text-link" href="/topics/gratitude-and-hope/" aria-label="Read Gratitude &amp; Hope">Read the article</a></article><article class="sd-story" data-cms-path="/topics/honesty/"><a class="sd-story-image" href="/topics/honesty/" tabindex="-1" aria-hidden="true"><img src="/assets/articles/honesty-hero.jpg" alt="" width="960" height="600" loading="lazy"></a><p class="sd-kicker">Knowing yourself</p><h3><a href="/topics/honesty/">The Stories We Tell Ourselves</a></h3><p class="cms-card-summary">Fear of rejection, uncertainty, and not being enough can shape the stories we tell ourselves. An exploration of seeing the facts and letting others help us face them.</p><a class="sd-text-link" href="/topics/honesty/" aria-label="Read The Stories We Tell Ourselves">Read the article</a></article><article class="sd-story" data-cms-path="/articles/the-line-i-kept-moving/"><a class="sd-story-image" href="/articles/the-line-i-kept-moving/" tabindex="-1" aria-hidden="true"><img src="/assets/articles/the-line-i-kept-moving/dinner-table-photo.webp" alt="" width="960" height="600" loading="lazy"></a><p class="sd-kicker">Personal story · Jeff J.</p><h3><a href="/articles/the-line-i-kept-moving/">The Line I Kept Moving</a></h3><p class="cms-card-summary">Learning to set boundaries with my mother—and to stop disappearing in the effort to earn her love.</p><a class="sd-text-link" href="/articles/the-line-i-kept-moving/" aria-label="Read The Line I Kept Moving">Read the article</a></article><article class="sd-story" data-cms-path="/articles/voices-from-the-grave/"><a class="sd-story-image" href="/articles/voices-from-the-grave/" tabindex="-1" aria-hidden="true"><img src="/assets/articles/voices-from-the-grave/voices-from-the-grave-hero.webp" alt="" width="960" height="600" loading="lazy"></a><p class="sd-kicker">Finding your voice</p><h3><a href="/articles/voices-from-the-grave/">Voices from the Grave</a></h3><p class="cms-card-summary">Old family rules can follow you into adult relationships. Explore how Al-Anon helps you release their authority, find your voice, and live in the present.</p><a class="sd-text-link" href="/articles/voices-from-the-grave/" aria-label="Read Voices from the Grave">Read the article</a></article><article class="sd-story" data-cms-path="/articles/your-first-al-anon-meeting/"><a class="sd-story-image" href="/articles/your-first-al-anon-meeting/" tabindex="-1" aria-hidden="true"><img src="https://daily-paths-story-room.nealw98.chatgpt.site/api/room/media/d8ed71ba-424f-4e02-aad5-5b784520b702" alt="" width="960" height="600" loading="lazy"></a><p class="sd-kicker">Article</p><h3><a href="/articles/your-first-al-anon-meeting/">Your First Al-Anon Meeting: What to Expect</a></h3><p class="cms-card-summary">A welcoming, practical introduction to attending a first meeting: whether you belong, what happens, whether you need to speak, and what you might take away. </p><a class="sd-text-link" href="/articles/your-first-al-anon-meeting/" aria-label="Read Your First Al-Anon Meeting: What to Expect">Read the article</a></article></section><section class="sd-app" id="get-the-app" aria-label="The Daily Paths app">
+          
+          <h1 class="hub-title" id="articles-title">Articles</h1>
+          
+          <p class="hub-deck">Personal stories and articles about living with the effects of someone else’s drinking.</p>
+        </header><section class="sd-stories sd-wrap sd-article-library" aria-labelledby="article-library-heading"><h2 class="visually-hidden" id="article-library-heading">All articles</h2><article class="sd-story" data-cms-path="/articles/letting-go/"><a class="sd-story-image" href="/articles/letting-go/" tabindex="-1" aria-hidden="true"><img src="/assets/articles/letting-go-hero.jpg" alt="" width="960" height="600" loading="lazy"></a><h3><a href="/articles/letting-go/">Letting Go</a></h3><p class="cms-card-summary">When worry keeps you rehearsing tomorrow and replaying yesterday.</p><a class="sd-text-link" href="/articles/letting-go/" aria-label="Read Letting Go">Read the article</a></article><article class="sd-story" data-cms-path="/articles/who-am-i-behind-the-mask/"><a class="sd-story-image" href="/articles/who-am-i-behind-the-mask/" tabindex="-1" aria-hidden="true"><img src="/assets/story-room/b3b7b229-491b-4722-a4ef-691896f1cdba.webp" alt="" width="960" height="600" loading="lazy"></a><h3><a href="/articles/who-am-i-behind-the-mask/">Who Am I Behind the Mask?</a></h3><p class="cms-card-summary">I knew how to be what other people wanted. I wasn’t sure who I was.</p><a class="sd-text-link" href="/articles/who-am-i-behind-the-mask/" aria-label="Read Who Am I Behind the Mask?">Read the article</a></article><article class="sd-story" data-cms-path="/articles/the-stories-we-tell-ourselves/"><a class="sd-story-image" href="/articles/the-stories-we-tell-ourselves/" tabindex="-1" aria-hidden="true"><img src="/assets/articles/honesty-hero.jpg" alt="" width="960" height="600" loading="lazy"></a><h3><a href="/articles/the-stories-we-tell-ourselves/">The Stories We Tell Ourselves</a></h3><p class="cms-card-summary">Fear of rejection, uncertainty, and not being enough can shape the stories we tell ourselves. An exploration of seeing the facts and letting others help us face them.</p><a class="sd-text-link" href="/articles/the-stories-we-tell-ourselves/" aria-label="Read The Stories We Tell Ourselves">Read the article</a></article><article class="sd-story" data-cms-path="/articles/the-line-i-kept-moving/"><a class="sd-story-image" href="/articles/the-line-i-kept-moving/" tabindex="-1" aria-hidden="true"><img src="/assets/articles/the-line-i-kept-moving/dinner-table-photo.webp" alt="" width="960" height="600" loading="lazy"></a><h3><a href="/articles/the-line-i-kept-moving/">The Line I Kept Moving</a></h3><p class="cms-card-summary">Learning to set boundaries with my mother—and to stop disappearing in the effort to earn her love.</p><a class="sd-text-link" href="/articles/the-line-i-kept-moving/" aria-label="Read The Line I Kept Moving">Read the article</a></article><article class="sd-story" data-cms-path="/articles/voices-from-the-grave/"><a class="sd-story-image" href="/articles/voices-from-the-grave/" tabindex="-1" aria-hidden="true"><img src="/assets/articles/voices-from-the-grave/voices-from-the-grave-hero.webp" alt="" width="960" height="600" loading="lazy"></a><h3><a href="/articles/voices-from-the-grave/">Voices from the Grave</a></h3><p class="cms-card-summary">Old family rules can follow you into adult relationships. Explore how Al-Anon helps you release their authority, find your voice, and live in the present.</p><a class="sd-text-link" href="/articles/voices-from-the-grave/" aria-label="Read Voices from the Grave">Read the article</a></article><article class="sd-story" data-cms-path="/articles/learning-to-trust/"><a class="sd-story-image" href="/articles/learning-to-trust/" tabindex="-1" aria-hidden="true"><img src="/assets/story-room/a7249c46-fd1c-454e-a9f5-bc2f2ea2f183.webp" alt="" width="960" height="600" loading="lazy"></a><h3><a href="/articles/learning-to-trust/">Learning to Trust</a></h3><p class="cms-card-summary">My husband got sober, but I was still angry and afraid. In Al-Anon, I began learning to trust my sponsor, my Higher Power, and eventually my husband.</p><a class="sd-text-link" href="/articles/learning-to-trust/" aria-label="Read Learning to Trust">Read the article</a></article><article class="sd-story" data-cms-path="/articles/your-first-al-anon-meeting/"><a class="sd-story-image" href="/articles/your-first-al-anon-meeting/" tabindex="-1" aria-hidden="true"><img src="/assets/story-room/d8ed71ba-424f-4e02-aad5-5b784520b702.webp" alt="" width="960" height="600" loading="lazy"></a><h3><a href="/articles/your-first-al-anon-meeting/">Your First Al-Anon Meeting: What to Expect</a></h3><p class="cms-card-summary">A welcoming, practical introduction to attending a first meeting: whether you belong, what happens, whether you need to speak, and what you might take away. </p><a class="sd-text-link" href="/articles/your-first-al-anon-meeting/" aria-label="Read Your First Al-Anon Meeting: What to Expect">Read the article</a></article></section><section class="sd-app" id="get-the-app" aria-label="The Daily Paths app">
     <img class="sd-app-background" src="/assets/articles/soft-daylight-journal.webp" alt="" width="1672" height="941" loading="lazy">
     <div class="sd-app-inner sd-wrap">
       <div class="sd-phone"><img src="/assets/Screenshots/today-actual.png" alt="The actual Daily Paths app: today’s reflection, journal, and daily tools" width="944" height="2048" loading="lazy"></div>
-      <div class="sd-app-copy"><p class="sd-kicker">The Daily Paths app</p><h2>Make room for yourself,<br><em>every day.</em></h2><p>A daily reflection. A place for your thoughts. Small ways to bring the focus back to you.</p><div class="store-badges">
+      <div class="sd-app-copy"><p class="sd-app-heading">Make room for yourself, <br><em>every day.</em></p><p>A daily reflection. A place for your thoughts. Small ways to bring the focus back to you.</p><div class="store-badges">
           <a href="https://apps.apple.com/app/id6755981862" target="_blank" rel="noopener noreferrer" class="store-badge-link">
             <img src="https://developer.apple.com/app-store/marketing/guidelines/images/badge-download-on-the-app-store.svg" alt="Download Al-Anon Daily Paths on the App Store" class="store-badge store-badge--ios" width="120" height="40" loading="lazy">
           </a>
@@ -126,11 +156,9 @@
 
   <section class="site-newsletter" aria-labelledby="site-newsletter-heading">
     <div class="site-newsletter-inner">
-      <p class="site-newsletter-eyebrow">Email updates</p>
-      <h2 id="site-newsletter-heading">A little clarity in your inbox.</h2>
-      <p class="site-newsletter-copy">A short introduction to a daily reflection or new article, with a link to read it here.</p>
-      <form class="site-newsletter-form" data-newsletter-form data-endpoint="https://ofmqgqaoubsiwujgvcil.supabase.co/functions/v1/newsletter-signup" data-key="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9mbXFncWFvdWJzaXd1amd2Y2lsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjM5MDI1NzEsImV4cCI6MjA3OTQ3ODU3MX0.85ile88Honj3SdXzxGEPFA04LG0B4OjRsbChZ8oUnmE
-">
+      <p class="site-newsletter-title" id="site-newsletter-heading">Get the Daily Reflection in your inbox.</p>
+      <p class="site-newsletter-copy">Sign up to receive a daily email with the Daily Reflection and a link to an article worth reading.</p>
+      <form class="site-newsletter-form" data-newsletter-form data-endpoint="https://ofmqgqaoubsiwujgvcil.supabase.co/functions/v1/newsletter-signup" data-key="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9mbXFncWFvdWJzaXd1amd2Y2lsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjM5MDI1NzEsImV4cCI6MjA3OTQ3ODU3MX0.85ile88Honj3SdXzxGEPFA04LG0B4OjRsbChZ8oUnmE">
         <label class="sr-only" for="site-newsletter-email">Your email address</label>
         <input id="site-newsletter-email" name="email" type="email" maxlength="254" autocomplete="email" placeholder="Your email address" required>
         <button class="site-newsletter-button" type="submit">Sign me up</button>
@@ -138,10 +166,11 @@
         <label class="newsletter-consent"><input name="consent" type="checkbox" required> <span>Yes, send me Daily Paths reflections and article updates.</span></label>
         <p class="site-newsletter-note newsletter-status" role="status" aria-live="polite"></p>
       </form>
-      <p class="site-newsletter-note">Email updates are coming soon. <a href="/privacy/">Privacy</a> · Unsubscribe at any time once emails begin.</p>
+      <p class="site-newsletter-note">We&rsquo;ll send a link to confirm your address. Unsubscribe at any time. <a href="/privacy/">Privacy</a></p>
       <noscript><p>Please enable JavaScript to join the email list.</p></noscript>
     </div>
   </section>
+
 
     <footer class="site-footer">
     <div class="footer-inner">
@@ -149,7 +178,7 @@
         <p class="footer-col-title">About</p>
         <nav class="footer-links" aria-label="About">
           <a href="/about-project/">About the project</a>
-          <a href="/support/">Contact us</a>
+          <a href="/support/">Support</a><a href="mailto:support@dailypaths.org">Contact Us</a>
         </nav>
       </div>
       <div class="footer-col">
@@ -167,8 +196,8 @@
   </footer>
 
 
-  <script src="/js/newsletter.js?v=20260924" defer></script>
-  <script src="/js/main.js?v=link-nav-refinement-1" defer></script>
+  <script src="/js/newsletter.js?v=signup-done-4" defer></script>
+  <script src="/js/main.js?v=remove-contributions-2" defer></script>
 
 <script src="/js/inserts.js?v=20260924" defer></script>
 </body>

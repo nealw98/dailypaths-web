@@ -4,13 +4,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Terms of Service | Al-Anon Daily Paths</title>
-  <meta name="description" content="Terms of service for Al-Anon Daily Paths, a daily reflections app and website.">
+  <meta name="description" content="Terms of service for the Daily Paths website.">
   <link rel="canonical" href="https://dailypaths.org/terms/">
   <meta name="theme-color" content="#f4f1ea">
 
   <!-- Open Graph -->
   <meta property="og:title" content="Terms of Service | Al-Anon Daily Paths">
-  <meta property="og:description" content="Terms of service for Al-Anon Daily Paths, a daily reflections app and website.">
+  <meta property="og:description" content="Terms of service for the Daily Paths website.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://dailypaths.org/terms/">
   <meta property="og:image" content="https://dailypaths.org/assets/og-image.png">
@@ -21,7 +21,7 @@
   <!-- Twitter -->
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Terms of Service | Al-Anon Daily Paths">
-  <meta name="twitter:description" content="Terms of service for Al-Anon Daily Paths, a daily reflections app and website.">
+  <meta name="twitter:description" content="Terms of service for the Daily Paths website.">
   <meta name="twitter:image" content="https://dailypaths.org/assets/og-image.png">
 
   <!-- Favicon -->
@@ -35,7 +35,7 @@
   <!-- Page structure first, then the shared Daily Paths design system. -->
   <link rel="stylesheet" href="/css/style.css?v=brand-icon-1"><link rel="stylesheet" href="/css/soft-daylight.css?v=brand-icon-1">
   <link rel="stylesheet" href="/css/tokens/fonts.css?v=wordmark-loading-1">
-  <link rel="stylesheet" href="/css/site-system.css?v=wordmark-loading-1">
+  <link rel="stylesheet" href="/css/site-system.css?v=collection-tint-10">
   <meta name="site-mode" content="production">
 
   
@@ -61,7 +61,7 @@
     e.location.protocol&&"//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js".match(/^\/\//)?"https://cdn.mxpnl.com/libs/mixpanel-2-latest.min.js":"//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js";e=e.getElementsByTagName("script")[0];e.parentNode.insertBefore(k,e)}})(document,window.mixpanel||[]);
     mixpanel.init('52f2220068271346a45866162087fc9c', {
       autocapture: true,
-      record_sessions_percent: 100,
+      record_sessions_percent: 0,
     });
   </script>
   <script src="/js/analytics.js"></script>
@@ -71,6 +71,27 @@
   </script>
 
 <link rel="stylesheet" href="/css/inserts.css?v=20260924">
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://dailypaths.org/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Terms of Service",
+      "item": "https://dailypaths.org/terms/"
+    }
+  ]
+}
+  </script>
 </head>
 <body class="page-terms">
   <a href="#main" class="skip-link">Skip to content</a>
@@ -82,11 +103,19 @@
       </a>
       <span class="header-divider" aria-hidden="true"></span>
       <nav class="site-nav" aria-label="Main navigation">
+        <a href="/" class="nav-link">Home</a>
         <a href="/reflections/" class="nav-link">Reflections</a>
-        <a href="/articles/" class="nav-link">Articles</a>
-        <a href="/guides/" class="nav-link">Guides</a>
+        <div class="nav-item" data-nav-item>
+          <a href="/articles/" class="nav-link">Articles</a>
+          <button type="button" class="nav-caret" aria-expanded="false" aria-label="Show Articles menu"></button>
+          <div class="nav-dropdown"><a href="/articles/letting-go/">Letting Go</a><a href="/articles/who-am-i-behind-the-mask/">Who Am I Behind the Mask?</a><a href="/articles/the-stories-we-tell-ourselves/">The Stories We Tell Ourselves</a><a href="/articles/the-line-i-kept-moving/">The Line I Kept Moving</a><a href="/articles/voices-from-the-grave/">Voices from the Grave</a><a href="/articles/learning-to-trust/">Learning to Trust</a><a href="/articles/your-first-al-anon-meeting/">Your First Al-Anon Meeting: What to Expect</a><a class="nav-dropdown-all" href="/articles/">All articles</a></div>
+        </div>
+        <div class="nav-item" data-nav-item>
+          <a href="/guides/" class="nav-link">Guides</a>
+          <button type="button" class="nav-caret" aria-expanded="false" aria-label="Show Guides menu"></button>
+          <div class="nav-dropdown"><a href="/guides/finding-help/">Finding Help: Could Al-Anon Be for You?</a><a href="/guides/twelve-steps/">The Twelve Steps</a><a href="/guides/surrender/">Surrender</a><a href="/guides/detachment-with-love/">Detachment with Love</a><a href="/guides/boundaries/">Setting Boundaries</a><a class="nav-dropdown-all" href="/guides/">All guides</a></div>
+        </div>
       </nav>
-      <a href="/#get-the-app" class="btn btn--sm header-cta">Get the app</a>
       <button type="button" class="menu-toggle" data-menu-toggle aria-expanded="false" aria-controls="mobile-menu">
         <span class="menu-glyph" aria-hidden="true"><span></span><span></span><span></span></span>
         <span data-menu-label>Menu</span>
@@ -94,11 +123,11 @@
     </div>
     <div class="mobile-menu" id="mobile-menu" data-mobile-menu hidden>
       <nav aria-label="Mobile navigation">
+        <a href="/" class="mobile-menu-row"><span class="mobile-menu-label">Home</span></a>
         <a href="/reflections/" class="mobile-menu-row"><span class="mobile-menu-label">Reflections</span></a>
         <a href="/articles/" class="mobile-menu-row"><span class="mobile-menu-label">Articles</span></a>
         <a href="/guides/" class="mobile-menu-row"><span class="mobile-menu-label">Guides</span></a>
       </nav>
-      <a href="/#get-the-app" class="btn btn--full mobile-menu-cta">Get the app</a>
     </div>
   </header>
 
@@ -108,18 +137,98 @@
     <div class="content-page">
       <div class="content-container">
         <h1 class="page-title">Terms of Service</h1>
-        <p class="page-description">Terms of Service content coming soon.</p>
+        <p class="page-meta">Last updated: October 1, 2026</p>
+
+        <section class="content-section">
+          <h2>Overview</h2>
+          <p>
+            These terms cover your use of the Daily Paths website. Daily Paths is published by
+            Daily Growth, LLC ("we," "our," or "us"). By using the website, you agree to them.
+            If you do not agree, please do not use the site. The Daily Paths mobile app is
+            covered separately, by the terms it links to.
+          </p>
+        </section>
+
+        <section class="content-section">
+          <h2>An independent project</h2>
+          <p>
+            Daily Paths is an independent project. It is not affiliated with, endorsed by, or
+            approved by Al-Anon Family Groups, Inc. or any other organization. The Twelve Steps and
+            Twelve Traditions are used with the understanding that they are the shared heritage of
+            the recovery community.
+          </p>
+        </section>
+
+        <section class="content-section">
+          <h2>Not professional advice</h2>
+          <p>
+            Daily Paths is a tool for daily reflection. It is not medical, mental health, legal or
+            crisis advice, and it is not a substitute for a professional. If you or someone you know
+            is in crisis, call or text 988 (USA) or contact your local emergency services.
+          </p>
+        </section>
+
+        <section class="content-section">
+          <h2>Using the content</h2>
+          <p>
+            The reflections, articles, guides and images on this site are owned by Daily Growth, LLC
+            or used with permission. You may read them, share links to them, and quote short
+            excerpts with credit and a link back to the site for personal and non-commercial use.
+            Please do not copy, republish, sell or build products from the content without our
+            written permission.
+          </p>
+        </section>
+
+        <section class="content-section">
+          <h2>Email updates</h2>
+          <p>
+            If you join the email list, you agree to receive Daily Paths reflection and article
+            updates. You can unsubscribe at any time. See our <a href="/privacy/">Privacy
+            Policy</a> for how we handle your email address.
+          </p>
+        </section>
+
+        <section class="content-section">
+          <h2>Links to other sites</h2>
+          <p>
+            The site links to outside websites, such as Al-Anon Family Groups. We do not control
+            them and are not responsible for their content or practices.
+          </p>
+        </section>
+
+        <section class="content-section">
+          <h2>No warranty and limits of liability</h2>
+          <p>
+            The website is provided "as is" and "as available," without warranties of any kind. To
+            the fullest extent allowed by law, Daily Growth, LLC is not liable for any damages
+            arising from your use of the site or from relying on its content.
+          </p>
+        </section>
+
+        <section class="content-section">
+          <h2>Changes to these terms</h2>
+          <p>
+            We may update these terms from time to time. The "Last updated" date shows when. If you
+            keep using the site after a change, you accept the updated terms.
+          </p>
+        </section>
+
+        <section class="content-section">
+          <h2>Contact us</h2>
+          <p>
+            Questions about these terms? Contact us through our
+            <a href="/support/">Support</a> page.
+          </p>
+        </section>
       </div>
     </div>
   </main>
 
   <section class="site-newsletter" aria-labelledby="site-newsletter-heading">
     <div class="site-newsletter-inner">
-      <p class="site-newsletter-eyebrow">Email updates</p>
-      <h2 id="site-newsletter-heading">A little clarity in your inbox.</h2>
-      <p class="site-newsletter-copy">A short introduction to a daily reflection or new article, with a link to read it here.</p>
-      <form class="site-newsletter-form" data-newsletter-form data-endpoint="https://ofmqgqaoubsiwujgvcil.supabase.co/functions/v1/newsletter-signup" data-key="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9mbXFncWFvdWJzaXd1amd2Y2lsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjM5MDI1NzEsImV4cCI6MjA3OTQ3ODU3MX0.85ile88Honj3SdXzxGEPFA04LG0B4OjRsbChZ8oUnmE
-">
+      <p class="site-newsletter-title" id="site-newsletter-heading">Get the Daily Reflection in your inbox.</p>
+      <p class="site-newsletter-copy">Sign up to receive a daily email with the Daily Reflection and a link to an article worth reading.</p>
+      <form class="site-newsletter-form" data-newsletter-form data-endpoint="https://ofmqgqaoubsiwujgvcil.supabase.co/functions/v1/newsletter-signup" data-key="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9mbXFncWFvdWJzaXd1amd2Y2lsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjM5MDI1NzEsImV4cCI6MjA3OTQ3ODU3MX0.85ile88Honj3SdXzxGEPFA04LG0B4OjRsbChZ8oUnmE">
         <label class="sr-only" for="site-newsletter-email">Your email address</label>
         <input id="site-newsletter-email" name="email" type="email" maxlength="254" autocomplete="email" placeholder="Your email address" required>
         <button class="site-newsletter-button" type="submit">Sign me up</button>
@@ -127,10 +236,11 @@
         <label class="newsletter-consent"><input name="consent" type="checkbox" required> <span>Yes, send me Daily Paths reflections and article updates.</span></label>
         <p class="site-newsletter-note newsletter-status" role="status" aria-live="polite"></p>
       </form>
-      <p class="site-newsletter-note">Email updates are coming soon. <a href="/privacy/">Privacy</a> · Unsubscribe at any time once emails begin.</p>
+      <p class="site-newsletter-note">We&rsquo;ll send a link to confirm your address. Unsubscribe at any time. <a href="/privacy/">Privacy</a></p>
       <noscript><p>Please enable JavaScript to join the email list.</p></noscript>
     </div>
   </section>
+
 
     <footer class="site-footer">
     <div class="footer-inner">
@@ -138,7 +248,7 @@
         <p class="footer-col-title">About</p>
         <nav class="footer-links" aria-label="About">
           <a href="/about-project/">About the project</a>
-          <a href="/support/">Contact us</a>
+          <a href="/support/">Support</a><a href="mailto:support@dailypaths.org">Contact Us</a>
         </nav>
       </div>
       <div class="footer-col">
@@ -156,8 +266,8 @@
   </footer>
 
 
-  <script src="/js/newsletter.js?v=20260924" defer></script>
-  <script src="/js/main.js?v=link-nav-refinement-1" defer></script>
+  <script src="/js/newsletter.js?v=signup-done-4" defer></script>
+  <script src="/js/main.js?v=remove-contributions-2" defer></script>
 
 <script src="/js/inserts.js?v=20260924" defer></script>
 </body>
