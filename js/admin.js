@@ -17,6 +17,7 @@
   // GitHub Actions — trigger build & deploy (PAT stored in browser localStorage)
   var GITHUB_REPO = 'nealw98/dailypaths-web';
   var GITHUB_WORKFLOW = 'build-and-deploy.yml';
+  var GITHUB_BRANCH = '2.0'; // the default branch the live site is built from
   function getGitHubPat() { return localStorage.getItem('github_pat') || ''; }
   function setGitHubPat(pat) { localStorage.setItem('github_pat', pat); }
 
@@ -1140,7 +1141,7 @@
           'Accept': 'application/vnd.github+json',
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ ref: 'main' }),
+        body: JSON.stringify({ ref: GITHUB_BRANCH }),
       }).then(function (res) {
         if (res.status === 204) {
           showToast('Build triggered! Site will update in ~2 minutes.', 'success');
