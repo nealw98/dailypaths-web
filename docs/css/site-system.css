@@ -1130,8 +1130,22 @@ a[target="_blank"]:not(:has(img)):not(.pillar-card):not(.fellow-card)::after,
 .footer-inner { width: min(calc(100% - (2 * var(--gutter-system))), var(--content-wide)); padding: var(--space-5) 0 var(--space-4); }
 .site-footer .footer-inner { max-width: 720px; grid-template-columns: repeat(2, minmax(0, 1fr)); }
 .footer-bar { width: min(calc(100% - (2 * var(--gutter-system))), var(--content-wide)); padding: var(--space-2) 0; }
+/* The footer carries its own layout so every page, including the home page, renders it the same way. */
+.site-footer { background: var(--surface, #faf9f5); color: var(--text-muted, #66685d); padding-top: 45px; }
+.site-footer .footer-inner { margin-inline: auto; display: grid; gap: 14px 28px; }
+.site-footer .footer-col-title { margin: 0 0 5px; color: var(--accent, #444e34); }
+.site-footer .footer-links { gap: 3px; }
+.site-footer .footer-bar { border-top: 1px solid var(--rule, #dfdfd3); display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; color: var(--text-muted, #66685d); }
+.site-footer .footer-bar p { margin: 0; font-size: 11px; }
+.site-footer .footer-bar strong { color: var(--text-primary, #34382e); }
 /* The legal line sits in the same centered column as the footer links above it. */
 .site-footer .footer-bar { max-width: 720px; margin-inline: auto; }
+/* Footer links stack in a column; on wider screens the Legal column sits flush right so the two balance. */
+.site-footer .footer-links { display: flex; flex-direction: column; }
+@media (min-width: 621px) {
+  .site-footer .footer-col:last-child { text-align: right; }
+  .site-footer .footer-col:last-child .footer-links { align-items: flex-end; }
+}
 .footer-links a,
 .ed-footer nav a {
   display: inline-flex;
@@ -1435,7 +1449,7 @@ a[target="_blank"]:not(:has(img)):not(.pillar-card):not(.fellow-card)::after,
 .story-insert-dialog{border:0;padding:20px;width:min(1100px,94vw);max-height:94vh;overflow:auto;background:#fff;}.story-insert-dialog::backdrop{background:#0009;}.story-insert-dialog img{width:100%;height:auto;}.story-insert-dialog button{display:block;margin:0 0 16px auto;padding:8px 16px;cursor:pointer;}
 /* Email collection: a single invitation, explicit consent, and an inline result. */
 .site-newsletter-form{position:relative}
-.site-newsletter-form .newsletter-consent{grid-column:1 / -1;display:flex;flex:0 0 100%;align-items:flex-start;gap:10px;text-align:left;font:14px/1.5 var(--font-ui);color:var(--text-secondary);margin-top:12px}
+.site-newsletter-form .newsletter-consent{grid-column:1 / -1;display:flex;flex:0 0 100%;align-items:flex-start;justify-content:center;gap:10px;text-align:left;font:14px/1.5 var(--font-ui);color:var(--text-secondary);margin-top:12px}
 .site-newsletter-form .newsletter-consent input{flex:0 0 18px;width:18px;height:18px;min-width:18px;margin:2px 0;padding:0;accent-color:var(--accent)}
 .site-newsletter-form .newsletter-status{grid-column:1 / -1;flex:0 0 100%;margin:6px 0 0;text-align:center}
 .newsletter-trap{position:absolute;left:-10000px;width:1px;height:1px;overflow:hidden}

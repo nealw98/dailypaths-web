@@ -143,7 +143,7 @@ export function wrapInLayout({
   <!-- Page structure first, then the shared Daily Paths design system. -->
   ${isHome ? `<link rel="stylesheet" href="${bp('/css/editorial-home.css')}?v=home-header-band-1">` : `<link rel="stylesheet" href="${bp('/css/style.css')}?v=brand-icon-1"><link rel="stylesheet" href="${bp('/css/soft-daylight.css')}?v=brand-icon-1">`}
   <link rel="stylesheet" href="${bp('/css/tokens/fonts.css')}?v=wordmark-loading-1">
-  <link rel="stylesheet" href="${bp('/css/site-system.css')}?v=collection-tint-12">
+  <link rel="stylesheet" href="${bp('/css/site-system.css')}?v=collection-tint-14">
   <meta name="site-mode" content="${IS_PREVIEW ? 'preview' : 'production'}">
 
   ${structuredData ? (Array.isArray(structuredData) ? structuredData : [structuredData]).map(json => `<!-- Structured Data -->
@@ -214,7 +214,7 @@ ${bodyContent}
   ${hideNewsletter ? '' : newsletterInvitation()}
 
 
-  ${isHome ? `<footer class="ed-footer ed-wrap"><nav aria-label="Footer"><a href="${bp('/about-project/')}">About</a><a href="${bp('/support/')}">Support</a><a href="mailto:support@dailypaths.org">Contact Us</a><a href="${bp('/privacy/')}">Privacy</a><a href="${bp('/terms/')}">Terms</a></nav></footer>` : `  <footer class="site-footer">
+    <footer class="site-footer">
     <div class="footer-inner">
       <div class="footer-col">
         <p class="footer-col-title">About</p>
@@ -236,7 +236,6 @@ ${bodyContent}
       <p>In crisis? Help is available 24/7. Call or text <strong>988</strong> (USA).</p>
     </div>
   </footer>
-`}
 
   <script src="${bp('/js/newsletter.js')}?v=signup-done-4" defer></script>
   <script src="${bp('/js/main.js')}?v=remove-contributions-2" defer></script>
