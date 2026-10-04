@@ -43,7 +43,7 @@ export function renderAboutProjectPage() {
             <h2 class="ap-section-heading">Who Writes It</h2>
             <div class="ap-editorial">
               <p>Daily Paths was created by <strong>Neal W.</strong>, who brings over 30 years of personal recovery experience to this project. While Neal&rsquo;s journey began in other Twelve Step rooms, his life has been deeply intertwined with Al-Anon through his marriage and his role as a sponsor to many navigating the complexities of family recovery. This unique perspective allows Daily Paths to offer reflections that are grounded in time-tested principles while remaining accessible to those just beginning to discover the Al-Anon path.</p>
-              <p>Neal writes the guides. The writing and editing are shared with a growing group of contributors and editors: people with real experience living with someone else&rsquo;s drinking and practicing the Twelve Step program of recovery. Contributors are credited on the articles they write. The work is reviewed by a broader circle than its authors and also benefits from reader feedback. Daily Paths is published by <strong>Daily Growth, LLC</strong>.</p>
+              <p>Neal writes the guides. Others write, edit or advise: a growing group of people with real experience living with someone else&rsquo;s drinking and practicing the Twelve Step program of recovery. Daily Paths is published by <strong>Daily Growth, LLC</strong>.</p>
             </div>
           </section>
 
