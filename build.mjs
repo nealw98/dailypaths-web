@@ -15,6 +15,7 @@ import { TYPOGRAPHY_REVIEW_DAY, TYPOGRAPHY_REVIEW_PATH, GUIDE_REVIEW_PATH } from
  */
 
 import 'dotenv/config';
+import './helpers/public-config.mjs'; // public Supabase URL/key fallback so any session can build
 import { mkdirSync, writeFileSync, readFileSync, cpSync, rmSync, existsSync, readdirSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';

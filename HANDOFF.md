@@ -495,3 +495,10 @@ CMS_TEST_ROOT and exercises actual HTML rewriting, redirects and sitemap updates
 When packaging, sitemap and individual articles/guides/topics/steps/themes belong
 to the Worker; their built pages are retained in its fallback map. For static
 sitemap checks, reconstruct the fallback pages into a temporary check directory.
+
+## Building without setup — October 4, 2026
+
+`helpers/public-config.mjs` supplies the Supabase project URL and its public anon key when the environment has no
+`SUPABASE_URL` / `SUPABASE_ANON_KEY`, so a new session or machine can run `SITE_ENV=production node build.mjs` or
+`npm run build` straight away. Both values are already public (they ship in `js/admin.js`). A `.env` file or an
+environment variable always overrides them. Never put the service-role key or any email/Resend secret in the repo.
