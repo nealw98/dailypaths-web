@@ -53,7 +53,7 @@ export function renderAboutProjectPage() {
               <p><strong>From lived experience.</strong> The reflections, articles and guides come from people with real experience living with someone else&rsquo;s drinking and practicing the Twelve Step program of recovery, and they draw on the program&rsquo;s principles. They are not official Al-Anon literature and do not replace it.</p>
               <p><strong>Researched.</strong> Each guide is based on Al-Anon literature, along with further research into the topic and conversations with people who have lived it, which are pulled together into one piece.</p>
               <p><strong>Reviewed by a broader group.</strong> The reflections have been reviewed by people experienced in the Twelve Step program of recovery, a wider circle than the authors. The Daily Paths app also asks readers for feedback on each reflection, and we use that feedback to review and revise the readings.</p>
-              <p><strong>Drafted with AI, reviewed by people.</strong> We use AI tools to help draft and develop some of our material. Every piece is reviewed and edited by actual humans before publishing.</p>
+              <p><strong>Drafted with AI, reviewed by actual humans.</strong> We use AI tools to help draft and develop some of our material. Every piece is reviewed and edited by actual humans before publishing.</p>
               <p><strong>Corrections.</strong> If something reads wrong, or you spot a mistake, please tell us at <a href="mailto:support@dailypaths.org">support@dailypaths.org</a>.</p>
             </div>
           </section>
