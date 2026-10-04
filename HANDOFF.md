@@ -6,6 +6,18 @@ original reading order, outside the old columns. This repair applies to previews
 and approved publications without publishing draft edits or modifying manuscripts.
 The website cache is refreshed from the repaired approved page.
 
+## October 4 — Surrender guide structure and contents repair
+
+The approved Surrender page had a broken Consequences insert that wrapped the
+safety panel and closing paragraphs in its grid. Its contents list retained
+placeholders, two list items had escaped their lists, several paragraph IDs
+duplicated heading IDs, and an empty safety placeholder remained. Story Room
+delivery now restores the callout and closing text to the reading flow, rebuilds
+the contents links from actual section headings, repairs list membership and
+anchor uniqueness, removes the empty callout, and points Step One and Boundaries
+links to their current guides. This repairs rendered previews/publications
+without changing the manuscript or approval history.
+
 ## October 3 — Legacy drafts are withheld from 2.0
 
 The Story Room feed excludes legacy rewrites in draft/needs-decision state.
