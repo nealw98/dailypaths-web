@@ -1,3 +1,11 @@
+## October 3 — Surrender rope insert layout repair
+
+Story Room now unwraps the obsolete rope-comparison layout when uploaded artwork
+replaces it. Editable manuscript blocks and both uploaded figures remain in their
+original reading order, outside the old columns. This repair applies to previews
+and approved publications without publishing draft edits or modifying manuscripts.
+The website cache is refreshed from the repaired approved page.
+
 ## October 3 — Legacy drafts are withheld from 2.0
 
 The Story Room feed excludes legacy rewrites in draft/needs-decision state.
