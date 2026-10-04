@@ -1130,6 +1130,8 @@ a[target="_blank"]:not(:has(img)):not(.pillar-card):not(.fellow-card)::after,
 .footer-inner { width: min(calc(100% - (2 * var(--gutter-system))), var(--content-wide)); padding: var(--space-5) 0 var(--space-4); }
 .site-footer .footer-inner { max-width: 720px; grid-template-columns: repeat(2, minmax(0, 1fr)); }
 .footer-bar { width: min(calc(100% - (2 * var(--gutter-system))), var(--content-wide)); padding: var(--space-2) 0; }
+/* The legal line sits in the same centered column as the footer links above it. */
+.site-footer .footer-bar { max-width: 720px; margin-inline: auto; }
 .footer-links a,
 .ed-footer nav a {
   display: inline-flex;
