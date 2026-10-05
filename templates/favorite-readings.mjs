@@ -3,7 +3,6 @@ import { terminalBand } from './ui.mjs';
 import { bp } from '../helpers/config.mjs';
 import { readingSlug } from '../helpers/slug-utils.mjs';
 import { loadFavoriteReadings, readingTeaser } from '../helpers/favorite-readings.mjs';
-import { groupingTheme } from '../helpers/theme-destinations.mjs';
 
 /**
  * Render the ten chosen reflections.
@@ -27,21 +26,26 @@ export function renderFavoriteReadingsPage(readings, ratingsMap = new Map()) {
       return score(b) - score(a) || a.day_of_year - b.day_of_year;
     }).slice(0, 10);
 
-  // These ten come from anywhere in the year rather than one group, so the theme
-  // does tell the reader something here and does not repeat by construction. It is
-  // the grouping theme, the same word the reflection's own pill carries.
-  const cards = favorites.map(reading => {
-    const teaser = readingTeaser(reading);
-    const theme = groupingTheme(reading) || (reading.secondary_theme || '').trim();
+  // Keep the chosen order and show each reading's full Thought for the Day.
+  const cards = favorites.map((reading, index) => {
+    const thought = readingTeaser(reading, Infinity);
     return `
-          <a href="${bp(`/${readingSlug(reading.day_of_year, reading.title)}/`)}" class="kr-card">
-            ${theme ? `<span class="kr-card-context">${theme}</span>` : ''}
-            <span class="kr-card-date">${reading.display_date}</span>
-            <span class="kr-card-title">${reading.title || 'Daily Reading'}</span>
-            ${teaser ? `<span class="kr-card-teaser">${teaser}</span>` : ''}
-            <span class="kr-card-cta">Read</span>
-          </a>`;
+          <li class="favorite-reading">
+            <a href="${bp(`/${readingSlug(reading.day_of_year, reading.title)}/`)}" class="favorite-reading-link">
+              <span class="favorite-reading-number" aria-hidden="true">${String(index + 1).padStart(2, '0')}</span>
+              <span class="favorite-reading-content">
+                <span class="favorite-reading-date">${escapeHtml(reading.display_date)}</span>
+                <span class="favorite-reading-title">${escapeHtml(reading.title || 'Daily Reading')}</span>
+                ${thought ? `<span class="favorite-reading-thought"><span class="sr-only">Thought for the Day: </span>${escapeHtml(thought)}</span>` : ''}
+              </span>
+            </a>
+          </li>`;
   }).join('');
+
+  function escapeHtml(value) {
+    return String(value).replace(/&/g, '&amp;').replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+  }
 
   const bodyContent = `
     <div class="wrap section--md">
@@ -52,8 +56,8 @@ export function renderFavoriteReadingsPage(readings, ratingsMap = new Map()) {
         <h1 class="ma-title">Favorite Readings</h1>
         <p class="ma-subtitle">The reflections readers return to most.</p>
       </header>
-      <div class="kr-grid">${cards}
-      </div>
+      <ol class="favorite-reading-list">${cards}
+      </ol>
     </div>
     ${terminalBand()}`;
 
