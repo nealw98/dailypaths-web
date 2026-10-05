@@ -1720,3 +1720,23 @@ body .store-badges a.store-badge-link:focus-visible {
     grid-template-columns: minmax(0, 1fr);
   }
 }
+
+/* Reflection hub heading hierarchy, without changing the card treatment. */
+.page-reflections-index .reflection-index-section + .reflection-index-section {
+  margin-top: 52px;
+}
+.page-reflections-index .reflection-index-section-title {
+  margin: 0 0 20px;
+  font: var(--type-section);
+  color: var(--text-primary, #34382e);
+}
+.page-reflections-index .step-card-heading { margin: 0; }
+.page-reflections-index .step-card-heading .step-card-label,
+.page-reflections-index .step-card-heading .step-card-keyword { display: block; }
+.page-reflections-index .step-card-heading .step-card-label { margin-bottom: 12px; }
+.page-reflections-index .step-card-grid--collections { margin-top: 0; }
+@media (max-width: 620px) {
+  .page-reflections-index .reflection-index-section + .reflection-index-section {
+    margin-top: 40px;
+  }
+}
