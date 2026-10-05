@@ -34,10 +34,10 @@ export function renderFavoriteReadingsPage(readings, ratingsMap = new Map()) {
       .replace(/\*\*?|__?/g, '')
       .replace(/\s+/g, ' ')
       .trim();
-    if (text.length <= 260) return text;
-    const sentenceEnds = [...text.slice(0, 260).matchAll(/[.!?](?=\s|$)/g)];
-    const end = sentenceEnds.at(-1)?.index;
-    return end >= 120 ? text.slice(0, end + 1) : text.slice(0, 240).replace(/\s+\S*$/, '') + '…';
+    if (text.length <= 175) return text;
+    const sentenceEnds = [...text.slice(0, 175).matchAll(/[.!?](?=\s|$)/g)];
+    const end = sentenceEnds.find(match => match.index >= 80)?.index;
+    return end !== undefined ? text.slice(0, end + 1) : text.slice(0, 150).replace(/\s+\S*$/, '') + '…';
   };
 
   const cards = favorites.map((reading, index) => {
