@@ -12,13 +12,13 @@ export const PREVIEW_ORIGIN='https://daily-paths-soft-daylight.nealw98.chatgpt.s
 // Abandoned preview guide addresses have no redirects.
 export const validPath=p=>/^\/(?:articles|guides|topics|steps)\/[a-z0-9]+(?:-[a-z0-9]+)*\/$/.test(p);
 export const escape=s=>String(s||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-function moveBylineIntoTitleBlock(html){
- const byline=html.match(/<article\b[^>]*>\s*(<p class="story-byline">[^<]*<\/p>)/i)?.[1];
- if(!byline||!html.includes('photo-hero-inner'))return html;
- return html.replace(byline,'').replace(/(<div class="photo-hero-inner">[\s\S]*?)(\s*<\/div>\s*<\/header>)/i,(_,inner,end)=>`${inner}\n          ${byline}${end}`);
+const publishedArticle=/<article\b[^>]*class=["'][^"']*\brd-article\b[^"']*["'][^>]*>[\s\S]*?<\/article>/i;
+export function restorePublishedArticle(html,approved){
+ const article=approved?.match(publishedArticle)?.[0];
+ return article?html.replace(publishedArticle,()=>article):html;
 }
 export function composePage(base,approved){
- if(!base)return syncHeroSocialImage(moveBylineIntoTitleBlock(approved),'https://daily-paths-soft-daylight.nealw98.chatgpt.site');
+ if(!base)return syncHeroSocialImage(approved,'https://daily-paths-soft-daylight.nealw98.chatgpt.site');
  let html=base;
  for(const re of [/<main\b[\s\S]*?<\/main>/i,/<title>[\s\S]*?<\/title>/i]){const value=approved.match(re)?.[0];if(value)html=html.replace(re,()=>value);}
  for(const name of ['description','og:title','og:description','og:image','og:url','twitter:title','twitter:description','twitter:image']){
@@ -27,7 +27,7 @@ export function composePage(base,approved){
  // Editorial structured data belongs to the approved article; site navigation stays current.
  const data=[...approved.matchAll(/<script\b[^>]*type=["']application\/ld\+json["'][^>]*>[\s\S]*?<\/script>/gi)].map(m=>m[0]).join('\n');
  if(data)html=html.replace(/<script\b[^>]*type=["']application\/ld\+json["'][^>]*>[\s\S]*?<\/script>/gi,'').replace('</head>',()=>data+'\n</head>');
- return syncHeroSocialImage(moveBylineIntoTitleBlock(html),'https://daily-paths-soft-daylight.nealw98.chatgpt.site');
+ return syncHeroSocialImage(html,'https://daily-paths-soft-daylight.nealw98.chatgpt.site');
 }
 export const CACHE_PATH=join(dirname(fileURLToPath(import.meta.url)),'..','data','story-room-cache.json');
 
@@ -82,6 +82,7 @@ export async function applyPublished(outDir,{production=false,origin=PREVIEW_ORI
   if(item.cmsPath&&item.cmsPath!==item.path)html=html.replaceAll(item.cmsPath,item.path);
   html=applyEditorialPolicy(html,item.path);
   html=syncNewsletter(html,homePage);
+  html=restorePublishedArticle(html,item.cmsPath&&item.cmsPath!==item.path?item.html.replaceAll(item.cmsPath,item.path):item.html);
   html=html.replaceAll(PREVIEW_ORIGIN,origin);if(production)html=html.replace(/<meta\b(?=[^>]*name=["']robots["'])[^>]*>/gi,'');mkdirSync(dirname(dest),{recursive:true});writeFileSync(dest,html);
  }
  return items;
