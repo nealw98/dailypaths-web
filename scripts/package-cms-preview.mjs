@@ -6,7 +6,7 @@ import path from 'node:path';
 import {ARTICLES,GUIDES} from '../helpers/content-catalog.mjs';
 import {createCmsWorker} from '../helpers/cms-worker.mjs';
 import {LAUNCH_REVIEW,transformLaunchPreview} from '../helpers/launch-review.mjs';
-import {composePage} from '../helpers/story-room.mjs';
+import {composePage,restorePublishedArticle} from '../helpers/story-room.mjs';
 import {syncHeroSocialImage} from '../helpers/social-image.mjs';
 import {syncNewsletter} from '../helpers/site-chrome.mjs';
 import {ARTICLE_PLACEHOLDERS} from '../templates/article-placeholders.mjs';
@@ -29,7 +29,7 @@ fs.rmSync(path.join(dist,'client','guides','detachment-with-love','index.html'),
 // Static HTML for these routes must not preempt the CMS request handler.
 for(const p of Object.keys(fallback))fs.rmSync(p==='/sitemap.xml'?path.join(dist,'client','sitemap.xml'):path.join(dist,'client',p,'index.html'),{force:true});
 fs.mkdirSync(path.join(dist,'server'));fs.mkdirSync(path.join(dist,'.openai'),{recursive:true});
-fs.writeFileSync(path.join(dist,'server','index.js'),`const fallback=${JSON.stringify(fallback)};\nconst knownPaths=${JSON.stringify(catalog)};\n${syncHeroSocialImage.toString()}\nconst inserts=${JSON.stringify(inserts)};\n${internalLinkDestination.toString()}\n${applyEditorialPolicy.toString()}\n${syncNewsletter.toString()}\n${composePage.toString()}\n${createCmsWorker.toString()}\nconst LAUNCH_REVIEW=${JSON.stringify(LAUNCH_REVIEW)};\n${transformLaunchPreview.toString()}\nexport default createCmsWorker(fallback,knownPaths,composePage,LAUNCH_REVIEW,transformLaunchPreview,applyEditorialPolicy,syncNewsletter);\n`);
+fs.writeFileSync(path.join(dist,'server','index.js'),`const fallback=${JSON.stringify(fallback)};\nconst knownPaths=${JSON.stringify(catalog)};\n${syncHeroSocialImage.toString()}\nconst inserts=${JSON.stringify(inserts)};\n${internalLinkDestination.toString()}\n${applyEditorialPolicy.toString()}\n${syncNewsletter.toString()}\n${composePage.toString()}\nconst publishedArticle=/<article\\b[^>]*class=["'][^"']*\\brd-article\\b[^"']*["'][^>]*>[\\s\\S]*?<\\/article>/i;\n${restorePublishedArticle.toString()}\n${createCmsWorker.toString()}\nconst LAUNCH_REVIEW=${JSON.stringify(LAUNCH_REVIEW)};\n${transformLaunchPreview.toString()}\nexport default createCmsWorker(fallback,knownPaths,composePage,LAUNCH_REVIEW,transformLaunchPreview,applyEditorialPolicy,syncNewsletter,restorePublishedArticle);\n`);
 fs.writeFileSync(path.join(dist,'server','wrangler.json'),JSON.stringify({name:'daily-paths-cms-preview',main:'index.js',compatibility_date:'2026-05-15',assets:{directory:'../client'}}));
 fs.copyFileSync(path.join(root,'.openai/hosting.json'),path.join(dist,'.openai/hosting.json'));
 console.log('Prepared CMS publishing for '+paths.length+' existing pages and future articles/guides.');
