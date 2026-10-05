@@ -300,7 +300,7 @@ export function renderReflectionsIndexPage(todayReading, allReadings = []) {
     return `
           <a href="${bp(page.path)}" class="card-elevated step-card">
             <span>
-              <span class="step-card-keyword">${page.title.replace(/^The Twelve /, '')}</span>
+              <h3 class="step-card-keyword">${page.title.replace(/^The Twelve /, '')}</h3>
               <span class="step-card-hook">${page.description}</span>
               <span class="step-card-cta">${count ? `View ${count} reflections` : 'View reflections'} <span aria-hidden="true">&rarr;</span></span>
             </span>
@@ -332,9 +332,8 @@ export function renderReflectionsIndexPage(todayReading, allReadings = []) {
     const themes = commonThemes(step.number);
     return `
           <a href="${bp(`/months/${step.monthSlug}/`)}" class="card-elevated step-card">
-            <span class="step-card-label">Step ${step.number}</span>
             <span>
-              <span class="step-card-keyword">${step.principle}</span>
+              <h3 class="step-card-heading"><span class="step-card-label">Step ${step.number}</span><span class="step-card-keyword">${step.principle}</span></h3>
               <span class="step-card-statement">${step.text}</span>
               ${themes.length ? `<span class="step-card-themes"><span class="step-card-themes-label">Common themes</span>${themes.map(escapeTheme).join(' · ')}</span>` : ''}
               <span class="step-card-cta">View reflections <span aria-hidden="true">&rarr;</span></span>
@@ -358,10 +357,16 @@ ${photoHero({
           <a class="btn" data-today-link href="${bp(`/${readingSlug(todayReading.day_of_year, todayReading.title)}/`)}">Read today&rsquo;s reflection <span aria-hidden="true">&rarr;</span></a>
         </div>
       </div>
-      <div class="step-card-grid step-card-grid--index">${gridCards}
-      </div>
-      <div class="step-card-grid step-card-grid--collections">${collectionCards}
-      </div>
+      <section class="reflection-index-section" aria-labelledby="reflection-steps-heading">
+        <h2 id="reflection-steps-heading" class="reflection-index-section-title">The Twelve Steps</h2>
+        <div class="step-card-grid step-card-grid--index">${gridCards}
+        </div>
+      </section>
+      <section class="reflection-index-section" aria-labelledby="reflection-legacies-heading">
+        <h2 id="reflection-legacies-heading" class="reflection-index-section-title">Traditions and Concepts</h2>
+        <div class="step-card-grid step-card-grid--collections">${collectionCards}
+        </div>
+      </section>
     </section>
 
     <div class="wrap section--md">
