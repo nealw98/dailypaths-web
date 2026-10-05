@@ -35,12 +35,12 @@ export function loadFavoriteReadings(path = CHOSEN_PATH) {
   }
 }
 
-/** The one-line teaser under a reading's title, shared with the reflection pages. */
-export function readingTeaser(reading) {
+/** Thought for the Day; shorter cards omit thoughts longer than maxLength. */
+export function readingTeaser(reading, maxLength = 110) {
   const teaser = (reading.thought_for_day || '')
     .replace(/\\n/g, ' ')
     .replace(/\*\*(.+?)\*\*/g, '$1')
     .replace(/\*(.+?)\*/g, '$1')
     .trim();
-  return teaser.length > 0 && teaser.length <= 110 ? teaser : '';
+  return teaser.length > 0 && teaser.length <= maxLength ? teaser : '';
 }
