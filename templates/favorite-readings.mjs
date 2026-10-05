@@ -26,19 +26,36 @@ export function renderFavoriteReadingsPage(readings, ratingsMap = new Map()) {
       return score(b) - score(a) || a.day_of_year - b.day_of_year;
     }).slice(0, 10);
 
-  // Keep the chosen order and show each reading's full Thought for the Day.
+  const excerptFor = reading => {
+    const text = String(reading.opening || reading.body || '')
+      .replace(/\\n/g, ' ')
+      .replace(/\[([^\]]+)\]\([^)]+\)/g, '$1')
+      .replace(/<[^>]*>/g, '')
+      .replace(/\*\*?|__?/g, '')
+      .replace(/\s+/g, ' ')
+      .trim();
+    if (text.length <= 260) return text;
+    const sentenceEnds = [...text.slice(0, 260).matchAll(/[.!?](?=\s|$)/g)];
+    const end = sentenceEnds.at(-1)?.index;
+    return end >= 120 ? text.slice(0, end + 1) : text.slice(0, 240).replace(/\s+\S*$/, '') + '…';
+  };
+
   const cards = favorites.map((reading, index) => {
     const thought = readingTeaser(reading, Infinity);
+    const excerpt = excerptFor(reading);
+    const href = bp(`/${readingSlug(reading.day_of_year, reading.title)}/`);
     return `
           <li class="favorite-reading">
-            <a href="${bp(`/${readingSlug(reading.day_of_year, reading.title)}/`)}" class="favorite-reading-link">
+            <article class="favorite-reading-card">
               <span class="favorite-reading-number" aria-hidden="true">${String(index + 1).padStart(2, '0')}</span>
-              <span class="favorite-reading-content">
+              <div class="favorite-reading-content">
                 <span class="favorite-reading-date">${escapeHtml(reading.display_date)}</span>
-                <span class="favorite-reading-title">${escapeHtml(reading.title || 'Daily Reading')}</span>
-                ${thought ? `<span class="favorite-reading-thought"><span class="sr-only">Thought for the Day: </span>${escapeHtml(thought)}</span>` : ''}
-              </span>
-            </a>
+                <h2 class="favorite-reading-title">${escapeHtml(reading.title || 'Daily Reading')}</h2>
+                ${thought ? `<p class="favorite-reading-thought">${escapeHtml(thought)}</p>` : ''}
+                ${excerpt ? `<p class="favorite-reading-excerpt">${escapeHtml(excerpt)}</p>` : ''}
+                <a class="favorite-reading-cta" href="${href}">Read the reflection <span aria-hidden="true">&rarr;</span></a>
+              </div>
+            </article>
           </li>`;
   }).join('');
 
@@ -63,7 +80,7 @@ export function renderFavoriteReadingsPage(readings, ratingsMap = new Map()) {
 
   return wrapInLayout({
     title: 'Favorite Daily Reflections — Daily Paths',
-    description: 'Ten favorite Daily Paths reflections selected from across the year.',
+    description: 'Ten reader favorite daily reflections, each with its Thought for the Day and an excerpt from the reading.',
     canonicalPath: '/reflections/favorites/',
     bodyContent,
     bodyClass: 'page-month-archive page-favorite-readings',
