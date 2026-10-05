@@ -484,6 +484,11 @@ function redirectHtml(newPath) {
 </head><body><a href="${newPath}">Continue</a></body></html>`;
 }
 
+// Keep a historical reading address used inside an approved Story Room guide
+// working without rewriting the guide's published manuscript.
+mkdirSync(join(outDir,'february-27-i-cannot-do-everything'),{recursive:true});
+writeFileSync(join(outDir,'february-27-i-cannot-do-everything','index.html'),redirectHtml('/february-27-i-cant-do-everything/'),'utf-8');
+
 // A retired path that points at a bare date slug has to follow that slug's own
 // redirect, or the reader arrives at a page that sends them straight back. Keep
 // the live reading paths on hand so a retired entry can never overwrite one.
