@@ -1686,3 +1686,37 @@ body .store-badges a.store-badge-link:focus-visible {
   }
   .page-favorite-readings .favorite-reading-link { padding-block: 22px 25px; }
 }
+
+/* Step collection cards now carry the Step wording and themes in its readings. */
+.page-reflections-index .step-card-grid--index {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+.page-reflections-index .step-card-grid--index .step-card .step-card-keyword {
+  margin-bottom: 12px;
+}
+.page-reflections-index .step-card-statement {
+  display: block;
+  margin-bottom: 20px;
+  font: normal 400 18px/1.5 var(--font-editorial);
+  color: var(--text-primary, #34382e);
+}
+.page-reflections-index .step-card-themes {
+  display: block;
+  margin-bottom: 24px;
+  padding-top: 15px;
+  border-top: 1px solid var(--rule, #e1ddd0);
+  font: var(--type-small);
+  color: var(--text-secondary, #66685d);
+}
+.page-reflections-index .step-card-themes-label {
+  display: block;
+  margin-bottom: 5px;
+  font: var(--type-label);
+  letter-spacing: .04em;
+  text-transform: uppercase;
+}
+@media (max-width: 620px) {
+  .page-reflections-index .step-card-grid--index {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
