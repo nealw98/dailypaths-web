@@ -1623,3 +1623,66 @@ body .store-badges a.store-badge-link:focus-visible {
 .page-reading .rd-practice .prose-reading > :first-child { margin-top: 0; }
 .page-reading .rd-practice .prose-lora > :last-child,
 .page-reading .rd-practice .prose-reading > :last-child { margin-bottom: 0; }
+
+/* Favorites are a visible reading list, with each full Thought for the Day. */
+.page-favorite-readings .favorite-reading-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: clamp(32px, 5vw, 72px);
+  margin: 32px 0 64px;
+  padding: 0;
+  list-style: none;
+  border-top: 1px solid var(--rule, #e1ddd0);
+}
+.page-favorite-readings .favorite-reading {
+  min-width: 0;
+  border-bottom: 1px solid var(--rule, #e1ddd0);
+}
+.page-favorite-readings .favorite-reading-link {
+  display: grid;
+  grid-template-columns: 38px minmax(0, 1fr);
+  gap: 12px;
+  min-height: 100%;
+  padding: 25px 4px 30px 0;
+  color: inherit;
+  text-decoration: none;
+}
+.page-favorite-readings .favorite-reading-number {
+  padding-top: 3px;
+  font: var(--type-label);
+  color: var(--text-muted, #66685d);
+}
+.page-favorite-readings .favorite-reading-content { display: block; min-width: 0; }
+.page-favorite-readings .favorite-reading-date {
+  display: block;
+  margin-bottom: 5px;
+  font: var(--type-label);
+  color: var(--text-muted, #66685d);
+}
+.page-favorite-readings .favorite-reading-title {
+  display: block;
+  font: var(--type-card);
+  color: var(--text-primary, #34382e);
+}
+.page-favorite-readings .favorite-reading-thought {
+  display: block;
+  margin-top: 10px;
+  font: var(--type-small);
+  color: var(--text-muted, #66685d);
+}
+.page-favorite-readings .favorite-reading-link:hover .favorite-reading-title,
+.page-favorite-readings .favorite-reading-link:focus-visible .favorite-reading-title {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+.page-favorite-readings .favorite-reading-link:focus-visible {
+  outline: 2px solid var(--accent-strong, #444e34);
+  outline-offset: 3px;
+}
+@media (max-width: 700px) {
+  .page-favorite-readings .favorite-reading-list {
+    grid-template-columns: minmax(0, 1fr);
+    margin-top: 24px;
+  }
+  .page-favorite-readings .favorite-reading-link { padding-block: 22px 25px; }
+}
