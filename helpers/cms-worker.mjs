@@ -1,6 +1,6 @@
 // This small HTTP layer serves only CMS-managed routes. The existing static
 // generator and its assets continue to serve reflections and the rest of the site.
-export function createCmsWorker(fallback,knownPaths,composePage,launchPolicy={},transformPreview=html=>html,editorialPolicy=html=>html,syncChrome=html=>html){
+export function createCmsWorker(fallback,knownPaths,composePage,launchPolicy={},transformPreview=html=>html,editorialPolicy=html=>html,syncChrome=html=>html,restoreArticle=html=>html){
  const origin='https://daily-paths-story-room.nealw98.chatgpt.site';
  const esc=s=>String(s||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
  return {async fetch(request){
@@ -22,7 +22,7 @@ export function createCmsWorker(fallback,knownPaths,composePage,launchPolicy={},
   // These three manuscripts are explicitly awaiting review. Keep approved CMS
   // snapshots intact while the development site renders the review version.
   if(policy.drafts?.includes(path)&&!policy.cmsManaged?.includes(path)&&fallback[path])return new Response(request.method==='HEAD'?null:fallback[path],{headers:{'Content-Type':'text/html; charset=utf-8','Cache-Control':'no-store','X-Robots-Tag':'noindex, nofollow'}});
-  let html=fallback[path],revision='';
+  let html=fallback[path],revision='',approvedArticle=null;
   try{
    let cmsPath=path;
    const linkedId=route?.story_id||Object.keys(policy.linkedStories||{}).find(id=>policy.linkedStories[id]===path);
@@ -30,7 +30,7 @@ export function createCmsWorker(fallback,knownPaths,composePage,launchPolicy={},
    const r=isIndex&&catalog?{ok:true,json:async()=>catalog}:await fetch(origin+'/api/room/published'+(isIndex?'':'?path='+encodeURIComponent(cmsPath)),{signal:AbortSignal.timeout(10000)});
    if(r.ok){const data=await r.json();
     if(data.redirect)return new Response(null,{status:data.temporary?302:301,headers:{Location:u.origin+data.redirect+u.search,'Cache-Control':'no-store'}});
-    if(!isIndex){html=composePage(html,cmsPath===path?data.html:data.html.replaceAll(cmsPath,path));revision=data.revision;}
+    if(!isIndex){approvedArticle=cmsPath===path?data.html:data.html.replaceAll(cmsPath,path);html=composePage(html,approvedArticle);revision=data.revision;}
     else{
      const items=(data.items||[]).map(item=>({...item,path:item.route_managed?item.path:policy.linkedStories?.[item.id]||item.path})).filter(item=>!item.id?.startsWith('website-step-')).filter(item=>!policy.retiredPaths?.includes(item.path)&&!policy.deferred?.includes(item.path)&&!policy.retired?.includes(item.path)&&!policy.consolidated?.[item.path]).map(item=>{const override=policy.metadata?.[item.path];return override?{...item,author:override.author||item.author,card_title:override.title||item.card_title,summary:(override.description||item.summary)+(policy.drafts?.includes(item.path)&&!policy.cmsManaged?.includes(item.path)?' Placeholder':'')}:item;});
      // Keep the established index composition. Add newly published pages in the same lists.
@@ -63,6 +63,7 @@ export function createCmsWorker(fallback,knownPaths,composePage,launchPolicy={},
   for(const r of routes.filter(r=>r.kind==='redirect'&&r.target))html=html.replaceAll('href="'+r.path+'"','href="'+r.target+'"');
   html=editorialPolicy(transformPreview(html,path,policy),path);
   html=syncChrome(html,fallback['/']);
+  if(approvedArticle)html=restoreArticle(html,approvedArticle);
   return new Response(request.method==='HEAD'?null:html,{headers:{'Content-Type':'text/html; charset=utf-8','Cache-Control':'no-store','X-Robots-Tag':'noindex, nofollow',...(revision?{'X-Story-Room-Revision':revision}:{})}});
  }};
 }
