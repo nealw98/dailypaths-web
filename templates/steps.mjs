@@ -307,14 +307,40 @@ export function renderReflectionsIndexPage(todayReading, allReadings = []) {
           </a>`;
   }).join('');
 
-  const gridCards = STEPS.map(step => `
+  // Themes are counted from the same Step-tagged readings shown on each
+  // collection page. Normalize case so spelling variants do not split a theme.
+  const commonThemes = stepNumber => {
+    const counts = new Map();
+    for (const reading of allReadings) {
+      if ((reading.step_theme || '').trim() !== `Step ${stepNumber}`) continue;
+      const theme = (reading.secondary_theme || '').trim();
+      if (!theme) continue;
+      const key = theme.toLocaleLowerCase('en');
+      const entry = counts.get(key) || { label: theme, count: 0 };
+      entry.count++;
+      counts.set(key, entry);
+    }
+    return [...counts.values()]
+      .sort((a, b) => b.count - a.count || a.label.localeCompare(b.label))
+      .slice(0, 3)
+      .map(entry => entry.label);
+  };
+  const escapeTheme = value => String(value).replace(/[&<>"']/g,
+    char => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[char]);
+
+  const gridCards = STEPS.map(step => {
+    const themes = commonThemes(step.number);
+    return `
           <a href="${bp(`/months/${step.monthSlug}/`)}" class="card-elevated step-card">
             <span class="step-card-label">Step ${step.number}</span>
             <span>
               <span class="step-card-keyword">${step.principle}</span>
+              <span class="step-card-statement">${step.text}</span>
+              ${themes.length ? `<span class="step-card-themes"><span class="step-card-themes-label">Common themes</span>${themes.map(escapeTheme).join(' · ')}</span>` : ''}
               <span class="step-card-cta">View reflections <span aria-hidden="true">&rarr;</span></span>
             </span>
-          </a>`).join('');
+          </a>`;
+  }).join('');
 
   const bodyContent = `
 ${photoHero({
