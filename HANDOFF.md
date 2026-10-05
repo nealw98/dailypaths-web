@@ -1,3 +1,10 @@
+## October 5 — /start/ retired into Finding Help; /steps/ goes to the Twelve Steps guide
+
+`/start/` now forwards to `/guides/finding-help/` and is out of the sitemap. The homepage
+button reads "Find help" and points there. `/steps/` forwards to `/guides/twelve-steps/`
+(it used to forward to `/reflections/`). Note: dailypaths.org is served from `2.0`, not
+`main`, so older notes saying `main` is the live site are out of date.
+
 ## October 3 — Surrender rope insert layout repair
 
 Story Room now unwraps the obsolete rope-comparison layout when uploaded artwork

@@ -332,7 +332,8 @@ writePage(join(outDir, 'support', 'index.html'), renderSupportPage());
 writePage(join(outDir, 'terms', 'index.html'), renderTermsPage());
 writePage(join(outDir, 'email', 'confirm', 'index.html'), renderEmailManagePage('confirm'));
 writePage(join(outDir, 'email', 'unsubscribe', 'index.html'), renderEmailManagePage('unsubscribe'));
-writePage(join(outDir, 'start', 'index.html'), renderStartPage(readings));
+// /start/ is retired into Finding Help; the button on the homepage already points there.
+writePage(join(outDir, 'start', 'index.html'), redirectHtml('/guides/finding-help/'));
 writePage(join(outDir, 'about-project', 'index.html'), renderAboutProjectPage());
 // Admin page
 console.log('Generating admin page...');
