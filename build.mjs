@@ -402,6 +402,26 @@ const manifest = readings.map(r => ({
 }));
 writeFileSync(join(outDir, 'readings-manifest.json'), JSON.stringify(manifest), 'utf-8');
 
+// The reflection hub searches the actual published readings, including their
+// full text and editorial theme labels. Keep this separate from the small
+// homepage/calendar manifest so those pages do not download the corpus.
+const searchText = value => String(value || '')
+  .replace(/\\n/g, ' ').replace(/<[^>]*>/g, ' ')
+  .replace(/\*\*(.*?)\*\*/g, '$1').replace(/\*(.*?)\*/g, '$1')
+  .replace(/&(?:mdash|ndash|ldquo|rdquo|lsquo|rsquo|amp|nbsp|hellip);/g, entity => ({
+    '&mdash;': '—', '&ndash;': '–', '&ldquo;': '“', '&rdquo;': '”',
+    '&lsquo;': '‘', '&rsquo;': '’', '&amp;': '&', '&nbsp;': ' ', '&hellip;': '…',
+  })[entity])
+  .replace(/\s+/g, ' ').trim();
+const searchIndex = readings.map(r => ({
+  title: r.title,
+  date: r.display_date,
+  slug: readingSlug(r.day_of_year, r.title),
+  themes: [...new Set([r.step_theme, r.secondary_theme, r.link_theme].map(searchText).filter(Boolean))],
+  text: searchText([r.opening, r.body, r.quote, r.thought_for_day, r.application].filter(Boolean).join(' ')),
+}));
+writeFileSync(join(outDir, 'readings-search.json'), JSON.stringify(searchIndex), 'utf-8');
+
 // --- Step 4: Generate OG images for reading pages ---
 console.log('Generating 366 OG images...');
 const ogStart = Date.now();
