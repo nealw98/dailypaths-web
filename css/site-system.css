@@ -1709,7 +1709,7 @@ body .store-badges a.store-badge-link:focus-visible {
 .page-reflections-index .step-card-statement {
   display: block;
   margin-bottom: 20px;
-  font: normal 400 18px/1.5 var(--font-editorial);
+  font: italic 400 18px/1.5 var(--font-editorial);
   color: var(--text-primary, #34382e);
 }
 .page-reflections-index .step-card-themes {
