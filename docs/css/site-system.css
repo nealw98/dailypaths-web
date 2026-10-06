@@ -1780,7 +1780,7 @@ body .store-badges a.store-badge-link:focus-visible {
   cursor: pointer;
 }
 .page-reflections-index .reflection-search button:hover { filter: brightness(1.1); }
-.page-reflections-index .reflection-search-results { margin-bottom: 48px; }
+.page-reflections-index .reflection-search-results { margin-bottom: 48px; scroll-margin-top: 24px; }
 .page-reflections-index .reflection-search-status { margin: 0 0 18px; font: 15px/1.5 var(--font-ui); color: var(--text-secondary); }
 .page-reflections-index .reflection-search-clear { display:inline-block;margin:-6px 0 20px;font:14px/1.5 var(--font-ui);color:var(--accent-strong);text-decoration:underline;text-underline-offset:3px; }
 .page-reflections-index .reflection-search-clear[hidden] { display:none; }

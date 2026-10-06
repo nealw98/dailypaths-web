@@ -12,6 +12,7 @@
   var indexPromise;
   var timer;
   var requestNumber = 0;
+  var scrollToInitialTheme = new URL(location.href).searchParams.has('theme');
   var normalize = function (value) {
     return String(value || '').normalize('NFKD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
   };
@@ -100,7 +101,12 @@
     if (!query && !theme) { list.replaceChildren(); return; }
     status.textContent = 'Searching reflections…';
     loadIndex().then(function (readings) {
-      if (current === requestNumber) show(readings, query, theme);
+      if (current !== requestNumber) return;
+      show(readings, query, theme);
+      if (scrollToInitialTheme) {
+        scrollToInitialTheme = false;
+        requestAnimationFrame(function () { results.scrollIntoView({ block: 'start' }); });
+      }
     }).catch(function () {
       if (current === requestNumber) status.textContent = 'Search is unavailable right now. Browse the collections below.';
       browse.hidden = false;
