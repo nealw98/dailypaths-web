@@ -1734,6 +1734,61 @@ body .store-badges a.store-badge-link:focus-visible {
 }
 
 /* Reflection hub heading hierarchy, without changing the card treatment. */
+.page-reflections-index .reflection-search {
+  margin: 0 0 42px;
+  padding: 24px 28px 28px;
+  background: #f0f2eb;
+}
+.page-reflections-index .reflection-search label {
+  display: block;
+  margin-bottom: 5px;
+  font: 500 clamp(25px, 3vw, 32px)/1.2 var(--font-editorial);
+  color: var(--text-primary);
+}
+.page-reflections-index .reflection-search p {
+  margin: 0 0 18px;
+  font: 15px/1.5 var(--font-ui);
+  color: var(--text-secondary);
+}
+.page-reflections-index .reflection-search-field { display: flex; gap: 10px; }
+.page-reflections-index .reflection-search input {
+  flex: 1;
+  min-width: 0;
+  min-height: 48px;
+  padding: 10px 15px;
+  border: 1px solid var(--rule);
+  border-radius: 0;
+  background: #fff;
+  color: var(--text-primary);
+  font: 16px/1.4 var(--font-ui);
+}
+.page-reflections-index .reflection-search input:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.page-reflections-index .reflection-search button {
+  padding: 10px 22px;
+  border: 0;
+  border-radius: 0;
+  background: var(--accent-strong, #30534b);
+  color: #fff;
+  font: 600 15px/1.4 var(--font-ui);
+  cursor: pointer;
+}
+.page-reflections-index .reflection-search button:hover { filter: brightness(1.1); }
+.page-reflections-index .reflection-search-results { margin-bottom: 48px; }
+.page-reflections-index .reflection-search-status { margin: 0 0 18px; font: 15px/1.5 var(--font-ui); color: var(--text-secondary); }
+.page-reflections-index .reflection-search-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+.page-reflections-index .reflection-search-item { display: block; padding: 20px 22px; border: 1px solid var(--rule); background: #fff; color: var(--text-primary); text-decoration: none; }
+.page-reflections-index .reflection-search-item:hover { border-color: var(--accent); }
+.page-reflections-index .reflection-search-item:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+.page-reflections-index .reflection-search-meta { display: block; margin-bottom: 8px; font: var(--type-label); color: var(--text-secondary); }
+.page-reflections-index .reflection-search-title { display: block; margin-bottom: 8px; font: 500 25px/1.2 var(--font-editorial); }
+.page-reflections-index .reflection-search-excerpt { display: block; font: 16px/1.5 var(--font-editorial); color: var(--text-secondary); }
+.page-reflections-index .reflection-search-more { display: block; margin: 20px 0 0; font: 14px/1.5 var(--font-ui); color: var(--text-secondary); }
+@media (max-width: 620px) {
+  .page-reflections-index .reflection-search { padding: 20px; margin-bottom: 32px; }
+  .page-reflections-index .reflection-search-field { flex-direction: column; }
+  .page-reflections-index .reflection-search button { min-height: 46px; }
+  .page-reflections-index .reflection-search-list { grid-template-columns: 1fr; }
+}
 .page-reflections-index .reflection-index-section + .reflection-index-section {
   margin-top: 52px;
 }
