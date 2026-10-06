@@ -357,6 +357,19 @@ ${photoHero({
           <a class="btn" data-today-link href="${bp(`/${readingSlug(todayReading.day_of_year, todayReading.title)}/`)}">Read today&rsquo;s reflection <span aria-hidden="true">&rarr;</span></a>
         </div>
       </div>
+      <form class="reflection-search" role="search" data-reflection-search>
+        <label for="reflection-search-input">Search reflections</label>
+        <p>Find a reading by title, words in the reflection, or theme.</p>
+        <div class="reflection-search-field">
+          <input id="reflection-search-input" type="search" name="q" autocomplete="off" placeholder="Try boundaries, letting go, or hope" aria-controls="reflection-search-results">
+          <button type="submit">Search</button>
+        </div>
+      </form>
+      <section id="reflection-search-results" class="reflection-search-results" aria-label="Search results" data-reflection-results hidden>
+        <p class="reflection-search-status" data-reflection-status role="status" aria-live="polite"></p>
+        <div class="reflection-search-list" data-reflection-list></div>
+      </section>
+      <div data-reflection-browse>
       <section class="reflection-index-section" aria-labelledby="reflection-steps-heading">
         <h2 id="reflection-steps-heading" class="reflection-index-section-title">The Twelve Steps</h2>
         <div class="step-card-grid step-card-grid--index">${gridCards}
@@ -367,6 +380,7 @@ ${photoHero({
         <div class="step-card-grid step-card-grid--collections">${collectionCards}
         </div>
       </section>
+      </div>
     </section>
 
     <div class="wrap section--md">
