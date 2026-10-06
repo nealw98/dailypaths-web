@@ -35,7 +35,7 @@
   <!-- Page structure first, then the shared Daily Paths design system. -->
   <link rel="stylesheet" href="/css/style.css?v=brand-icon-1"><link rel="stylesheet" href="/css/soft-daylight.css?v=brand-icon-1">
   <link rel="stylesheet" href="/css/tokens/fonts.css?v=wordmark-loading-1">
-  <link rel="stylesheet" href="/css/site-system.css?v=favorites-editorial-18">
+  <link rel="stylesheet" href="/css/site-system.css?v=reflection-search-2">
   <meta name="site-mode" content="production">
 
   
@@ -157,105 +157,119 @@
           <a class="btn" data-today-link href="/october-6-the-tool-box-of-growth/">Read today&rsquo;s reflection <span aria-hidden="true">&rarr;</span></a>
         </div>
       </div>
+      <form class="reflection-search" role="search" data-reflection-search>
+        <label for="reflection-search-input">Search reflections</label>
+        <p>Find a reading by title, words in the reflection, or theme.</p>
+        <div class="reflection-search-field">
+          <input id="reflection-search-input" type="search" name="q" autocomplete="off" placeholder="Try boundaries, letting go, or hope" aria-controls="reflection-search-results">
+          <button type="submit">Search</button>
+        </div>
+      </form>
+      <section id="reflection-search-results" class="reflection-search-results" aria-label="Search results" data-reflection-results hidden>
+        <p class="reflection-search-status" data-reflection-status role="status" aria-live="polite"></p>
+        <a class="reflection-search-clear" data-reflection-clear href="/reflections/" hidden>Clear theme filter</a>
+        <div class="reflection-search-list" data-reflection-list></div>
+      </section>
+      <div data-reflection-browse>
       <section class="reflection-index-section" aria-labelledby="reflection-steps-heading">
         <h2 id="reflection-steps-heading" class="reflection-index-section-title">The Twelve Steps</h2>
         <div class="step-card-grid step-card-grid--index">
-          <a href="/months/january/" class="card-elevated step-card">
+          <article class="card-elevated step-card">
             <span>
-              <h3 class="step-card-heading"><span class="step-card-label">Step 1</span><span class="sr-only">: </span><span class="step-card-keyword">Acceptance</span></h3>
+              <h3 class="step-card-heading"><a class="step-card-primary" href="/months/january/" aria-label="Step 1: Acceptance reflections"><span class="step-card-label">Step 1</span><span class="step-card-keyword">Acceptance</span></a></h3>
               <span class="step-card-statement">We admitted we were powerless over alcohol &mdash; that our lives had become unmanageable.</span>
-              <span class="step-card-themes"><span class="step-card-themes-label">Common themes</span>Boundaries · Relief · Empowerment</span>
+              <span class="step-card-themes"><span class="step-card-themes-label">Common themes</span><a href="/reflections/?theme=Boundaries">Boundaries</a> · <a href="/reflections/?theme=Relief">Relief</a> · <a href="/reflections/?theme=Empowerment">Empowerment</a></span>
               <span class="step-card-cta">View reflections <span aria-hidden="true">&rarr;</span></span>
             </span>
-          </a>
-          <a href="/months/february/" class="card-elevated step-card">
+          </article>
+          <article class="card-elevated step-card">
             <span>
-              <h3 class="step-card-heading"><span class="step-card-label">Step 2</span><span class="sr-only">: </span><span class="step-card-keyword">Hope</span></h3>
+              <h3 class="step-card-heading"><a class="step-card-primary" href="/months/february/" aria-label="Step 2: Hope reflections"><span class="step-card-label">Step 2</span><span class="step-card-keyword">Hope</span></a></h3>
               <span class="step-card-statement">Came to believe that a Power greater than ourselves could restore us to sanity.</span>
-              <span class="step-card-themes"><span class="step-card-themes-label">Common themes</span>Faith · Hope · Patience</span>
+              <span class="step-card-themes"><span class="step-card-themes-label">Common themes</span><a href="/reflections/?theme=Faith">Faith</a> · <a href="/reflections/?theme=Hope">Hope</a> · <a href="/reflections/?theme=Patience">Patience</a></span>
               <span class="step-card-cta">View reflections <span aria-hidden="true">&rarr;</span></span>
             </span>
-          </a>
-          <a href="/months/march/" class="card-elevated step-card">
+          </article>
+          <article class="card-elevated step-card">
             <span>
-              <h3 class="step-card-heading"><span class="step-card-label">Step 3</span><span class="sr-only">: </span><span class="step-card-keyword">Faith</span></h3>
+              <h3 class="step-card-heading"><a class="step-card-primary" href="/months/march/" aria-label="Step 3: Faith reflections"><span class="step-card-label">Step 3</span><span class="step-card-keyword">Faith</span></a></h3>
               <span class="step-card-statement">Made a decision to turn our will and our lives over to the care of God <em>as we understood Him</em>.</span>
-              <span class="step-card-themes"><span class="step-card-themes-label">Common themes</span>Freedom · Trust · Acceptance</span>
+              <span class="step-card-themes"><span class="step-card-themes-label">Common themes</span><a href="/reflections/?theme=Freedom">Freedom</a> · <a href="/reflections/?theme=Trust">Trust</a> · <a href="/reflections/?theme=Acceptance">Acceptance</a></span>
               <span class="step-card-cta">View reflections <span aria-hidden="true">&rarr;</span></span>
             </span>
-          </a>
-          <a href="/months/april/" class="card-elevated step-card">
+          </article>
+          <article class="card-elevated step-card">
             <span>
-              <h3 class="step-card-heading"><span class="step-card-label">Step 4</span><span class="sr-only">: </span><span class="step-card-keyword">Courage</span></h3>
+              <h3 class="step-card-heading"><a class="step-card-primary" href="/months/april/" aria-label="Step 4: Courage reflections"><span class="step-card-label">Step 4</span><span class="step-card-keyword">Courage</span></a></h3>
               <span class="step-card-statement">Made a searching and fearless moral inventory of ourselves.</span>
-              <span class="step-card-themes"><span class="step-card-themes-label">Common themes</span>Honesty · Courage · Growth</span>
+              <span class="step-card-themes"><span class="step-card-themes-label">Common themes</span><a href="/reflections/?theme=Honesty">Honesty</a> · <a href="/reflections/?theme=Courage">Courage</a> · <a href="/reflections/?theme=Growth">Growth</a></span>
               <span class="step-card-cta">View reflections <span aria-hidden="true">&rarr;</span></span>
             </span>
-          </a>
-          <a href="/months/may/" class="card-elevated step-card">
+          </article>
+          <article class="card-elevated step-card">
             <span>
-              <h3 class="step-card-heading"><span class="step-card-label">Step 5</span><span class="sr-only">: </span><span class="step-card-keyword">Honesty</span></h3>
+              <h3 class="step-card-heading"><a class="step-card-primary" href="/months/may/" aria-label="Step 5: Honesty reflections"><span class="step-card-label">Step 5</span><span class="step-card-keyword">Honesty</span></a></h3>
               <span class="step-card-statement">Admitted to God, to ourselves, and to another human being the exact nature of our wrongs.</span>
-              <span class="step-card-themes"><span class="step-card-themes-label">Common themes</span>Connection · Honesty · Fear</span>
+              <span class="step-card-themes"><span class="step-card-themes-label">Common themes</span><a href="/reflections/?theme=Connection">Connection</a> · <a href="/reflections/?theme=Honesty">Honesty</a> · <a href="/reflections/?theme=Fear">Fear</a></span>
               <span class="step-card-cta">View reflections <span aria-hidden="true">&rarr;</span></span>
             </span>
-          </a>
-          <a href="/months/june/" class="card-elevated step-card">
+          </article>
+          <article class="card-elevated step-card">
             <span>
-              <h3 class="step-card-heading"><span class="step-card-label">Step 6</span><span class="sr-only">: </span><span class="step-card-keyword">Patience</span></h3>
+              <h3 class="step-card-heading"><a class="step-card-primary" href="/months/june/" aria-label="Step 6: Patience reflections"><span class="step-card-label">Step 6</span><span class="step-card-keyword">Patience</span></a></h3>
               <span class="step-card-statement">Were entirely ready to have God remove all these defects of character.</span>
-              <span class="step-card-themes"><span class="step-card-themes-label">Common themes</span>Identity · Surrender · Honesty</span>
+              <span class="step-card-themes"><span class="step-card-themes-label">Common themes</span><a href="/reflections/?theme=Identity">Identity</a> · <a href="/reflections/?theme=Surrender">Surrender</a> · <a href="/reflections/?theme=Honesty">Honesty</a></span>
               <span class="step-card-cta">View reflections <span aria-hidden="true">&rarr;</span></span>
             </span>
-          </a>
-          <a href="/months/july/" class="card-elevated step-card">
+          </article>
+          <article class="card-elevated step-card">
             <span>
-              <h3 class="step-card-heading"><span class="step-card-label">Step 7</span><span class="sr-only">: </span><span class="step-card-keyword">Humility</span></h3>
+              <h3 class="step-card-heading"><a class="step-card-primary" href="/months/july/" aria-label="Step 7: Humility reflections"><span class="step-card-label">Step 7</span><span class="step-card-keyword">Humility</span></a></h3>
               <span class="step-card-statement">Humbly asked Him to remove our shortcomings.</span>
-              <span class="step-card-themes"><span class="step-card-themes-label">Common themes</span>Patience · Surrender · Trust</span>
+              <span class="step-card-themes"><span class="step-card-themes-label">Common themes</span><a href="/reflections/?theme=Patience">Patience</a> · <a href="/reflections/?theme=Surrender">Surrender</a> · <a href="/reflections/?theme=Trust">Trust</a></span>
               <span class="step-card-cta">View reflections <span aria-hidden="true">&rarr;</span></span>
             </span>
-          </a>
-          <a href="/months/august/" class="card-elevated step-card">
+          </article>
+          <article class="card-elevated step-card">
             <span>
-              <h3 class="step-card-heading"><span class="step-card-label">Step 8</span><span class="sr-only">: </span><span class="step-card-keyword">Willingness</span></h3>
+              <h3 class="step-card-heading"><a class="step-card-primary" href="/months/august/" aria-label="Step 8: Willingness reflections"><span class="step-card-label">Step 8</span><span class="step-card-keyword">Willingness</span></a></h3>
               <span class="step-card-statement">Made a list of all persons we had harmed, and became willing to make amends to them all.</span>
-              <span class="step-card-themes"><span class="step-card-themes-label">Common themes</span>Freedom · Boundaries · Certainty</span>
+              <span class="step-card-themes"><span class="step-card-themes-label">Common themes</span><a href="/reflections/?theme=Freedom">Freedom</a> · <a href="/reflections/?theme=Boundaries">Boundaries</a> · <a href="/reflections/?theme=Certainty">Certainty</a></span>
               <span class="step-card-cta">View reflections <span aria-hidden="true">&rarr;</span></span>
             </span>
-          </a>
-          <a href="/months/september/" class="card-elevated step-card">
+          </article>
+          <article class="card-elevated step-card">
             <span>
-              <h3 class="step-card-heading"><span class="step-card-label">Step 9</span><span class="sr-only">: </span><span class="step-card-keyword">Brotherly Love</span></h3>
+              <h3 class="step-card-heading"><a class="step-card-primary" href="/months/september/" aria-label="Step 9: Brotherly Love reflections"><span class="step-card-label">Step 9</span><span class="step-card-keyword">Brotherly Love</span></a></h3>
               <span class="step-card-statement">Made direct amends to such people wherever possible, except when to do so would injure them or others.</span>
-              <span class="step-card-themes"><span class="step-card-themes-label">Common themes</span>Detachment · Acceptance · Charity</span>
+              <span class="step-card-themes"><span class="step-card-themes-label">Common themes</span><a href="/reflections/?theme=Detachment">Detachment</a> · <a href="/reflections/?theme=Acceptance">Acceptance</a> · <a href="/reflections/?theme=Charity">Charity</a></span>
               <span class="step-card-cta">View reflections <span aria-hidden="true">&rarr;</span></span>
             </span>
-          </a>
-          <a href="/months/october/" class="card-elevated step-card">
+          </article>
+          <article class="card-elevated step-card">
             <span>
-              <h3 class="step-card-heading"><span class="step-card-label">Step 10</span><span class="sr-only">: </span><span class="step-card-keyword">Integrity</span></h3>
+              <h3 class="step-card-heading"><a class="step-card-primary" href="/months/october/" aria-label="Step 10: Integrity reflections"><span class="step-card-label">Step 10</span><span class="step-card-keyword">Integrity</span></a></h3>
               <span class="step-card-statement">Continued to take personal inventory and when we were wrong promptly admitted it.</span>
-              <span class="step-card-themes"><span class="step-card-themes-label">Common themes</span>Acceptance · Accountability · Awareness</span>
+              <span class="step-card-themes"><span class="step-card-themes-label">Common themes</span><a href="/reflections/?theme=Acceptance">Acceptance</a> · <a href="/reflections/?theme=Accountability">Accountability</a> · <a href="/reflections/?theme=Awareness">Awareness</a></span>
               <span class="step-card-cta">View reflections <span aria-hidden="true">&rarr;</span></span>
             </span>
-          </a>
-          <a href="/months/november/" class="card-elevated step-card">
+          </article>
+          <article class="card-elevated step-card">
             <span>
-              <h3 class="step-card-heading"><span class="step-card-label">Step 11</span><span class="sr-only">: </span><span class="step-card-keyword">Spiritual Awareness</span></h3>
+              <h3 class="step-card-heading"><a class="step-card-primary" href="/months/november/" aria-label="Step 11: Spiritual Awareness reflections"><span class="step-card-label">Step 11</span><span class="step-card-keyword">Spiritual Awareness</span></a></h3>
               <span class="step-card-statement">Sought through prayer and meditation to improve our conscious contact with God <em>as we understood Him</em>, praying only for knowledge of His will for us and the power to carry that out.</span>
-              <span class="step-card-themes"><span class="step-card-themes-label">Common themes</span>Faith · Meditation · Prayer</span>
+              <span class="step-card-themes"><span class="step-card-themes-label">Common themes</span><a href="/reflections/?theme=Faith">Faith</a> · <a href="/reflections/?theme=Meditation">Meditation</a> · <a href="/reflections/?theme=Prayer">Prayer</a></span>
               <span class="step-card-cta">View reflections <span aria-hidden="true">&rarr;</span></span>
             </span>
-          </a>
-          <a href="/months/december/" class="card-elevated step-card">
+          </article>
+          <article class="card-elevated step-card">
             <span>
-              <h3 class="step-card-heading"><span class="step-card-label">Step 12</span><span class="sr-only">: </span><span class="step-card-keyword">Service</span></h3>
+              <h3 class="step-card-heading"><a class="step-card-primary" href="/months/december/" aria-label="Step 12: Service reflections"><span class="step-card-label">Step 12</span><span class="step-card-keyword">Service</span></a></h3>
               <span class="step-card-statement">Having had a spiritual awakening as the result of these steps, we tried to carry this message to others, and to practice these principles in all our affairs.</span>
-              <span class="step-card-themes"><span class="step-card-themes-label">Common themes</span>Awareness · Detachment · Integration</span>
+              <span class="step-card-themes"><span class="step-card-themes-label">Common themes</span><a href="/reflections/?theme=Awareness">Awareness</a> · <a href="/reflections/?theme=Detachment">Detachment</a> · <a href="/reflections/?theme=Integration">Integration</a></span>
               <span class="step-card-cta">View reflections <span aria-hidden="true">&rarr;</span></span>
             </span>
-          </a>
+          </article>
         </div>
       </section>
       <section class="reflection-index-section" aria-labelledby="reflection-legacies-heading">
@@ -277,6 +291,7 @@
           </a>
         </div>
       </section>
+      </div>
     </section>
 
     <div class="wrap section--md">
@@ -303,8 +318,7 @@
     <div class="site-newsletter-inner">
       <p class="site-newsletter-title" id="site-newsletter-heading">Get the Daily Reflection in your inbox.</p>
       <p class="site-newsletter-copy">Sign up to receive a daily email with the Daily Reflection and a link to an article worth reading.</p>
-      <form class="site-newsletter-form" data-newsletter-form data-endpoint="https://ofmqgqaoubsiwujgvcil.supabase.co/functions/v1/newsletter-signup" data-key="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9mbXFncWFvdWJzaXd1amd2Y2lsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjM5MDI1NzEsImV4cCI6MjA3OTQ3ODU3MX0.85ile88Honj3SdXzxGEPFA04LG0B4OjRsbChZ8oUnmE
-">
+      <form class="site-newsletter-form" data-newsletter-form data-endpoint="https://ofmqgqaoubsiwujgvcil.supabase.co/functions/v1/newsletter-signup" data-key="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9mbXFncWFvdWJzaXd1amd2Y2lsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjM5MDI1NzEsImV4cCI6MjA3OTQ3ODU3MX0.85ile88Honj3SdXzxGEPFA04LG0B4OjRsbChZ8oUnmE">
         <label class="sr-only" for="site-newsletter-email">Your email address</label>
         <input id="site-newsletter-email" name="email" type="email" maxlength="254" autocomplete="email" placeholder="Your email address" required>
         <button class="site-newsletter-button" type="submit">Sign me up</button>
@@ -343,6 +357,7 @@
 
   <script src="/js/newsletter.js?v=signup-done-4" defer></script>
   <script src="/js/main.js?v=remove-contributions-2" defer></script>
+  <script src="/js/reflection-search.js?v=2" defer></script>
 
 <script src="/js/inserts.js?v=20260924" defer></script>
 </body>

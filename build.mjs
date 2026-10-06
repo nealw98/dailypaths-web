@@ -414,10 +414,12 @@ const searchText = value => String(value || '')
   })[entity])
   .replace(/\s+/g, ' ').trim();
 const searchIndex = readings.map(r => ({
+  day: r.day_of_year,
   title: r.title,
   date: r.display_date,
   slug: readingSlug(r.day_of_year, r.title),
   themes: [...new Set([r.step_theme, r.secondary_theme, r.link_theme].map(searchText).filter(Boolean))],
+  secondaryTheme: searchText(r.secondary_theme),
   text: searchText([r.opening, r.body, r.quote, r.thought_for_day, r.application].filter(Boolean).join(' ')),
 }));
 writeFileSync(join(outDir, 'readings-search.json'), JSON.stringify(searchIndex), 'utf-8');
@@ -621,6 +623,7 @@ cpSync(join(__dirname, 'js', 'newsletter.js'), join(outDir, 'js', 'newsletter.js
 cpSync(join(__dirname, 'js', 'email-manage.js'), join(outDir, 'js', 'email-manage.js'));
 cpSync(join(__dirname, 'js', 'story-insert-view.js'), join(outDir, 'js', 'story-insert-view.js'));
 cpSync(join(__dirname, 'js', 'main.js'), join(outDir, 'js', 'main.js'));
+cpSync(join(__dirname, 'js', 'reflection-search.js'), join(outDir, 'js', 'reflection-search.js'));
 cpSync(join(__dirname, 'js', 'steps-glance.js'), join(outDir, 'js', 'steps-glance.js'));
 if (!IS_PREVIEW) cpSync(join(__dirname, 'js', 'admin.js'), join(outDir, 'js', 'admin.js'));
 cpSync(join(__dirname, 'js', 'analytics.js'), join(outDir, 'js', 'analytics.js'));

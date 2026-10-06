@@ -843,6 +843,7 @@ a[target="_blank"]:not(:has(img)):not(.pillar-card):not(.fellow-card)::after,
 
 /* Collection cards: label, principle, then a quiet reading link. */
 .page-reflections-index .step-card{
+  position:relative;
   display:flex;
   flex-direction:column;
   align-items:stretch;
@@ -853,6 +854,12 @@ a[target="_blank"]:not(:has(img)):not(.pillar-card):not(.fellow-card)::after,
   box-shadow:none;
   min-width:0;
 }
+.page-reflections-index .step-card-primary { display:block;color:inherit;text-decoration:none; }
+.page-reflections-index .step-card-primary::after { content:"";position:absolute;inset:0; }
+.page-reflections-index .step-card-primary:focus-visible::after { outline:2px solid var(--accent);outline-offset:4px; }
+.page-reflections-index .step-card-themes a { position:relative;z-index:1;color:var(--accent-strong);text-decoration:underline;text-underline-offset:3px; }
+.page-reflections-index .step-card-themes a:hover { color:var(--text-primary); }
+.page-reflections-index .step-card-themes a:focus-visible { outline:2px solid var(--accent);outline-offset:3px; }
 .page-reflections-index .step-card > span:last-child{display:flex;flex:1;flex-direction:column;min-width:0}
 .page-reflections-index .step-card-label{
   font:600 13px/1.4 var(--font-ui);
@@ -1775,6 +1782,8 @@ body .store-badges a.store-badge-link:focus-visible {
 .page-reflections-index .reflection-search button:hover { filter: brightness(1.1); }
 .page-reflections-index .reflection-search-results { margin-bottom: 48px; }
 .page-reflections-index .reflection-search-status { margin: 0 0 18px; font: 15px/1.5 var(--font-ui); color: var(--text-secondary); }
+.page-reflections-index .reflection-search-clear { display:inline-block;margin:-6px 0 20px;font:14px/1.5 var(--font-ui);color:var(--accent-strong);text-decoration:underline;text-underline-offset:3px; }
+.page-reflections-index .reflection-search-clear[hidden] { display:none; }
 .page-reflections-index .reflection-search-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
 .page-reflections-index .reflection-search-item { display: block; padding: 20px 22px; border: 1px solid var(--rule); background: #fff; color: var(--text-primary); text-decoration: none; }
 .page-reflections-index .reflection-search-item:hover { border-color: var(--accent); }

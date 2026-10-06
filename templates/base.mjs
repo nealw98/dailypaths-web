@@ -143,7 +143,7 @@ export function wrapInLayout({
   <!-- Page structure first, then the shared Daily Paths design system. -->
   ${isHome ? `<link rel="stylesheet" href="${bp('/css/editorial-home.css')}?v=home-header-band-1">` : `<link rel="stylesheet" href="${bp('/css/style.css')}?v=brand-icon-1"><link rel="stylesheet" href="${bp('/css/soft-daylight.css')}?v=brand-icon-1">`}
   <link rel="stylesheet" href="${bp('/css/tokens/fonts.css')}?v=wordmark-loading-1">
-  <link rel="stylesheet" href="${bp('/css/site-system.css')}?v=favorites-editorial-18">
+  <link rel="stylesheet" href="${bp('/css/site-system.css')}?v=reflection-search-2">
   <meta name="site-mode" content="${IS_PREVIEW ? 'preview' : 'production'}">
 
   ${structuredData ? (Array.isArray(structuredData) ? structuredData : [structuredData]).map(json => `<!-- Structured Data -->
@@ -239,7 +239,7 @@ ${bodyContent}
 
   <script src="${bp('/js/newsletter.js')}?v=signup-done-4" defer></script>
   <script src="${bp('/js/main.js')}?v=remove-contributions-2" defer></script>
-${bodyClass.includes('page-reflections-index') ? `  <script src="${bp('/js/reflection-search.js')}?v=1" defer></script>` : ''}
+${bodyClass.includes('page-reflections-index') ? `  <script src="${bp('/js/reflection-search.js')}?v=2" defer></script>` : ''}
 ${bodyClass === 'page-reading' ? `  <script src="${bp('/js/calendar.js')}" defer></script>` : ''}
 </body>
 </html>`, BASE_URL);

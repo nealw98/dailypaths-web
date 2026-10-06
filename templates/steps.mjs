@@ -331,14 +331,14 @@ export function renderReflectionsIndexPage(todayReading, allReadings = []) {
   const gridCards = STEPS.map(step => {
     const themes = commonThemes(step.number);
     return `
-          <a href="${bp(`/months/${step.monthSlug}/`)}" class="card-elevated step-card">
+          <article class="card-elevated step-card">
             <span>
-              <h3 class="step-card-heading"><span class="step-card-label">Step ${step.number}</span><span class="step-card-keyword">${step.principle}</span></h3>
+              <h3 class="step-card-heading"><a class="step-card-primary" href="${bp(`/months/${step.monthSlug}/`)}" aria-label="Step ${step.number}: ${step.principle} reflections"><span class="step-card-label">Step ${step.number}</span><span class="step-card-keyword">${step.principle}</span></a></h3>
               <span class="step-card-statement">${step.text}</span>
-              ${themes.length ? `<span class="step-card-themes"><span class="step-card-themes-label">Common themes</span>${themes.map(escapeTheme).join(' · ')}</span>` : ''}
+              ${themes.length ? `<span class="step-card-themes"><span class="step-card-themes-label">Common themes</span>${themes.map(theme => `<a href="${bp('/reflections/')}?theme=${encodeURIComponent(theme)}">${escapeTheme(theme)}</a>`).join(' · ')}</span>` : ''}
               <span class="step-card-cta">View reflections <span aria-hidden="true">&rarr;</span></span>
             </span>
-          </a>`;
+          </article>`;
   }).join('');
 
   const bodyContent = `
@@ -367,6 +367,7 @@ ${photoHero({
       </form>
       <section id="reflection-search-results" class="reflection-search-results" aria-label="Search results" data-reflection-results hidden>
         <p class="reflection-search-status" data-reflection-status role="status" aria-live="polite"></p>
+        <a class="reflection-search-clear" data-reflection-clear href="${bp('/reflections/')}" hidden>Clear theme filter</a>
         <div class="reflection-search-list" data-reflection-list></div>
       </section>
       <div data-reflection-browse>
