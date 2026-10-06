@@ -239,6 +239,7 @@ ${bodyContent}
 
   <script src="${bp('/js/newsletter.js')}?v=signup-done-4" defer></script>
   <script src="${bp('/js/main.js')}?v=remove-contributions-2" defer></script>
+${bodyClass.includes('page-reflections-index') ? `  <script src="${bp('/js/reflection-search.js')}?v=1" defer></script>` : ''}
 ${bodyClass === 'page-reading' ? `  <script src="${bp('/js/calendar.js')}" defer></script>` : ''}
 </body>
 </html>`, BASE_URL);
