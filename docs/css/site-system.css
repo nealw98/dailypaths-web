@@ -1624,7 +1624,7 @@ body .store-badges a.store-badge-link:focus-visible {
 .page-reading .rd-practice .prose-lora > :last-child,
 .page-reading .rd-practice .prose-reading > :last-child { margin-bottom: 0; }
 
-/* Favorites are a visible reading list, with each full Thought for the Day. */
+/* Favorite readings: the thought leads, with enough of the reading to invite a visit. */
 .page-favorite-readings .favorite-reading-list {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -1638,21 +1638,18 @@ body .store-badges a.store-badge-link:focus-visible {
   min-width: 0;
   border-bottom: 1px solid var(--rule, #e1ddd0);
 }
-.page-favorite-readings .favorite-reading-link {
+.page-favorite-readings .favorite-reading-card {
   display: grid;
   grid-template-columns: 38px minmax(0, 1fr);
   gap: 12px;
-  min-height: 100%;
-  padding: 25px 4px 30px 0;
-  color: inherit;
-  text-decoration: none;
+  padding: 28px 4px 34px 0;
 }
 .page-favorite-readings .favorite-reading-number {
   padding-top: 3px;
   font: var(--type-label);
   color: var(--text-muted, #66685d);
 }
-.page-favorite-readings .favorite-reading-content { display: block; min-width: 0; }
+.page-favorite-readings .favorite-reading-content { min-width: 0; }
 .page-favorite-readings .favorite-reading-date {
   display: block;
   margin-bottom: 5px;
@@ -1660,22 +1657,37 @@ body .store-badges a.store-badge-link:focus-visible {
   color: var(--text-muted, #66685d);
 }
 .page-favorite-readings .favorite-reading-title {
-  display: block;
+  margin: 0;
   font: var(--type-card);
   color: var(--text-primary, #34382e);
 }
 .page-favorite-readings .favorite-reading-thought {
-  display: block;
-  margin-top: 10px;
+  margin: 18px 0 14px;
+  font: italic 400 clamp(20px, 1.8vw, 23px)/1.4 var(--font-editorial);
+  color: var(--text-primary, #34382e);
+}
+.page-favorite-readings .favorite-reading-excerpt {
+  margin: 0 0 22px;
   font: var(--type-small);
-  color: var(--text-muted, #66685d);
+  color: var(--text-secondary, #66685d);
 }
-.page-favorite-readings .favorite-reading-link:hover .favorite-reading-title,
-.page-favorite-readings .favorite-reading-link:focus-visible .favorite-reading-title {
-  text-decoration: underline;
-  text-underline-offset: 4px;
+.page-favorite-readings .favorite-reading-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  min-height: 44px;
+  padding: 9px 15px;
+  border: 1px solid var(--accent-strong, #444e34);
+  color: var(--accent-strong, #444e34);
+  font: var(--type-nav);
+  text-decoration: none;
 }
-.page-favorite-readings .favorite-reading-link:focus-visible {
+.page-favorite-readings .favorite-reading-cta:hover {
+  background: var(--accent-strong, #444e34);
+  color: #fff;
+}
+.page-favorite-readings .favorite-reading-cta:focus-visible {
   outline: 2px solid var(--accent-strong, #444e34);
   outline-offset: 3px;
 }
@@ -1684,7 +1696,7 @@ body .store-badges a.store-badge-link:focus-visible {
     grid-template-columns: minmax(0, 1fr);
     margin-top: 24px;
   }
-  .page-favorite-readings .favorite-reading-link { padding-block: 22px 25px; }
+  .page-favorite-readings .favorite-reading-card { padding-block: 24px 30px; }
 }
 
 /* Step collection cards now carry the Step wording and themes in its readings. */
