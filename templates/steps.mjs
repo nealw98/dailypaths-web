@@ -4,7 +4,7 @@ import { readingSlug, stepRecordSlug } from '../helpers/slug-utils.mjs';
 import { markdownToHtml } from '../helpers/markdown.mjs';
 import { themePath } from '../helpers/theme-pages.mjs';
 import {
-  photoHero, quoteBlock, detailRail, terminalBand,
+  quoteBlock, detailRail, terminalBand,
 } from './ui.mjs';
 import { COLLECTION_PAGES } from '../helpers/collection-pages.mjs';
 import { STEP_ONE_ESSAY, STEP_ONE_ESSAY_TITLE } from './step-one-essay.mjs';
@@ -342,15 +342,11 @@ export function renderReflectionsIndexPage(todayReading, allReadings = []) {
   }).join('');
 
   const bodyContent = `
-${photoHero({
-    image: bp('/assets/articles/daily-reflections-hero.webp'),
-    alt: 'A person journaling beside an open window in soft morning daylight',
-    title: 'Daily Reflections',
-    subtitle: 'A year of readings shaped by the Twelve Steps',
-    size: 'sm',
-  })}
-
     <section class="wrap section--md">
+      <header class="reflection-index-heading" style="margin-bottom:28px">
+        <h1 class="type-page-title" style="margin:0 0 14px">Daily Reflections</h1>
+        <p class="type-lede">A year of readings shaped by the Twelve Steps</p>
+      </header>
       <div class="reflection-index-lead">
         <p>Explore readings by Step, Tradition, or Concept.</p>
         <div class="reflection-index-actions">
