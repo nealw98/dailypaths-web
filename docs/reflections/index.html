@@ -13,16 +13,16 @@
   <meta property="og:description" content="Explore 366 daily reflections organized around the Twelve Steps and their spiritual principles, or begin with today’s reading.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://dailypaths.org/reflections/">
-  
-  
-  
+  <meta property="og:image" content="https://dailypaths.org/assets/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
   <meta property="og:site_name" content="Al-Anon Daily Paths">
 
   <!-- Twitter -->
-  
+  <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Daily Reflections by Step — Al-Anon Daily Paths">
   <meta name="twitter:description" content="Explore 366 daily reflections organized around the Twelve Steps and their spiritual principles, or begin with today’s reading.">
-  
+  <meta name="twitter:image" content="https://dailypaths.org/assets/og-image.png">
 
   <!-- Favicon -->
   <link rel="icon" type="image/png" sizes="48x48" href="/assets/favicon-48.png">
@@ -70,11 +70,6 @@
     Analytics.trackPageView();
   </script>
 
-<meta property="og:image" content="https://dailypaths.org/assets/articles/daily-reflections-hero.webp">
-  <meta property="og:image:alt" content="A person journaling beside an open window in soft morning daylight">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:image" content="https://dailypaths.org/assets/articles/daily-reflections-hero.webp">
-  <meta name="twitter:image:alt" content="A person journaling beside an open window in soft morning daylight">
 <link rel="stylesheet" href="/css/inserts.css?v=20260924">
   <!-- Structured Data -->
   <script type="application/ld+json">
@@ -139,18 +134,11 @@
   
   <main id="main">
 
-<header class="photo-hero photo-hero--sm">
-        <img class="photo-hero-img" src="/assets/articles/daily-reflections-hero.webp" alt="A person journaling beside an open window in soft morning daylight" />
-        <div class="photo-hero-scrim"></div>
-        <div class="photo-hero-inner">
-          
-          <h1 class="photo-hero-title">Daily Reflections</h1>
-          <p class="photo-hero-sub">A year of readings shaped by the Twelve Steps</p>
-          
-        </div>
-      </header>
-
     <section class="wrap section--md">
+      <header class="reflection-index-heading" style="margin-bottom:28px">
+        <h1 class="type-page-title" style="margin:0 0 14px">Daily Reflections</h1>
+        <p class="type-lede">A year of readings shaped by the Twelve Steps</p>
+      </header>
       <div class="reflection-index-lead">
         <p>Explore readings by Step, Tradition, or Concept.</p>
         <div class="reflection-index-actions">
@@ -318,8 +306,7 @@
     <div class="site-newsletter-inner">
       <p class="site-newsletter-title" id="site-newsletter-heading">Get the Daily Reflection in your inbox.</p>
       <p class="site-newsletter-copy">Sign up to receive a daily email with the Daily Reflection and a link to an article worth reading.</p>
-      <form class="site-newsletter-form" data-newsletter-form data-endpoint="https://ofmqgqaoubsiwujgvcil.supabase.co/functions/v1/newsletter-signup" data-key="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9mbXFncWFvdWJzaXd1amd2Y2lsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjM5MDI1NzEsImV4cCI6MjA3OTQ3ODU3MX0.85ile88Honj3SdXzxGEPFA04LG0B4OjRsbChZ8oUnmE
-">
+      <form class="site-newsletter-form" data-newsletter-form data-endpoint="https://ofmqgqaoubsiwujgvcil.supabase.co/functions/v1/newsletter-signup" data-key="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9mbXFncWFvdWJzaXd1amd2Y2lsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjM5MDI1NzEsImV4cCI6MjA3OTQ3ODU3MX0.85ile88Honj3SdXzxGEPFA04LG0B4OjRsbChZ8oUnmE">
         <label class="sr-only" for="site-newsletter-email">Your email address</label>
         <input id="site-newsletter-email" name="email" type="email" maxlength="254" autocomplete="email" placeholder="Your email address" required>
         <button class="site-newsletter-button" type="submit">Sign me up</button>
