@@ -7,8 +7,7 @@ import { THEME_TO_TOPIC, TOPICS } from '../helpers/theme-data.mjs';
 import { themeDestination, pickSiblings, readingGroup, groupingTheme } from '../helpers/theme-destinations.mjs';
 import { destinationMeta } from '../helpers/destination-catalog.mjs';
 import { STEPS, STEP_HOOKS } from './steps.mjs';
-import { photoHero, quoteBlock, pill, terminalBand } from './ui.mjs';
-import { reflectionHeroImage, reflectionImage } from '../helpers/reflection-images.mjs';
+import { quoteBlock, pill, terminalBand } from './ui.mjs';
 import { TYPOGRAPHY_REVIEW_PATH } from '../helpers/typography-review.mjs';
 import { themePath } from '../helpers/theme-pages.mjs';
 import { COLLECTION_PAGES } from '../helpers/collection-pages.mjs';
@@ -213,19 +212,11 @@ export function renderReadingPage(reading, prevReading, nextReading, allReadings
     </section>` : '';
 
   const bodyContent = `
-${photoHero({
-    image: bp(`/assets/${typographyPreview
-      ? reflectionImage(reading.day_of_year, topicMatch?.slug)
-      : reflectionHeroImage(reading.day_of_year, topicMatch?.slug)}`),
-    alt: '',
-    eyebrow: heroEyebrow,
-    title: reading.title,
-    size: 'md',
-    titleClass: 'photo-hero-title--reading',
-    heroClass: 'photo-hero--soft-daylight',
-  })}
-
     <article class="rd-article">
+      <header class="rd-heading" style="margin-bottom:28px">
+        <p class="eyebrow" style="margin:0 0 14px">${heroEyebrow}</p>
+        <h1 style="margin:0; font:var(--type-reflection); letter-spacing:-.4px">${reading.title}</h1>
+      </header>
       <div class="pill-row rd-pills">
         ${pills.join('\n        ')}
       </div>
