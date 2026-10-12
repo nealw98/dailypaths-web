@@ -2,8 +2,8 @@
   "version": 1,
   "pages": {
     "/": {
-      "hash": "b940a40ea9ba8abd",
-      "lastmod": "2026-10-11"
+      "hash": "d75553ce82c5411d",
+      "lastmod": "2026-10-12"
     },
     "/articles/": {
       "hash": "59ee16319ec5cf1f",
@@ -14,8 +14,8 @@
       "lastmod": "2026-10-06"
     },
     "/reflections/": {
-      "hash": "25d88995df81985f",
-      "lastmod": "2026-10-11"
+      "hash": "a296baa35b850374",
+      "lastmod": "2026-10-12"
     },
     "/reflections/favorites/": {
       "hash": "dc838e0dcbb84769",
