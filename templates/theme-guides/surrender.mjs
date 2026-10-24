@@ -16,12 +16,15 @@ const esc = text => String(text).replace(/&/g, '&amp;').replace(/</g, '&lt;').re
 const anchor = text => text.toLowerCase().replace(/[^a-z0-9\s-]/g, '').replace(/\s+/g, '-');
 const insertSection = name => inserts.split(`## ${name}\n`)[1].split('\n## ')[0];
 const rows = name => insertSection(name).split('\n').filter(line => line.startsWith('| ')).slice(2).map(line => line.split('|').slice(1, -1).map(cell => cell.trim()));
-const selectedTitles = ['The Terror of Surrender', 'The Silence After Surrender', 'Powerlessness over Others'];
+// Chosen by day of year, not title, so retitling a reflection in Supabase
+// cannot break the build. (Nov 10 The Terror of Surrender, Jun 14 The Silence
+// After Surrender, Oct 24 Powerless Over Others.)
+const selectedDays = [315, 166, 298];
 
 export function renderSurrenderGuide(topic, featuredReadings, readings) {
-  const selected = selectedTitles.map(title => {
-    const reading = readings.find(r => r.title.toLowerCase() === title.toLowerCase());
-    if (!reading) throw new Error(`Surrender: required reflection missing: ${title}`);
+  const selected = selectedDays.map(day => {
+    const reading = readings.find(r => r.day_of_year === day);
+    if (!reading) throw new Error(`Surrender: required reflection missing: day ${day}`);
     return reading;
   });
   const readingPath = r => bp(`/${readingSlug(r.day_of_year, r.title)}/`);
