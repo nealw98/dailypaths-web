@@ -1,0 +1,623 @@
+{
+ "_note": "Which saved story appears under 'Personal Experience' on each reflection page. reading_day = the reflection's day of year; story_day = the row in the Supabase stories table. Only listed days get the section. Preview set: the 103 strong pairings from the October 24 review sheet.",
+ "pairings": [
+  {
+   "reading_day": 1,
+   "story_day": 8,
+   "reading": "The Power of We",
+   "story": "A Quiet Snow, A Deep Connection"
+  },
+  {
+   "reading_day": 3,
+   "story_day": 3,
+   "reading": "The Convincing Game",
+   "story": "Group Text Spiral"
+  },
+  {
+   "reading_day": 4,
+   "story_day": 4,
+   "reading": "Taking Things Into Our Own Hands",
+   "story": "Night in the Waiting Room"
+  },
+  {
+   "reading_day": 6,
+   "story_day": 6,
+   "reading": "Shifting the Focus",
+   "story": "When Service Isn't Saving"
+  },
+  {
+   "reading_day": 7,
+   "story_day": 7,
+   "reading": "Impossible Responsibilities",
+   "story": "The Digital Stakeout"
+  },
+  {
+   "reading_day": 8,
+   "story_day": 1,
+   "reading": "Fixing Someone Else's Disease",
+   "story": "Turning Off the Surveillance"
+  },
+  {
+   "reading_day": 9,
+   "story_day": 9,
+   "reading": "Our Proper Relationship",
+   "story": "Choosing My Seat"
+  },
+  {
+   "reading_day": 10,
+   "story_day": 14,
+   "reading": "Well-Meaning Efforts",
+   "story": "Meeting Deadlines"
+  },
+  {
+   "reading_day": 15,
+   "story_day": 15,
+   "reading": "The Hardest Thing",
+   "story": "Waiting on the Plumber"
+  },
+  {
+   "reading_day": 16,
+   "story_day": 16,
+   "reading": "Putting Down the Rock",
+   "story": "The Review I Cannot Edit"
+  },
+  {
+   "reading_day": 25,
+   "story_day": 25,
+   "reading": "Conscious Choices",
+   "story": "HOA Emails"
+  },
+  {
+   "reading_day": 35,
+   "story_day": 35,
+   "reading": "Seeking a Power Greater",
+   "story": "Trail Map Moment"
+  },
+  {
+   "reading_day": 36,
+   "story_day": 37,
+   "reading": "The Group as Higher Power",
+   "story": "Sticky Notes on the Mirror"
+  },
+  {
+   "reading_day": 38,
+   "story_day": 43,
+   "reading": "Defining Sanity",
+   "story": "Traffic Merge Mercy"
+  },
+  {
+   "reading_day": 41,
+   "story_day": 41,
+   "reading": "New-Found Hope",
+   "story": "Laundry Room Litany"
+  },
+  {
+   "reading_day": 42,
+   "story_day": 42,
+   "reading": "Humbled by Frailty",
+   "story": "Library Grace"
+  },
+  {
+   "reading_day": 45,
+   "story_day": 45,
+   "reading": "Restored to Sanity",
+   "story": "The Unsent Email"
+  },
+  {
+   "reading_day": 49,
+   "story_day": 49,
+   "reading": "Learning to Trust",
+   "story": "Spare Key Lesson"
+  },
+  {
+   "reading_day": 55,
+   "story_day": 58,
+   "reading": "Listening with Respect",
+   "story": "Listening Practice"
+  },
+  {
+   "reading_day": 59,
+   "story_day": 59,
+   "reading": "Relying on Others",
+   "story": "Bridge Overpass Wind"
+  },
+  {
+   "reading_day": 60,
+   "story_day": 60,
+   "reading": "One Day at a Time",
+   "story": "Leap Day Trust"
+  },
+  {
+   "reading_day": 71,
+   "story_day": 71,
+   "reading": "Taking Responsibility Off My Shoulders",
+   "story": "Letting Others Have Their Lessons"
+  },
+  {
+   "reading_day": 72,
+   "story_day": 72,
+   "reading": "The Limits of Control",
+   "story": "Releasing Outcomes in Parenting"
+  },
+  {
+   "reading_day": 77,
+   "story_day": 78,
+   "reading": "The Privilege of Choice",
+   "story": "Letting Others Set Their Own Pace"
+  },
+  {
+   "reading_day": 80,
+   "story_day": 80,
+   "reading": "Comfortable Turning Over",
+   "story": "Releasing What I Cannot Repair"
+  },
+  {
+   "reading_day": 81,
+   "story_day": 81,
+   "reading": "The Principle of Faith",
+   "story": "Letting Life Be Unsure"
+  },
+  {
+   "reading_day": 82,
+   "story_day": 82,
+   "reading": "Belief in Help",
+   "story": "I Don't Have to Be the Strong One"
+  },
+  {
+   "reading_day": 90,
+   "story_day": 89,
+   "reading": "Supporting Competence and Dignity",
+   "story": "Allowing Others Their Consequences"
+  },
+  {
+   "reading_day": 91,
+   "story_day": 91,
+   "reading": "Three Trusts",
+   "story": "Letting Life Balance Itself"
+  },
+  {
+   "reading_day": 93,
+   "story_day": 101,
+   "reading": "The Gap Between Deciding and Doing",
+   "story": "Donation Bag Sitting"
+  },
+  {
+   "reading_day": 97,
+   "story_day": 109,
+   "reading": "The Structure That Set Me Free",
+   "story": "The Directions I Ignored"
+  },
+  {
+   "reading_day": 98,
+   "story_day": 119,
+   "reading": "The Right to Be Wrong",
+   "story": "Borrowed Laptop"
+  },
+  {
+   "reading_day": 99,
+   "story_day": 99,
+   "reading": "Seeing Myself as Separate",
+   "story": "Returns Counter Wait"
+  },
+  {
+   "reading_day": 103,
+   "story_day": 111,
+   "reading": "What Alcoholism Destroyed",
+   "story": "Morning Mirror Check"
+  },
+  {
+   "reading_day": 106,
+   "story_day": 104,
+   "reading": "No Longer Acceptable",
+   "story": "The Thank You Card"
+  },
+  {
+   "reading_day": 116,
+   "story_day": 116,
+   "reading": "Candles in Darkness",
+   "story": "Expired Coupons"
+  },
+  {
+   "reading_day": 122,
+   "story_day": 122,
+   "reading": "Beginning to Unburden",
+   "story": "Voicemail Confession"
+  },
+  {
+   "reading_day": 124,
+   "story_day": 124,
+   "reading": "The Humiliation of Needing Help",
+   "story": "Parking Garage Admission"
+  },
+  {
+   "reading_day": 125,
+   "story_day": 125,
+   "reading": "Acceptance Despite Wrongs",
+   "story": "Therapist's Question"
+  },
+  {
+   "reading_day": 132,
+   "story_day": 132,
+   "reading": "The Verdict: You Are Seen",
+   "story": "The Text I Almost Didn't Send"
+  },
+  {
+   "reading_day": 135,
+   "story_day": 135,
+   "reading": "Closer to God and People",
+   "story": "Friend's Living Room"
+  },
+  {
+   "reading_day": 136,
+   "story_day": 136,
+   "reading": "The Truth Sets Me Free",
+   "story": "What I Didn't Say"
+  },
+  {
+   "reading_day": 143,
+   "story_day": 143,
+   "reading": "Nothing Hidden From God",
+   "story": "Coffee Shop Admission"
+  },
+  {
+   "reading_day": 146,
+   "story_day": 146,
+   "reading": "Burden Lifted",
+   "story": "What I Heard Myself Say"
+  },
+  {
+   "reading_day": 147,
+   "story_day": 147,
+   "reading": "The Discipline of One Thing",
+   "story": "Meeting After the Crisis"
+  },
+  {
+   "reading_day": 153,
+   "story_day": 153,
+   "reading": "Readiness, Not Control",
+   "story": "The Defect I Can Name"
+  },
+  {
+   "reading_day": 157,
+   "story_day": 157,
+   "reading": "Becoming Entirely Ready",
+   "story": "The Inventory That Shifted"
+  },
+  {
+   "reading_day": 158,
+   "story_day": 166,
+   "reading": "The Defect That Feels Like Me",
+   "story": "The Defect That Makes Me Money"
+  },
+  {
+   "reading_day": 160,
+   "story_day": 154,
+   "reading": "The Defect That Protects Me",
+   "story": "The Defect That Protects Me"
+  },
+  {
+   "reading_day": 172,
+   "story_day": 174,
+   "reading": "God's Timing",
+   "story": "The Timeline I Want"
+  },
+  {
+   "reading_day": 176,
+   "story_day": 176,
+   "reading": "When Pain Exceeds Fear",
+   "story": "What Entire Readiness Feels Like"
+  },
+  {
+   "reading_day": 179,
+   "story_day": 179,
+   "reading": "Preserve Integrity and Identity",
+   "story": "Addiction Awareness Event"
+  },
+  {
+   "reading_day": 183,
+   "story_day": 183,
+   "reading": "The Gap Between Ready and Asking",
+   "story": "The Simple Prayer"
+  },
+  {
+   "reading_day": 184,
+   "story_day": 186,
+   "reading": "The Strength I Misunderstood",
+   "story": "Humbly Means Honestly"
+  },
+  {
+   "reading_day": 192,
+   "story_day": 192,
+   "reading": "Probably Not Immediately",
+   "story": "The Waiting Period"
+  },
+  {
+   "reading_day": 193,
+   "story_day": 194,
+   "reading": "Old Behaviors Stay",
+   "story": "The Changed Behavior I Noticed"
+  },
+  {
+   "reading_day": 194,
+   "story_day": 193,
+   "reading": "Again and Again",
+   "story": "Asking Daily"
+  },
+  {
+   "reading_day": 197,
+   "story_day": 197,
+   "reading": "The Holy Pause",
+   "story": "Asking in the Moment"
+  },
+  {
+   "reading_day": 200,
+   "story_day": 200,
+   "reading": "Catching Myself",
+   "story": "The Relapse Into Defect"
+  },
+  {
+   "reading_day": 201,
+   "story_day": 206,
+   "reading": "Peeling Layers",
+   "story": "The Shortcoming Behind the Shortcoming"
+  },
+  {
+   "reading_day": 202,
+   "story_day": 205,
+   "reading": "Assets Hidden in Faults",
+   "story": "Asking for the Opposite"
+  },
+  {
+   "reading_day": 214,
+   "story_day": 214,
+   "reading": "From Indictment To Invitation",
+   "story": "The List I Didn't Want to Make"
+  },
+  {
+   "reading_day": 215,
+   "story_day": 218,
+   "reading": "The Fresh Starting Point",
+   "story": "Becoming Willing"
+  },
+  {
+   "reading_day": 229,
+   "story_day": 228,
+   "reading": "Justified But Harmful",
+   "story": "My Kids' Other Parent"
+  },
+  {
+   "reading_day": 237,
+   "story_day": 233,
+   "reading": "I Had Harmed Myself",
+   "story": "Harm to Myself Revisited"
+  },
+  {
+   "reading_day": 240,
+   "story_day": 229,
+   "reading": "The Intimacy of Being Peers",
+   "story": "Professional Service vs Fellowship"
+  },
+  {
+   "reading_day": 245,
+   "story_day": 245,
+   "reading": "The Terror of Action",
+   "story": "The First Amend I Made"
+  },
+  {
+   "reading_day": 249,
+   "story_day": 262,
+   "reading": "Simple Plans",
+   "story": "The Letter I Burned"
+  },
+  {
+   "reading_day": 250,
+   "story_day": 248,
+   "reading": "More Than Sorry",
+   "story": "The Apology That Wasn't Enough"
+  },
+  {
+   "reading_day": 252,
+   "story_day": 252,
+   "reading": "Letting Go of the Result",
+   "story": "When They Don't Accept It"
+  },
+  {
+   "reading_day": 254,
+   "story_day": 273,
+   "reading": "The Lie of Habitual Apologies",
+   "story": "The Amends I Keep Making"
+  },
+  {
+   "reading_day": 255,
+   "story_day": 255,
+   "reading": "The Trap of Self-Spared Discomfort",
+   "story": "The Employer Amend"
+  },
+  {
+   "reading_day": 259,
+   "story_day": 259,
+   "reading": "Amends to Those Closest",
+   "story": "The Amend That Took Years"
+  },
+  {
+   "reading_day": 270,
+   "story_day": 251,
+   "reading": "Amends for Damage to Self",
+   "story": "The Amend to Myself"
+  },
+  {
+   "reading_day": 272,
+   "story_day": 272,
+   "reading": "Acceptance in God's Time",
+   "story": "Amends Without Expectation"
+  },
+  {
+   "reading_day": 275,
+   "story_day": 275,
+   "reading": "The Maintenance Phase",
+   "story": "The Evening Inventory"
+  },
+  {
+   "reading_day": 278,
+   "story_day": 278,
+   "reading": "Keeping the Slate Clean",
+   "story": "The Amend I Made Immediately"
+  },
+  {
+   "reading_day": 281,
+   "story_day": 285,
+   "reading": "The Emergency Brake",
+   "story": "The Spot Check Inventory"
+  },
+  {
+   "reading_day": 282,
+   "story_day": 282,
+   "reading": "The Immediate Stop",
+   "story": "The Resentment That Started"
+  },
+  {
+   "reading_day": 285,
+   "story_day": 281,
+   "reading": "The Balance of the Positive",
+   "story": "The Good Day Check"
+  },
+  {
+   "reading_day": 288,
+   "story_day": 299,
+   "reading": "The Relief of Not Being Right",
+   "story": "When I'm Right But Wrong"
+  },
+  {
+   "reading_day": 289,
+   "story_day": 321,
+   "reading": "Allowing Consequences",
+   "story": "Small Rebellions"
+  },
+  {
+   "reading_day": 296,
+   "story_day": 292,
+   "reading": "Saved from Resentment",
+   "story": "The Resentment List in Inventory"
+  },
+  {
+   "reading_day": 297,
+   "story_day": 297,
+   "reading": "The Foundation of Experience",
+   "story": "The Good Thing I Did"
+  },
+  {
+   "reading_day": 301,
+   "story_day": 300,
+   "reading": "Declining Every Invitation to Argue",
+   "story": "No Opinion Means No Opinion"
+  },
+  {
+   "reading_day": 302,
+   "story_day": 290,
+   "reading": "Unity Through Focus",
+   "story": "Outside Issues in the Meeting"
+  },
+  {
+   "reading_day": 308,
+   "story_day": 308,
+   "reading": "Keeping It Simple",
+   "story": "Car Prayer"
+  },
+  {
+   "reading_day": 311,
+   "story_day": 311,
+   "reading": "Redefining Meditation",
+   "story": "Dishes and God"
+  },
+  {
+   "reading_day": 312,
+   "story_day": 307,
+   "reading": "Detaching from Thoughts",
+   "story": "When My Brain Won't Quit"
+  },
+  {
+   "reading_day": 316,
+   "story_day": 316,
+   "reading": "Doormat or Disciple?",
+   "story": "Finding My Voice"
+  },
+  {
+   "reading_day": 320,
+   "story_day": 329,
+   "reading": "Backseat Driving",
+   "story": "When Helping Becomes Interfering"
+  },
+  {
+   "reading_day": 322,
+   "story_day": 359,
+   "reading": "The Safety of Anonymity",
+   "story": "Speaking with Freedom"
+  },
+  {
+   "reading_day": 324,
+   "story_day": 309,
+   "reading": "Reclaiming Prayer",
+   "story": "Real Talk Prayer"
+  },
+  {
+   "reading_day": 326,
+   "story_day": 315,
+   "reading": "The 'All or Nothing' Trap",
+   "story": "Good Enough Practice"
+  },
+  {
+   "reading_day": 336,
+   "story_day": 336,
+   "reading": "The Program Summed Up",
+   "story": "The Program's Full Scope"
+  },
+  {
+   "reading_day": 338,
+   "story_day": 346,
+   "reading": "Keeping by Giving",
+   "story": "Giving to Keep"
+  },
+  {
+   "reading_day": 339,
+   "story_day": 339,
+   "reading": "The Flower Opening",
+   "story": "Accepting Slow Growth"
+  },
+  {
+   "reading_day": 341,
+   "story_day": 342,
+   "reading": "From Obsession to Peace",
+   "story": "Ending Obsession"
+  },
+  {
+   "reading_day": 344,
+   "story_day": 349,
+   "reading": "Challenged to Continue",
+   "story": "The Role of Sponsorship"
+  },
+  {
+   "reading_day": 348,
+   "story_day": 351,
+   "reading": "Beyond the Meetings",
+   "story": "All My Affairs"
+  },
+  {
+   "reading_day": 349,
+   "story_day": 344,
+   "reading": "Life Still Happens",
+   "story": "Increased Capability"
+  },
+  {
+   "reading_day": 361,
+   "story_day": 361,
+   "reading": "The Spiritual Foundation",
+   "story": "Trusting Anonymity"
+  },
+  {
+   "reading_day": 363,
+   "story_day": 358,
+   "reading": "Principles Above Personalities",
+   "story": "Principles Over Personalities"
+  }
+ ]
+}

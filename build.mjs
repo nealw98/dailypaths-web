@@ -25,6 +25,7 @@ import { fetchAllSteps } from './helpers/fetch-steps.mjs';
 import { fetchAllThemes } from './helpers/fetch-themes.mjs';
 import { fetchReadingRatings } from './helpers/fetch-ratings.mjs';
 import { fetchApprovedShares } from './helpers/fetch-shares.mjs';
+import { fetchPersonalExperiences } from './helpers/fetch-experiences.mjs';
 import { dayToSlug, readingSlug, stepRecordSlug, useFrozenReadingSlugs } from './helpers/slug-utils.mjs';
 import { loadReadingSlugs, createSlugResolver } from './helpers/reading-slugs.mjs';
 import { generateSitemap, generateRobotsTxt } from './helpers/seo.mjs';
@@ -168,6 +169,14 @@ const sharesMap = await fetchApprovedShares().catch(err => {
   return new Map();
 });
 
+// Stories for the "Personal Experience" section on reflection pages
+console.log('Fetching personal experience stories from Supabase...');
+const experiencesMap = await fetchPersonalExperiences().catch(err => {
+  console.warn('  Personal experience fetch failed, pages build without that section:', err.message);
+  return new Map();
+});
+console.log(`  ${experiencesMap.size} reflections have a Personal Experience story`);
+
 // --- Step 2: Clean and create output directory ---
 console.log('Preparing output directory...');
 if (existsSync(outDir)) {
@@ -261,7 +270,7 @@ for (let i = 0; i < readings.length; i++) {
   const prev = readings[(i - 1 + readings.length) % readings.length];
   const next = readings[(i + 1) % readings.length];
   const newSlug = readingSlug(reading.day_of_year, reading.title);
-  writePage(join(outDir, newSlug, 'index.html'), renderReadingPage(reading, prev, next, readings, ratingsMap));
+  writePage(join(outDir, newSlug, 'index.html'), renderReadingPage(reading, prev, next, readings, ratingsMap, { experience: experiencesMap.get(reading.day_of_year) }));
 }
 
 // One stable, complete reading for page-by-page typography review; private only.

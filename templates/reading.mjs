@@ -39,7 +39,7 @@ function lowerTheme(text) {
  * @param {Array} [allReadings] - All 366 readings (for sibling selection)
  * @param {Map} [ratingsMap] - day_of_year → {positive, total}, ranks siblings
  */
-export function renderReadingPage(reading, prevReading, nextReading, allReadings = [], ratingsMap = new Map(), { typographyPreview = false } = {}) {
+export function renderReadingPage(reading, prevReading, nextReading, allReadings = [], ratingsMap = new Map(), { typographyPreview = false, experience = null } = {}) {
   const slug = readingSlug(reading.day_of_year, reading.title);
   const isoDate = dayToIsoDate(reading.day_of_year);
   const monthIdx = dayToMonthIndex(reading.day_of_year);
@@ -113,6 +113,13 @@ export function renderReadingPage(reading, prevReading, nextReading, allReadings
   const openingHtml = textToHtmlParagraphs(reading.opening).replace('<p>', '<p class="type-lede">');
   const bodyHtml = textToHtmlParagraphs(reading.body);
   const applicationHtml = reading.application ? textToHtmlParagraphs(reading.application) : '';
+  // Illustrative story paired with this reflection (data/personal-experience.json).
+  // Labelled as a story based on the reading, not presented as a member's share.
+  const experienceHtml = experience
+    ? `${experience.title ? `<h3 class="rd-experience-title">${experience.title}</h3>` : ''}
+        ${textToHtmlParagraphs(experience.opening)}
+        ${textToHtmlParagraphs(experience.body)}`
+    : '';
 
   const thoughtHtml = reading.thought_for_day
     ? reading.thought_for_day
@@ -227,6 +234,12 @@ export function renderReadingPage(reading, prevReading, nextReading, allReadings
         ${openingHtml}
         ${bodyHtml}
       </div>
+
+      ${experienceHtml ? `<section class="rd-experience" aria-labelledby="experience-heading">
+        <h2 class="eyebrow" id="experience-heading">Personal Experience</h2>
+        <p class="rd-experience-label">A story based on today&rsquo;s reading</p>
+        <div class="prose-lora">${experienceHtml}</div>
+      </section>` : ''}
 
       ${applicationHtml ? `<section class="rd-practice" aria-labelledby="practice-heading">
         <h2 class="eyebrow" id="practice-heading">Practice</h2>
