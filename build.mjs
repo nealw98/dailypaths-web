@@ -227,9 +227,14 @@ function writePage(filePath, html) {
 
 // Separate editorial homepage with a real daily reflection as its lead.
 console.log("Generating editorial homepage...");
-const now = new Date();
-const todayMonth = now.getMonth(); // 0-indexed
-const todayDate = now.getDate();
+// "Today" is the New York calendar date whatever clock the build runs on, so the
+// homepage turns over at midnight Eastern even when a scheduled run starts late.
+// Held at midnight UTC of that date so a rerun the same day changes nothing.
+const [nyYear, nyMonth, nyDay] = new Intl.DateTimeFormat('en-CA', { timeZone: 'America/New_York', year: 'numeric', month: '2-digit', day: '2-digit' })
+  .format(new Date()).split('-').map(Number);
+const now = new Date(Date.UTC(nyYear, nyMonth - 1, nyDay));
+const todayMonth = now.getUTCMonth(); // 0-indexed
+const todayDate = now.getUTCDate();
 const daysInMonth = [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
 let todayDayOfYear = todayDate;
 for (let m = 0; m < todayMonth; m++) todayDayOfYear += daysInMonth[m];
@@ -477,7 +482,7 @@ console.log('Generating sitemap and robots.txt...');
 const lastmodIndex = IS_PREVIEW ? null : createLastmodIndex({
   manifestPath: join(ROOT, 'seo-lastmod.json'),
   outDir,
-  today: new Date().toISOString().split('T')[0],
+  today: now.toISOString().split('T')[0],
 });
 writeFileSync(
   join(outDir, 'sitemap.xml'),

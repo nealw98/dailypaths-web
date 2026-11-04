@@ -1,9 +1,13 @@
 name: Build and Deploy Static Site
 
 on:
+  # The nightly rebuild is started at midnight Eastern by the Supabase job
+  # 'site-daily-rebuild' (see supabase/migrations), because GitHub starts
+  # scheduled runs hours late. This schedule is only a fallback; the build picks
+  # the New York date, so a late or repeated run is harmless.
   schedule:
-    - cron: '0 5 * * *'  # 5am UTC daily (midnight ET)
-  workflow_dispatch:  # Manual trigger from GitHub UI
+    - cron: '23 6 * * *'
+  workflow_dispatch:  # Supabase job, or by hand from the Actions tab
 
 jobs:
   build-and-deploy:
